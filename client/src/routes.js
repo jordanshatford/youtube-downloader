@@ -1,0 +1,4 @@
+const routes = [
+]
+  
+export { routes }
