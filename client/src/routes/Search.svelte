@@ -21,11 +21,11 @@
 </script>
 
 <div>
-    <h2 class="lg:text-center text-base text-indigo-600 font-semibold tracking-wide uppercase">Youtube To MP3</h2>
-    <p class="lg:text-center mt-2 text-3xl leading-8 font-extrabold tracking-tight text-gray-900 sm:text-4xl">
+    <h2 class="text-center text-base text-indigo-600 font-semibold tracking-wide uppercase">Youtube To MP3</h2>
+    <p class="text-center mt-2 text-3xl leading-8 font-extrabold tracking-tight text-gray-900 sm:text-4xl">
         Convert Youtube videos to MP3
     </p>
-    <p class="lg:text-center mt-4 max-w-2xl text-xl text-gray-500 lg:mx-auto">
+    <p class="text-center mt-4 max-w-2xl text-xl text-gray-500 mx-auto">
         Search for the videos you want and convert multiple to MP3 at a time.
     </p>
     <div class="max-w-xl mx-auto rounded-lg overflow-hidden md:max-w-xl">

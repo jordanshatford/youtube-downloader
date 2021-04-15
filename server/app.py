@@ -7,14 +7,27 @@ app = Flask(__name__)
 app.config["SEND_FILE_MAX_AGE_DEFAULT"] = 0
 
 # Path for our main Svelte page
-@app.route("/")
-def base():
+@app.route('/', defaults={'path': ''})
+@app.route("/<path:path>")
+def base(path):
     return send_from_directory("../client/public", "index.html")
 
-# Path for all the static files (compiled JS/CSS, etc.)
-@app.route("/<path:path>")
-def home(path):
-    return send_from_directory("../client/public", path)
+# Paths for all the static files (compiled JS/CSS, etc.)
+@app.route("/build/<path:path>")
+def build(path):
+    return send_from_directory("../client/public/build", path)
+
+@app.route("/images/<path:path>")
+def images(path):
+    return send_from_directory("../client/public/images", path)
+
+@app.route("/global.css")
+def globalCss():
+    return send_from_directory("../client/public", "global.css")
+
+@app.route("/favicon.png")
+def favicon():
+    return send_from_directory("../client/public", "favicon.png")
 
 # Path to search for youtube videos using key terms
 @app.route("/api/search", methods=["GET"])
