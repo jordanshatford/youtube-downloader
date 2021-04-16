@@ -3,8 +3,8 @@
 </svelte:head>
 
 <script>
-    import SearchBar from '../components/search/SearchBar.svelte'
-    import VideoResults from '../components/search/VideoResults.svelte'
+    import SearchBar from "../components/search/SearchBar.svelte"
+    import VideoResults from "../components/search/VideoResults.svelte"
 
 	let results = []
 

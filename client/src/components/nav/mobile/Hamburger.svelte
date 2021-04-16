@@ -1,7 +1,7 @@
 <script>
-    import Icon from 'svelte-awesome'
-    import { times, bars } from 'svelte-awesome/icons'
-	import { createEventDispatcher } from "svelte";
+    import Icon from "svelte-awesome"
+    import { times, bars } from "svelte-awesome/icons"
+	import { createEventDispatcher } from "svelte"
 
     const dispatch = createEventDispatcher();
 

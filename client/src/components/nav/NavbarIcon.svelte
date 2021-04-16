@@ -1,6 +1,6 @@
 <script>
-    import Icon from 'svelte-awesome'
-    import { bell } from 'svelte-awesome/icons'
+    import Icon from "svelte-awesome"
+    import { bell } from "svelte-awesome/icons"
 
     let active = false
 </script>

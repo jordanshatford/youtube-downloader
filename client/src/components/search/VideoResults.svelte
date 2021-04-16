@@ -1,5 +1,5 @@
 <script>
-    import ResultCard from './ResultCard.svelte'
+    import ResultCard from "./ResultCard.svelte"
 
     export let results
 </script> 

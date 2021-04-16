@@ -1,8 +1,8 @@
 <script>
-    import NavbarItem from './NavbarItem.svelte'
-    import NavbarIcon from './NavbarIcon.svelte'
-    import Hamburger from './mobile/Hamburger.svelte'
-    import MobileMenu from './mobile/MobileMenu.svelte'
+    import NavbarItem from "./NavbarItem.svelte"
+    import NavbarIcon from "./NavbarIcon.svelte"
+    import Hamburger from "./mobile/Hamburger.svelte"
+    import MobileMenu from "./mobile/MobileMenu.svelte"
 
     export let currentRoute
 
@@ -10,12 +10,12 @@
 
     let routes = [
         {
-            label: 'Search Videos',
-            path: '/search',
+            label: "Search Videos",
+            path: "/search",
         },
         {
-            label: 'Downloads',
-            path: '/downloads',
+            label: "Downloads",
+            path: "/downloads",
         }
     ]
 </script>

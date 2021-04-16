@@ -1,7 +1,7 @@
 <script>
-    import Icon from 'svelte-awesome'
-    import { search } from 'svelte-awesome/icons'
-	import { createEventDispatcher } from "svelte";
+    import Icon from "svelte-awesome"
+    import { search } from "svelte-awesome/icons"
+    import { createEventDispatcher } from "svelte"
 
 	const dispatch = createEventDispatcher();
     const MAX_VIDEO_RESULTS = 10

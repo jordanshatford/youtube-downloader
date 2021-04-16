@@ -1,19 +1,19 @@
-import Search from './routes/Search.svelte'
-import Downloads from './routes/Downloads.svelte'
-import DefaultLayout from './routes/layout/Default.svelte'
+import Search from "./routes/Search.svelte"
+import Downloads from "./routes/Downloads.svelte"
+import DefaultLayout from "./routes/layout/Default.svelte"
 
 const routes = [
     {
-        name: '/',
+        name: "/",
         redirectTo: "search",
     },
     {
-        name: '/search',
+        name: "/search",
         component: Search,
         layout: DefaultLayout,
     },
     {
-        name: '/downloads',
+        name: "/downloads",
         component: Downloads,
         layout: DefaultLayout,
     }

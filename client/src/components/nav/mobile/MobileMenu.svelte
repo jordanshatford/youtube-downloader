@@ -1,5 +1,5 @@
 <script>
-    import NavbarItem from '../NavbarItem.svelte'
+    import NavbarItem from "../NavbarItem.svelte"
 
     export let currentRoute
     export let routes

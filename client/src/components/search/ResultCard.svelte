@@ -1,6 +1,6 @@
 <script>
-    import IconButton from '../base/IconButton.svelte'
-    import { download } from 'svelte-awesome/icons'
+    import IconButton from "./IconButton.svelte"
+    import { download } from "svelte-awesome/icons"
 
     const DESCRIPTION_MAX_LENGTH = 75
 

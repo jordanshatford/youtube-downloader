@@ -7,7 +7,7 @@ app = Flask(__name__)
 app.config["SEND_FILE_MAX_AGE_DEFAULT"] = 0
 
 # Path for our main Svelte page
-@app.route('/', defaults={'path': ''})
+@app.route("/", defaults={"path": ""})
 @app.route("/<path:path>")
 def base(path):
     return send_from_directory("../client/public", "index.html")
