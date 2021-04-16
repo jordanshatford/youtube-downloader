@@ -6,17 +6,20 @@
     import SearchBar from "../components/search/SearchBar.svelte"
     import VideoResults from "../components/search/VideoResults.svelte"
 
-	let results = []
+    let results = []
+    let loading = false
 
-	function fetchVideos(event) {
+    function fetchVideos(event) {
+        loading = true
         let term = event.detail.searchTerm
         let numberResults = event.detail.numberResults
         let url = `/api/search?term=${term}&results=${numberResults}`
         fetch(url)
-            .then(searchResults => searchResults.json())
-            .then(searchResultsJson => {
-                results = searchResultsJson
-            })
+        .then(searchResults => searchResults.json())
+        .then(searchResultsJson => {
+            results = searchResultsJson
+            loading = false
+        })
 	}
 </script>
 
@@ -32,7 +35,7 @@
         <div class="md:flex">
             <div class="w-full p-3">
                 <div class="relative">
-                    <SearchBar on:search={fetchVideos} allowResultSize={true} />
+                    <SearchBar on:search={fetchVideos} disabled={loading} />
                 </div>
             </div>
         </div>
