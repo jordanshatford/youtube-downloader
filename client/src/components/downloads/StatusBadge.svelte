@@ -17,7 +17,8 @@
         case Status.DONE:
             className = "bg-green-100 text-green-800"
             break
-        default: // STATUS.UNKNOWN
+        default: // STATUS.UNDEFINED
+            statusValue = Status.UNDEFINED
             className = "bg-red-100 text-red-800"
             break
     }

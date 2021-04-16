@@ -1,6 +1,7 @@
 <script>
     import IconButton from "./IconButton.svelte"
     import { download } from "svelte-awesome/icons"
+    import { downloadsStore } from "../../stores/downloads.js"
 
     const DESCRIPTION_MAX_LENGTH = 75
 
@@ -10,7 +11,12 @@
     $: seconds = result.duration - (minutes * 60)
 
     function downloadVideo() {
-        console.error("Downloading video audio not implemented yet!")
+        let downloadInfo = {
+            url: result.webpage_url,
+            title: result.title,
+            thumbnail: result.thumbnail
+        }
+        downloadsStore.addDownload(downloadInfo)
     }
 </script>
 
@@ -37,7 +43,9 @@
                     {result.channel}
                 </p>
             </a>
+            {#if !(result.webpage_url in $downloadsStore)}
             <IconButton on:click={downloadVideo} data={download} />
+            {/if}
         </footer>
     </article>
 </div>

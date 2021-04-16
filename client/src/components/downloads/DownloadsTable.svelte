@@ -1,12 +1,10 @@
 
 <script>
     import DownloadsTableItem from "./DownloadsTableItem.svelte"
+    import { downloadsStore } from "../../stores/downloads.js"
 
     export let downloadsInfo
 
-    function removeAllVideos() {
-        console.error("Removing videos is not implemented yet!")
-    }
     function downloadAllVideos() {
         console.error("Downloading videos is not implemented yet!")
     }
@@ -20,7 +18,7 @@
                     <thead class="bg-gray-50">
                     <tr>
                         <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                            <button on:click={removeAllVideos} class="border-none outline-none text-xs font-medium text-gray-500 focus:outline-none underline uppercase" type="button">
+                            <button on:click={_ => downloadsStore.reset()} class="border-none outline-none text-xs font-medium text-gray-500 focus:outline-none underline uppercase" type="button">
                                 Remove All
                             </button>
                         </th>
@@ -41,9 +39,15 @@
                     </tr>
                     </thead>
                     <tbody class="bg-white divide-y divide-gray-200">
+                        {#if Object.keys(downloadsInfo).length > 0}
                         {#each Object.values(downloadsInfo) as downloadInfo (downloadInfo.url)}
                             <DownloadsTableItem {downloadInfo} />
                         {/each}
+                        {:else}
+                        <tr class="content-center px-6 py-4 inline-block align-middle text-gray-500">
+                            No Downloads
+                        </tr>
+                        {/if}
                     </tbody>
                 </table>
             </div>
