@@ -9,26 +9,21 @@ function createSearchStore() {
         "loading": loading,
     })
 
-    function setResults(res) {
+    function updateContext(results=null, loading=null) {
         update(state => {
-            state.results = res
-            return state
-        })
-    }
-
-    function setLoading(bool) {
-        update(state => {
-            state.loading = bool
+            if (results != null)
+                state.results = results
+            if (loading != null)
+                state.loading = loading
             return state
         })
     }
 
     function search(term, numberResults) {
-        setLoading(true)
+        updateContext(null, true)
         let url = `/api/search?term=${term}&results=${numberResults}`
         fetch(url).then(results => results.json()).then(resultsJson => {
-            setResults(resultsJson)
-            setLoading(false)
+            updateContext(resultsJson, false)
         })
     }
 

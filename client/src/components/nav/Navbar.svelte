@@ -1,4 +1,7 @@
 <script>
+    import { routeIsActive, navigateTo } from 'svelte-router-spa'
+    import { download } from "svelte-awesome/icons"
+    import { downloadsStore } from "../../stores/downloads.js"
     import NavbarItem from "./NavbarItem.svelte"
     import NavbarIcon from "./NavbarIcon.svelte"
     import Hamburger from "./mobile/Hamburger.svelte"
@@ -18,6 +21,8 @@
             path: "/downloads",
         }
     ]
+
+    $: downloadsPageActive = currentRoute && routeIsActive("/downloads", true);
 </script>
 
 <nav class="bg-gray-800 mb-4">
@@ -36,7 +41,9 @@
                     </div>
                 </div>
             </div>
-            <NavbarIcon />
+            <div class="absolute inset-y-0 right-0 flex items-center space-x-4 pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
+                <NavbarIcon on:click={_ => navigateTo("/downloads")} active={downloadsPageActive} data={download} notifications={Object.keys($downloadsStore).length} />
+            </div>
         </div>
     </div>
     <MobileMenu isOpen={menuOpen} {routes} {currentRoute}/>

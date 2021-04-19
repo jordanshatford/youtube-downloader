@@ -11,7 +11,10 @@
         case Status.WAITING:
             className = "bg-yellow-100 text-yellow-800"
             break
-        case Status.IN_PROGRESS:
+        case Status.DOWNLOADING:
+            className = "bg-gray-100 text-gray-800"
+            break
+        case Status.PROCESSING:
             className = "bg-gray-100 text-gray-800"
             break
         case Status.DONE:
@@ -26,7 +29,7 @@
 
 <span class="content-center px-3 py-2 text-xs font-semibold rounded-full {className}">
     {statusValue}
-    {#if statusValue == "IN PROGRESS"}
+    {#if [Status.DOWNLOADING, Status.PROCESSING].includes(statusValue)}
     <Icon data={circleONotch} spin />
     {/if}
 </span>

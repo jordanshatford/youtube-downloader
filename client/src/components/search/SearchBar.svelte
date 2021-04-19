@@ -14,7 +14,7 @@
     let numberResults = DEFAULT_RESULT_SIZE
 
     function dispatchSearch(event) {
-        if (event.key === 'Enter') {
+        if (event.key === 'Enter' && searchTerm.length > 0) {
             dispatch("search", {
                 searchTerm,
                 numberResults
