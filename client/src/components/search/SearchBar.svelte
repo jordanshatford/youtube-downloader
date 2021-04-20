@@ -2,11 +2,8 @@
     import Icon from "svelte-awesome"
     import { circleONotch, search } from "svelte-awesome/icons"
     import { createEventDispatcher } from "svelte"
-
+    import { DEFAULT_RESULT_SIZE, MAX_VIDEO_RESULTS } from "../../utils/constants.js"
     const dispatch = createEventDispatcher();
-
-    const MAX_VIDEO_RESULTS = 10
-    const DEFAULT_RESULT_SIZE = 5
 
     export let disabled = false
 

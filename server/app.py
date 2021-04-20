@@ -1,10 +1,19 @@
-from flask import Flask, send_from_directory
-from flask import jsonify
-from flask import request
+from flask import jsonify, Flask, send_from_directory, request, session
+from flask_sqlalchemy import SQLAlchemy
+from flask_session import Session
 from youtube_dl import YoutubeDL
 
 app = Flask(__name__)
 app.config["SEND_FILE_MAX_AGE_DEFAULT"] = 0
+app.config["SECRET_KEY"] = "TODO_SECRET_KEY"
+app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///db.sqlite3"
+app.config["SESSION_TYPE"] = "sqlalchemy"
+
+db = SQLAlchemy(app)
+
+app.config["SESSION_SQLALCHEMY"] = db
+Session(app)
+
 
 # Path for our main Svelte page
 @app.route("/", defaults={"path": ""})

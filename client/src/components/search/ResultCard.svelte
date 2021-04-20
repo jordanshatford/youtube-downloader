@@ -3,8 +3,7 @@
     import { download } from "svelte-awesome/icons"
     import { downloadsStore } from "../../stores/downloads.js"
     import { formatSeconds, truncate } from "../../utils/utils.js"
-
-    const DESCRIPTION_MAX_LENGTH = 75
+    import { DESCRIPTION_MAX_LENGTH } from "../../utils/constants"
 
     export let result
 

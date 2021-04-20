@@ -4,8 +4,7 @@
     import StatusBadge from "./StatusBadge.svelte"
     import { downloadsStore } from "../../stores/downloads.js"
     import { truncate } from "../../utils/utils.js"
-
-    const MAX_TITLE_LENGTH = 30
+    import { MAX_TITLE_LENGTH } from "../../utils/constants"
 
     export let downloadInfo
     
@@ -26,16 +25,16 @@
     </td>
     <td class="px-6 py-4 whitespace-nowrap">
         <div class="flex items-center">
-            <div class="flex-shrink-0 h-10 w-18">
+            <div class="hidden md:block flex-shrink-0 h-10 w-18">
                 <img class="h-10 w-18" src="{downloadInfo.thumbnail}" alt="Thumbnail">
             </div>
-            <div class="ml-4">
-            <div class="text-sm font-medium text-gray-900">
-                {truncate(downloadInfo.title, MAX_TITLE_LENGTH)}
-            </div>
-            <div class="text-sm text-gray-500 underline">
-                <a href="{downloadInfo.url}" target="_blank">Link</a>
-            </div>
+            <div class="md:ml-4">
+                <div class="text-sm font-medium text-gray-900">
+                    {truncate(downloadInfo.title, MAX_TITLE_LENGTH)}
+                </div>
+                <div class="text-sm text-gray-500 underline">
+                    <a href="{downloadInfo.url}" target="_blank">Link</a>
+                </div>
             </div>
         </div>
     </td>
