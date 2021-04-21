@@ -43,7 +43,7 @@
     </td>
     <td class="px-6 py-4 whitespace-nowrap text-right text-sm">
         <!-- <a href="{downloadInfo.downloadLink}" disabled download class="text-indigo-600 hover:text-indigo-900 hover:no-underline">Download</a> -->
-        {#if downloadInfo.readyForDownload}
+        {#if downloadInfo.downloadLink}
         <button on:click={downloadVideoAudio} class="border-none outline-none text-sm font-medium focus:outline-none hover:no-underline text-indigo-600 hover:text-indigo-900" type="button">
             Download
         </button>

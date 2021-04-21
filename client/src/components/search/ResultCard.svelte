@@ -4,19 +4,11 @@
     import { downloadsStore } from "../../stores/downloads.js"
     import { formatSeconds, truncate } from "../../utils/utils.js"
     import { DESCRIPTION_MAX_LENGTH } from "../../utils/constants"
+    import { YoutubeDownloadInfo } from "../../utils/classes.js"
 
     export let result
 
     $: duration = formatSeconds(result.duration)
-
-    function downloadVideo() {
-        let downloadInfo = {
-            url: result.webpage_url,
-            title: result.title,
-            thumbnail: result.thumbnail
-        }
-        downloadsStore.addDownload(downloadInfo)
-    }
 </script>
 
 
@@ -43,7 +35,7 @@
                 </p>
             </a>
             {#if !(result.webpage_url in $downloadsStore)}
-            <IconButton on:click={downloadVideo} data={download} />
+            <IconButton on:click={_ => downloadsStore.addDownload(YoutubeDownloadInfo.fromSearchResult(result))} data={download} />
             {/if}
         </footer>
     </article>

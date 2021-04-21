@@ -1,6 +1,7 @@
 import { writable } from "svelte/store"
 
 function createSearchStore() {
+    const STORE_API_PREFIX = "/api/search"
     const results = []
     const loading = false
 
@@ -9,21 +10,18 @@ function createSearchStore() {
         "loading": loading,
     })
 
-    function updateContext(results=null, loading=null) {
+    function search(term, numberResults) {
         update(state => {
-            if (results != null)
-                state.results = results
-            if (loading != null)
-                state.loading = loading
+            state.loading = true
             return state
         })
-    }
-
-    function search(term, numberResults) {
-        updateContext(null, true)
-        let url = `/api/search?term=${term}&results=${numberResults}`
+        let url = `${STORE_API_PREFIX}?term=${term}&results=${numberResults}`
         fetch(url).then(results => results.json()).then(resultsJson => {
-            updateContext(resultsJson, false)
+            update(state => {
+                state.results = resultsJson
+                state.loading = false
+                return state
+            })
         })
     }
 
