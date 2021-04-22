@@ -1,12 +1,14 @@
-<script>
+<script lang="ts">
     import IconButton from "./IconButton.svelte"
     import { download } from "svelte-awesome/icons"
-    import { downloadsStore } from "../../stores/downloads.js"
-    import { formatSeconds, truncate } from "../../utils/utils.js"
-    import { DESCRIPTION_MAX_LENGTH } from "../../utils/constants"
-    import { YoutubeDownloadInfo } from "../../utils/classes.js"
 
-    export let result
+    import { downloadsStore } from "../../stores/downloads"
+    import { formatSeconds, truncate } from "../../utils/functions"
+    import { DESCRIPTION_MAX_LENGTH } from "../../utils/constants"
+    import { YoutubeDownloadInfo } from "../../utils/classes"
+    import type { SearchResult } from "../../utils/types"
+
+    export let result: SearchResult
 
     $: duration = formatSeconds(result.duration)
 </script>

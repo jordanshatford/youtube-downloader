@@ -1,16 +1,16 @@
-<script>
+<script lang="ts">
     import Icon from "svelte-awesome"
     import { circleONotch, search } from "svelte-awesome/icons"
     import { createEventDispatcher } from "svelte"
-    import { DEFAULT_RESULT_SIZE, MAX_VIDEO_RESULTS } from "../../utils/constants.js"
+    import { DEFAULT_RESULT_SIZE, MAX_VIDEO_RESULTS } from "../../utils/constants"
     const dispatch = createEventDispatcher();
 
     export let disabled = false
 
-    let searchTerm
+    let searchTerm: string
     let numberResults = DEFAULT_RESULT_SIZE
 
-    function dispatchSearch(event) {
+    function dispatchSearch(event: KeyboardEvent) {
         if (event.key === 'Enter' && searchTerm.length > 0) {
             dispatch("search", {
                 searchTerm,
@@ -20,7 +20,7 @@
     }
 </script>
 
-<div class="max-w-xl mx-auto rounded-lg overflow-hidden md:max-w-xl">
+<div class="max-w-xl mx-auto rounded-lg overflow-hidden md:max-w-xl mt-4">
     <div class="md:flex">
         <div class="w-full p-3">
             <div class="relative">

@@ -1,13 +1,13 @@
-<script>
+<script lang="ts">
     import { routeIsActive, navigateTo } from 'svelte-router-spa'
     import { download } from "svelte-awesome/icons"
-    import { downloadsStore } from "../../stores/downloads.js"
+    import { downloadsStore } from "../../stores/downloads"
     import NavbarItem from "./NavbarItem.svelte"
     import NavbarIcon from "./NavbarIcon.svelte"
     import Hamburger from "./mobile/Hamburger.svelte"
     import MobileMenu from "./mobile/MobileMenu.svelte"
 
-    export let currentRoute
+    export let currentRoute: string
 
     let menuOpen = false
 

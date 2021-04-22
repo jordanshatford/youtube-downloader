@@ -1,18 +1,19 @@
 import { writable } from "svelte/store"
+import type { DownloadInfo } from "../utils/types"
 
 function createDownloadsStore() {
     const downloads = {}
 
     const { subscribe, set, update } = writable(downloads)
 
-    function addDownload(downloadInfo) {
+    function addDownload(downloadInfo: DownloadInfo) {
         if (!(downloadInfo.url in downloads))
             // Add download to store using information we have already
             update(currentDownloads => Object.assign(currentDownloads, {[downloadInfo.url]: downloadInfo}))
             console.error("Actual downloading not implemented yet!")
     }
 
-    function removeDownload(url) {
+    function removeDownload(url: string) {
         if (url in downloads)
             update(currentDownloads => {
                 delete currentDownloads[url]

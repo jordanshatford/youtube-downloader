@@ -1,8 +1,9 @@
 import { writable } from "svelte/store"
+import type { SearchResult } from "../utils/types"
 
 function createSearchStore() {
     const STORE_API_PREFIX = "/api/search"
-    const results = []
+    const results: SearchResult[] = []
     const loading = false
 
     const { subscribe, set, update } = writable({
@@ -10,7 +11,7 @@ function createSearchStore() {
         "loading": loading,
     })
 
-    function search(term, numberResults) {
+    function search(term: string, numberResults: number) {
         update(state => {
             state.loading = true
             return state
@@ -28,7 +29,7 @@ function createSearchStore() {
     return {
         subscribe,
         search,
-        reset: () => set([])
+        reset: () => set({ results: [], loading: false })
     }
 }
 

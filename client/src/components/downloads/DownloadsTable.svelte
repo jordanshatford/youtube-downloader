@@ -1,9 +1,10 @@
 
-<script>
+<script lang="ts">
     import DownloadsTableItem from "./DownloadsTableItem.svelte"
-    import { downloadsStore } from "../../stores/downloads.js"
+    import { downloadsStore } from "../../stores/downloads"
+    import type { DownloadInfo } from "../../utils/types"
 
-    export let downloadsInfo
+    export let downloadsInfo: { [key: string]: DownloadInfo }
 
     function downloadAllVideos() {
         console.error("Downloading videos is not implemented yet!")
@@ -16,27 +17,27 @@
             <div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
                 <table class="min-w-full divide-y divide-gray-200">
                     <thead class="bg-gray-50">
-                    <tr>
-                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                            <button on:click={_ => downloadsStore.reset()} class="border-none outline-none text-xs font-medium text-gray-500 focus:outline-none underline uppercase" type="button">
-                                Remove All
-                            </button>
-                        </th>
-                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                            Info
-                        </th>
-                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                            Status
-                        </th>
-                        <th scope="col" class="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">
-                            <button on:click={downloadAllVideos} class="border-none outline-none text-xs font-medium text-gray-500 focus:outline-none underline uppercase" type="button">
-                                Download All
-                            </button>
-                        </th>
-                    </tr>
+                        <tr>
+                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                <button on:click={_ => downloadsStore.reset()} class="border-none outline-none text-xs font-medium text-gray-500 focus:outline-none underline uppercase" type="button">
+                                    Remove All
+                                </button>
+                            </th>
+                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                Info
+                            </th>
+                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                Status
+                            </th>
+                            <th scope="col" class="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                <button on:click={downloadAllVideos} class="border-none outline-none text-xs font-medium text-gray-500 focus:outline-none underline uppercase" type="button">
+                                    Download All
+                                </button>
+                            </th>
+                        </tr>
                     </thead>
                     <tbody class="bg-white divide-y divide-gray-200">
-                        {#if Object.keys(downloadsInfo).length > 0}
+                        {#if Object.keys(downloadsInfo)?.length > 0}
                         {#each Object.values(downloadsInfo) as downloadInfo (downloadInfo.url)}
                             <DownloadsTableItem {downloadInfo} />
                         {/each}

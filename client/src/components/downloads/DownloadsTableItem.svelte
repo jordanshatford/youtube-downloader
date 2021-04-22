@@ -1,12 +1,14 @@
-<script>
+<script lang="ts">
     import Icon from "svelte-awesome"
     import { times } from "svelte-awesome/icons"
+    
     import StatusBadge from "./StatusBadge.svelte"
-    import { downloadsStore } from "../../stores/downloads.js"
-    import { truncate } from "../../utils/utils.js"
+    import { downloadsStore } from "../../stores/downloads"
+    import { truncate } from "../../utils/functions"
     import { MAX_TITLE_LENGTH } from "../../utils/constants"
+    import type { DownloadInfo } from "../../utils/types"
 
-    export let downloadInfo
+    export let downloadInfo: DownloadInfo
     
     function removeVideo() {
         downloadsStore.removeDownload(downloadInfo.url)
@@ -39,7 +41,7 @@
         </div>
     </td>
     <td class="px-6 py-4 whitespace-nowrap">
-        <StatusBadge statusValue={downloadInfo.status} />
+        <StatusBadge status={downloadInfo.status} />
     </td>
     <td class="px-6 py-4 whitespace-nowrap text-right text-sm">
         <!-- <a href="{downloadInfo.downloadLink}" disabled download class="text-indigo-600 hover:text-indigo-900 hover:no-underline">Download</a> -->

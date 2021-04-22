@@ -1,8 +1,9 @@
-<script>
+<script lang="ts">
     import { routeIsActive, Navigate } from "svelte-router-spa"
-  
-    export let route
-    export let currentRoute
+    import type { Route } from "../../utils/types"
+
+    export let route: Route
+    export let currentRoute: string
     export let dropdown = false
 
     $: isActive = currentRoute && route.path && routeIsActive(route.path, true);

@@ -4,7 +4,7 @@
  * @param  {Number} n    The length to make the truncated string.
  * @return {String}      The string properly truncated.
  */
-export function truncate(str, n) {
+export function truncate(str: string, n: number): string {
     return (str.length > n) ? str.substring(0, n-1) + "..." : str
 }
 
@@ -13,7 +13,7 @@ export function truncate(str, n) {
  * @param  {Number} duration  The number of seconds.
  * @return {String}           The string representing the seconds in HH:MM:SS format.
  */
-export function formatSeconds(duration) {
+export function formatSeconds(duration: number): string {
     let hrs = ~~(duration/3600)
     let mins = ~~((duration % 3600) / 60)
     let secs = ~~duration % 60
