@@ -1,3 +1,7 @@
+// Server constants
+export const SERVER_IP = "localhost"
+export const SERVER_PORT = "8000"
+
 // Max title lenght on downloads table
 export const MAX_TITLE_LENGTH = 30
 

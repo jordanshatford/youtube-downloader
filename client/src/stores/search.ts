@@ -1,8 +1,9 @@
 import { writable } from "svelte/store"
 import type { SearchResult } from "../utils/types"
+import { getApiEndpoint } from "../utils/functions"
 
 function createSearchStore() {
-    const STORE_API_PREFIX = "/api/search"
+    const API_ENDPOINT = "/api/search"
     const results: SearchResult[] = []
     const loading = false
 
@@ -16,7 +17,7 @@ function createSearchStore() {
             state.loading = true
             return state
         })
-        let url = `${STORE_API_PREFIX}?term=${term}&results=${numberResults}`
+        let url = `${getApiEndpoint(API_ENDPOINT)}?term=${term}&results=${numberResults}`
         fetch(url).then(results => results.json()).then(resultsJson => {
             update(state => {
                 state.results = resultsJson

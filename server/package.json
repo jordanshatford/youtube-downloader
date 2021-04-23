@@ -2,7 +2,7 @@
     "name": "server",
     "version": "0.0.0",
     "scripts": {
-      "serve": "FLASK_ENV=development flask run",
+      "serve": "FLASK_ENV=development flask run --port=8000",
       "start": "flask run"
     },
     "license": "MIT"

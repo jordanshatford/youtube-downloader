@@ -1,3 +1,14 @@
+import { SERVER_IP, SERVER_PORT } from "./constants"
+
+/**
+ * Return the url for a given api endpoint.
+ * @param {String} endpoint   The api endpoint you want.
+ * @return {String}           The url for that endpoint.
+ */
+export function getApiEndpoint(endpoint: string): string {
+    return `http://${SERVER_IP}:${SERVER_PORT}${endpoint}`
+}
+
 /**
  * Truncate a string to a specified size.
  * @param  {String} str  The string to be truncated.
