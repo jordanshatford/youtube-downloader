@@ -36,7 +36,7 @@
                     {result.channel}
                 </p>
             </a>
-            {#if !(result.webpage_url in $downloadsStore)}
+            {#if !(result.id in $downloadsStore)}
             <IconButton on:click={_ => downloadsStore.addDownload(YoutubeDownloadInfo.fromSearchResult(result))} data={download} />
             {/if}
         </footer>

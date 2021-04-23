@@ -6,22 +6,19 @@
     import { downloadsStore } from "../../stores/downloads"
     import { truncate } from "../../utils/functions"
     import { MAX_TITLE_LENGTH } from "../../utils/constants"
+    import { Status } from "../../utils/types"
     import type { DownloadInfo } from "../../utils/types"
 
     export let downloadInfo: DownloadInfo
-    
-    function removeVideo() {
-        downloadsStore.removeDownload(downloadInfo.url)
-    }
-
-    function downloadVideoAudio() {
-        console.error("Downloading videos is not implemented yet!")
-    }
 </script>
 
 <tr>
     <td class="px-6 py-4 whitespace-nowrap text-gray-500">
-        <button on:click={removeVideo} class="border-none outline-none focus:outline-none mr-1 mb-2 ease-linear transition-all duration-150" type="button">
+        <button
+            on:click={_ => downloadsStore.removeDownload(downloadInfo.id)}
+            class="border-none outline-none focus:outline-none mr-1 mb-2 ease-linear transition-all duration-150"
+            type="button"
+        >
             <Icon data={times} class="text-red-500" /> 
         </button>
     </td>
@@ -45,8 +42,12 @@
     </td>
     <td class="px-6 py-4 whitespace-nowrap text-right text-sm">
         <!-- <a href="{downloadInfo.downloadLink}" disabled download class="text-indigo-600 hover:text-indigo-900 hover:no-underline">Download</a> -->
-        {#if downloadInfo.downloadLink}
-        <button on:click={downloadVideoAudio} class="border-none outline-none text-sm font-medium focus:outline-none hover:no-underline text-indigo-600 hover:text-indigo-900" type="button">
+        {#if downloadInfo.status == Status.DONE}
+        <button
+            on:click={_ => downloadsStore.downloadAudioFile(downloadInfo.id)}
+            class="border-none outline-none text-sm font-medium focus:outline-none hover:no-underline text-indigo-600 hover:text-indigo-900"
+            type="button"
+        >
             Download
         </button>
         {:else}

@@ -7,7 +7,11 @@
 </script>
 
 <span class="relative inline-block">
-    <button on:click class="{active ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white'} p-1 rounded-md border-none focus:outline-none">
+    <button
+        on:click
+        class="{active ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white'} p-1 rounded-md border-none focus:outline-none"
+        type="button"
+    >
         <Icon {data} class="h-6 w-6" />
     </button>
     {#if notifications > 0}

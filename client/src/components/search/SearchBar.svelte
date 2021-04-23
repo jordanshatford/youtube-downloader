@@ -29,7 +29,14 @@
                 {:else}
                 <Icon data={search} class="absolute text-gray-400 top-5 left-4" /> 
                 {/if}
-                <input {disabled} bind:value={searchTerm} on:keypress={dispatchSearch} type="text" class="bg-white h-14 w-full px-12 rounded-lg focus:outline-none hover:cursor-pointer" name=""> 
+                <input
+                    {disabled}
+                    bind:value={searchTerm}
+                    on:keypress={dispatchSearch}
+                    type="text"
+                    class="bg-white h-14 w-full px-12 rounded-lg focus:outline-none hover:cursor-pointer"
+                    name=""
+                >
                 <span class="absolute top-4 right-5 border-l pl-4">
                     <select {disabled} bind:value={numberResults} class="focus:outline-none border-none text-gray-500 hover:cursor">
                         {#each {length: MAX_VIDEO_RESULTS} as _, i}

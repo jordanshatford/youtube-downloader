@@ -7,7 +7,6 @@ export class YoutubeDownloadInfo {
     title: string
     thumbnail: string
     status: Status
-    downloadLink: string | null
 
     constructor(downloadInfo: DownloadInfo) {
         this.id = downloadInfo.id
@@ -15,7 +14,6 @@ export class YoutubeDownloadInfo {
         this.title = downloadInfo.title
         this.thumbnail = downloadInfo.thumbnail
         this.status = downloadInfo.status
-        this.downloadLink = downloadInfo.downloadLink
     }
 
     static fromSearchResult(result: SearchResult) {
@@ -25,12 +23,10 @@ export class YoutubeDownloadInfo {
             title: result.title,
             thumbnail: result.thumbnail,
             status: Status.UNDEFINED,
-            downloadLink: null
         })
     }
 
-    updateStatus(status: Status, downloadLink: string | null = null) {
+    updateStatus(status: Status) {
         this.status = status
-        this.downloadLink = downloadLink
     }
 }

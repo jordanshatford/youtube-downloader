@@ -14,7 +14,6 @@ export type DownloadInfo = {
     title: string
     thumbnail: string
     status: Status
-    downloadLink: string | null
 }
 
 // The search results from searching for a video

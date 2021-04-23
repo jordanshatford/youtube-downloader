@@ -7,25 +7,35 @@ function createDownloadsStore() {
     const { subscribe, set, update } = writable(downloads)
 
     function addDownload(downloadInfo: DownloadInfo) {
-        if (!(downloadInfo.url in downloads))
+        if (!(downloadInfo.id in downloads))
             // Add download to store using information we have already
-            update(currentDownloads => Object.assign(currentDownloads, {[downloadInfo.url]: downloadInfo}))
+            update(currentDownloads => Object.assign(currentDownloads, {[downloadInfo.id]: downloadInfo}))
             console.error("Actual downloading not implemented yet!")
     }
 
-    function removeDownload(url: string) {
-        if (url in downloads)
+    function removeDownload(id: string) {
+        if (id in downloads)
             update(currentDownloads => {
-                delete currentDownloads[url]
+                delete currentDownloads[id]
                 return currentDownloads
             })
             console.error("Actual removing of download not implemented yet!")
+    }
+
+    function downloadAudioFile(id: string) {
+        console.error("Actual downloading of audio file not implemented yet!")
+    }
+
+    function downloadAllAudioFiles() {
+        console.error("Downloading videos is not implemented yet!")
     }
 
     return {
         subscribe,
         addDownload,
         removeDownload,
+        downloadAudioFile,
+        downloadAllAudioFiles,
         reset: () => set({})
     }
 }
