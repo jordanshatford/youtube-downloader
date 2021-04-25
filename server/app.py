@@ -1,25 +1,21 @@
-import os
-
 from flask import Flask
 from flask_cors import CORS
-from flask_sqlalchemy import SQLAlchemy
-from flask_session import Session
-from flask_restful import Api
+from flask_sockets import Sockets
 
-from resources.search import Search
+from resources.search import http as HttpSearchEndpoints
+from resources.session import http as HttpSessionEndpoints
+from resources.session import ws as WsSessionEndpoints
 
 app = Flask(__name__)
-Session(app)
-CORS(app)
-api = Api(app)
-app.config["SECRET_KEY"] = os.environ.get("SECRET_KEY", os.urandom(12).hex())
-app.config["SQLALCHEMY_DATABASE_URI"] = os.environ.get(
-    "DATABASE_URL", "sqlite:///db.sqlite3"
-)
-app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
-app.config["SESSION_TYPE"] = "sqlalchemy"
-db = SQLAlchemy(app)
-app.config["SESSION_SQLALCHEMY"] = db
+sockets = Sockets(app)
+CORS(app, supports_credentials=True)
 
-api.add_resource(Search, "/api/search")
+app.register_blueprint(HttpSearchEndpoints, url_prefix="/api")
+app.register_blueprint(HttpSessionEndpoints, url_prefix="/api")
+sockets.register_blueprint(WsSessionEndpoints, url_prefix="/ws")
 
+from geventwebsocket.handler import WebSocketHandler
+from gevent.pywsgi import WSGIServer
+
+http_server = WSGIServer(('',8000), app, handler_class=WebSocketHandler)
+http_server.serve_forever()

@@ -2,7 +2,8 @@ import { writable } from "svelte/store"
 import type { DownloadInfo } from "../utils/types"
 
 function createDownloadsStore() {
-    const downloads = {}
+    const API_ENDPOINT = "/api/downloads"
+    const downloads: { [key: string]: DownloadInfo } = {}
 
     const { subscribe, set, update } = writable(downloads)
 
