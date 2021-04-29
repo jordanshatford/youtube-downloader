@@ -30,13 +30,6 @@
                                 Status
                             </th>
                             <th scope="col" class="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                <button
-                                    on:click={_ => downloadsStore.downloadAllAudioFiles()}
-                                    class="border-none outline-none text-xs font-medium text-gray-500 focus:outline-none underline uppercase"
-                                    type="button"
-                                >
-                                    Download All
-                                </button>
                             </th>
                         </tr>
                     </thead>

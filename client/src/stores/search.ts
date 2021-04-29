@@ -3,7 +3,7 @@ import type { SearchResult } from "../utils/types"
 import { getApiEndpoint } from "../utils/functions"
 
 function createSearchStore() {
-    const API_ENDPOINT = "/api/search"
+    const API_ENDPOINT = "/search"
     const results: SearchResult[] = []
     const loading = false
 

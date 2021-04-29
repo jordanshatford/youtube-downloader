@@ -22,7 +22,7 @@ export class YoutubeDownloadInfo {
             url: result.webpage_url,
             title: result.title,
             thumbnail: result.thumbnail,
-            status: Status.UNDEFINED,
+            status: Status.WAITING,
         })
     }
 

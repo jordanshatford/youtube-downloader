@@ -6,7 +6,7 @@ import { SERVER_IP, SERVER_PORT } from "./constants"
  * @return {String}           The url for that endpoint.
  */
 export function getApiEndpoint(endpoint: string): string {
-    return `http://${SERVER_IP}:${SERVER_PORT}${endpoint}`
+    return `http://${SERVER_IP}:${SERVER_PORT}/api${endpoint}`
 }
 
 /**
