@@ -17,7 +17,7 @@ function createSearchStore() {
             state.loading = true
             return state
         })
-        let url = `${getApiEndpoint(API_ENDPOINT)}?term=${term}&results=${numberResults}`
+        let url = getApiEndpoint(API_ENDPOINT, undefined, { "term": term, "results": numberResults })
         fetch(url).then(results => results.json()).then(resultsJson => {
             update(state => {
                 state.results = resultsJson

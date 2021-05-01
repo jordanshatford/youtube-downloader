@@ -9,16 +9,12 @@ function createDownloadsStore() {
 
     const { subscribe, set, update } = writable(downloads)
 
-    const downloadStatus = new EventSource("http://localhost:8000/api/downloads/status")
+    const downloadStatus = new EventSource(getApiEndpoint(API_ENDPOINT, "status"))
 
     downloadStatus.onmessage = function(event) {
         let data = JSON.parse(event.data)
-        let id = data["id"]
-        let status = data["status"]
         update(currentDownloads => {
-            let x = currentDownloads[id]
-            x.status = status
-            currentDownloads[id] = x
+            currentDownloads[data["id"]].status = data["status"]
             return currentDownloads
         })
     }
@@ -27,17 +23,17 @@ function createDownloadsStore() {
         if (!(downloadInfo.id in downloads)) {
             // Add download to store using information we have already
             update(currentDownloads => Object.assign(currentDownloads, {[downloadInfo.id]: downloadInfo}))
-            let url = getApiEndpoint(API_ENDPOINT) + "/" + downloadInfo.id
+            let url = getApiEndpoint(API_ENDPOINT, downloadInfo.id)
             fetch(url, {
-                method: 'POST',
+                method: "POST",
                 headers: {
-                  'Accept': 'application/json',
-                  'Content-Type': 'application/json'
+                  "Accept": "application/json",
+                  "Content-Type": "application/json"
                 },
                 body: JSON.stringify({
                     url: downloadInfo.url,
                 })
-            });
+            })
         }
     }
 
@@ -47,23 +43,18 @@ function createDownloadsStore() {
                 delete currentDownloads[id]
                 return currentDownloads
             })
-            let url = getApiEndpoint(API_ENDPOINT) + "/" + id
-            fetch(url, {
-                method: 'DELETE',
-            })
+            let url = getApiEndpoint(API_ENDPOINT, id)
+            fetch(url, { method: "DELETE" })
         }
     }
 
     function downloadAudioFile(id: string) {
         if (id in downloads) {
-            let x = downloads[id]
-            let url = getApiEndpoint(API_ENDPOINT) + "/" + id
-            fetch(url)
-            .then(response => { 
-                console.log(response)
+            let url = getApiEndpoint(API_ENDPOINT, id)
+            fetch(url).then(response => {
                 return response.blob()
             })
-            .then(blob => saveAs(blob, `${x.title}.mp3`));
+            .then(blob => saveAs(blob, `${downloads[id].title}.mp3`))
         }
     }
 
