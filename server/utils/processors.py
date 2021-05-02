@@ -2,6 +2,7 @@ import enum
 import os
 
 from youtube_dl.postprocessor.common import PostProcessor
+
 from .enums import Status
 
 

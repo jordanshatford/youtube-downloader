@@ -5,12 +5,12 @@ from typing import Optional
 
 class ServerSentEvent:
     def __init__(
-            self,
-            data: str,
-            *,
-            event: Optional[str]=None,
-            id: Optional[int]=None,
-            retry: Optional[int]=None,
+        self,
+        data: str,
+        *,
+        event: Optional[str]=None,
+        id: Optional[int]=None,
+        retry: Optional[int]=None,
     ) -> None:
         self._data = data
         self._event = event
