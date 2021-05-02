@@ -3,9 +3,11 @@
 	import { Router } from "svelte-router-spa"
   	import { routes } from "./routes"
 	import { sessionStore } from "./stores/session"
+	import { downloadsStore } from "./stores/downloads"
 
 	onMount(async () => {
 		await sessionStore.setupSession()
+		downloadsStore.setupDownloadStatusListener()
 	});
 </script>
 

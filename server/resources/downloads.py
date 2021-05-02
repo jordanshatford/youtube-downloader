@@ -1,15 +1,17 @@
-import json
-import queue
-
 from flask import jsonify, Blueprint, request, send_file, Response
-from utils.managers import AudioDownloadManager
-from utils.sse import ServerSentEvent
+
+from utils.managers import session_manager
+
 
 http = Blueprint(r"http_downloads", __name__)
 
 
 @http.route("/downloads/<string:id>", methods=["GET", "POST", "DELETE"])
 def download(id):
+    session_id = request.args.get("sessionId")
+    session_manager.update_session_use_time(session_id)
+    download_manager = session_manager.get_download_manager(session_id)
+
     if request.method == "GET":
         path = download_manager.get_download(id)
         return send_file(path, as_attachment=True)
@@ -22,22 +24,13 @@ def download(id):
         return jsonify({ "status": "ok" })
 
 
-queue = queue.Queue()
-
-def send_event(status, video_id):
-    msg = ServerSentEvent(data=json.dumps({"status": status.value, "id": video_id}))
-    queue.put(msg.encode())
-
-download_manager = AudioDownloadManager("sessionId", announcer=send_event)
-
-
 @http.route("/downloads/status", methods=["GET"])
 def downloads_status():
+    session_id = request.args.get("sessionId")
     def status_stream():
         while True:
-            msg = queue.get()  # blocks until a new message arrives
+            msg = session_manager.get_status_queue(session_id).get()
             yield msg
-
     return Response(status_stream(), mimetype="text/event-stream")
 
 
