@@ -61,7 +61,7 @@ class SessionManager:
         session_to_old_duration: int = 60 * 60 * 2,
     ):
         self._sessions = {}
-        self._session_dir = session_dir
+        self.session_dir = session_dir
         self._session_too_old_duration = session_to_old_duration
         self._cleanup_interval = cleanup_interval
         self._cleanup_timer = RepeatedTimer(self._cleanup_interval, self.cleanup)
@@ -74,7 +74,7 @@ class SessionManager:
                 self._sessions.pop(session_id, None)
 
     def setup_session(self, id: str):
-        self._sessions[id] = Session(id, self._session_dir)
+        self._sessions[id] = Session(id, self.session_dir)
 
     def remove(self, id: str):
         self._clean_session_files(id)
