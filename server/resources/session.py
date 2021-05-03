@@ -12,4 +12,4 @@ http = Blueprint(r"http_session", __name__)
 def get_session():
     session_id = str(uuid.uuid4())
     session_manager.setup_session(session_id)
-    return jsonify({ "sessionId": session_id })
+    return jsonify({"sessionId": session_id})

@@ -8,9 +8,9 @@ class ServerSentEvent:
         self,
         data: str,
         *,
-        event: Optional[str]=None,
-        id: Optional[int]=None,
-        retry: Optional[int]=None,
+        event: Optional[str] = None,
+        id: Optional[int] = None,
+        retry: Optional[int] = None,
     ) -> None:
         self._data = data
         self._event = event
@@ -26,4 +26,4 @@ class ServerSentEvent:
         if self._retry is not None:
             message = f"{message}\nretry: {self._retry}"
         message = f"{message}\r\n\r\n"
-        return message.encode('utf-8')
+        return message.encode("utf-8")

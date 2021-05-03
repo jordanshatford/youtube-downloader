@@ -18,7 +18,9 @@ class AudioDownloadManager:
 
     def add(self, video_id: str, url: str) -> None:
         if video_id not in self._downloads:
-            download = YoutubeDownloadThread(video_id, url, self._output_dir, self.send_status_update)
+            download = YoutubeDownloadThread(
+                video_id, url, self._output_dir, self.send_status_update
+            )
             self._downloads[video_id] = download
             download.start()
 
@@ -27,7 +29,9 @@ class AudioDownloadManager:
         self._downloads.pop(video_id, None)
 
     def get_download(self, video_id: str) -> str:
-        path = self._downloads[video_id].get_file_location() # TODO: prevent errors here
+        path = self._downloads[
+            video_id
+        ].get_file_location()  # TODO: prevent errors here
         return path
 
     def send_status_update(self, video_id: str, status: str) -> None:
@@ -39,7 +43,9 @@ class Session:
         self._id = id
         self.output_dir = os.path.join(session_dir, id)
         self._last_use = datetime.now()
-        self.download_manager = AudioDownloadManager(self.output_dir, announcer=self._status_update)
+        self.download_manager = AudioDownloadManager(
+            self.output_dir, announcer=self._status_update
+        )
         self.status_queue = Queue()
 
     def update_use_time(self):
@@ -49,7 +55,7 @@ class Session:
         return self._last_use < datetime.now() - timedelta(seconds=seconds)
 
     def _status_update(self, video_id: str, status: str):
-        msg = ServerSentEvent(data=json.dumps({ "id": video_id, "status": status.value }))
+        msg = ServerSentEvent(data=json.dumps({"id": video_id, "status": status.value}))
         self.status_queue.put(msg.encode())
 
 
@@ -68,7 +74,9 @@ class SessionManager:
 
     def cleanup(self):
         for session_id in self._sessions.copy():
-            session_not_used = self._sessions[session_id].session_older_than(self._session_too_old_duration)
+            session_not_used = self._sessions[session_id].session_older_than(
+                self._session_too_old_duration
+            )
             if session_not_used:
                 self._clean_session_files(session_id)
                 self._sessions.pop(session_id, None)

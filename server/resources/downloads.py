@@ -18,19 +18,19 @@ def download(id):
     elif request.method == "POST":
         url = request.json.get("url")
         download_manager.add(id, url)
-        return jsonify({ "status": "ok" })
+        return jsonify({"status": "ok"})
     elif request.method == "DELETE":
         download_manager.remove(id)
-        return jsonify({ "status": "ok" })
+        return jsonify({"status": "ok"})
 
 
 @http.route("/downloads/status", methods=["GET"])
 def downloads_status():
     session_id = request.args.get("sessionId")
+
     def status_stream():
         while True:
             msg = session_manager.get_status_queue(session_id).get()
             yield msg
+
     return Response(status_stream(), mimetype="text/event-stream")
-
-

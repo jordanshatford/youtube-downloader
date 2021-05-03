@@ -1,4 +1,5 @@
 import atexit
+import os
 import shutil
 
 from flask import Flask
@@ -21,4 +22,5 @@ app.register_blueprint(HttpSessionEndpoints, url_prefix="/api")
 @atexit.register
 def shutdown_cleanup():
     # Remove all session files
-    shutil.rmtree(session_manager.session_dir)
+    if os.path.exists(session_manager.session_dir):
+        shutil.rmtree(session_manager.session_dir)
