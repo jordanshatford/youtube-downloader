@@ -1,5 +1,5 @@
 <script lang="ts">
-    import IconButton from "./IconButton.svelte"
+    import IconButton from "../lib/IconButton.svelte"
     import { download } from "svelte-awesome/icons"
 
     import { downloadsStore } from "../../stores/downloads"
@@ -36,9 +36,13 @@
                     {result.channel}
                 </p>
             </a>
-            {#if !(result.id in $downloadsStore)}
-            <IconButton on:click={_ => downloadsStore.addDownload(YoutubeDownloadInfo.fromSearchResult(result))} data={download} />
-            {/if}
+            <IconButton
+                on:click={_ => downloadsStore.addDownload(YoutubeDownloadInfo.fromSearchResult(result))}
+                data={download}
+                className="hover:text-purple-500 hover:scale-110"
+                iconScale={1.25}
+                disabled={result.id in $downloadsStore}
+            />
         </footer>
     </article>
 </div>

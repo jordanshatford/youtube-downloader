@@ -11,6 +11,12 @@ module.exports = {
       },
     },
   },
-  variants: {},
+  variants: {
+    extend: {
+      cursor: ['responsive', 'disabled'],
+      opacity: ['responsive', 'group-hover', 'focus-within', 'hover', 'focus', 'disabled'],
+      textColor: ['responsive', 'dark', 'group-hover', 'focus-within', 'hover', 'focus', 'disabled'],
+    }
+  },
   plugins: [],
 }

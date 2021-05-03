@@ -1,9 +1,9 @@
 <script lang="ts">
+    import NotificationIconButton from './../lib/NotificationIconButton.svelte';
     import { routeIsActive, navigateTo } from 'svelte-router-spa'
-    import { download } from "svelte-awesome/icons"
+    import { download, search } from "svelte-awesome/icons"
     import { downloadsStore } from "../../stores/downloads"
     import NavbarItem from "./NavbarItem.svelte"
-    import NavbarIcon from "./NavbarIcon.svelte"
     import Hamburger from "./mobile/Hamburger.svelte"
     import MobileMenu from "./mobile/MobileMenu.svelte"
 
@@ -15,10 +15,12 @@
         {
             label: "Search Videos",
             path: "/search",
+            icon: search,
         },
         {
             label: "Downloads",
             path: "/downloads",
+            icon: download,
         }
     ]
 
@@ -42,7 +44,7 @@
                 </div>
             </div>
             <div class="absolute inset-y-0 right-0 flex items-center space-x-4 pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
-                <NavbarIcon
+                <NotificationIconButton
                     on:click={_ => navigateTo("/downloads")}
                     active={downloadsPageActive}
                     data={download}
