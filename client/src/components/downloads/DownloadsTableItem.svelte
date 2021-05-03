@@ -28,10 +28,10 @@
                 <img class="h-10 w-18" src="{downloadInfo.thumbnail}" alt="Thumbnail">
             </div>
             <div class="md:ml-4">
-                <div class="text-sm font-medium text-gray-900">
+                <div class="text-sm font-medium text-white">
                     {truncate(downloadInfo.title, MAX_TITLE_LENGTH)}
                 </div>
-                <div class="text-sm text-gray-500 underline">
+                <div class="text-sm text-gray-400 underline">
                     <a href="{downloadInfo.url}" target="_blank">Link</a>
                 </div>
             </div>
@@ -41,17 +41,16 @@
         <StatusBadge status={downloadInfo.status} />
     </td>
     <td class="px-6 py-4 whitespace-nowrap text-right text-sm">
-        <!-- <a href="{downloadInfo.downloadLink}" disabled download class="text-indigo-600 hover:text-indigo-900 hover:no-underline">Download</a> -->
         {#if downloadInfo.status == Status.DONE}
         <button
             on:click={_ => downloadsStore.downloadAudioFile(downloadInfo.id)}
-            class="border-none outline-none text-sm font-medium focus:outline-none hover:no-underline text-indigo-600 hover:text-indigo-900"
+            class="border-none outline-none text-sm font-medium focus:outline-none hover:no-underline text-purple-600 hover:text-purple-900"
             type="button"
         >
             Download
         </button>
         {:else}
-        <p class="text-grey-100">Not Ready</p>
+        <p class="text-white">Not Ready</p>
         {/if}
     </td>
 </tr>

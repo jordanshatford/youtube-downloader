@@ -25,7 +25,7 @@
     $: downloadsPageActive = currentRoute && routeIsActive("/downloads", true);
 </script>
 
-<nav class="bg-gray-800 mb-4">
+<nav class="bg-gray-800 mb-4 shadow-md">
     <div class="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8">
         <div class="relative flex items-center justify-between h-16">
             <Hamburger on:click={_ => menuOpen = !menuOpen} isOpen={menuOpen} />
