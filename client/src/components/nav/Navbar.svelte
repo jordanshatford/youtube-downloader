@@ -1,5 +1,6 @@
 <script lang="ts">
-    import NotificationIconButton from './../lib/NotificationIconButton.svelte';
+    import NotificationIconButton from './../lib/NotificationIconButton.svelte'
+    import ThemeChangeButton from "../lib/ThemeChangeButton.svelte"
     import { routeIsActive, navigateTo } from 'svelte-router-spa'
     import { download, search } from "svelte-awesome/icons"
     import { downloadsStore } from "../../stores/downloads"
@@ -27,7 +28,7 @@
     $: downloadsPageActive = currentRoute && routeIsActive("/downloads", true);
 </script>
 
-<nav class="bg-gray-800 mb-4 shadow-md">
+<nav class="border-b dark:border-gray-700">
     <div class="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8">
         <div class="relative flex items-center justify-between h-16">
             <Hamburger on:click={_ => menuOpen = !menuOpen} isOpen={menuOpen} />
@@ -50,6 +51,7 @@
                     data={download}
                     notifications={Object.keys($downloadsStore).length}
                 />
+                <ThemeChangeButton />
             </div>
         </div>
     </div>

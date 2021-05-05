@@ -10,8 +10,8 @@
     <IconButton 
         on:click
         {data}
-        className={active ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white'}
-        iconScale={1.5}
+        className="{active ? "bg-gray-50 dark:bg-gray-800" : "dark:bg-gray-900"} text-gray-500 dark:text-gray-200 hover:bg-gray-50 hover:text-gray-700 dark:hover:bg-gray-700"
+        scale={1.5}
     />
     {#if notifications > 0}
     <span class="absolute top-0 right-0 inline-flex items-center justify-center px-2 py-1 text-xs font-bold leading-none text-white transform translate-x-1/2 -translate-y-1/2 bg-red-600 rounded-full">

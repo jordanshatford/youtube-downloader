@@ -2,9 +2,10 @@ const colors = require('tailwindcss/colors')
 
 module.exports = {
   purge: {
-    enabled: true,
+    // enabled: true,
     content: ['./src/**/*.svelte'],
   },
+  darkMode: 'class',
   theme: {
     extend: {
       colors: {
@@ -13,8 +14,11 @@ module.exports = {
   },
   variants: {
     extend: {
+      backgroundColor: ['active', 'responsive', 'dark', 'group-hover', 'focus-within', 'hover', 'focus'],
       cursor: ['responsive', 'disabled'],
+      divideColor: ['responsive', 'dark'],
       opacity: ['responsive', 'group-hover', 'focus-within', 'hover', 'focus', 'disabled'],
+      scale: ['responsive', 'hover', 'focus'],
       textColor: ['responsive', 'dark', 'group-hover', 'focus-within', 'hover', 'focus', 'disabled'],
     }
   },
