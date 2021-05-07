@@ -1,13 +1,14 @@
 <script lang="ts">
-    import Icon from "svelte-awesome"
-    import { circleONotch, check, exclamationCircle } from "svelte-awesome/icons"
+    import Icon from  "./Icon.svelte"
+    import Spinner from "./Spinner.svelte"
+    import { check, exclamationCircle } from "./icons"
 
     import { Status } from "../../utils/types"
 
     export let status: Status
 
     let className: string
-    let icon: any = circleONotch
+    let icon: string = check
 
     $: switch(status) {
         case Status.WAITING:
@@ -33,5 +34,9 @@
 
 <span class="content-center px-3 py-2 text-xs font-semibold rounded-full {className}">
     {status}
-    <Icon data={icon} spin={[Status.WAITING, Status.DOWNLOADING, Status.PROCESSING].includes(status)} class="mb-1" />
+    {#if [Status.WAITING, Status.DOWNLOADING, Status.PROCESSING].includes(status)}
+    <Spinner className="mb-1" />
+    {:else}
+    <Icon data={icon} size={1.3} className="mb-1" />
+    {/if}
 </span>

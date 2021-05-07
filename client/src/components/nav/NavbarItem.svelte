@@ -1,5 +1,5 @@
 <script lang="ts">
-    import Icon from "svelte-awesome"
+    import Icon from "../lib/Icon.svelte"
     import { routeIsActive, Navigate } from "svelte-router-spa"
     import type { Route } from "../../utils/types"
 
@@ -15,5 +15,5 @@
     title={route.label}
     styles="{isActive ? "bg-gray-50 dark:bg-gray-800" : "dark:bg-gray-900"} hover:bg-gray-50 dark:hover:bg-gray-700 text-gray-500 dark:text-gray-200 hover:text-gray-700 {dropdown ? 'block' : ''} px-3 py-2 rounded-md text-sm font-medium"
 >
-    <Icon data={route.icon} class="mb-1 mr-1" /> {route.label}
+    <Icon data={route.icon} className="mb-1 mr-1" size={1.4} /> {route.label}
 </Navigate>

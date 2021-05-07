@@ -2,7 +2,7 @@
     import NotificationIconButton from './../lib/NotificationIconButton.svelte'
     import ThemeChangeButton from "../lib/ThemeChangeButton.svelte"
     import { routeIsActive, navigateTo } from 'svelte-router-spa'
-    import { download, search } from "svelte-awesome/icons"
+    import { download, search } from "../lib/icons"
     import { downloadsStore } from "../../stores/downloads"
     import NavbarItem from "./NavbarItem.svelte"
     import Hamburger from "./mobile/Hamburger.svelte"

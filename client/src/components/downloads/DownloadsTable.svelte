@@ -1,6 +1,6 @@
 
 <script lang="ts">
-    import { trash, download } from "svelte-awesome/icons"
+    import { trash, download } from "../lib/icons"
     import IconButton from "../lib/IconButton.svelte"
     import StatusBadge from "../lib/StatusBadge.svelte"
     import { downloadsStore } from "../../stores/downloads"
@@ -51,13 +51,13 @@
                 {#if downloadInfo.status === Status.DONE }
                 <IconButton
                     className="hover:text-red-500 hover:scale-110"
-                    scale={1.25}
+                    size={1.25}
                     data={trash}
                     on:click={_ => downloadsStore.removeDownload(downloadInfo.id)}
                 />
                 <IconButton
                     className="hover:text-purple-500 hover:scale-110"
-                    scale={1.25}
+                    size={1.25}
                     data={download}
                     on:click={_ => downloadsStore.downloadAudioFile(downloadInfo.id)}
                 />

@@ -1,6 +1,7 @@
 <script lang="ts">
-    import Icon from "svelte-awesome"
-    import { circleONotch, search } from "svelte-awesome/icons"
+    import Icon from "../lib/Icon.svelte"
+    import Spinner from "../lib/Spinner.svelte"
+    import { search } from "../lib/icons"
     import { createEventDispatcher } from "svelte"
     import { DEFAULT_RESULT_SIZE, MAX_VIDEO_RESULTS } from "../../utils/constants"
     const dispatch = createEventDispatcher();
@@ -25,9 +26,9 @@
         <div class="w-full p-3">
             <div class="relative">
                 {#if disabled}
-                <Icon data={circleONotch} spin class="absolute text-gray-400 top-5 left-4" />
+                <Spinner className="absolute text-gray-400 top-10 left-4" />
                 {:else}
-                <Icon data={search} class="absolute text-gray-400 top-5 left-4" /> 
+                <Icon data={search} className="absolute text-gray-400 top-10 left-4" />
                 {/if}
                 <input
                     {disabled}
@@ -37,7 +38,7 @@
                     class="bg-white h-14 w-full px-12 rounded-lg focus:outline-none hover:cursor-pointer"
                     name=""
                 >
-                <span class="absolute top-4 right-5 border-l pl-4">
+                <span class="absolute top-10 right-5 border-l pl-4">
                     <select {disabled} bind:value={numberResults} class="focus:outline-none border-none text-gray-500 hover:cursor">
                         {#each {length: MAX_VIDEO_RESULTS} as _, i}
                             <option value={i+1}>

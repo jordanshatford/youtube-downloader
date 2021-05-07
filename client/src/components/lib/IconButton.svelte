@@ -1,8 +1,8 @@
 <script lang="ts">
-    import Icon from "svelte-awesome"
+    import Icon from "./Icon.svelte"
 
-    export let data: any
-    export let scale: number
+    export let data: string
+    export let size: number
     export let className: string = ""
 </script>
 
@@ -11,5 +11,5 @@
     class="{className} rounded-md border-none focus:outline-none p-2"
     type="button"
 >
-    <Icon {data} {scale} />
+    <Icon {data} {size} />
 </button>

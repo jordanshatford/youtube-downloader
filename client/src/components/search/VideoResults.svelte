@@ -1,6 +1,7 @@
 <script lang="ts">
 	import type { SearchResult } from "../../utils/types"
     import ResultCard from "./ResultCard.svelte"
+
     export let results: SearchResult[]
 </script> 
 

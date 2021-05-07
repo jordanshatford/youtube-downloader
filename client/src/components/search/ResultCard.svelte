@@ -1,6 +1,6 @@
 <script lang="ts">
     import IconButton from "../lib/IconButton.svelte"
-    import { download } from "svelte-awesome/icons"
+    import { download } from "../lib/icons"
 
     import { downloadsStore } from "../../stores/downloads"
     import { formatSeconds, truncate } from "../../utils/functions"
@@ -31,17 +31,15 @@
             <p class="text-gray-800 dark:text-gray-400 text-sm">{truncate(result.description, DESCRIPTION_MAX_LENGTH)}</p>
         </div>
         <footer class="flex items-center justify-between leading-none p-2 md:p-4">
-            <a class="flex items-center no-underline hover:underline text-black dark:text-white" href="{result.channel_url}" target="_blank">
-                <p class="ml-2 text-sm">
-                    {result.channel}
-                </p>
+            <a class="flex items-center no-underline hover:underline text-sm text-black dark:text-white" href="{result.channel_url}" target="_blank">
+                {result.channel}
             </a>
             {#if !(result.id in $downloadsStore)}
             <IconButton
                 on:click={_ => downloadsStore.addDownload(YoutubeDownloadInfo.fromSearchResult(result))}
                 data={download}
                 className="text-black dark:text-white hover:text-purple-500"
-                scale={1.25}
+                size={1.25}
             />
             {/if}
         </footer>
