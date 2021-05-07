@@ -7,7 +7,7 @@
     import Title from "../components/typography/Title.svelte"
     import Description from "../components/typography/Description.svelte"
     import { downloadsStore } from "../stores/downloads.js"
-    import DownloadsTable from "../components/downloads/DownloadsTable.svelte"
+    import DownloadsTable from "../components/lib/DownloadsTable.svelte"
 </script>
 
 <div>

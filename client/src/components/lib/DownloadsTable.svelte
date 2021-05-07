@@ -8,7 +8,7 @@
     import { MAX_TITLE_LENGTH } from "../../utils/constants"
     import { Status } from "../../utils/types"
     import type { DownloadInfo } from "../../utils/types"
-
+    import DownloadActions from "../lib/DownloadActions.svelte"
     export let downloads: { [key: string]: DownloadInfo }
 </script>
 
@@ -49,17 +49,9 @@
             </td>
             <td class="px-6 py-4 whitespace-nowrap text-grey-500 dark:text-white text-right">
                 {#if downloadInfo.status === Status.DONE }
-                <IconButton
-                    className="hover:text-red-500 hover:scale-110"
-                    size={1.25}
-                    data={trash}
-                    on:click={_ => downloadsStore.removeDownload(downloadInfo.id)}
-                />
-                <IconButton
-                    className="hover:text-purple-500 hover:scale-110"
-                    size={1.25}
-                    data={download}
-                    on:click={_ => downloadsStore.downloadAudioFile(downloadInfo.id)}
+                <DownloadActions 
+                    on:delete={_ => downloadsStore.removeDownload(downloadInfo.id)}
+                    on:download={_ => downloadsStore.downloadAudioFile(downloadInfo.id)}
                 />
                 {/if}
             </td>

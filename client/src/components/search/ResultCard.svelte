@@ -38,7 +38,7 @@
             <IconButton
                 on:click={_ => downloadsStore.addDownload(YoutubeDownloadInfo.fromSearchResult(result))}
                 data={download}
-                className="text-black dark:text-white hover:text-purple-500"
+                className="text-black dark:text-white hover:text-purple-500 dark:hover:text-purple-500"
                 size={1.25}
             />
             {/if}
