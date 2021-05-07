@@ -3,12 +3,12 @@
 </svelte:head>
 
 <script lang="ts">
-    import Heading from "../components/typography/Heading.svelte"
-    import Title from "../components/typography/Title.svelte"
-    import Description from "../components/typography/Description.svelte"
+    import Heading from "../lib/typography/Heading.svelte"
+    import Title from "../lib/typography/Title.svelte"
+    import Description from "../lib/typography/Description.svelte"
     import { searchStore } from "../stores/search.js"
-    import SearchBar from "../components/search/SearchBar.svelte"
-    import VideoResults from "../components/search/VideoResults.svelte"
+    import SearchBar from "../lib/search/SearchBar.svelte"
+    import VideoResults from "../lib/search/VideoResults.svelte"
 
     function fetchVideos(event: CustomEvent) {
         let term = event.detail.searchTerm

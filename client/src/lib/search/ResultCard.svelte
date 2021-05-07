@@ -1,6 +1,6 @@
 <script lang="ts">
-    import IconButton from "../lib/IconButton.svelte"
-    import { download } from "../lib/icons"
+    import IconButton from "../IconButton.svelte"
+    import { download } from "../icons"
 
     import { downloadsStore } from "../../stores/downloads"
     import { formatSeconds, truncate } from "../../utils/functions"

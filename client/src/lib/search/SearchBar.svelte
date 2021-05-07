@@ -1,9 +1,10 @@
 <script lang="ts">
-    import Icon from "../lib/Icon.svelte"
-    import Spinner from "../lib/Spinner.svelte"
-    import { search } from "../lib/icons"
     import { createEventDispatcher } from "svelte"
+    import Icon from "../Icon.svelte"
+    import Spinner from "../Spinner.svelte"
+    import { search } from "../icons"
     import { MAX_VIDEO_RESULTS } from "../../utils/constants"
+
     const dispatch = createEventDispatcher();
 
     export let disabled = false

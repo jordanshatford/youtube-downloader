@@ -2,8 +2,7 @@
     import Icon from  "./Icon.svelte"
     import Spinner from "./Spinner.svelte"
     import { check, exclamationCircle } from "./icons"
-
-    import { Status } from "../../utils/types"
+    import { Status } from "../utils/types"
 
     export let status: Status
 

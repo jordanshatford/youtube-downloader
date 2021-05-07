@@ -3,11 +3,11 @@
 </svelte:head>
 
 <script lang="ts">
-    import Heading from "../components/typography/Heading.svelte"
-    import Title from "../components/typography/Title.svelte"
-    import Description from "../components/typography/Description.svelte"
+    import Heading from "../lib/typography/Heading.svelte"
+    import Title from "../lib/typography/Title.svelte"
+    import Description from "../lib/typography/Description.svelte"
     import { downloadsStore } from "../stores/downloads.js"
-    import DownloadsTable from "../components/lib/DownloadsTable.svelte"
+    import DownloadsTable from "../lib/DownloadsTable.svelte"
 </script>
 
 <div>

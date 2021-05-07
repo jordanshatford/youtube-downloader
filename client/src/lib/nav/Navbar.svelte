@@ -1,8 +1,8 @@
 <script lang="ts">
-    import NotificationIconButton from './../lib/NotificationIconButton.svelte'
-    import ThemeChangeButton from "../lib/ThemeChangeButton.svelte"
-    import { routeIsActive, navigateTo } from 'svelte-router-spa'
-    import { download, search } from "../lib/icons"
+    import { routeIsActive, navigateTo } from "svelte-router-spa"
+    import NotificationIconButton from "../NotificationIconButton.svelte"
+    import ThemeChangeButton from "../ThemeChangeButton.svelte"
+    import { download, search } from "../icons"
     import { downloadsStore } from "../../stores/downloads"
     import NavbarItem from "./NavbarItem.svelte"
     import Hamburger from "./mobile/Hamburger.svelte"

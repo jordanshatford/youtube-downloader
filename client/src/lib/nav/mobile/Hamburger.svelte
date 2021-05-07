@@ -1,6 +1,6 @@
 <script lang="ts">
-    import IconButton from "../../lib/IconButton.svelte"
-    import { x, menu } from "../../lib/icons"
+    import IconButton from "../../IconButton.svelte"
+    import { x, menu } from "../../icons"
 
     export let isOpen: boolean
 </script>

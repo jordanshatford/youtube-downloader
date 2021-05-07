@@ -2,7 +2,7 @@
     import { onMount } from "svelte"
     import { Route } from "svelte-router-spa"
     import { theme } from "../../stores/theme"
-    import Navbar from "../../components/nav/Navbar.svelte"
+    import Navbar from "../../lib/nav/Navbar.svelte"
 
     export let currentRoute: any
 

@@ -1,6 +1,6 @@
 <script lang="ts">
-    import Icon from "../lib/Icon.svelte"
     import { routeIsActive, Navigate } from "svelte-router-spa"
+    import Icon from "../Icon.svelte"
     import type { Route } from "../../utils/types"
 
     export let route: Route

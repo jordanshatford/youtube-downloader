@@ -1,5 +1,5 @@
 <script lang="ts">
-    import IconButton from "../lib/IconButton.svelte"
+    import IconButton from "./IconButton.svelte"
 
     export let data: string
     export let notifications: number

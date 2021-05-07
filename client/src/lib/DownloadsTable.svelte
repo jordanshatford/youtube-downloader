@@ -1,14 +1,13 @@
 
 <script lang="ts">
-    import { trash, download } from "../lib/icons"
-    import IconButton from "../lib/IconButton.svelte"
-    import StatusBadge from "../lib/StatusBadge.svelte"
-    import { downloadsStore } from "../../stores/downloads"
-    import { truncate } from "../../utils/functions"
-    import { MAX_TITLE_LENGTH } from "../../utils/constants"
-    import { Status } from "../../utils/types"
-    import type { DownloadInfo } from "../../utils/types"
-    import DownloadActions from "../lib/DownloadActions.svelte"
+    import StatusBadge from "./StatusBadge.svelte"
+    import DownloadActions from "./DownloadActions.svelte"
+    import { downloadsStore } from "../stores/downloads"
+    import { truncate } from "../utils/functions"
+    import { MAX_TITLE_LENGTH } from "../utils/constants"
+    import { Status } from "../utils/types"
+    import type { DownloadInfo } from "../utils/types"
+
     export let downloads: { [key: string]: DownloadInfo }
 </script>
 
