@@ -1,6 +1,7 @@
 import { writable } from "svelte/store"
 import type { SearchResult } from "../utils/types"
 import { getApiEndpoint } from "../utils/functions"
+import { DEFAULT_RESULT_SIZE } from "../utils/constants"
 
 function createSearchStore() {
     const API_ENDPOINT = "/search"
@@ -8,12 +9,16 @@ function createSearchStore() {
     const loading = false
 
     const { subscribe, set, update } = writable({
+        "term": "",
+        "numberResults": DEFAULT_RESULT_SIZE,
         "results": results,
         "loading": loading,
     })
 
     function search(term: string, numberResults: number) {
         update(state => {
+            state.term = term
+            state.numberResults = numberResults
             state.loading = true
             return state
         })
@@ -30,7 +35,7 @@ function createSearchStore() {
     return {
         subscribe,
         search,
-        reset: () => set({ results: [], loading: false })
+        reset: () => set({ term: "", numberResults: DEFAULT_RESULT_SIZE, results: [], loading: false })
     }
 }
 

@@ -3,13 +3,13 @@
     import Spinner from "../lib/Spinner.svelte"
     import { search } from "../lib/icons"
     import { createEventDispatcher } from "svelte"
-    import { DEFAULT_RESULT_SIZE, MAX_VIDEO_RESULTS } from "../../utils/constants"
+    import { MAX_VIDEO_RESULTS } from "../../utils/constants"
     const dispatch = createEventDispatcher();
 
     export let disabled = false
 
-    let searchTerm: string
-    let numberResults = DEFAULT_RESULT_SIZE
+    export let searchTerm: string
+    export let numberResults: number
 
     function dispatchSearch(event: KeyboardEvent) {
         if (event.key === 'Enter' && searchTerm.length > 0) {

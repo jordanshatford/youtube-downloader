@@ -21,6 +21,11 @@
     <Heading>Youtube to MP3</Heading>
     <Title>Search Videos</Title>
     <Description>Search for the videos you want to convert to MP3.</Description>
-    <SearchBar on:search={fetchVideos} disabled={$searchStore.loading} />
+    <SearchBar
+        on:search={fetchVideos}
+        disabled={$searchStore.loading}
+        searchTerm={$searchStore.term}
+        numberResults={$searchStore.numberResults}
+    />
     <VideoResults results={$searchStore.results} />
 </div>
