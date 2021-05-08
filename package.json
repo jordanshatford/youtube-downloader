@@ -8,10 +8,10 @@
       "concurrently": "^5.3.0"
     },
     "scripts": {
-      "preinstall": "node -e \"if(process.env.npm_execpath.indexOf('yarn') === -1) throw new Error('You must use Yarn to install, not NPM')\"",
-      "build": "cd client && yarn build",
-      "serve": "concurrently 'cd server && yarn serve' 'cd client && yarn dev'",
-      "start": "cd client && yarn build && cd ../server && yarn start"
+      "preinstall": "node -e \"if(process.env.npm_execpath.indexOf('npm') === -1) throw new Error('You must use NPM to install')\"",
+      "build": "cd client && npm run build",
+      "serve": "concurrently 'cd server && npm run serve' 'cd client && npm run dev'",
+      "start": "cd client && npm run build && cd ../server && npm run start"
     },
     "license": "MIT"
 }

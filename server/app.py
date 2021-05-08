@@ -10,11 +10,13 @@ from resources.search import http as HttpSearchEndpoints
 from resources.session import http as HttpSessionEndpoints
 from utils.managers import session_manager
 
+
 @atexit.register
 def shutdown_cleanup():
     # Remove all session files
     if os.path.exists(session_manager.session_dir):
         shutil.rmtree(session_manager.session_dir)
+
 
 def create_app():
     app = Flask(__name__)

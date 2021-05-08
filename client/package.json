@@ -12,6 +12,7 @@
     "@rollup/plugin-node-resolve": "^11.0.0",
     "@rollup/plugin-typescript": "^8.2.1",
     "@tsconfig/svelte": "^1.0.10",
+    "@types/file-saver": "^2.0.2",
     "postcss": "^8.2.12",
     "postcss-load-config": "^3.0.1",
     "rollup": "^2.3.4",
@@ -26,7 +27,6 @@
     "typescript": "^4.2.4"
   },
   "dependencies": {
-    "@types/file-saver": "^2.0.2",
     "file-saver": "^2.0.5",
     "sirv-cli": "^1.0.0",
     "svelte-router-spa": "^6.0.2",
