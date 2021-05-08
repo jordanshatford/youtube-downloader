@@ -1,9 +1,8 @@
 <script lang="ts">
     import { routeIsActive, Navigate } from "svelte-router-spa"
     import Icon from "../Icon.svelte"
-    import type { Route } from "../../utils/types"
 
-    export let route: Route
+    export let route
     export let currentRoute: string
     export let dropdown = false
 

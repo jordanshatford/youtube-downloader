@@ -1,11 +1,11 @@
 import { writable } from "svelte/store"
-import type { SearchResult } from "../utils/types"
+import type { VideoInfo } from "../utils/types"
 import { getApiEndpoint } from "../utils/functions"
 import { DEFAULT_RESULT_SIZE } from "../utils/constants"
 
 function createSearchStore() {
     const API_ENDPOINT = "/search"
-    const results: SearchResult[] = []
+    const results: VideoInfo[] = []
     const loading = false
 
     const { subscribe, set, update } = writable({

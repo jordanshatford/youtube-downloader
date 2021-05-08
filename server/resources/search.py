@@ -21,7 +21,7 @@ def search():
             videos = ydl.extract_info(f"ytsearch{size}:{term}", download=False).get(
                 "entries", []
             )
-            return jsonify(videos)
+            return jsonify([format_result(video) for video in videos])
     except DownloadError:
         return jsonify([])
 
@@ -30,3 +30,16 @@ def get_search_request_args(request):
     search_term = request.args.get("term")
     results_size = request.args.get("results", 5)
     return search_term, results_size
+
+
+def format_result(result):
+    return {
+        "id": result["id"],
+        "url": result["webpage_url"],
+        "title": result["title"],
+        "thumbnail": result["thumbnail"],
+        "description": result["description"],
+        "channel_url": result["channel_url"],
+        "channel": result["channel"],
+        "duration": result["duration"]
+    }

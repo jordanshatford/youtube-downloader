@@ -7,30 +7,15 @@ export enum Status {
     UNDEFINED = "UNDEFINED",
 }
 
-// The download info of a video
-export type DownloadInfo = {
+// The information about a specific youtube video
+export type VideoInfo = {
     id: string
     url: string
     title: string
     thumbnail: string
-    status: Status
-}
-
-// The search results from searching for a video
-export type SearchResult = {
-    id: string
-    webpage_url: string
-    thumbnail: string
-    title: string
-    duration: number
-    description: string
-    channel_url: string
-    channel: string
-}
-
-// A route for svelte-router-spa
-export type Route = {
-    label: string
-    path: string
-    icon: any
+    channel?: string
+    channel_url?: string
+    duration?: number
+    description?: string
+    status?: Status
 }

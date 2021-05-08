@@ -1,9 +1,8 @@
 <script lang="ts">
     import NavbarItem from "../NavbarItem.svelte"
-    import type { Route } from "../../../utils/types"
 
     export let currentRoute: string
-    export let routes: Route[]
+    export let routes: any[]
     export let isOpen: boolean
 </script>
 

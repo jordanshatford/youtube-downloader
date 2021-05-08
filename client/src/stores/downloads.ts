@@ -1,12 +1,12 @@
 import { get, writable } from "svelte/store"
 import { sessionStore } from "./session"
-import type { DownloadInfo } from "../utils/types"
+import type { VideoInfo } from "../utils/types"
 import { getApiEndpoint } from "../utils/functions"
 import { saveAs } from 'file-saver'
 
 function createDownloadsStore() {
     const API_ENDPOINT = "/downloads"
-    const downloads: { [key: string]: DownloadInfo } = {}
+    const downloads: { [key: string]: VideoInfo } = {}
 
     const { subscribe, set, update } = writable(downloads)
 
@@ -24,7 +24,7 @@ function createDownloadsStore() {
         }
     }
 
-    function addDownload(downloadInfo: DownloadInfo) {
+    function addDownload(downloadInfo: VideoInfo) {
         if (!(downloadInfo.id in downloads)) {
             // Add download to store using information we have already
             update(currentDownloads => Object.assign(currentDownloads, {[downloadInfo.id]: downloadInfo}))

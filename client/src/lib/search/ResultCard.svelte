@@ -5,10 +5,9 @@
     import { downloadsStore } from "../../stores/downloads"
     import { formatSeconds, truncate } from "../../utils/functions"
     import { DESCRIPTION_MAX_LENGTH } from "../../utils/constants"
-    import { YoutubeDownloadInfo } from "../../utils/classes"
-    import type { SearchResult } from "../../utils/types"
+    import type { VideoInfo } from "../../utils/types"
 
-    export let result: SearchResult
+    export let result: VideoInfo
 
     $: duration = formatSeconds(result.duration)
 </script>
@@ -16,12 +15,12 @@
 
 <div class="my-1 px-1 w-full md:w-1/2 lg:my-4 lg:px-4 lg:w-1/3">
     <article class="dark:bg-gray-800 overflow-hidden rounded-lg shadow-lg">
-        <a href="{result.webpage_url}" target="_blank">
+        <a href="{result.url}" target="_blank">
             <img alt="Thumbnail" class="block h-auto w-full" src="{result.thumbnail}">
         </a>
         <header class="flex items-center justify-between leading-tight p-2 md:p-4">
             <h1 class="text-lg">
-                <a class="no-underline hover:underline text-gray-900 dark:text-white" href="{result.webpage_url}" target="_blank">
+                <a class="no-underline hover:underline text-gray-900 dark:text-white" href="{result.url}" target="_blank">
                     {result.title}
                 </a>
             </h1>
@@ -36,7 +35,7 @@
             </a>
             {#if !(result.id in $downloadsStore)}
             <IconButton
-                on:click={_ => downloadsStore.addDownload(YoutubeDownloadInfo.fromSearchResult(result))}
+                on:click={_ => downloadsStore.addDownload(result)}
                 data={download}
                 className="text-black dark:text-white hover:text-purple-500 dark:hover:text-purple-500"
                 size={1.25}
