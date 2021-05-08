@@ -1,6 +1,6 @@
 from flask import jsonify, Blueprint, request
 from youtube_dl import YoutubeDL
-from youtube_dl.utils import match_filter_func
+from youtube_dl.utils import match_filter_func, DownloadError
 
 
 http = Blueprint(r"http_search", __name__)
@@ -9,17 +9,21 @@ http = Blueprint(r"http_search", __name__)
 @http.route("/search", methods=["GET"])
 def search():
     term, size = get_search_request_args(request)
-    with YoutubeDL(
-        {
-            "noplaylist": True,
-            "quiet": True,
-            "match_filter": match_filter_func("!is_live"),
-        }
-    ) as ydl:
-        videos = ydl.extract_info(f"ytsearch{size}:{term}", download=False).get(
-            "entries", []
-        )
-        return jsonify(videos)
+
+    try:
+        with YoutubeDL(
+            {
+                "noplaylist": True,
+                "quiet": True,
+                "match_filter": match_filter_func("!is_live"),
+            }
+        ) as ydl:
+            videos = ydl.extract_info(f"ytsearch{size}:{term}", download=False).get(
+                "entries", []
+            )
+            return jsonify(videos)
+    except DownloadError:
+        return jsonify([])
 
 
 def get_search_request_args(request):
