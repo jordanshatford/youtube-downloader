@@ -1,16 +1,8 @@
 <script lang="ts">
-    import { onMount } from "svelte"
     import { Route } from "svelte-router-spa"
-    import { theme } from "../../stores/theme"
     import Navbar from "../../lib/nav/Navbar.svelte"
 
     export let currentRoute: any
-
-    onMount(() => {
-        if ($theme === "dark") {
-            document.querySelector("html").classList.add("dark")
-        }
-    })
 </script>
 
 <div class="dark:bg-gray-900">
