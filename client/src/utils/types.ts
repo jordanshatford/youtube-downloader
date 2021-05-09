@@ -14,8 +14,7 @@ export type VideoInfo = {
     title: string
     thumbnail: string
     channel?: string
-    channel_url?: string
-    duration?: number
+    duration?: string
     description?: string
     status?: Status
 }

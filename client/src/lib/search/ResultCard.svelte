@@ -1,15 +1,12 @@
 <script lang="ts">
     import IconButton from "../IconButton.svelte"
     import { download } from "../icons"
-
     import { downloadsStore } from "../../stores/downloads"
-    import { formatSeconds, truncate } from "../../utils/functions"
+    import { truncate } from "../../utils/functions"
     import { DESCRIPTION_MAX_LENGTH } from "../../utils/constants"
     import type { VideoInfo } from "../../utils/types"
 
     export let result: VideoInfo
-
-    $: duration = formatSeconds(result.duration)
 </script>
 
 
@@ -24,15 +21,15 @@
                     {result.title}
                 </a>
             </h1>
-            <p class="text-gray-700 dark:text-gray-300 text-sm">{duration}</p>
+            <p class="text-gray-700 dark:text-gray-300 text-sm">{result.duration}</p>
         </header>
         <div class="flex items-center justify-between leading-tight p-2 md:p-4">
             <p class="text-gray-800 dark:text-gray-400 text-sm">{truncate(result.description, DESCRIPTION_MAX_LENGTH)}</p>
         </div>
         <footer class="flex items-center justify-between leading-none p-2 md:p-4">
-            <a class="flex items-center no-underline hover:underline text-sm text-black dark:text-white" href="{result.channel_url}" target="_blank">
+            <p class="flex items-center text-sm text-black dark:text-white">
                 {result.channel}
-            </a>
+            </p>
             {#if !(result.id in $downloadsStore)}
             <IconButton
                 on:click={_ => downloadsStore.addDownload(result)}
