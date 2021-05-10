@@ -37,7 +37,7 @@
 	<Router {routes} />
 {:catch error}
 	<Error
-		code="403"
+		code="503"
 		description={error}
 	>
 		<button

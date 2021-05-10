@@ -5,6 +5,7 @@
     import { truncate } from "../../utils/functions"
     import { DESCRIPTION_MAX_LENGTH } from "../../utils/constants"
     import type { VideoInfo } from "../../utils/types"
+    import { Status } from "../../utils/types"
 
     export let result: VideoInfo
 </script>
@@ -32,7 +33,7 @@
             </p>
             {#if !(result.id in $downloadsStore)}
             <IconButton
-                on:click={_ => downloadsStore.addDownload(result)}
+                on:click={_ => downloadsStore.addDownload({ ...result, "status": Status.WAITING })}
                 data={download}
                 className="text-black dark:text-white hover:text-purple-500 dark:hover:text-purple-500"
                 size={1.25}

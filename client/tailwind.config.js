@@ -14,7 +14,7 @@ module.exports = {
   },
   variants: {
     extend: {
-      backgroundColor: ['active', 'responsive', 'dark', 'group-hover', 'focus-within', 'hover', 'focus'],
+      backgroundColor: ['active', 'responsive', 'disabled', 'dark', 'group-hover', 'focus-within', 'hover', 'focus'],
       cursor: ['responsive', 'disabled'],
       divideColor: ['responsive', 'dark'],
       opacity: ['responsive', 'group-hover', 'focus-within', 'hover', 'focus', 'disabled'],

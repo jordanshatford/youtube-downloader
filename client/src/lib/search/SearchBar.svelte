@@ -36,11 +36,11 @@
                     bind:value={searchTerm}
                     on:keypress={dispatchSearch}
                     type="text"
-                    class="bg-white h-14 w-full px-12 rounded-lg focus:outline-none hover:cursor-pointer"
+                    class="border border-gray-400 bg-white disabled:text-gray-200 h-14 w-full px-12 rounded-lg focus:outline-none hover:cursor-pointer"
                     name=""
                 >
                 <span class="absolute top-10 right-5 border-l pl-4">
-                    <select {disabled} bind:value={numberResults} class="focus:outline-none border-none text-gray-500 hover:cursor">
+                    <select {disabled} bind:value={numberResults} class="disabled:text-gray-200 focus:outline-none border-none text-gray-500 hover:cursor">
                         {#each {length: MAX_VIDEO_RESULTS} as _, i}
                             <option value={i+1}>
                                 {i+1}

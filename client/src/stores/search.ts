@@ -9,10 +9,10 @@ function createSearchStore() {
     const loading = false
 
     const { subscribe, set, update } = writable({
-        "term": "",
-        "numberResults": DEFAULT_RESULT_SIZE,
-        "results": results,
-        "loading": loading,
+        term: "",
+        numberResults: DEFAULT_RESULT_SIZE,
+        results: results,
+        loading: loading,
     })
 
     function search(term: string, numberResults: number) {
