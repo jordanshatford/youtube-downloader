@@ -16,4 +16,4 @@ COPY . /server
 WORKDIR /server
 
 ENTRYPOINT ["waitress-serve"]
-CMD ["--call", "--host=0.0.0.0", "--port=8000", "app:create_app"]
+CMD ["--call", "app:create_app"]

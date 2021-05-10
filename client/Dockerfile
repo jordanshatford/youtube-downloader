@@ -1,5 +1,8 @@
 FROM node:16-alpine
 
+ARG SERVER_ADDR
+ENV SERVER_ADDR ${SERVER_ADDR}
+
 COPY package*.json /client/
 WORKDIR /client
 RUN npm install
@@ -9,6 +12,5 @@ WORKDIR /client
 
 RUN npm run-script build
 
-EXPOSE 5000
 ENV HOST=0.0.0.0
 CMD [ "npm", "run", "start" ]

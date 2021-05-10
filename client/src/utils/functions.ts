@@ -1,5 +1,3 @@
-import { SERVER_IP, SERVER_PORT } from "./constants"
-
 /**
  * Return the url for a given api endpoint.
  * @param endpoint     The api endpoint you want.
@@ -8,7 +6,8 @@ import { SERVER_IP, SERVER_PORT } from "./constants"
  * @return             The url for that endpoint.
  */
 export function getApiEndpoint(endpoint: string, urlParam?: string, queryParams?: {[key: string]: string | number}): string {
-    let endpointString = `http://${SERVER_IP}:${SERVER_PORT}/api${endpoint}`
+    // @ts-ignore
+    let endpointString = `${__app.env.SERVER_ADDR}/api${endpoint}`
 
     // If add urlParam to end of endpoint if needed
     if (urlParam !== undefined) {

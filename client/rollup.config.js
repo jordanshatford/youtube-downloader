@@ -3,9 +3,11 @@ import commonjs from '@rollup/plugin-commonjs';
 import resolve from '@rollup/plugin-node-resolve';
 import livereload from 'rollup-plugin-livereload';
 import { terser } from 'rollup-plugin-terser';
+import { config } from 'dotenv';
 import css from 'rollup-plugin-css-only';
 import sveltePreprocess from 'svelte-preprocess';
 import typescript from '@rollup/plugin-typescript';
+import replace from '@rollup/plugin-replace';
 
 const production = !process.env.ROLLUP_WATCH;
 
@@ -30,6 +32,8 @@ function serve() {
 	};
 }
 
+config();
+
 export default {
 	input: 'src/main.ts',
 	output: {
@@ -50,6 +54,14 @@ export default {
 			},
 			// Emit CSS as "files" for other plugins to process. default is true
 			emitCss: false,
+		}),
+		replace({
+			preventAssignment: true,
+			__app: JSON.stringify({
+				env: {
+					'SERVER_ADDR': process.env.SERVER_ADDR,
+				}
+			}),
 		}),
 		typescript({ sourceMap: !production }),
 		// we'll extract any component CSS out into
