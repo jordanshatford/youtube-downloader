@@ -4,10 +4,11 @@
   	import { routes } from "./routes"
 	import { theme } from "./stores/theme"
 	import { session } from "./stores/session"
+	import { Theme } from "./utils/types"
 
 	onMount(async () => {
-		if ($theme === "dark") {
-            document.querySelector("html").classList.add("dark")
+		if ($theme === Theme.DARK) {
+			theme.applyDark()
         }
 		await session.setup()
 	});

@@ -2,7 +2,7 @@
     import Icon from "./Icon.svelte"
 
     export let data: string
-    export let size: number
+    export let size: number = 1
     export let className: string = ""
 </script>
 

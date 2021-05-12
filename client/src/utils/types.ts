@@ -7,6 +7,11 @@ export enum Status {
     UNDEFINED = "UNDEFINED",
 }
 
+export enum Theme {
+    LIGHT = "light",
+    DARK = "dark",
+}
+
 // The information about a specific youtube video
 export type VideoInfo = {
     id: string

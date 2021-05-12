@@ -13,14 +13,16 @@
     }
 </script>
 
-{#if $session}
-    <div class="dark:bg-gray-900">
-        <Navbar currentRoute={currentRoute} />
-        <main class="min-h-screen dark:bg-gray-900 max-w-7xl mt-8 mx-auto px-4 sm:px-6 lg:px-8">
-            <Route {currentRoute} />
-        </main>
-    </div>
-{:else}
-    <Loading />
-{/if}
-<Alerts />
+<div>
+    {#if $session}
+        <div class="dark:bg-gray-900">
+            <Navbar currentRoute={currentRoute} />
+            <main class="min-h-screen dark:bg-gray-900 max-w-7xl mt-8 mx-auto px-4 sm:px-6 lg:px-8">
+                <Route {currentRoute} />
+            </main>
+        </div>
+    {:else}
+        <Loading />
+    {/if}
+    <Alerts />
+</div>

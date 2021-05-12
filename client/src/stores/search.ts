@@ -6,13 +6,12 @@ import { DEFAULT_RESULT_SIZE } from "../utils/constants"
 function createSearchStore() {
     const API_ENDPOINT = "/search"
     const results: VideoInfo[] = []
-    const loading = false
 
     const { subscribe, set, update } = writable({
         term: "",
         numberResults: DEFAULT_RESULT_SIZE,
         results: results,
-        loading: loading,
+        loading: false,
     })
 
     function get(term: string, numberResults: number) {
@@ -23,9 +22,9 @@ function createSearchStore() {
             return state
         })
         let url = getApiEndpoint(API_ENDPOINT, undefined, { "term": term, "results": numberResults })
-        fetch(url).then(results => results.json()).then(resultsJson => {
+        fetch(url).then(response => response.json()).then(results => {
             update(state => {
-                state.results = resultsJson
+                state.results = results
                 state.loading = false
                 return state
             })

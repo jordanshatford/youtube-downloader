@@ -11,7 +11,7 @@
     import ResultCard from "../lib/search/ResultCard.svelte"
     import NoResults from "../lib/search/NoResults.svelte"
 
-    function fetchVideos(event: CustomEvent) {
+    function searchVideos(event: CustomEvent) {
         let term = event.detail.searchTerm
         let numberResults = event.detail.numberResults
         search.get(term, numberResults)
@@ -23,8 +23,8 @@
     <Title>Search Videos</Title>
     <Description>Search for the videos you want to convert to MP3.</Description>
     <SearchBar
-        on:search={fetchVideos}
-        disabled={$search.loading}
+        on:search={searchVideos}
+        loading={$search.loading}
         searchTerm={$search.term}
         numberResults={$search.numberResults}
     />

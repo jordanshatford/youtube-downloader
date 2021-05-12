@@ -2,7 +2,7 @@
     import { routeIsActive, Navigate } from "svelte-router-spa"
     import Icon from "../Icon.svelte"
 
-    export let route
+    export let route: any
     export let currentRoute: string
     export let dropdown = false
 

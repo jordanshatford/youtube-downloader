@@ -7,7 +7,7 @@
 
     const dispatch = createEventDispatcher();
 
-    export let disabled = false
+    export let loading = false
 
     export let searchTerm: string
     export let numberResults: number
@@ -26,13 +26,13 @@
     <div class="md:flex">
         <div class="w-full p-3">
             <div class="relative">
-                {#if disabled}
+                {#if loading}
                     <Spinner className="absolute text-gray-400 top-10 left-4" />
                 {:else}
                     <Icon data={search} className="absolute text-gray-400 top-10 left-4" />
                 {/if}
                 <input
-                    {disabled}
+                    disabled={loading}
                     bind:value={searchTerm}
                     on:keypress={dispatchSearch}
                     type="text"
@@ -40,7 +40,11 @@
                     name=""
                 >
                 <span class="absolute top-10 right-5 border-l pl-4">
-                    <select {disabled} bind:value={numberResults} class="disabled:text-gray-200 focus:outline-none border-none text-gray-500 hover:cursor">
+                    <select
+                        disabled={loading}
+                        bind:value={numberResults}
+                        class="disabled:text-gray-200 focus:outline-none border-none text-gray-500 hover:cursor"
+                    >
                         {#each {length: MAX_VIDEO_RESULTS} as _, i}
                             <option value={i+1}>
                                 {i+1}

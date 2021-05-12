@@ -9,17 +9,17 @@
 
 <div>
     <Confirm
-        title="Delete Song?"
-        description="Are you sure you want to delete this song? Deleting is permanent."
-        cancelTitle="Cancel"
-        confirmTitle="Delete"
-        let:confirm="{confirmThis}"
+        title="Delete Audio?"
+        description="Are you sure you want to delete this audio? Deleting is permanent."
+        cancelText="Cancel"
+        confirmText="Delete"
+        let:confirm="{onConfirm}"
     >
         <IconButton
             className="hover:text-red-500"
             size={1.25}
             data={trash}
-            on:click={_ => confirmThis(dispatch, "delete")}
+            on:click={_ => onConfirm(dispatch, "delete")}
         />
     </Confirm> 
     <IconButton

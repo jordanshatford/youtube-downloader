@@ -1,18 +1,40 @@
 import { writable } from "svelte/store"
+import { Theme } from "../utils/types"
 
-export function localStore(key: string, value: string) {
-  const data  = typeof localStorage != "undefined" ? localStorage.getItem(key) : null
-  const store = writable(value)
-  if (data !== null) {
-    store.set(data)
-  }
-  store.subscribe(val => {
-    if (typeof localStorage == "undefined") {
-      return
+function createThemeStore() {
+    const THEME_KEY = "theme"
+    const DEFAULT_THEME_VALUE = Theme.LIGHT
+
+    const { subscribe, set, update } = writable(DEFAULT_THEME_VALUE)
+    
+    const data = localStorage?.getItem(THEME_KEY) as Theme
+
+    if (data) {
+        set(data)
     }
-    localStorage.setItem(key, val)
-  })
-  return store
+
+    subscribe(value => {
+        localStorage?.setItem(THEME_KEY, value)
+    })
+
+    function applyDark() {
+        document.querySelector("html").classList.add(Theme.DARK)
+    }
+
+    function toggle() {
+        update(state => {
+            state = state === Theme.DARK ? Theme.LIGHT : Theme.DARK
+            return state
+        })
+        document.querySelector("html").classList.toggle(Theme.DARK)
+    }
+
+    return {
+        subscribe,
+        set,
+        applyDark,
+        toggle,
+    }
 }
 
-export const theme = localStore("theme", "dark")
+export const theme = createThemeStore()
