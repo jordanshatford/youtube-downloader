@@ -3,7 +3,7 @@
     import NotificationIconButton from "./NotificationIconButton.svelte"
     import ThemeChangeButton from "./ThemeChangeButton.svelte"
     import { download, search } from "../icons"
-    import { downloadsStore } from "../../stores/downloads"
+    import { downloads } from "../../stores/downloads"
     import NavbarItem from "./NavbarItem.svelte"
     import Hamburger from "./mobile/Hamburger.svelte"
     import MobileMenu from "./mobile/MobileMenu.svelte"
@@ -49,7 +49,7 @@
                     on:click={_ => navigateTo("/downloads")}
                     active={downloadsPageActive}
                     data={download}
-                    notifications={Object.keys($downloadsStore).length}
+                    notifications={Object.keys($downloads).length}
                 />
                 <ThemeChangeButton />
             </div>

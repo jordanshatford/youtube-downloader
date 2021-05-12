@@ -6,7 +6,7 @@
     import Heading from "../lib/typography/Heading.svelte"
     import Title from "../lib/typography/Title.svelte"
     import Description from "../lib/typography/Description.svelte"
-    import { downloadsStore } from "../stores/downloads"
+    import { downloads } from "../stores/downloads"
     import DownloadsTable from "../lib/downloads/DownloadsTable.svelte"
 </script>
 
@@ -18,7 +18,7 @@
         <div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
             <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
                 <div class="shadow overflow-hidden border-b border-gray-200 dark:border-gray-800 sm:rounded-lg">
-                    <DownloadsTable downloads={$downloadsStore} />
+                    <DownloadsTable items={$downloads} />
                 </div>
             </div>
         </div>

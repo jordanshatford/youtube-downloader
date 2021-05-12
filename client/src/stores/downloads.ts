@@ -1,5 +1,5 @@
 import { get, writable } from "svelte/store"
-import { sessionStore } from "./session"
+import { session } from "./session"
 import type { VideoInfo } from "../utils/types"
 import { getApiEndpoint } from "../utils/functions"
 import { saveAs } from "file-saver"
@@ -14,8 +14,8 @@ function createDownloadsStore() {
 
     let downloadStatus: EventSource = null
 
-    function setupDownloadStatusListener() {
-        downloadStatus = new EventSource(getApiEndpoint(API_ENDPOINT, "status", { "sessionId": get(sessionStore) }))
+    function setupStatusListener() {
+        downloadStatus = new EventSource(getApiEndpoint(API_ENDPOINT, "status", { "sessionId": get(session) }))
 
         downloadStatus.onmessage = function(event) {
             let data = JSON.parse(event.data)
@@ -31,11 +31,11 @@ function createDownloadsStore() {
         }
     }
 
-    function addDownload(downloadInfo: VideoInfo) {
+    function add(downloadInfo: VideoInfo) {
         if (!(downloadInfo.id in downloads)) {
             // Add download to store using information we have already
             update(state => Object.assign(state, {[downloadInfo.id]: downloadInfo}))
-            let url = getApiEndpoint(API_ENDPOINT, downloadInfo.id, { "sessionId": get(sessionStore) })
+            let url = getApiEndpoint(API_ENDPOINT, downloadInfo.id, { "sessionId": get(session) })
             fetch(url, {
                 method: "POST",
                 headers: {
@@ -49,20 +49,20 @@ function createDownloadsStore() {
         }
     }
 
-    function removeDownload(id: string) {
+    function remove(id: string) {
         if (id in downloads) {
             update(state => {
                 delete state[id]
                 return state
             })
-            let url = getApiEndpoint(API_ENDPOINT, id, { "sessionId": get(sessionStore) })
+            let url = getApiEndpoint(API_ENDPOINT, id, { "sessionId": get(session) })
             fetch(url, { method: "DELETE" })
         }
     }
 
-    function downloadAudioFile(id: string) {
+    function getFile(id: string) {
         if (id in downloads) {
-            let url = getApiEndpoint(API_ENDPOINT, id, { "sessionId": get(sessionStore) })
+            let url = getApiEndpoint(API_ENDPOINT, id, { "sessionId": get(session) })
             fetch(url).then(response => {
                 if (response.ok) {
                     // The file blob is returned
@@ -71,7 +71,7 @@ function createDownloadsStore() {
                     // file was not found on the server a json error message is returned
                     return response.json().then(data => {
                         notifications.danger(data["message"], data["detail"], 5000)
-                        removeDownload(id)
+                        remove(id)
                     })
                 }
             })
@@ -80,12 +80,12 @@ function createDownloadsStore() {
 
     return {
         subscribe,
-        setupDownloadStatusListener,
-        addDownload,
-        removeDownload,
-        downloadAudioFile,
+        setupStatusListener,
+        add,
+        remove,
+        getFile,
         reset: () => set({})
     }
 }
 
-export const downloadsStore = createDownloadsStore()
+export const downloads = createDownloadsStore()

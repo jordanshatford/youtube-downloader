@@ -15,7 +15,7 @@ function createSearchStore() {
         loading: loading,
     })
 
-    function search(term: string, numberResults: number) {
+    function get(term: string, numberResults: number) {
         update(state => {
             state.term = term
             state.numberResults = numberResults
@@ -34,9 +34,9 @@ function createSearchStore() {
 
     return {
         subscribe,
-        search,
+        get,
         reset: () => set({ term: "", numberResults: DEFAULT_RESULT_SIZE, results: [], loading: false })
     }
 }
 
-export const searchStore = createSearchStore()
+export const search = createSearchStore()

@@ -1,7 +1,7 @@
 <script lang="ts">
     import IconButton from "../IconButton.svelte"
     import { download } from "../icons"
-    import { downloadsStore } from "../../stores/downloads"
+    import { downloads } from "../../stores/downloads"
     import { truncate } from "../../utils/functions"
     import { DESCRIPTION_MAX_LENGTH } from "../../utils/constants"
     import type { VideoInfo } from "../../utils/types"
@@ -31,9 +31,9 @@
             <p class="flex items-center text-sm text-black dark:text-white">
                 {result.channel}
             </p>
-            {#if !(result.id in $downloadsStore)}
+            {#if !(result.id in $downloads)}
                 <IconButton
-                    on:click={_ => downloadsStore.addDownload({ ...result, "status": Status.WAITING })}
+                    on:click={_ => downloads.add({ ...result, "status": Status.WAITING })}
                     data={download}
                     className="text-black dark:text-white hover:text-purple-500 dark:hover:text-purple-500"
                     size={1.25}
