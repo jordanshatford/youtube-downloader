@@ -19,11 +19,12 @@ def shutdown_cleanup():
 
 
 def create_app():
+    API_PREFIX = "/api"
     app = Flask(__name__)
     CORS(app)
 
-    app.register_blueprint(HttpDownloadsEndpoints, url_prefix="/api")
-    app.register_blueprint(HttpSearchEndpoints, url_prefix="/api")
-    app.register_blueprint(HttpSessionEndpoints, url_prefix="/api")
+    app.register_blueprint(HttpDownloadsEndpoints, url_prefix=API_PREFIX)
+    app.register_blueprint(HttpSearchEndpoints, url_prefix=API_PREFIX)
+    app.register_blueprint(HttpSessionEndpoints, url_prefix=API_PREFIX)
 
     return app

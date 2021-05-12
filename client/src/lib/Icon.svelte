@@ -1,5 +1,5 @@
 <script lang="ts">
-    export let className:string = ""
+    export let className: string = ""
     export let size: number = 1
     export let data: string
 </script>

@@ -18,5 +18,5 @@ def format_search_result(result: dict) -> dict:
         "thumbnail": result["thumbnails"][0],
         "description": result["long_desc"] if result["long_desc"] else "",
         "channel": result["channel"],
-        "duration": result["duration"]
+        "duration": result["duration"],
     }

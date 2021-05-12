@@ -2,10 +2,10 @@ import json
 import os
 import shutil
 
-from datetime import datetime
-from datetime import timedelta
+from datetime import datetime, timedelta
 from queue import Queue
 
+from .helpers import Status, format_status_update
 from .threads import YoutubeDownloadThread, RepeatedTimer
 from .sse import ServerSentEvent
 
@@ -25,14 +25,18 @@ class AudioDownloadManager:
             download.start()
 
     def remove(self, video_id: str) -> None:
-        self._downloads[video_id].remove()
-        self._downloads.pop(video_id, None)
+        try:
+            self._downloads[video_id].remove()
+            self._downloads.pop(video_id, None)
+        except KeyError:
+            pass
 
     def get_download(self, video_id: str) -> str:
-        path = self._downloads[
-            video_id
-        ].get_file_location()  # TODO: prevent errors here
-        return path
+        try:
+            path = self._downloads[video_id].get_file_location()
+            return path
+        except KeyError:
+            return None
 
     def send_status_update(self, video_id: str, status: str) -> None:
         self._announcer(video_id, status)
@@ -54,8 +58,8 @@ class Session:
     def session_older_than(self, seconds: int) -> bool:
         return self._last_use < datetime.now() - timedelta(seconds=seconds)
 
-    def _status_update(self, video_id: str, status: str):
-        msg = ServerSentEvent(data=json.dumps({"id": video_id, "status": status.value}))
+    def _status_update(self, video_id: str, status: Status):
+        msg = ServerSentEvent(data=json.dumps(format_status_update(video_id, status)))
         self.status_queue.put(msg.encode())
 
 
@@ -63,8 +67,8 @@ class SessionManager:
     def __init__(
         self,
         session_dir: str = os.path.join(os.getcwd(), "sessions"),
-        cleanup_interval: int = 60 * 60 * 3,
-        session_to_old_duration: int = 60 * 60 * 2,
+        cleanup_interval: int = 60 * 60 * 3, #3 hours
+        session_to_old_duration: int = 60 * 60 * 2, #2 hours
     ):
         self._sessions = {}
         self.session_dir = session_dir
@@ -78,8 +82,7 @@ class SessionManager:
                 self._session_too_old_duration
             )
             if session_not_used:
-                self._clean_session_files(session_id)
-                self._sessions.pop(session_id, None)
+                self.remove(session_id)
 
     def setup_session(self, id: str):
         self._sessions[id] = Session(id, self.session_dir)
@@ -89,16 +92,30 @@ class SessionManager:
         self._sessions.pop(id, None)
 
     def get_download_manager(self, id: str) -> AudioDownloadManager:
-        return self._sessions[id].download_manager
+        try:
+            return self._sessions[id].download_manager
+        except KeyError:
+            self.setup_session(id)
+            return self._sessions[id].download_manager
 
     def get_status_queue(self, id: str) -> Queue:
-        return self._sessions[id].status_queue
+        try:
+            return self._sessions[id].status_queue
+        except KeyError:
+            self.setup_session(id)
+            return self._sessions[id].status_queue
 
     def update_session_use_time(self, id: str):
-        self._sessions[id].update_use_time()
+        try:
+            self._sessions[id].update_use_time()
+        except KeyError:
+            self.setup_session(id)
 
     def _clean_session_files(self, id: str):
-        shutil.rmtree(self._sessions[id].output_dir)
+        try:
+            shutil.rmtree(self._sessions[id].output_dir)
+        except KeyError:
+            pass
 
 
 session_manager = SessionManager()

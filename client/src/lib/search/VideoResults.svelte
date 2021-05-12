@@ -6,7 +6,7 @@
 </script> 
 
 
-<div class="container my-12 mx-auto px-4 md:px-12">
+<div class="container mt-8 pb-8 mx-auto px-4 md:px-12">
     <div class="flex flex-wrap -mx-1 lg:-mx-4">
         {#each results as result (result.id)}
             <ResultCard result={result} />

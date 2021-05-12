@@ -1,6 +1,7 @@
 <script lang="ts">
     import { Route } from "svelte-router-spa"
     import Navbar from "../../lib/nav/Navbar.svelte"
+    import Alerts from "../../lib/Alerts.svelte"
 
     export let currentRoute: any
 </script>
@@ -11,3 +12,4 @@
         <Route {currentRoute} />
     </main>
 </div>
+<Alerts />

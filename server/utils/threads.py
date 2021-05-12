@@ -4,7 +4,7 @@ import time
 
 from youtube_dl import YoutubeDL
 
-from .enums import Status
+from .helpers import Status
 from .processors import FileProcessingComplete
 
 

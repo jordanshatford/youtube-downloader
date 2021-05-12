@@ -59,7 +59,7 @@ export default {
 			preventAssignment: true,
 			__app: JSON.stringify({
 				env: {
-					'SERVER_ADDR': process.env.SERVER_ADDR,
+					'SERVER_ADDR': process.env.SERVER_ADDR ? process.env.SERVER_ADDR : "http://localhost:8080",
 				}
 			}),
 		}),

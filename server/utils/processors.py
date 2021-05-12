@@ -3,7 +3,7 @@ import os
 
 from youtube_dl.postprocessor.common import PostProcessor
 
-from .enums import Status
+from .helpers import Status
 
 
 class FileProcessingComplete(PostProcessor):
@@ -12,7 +12,7 @@ class FileProcessingComplete(PostProcessor):
         self._status_update = status_update
         super(FileProcessingComplete, self).__init__(downloader=downloader)
 
-    def run(self, information):
+    def run(self, information: dict):
         filepath = information["filepath"]
         if os.path.exists(filepath):
             self._status_update(self._id, Status.DONE)
