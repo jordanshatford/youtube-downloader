@@ -1,7 +1,7 @@
 <script lang="ts">
-  import IconButton from "./IconButton.svelte"
-  import { theme } from "../stores/theme"
-  import { moon, sun } from "./icons"
+  import IconButton from "../IconButton.svelte"
+  import { theme } from "../../stores/theme"
+  import { moon, sun } from "../icons"
 
   function toggleTheme() {
     $theme = $theme === "dark" ? "light" : "dark"

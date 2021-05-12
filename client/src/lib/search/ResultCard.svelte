@@ -32,12 +32,12 @@
                 {result.channel}
             </p>
             {#if !(result.id in $downloadsStore)}
-            <IconButton
-                on:click={_ => downloadsStore.addDownload({ ...result, "status": Status.WAITING })}
-                data={download}
-                className="text-black dark:text-white hover:text-purple-500 dark:hover:text-purple-500"
-                size={1.25}
-            />
+                <IconButton
+                    on:click={_ => downloadsStore.addDownload({ ...result, "status": Status.WAITING })}
+                    data={download}
+                    className="text-black dark:text-white hover:text-purple-500 dark:hover:text-purple-500"
+                    size={1.25}
+                />
             {/if}
         </footer>
     </article>

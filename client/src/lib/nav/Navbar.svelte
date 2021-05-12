@@ -1,7 +1,7 @@
 <script lang="ts">
     import { routeIsActive, navigateTo } from "svelte-router-spa"
-    import NotificationIconButton from "../NotificationIconButton.svelte"
-    import ThemeChangeButton from "../ThemeChangeButton.svelte"
+    import NotificationIconButton from "./NotificationIconButton.svelte"
+    import ThemeChangeButton from "./ThemeChangeButton.svelte"
     import { download, search } from "../icons"
     import { downloadsStore } from "../../stores/downloads"
     import NavbarItem from "./NavbarItem.svelte"
@@ -39,7 +39,7 @@
                 <div class="hidden sm:block sm:ml-6">
                     <div class="flex space-x-4">
                         {#each routes as route}
-                        <NavbarItem {route} currentRoute={currentRoute} />
+                            <NavbarItem {route} currentRoute={currentRoute} />
                         {/each}
                     </div>
                 </div>

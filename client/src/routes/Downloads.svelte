@@ -6,8 +6,8 @@
     import Heading from "../lib/typography/Heading.svelte"
     import Title from "../lib/typography/Title.svelte"
     import Description from "../lib/typography/Description.svelte"
-    import { downloadsStore } from "../stores/downloads.js"
-    import DownloadsTable from "../lib/DownloadsTable.svelte"
+    import { downloadsStore } from "../stores/downloads"
+    import DownloadsTable from "../lib/downloads/DownloadsTable.svelte"
 </script>
 
 <div>

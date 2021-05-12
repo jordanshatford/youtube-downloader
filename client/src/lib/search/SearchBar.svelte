@@ -27,9 +27,9 @@
         <div class="w-full p-3">
             <div class="relative">
                 {#if disabled}
-                <Spinner className="absolute text-gray-400 top-10 left-4" />
+                    <Spinner className="absolute text-gray-400 top-10 left-4" />
                 {:else}
-                <Icon data={search} className="absolute text-gray-400 top-10 left-4" />
+                    <Icon data={search} className="absolute text-gray-400 top-10 left-4" />
                 {/if}
                 <input
                     {disabled}

@@ -1,14 +1,15 @@
 <svelte:head>
-	<title>Search Videos - Youtube to MP3</title>
+	<title>Search - Youtube to MP3</title>
 </svelte:head>
 
 <script lang="ts">
     import Heading from "../lib/typography/Heading.svelte"
     import Title from "../lib/typography/Title.svelte"
     import Description from "../lib/typography/Description.svelte"
-    import { searchStore } from "../stores/search.js"
+    import { searchStore } from "../stores/search"
     import SearchBar from "../lib/search/SearchBar.svelte"
-    import VideoResults from "../lib/search/VideoResults.svelte"
+    import ResultCard from "../lib/search/ResultCard.svelte"
+    import NoResults from "../lib/search/NoResults.svelte"
 
     function fetchVideos(event: CustomEvent) {
         let term = event.detail.searchTerm
@@ -27,5 +28,15 @@
         searchTerm={$searchStore.term}
         numberResults={$searchStore.numberResults}
     />
-    <VideoResults results={$searchStore.results} />
+    <div class="container mt-8 pb-8 mx-auto px-4 md:px-12">
+        <div class="flex flex-wrap -mx-1 lg:-mx-4">
+            {#each $searchStore.results as result (result.id)}
+                <ResultCard result={result} />
+            {:else}
+                {#if ($searchStore.term != "" && !$searchStore.loading)}
+                    <NoResults />
+                {/if}
+            {/each}
+        </div>
+    </div>
 </div>
