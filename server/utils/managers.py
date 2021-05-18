@@ -67,8 +67,8 @@ class SessionManager:
     def __init__(
         self,
         session_dir: str = os.path.join(os.getcwd(), "sessions"),
-        cleanup_interval: int = 60 * 60 * 3, #3 hours
-        session_to_old_duration: int = 60 * 60 * 2, #2 hours
+        cleanup_interval: int = 60 * 60 * 3,  # 3 hours
+        session_to_old_duration: int = 60 * 60 * 2,  # 2 hours
     ):
         self._sessions = {}
         self.session_dir = session_dir

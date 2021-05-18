@@ -15,5 +15,5 @@ RUN pip3 install --no-cache-dir --upgrade pip \
 COPY . /server
 WORKDIR /server
 
-ENTRYPOINT ["waitress-serve"]
-CMD ["--call", "app:create_app"]
+ENTRYPOINT ["python3"]
+CMD ["app.py"]

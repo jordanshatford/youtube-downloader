@@ -4,6 +4,7 @@ import shutil
 
 from flask import Flask
 from flask_cors import CORS
+from waitress import serve
 
 from resources.downloads import http as HttpDownloadsEndpoints
 from resources.search import http as HttpSearchEndpoints
@@ -18,13 +19,17 @@ def shutdown_cleanup():
         shutil.rmtree(session_manager.session_dir)
 
 
-def create_app():
-    API_PREFIX = "/api"
-    app = Flask(__name__)
-    CORS(app)
+API_PREFIX = "/api"
+app = Flask(__name__)
+CORS(app)
 
-    app.register_blueprint(HttpDownloadsEndpoints, url_prefix=API_PREFIX)
-    app.register_blueprint(HttpSearchEndpoints, url_prefix=API_PREFIX)
-    app.register_blueprint(HttpSessionEndpoints, url_prefix=API_PREFIX)
+app.register_blueprint(HttpDownloadsEndpoints, url_prefix=API_PREFIX)
+app.register_blueprint(HttpSearchEndpoints, url_prefix=API_PREFIX)
+app.register_blueprint(HttpSessionEndpoints, url_prefix=API_PREFIX)
 
-    return app
+if __name__ == "__main__":
+    host = os.environ.get("HOST", "0.0.0.0")
+    port = int(os.environ.get("PORT", 8080))
+    threads = int(os.environ.get("WAITRESS_THREADS", 4))
+    print(f"Serving on {host}:{port} with {threads} threads.", flush=True)
+    serve(app, host=host, port=port, threads=threads)

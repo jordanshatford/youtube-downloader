@@ -1,13 +1,10 @@
-from youtube_search import YoutubeSearch
+from youtubesearchpython import VideosSearch
 
 
-YOUTUBE_URL_PREFIX = "https://www.youtube.com/"
-
-
-def search_youtube(term: str, results: int) -> list:
+def search_youtube(term: str, results_size: int) -> list:
     try:
-        results = YoutubeSearch(term, max_results=int(results))
-        videos = results.to_dict()
+        results = VideosSearch(term, limit=int(results_size))
+        videos = results.result()["result"]
         return [format_search_result(video) for video in videos]
     except KeyError:
         return []
@@ -16,10 +13,11 @@ def search_youtube(term: str, results: int) -> list:
 def format_search_result(result: dict) -> dict:
     return {
         "id": result["id"],
-        "url": YOUTUBE_URL_PREFIX + result["url_suffix"],
+        "url": result["link"],
         "title": result["title"],
-        "thumbnail": result["thumbnails"][0],
-        "description": result["long_desc"] if result["long_desc"] else "",
-        "channel": result["channel"],
         "duration": result["duration"],
+        "thumbnail": result["thumbnails"][0]["url"],
+        "channel": result["channel"]["name"],
+        "channelUrl": result["channel"]["link"],
+        "channelThumbnail": result["channel"]["thumbnails"][0]["url"],
     }
