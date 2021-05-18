@@ -2,8 +2,6 @@
     import IconButton from "../IconButton.svelte"
     import { download } from "../icons"
     import { downloads } from "../../stores/downloads"
-    import { truncate } from "../../utils/functions"
-    import { DESCRIPTION_MAX_LENGTH } from "../../utils/constants"
     import type { VideoInfo } from "../../utils/types"
     import { Status } from "../../utils/types"
 
@@ -24,13 +22,13 @@
             </h1>
             <p class="text-gray-700 dark:text-gray-300 text-sm">{result.duration}</p>
         </header>
-        <div class="flex items-center justify-between leading-tight p-2 md:p-4">
-            <p class="text-gray-800 dark:text-gray-400 text-sm">{truncate(result.description, DESCRIPTION_MAX_LENGTH)}</p>
-        </div>
         <footer class="flex items-center justify-between leading-none p-2 md:p-4">
-            <p class="flex items-center text-sm text-black dark:text-white">
-                {result.channel}
-            </p>
+            <a class="flex items-center no-underline hover:underline text-gray-800 dark:text-gray-400" href="{result.channelUrl}" target="_blank">
+                <img alt="" class="block w-10 h-10 rounded-full" src="{result.channelThumbnail}">
+                <p class="ml-2 text-sm">
+                    {result.channel}
+                </p>
+            </a>
             {#if !(result.id in $downloads)}
                 <IconButton
                     on:click={_ => downloads.add({ ...result, "status": Status.WAITING })}
