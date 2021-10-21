@@ -17,24 +17,18 @@
     }
 </script>
 
-<div class="max-w-xl mx-auto rounded-lg overflow-hidden md:max-w-xl mt-4">
-    <div class="md:flex">
-        <div class="w-full p-3">
-            <div class="relative">
-                {#if loading}
-                    <Spinner className="absolute text-gray-400 top-10 left-4" />
-                {:else}
-                    <Icon data={search} className="absolute text-gray-400 top-10 left-4" />
-                {/if}
-                <input
-                    disabled={loading}
-                    bind:value={searchTerm}
-                    on:keypress={dispatchSearch}
-                    type="text"
-                    class="border border-gray-400 bg-white disabled:text-gray-200 h-14 w-full px-12 rounded-lg focus:outline-none hover:cursor-pointer"
-                    name=""
-                >
-            </div>
-        </div>
-    </div>
+<div>
+    {#if loading}
+        <Spinner className="absolute text-gray-400 top-10 left-4" />
+    {:else}
+        <Icon data={search} className="absolute text-gray-400 top-10 left-4" />
+    {/if}
+    <input
+        disabled={loading}
+        bind:value={searchTerm}
+        on:keypress={dispatchSearch}
+        type="text"
+        class="border border-gray-400 dark:text-gray-400 dark:border-gray-700 bg-white dark:bg-gray-900 disabled:text-gray-200 h-14 w-full px-12 rounded-lg focus:outline-none hover:cursor-pointer"
+        name=""
+    >
 </div>
