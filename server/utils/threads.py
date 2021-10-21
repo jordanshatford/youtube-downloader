@@ -59,7 +59,7 @@ class YoutubeDownloadThread(threading.Thread):
         try:
             self._downloader.download([self._url])
         except Exception as e:
-            self._status_update(self._id, Status.UNDEFINED)
+            self._status_update(self._id, Status.ERROR)
 
 
 class RepeatedTimer:

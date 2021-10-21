@@ -23,6 +23,10 @@
             className = "bg-green-100 text-green-800"
             icon = check
             break
+        case Status.ERROR:
+            className = "bg-red-100 text-red-800"
+            icon = exclamationCircle
+            break
         default: // STATUS.UNDEFINED
             status = Status.UNDEFINED
             className = "bg-red-100 text-red-800"

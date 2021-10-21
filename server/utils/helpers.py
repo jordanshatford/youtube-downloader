@@ -9,6 +9,7 @@ class Status(str, enum.Enum):
     DOWNLOADING = "DOWNLOADING"
     PROCESSING = "PROCESSING"
     DONE = "DONE"
+    ERROR = "ERROR"
     UNDEFINED = "UNDEFINED"
 
 

@@ -8,12 +8,23 @@
     import Description from "../lib/typography/Description.svelte"
     import { downloads } from "../stores/downloads"
     import DownloadsTable from "../lib/downloads/DownloadsTable.svelte"
+    import BannerAlert from "../lib/Alert.svelte"
+    import { Variant } from '../utils/types'
+
+    const warningMessage = "If a video is stuck downloading or waiting for a long time, you may need to cancel it and start it again."
 </script>
 
 <div>
     <Heading>Youtube to MP3</Heading>
     <Title>View Downloads</Title>
     <Description>Here are all the videos you have downloaded to MP3.</Description>
+    <div class="mmb-4 mt-4">
+        <BannerAlert
+            title={"Warning:"}
+            message={warningMessage}
+            variant={Variant.WARNING}
+        />
+    </div>
     <div class="flex flex-col mt-4">
         <div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
             <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">

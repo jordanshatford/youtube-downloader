@@ -4,21 +4,22 @@
     import { notifications } from "../stores/notifications"
     import Icon from "./Icon.svelte"
     import { checkCircle, informationCircle, exclamationCircle, exclamationTriangle } from "./icons"
-
-    export const themes = {
-        danger: {
+    import { Variant } from '../utils/types'
+    
+    const themes = {
+        [Variant.DANGER]: {
           icon: exclamationCircle,
           iconClass: "text-red-800",
         },
-        success: {
+        [Variant.SUCCESS]: {
           icon: checkCircle,
           iconClass: "text-green-700",
         },
-        warning: {
+        [Variant.WARNING]: {
           icon: exclamationTriangle,
           iconClass: "text-yellow-600",
         },
-        info: {
+        [Variant.INFO]: {
           icon: informationCircle,
           iconClass: "text-blue-800",
         },
@@ -26,7 +27,7 @@
 </script>
 
 <div class="flex flex-col justify-start m-auto fixed mt-20 top-0 right-0 z-50 pointer-events-none">
-    {#each $notifications as notification (notification.id)}
+    {#each ($notifications) as notification (notification.id)}
       <div
           animate:flip
           transition:fly={{ y: 30 }}

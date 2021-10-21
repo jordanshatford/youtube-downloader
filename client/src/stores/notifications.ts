@@ -1,10 +1,11 @@
 import { writable, derived } from "svelte/store"
 import { DEFAULT_NOTIFICATION_TIMEOUT } from "../utils/constants"
+import { Variant } from '../utils/types'
 
 function createNotificationsStore() {
     const _notifications = writable([])
 
-    function send(title: string, message: string, type: string = "info", timeout: number) {
+    function send(title: string, message: string, type: Variant = Variant.INFO, timeout: number) {
         _notifications.update(state => {
             return [...state, { id: id(), type, title, message, timeout }]
         })
@@ -33,10 +34,10 @@ function createNotificationsStore() {
     return {
         subscribe,
         send,
-        danger: (title: string, msg: string, timeout: number = DEFAULT_NOTIFICATION_TIMEOUT) => send(title, msg, "danger", timeout),
-        warning: (title: string, msg: string, timeout: number = DEFAULT_NOTIFICATION_TIMEOUT) => send(title, msg, "warning", timeout),
-        info: (title: string, msg: string, timeout: number = DEFAULT_NOTIFICATION_TIMEOUT) => send(title, msg, "info", timeout),
-        success: (title: string, msg: string, timeout: number = DEFAULT_NOTIFICATION_TIMEOUT) => send(title, msg, "success", timeout),
+        danger: (title: string, msg: string, timeout: number = DEFAULT_NOTIFICATION_TIMEOUT) => send(title, msg, Variant.DANGER, timeout),
+        warning: (title: string, msg: string, timeout: number = DEFAULT_NOTIFICATION_TIMEOUT) => send(title, msg, Variant.WARNING, timeout),
+        info: (title: string, msg: string, timeout: number = DEFAULT_NOTIFICATION_TIMEOUT) => send(title, msg, Variant.INFO, timeout),
+        success: (title: string, msg: string, timeout: number = DEFAULT_NOTIFICATION_TIMEOUT) => send(title, msg, Variant.SUCCESS, timeout),
     }
 }
 

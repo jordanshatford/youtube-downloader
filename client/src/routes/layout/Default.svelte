@@ -1,7 +1,7 @@
 <script lang="ts">
     import { Route } from "svelte-router-spa"
     import Navbar from "../../lib/nav/Navbar.svelte"
-    import Alerts from "../../lib/Alerts.svelte"
+    import Notifications from "../../lib/Notifications.svelte"
     import Loading from "../../lib/Loading.svelte"
     import { session } from "../../stores/session"
     import { downloads } from "../../stores/downloads"
@@ -24,5 +24,5 @@
     {:else}
         <Loading />
     {/if}
-    <Alerts />
+    <Notifications />
 </div>

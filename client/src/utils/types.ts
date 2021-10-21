@@ -4,7 +4,15 @@ export enum Status {
     DOWNLOADING = "DOWNLOADING",
     PROCESSING = "PROCESSING",
     DONE = "DONE",
-    UNDEFINED = "UNDEFINED",
+    ERROR = "ERROR",
+    UNDEFINED = "UNDEFINED"
+}
+
+export enum Variant {
+    DANGER = "danger",
+    SUCCESS = "success",
+    WARNING = "warning",
+    INFO = "info",
 }
 
 export enum Theme {
