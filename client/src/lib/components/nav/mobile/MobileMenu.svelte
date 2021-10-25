@@ -1,6 +1,6 @@
 <script lang="ts">
 	import NavbarItem from '$lib/components/nav/NavbarItem.svelte'
-	import type { Route } from '$lib/utils/types'
+	import type { Route } from '$lib/utils/RouteUtils'
 
 	export let routes: Route[]
 	export let isOpen: boolean

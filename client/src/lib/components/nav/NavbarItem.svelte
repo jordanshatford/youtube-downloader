@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { page } from '$app/stores'
 	import Icon from '$lib/components/Icon.svelte'
-	import type { Route } from '$lib/utils/types'
+	import type { Route } from '$lib/utils/RouteUtils'
 
 	export let route: Route
 	export let dropdown = false

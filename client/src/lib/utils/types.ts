@@ -32,9 +32,3 @@ export type VideoInfo = {
 	channelThumbnail?: string
 	status?: Status
 }
-
-export type Route = {
-	path: string
-	label: string
-	icon: string
-}
