@@ -1,11 +1,11 @@
-name: Deploy Server container to Heroku
+name: Deploy backend to Heroku
 
 on: 
   push:
     branches:
       - main
     paths:
-      - 'server/**'
+      - 'backend/**'
 
 jobs:
   build:
@@ -18,4 +18,4 @@ jobs:
           heroku_app_name: ${{ secrets.HEROKU_APP_NAME }}
           heroku_email: ${{ secrets.HEROKU_EMAIL }}
           usedocker: true
-          appdir: server/
+          appdir: backend/

@@ -7,13 +7,13 @@ RUN apt-get update -y \
        python3-pip python-dev ffmpeg \
     && rm -rf /var/lib/apt/lists/*
 
-COPY requirements.txt /server/requirements.txt
-WORKDIR /server
+COPY requirements.txt /backend/requirements.txt
+WORKDIR /backend
 RUN pip3 install --no-cache-dir --upgrade pip \
     && pip3 install --no-cache-dir -r requirements.txt
 
-COPY . /server
-WORKDIR /server
+COPY . /backend
+WORKDIR /backend
 
 ENTRYPOINT ["python3"]
 CMD ["app.py"]

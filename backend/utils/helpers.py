@@ -3,7 +3,7 @@ import enum
 from typing import Optional
 
 
-# NOTE: this needs to be synced with the client enum
+# NOTE: this needs to be synced with the frontend enum
 class Status(str, enum.Enum):
     WAITING = "WAITING"
     DOWNLOADING = "DOWNLOADING"

@@ -13,7 +13,7 @@ Install Command: `yarn install` or `npm install`
 Development Command: svelte-kit dev
 ```
 
-The `Root Directory` for the frontend should be set to `client`.
+The `Root Directory` for the frontend should be set to `frontend`.
 
 The following `Environment Variables` must be specified for the frontend to properly function:
 

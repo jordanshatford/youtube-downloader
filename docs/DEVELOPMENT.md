@@ -9,4 +9,4 @@ docker-compose -f docker-compose.dev.yml up --build
 ```
 
 ## Without Docker
-To run the application without [Docker](https://www.docker.com/) see the [Frontend](./client.md) and [Backend](./server.md) documentation.
+To run the application without [Docker](https://www.docker.com/) see the [Frontend](./FRONTEND.md) and [Backend](./BACKEND.md) documentation.

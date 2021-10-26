@@ -1,9 +1,0 @@
-{
-    "name": "youtube-mp3-server",
-    "version": "0.0.0",
-    "scripts": {
-      "serve": "FLASK_ENV=development flask run --port=8080",
-      "start": "python3 app.py"
-    },
-    "license": "MIT"
-}
