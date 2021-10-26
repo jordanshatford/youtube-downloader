@@ -1,0 +1,17 @@
+version: '3.8'
+
+services:
+  backend:
+    build: ./server
+    restart: always
+    ports:
+      - 8000:8080
+  frontend:
+    build: ./client
+    restart: always
+    ports:
+      - 80:5000
+    environment:
+      - VITE_SERVER_ADDR=http://0.0.0.0:8000
+    depends_on:
+      - backend
