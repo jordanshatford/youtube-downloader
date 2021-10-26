@@ -1,2 +1,3 @@
 # Flask Backend
-Information on the backend of the application can be found [here](../docs/BACKEND.md).
+
+More information [here](../docs/BACKEND.md).
