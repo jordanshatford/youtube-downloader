@@ -1,8 +1,8 @@
 <script lang="ts">
-	import Confirm from '$lib/components/Confirm.svelte'
-	import IconButton from '$lib/components/IconButton.svelte'
+	import IconButton from '$lib/components/ui/IconButton.svelte'
+	import { Trash2Icon, DownloadIcon } from 'svelte-feather-icons'
+	import Confirm from '$lib/components/ui/Confirm.svelte'
 	import { createEventDispatcher } from 'svelte'
-	import { trash, download } from '$lib/components/icons'
 
 	const dispatch = createEventDispatcher()
 </script>
@@ -16,16 +16,16 @@
 		let:confirm={onConfirm}
 	>
 		<IconButton
-			className="hover:text-red-500"
-			size={1.25}
-			data={trash}
 			on:click={() => onConfirm(dispatch, 'delete')}
+			icon={Trash2Icon}
+			size="1.5x"
+			class="hover:text-red-800 dark:hover:text-red-600 mr-2"
 		/>
 	</Confirm>
 	<IconButton
-		className="hover:text-purple-500"
-		size={1.25}
-		data={download}
 		on:click={() => dispatch('download')}
+		icon={DownloadIcon}
+		size="1.5x"
+		class="hover:text-indigo-800 dark:hover:text-indigo-600"
 	/>
 </div>

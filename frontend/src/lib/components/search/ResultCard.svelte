@@ -1,6 +1,6 @@
 <script lang="ts">
-	import IconButton from '$lib/components/IconButton.svelte'
-	import { download } from '$lib/components/icons'
+	import { PlusIcon } from 'svelte-feather-icons'
+	import IconButton from '$lib/components/ui/IconButton.svelte'
 	import { downloads } from '$lib/stores/downloads'
 	import type { VideoInfo } from '$lib/utils/types'
 	import { Status } from '$lib/utils/types'
@@ -9,7 +9,7 @@
 </script>
 
 <div class="my-1 px-1 w-full md:w-1/2 lg:my-4 lg:px-4 lg:w-1/3">
-	<article class="dark:bg-gray-800 overflow-hidden rounded-lg shadow-lg">
+	<article class="rounded dark:bg-gray-800 overflow-hidden shadow dark:shadow-dark border border-gray-200 dark:border-gray-800">
 		<a href={result.url} target="_blank">
 			<img alt="Thumbnail" class="block h-auto w-full" src={result.thumbnail} />
 		</a>
@@ -39,9 +39,9 @@
 			{#if !(result.id in $downloads)}
 				<IconButton
 					on:click={() => downloads.add({ ...result, status: Status.WAITING })}
-					data={download}
-					className="text-black dark:text-white hover:text-purple-500 dark:hover:text-purple-500"
-					size={1.25}
+					icon={PlusIcon}
+					class="text-black dark:text-white hover:text-purple-800 dark:hover:text-purple-600"
+					size="1.5x"
 				/>
 			{/if}
 		</footer>

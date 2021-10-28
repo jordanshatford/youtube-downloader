@@ -21,8 +21,7 @@ function createSessionStore() {
 				console.error('Connection failed, could not connect to internal server. ', err)
 				notifications.warning(
 					'Connection Failed',
-					'Could not connect to internal server. Retrying in 10 seconds.',
-					5000
+					'Could not connect to internal server. Retrying in 10 seconds.'
 				)
 				_reAttempt()
 			})

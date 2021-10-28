@@ -24,8 +24,22 @@ function createDownloadsStore() {
 				const videoId = data['id']
 				const updatedStatus = data['status']
 				state[videoId].status = updatedStatus
-				if (updatedStatus === Status.DONE) {
-					notifications.info('Download Complete', truncate(state[videoId].title, MAX_TITLE_LENGTH))
+				switch (updatedStatus) {
+					case Status.DONE:
+						notifications.success(
+							'Download Complete',
+							truncate(state[videoId].title, MAX_TITLE_LENGTH)
+						)
+						break
+					case Status.ERROR:
+					case Status.UNDEFINED:
+						notifications.danger(
+							'Download Failed',
+							truncate(state[videoId].title, MAX_TITLE_LENGTH)
+						)
+						break
+					default:
+						break
 				}
 				return state
 			})
@@ -72,7 +86,7 @@ function createDownloadsStore() {
 			} else {
 				// file was not found on the server a json error message is returned
 				return response.json().then((data) => {
-					notifications.danger(data['message'], data['detail'], 5000)
+					notifications.danger(data['message'], data['detail'])
 					remove(id)
 				})
 			}

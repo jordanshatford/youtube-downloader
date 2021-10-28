@@ -33,7 +33,7 @@
 			</th>
 		</tr>
 	</thead>
-	<tbody class="bg-white dark:bg-gray-700 divide-y divide-gray-200 dark:divide-gray-800">
+	<tbody class="bg-white dark:bg-gray-900 divide-y divide-gray-200 dark:divide-gray-800">
 		{#each Object.values(items) as downloadInfo (downloadInfo.id)}
 			<tr>
 				<td class="px-6 py-4 whitespace-nowrap">

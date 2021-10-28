@@ -1,4 +1,4 @@
-import { download, search } from '$lib/components/icons'
+import { DownloadIcon, SearchIcon } from 'svelte-feather-icons'
 
 export class RoutePathConstants {
 	public static SEARCH = '/'
@@ -8,18 +8,18 @@ export class RoutePathConstants {
 export type Route = {
 	path: string
 	label: string
-	icon: string
+	icon: any
 }
 
-export const routes = [
+export const routes: Route[] = [
 	{
 		label: 'Search',
 		path: RoutePathConstants.SEARCH,
-		icon: search
+		icon: SearchIcon
 	},
 	{
 		label: 'Downloads',
 		path: RoutePathConstants.DOWNLOADS,
-		icon: download
+		icon: DownloadIcon
 	}
 ]

@@ -1,8 +1,9 @@
 <script lang="ts">
 	import '../app.css'
 	import { onMount } from 'svelte'
-	import Navbar from '$lib/components/nav/Navbar.svelte'
+	import Nav from '$lib/components/nav/Nav.svelte'
 	import Notifications from '$lib/components/Notifications.svelte'
+	import { notifications } from '$lib/stores/notifications'
 	import Loading from '$lib/components/Loading.svelte'
 	import { session } from '$lib/stores/session'
 	import { downloads } from '$lib/stores/downloads'
@@ -21,16 +22,18 @@
 	})
 </script>
 
-<div>
+<div
+	class="min-h-screen h-full dark:bg-gray-900 {$notifications.visible ? 'overflow-y-hidden' : ''}"
+>
 	{#if $session}
-		<div class="dark:bg-gray-900">
-			<Navbar />
-			<main class="min-h-screen dark:bg-gray-900 max-w-7xl mt-8 mx-auto px-4 sm:px-6 lg:px-8">
+		<div class="h-full">
+			<Nav />
+			<main class="h-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-20">
 				<slot />
 			</main>
 		</div>
 	{:else}
 		<Loading />
 	{/if}
-	<Notifications />
+	<Notifications visible={$notifications.visible} />
 </div>

@@ -1,47 +1,49 @@
-import { writable, derived } from 'svelte/store'
-import { DEFAULT_NOTIFICATION_TIMEOUT } from '$lib/utils/constants'
+import { writable } from 'svelte/store'
 import { Variant } from '$lib/utils/types'
+import type { Notification } from '$lib/utils/types'
 
 function createNotificationsStore() {
-	const _notifications = writable([])
+	const _notifications: Notification[] = []
 
-	function send(title: string, message: string, type: Variant = Variant.INFO, timeout: number) {
-		_notifications.update((state) => {
-			return [...state, { id: id(), type, title, message, timeout }]
-		})
-	}
-
-	const notifications = derived(_notifications, ($_notifications, set) => {
-		set($_notifications)
-		if ($_notifications.length > 0) {
-			const timer = setTimeout(() => {
-				_notifications.update((state) => {
-					state.shift()
-					return state
-				})
-			}, $_notifications[0].timeout)
-			return () => {
-				clearTimeout(timer)
-			}
-		}
+	const { subscribe, set, update } = writable({
+		visible: false,
+		values: _notifications
 	})
-	const { subscribe } = notifications
 
 	function id() {
 		return '_' + Math.random().toString(36).substr(2, 9)
 	}
 
+	function send(title: string, msg: string, type: Variant) {
+		update((state) => {
+			const notification: Notification = {
+				id: id(),
+				time: new Date(),
+				title,
+				message: msg,
+				type
+			}
+			state.values = [notification, ...state.values]
+			return state
+		})
+	}
+
+	function toggleVisible() {
+		update((state) => {
+			state.visible = !state.visible
+			return state
+		})
+	}
+
 	return {
 		subscribe,
 		send,
-		danger: (title: string, msg: string, timeout: number = DEFAULT_NOTIFICATION_TIMEOUT) =>
-			send(title, msg, Variant.DANGER, timeout),
-		warning: (title: string, msg: string, timeout: number = DEFAULT_NOTIFICATION_TIMEOUT) =>
-			send(title, msg, Variant.WARNING, timeout),
-		info: (title: string, msg: string, timeout: number = DEFAULT_NOTIFICATION_TIMEOUT) =>
-			send(title, msg, Variant.INFO, timeout),
-		success: (title: string, msg: string, timeout: number = DEFAULT_NOTIFICATION_TIMEOUT) =>
-			send(title, msg, Variant.SUCCESS, timeout)
+		danger: (title: string, msg: string) => send(title, msg, Variant.DANGER),
+		warning: (title: string, msg: string) => send(title, msg, Variant.WARNING),
+		info: (title: string, msg: string) => send(title, msg, Variant.INFO),
+		success: (title: string, msg: string) => send(title, msg, Variant.SUCCESS),
+		toggleVisible,
+		reset: () => set({ visible: false, values: _notifications })
 	}
 }
 

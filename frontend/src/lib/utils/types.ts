@@ -32,3 +32,12 @@ export type VideoInfo = {
 	channelThumbnail?: string
 	status?: Status
 }
+
+export type Notification = {
+	id: string
+	time: Date
+	title: string
+	message: string
+	type: Variant
+	icon?: any
+}
