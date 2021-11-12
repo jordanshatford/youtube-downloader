@@ -21,7 +21,10 @@
 				class="xl:w-1/3 lg:w-5/12 md:w-3/5 sm:w-2/3 w-10/12 bg-gray-50 dark:bg-gray-900 h-screen overflow-y-auto px-8 py-4 absolute right-0"
 			>
 				<div class="flex items-center justify-between">
-					<p tabindex="0" class="focus:outline-none text-2xl font-semibold leading-6 text-gray-800 dark:text-gray-200">
+					<p
+						tabindex="0"
+						class="focus:outline-none text-2xl font-semibold leading-6 text-gray-800 dark:text-gray-200"
+					>
 						Notifications
 					</p>
 					<IconButton
@@ -35,7 +38,10 @@
 					<Notification {notification} />
 				{:else}
 					<div class="w-full p-3 mt-4 bg-white rounded flex dark:bg-gray-800">
-						<div tabindex="0" class="rounded-full w-8 h-8 flex items-center justify-center dark:text-gray-200">
+						<div
+							tabindex="0"
+							class="rounded-full w-8 h-8 flex items-center justify-center dark:text-gray-200"
+						>
 							<svelte:component this={BellOffIcon} size="4x" class="p-1" />
 						</div>
 						<div class="pl-3 dark:text-gray-200">No notifications</div>

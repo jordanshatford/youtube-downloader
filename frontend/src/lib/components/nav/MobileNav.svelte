@@ -21,7 +21,12 @@
 		</div>
 		<div>
 			{#if !show}
-				<IconButton on:click={() => (show = !show)} class="dark:text-gray-200 hover:text-indigo-800 dark:hover:text-indigo-600" icon={MenuIcon} size="1.5x" />
+				<IconButton
+					on:click={() => (show = !show)}
+					class="dark:text-gray-200 hover:text-indigo-800 dark:hover:text-indigo-600"
+					icon={MenuIcon}
+					size="1.5x"
+				/>
 			{/if}
 		</div>
 	</div>
@@ -31,7 +36,10 @@
 			: 'absolute xl:hidden w-full h-full transform -translate-x-full z-40'}
 		id="mobile-nav"
 	>
-		<div class="bg-gray-800 cursor-pointer bg-opacity-75 w-full h-full fixed top-0" on:click={() => (show = !show)} />
+		<div
+			class="bg-gray-800 cursor-pointer bg-opacity-75 w-full h-full fixed top-0"
+			on:click={() => (show = !show)}
+		/>
 		<div
 			class="w-64 z-40 fixed overflow-y-auto top-0 right-0 bg-white shadow flex flex-col justify-between xl:hidden transition duration-150 ease-in-out"
 		>
@@ -39,7 +47,12 @@
 				<div>
 					<div class="px-6 pt-3 flex w-full items-center justify-between">
 						<div class="flex flex-row flex-row-reverse w-full">
-							<IconButton class="flex items-end dark:text-gray-200 hover:text-red-800 dark:hover:text-red-600" on:click={() => (show = !show)} icon={XIcon} size="1.5x" />
+							<IconButton
+								class="flex items-end dark:text-gray-200 hover:text-red-800 dark:hover:text-red-600"
+								on:click={() => (show = !show)}
+								icon={XIcon}
+								size="1.5x"
+							/>
 						</div>
 					</div>
 					<ul class="mt-4">

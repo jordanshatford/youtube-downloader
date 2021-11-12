@@ -11,9 +11,7 @@
 <nav
 	class="w-full bg-white hidden md:block shadow dark:shadow-dark fixed top-0 z-40 dark:bg-gray-900"
 >
-	<div
-		class="container px-6 h-16 flex justify-between items-center lg:items-stretch mx-auto"
-	>
+	<div class="container px-6 h-16 flex justify-between items-center lg:items-stretch mx-auto">
 		<div class="flex items-center h-full">
 			<div class="flex items-center mr-10">
 				<Logo />

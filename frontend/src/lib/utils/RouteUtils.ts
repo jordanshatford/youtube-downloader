@@ -1,3 +1,4 @@
+import type { SvelteComponent } from 'svelte'
 import { DownloadIcon, SearchIcon } from 'svelte-feather-icons'
 
 export class RoutePathConstants {
@@ -8,7 +9,7 @@ export class RoutePathConstants {
 export type Route = {
 	path: string
 	label: string
-	icon: any
+	icon: typeof SvelteComponent
 }
 
 export const routes: Route[] = [

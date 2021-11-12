@@ -9,7 +9,9 @@
 </script>
 
 <div class="my-1 px-1 w-full md:w-1/2 lg:my-4 lg:px-4 lg:w-1/3">
-	<article class="rounded dark:bg-gray-800 overflow-hidden shadow dark:shadow-dark border border-gray-200 dark:border-gray-800">
+	<article
+		class="rounded dark:bg-gray-800 overflow-hidden shadow dark:shadow-dark border border-gray-200 dark:border-gray-800"
+	>
 		<a href={result.url} target="_blank">
 			<img alt="Thumbnail" class="block h-auto w-full" src={result.thumbnail} />
 		</a>

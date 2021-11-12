@@ -5,7 +5,11 @@
 	export let route: Route
 	export let isSidebar = false
 
-	$: classNames = `${$page.path === route.path ? 'border-indigo-800 dark:border-indigo-600 bg-gray-100 dark:bg-gray-800' : ''}`
+	$: classNames = `${
+		$page.path === route.path
+			? 'border-indigo-800 dark:border-indigo-600 bg-gray-100 dark:bg-gray-800'
+			: ''
+	}`
 </script>
 
 {#if isSidebar}

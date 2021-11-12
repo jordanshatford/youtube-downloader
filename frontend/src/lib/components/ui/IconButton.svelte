@@ -1,5 +1,7 @@
 <script lang="ts">
-	export let icon: any
+	import type { SvelteComponent } from 'svelte'
+
+	export let icon: typeof SvelteComponent
 	export let size = '1x'
 	let className = ''
 	export { className as class }

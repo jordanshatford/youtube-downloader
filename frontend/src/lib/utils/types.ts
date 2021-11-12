@@ -1,3 +1,5 @@
+import type { SvelteComponent } from 'svelte'
+
 // The status of a video being converted to MP3
 export enum Status {
 	WAITING = 'WAITING',
@@ -39,5 +41,5 @@ export type Notification = {
 	title: string
 	message: string
 	type: Variant
-	icon?: any
+	icon?: typeof SvelteComponent
 }
