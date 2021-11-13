@@ -1,8 +1,7 @@
 import { get, writable } from 'svelte/store'
 import { session } from '$lib/stores/session'
 import type { VideoInfo } from '$lib/utils/types'
-import { getApiEndpoint, truncate } from '$lib/utils/functions'
-import { MAX_TITLE_LENGTH } from '$lib/utils/constants'
+import { getApiEndpoint } from '$lib/utils/functions'
 import fileSaver from 'file-saver'
 import { notifications } from '$lib/stores/notifications'
 import { Status } from '$lib/utils/types'
@@ -28,14 +27,14 @@ function createDownloadsStore() {
 					case Status.DONE:
 						notifications.success(
 							'Download Complete',
-							truncate(state[videoId].title, MAX_TITLE_LENGTH)
+							state[videoId].title
 						)
 						break
 					case Status.ERROR:
 					case Status.UNDEFINED:
 						notifications.danger(
 							'Download Failed',
-							truncate(state[videoId].title, MAX_TITLE_LENGTH)
+							state[videoId].title
 						)
 						break
 					default:

@@ -2,8 +2,6 @@
 	import StatusBadge from '$lib/components/downloads/StatusBadge.svelte'
 	import DownloadActions from '$lib/components/downloads/DownloadActions.svelte'
 	import { downloads } from '$lib/stores/downloads'
-	import { truncate } from '$lib/utils/functions'
-	import { MAX_TITLE_LENGTH } from '$lib/utils/constants'
 	import { Status } from '$lib/utils/types'
 	import type { VideoInfo } from '$lib/utils/types'
 
@@ -41,9 +39,9 @@
 						<div class="hidden md:block flex-shrink-0 h-10 w-18">
 							<img class="h-10 w-18" src={downloadInfo.thumbnail} alt="Thumbnail" />
 						</div>
-						<div class="md:ml-4">
-							<div class="text-sm font-medium text-gray-800 dark:text-white">
-								{truncate(downloadInfo.title, MAX_TITLE_LENGTH)}
+						<div class="md:ml-4 lg:max-w-lg md:max-w-xs sm:max-w-xxs max-w-xxxs truncate">
+							<div class="text-sm truncate font-medium text-gray-800 dark:text-white">
+								{downloadInfo.title}
 							</div>
 							<div class="text-sm text-gray-500 dark:text-gray-400 underline">
 								<a href={downloadInfo.url} target="_blank">Link</a>

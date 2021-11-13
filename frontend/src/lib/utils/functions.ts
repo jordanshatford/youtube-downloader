@@ -25,13 +25,3 @@ export function getApiEndpoint(
 	}
 	return endpointString
 }
-
-/**
- * Truncate a string to a specified size.
- * @param str  The string to be truncated.
- * @param n    The length to make the truncated string.
- * @return     The string properly truncated.
- */
-export function truncate(str: string, n: number): string {
-	return str.length > n ? str.substring(0, n - 1) + '...' : str
-}
