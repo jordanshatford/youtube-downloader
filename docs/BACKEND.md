@@ -1,10 +1,9 @@
-# Flask Backend
+# Fast API Backend
 
-The backend for this project is written using the [Python](https://www.python.org/) web application framework [Flask](https://flask.palletsprojects.com/en/1.1.x/).
+The backend for this project is written using the [Python](https://www.python.org/) web application framework [FastAPI](https://fastapi.tiangolo.com/).
 
 The backend also utilizes other technologies like:
   - [FFMPEG](https://www.ffmpeg.org/)
-  - [Waitress](https://docs.pylonsproject.org/projects/waitress/en/stable/)
   - [YoutubeDL](https://youtube-dl.org/)
 
 ## Developing

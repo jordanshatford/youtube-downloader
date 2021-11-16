@@ -17,7 +17,9 @@ def format_search_result(result: dict) -> dict:
         "title": result["title"],
         "duration": result["duration"],
         "thumbnail": result["thumbnails"][0]["url"],
-        "channel": result["channel"]["name"],
-        "channelUrl": result["channel"]["link"],
-        "channelThumbnail": result["channel"]["thumbnails"][0]["url"],
+        "channel": {
+            "name": result["channel"]["name"],
+            "url": result["channel"]["link"],
+            "thumbnail": result["channel"]["thumbnails"][0]["url"],
+        },
     }

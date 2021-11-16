@@ -1,9 +1,9 @@
-name: Deploy backend to Heroku
+name: Deploy develop backend to Heroku
 
 on:
   push:
     branches:
-      - main
+      - develop
     paths:
       - 'backend/**'
 
@@ -15,7 +15,7 @@ jobs:
       - uses: akhileshns/heroku-deploy@v3.12.12
         with:
           heroku_api_key: ${{secrets.HEROKU_API_KEY}}
-          heroku_app_name: ${{ secrets.HEROKU_APP_NAME }}
+          heroku_app_name: ${{ secrets.TEST_HEROKU_APP_NAME }}
           heroku_email: ${{ secrets.HEROKU_EMAIL }}
           usedocker: true
           appdir: backend/

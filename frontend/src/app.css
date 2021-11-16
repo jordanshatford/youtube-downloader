@@ -4,10 +4,10 @@
 @tailwind utilities;
 
 @layer utilities {
-    .max-w-xxs {
-        max-width: 14rem;
-    }
-    .max-w-xxxs {
-        max-width: 10rem;
-    }
+	.max-w-xxs {
+		max-width: 14rem;
+	}
+	.max-w-xxxs {
+		max-width: 10rem;
+	}
 }

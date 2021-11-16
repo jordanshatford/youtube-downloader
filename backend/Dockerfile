@@ -16,4 +16,4 @@ COPY . /backend
 WORKDIR /backend
 
 ENTRYPOINT ["python3"]
-CMD ["app.py"]
+CMD ["main.py"]

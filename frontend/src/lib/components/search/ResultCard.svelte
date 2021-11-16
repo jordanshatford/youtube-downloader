@@ -30,12 +30,12 @@
 		<footer class="flex items-center justify-between leading-none p-2 md:p-4">
 			<a
 				class="flex items-center no-underline hover:underline text-gray-800 dark:text-gray-400"
-				href={result.channelUrl}
+				href={result.channel.url}
 				target="_blank"
 			>
-				<img alt="" class="block w-10 h-10 rounded-full" src={result.channelThumbnail} />
+				<img alt="" class="block w-10 h-10 rounded-full" src={result.channel.thumbnail} />
 				<p class="ml-2 text-sm">
-					{result.channel}
+					{result.channel.name}
 				</p>
 			</a>
 			{#if !(result.id in $downloads)}

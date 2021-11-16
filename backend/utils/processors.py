@@ -1,4 +1,3 @@
-import enum
 import os
 
 from youtube_dl.postprocessor.common import PostProcessor

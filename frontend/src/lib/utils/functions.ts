@@ -10,7 +10,7 @@ export function getApiEndpoint(
 	urlParam?: string,
 	queryParams?: { [key: string]: string | number }
 ): string {
-	let endpointString = `${import.meta.env.VITE_SERVER_ADDR}/api${endpoint}`
+	let endpointString = `${import.meta.env.VITE_SERVER_ADDR}${endpoint}`
 	// If add urlParam to end of endpoint if needed
 	if (urlParam !== undefined) {
 		endpointString = `${endpointString}/${urlParam}`

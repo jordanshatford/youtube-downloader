@@ -18,7 +18,7 @@ The `Root Directory` for the frontend should be set to `frontend`.
 The following `Environment Variables` must be specified for the frontend to properly function:
 
 ```bash
-# the address to the backend server for the application 
+# the address to the backend server for the application
 VITE_SERVER_ADDR=https://some-address.com
 ```
 

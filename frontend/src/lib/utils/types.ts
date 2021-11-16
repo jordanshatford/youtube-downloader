@@ -22,6 +22,12 @@ export enum Theme {
 	DARK = 'dark'
 }
 
+export type ChannelInfo = {
+	name: string
+	url?: string
+	thumbnail?: string
+}
+
 // The information about a specific youtube video
 export type VideoInfo = {
 	id: string
@@ -29,9 +35,7 @@ export type VideoInfo = {
 	title: string
 	thumbnail: string
 	duration?: string
-	channel?: string
-	channelUrl?: string
-	channelThumbnail?: string
+	channel?: ChannelInfo
 	status?: Status
 }
 

@@ -1,13 +1,14 @@
 import json
 import os
 import shutil
-
-from datetime import datetime, timedelta
+from datetime import datetime
+from datetime import timedelta
 from queue import Queue
 
-from .helpers import Status, format_status_update
-from .threads import YoutubeDownloadThread, RepeatedTimer
-from .sse import ServerSentEvent
+from .helpers import format_status_update
+from .helpers import Status
+from .threads import RepeatedTimer
+from .threads import YoutubeDownloadThread
 
 
 class AudioDownloadManager:
@@ -59,8 +60,7 @@ class Session:
         return self._last_use < datetime.now() - timedelta(seconds=seconds)
 
     def _status_update(self, video_id: str, status: Status):
-        msg = ServerSentEvent(data=json.dumps(format_status_update(video_id, status)))
-        self.status_queue.put(msg.encode())
+        self.status_queue.put(json.dumps(format_status_update(video_id, status)))
 
 
 class SessionManager:
@@ -92,6 +92,7 @@ class SessionManager:
         self._sessions.pop(id, None)
 
     def get_download_manager(self, id: str) -> AudioDownloadManager:
+        self._update_session_use_time(id)
         try:
             return self._sessions[id].download_manager
         except KeyError:
@@ -99,13 +100,14 @@ class SessionManager:
             return self._sessions[id].download_manager
 
     def get_status_queue(self, id: str) -> Queue:
+        self._update_session_use_time(id)
         try:
             return self._sessions[id].status_queue
         except KeyError:
             self.setup_session(id)
             return self._sessions[id].status_queue
 
-    def update_session_use_time(self, id: str):
+    def _update_session_use_time(self, id: str):
         try:
             self._sessions[id].update_use_time()
         except KeyError:
@@ -114,7 +116,7 @@ class SessionManager:
     def _clean_session_files(self, id: str):
         try:
             shutil.rmtree(self._sessions[id].output_dir)
-        except KeyError:
+        except (KeyError, FileNotFoundError):
             pass
 
 

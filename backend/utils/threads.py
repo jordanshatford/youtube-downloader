@@ -58,7 +58,7 @@ class YoutubeDownloadThread(threading.Thread):
         self._status_update(self._id, Status.DOWNLOADING)
         try:
             self._downloader.download([self._url])
-        except Exception as e:
+        except Exception:
             self._status_update(self._id, Status.ERROR)
 
 

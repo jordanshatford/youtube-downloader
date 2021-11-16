@@ -21,7 +21,7 @@ npm install
 
 Then you must specify a value for the following environment variables:
 ```bash
-# the address to the backend server for the application 
+# the address to the backend server for the application
 VITE_SERVER_ADDR=https://some-address.com
 ```
 This can be done by filling out and copying the `example.env` file to a `.env` file.

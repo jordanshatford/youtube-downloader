@@ -23,7 +23,7 @@ function createSearchStore() {
 			term: term,
 			results: DEFAULT_NUMBER_OF_RESULTS
 		})
-		fetch(url)
+		fetch(url, { method: 'GET', credentials: 'include' })
 			.then((response) => response.json())
 			.then((results) => {
 				update((state) => {

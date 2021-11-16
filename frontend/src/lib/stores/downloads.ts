@@ -1,5 +1,4 @@
-import { get, writable } from 'svelte/store'
-import { session } from '$lib/stores/session'
+import { writable } from 'svelte/store'
 import type { VideoInfo } from '$lib/utils/types'
 import { getApiEndpoint } from '$lib/utils/functions'
 import fileSaver from 'file-saver'
@@ -15,7 +14,9 @@ function createDownloadsStore() {
 	let downloadStatus: EventSource = null
 
 	function setupStatusListener() {
-		downloadStatus = new EventSource(getApiEndpoint(API_ENDPOINT, 'status', getSessionData()))
+		downloadStatus = new EventSource(getApiEndpoint(API_ENDPOINT, 'status'), {
+			withCredentials: true
+		})
 
 		downloadStatus.onmessage = function (event) {
 			const data = JSON.parse(event.data)
@@ -25,17 +26,11 @@ function createDownloadsStore() {
 				state[videoId].status = updatedStatus
 				switch (updatedStatus) {
 					case Status.DONE:
-						notifications.success(
-							'Download Complete',
-							state[videoId].title
-						)
+						notifications.success('Download Complete', state[videoId].title)
 						break
 					case Status.ERROR:
 					case Status.UNDEFINED:
-						notifications.danger(
-							'Download Failed',
-							state[videoId].title
-						)
+						notifications.danger('Download Failed', state[videoId].title)
 						break
 					default:
 						break
@@ -50,14 +45,16 @@ function createDownloadsStore() {
 
 		// Add download to store using information we have already
 		update((state) => Object.assign(state, { [downloadInfo.id]: downloadInfo }))
-		const url = getApiEndpoint(API_ENDPOINT, downloadInfo.id, getSessionData())
+		const url = getApiEndpoint(API_ENDPOINT, undefined)
 		fetch(url, {
 			method: 'POST',
+			credentials: 'include',
 			headers: {
 				Accept: 'application/json',
 				'Content-Type': 'application/json'
 			},
 			body: JSON.stringify({
+				id: downloadInfo.id,
 				url: downloadInfo.url
 			})
 		})
@@ -70,15 +67,15 @@ function createDownloadsStore() {
 			delete state[id]
 			return state
 		})
-		const url = getApiEndpoint(API_ENDPOINT, id, getSessionData())
-		fetch(url, { method: 'DELETE' })
+		const url = getApiEndpoint(API_ENDPOINT, id)
+		fetch(url, { method: 'DELETE', credentials: 'include' })
 	}
 
 	function getFile(id: string) {
 		if (!(id in downloads)) return
 
-		const url = getApiEndpoint(API_ENDPOINT, id, getSessionData())
-		fetch(url).then(async (response) => {
+		const url = getApiEndpoint(API_ENDPOINT, id)
+		fetch(url, { method: 'GET', credentials: 'include' }).then(async (response) => {
 			if (response.ok) {
 				// The file blob is returned
 				return response.blob().then((blob) => fileSaver.saveAs(blob, `${downloads[id].title}.mp3`))
@@ -90,10 +87,6 @@ function createDownloadsStore() {
 				})
 			}
 		})
-	}
-
-	function getSessionData() {
-		return { sessionId: get(session) }
 	}
 
 	return {
