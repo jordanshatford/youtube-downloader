@@ -19,7 +19,7 @@ pip install -r requirements.txt
 
 Once the project dependencies are installed you can start backend server using:
 ```bash
-python app.py
+python main.py
 ```
 
 ## Using Docker
