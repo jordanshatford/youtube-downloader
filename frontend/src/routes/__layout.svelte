@@ -22,9 +22,7 @@
 	})
 </script>
 
-<div
-	class="min-h-screen h-full dark:bg-gray-900 {$notifications.visible ? 'overflow-y-hidden' : ''}"
->
+<div class="min-h-screen h-full dark:bg-gray-900">
 	{#if $session}
 		<div class="h-full">
 			<Nav />

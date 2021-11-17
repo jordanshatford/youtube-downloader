@@ -11,7 +11,7 @@
 <span class="relative inline-block">
 	<IconButton
 		on:click={() => notifications.toggleVisible()}
-		class="{className} hover:text-indigo-800 dark:hover:text-indigo-600 text-gray-500 dark:text-gray-200 dark:bg-gray-900"
+		class="{className} hover:text-indigo-800 dark:hover:text-indigo-600 text-gray-500 dark:text-gray-200 dark:bg-gray-800"
 		icon={BellIcon}
 		{size}
 	/>
