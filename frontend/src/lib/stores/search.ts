@@ -18,11 +18,14 @@ function createSearchStore() {
 			state.loading = true
 			return state
 		})
-		const url = getApiEndpoint(APIEndpointConstants.SEARCH, undefined, {
-			term: term,
-			results: DEFAULT_NUMBER_OF_RESULTS
+		const { endpoint } = getApiEndpoint({
+			base: APIEndpointConstants.SEARCH,
+			queryParams: {
+				term: term,
+				results: DEFAULT_NUMBER_OF_RESULTS
+			}
 		})
-		fetch(url, { method: 'GET', credentials: 'include' })
+		fetch(endpoint, { method: 'GET', credentials: 'include', headers: { 'x-session-id': 'test' } })
 			.then((response) => response.json())
 			.then((results) => {
 				update((state) => {

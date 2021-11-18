@@ -8,10 +8,13 @@ function createSessionStore() {
 	const { subscribe, set } = writable(null)
 
 	async function setup() {
-		const url = getApiEndpoint(APIEndpointConstants.SESSION)
-		await fetch(url, { credentials: 'include' })
-			.then(() => {
-				set('session-set')
+		const { endpoint, options } = getApiEndpoint({ base: APIEndpointConstants.SESSION, method: 'GET' })
+		await fetch(endpoint, options)
+			.then((response) => {
+				return response.json()
+			})
+			.then((data) => {
+				set(data?.id)
 			})
 			.catch((err) => {
 				console.error('Connection failed, could not connect to internal server. ', err)

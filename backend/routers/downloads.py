@@ -3,7 +3,6 @@ import os
 import queue
 
 from fastapi import APIRouter
-from fastapi import Cookie
 from fastapi import Request
 from fastapi import Response
 from fastapi import status
@@ -17,8 +16,8 @@ router = APIRouter()
 
 
 @router.post("/downloads", tags=["downloads"], response_model=Message)
-def add_download(video: Video, session_id: str = Cookie(None)):
-    download_manager = session_manager.get_download_manager(session_id)
+def add_download(video: Video, sessionId: str):
+    download_manager = session_manager.get_download_manager(sessionId)
     download_manager.add(video.id, video.url)
     return {
         "title": "File Added",
@@ -27,26 +26,26 @@ def add_download(video: Video, session_id: str = Cookie(None)):
 
 
 @router.get("/downloads/status", tags=["downloads"])
-async def downloads_status(request: Request, session_id: str = Cookie(None)):
+async def downloads_status(request: Request, sessionId: str):
     async def status_stream():
         try:
             while True:
                 if await request.is_disconnected():
                     break
                 try:
-                    msg = session_manager.get_status_queue(session_id).get(block=False)
+                    msg = session_manager.get_status_queue(sessionId).get(block=False)
                     yield dict(data=msg)
                 except queue.Empty:
                     await asyncio.sleep(1)
-        except asyncio.CancelledError:
-            session_manager.remove(session_id)
+        except (asyncio.CancelledError, asyncio.exceptions.InvalidStateError):
+            session_manager.remove(sessionId)
 
     return EventSourceResponse(status_stream())
 
 
 @router.get("/downloads/{video_id}", tags=["downloads"], response_model=Message)
-def get_download(video_id: str, response: Response, session_id: str = Cookie(None)):
-    download_manager = session_manager.get_download_manager(session_id)
+def get_download(video_id: str, response: Response, sessionId: str):
+    download_manager = session_manager.get_download_manager(sessionId)
     path = download_manager.get_download(video_id)
     if path is not None and os.path.exists(path):
         return FileResponse(path)
@@ -59,8 +58,8 @@ def get_download(video_id: str, response: Response, session_id: str = Cookie(Non
 
 
 @router.delete("/downloads/{video_id}", tags=["downloads"], response_model=Message)
-def add_download(video_id: str, session_id: str = Cookie(None)):
-    download_manager = session_manager.get_download_manager(session_id)
+def add_download(video_id: str, sessionId: str):
+    download_manager = session_manager.get_download_manager(sessionId)
     download_manager.remove(video_id)
     return {
         "title": "File Removed",

@@ -13,9 +13,11 @@ function createDownloadsStore() {
 	let downloadStatus: EventSource = null
 
 	function setupStatusListener() {
-		downloadStatus = new EventSource(getApiEndpoint(APIEndpointConstants.DOWNLOADS, 'status'), {
-			withCredentials: true
+		const { endpoint } = getApiEndpoint({
+			base: APIEndpointConstants.DOWNLOADS,
+			urlParam: 'status'
 		})
+		downloadStatus = new EventSource(endpoint)
 
 		downloadStatus.onmessage = function (event) {
 			const data = JSON.parse(event.data)
@@ -44,19 +46,15 @@ function createDownloadsStore() {
 
 		// Add download to store using information we have already
 		update((state) => Object.assign(state, { [downloadInfo.id]: downloadInfo }))
-		const url = getApiEndpoint(APIEndpointConstants.DOWNLOADS, undefined)
-		fetch(url, {
+		const { endpoint, options } = getApiEndpoint({
+			base: APIEndpointConstants.DOWNLOADS,
 			method: 'POST',
-			credentials: 'include',
-			headers: {
-				Accept: 'application/json',
-				'Content-Type': 'application/json'
-			},
 			body: JSON.stringify({
 				id: downloadInfo.id,
 				url: downloadInfo.url
 			})
 		})
+		fetch(endpoint, options)
 	}
 
 	function remove(id: string) {
@@ -66,15 +64,23 @@ function createDownloadsStore() {
 			delete state[id]
 			return state
 		})
-		const url = getApiEndpoint(APIEndpointConstants.DOWNLOADS, id)
-		fetch(url, { method: 'DELETE', credentials: 'include' })
+		const { endpoint, options } = getApiEndpoint({
+			base: APIEndpointConstants.DOWNLOADS,
+			method: 'DELETE',
+			urlParam: id
+		})
+		fetch(endpoint, options)
 	}
 
 	function getFile(id: string) {
 		if (!(id in downloads)) return
 
-		const url = getApiEndpoint(APIEndpointConstants.DOWNLOADS, id)
-		fetch(url, { method: 'GET', credentials: 'include' }).then(async (response) => {
+		const { endpoint, options } = getApiEndpoint({
+			base: APIEndpointConstants.DOWNLOADS,
+			method: 'GET',
+			urlParam: id
+		})
+		fetch(endpoint, options).then(async (response) => {
 			if (response.ok) {
 				// The file blob is returned
 				return response.blob().then((blob) => fileSaver.saveAs(blob, `${downloads[id].title}.mp3`))

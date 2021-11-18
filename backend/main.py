@@ -10,10 +10,7 @@ from starlette.middleware.cors import CORSMiddleware
 from utils.managers import session_manager
 
 tags_metadata = [
-    {
-        "name": "session",
-        "description": "Get session id set in cookies for future requests.",
-    },
+    {"name": "session", "description": "Get session id to use for future requests."},
     {"name": "search", "description": "Search youtube for videos."},
     {"name": "downloads", "description": "Manage downloads of videos from youtube."},
 ]

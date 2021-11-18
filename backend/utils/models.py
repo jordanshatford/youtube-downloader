@@ -18,6 +18,10 @@ class Video(BaseModel):
     channel: Optional[Channel]
 
 
+class Session(BaseModel):
+    id: str
+
+
 class Message(BaseModel):
     title: str
     message: str

@@ -4,7 +4,7 @@ import { Theme } from '$lib/utils/types'
 
 function createThemeStore() {
 	const THEME_KEY = 'theme'
-	const DEFAULT_THEME_VALUE = Theme.LIGHT
+	const DEFAULT_THEME_VALUE = Theme.DARK
 
 	const { subscribe, set, update } = writable(DEFAULT_THEME_VALUE)
 
