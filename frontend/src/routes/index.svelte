@@ -3,7 +3,7 @@
 	import Description from '$lib/components/typography/Description.svelte'
 	import { search } from '$lib/stores/search'
 	import SearchBar from '$lib/components/ui/SearchBar.svelte'
-	import ResultCard from '$lib/components/search/ResultCard.svelte'
+	import ResultCard from '$lib/components/ResultCard.svelte'
 
 	function searchVideos(event: CustomEvent) {
 		let term = event.detail.term

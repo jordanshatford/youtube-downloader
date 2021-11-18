@@ -1,12 +1,11 @@
 import { writable } from 'svelte/store'
 import type { VideoInfo } from '$lib/utils/types'
-import { getApiEndpoint } from '$lib/utils/functions'
+import { getApiEndpoint, APIEndpointConstants } from '$lib/utils/APIUtils'
 import fileSaver from 'file-saver'
 import { notifications } from '$lib/stores/notifications'
 import { Status } from '$lib/utils/types'
 
 function createDownloadsStore() {
-	const API_ENDPOINT = '/downloads'
 	const downloads: { [key: string]: VideoInfo } = {}
 
 	const { subscribe, set, update } = writable(downloads)
@@ -14,7 +13,7 @@ function createDownloadsStore() {
 	let downloadStatus: EventSource = null
 
 	function setupStatusListener() {
-		downloadStatus = new EventSource(getApiEndpoint(API_ENDPOINT, 'status'), {
+		downloadStatus = new EventSource(getApiEndpoint(APIEndpointConstants.DOWNLOADS, 'status'), {
 			withCredentials: true
 		})
 
@@ -45,7 +44,7 @@ function createDownloadsStore() {
 
 		// Add download to store using information we have already
 		update((state) => Object.assign(state, { [downloadInfo.id]: downloadInfo }))
-		const url = getApiEndpoint(API_ENDPOINT, undefined)
+		const url = getApiEndpoint(APIEndpointConstants.DOWNLOADS, undefined)
 		fetch(url, {
 			method: 'POST',
 			credentials: 'include',
@@ -67,14 +66,14 @@ function createDownloadsStore() {
 			delete state[id]
 			return state
 		})
-		const url = getApiEndpoint(API_ENDPOINT, id)
+		const url = getApiEndpoint(APIEndpointConstants.DOWNLOADS, id)
 		fetch(url, { method: 'DELETE', credentials: 'include' })
 	}
 
 	function getFile(id: string) {
 		if (!(id in downloads)) return
 
-		const url = getApiEndpoint(API_ENDPOINT, id)
+		const url = getApiEndpoint(APIEndpointConstants.DOWNLOADS, id)
 		fetch(url, { method: 'GET', credentials: 'include' }).then(async (response) => {
 			if (response.ok) {
 				// The file blob is returned

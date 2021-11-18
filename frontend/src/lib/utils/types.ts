@@ -28,7 +28,6 @@ export type ChannelInfo = {
 	thumbnail?: string
 }
 
-// The information about a specific youtube video
 export type VideoInfo = {
 	id: string
 	url: string

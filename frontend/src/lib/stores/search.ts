@@ -1,9 +1,8 @@
 import { writable } from 'svelte/store'
 import type { VideoInfo } from '$lib/utils/types'
-import { getApiEndpoint } from '$lib/utils/functions'
+import { getApiEndpoint, APIEndpointConstants } from '$lib/utils/APIUtils'
 
 function createSearchStore() {
-	const API_ENDPOINT = '/search'
 	const DEFAULT_NUMBER_OF_RESULTS = 12
 	const results: VideoInfo[] = []
 
@@ -19,7 +18,7 @@ function createSearchStore() {
 			state.loading = true
 			return state
 		})
-		const url = getApiEndpoint(API_ENDPOINT, undefined, {
+		const url = getApiEndpoint(APIEndpointConstants.SEARCH, undefined, {
 			term: term,
 			results: DEFAULT_NUMBER_OF_RESULTS
 		})

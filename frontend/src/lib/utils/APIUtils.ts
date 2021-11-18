@@ -1,3 +1,9 @@
+export class APIEndpointConstants {
+	public static SEARCH = '/search'
+	public static SESSION = '/session'
+	public static DOWNLOADS = '/downloads'
+}
+
 /**
  * Return the url for a given api endpoint.
  * @param endpoint     The api endpoint you want.
@@ -6,7 +12,7 @@
  * @return             The url for that endpoint.
  */
 export function getApiEndpoint(
-	endpoint: string,
+	endpoint: APIEndpointConstants,
 	urlParam?: string,
 	queryParams?: { [key: string]: string | number }
 ): string {
