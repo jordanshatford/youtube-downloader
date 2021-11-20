@@ -42,7 +42,7 @@
 
 <div class="h-8 w-36 rounded-md flex items-center justify-center {className}">
 	<div class="rounded-md flex items-center justify-center h-full w-full">
-		<span class="text-xs font-semibold pr-2">{status}</span>
+		<span class="text-sm pr-2">{status}</span>
 		<svelte:component this={icon} size="1x" class={iconClass} />
 	</div>
 </div>

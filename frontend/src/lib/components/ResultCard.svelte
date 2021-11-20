@@ -1,4 +1,5 @@
 <script lang="ts">
+	import StatusButton from '$lib/components/StatusButton.svelte'
 	import { PlusIcon } from 'svelte-feather-icons'
 	import IconButton from '$lib/components/ui/IconButton.svelte'
 	import { downloads } from '$lib/stores/downloads'
@@ -45,6 +46,8 @@
 					class="text-black dark:text-white hover:text-purple-800 dark:hover:text-purple-600"
 					size="1.5x"
 				/>
+			{:else}
+				<StatusButton status={$downloads[result.id]?.status} />
 			{/if}
 		</footer>
 	</article>
