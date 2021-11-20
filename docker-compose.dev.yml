@@ -6,12 +6,14 @@ services:
     restart: always
     ports:
       - 8000:8080
+    environment:
+      - ALLOWED_ORIGIN=http://localhost:3000
   frontend:
     build: ./frontend
     restart: always
     ports:
-      - 80:5000
+      - 3000:3000
     environment:
-      - VITE_SERVER_ADDR=http://0.0.0.0:8000
+      - VITE_SERVER_ADDR=http://localhost:8000
     depends_on:
       - backend

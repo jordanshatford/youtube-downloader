@@ -34,9 +34,11 @@ app = FastAPI(
     openapi_tags=tags_metadata,
 )
 
+allowed_origin = os.environ.get("ALLOWED_ORIGIN", "http://localhost:3000")
+
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["https://ytmp3.vercel.app"],
+    allow_origins=[allowed_origin],
     allow_credentials=True,
     allow_methods=["POST", "GET", "DELETE"],
     allow_headers=["*"],

@@ -30,8 +30,8 @@ It is hosted as a container running the backend server as a web application.
 The following `Config Vars` should be specified for the backend application:
 
 ```bash
-# The number of threads used to process application logic (integer)
-WAITRESS_THREAD=200
+# the address of the frontend (used to allow CORS origin)
+ALLOWED_ORIGIN=https://some-address.com
 
 # NOTE: on Heroku this does not need to be specified as it is specifed by Heroku itself
 PORT=8080
