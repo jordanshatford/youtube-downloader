@@ -4,6 +4,9 @@ import shutil
 from datetime import datetime
 from datetime import timedelta
 from queue import Queue
+from typing import Callable
+from typing import Dict
+from typing import Union
 
 from .helpers import format_status_update
 from .helpers import Status
@@ -12,9 +15,9 @@ from .threads import YoutubeDownloadThread
 
 
 class AudioDownloadManager:
-    def __init__(self, output_dir: str, announcer: callable):
+    def __init__(self, output_dir: str, announcer: Callable[[str, Status], None]):
         self._announcer = announcer
-        self._downloads = {}
+        self._downloads: Dict[str, YoutubeDownloadThread] = {}
         self._output_dir = output_dir
 
     def add(self, video_id: str, url: str) -> None:
@@ -32,14 +35,14 @@ class AudioDownloadManager:
         except KeyError:
             pass
 
-    def get_download(self, video_id: str) -> str:
+    def get_download(self, video_id: str) -> Union[str, None]:
         try:
             path = self._downloads[video_id].get_file_location()
             return path
         except KeyError:
             return None
 
-    def send_status_update(self, video_id: str, status: str) -> None:
+    def send_status_update(self, video_id: str, status: Status) -> None:
         self._announcer(video_id, status)
 
 
@@ -51,7 +54,7 @@ class Session:
         self.download_manager = AudioDownloadManager(
             self.output_dir, announcer=self._status_update
         )
-        self.status_queue = Queue()
+        self.status_queue: Queue[str] = Queue()
 
     def update_use_time(self):
         self._last_use = datetime.now()
@@ -70,7 +73,7 @@ class SessionManager:
         cleanup_interval: int = 60 * 60 * 3,  # 3 hours
         session_to_old_duration: int = 60 * 60 * 2,  # 2 hours
     ):
-        self._sessions = {}
+        self._sessions: Dict[str, Session] = {}
         self.session_dir = session_dir
         self._session_too_old_duration = session_to_old_duration
         self._cleanup_interval = cleanup_interval

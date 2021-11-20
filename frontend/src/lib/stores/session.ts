@@ -8,7 +8,10 @@ function createSessionStore() {
 	const { subscribe, set } = writable(null)
 
 	async function setup() {
-		const { endpoint, options } = getApiEndpoint({ base: APIEndpointConstants.SESSION, method: 'GET' })
+		const { endpoint, options } = getApiEndpoint({
+			base: APIEndpointConstants.SESSION,
+			method: 'GET'
+		})
 		await fetch(endpoint, options)
 			.then((response) => {
 				return response.json()

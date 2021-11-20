@@ -23,15 +23,13 @@ export type QueryParamsOptions = {
  * @param queryParams  The query params for the endpoint you want.
  * @return             The url for that endpoint.
  */
-export function getApiEndpoint(
-	config: {
-		base: APIEndpointConstants
-		method?: string
-		body?: BodyInit
-		urlParam?: string
-		queryParams?: QueryParamsOptions
-	}
-): RouteInfo {
+export function getApiEndpoint(config: {
+	base: APIEndpointConstants
+	method?: string
+	body?: BodyInit
+	urlParam?: string
+	queryParams?: QueryParamsOptions
+}): RouteInfo {
 	let endpointString = `${import.meta.env.VITE_SERVER_ADDR}${config.base}`
 	// If add urlParam to end of endpoint if needed
 	if (config.urlParam !== undefined) {
@@ -41,7 +39,7 @@ export function getApiEndpoint(
 	if (get(session)) {
 		config.queryParams = {
 			...config.queryParams,
-			'sessionId': get(session)
+			sessionId: get(session)
 		}
 	}
 
@@ -53,7 +51,7 @@ export function getApiEndpoint(
 		endpointString = `${endpointString}?${queryParamsString}`
 	}
 
-	let headers: { [key: string]: string } = {
+	const headers: { [key: string]: string } = {
 		Accept: 'application/json',
 		'Content-Type': 'application/json'
 	}

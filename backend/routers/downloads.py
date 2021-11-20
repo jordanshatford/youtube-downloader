@@ -58,7 +58,7 @@ def get_download(video_id: str, response: Response, sessionId: str):
 
 
 @router.delete("/downloads/{video_id}", tags=["downloads"], response_model=Message)
-def add_download(video_id: str, sessionId: str):
+def delete_download(video_id: str, sessionId: str):
     download_manager = session_manager.get_download_manager(sessionId)
     download_manager.remove(video_id)
     return {

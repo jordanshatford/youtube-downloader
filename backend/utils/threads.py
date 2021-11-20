@@ -1,6 +1,7 @@
 import os
 import threading
 import time
+from typing import Callable
 
 from youtube_dl import YoutubeDL
 
@@ -10,7 +11,11 @@ from .processors import FileProcessingComplete
 
 class YoutubeDownloadThread(threading.Thread):
     def __init__(
-        self, id: str, url: str, output_directory: str, status_update: callable
+        self,
+        id: str,
+        url: str,
+        output_directory: str,
+        status_update: Callable[[str, Status], None],
     ):
         self._id = id
         self._url = url
@@ -63,7 +68,7 @@ class YoutubeDownloadThread(threading.Thread):
 
 
 class RepeatedTimer:
-    def __init__(self, interval: int, function: callable, *args, **kwargs):
+    def __init__(self, interval: int, function: Callable, *args, **kwargs):
         self._timer = None
         self.interval = interval
         self.function = function
