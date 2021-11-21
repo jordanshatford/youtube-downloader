@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { page } from '$app/stores'
-	import type { Route } from '$lib/utils/RouteUtils'
+	import type { Route } from '$lib/utils/route'
 
 	export let route: Route
 	export let isMobileMenu = false

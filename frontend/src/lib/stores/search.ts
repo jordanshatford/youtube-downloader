@@ -1,6 +1,6 @@
 import { writable } from 'svelte/store'
 import type { VideoInfo } from '$lib/utils/types'
-import { getApiEndpoint, APIEndpointConstants } from '$lib/utils/APIUtils'
+import { getApiEndpoint, APIEndpointConstants } from '$lib/utils/api'
 
 function createSearchStore() {
 	const DEFAULT_NUMBER_OF_RESULTS = 12

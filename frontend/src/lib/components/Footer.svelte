@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { GithubIcon } from 'svelte-feather-icons'
-	import { RoutePathConstants } from '$lib/utils/RouteUtils'
+	import { RoutePathConstants } from '$lib/utils/route'
 </script>
 
 <footer class="bg-white dark:bg-gray-800 border-t border-gray-200 dark:border-gray-900">

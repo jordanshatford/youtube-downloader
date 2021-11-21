@@ -1,5 +1,5 @@
 import { writable } from 'svelte/store'
-import { getApiEndpoint, APIEndpointConstants } from '$lib/utils/APIUtils'
+import { getApiEndpoint, APIEndpointConstants } from '$lib/utils/api'
 import { notifications } from '$lib/stores/notifications'
 
 function createSessionStore() {

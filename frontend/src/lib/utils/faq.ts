@@ -1,4 +1,4 @@
-import { RoutePathConstants } from '$lib/utils/RouteUtils'
+import { RoutePathConstants } from '$lib/utils/route'
 import type { ListItem } from '$lib/utils/types'
 
 export const websiteName = RoutePathConstants.PUBLIC_HOST_NAME

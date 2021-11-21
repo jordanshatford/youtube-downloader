@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { MenuIcon, XIcon } from 'svelte-feather-icons'
 	import IconButton from '$lib/components/ui/IconButton.svelte'
-	import { routes } from '$lib/utils/RouteUtils'
+	import { routes } from '$lib/utils/route'
 	import Logo from '$lib/components/ui/Logo.svelte'
 	import ThemeChangeIcon from '$lib/components/ui/ThemeChangeIcon.svelte'
 	import NotificationIcon from '$lib/components/ui/NotificationIcon.svelte'

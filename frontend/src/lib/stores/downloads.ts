@@ -1,6 +1,6 @@
 import { writable } from 'svelte/store'
 import type { VideoInfo } from '$lib/utils/types'
-import { getApiEndpoint, APIEndpointConstants } from '$lib/utils/APIUtils'
+import { getApiEndpoint, APIEndpointConstants } from '$lib/utils/api'
 import fileSaver from 'file-saver'
 import { notifications } from '$lib/stores/notifications'
 import { Status } from '$lib/utils/types'
