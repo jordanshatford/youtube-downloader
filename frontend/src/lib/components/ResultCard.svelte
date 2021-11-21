@@ -26,7 +26,7 @@
 					{result.title}
 				</a>
 			</h1>
-			<p class="text-gray-700 dark:text-gray-300 text-sm">{result.duration}</p>
+			<p class="text-gray-700 dark:text-gray-300 text-sm">{result.duration ?? '???'}</p>
 		</header>
 		<footer class="flex items-center justify-between leading-none p-2 md:p-4">
 			<a

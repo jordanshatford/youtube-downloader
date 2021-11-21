@@ -22,6 +22,11 @@ export enum Theme {
 	DARK = 'dark'
 }
 
+export type ListItem = {
+	title: string
+	description?: string
+}
+
 export type ChannelInfo = {
 	name: string
 	url?: string
