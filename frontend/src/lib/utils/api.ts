@@ -7,7 +7,7 @@ export class APIEndpointConstants {
 	public static DOWNLOADS = '/downloads'
 }
 
-export type RouteInfo = {
+export type RequestInfo = {
 	endpoint: string
 	options: RequestInit
 }
@@ -29,7 +29,7 @@ export function getApiEndpoint(config: {
 	body?: BodyInit
 	urlParam?: string
 	queryParams?: QueryParamsOptions
-}): RouteInfo {
+}): RequestInfo {
 	let endpointString = `${import.meta.env.VITE_SERVER_ADDR}${config.base}`
 	// If add urlParam to end of endpoint if needed
 	if (config.urlParam !== undefined) {

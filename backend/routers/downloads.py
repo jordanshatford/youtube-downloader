@@ -25,22 +25,25 @@ def add_download(video: Video, sessionId: str):
     }
 
 
+async def status_stream(request: Request, session_id: str):
+    try:
+        while True:
+            if await request.is_disconnected():
+                break
+            try:
+                msg = session_manager.get_status_queue(session_id).get(block=False)
+                yield dict(data=msg)
+            except queue.Empty:
+                pass
+            await asyncio.sleep(1)
+    except (asyncio.CancelledError, asyncio.exceptions.InvalidStateError):
+        session_manager.remove(session_id)
+
+
 @router.get("/downloads/status", tags=["downloads"])
 async def downloads_status(request: Request, sessionId: str):
-    async def status_stream():
-        try:
-            while True:
-                if await request.is_disconnected():
-                    break
-                try:
-                    msg = session_manager.get_status_queue(sessionId).get(block=False)
-                    yield dict(data=msg)
-                except queue.Empty:
-                    await asyncio.sleep(1)
-        except (asyncio.CancelledError, asyncio.exceptions.InvalidStateError):
-            session_manager.remove(sessionId)
-
-    return EventSourceResponse(status_stream())
+    event_source = status_stream(request, session_id=sessionId)
+    return EventSourceResponse(event_source)
 
 
 @router.get("/downloads/{video_id}", tags=["downloads"], response_model=Message)
