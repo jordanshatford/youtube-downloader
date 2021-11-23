@@ -17,12 +17,13 @@
 
 ![readme-image](https://user-images.githubusercontent.com/37837288/142290058-7d41d84a-6c8b-434b-b0fe-2a507838bc83.jpg)
 
-Youtube to MP3 is a full stack application created to allow users to download MP3 audio from videos on [Youtube](https://www.youtube.com/).
+Youtube to MP3 is a full stack application created to allow users to download various formats of audio from videos on [Youtube](https://www.youtube.com/).
 
 ## Features
   - Dark and Light UI themes
   - Search for videos directly on site
   - Conversion of multiple Videos at once
+  - Conversion to multiple format options (MP3, AAC, FLAC, M4A, OBUS, WAV)
   - Unique sessions each page load
   - High quality audio
 

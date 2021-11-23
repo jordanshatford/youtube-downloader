@@ -9,7 +9,7 @@
 
 	export let variant: Variant
 	export let title: string
-	export let message: string
+	export let message: string = null
 
 	const themes = {
 		[Variant.DANGER]: {
@@ -40,6 +40,8 @@
 			<svelte:component this={themes[variant].icon} size="1.5x" class={themes[variant].class} />
 			<p class="mx-2 font-bold {themes[variant].class}">{title}</p>
 		</div>
-		<p class="pl-2 md:pl-0">{message}</p>
+		{#if message}
+			<p class="pl-2 md:pl-0">{message}</p>
+		{/if}
 	</div>
 </div>

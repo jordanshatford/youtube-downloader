@@ -3,6 +3,10 @@ from typing import Optional
 from pydantic import BaseModel
 
 
+class AudioOptions(BaseModel):
+    format: str
+
+
 class Channel(BaseModel):
     name: str
     url: Optional[str]
@@ -12,6 +16,7 @@ class Channel(BaseModel):
 class Video(BaseModel):
     id: str
     url: str
+    options: Optional[AudioOptions]
     title: Optional[str]
     duration: Optional[str]
     thumbnail: Optional[str]

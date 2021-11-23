@@ -15,9 +15,10 @@ export const faqs: ListItem[] = [
 	{
 		title: 'How do I convert a video to MP3?',
 		description:
-			'To convert a video to MP3, you can search for a video or paste a link into the search bar on the home page. Then click ' +
-			'the plus icon to start the download process. To see information on the status of the download, navigate to the ' +
-			'downloads page. Once it has completely the download icon located to the right of the respective video on the downloads ' +
+			'To convert a video to MP3, you should first make sure that your preferred format in the settings is MP3. Then, ' +
+			'you can search for a video or paste a link into the search bar on the home page. Then click the plus icon ' +
+			'to start the download process. To see information on the status of the download, navigate to the downloads ' +
+			'page. Once it has completely the download icon located to the right of the respective video on the downloads ' +
 			'page can be clicked to download the audio file.'
 	},
 	{
@@ -27,9 +28,10 @@ export const faqs: ListItem[] = [
 			'or so to convert a video 5 minutes in length.'
 	},
 	{
-		title: 'Is it possible to change the audio quality or format?',
+		title: 'Is it possible to change the audio bitrate or format?',
 		description:
-			'It is currently not possible to change the audio quality or format. Each video will be converted to a MP3 file at 192kbps.'
+			'It is currently only possible to change the audio format. This can be done by selecting your preferred format on the ' +
+			'settings page.'
 	},
 	{
 		title: 'Can I convert videos on my mobile device?',

@@ -6,6 +6,7 @@ from typing import Callable
 from youtube_dl import YoutubeDL
 
 from .helpers import Status
+from .models import AudioOptions
 from .processors import FileProcessingComplete
 
 
@@ -14,11 +15,13 @@ class YoutubeDownloadThread(threading.Thread):
         self,
         id: str,
         url: str,
+        options: AudioOptions,
         output_directory: str,
         status_update: Callable[[str, Status], None],
     ):
         self._id = id
         self._url = url
+        self._options = options
         self._output_directory = output_directory
         self._status_update = status_update
 
@@ -30,7 +33,7 @@ class YoutubeDownloadThread(threading.Thread):
             "postprocessors": [
                 {
                     "key": "FFmpegExtractAudio",
-                    "preferredcodec": "mp3",
+                    "preferredcodec": options.format,
                     "preferredquality": "192",
                 }
             ],
@@ -49,7 +52,9 @@ class YoutubeDownloadThread(threading.Thread):
             self._status_update(self._id, Status.PROCESSING)
 
     def get_file_location(self) -> str:
-        path = os.path.join(self._output_directory, f"{self._id}.mp3")
+        path = os.path.join(
+            self._output_directory, f"{self._id}.{self._options.format}"
+        )
         return path
 
     def remove(self) -> bool:

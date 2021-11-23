@@ -10,6 +10,7 @@ from typing import Union
 
 from .helpers import format_status_update
 from .helpers import Status
+from .models import AudioOptions
 from .threads import RepeatedTimer
 from .threads import YoutubeDownloadThread
 
@@ -20,10 +21,10 @@ class AudioDownloadManager:
         self._downloads: Dict[str, YoutubeDownloadThread] = {}
         self._output_dir = output_dir
 
-    def add(self, video_id: str, url: str) -> None:
+    def add(self, video_id: str, url: str, options: AudioOptions) -> None:
         if video_id not in self._downloads:
             download = YoutubeDownloadThread(
-                video_id, url, self._output_dir, self.send_status_update
+                video_id, url, options, self._output_dir, self.send_status_update
             )
             self._downloads[video_id] = download
             download.start()

@@ -22,6 +22,19 @@ export enum Theme {
 	DARK = 'dark'
 }
 
+export enum AudioFormat {
+	MP3 = 'mp3',
+	AAC = 'aac',
+	FLAC = 'flac',
+	M4A = 'm4a',
+	OPUS = 'opus',
+	WAV = 'wav'
+}
+
+export type AudioSettings = {
+	format: AudioFormat
+}
+
 export type ListItem = {
 	title: string
 	description?: string
@@ -41,6 +54,7 @@ export type VideoInfo = {
 	duration?: string
 	channel?: ChannelInfo
 	status?: Status
+	options?: AudioSettings
 }
 
 export type Notification = {
