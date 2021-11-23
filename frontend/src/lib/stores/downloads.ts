@@ -2,7 +2,6 @@ import { writable, get } from 'svelte/store'
 import fileSaver from 'file-saver'
 import type { VideoInfo } from '$lib/utils/types'
 import { getApiEndpoint, APIEndpointConstants } from '$lib/utils/api'
-import { notifications } from '$lib/stores/notifications'
 import { Status, AudioFormat } from '$lib/utils/types'
 import { settings } from '$lib/stores/settings'
 
@@ -26,17 +25,6 @@ function createDownloadsStore() {
 				const videoId = data['id']
 				const updatedStatus = data['status']
 				state[videoId].status = updatedStatus
-				switch (updatedStatus) {
-					case Status.DONE:
-						notifications.success('Download Complete', state[videoId].title)
-						break
-					case Status.ERROR:
-					case Status.UNDEFINED:
-						notifications.danger('Download Failed', state[videoId].title)
-						break
-					default:
-						break
-				}
 				return state
 			})
 		}
@@ -106,7 +94,6 @@ function createDownloadsStore() {
 			} else {
 				// file was not found on the server a json error message is returned
 				return response.json().then((data) => {
-					notifications.danger(data['message'], data['detail'])
 					remove(id)
 				})
 			}

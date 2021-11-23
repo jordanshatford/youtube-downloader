@@ -3,8 +3,6 @@
 	import { onMount } from 'svelte'
 	import Nav from '$lib/components/nav/Nav.svelte'
 	import Footer from '$lib/components/Footer.svelte'
-	import Notifications from '$lib/components/Notifications.svelte'
-	import { notifications } from '$lib/stores/notifications'
 	import Loading from '$lib/components/Loading.svelte'
 	import { session } from '$lib/stores/session'
 	import { downloads } from '$lib/stores/downloads'
@@ -34,6 +32,5 @@
 	{:else}
 		<Loading />
 	{/if}
-	<Notifications visible={$notifications.visible} />
 </div>
 <Footer />

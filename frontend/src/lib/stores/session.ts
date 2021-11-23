@@ -1,6 +1,5 @@
 import { writable } from 'svelte/store'
 import { getApiEndpoint, APIEndpointConstants } from '$lib/utils/api'
-import { notifications } from '$lib/stores/notifications'
 
 function createSessionStore() {
 	const RE_ATTEMPT_INTERVAL = 10000
@@ -21,10 +20,6 @@ function createSessionStore() {
 			})
 			.catch((err) => {
 				console.error('Connection failed, could not connect to internal server. ', err)
-				notifications.warning(
-					'Connection Failed',
-					'Could not connect to internal server. Retrying in 10 seconds.'
-				)
 				_reAttempt()
 			})
 	}

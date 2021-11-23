@@ -4,7 +4,6 @@
 	import { routes } from '$lib/utils/route'
 	import Logo from '$lib/components/ui/Logo.svelte'
 	import ThemeChangeIcon from '$lib/components/ui/ThemeChangeIcon.svelte'
-	import NotificationIcon from '$lib/components/ui/NotificationIcon.svelte'
 	import NavItem from '$lib/components/nav/NavItem.svelte'
 
 	let showMobileMenu = false
@@ -38,7 +37,6 @@
 			<div
 				class="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0"
 			>
-				<NotificationIcon />
 				<ThemeChangeIcon />
 			</div>
 		</div>
