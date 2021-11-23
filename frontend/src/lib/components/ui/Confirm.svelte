@@ -49,7 +49,7 @@
 				>&#8203;</span
 			>
 			<div
-				class="inline-block align-bottom bg-white dark:bg-gray-900 rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full"
+				class="inline-block align-bottom bg-white dark:bg-gray-900 rounded-md text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full"
 				in:fly={{ y: -10, delay: 200, duration: 200 }}
 				out:fly={{ y: -10, duration: 200 }}
 			>

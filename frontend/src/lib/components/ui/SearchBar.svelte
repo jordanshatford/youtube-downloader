@@ -28,7 +28,7 @@
 			bind:value={searchTerm}
 			on:keypress={dispatchSearch}
 			type="text"
-			class="w-full -ml-10 pl-10 pr-3 py-2 text-gray-600 dark:text-gray-200 rounded-lg border-2 border-gray-200 dark:border-gray-600 outline-none dark:bg-gray-800 dark:disabled:bg-gray-600"
+			class="w-full -ml-10 pl-10 pr-3 py-2 text-gray-600 dark:text-gray-200 rounded-md border-2 border-gray-200 dark:border-gray-600 outline-none dark:bg-gray-800 dark:disabled:bg-gray-600"
 			placeholder="search"
 		/>
 	</div>

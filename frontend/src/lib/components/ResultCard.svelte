@@ -11,7 +11,7 @@
 
 <div class="my-1 px-1 w-full md:w-1/2 lg:my-4 lg:px-4 lg:w-1/3">
 	<article
-		class="rounded dark:bg-gray-800 overflow-hidden shadow dark:shadow-dark border border-gray-200 dark:border-gray-800"
+		class="rounded-md dark:bg-gray-800 overflow-hidden shadow dark:shadow-dark border border-gray-200 dark:border-gray-800"
 	>
 		<a href={result.url} target="_blank">
 			<img alt="Thumbnail" class="block h-auto w-full" src={result.thumbnail} />
@@ -34,7 +34,11 @@
 				href={result.channel.url}
 				target="_blank"
 			>
-				<img alt="" class="block w-10 h-10 rounded-full" src={result.channel.thumbnail} />
+				<img
+					alt={result.channel.name}
+					class="block w-10 h-10 rounded-md"
+					src={result.channel.thumbnail}
+				/>
 				<p class="ml-2 text-sm">
 					{result.channel.name}
 				</p>

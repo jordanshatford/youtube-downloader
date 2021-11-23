@@ -31,7 +31,7 @@
 	}
 </script>
 
-<div class="w-full p-3 mt-4 bg-white rounded flex dark:bg-gray-800">
+<div class="w-full p-3 mt-4 bg-white rounded-md flex dark:bg-gray-800">
 	<div
 		tabindex="0"
 		class="{_types[notification.type]

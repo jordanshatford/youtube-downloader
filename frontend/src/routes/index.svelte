@@ -18,7 +18,7 @@
 <div>
 	<Title>Search</Title>
 	<Description>Search Youtube for the videos you want to download to MP3</Description>
-	<div class="max-w-xl mx-auto rounded-lg overflow-hidden md:max-w-xl">
+	<div class="max-w-xl mx-auto overflow-hidden md:max-w-xl">
 		<div class="md:flex">
 			<div class="w-full mt-4">
 				<SearchBar on:search={searchVideos} loading={$search.loading} searchTerm={$search.term} />

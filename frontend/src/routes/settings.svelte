@@ -20,7 +20,7 @@
 <div>
 	<Title>Settings</Title>
 	<Description>Set preferred settings for the videos you convert</Description>
-	<div class="max-w-xl mx-auto rounded-lg overflow-hidden md:max-w-xl">
+	<div class="max-w-xl mx-auto overflow-hidden md:max-w-xl">
 		<div class="md:flex mb-2">
 			<div class="w-full mt-4">
 				<Select
