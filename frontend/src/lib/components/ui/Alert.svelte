@@ -33,7 +33,7 @@
 
 <div
 	class="{themes[variant]
-		.class} shadow dark:shadow-dark rounded-md md:flex justify-between items-center top-0 py-2 px-2"
+		.class} shadow dark:shadow-dark rounded-lg md:flex justify-between items-center top-0 py-2 px-2"
 >
 	<div class="sm:flex items-center">
 		<div class="flex items-end">

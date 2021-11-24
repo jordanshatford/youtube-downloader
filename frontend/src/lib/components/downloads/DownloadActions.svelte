@@ -1,8 +1,8 @@
 <script lang="ts">
-	import IconButton from '$lib/components/ui/IconButton.svelte'
-	import { Trash2Icon, DownloadIcon } from 'svelte-feather-icons'
-	import Confirm from '$lib/components/ui/Confirm.svelte'
 	import { createEventDispatcher } from 'svelte'
+	import { Trash2Icon, DownloadIcon } from 'svelte-feather-icons'
+	import IconButton from '$lib/components/ui/IconButton.svelte'
+	import Confirm from '$lib/components/ui/Confirm.svelte'
 
 	const dispatch = createEventDispatcher()
 </script>
@@ -19,7 +19,7 @@
 			on:click={() => onConfirm(dispatch, 'delete')}
 			icon={Trash2Icon}
 			size="1.5x"
-			class="hover:text-red-800 dark:hover:text-red-600 mr-2"
+			class="hover:text-red-600 mr-2"
 		/>
 	</Confirm>
 	<IconButton

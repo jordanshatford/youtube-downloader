@@ -16,7 +16,7 @@
 				<IconButton
 					on:click={() => (showMobileMenu = !showMobileMenu)}
 					class="{showMobileMenu
-						? 'hover:text-red-800 dark:hover:text-red-600'
+						? 'hover:text-red-600'
 						: 'hover:text-indigo-800 dark:hover:text-indigo-600'} dark:text-gray-200"
 					icon={showMobileMenu ? XIcon : MenuIcon}
 					size="1.5x"

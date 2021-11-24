@@ -11,6 +11,6 @@
 			: 'text-gray-400 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700'
 </script>
 
-<a on:click href={route.path} class:block={isMobileMenu} class="{classNames} px-3 py-2 rounded-md">
+<a on:click href={route.path} class:block={isMobileMenu} class="{classNames} px-3 py-2 rounded-lg">
 	{route.label}
 </a>

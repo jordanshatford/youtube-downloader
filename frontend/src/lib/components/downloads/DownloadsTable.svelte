@@ -37,7 +37,7 @@
 				<td class="px-6 py-4 whitespace-nowrap">
 					<div class="flex items-center">
 						<div class="hidden md:block flex-shrink-0 h-10 w-18">
-							<img class="h-10 w-18" src={downloadInfo.thumbnail} alt="Thumbnail" />
+							<img class="h-10 w-18 rounded-lg" src={downloadInfo.thumbnail} alt="Thumbnail" />
 						</div>
 						<div class="md:ml-4 lg:max-w-lg md:max-w-xs sm:max-w-xxs max-w-xxxs truncate">
 							<div class="text-sm truncate font-medium text-gray-800 dark:text-white">
