@@ -63,6 +63,13 @@ class Session:
     def session_older_than(self, seconds: int) -> bool:
         return self._last_use < datetime.now() - timedelta(seconds=seconds)
 
+    def cleanup(self):
+        try:
+            if os.path.exists(self.output_dir):
+                shutil.rmtree(self.output_dir)
+        except FileNotFoundError:
+            pass
+
     def _status_update(self, video_id: str, status: Status):
         self.status_queue.put(json.dumps(format_status_update(video_id, status)))
 
@@ -80,19 +87,19 @@ class SessionManager:
         self._cleanup_interval = cleanup_interval
         self._cleanup_timer = RepeatedTimer(self._cleanup_interval, self.cleanup)
 
-    def cleanup(self):
+    def cleanup(self, force: bool = False):
         for session_id in self._sessions.copy():
             session_not_used = self._sessions[session_id].session_older_than(
                 self._session_too_old_duration
             )
-            if session_not_used:
+            if session_not_used or force:
                 self.remove(session_id)
 
     def setup_session(self, id: str):
         self._sessions[id] = Session(id, self.session_dir)
 
     def remove(self, id: str):
-        self._clean_session_files(id)
+        self._sessions[id].cleanup()
         self._sessions.pop(id, None)
 
     def get_download_manager(self, id: str) -> AudioDownloadManager:
@@ -116,12 +123,6 @@ class SessionManager:
             self._sessions[id].update_use_time()
         except KeyError:
             self.setup_session(id)
-
-    def _clean_session_files(self, id: str):
-        try:
-            shutil.rmtree(self._sessions[id].output_dir)
-        except (KeyError, FileNotFoundError):
-            pass
 
 
 session_manager = SessionManager()

@@ -1,5 +1,4 @@
 import os
-import shutil
 
 import uvicorn
 from fastapi import FastAPI
@@ -51,10 +50,8 @@ app.include_router(downloads.router)
 
 @app.on_event("shutdown")
 def shutdown_cleanup():
-    print("Cleaning up all session files", flush=True)
-    # Remove all session files
-    if os.path.exists(session_manager.session_dir):
-        shutil.rmtree(session_manager.session_dir)
+    print("Cleaning up all session for shutdown", flush=True)
+    session_manager.cleanup(force=True)
 
 
 if __name__ == "__main__":
