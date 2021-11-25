@@ -55,6 +55,7 @@
 				<td class="px-6 py-4 whitespace-nowrap text-grey-500 dark:text-white text-right">
 					{#if downloadInfo.status === Status.DONE}
 						<DownloadActions
+							awaitingFileBlob={downloadInfo.awaitingFileBlob}
 							on:delete={() => downloads.remove(downloadInfo.id)}
 							on:download={() => downloads.getFile(downloadInfo.id)}
 						/>

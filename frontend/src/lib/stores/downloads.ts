@@ -78,6 +78,10 @@ function createDownloadsStore() {
 	function getFile(id: string) {
 		if (!(id in downloads)) return
 
+		update((state) => {
+			state[id].awaitingFileBlob = true
+			return state
+		})
 		const { endpoint, options } = getApiEndpoint({
 			base: APIEndpointConstants.DOWNLOADS,
 			method: 'GET',
@@ -88,12 +92,16 @@ function createDownloadsStore() {
 				// The file blob is returned
 				return response
 					.blob()
-					.then((blob) =>
+					.then((blob) => {
+						update((state) => {
+							state[id].awaitingFileBlob = false
+							return state
+						})
 						fileSaver.saveAs(blob, `${downloads[id].title}.${downloads[id].options.format}`)
-					)
+					})
 			} else {
 				// file was not found on the server a json error message is returned
-				return response.json().then((data) => {
+				return response.json().then(() => {
 					remove(id)
 				})
 			}

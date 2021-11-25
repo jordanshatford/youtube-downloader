@@ -55,6 +55,7 @@ export type VideoInfo = {
 	channel?: ChannelInfo
 	status?: Status
 	options?: AudioSettings
+	awaitingFileBlob?: boolean
 }
 
 export type Notification = {
