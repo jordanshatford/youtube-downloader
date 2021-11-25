@@ -99,8 +99,11 @@ class SessionManager:
         self._sessions[id] = Session(id, self.session_dir)
 
     def remove(self, id: str):
-        self._sessions[id].cleanup()
-        self._sessions.pop(id, None)
+        try:
+            self._sessions[id].cleanup()
+            self._sessions.pop(id, None)
+        except KeyError:
+            pass
 
     def get_download_manager(self, id: str) -> AudioDownloadManager:
         self._update_session_use_time(id)
