@@ -50,10 +50,10 @@ class AudioDownloadManager:
 class Session:
     def __init__(self, id: str, session_dir: str):
         self._id = id
-        self.output_dir = os.path.join(session_dir, id)
+        self._output_dir = os.path.join(session_dir, id)
         self._last_use = datetime.now()
         self.download_manager = AudioDownloadManager(
-            self.output_dir, announcer=self._status_update
+            self._output_dir, announcer=self._status_update
         )
         self.status_queue: Queue[str] = Queue()
 
@@ -65,8 +65,8 @@ class Session:
 
     def cleanup(self):
         try:
-            if os.path.exists(self.output_dir):
-                shutil.rmtree(self.output_dir)
+            if os.path.exists(self._output_dir):
+                shutil.rmtree(self._output_dir)
         except FileNotFoundError:
             pass
 
@@ -82,7 +82,7 @@ class SessionManager:
         session_to_old_duration: int = 60 * 60 * 2,  # 2 hours
     ):
         self._sessions: Dict[str, Session] = {}
-        self.session_dir = session_dir
+        self._session_dir = session_dir
         self._session_too_old_duration = session_to_old_duration
         self._cleanup_interval = cleanup_interval
         self._cleanup_timer = RepeatedTimer(self._cleanup_interval, self.cleanup)
@@ -96,7 +96,7 @@ class SessionManager:
                 self.remove(session_id)
 
     def setup_session(self, id: str):
-        self._sessions[id] = Session(id, self.session_dir)
+        self._sessions[id] = Session(id, self._session_dir)
 
     def remove(self, id: str):
         try:
