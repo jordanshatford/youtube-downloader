@@ -45,7 +45,9 @@ class YoutubeDownloadThread(threading.Thread):
             )
         )
 
-        super(YoutubeDownloadThread, self).__init__(group=None, target=None, name=None)
+        super(YoutubeDownloadThread, self).__init__(
+            group=None, target=None, name=None, daemon=True
+        )
 
     def download_progress_hook(self, progress_info: dict) -> None:
         if progress_info.get("status", None) == "finished":
