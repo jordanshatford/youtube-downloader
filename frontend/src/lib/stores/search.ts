@@ -3,7 +3,6 @@ import type { VideoInfo } from '$lib/utils/types'
 import { getApiEndpoint, APIEndpointConstants } from '$lib/utils/api'
 
 function createSearchStore() {
-	const DEFAULT_NUMBER_OF_RESULTS = 12
 	const results: VideoInfo[] = []
 
 	const { subscribe, set, update } = writable({
@@ -18,14 +17,14 @@ function createSearchStore() {
 			state.loading = true
 			return state
 		})
-		const { endpoint } = getApiEndpoint({
+		const { endpoint, options } = getApiEndpoint({
 			base: APIEndpointConstants.SEARCH,
+			method: 'GET',
 			queryParams: {
-				term: term,
-				results: DEFAULT_NUMBER_OF_RESULTS
+				term: term
 			}
 		})
-		fetch(endpoint, { method: 'GET', credentials: 'include', headers: { 'x-session-id': 'test' } })
+		fetch(endpoint, options)
 			.then((response) => response.json())
 			.then((results) => {
 				update((state) => {

@@ -5,7 +5,7 @@
 	import { Status } from '$lib/utils/types'
 	import type { VideoInfo } from '$lib/utils/types'
 
-	export let items: { [key: string]: VideoInfo }
+	export let items: Record<string, VideoInfo>
 </script>
 
 <table class="min-w-full divide-y divide-gray-200 dark:divide-gray-800 table-auto">

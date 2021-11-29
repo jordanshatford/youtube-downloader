@@ -12,10 +12,6 @@ export type RequestInfo = {
 	options: RequestInit
 }
 
-export type QueryParamsOptions = {
-	[key: string]: string | number
-}
-
 /**
  * Return the url for a given api endpoint.
  * @param endpoint     The api endpoint you want.
@@ -25,10 +21,10 @@ export type QueryParamsOptions = {
  */
 export function getApiEndpoint(config: {
 	base: APIEndpointConstants
-	method?: string
+	method?: 'GET' | 'POST' | 'PUT' | 'DELETE' | 'PATCH' | 'OPTIONS'
 	body?: BodyInit
 	urlParam?: string
-	queryParams?: QueryParamsOptions
+	queryParams?: Record<string, string | number>
 }): RequestInfo {
 	let endpointString = `${import.meta.env.VITE_SERVER_ADDR}${config.base}`
 	// If add urlParam to end of endpoint if needed
@@ -51,7 +47,7 @@ export function getApiEndpoint(config: {
 		endpointString = `${endpointString}?${queryParamsString}`
 	}
 
-	const headers: { [key: string]: string } = {
+	const headers: Record<string, string> = {
 		Accept: 'application/json',
 		'Content-Type': 'application/json'
 	}

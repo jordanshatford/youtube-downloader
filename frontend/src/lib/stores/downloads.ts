@@ -6,7 +6,7 @@ import { Status, AudioFormat } from '$lib/utils/types'
 import { settings } from '$lib/stores/settings'
 
 function createDownloadsStore() {
-	const downloads: { [key: string]: VideoInfo } = {}
+	const downloads: Record<string, VideoInfo> = {}
 
 	const { subscribe, set, update } = writable(downloads)
 

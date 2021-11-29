@@ -3,3 +3,4 @@ __pycache__/
 sessions/
 .env
 .vscode/
+.mypy_cache/
