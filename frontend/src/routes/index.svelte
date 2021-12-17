@@ -4,7 +4,8 @@
 	import { search } from '$lib/stores/search'
 	import SearchBar from '$lib/components/ui/SearchBar.svelte'
 	import ResultCard from '$lib/components/ResultCard.svelte'
-
+	import config from '$lib/config'
+	
 	function searchVideos(event: CustomEvent) {
 		let term = event.detail.term
 		search.get(term)
@@ -12,7 +13,7 @@
 </script>
 
 <svelte:head>
-	<title>Search - Youtube to MP3</title>
+	<title>Search - {config.app.title}</title>
 </svelte:head>
 
 <div>

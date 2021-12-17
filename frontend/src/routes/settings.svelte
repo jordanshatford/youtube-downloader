@@ -6,6 +6,7 @@
 	import Description from '$lib/components/typography/Description.svelte'
 	import Alert from '$lib/components/ui/Alert.svelte'
 	import { Variant } from '$lib/utils/types'
+	import config from '$lib/config'
 
 	let showSavedAlert = false
 
@@ -16,6 +17,10 @@
 		}, 3000)
 	}
 </script>
+
+<svelte:head>
+	<title>Settings - {config.app.title}</title>
+</svelte:head>
 
 <div>
 	<Title>Settings</Title>

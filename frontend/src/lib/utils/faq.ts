@@ -1,7 +1,7 @@
-import { RoutePathConstants } from '$lib/utils/route'
 import type { ListItem } from '$lib/utils/types'
+import config from '$lib/config'
 
-export const websiteName = RoutePathConstants.PUBLIC_HOST_NAME
+export const websiteName = config.app.hostname
 
 export const faqs: ListItem[] = [
 	{

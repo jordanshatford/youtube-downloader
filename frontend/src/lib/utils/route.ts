@@ -4,8 +4,6 @@ export class RoutePathConstants {
 	public static SETTINGS = '/settings'
 	public static FAQ = '/faq'
 	public static TERMS_OF_USE = '/terms'
-	public static PUBLIC_HOST_NAME = 'ytmp3.vercel.app'
-	public static GITHUB = 'https://github.com/jordanshatford/youtube-to-mp3'
 }
 
 export type Route = {

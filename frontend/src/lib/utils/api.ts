@@ -1,5 +1,6 @@
 import { get } from 'svelte/store'
 import { session } from '$lib/stores/session'
+import { env } from '$lib/config'
 
 export class APIEndpointConstants {
 	public static SEARCH = '/search'
@@ -26,7 +27,7 @@ export function getApiEndpoint(config: {
 	urlParam?: string
 	queryParams?: Record<string, string | number>
 }): RequestInfo {
-	let endpointString = `${import.meta.env.VITE_SERVER_ADDR}${config.base}`
+	let endpointString = `${env.serverAddress}${config.base}`
 	// If add urlParam to end of endpoint if needed
 	if (config.urlParam !== undefined) {
 		endpointString = `${endpointString}/${config.urlParam}`

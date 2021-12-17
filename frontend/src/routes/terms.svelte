@@ -3,10 +3,11 @@
 	import Description from '$lib/components/typography/Description.svelte'
 	import List from '$lib/components/typography/List.svelte'
 	import { termsOfUse, websiteName } from '$lib/utils/terms-of-use'
+	import config from '$lib/config'
 </script>
 
 <svelte:head>
-	<title>Terms of Use - Youtube to MP3</title>
+	<title>Terms of Use - {config.app.title}</title>
 </svelte:head>
 
 <div class="pb-6">

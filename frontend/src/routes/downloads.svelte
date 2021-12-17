@@ -3,10 +3,11 @@
 	import Description from '$lib/components/typography/Description.svelte'
 	import { downloads } from '$lib/stores/downloads'
 	import DownloadsTable from '$lib/components/downloads/DownloadsTable.svelte'
+	import config from '$lib/config'
 </script>
 
 <svelte:head>
-	<title>Downloads - Youtube to MP3</title>
+	<title>Downloads - {config.app.title}</title>
 </svelte:head>
 
 <div>

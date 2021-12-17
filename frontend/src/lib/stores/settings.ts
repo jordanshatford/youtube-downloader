@@ -2,12 +2,11 @@ import { browser } from '$app/env'
 import { writable } from 'svelte/store'
 import type { AudioSettings } from '$lib/utils/types'
 import { AudioFormat } from '$lib/utils/types'
+import config from '$lib/config'
 
 function createSettingsStore() {
-	const SETTINGS_KEY = 'settings'
-	const DEFAULT_SETTINGS: AudioSettings = {
-		format: AudioFormat.MP3
-	}
+	const SETTINGS_KEY = config.settings.key
+	const DEFAULT_SETTINGS: AudioSettings = config.settings.defaults
 
 	const { subscribe, set, update } = writable(DEFAULT_SETTINGS)
 

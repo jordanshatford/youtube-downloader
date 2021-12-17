@@ -1,7 +1,7 @@
-import { RoutePathConstants } from '$lib/utils/route'
 import type { ListItem } from '$lib/utils/types'
+import config from '$lib/config'
 
-export const websiteName = RoutePathConstants.PUBLIC_HOST_NAME
+export const websiteName = config.app.hostname
 
 export const termsOfUse: ListItem[] = [
 	{
@@ -59,7 +59,7 @@ export const termsOfUse: ListItem[] = [
 			`(served via a publicly available web address / URL) from being able to be converted and downloaded by its platform when ` +
 			`kindly notified. If you are a content creator/owner, copyright owner, or an agent thereof and would like to disable the ` +
 			`possible use of ${websiteName}'s platform to convert your publicly available content(s), please kindly send us a request ` +
-			`via creating an issue on Github at ${RoutePathConstants.GITHUB} with the following information: the URL(s) and description(s) ` +
+			`via creating an issue on Github at ${config.app.github} with the following information: the URL(s) and description(s) ` +
 			`of the content(s) you want us to block; a form of electronic or physical evidence showing that you have the rights to act for ` +
 			`the content(s); contact information taht is reasonably sufficient to permit us to contact you, such as an address, telephone ` +
 			`number, and a valid e-mail address. The relevent content(s) will be blacklisted in our system within 24 hours.`

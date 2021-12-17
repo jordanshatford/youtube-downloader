@@ -1,10 +1,11 @@
 import { browser } from '$app/env'
 import { writable } from 'svelte/store'
 import { Theme } from '$lib/utils/types'
+import config from '$lib/config'
 
 function createThemeStore() {
-	const THEME_KEY = 'theme'
-	const DEFAULT_THEME_VALUE = Theme.DARK
+	const THEME_KEY = config.theme.key
+	const DEFAULT_THEME_VALUE = config.theme.default
 
 	const { subscribe, set, update } = writable(DEFAULT_THEME_VALUE)
 

@@ -3,10 +3,11 @@
 	import Description from '$lib/components/typography/Description.svelte'
 	import List from '$lib/components/typography/List.svelte'
 	import { faqs } from '$lib/utils/faq'
+	import config from '$lib/config'
 </script>
 
 <svelte:head>
-	<title>FAQ - Youtube to MP3</title>
+	<title>FAQ - {config.app.title}</title>
 </svelte:head>
 
 <div>
