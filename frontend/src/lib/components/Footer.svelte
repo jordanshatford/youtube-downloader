@@ -6,7 +6,7 @@
 
 <footer class="bg-white dark:bg-zinc-800 border-t border-zinc-200 dark:border-zinc-900">
 	<div class="flex flex-col items-center px-8 py-6 mx-auto max-w-6xl sm:flex-row">
-		<p class="text-zinc-400">© 2021 {config.app.creator}</p>
+		<p class="text-zinc-400">© {config.app.year} {config.app.creator}</p>
 		<span
 			class="inline-flex justify-end mt-4 space-x-5 sm:ml-auto sm:mt-0 sm:justify-start text-zinc-500 dark:text-zinc-200"
 		>

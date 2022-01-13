@@ -10,7 +10,8 @@ const config = {
         title: "Youtube to MP3",
         hostname: "ytmp3.vercel.app",
         creator: "Jordan Shatford",
-        github: "https://github.com/jordanshatford/youtube-to-mp3"
+        github: "https://github.com/jordanshatford/youtube-to-mp3",
+        year: new Date().getFullYear()
     },
     settings: {
         key: "settings",
