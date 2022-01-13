@@ -11,7 +11,7 @@
 
 <div class="my-1 px-1 w-full md:w-1/2 lg:my-4 lg:px-4 lg:w-1/3">
 	<article
-		class="rounded-lg dark:bg-gray-800 overflow-hidden shadow dark:shadow-dark border border-gray-200 dark:border-gray-800"
+		class="rounded-lg dark:bg-zinc-800 overflow-hidden shadow dark:shadow-dark border border-zinc-200 dark:border-zinc-800"
 	>
 		<a href={result.url} target="_blank">
 			<img alt="Thumbnail" class="block h-auto w-full" src={result.thumbnail} />
@@ -19,18 +19,18 @@
 		<header class="flex items-center justify-between leading-tight p-2 md:p-4">
 			<h1 class="text-lg">
 				<a
-					class="no-underline hover:underline text-gray-900 dark:text-white"
+					class="no-underline hover:underline text-zinc-900 dark:text-white"
 					href={result.url}
 					target="_blank"
 				>
 					{result.title}
 				</a>
 			</h1>
-			<p class="text-gray-700 dark:text-gray-300 text-sm">{result.duration ?? '???'}</p>
+			<p class="text-zinc-700 dark:text-zinc-300 text-sm">{result.duration ?? '???'}</p>
 		</header>
 		<footer class="flex items-center justify-between leading-none p-2 md:p-4">
 			<a
-				class="flex items-center no-underline hover:underline text-gray-800 dark:text-gray-400"
+				class="flex items-center no-underline hover:underline text-zinc-800 dark:text-zinc-400"
 				href={result.channel.url}
 				target="_blank"
 			>

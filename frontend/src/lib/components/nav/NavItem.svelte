@@ -7,8 +7,8 @@
 
 	$: classNames =
 		$page.path === route.path
-			? 'text-gray-700 dark:text-white bg-gray-100 dark:bg-gray-900'
-			: 'text-gray-400 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700'
+			? 'text-zinc-700 dark:text-white bg-zinc-100 dark:bg-zinc-900'
+			: 'text-zinc-400 dark:text-zinc-300 hover:bg-zinc-100 dark:hover:bg-zinc-700'
 </script>
 
 <a on:click href={route.path} class:block={isMobileMenu} class="{classNames} px-3 py-2 rounded-lg">

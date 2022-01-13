@@ -8,30 +8,30 @@
 	export let items: Record<string, VideoInfo>
 </script>
 
-<table class="min-w-full divide-y divide-gray-200 dark:divide-gray-800 table-auto">
-	<thead class="bg-gray-50 dark:bg-gray-800">
+<table class="min-w-full divide-y divide-zinc-200 dark:divide-zinc-800 table-auto">
+	<thead class="bg-zinc-50 dark:bg-zinc-800">
 		<tr>
 			<th
 				scope="col"
-				class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-white uppercase"
+				class="px-6 py-3 text-left text-xs font-medium text-zinc-500 dark:text-white uppercase"
 			>
 				Info
 			</th>
 			<th
 				scope="col"
-				class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-white uppercase"
+				class="px-6 py-3 text-left text-xs font-medium text-zinc-500 dark:text-white uppercase"
 			>
 				Status
 			</th>
 			<th
 				scope="col"
-				class="px-6 py-3 text-right text-xs font-medium text-gray-500 dark:text-white uppercase"
+				class="px-6 py-3 text-right text-xs font-medium text-zinc-500 dark:text-white uppercase"
 			>
 				Actions
 			</th>
 		</tr>
 	</thead>
-	<tbody class="bg-white dark:bg-gray-900 divide-y divide-gray-200 dark:divide-gray-800">
+	<tbody class="bg-white dark:bg-zinc-900 divide-y divide-zinc-200 dark:divide-zinc-800">
 		{#each Object.values(items) as downloadInfo (downloadInfo.id)}
 			<tr>
 				<td class="px-6 py-4 whitespace-nowrap">
@@ -40,10 +40,10 @@
 							<img class="h-10 w-18 rounded-lg" src={downloadInfo.thumbnail} alt="Thumbnail" />
 						</div>
 						<div class="md:ml-4 lg:max-w-lg md:max-w-xs sm:max-w-xxs max-w-xxxs truncate">
-							<div class="text-sm truncate font-medium text-gray-800 dark:text-white">
+							<div class="text-sm truncate font-medium text-zinc-800 dark:text-white">
 								{downloadInfo.title}
 							</div>
-							<div class="text-sm text-gray-500 dark:text-gray-400 underline">
+							<div class="text-sm text-zinc-500 dark:text-zinc-400 underline">
 								<a href={downloadInfo.url} target="_blank">Link</a>
 							</div>
 						</div>
@@ -52,7 +52,7 @@
 				<td class="px-6 py-4 whitespace-nowrap">
 					<StatusBadge status={downloadInfo.status} />
 				</td>
-				<td class="px-6 py-4 whitespace-nowrap text-grey-500 dark:text-white text-right">
+				<td class="px-6 py-4 whitespace-nowrap text-zinc-500 dark:text-zinc-300 text-right">
 					{#if downloadInfo.status === Status.DONE}
 						<DownloadActions
 							awaitingFileBlob={downloadInfo.awaitingFileBlob}

@@ -21,7 +21,7 @@
 	})
 </script>
 
-<div class="min-h-screen h-full dark:bg-gray-900">
+<div class="min-h-screen h-full dark:bg-zinc-900">
 	{#if $session}
 		<div class="h-full">
 			<Nav />

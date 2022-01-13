@@ -17,7 +17,7 @@
 		<div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
 			<div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
 				<div
-					class="rounded-lg shadow dark:shadow-dark overflow-hidden border border-gray-200 dark:border-gray-800"
+					class="rounded-lg shadow dark:shadow-dark overflow-hidden border border-zinc-200 dark:border-zinc-800"
 				>
 					<DownloadsTable items={$downloads} />
 				</div>

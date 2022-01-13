@@ -38,7 +38,7 @@
 			class="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0"
 		>
 			<div
-				class="fixed inset-0 bg-gray-800 cursor-pointer bg-opacity-75 transition-opacity"
+				class="fixed inset-0 bg-zinc-800 cursor-pointer bg-opacity-75 transition-opacity"
 				aria-hidden="true"
 				on:click={() => (showDialog = false)}
 				in:fade={{ duration: 300 }}
@@ -49,7 +49,7 @@
 				>&#8203;</span
 			>
 			<div
-				class="inline-block align-bottom bg-white dark:bg-gray-900 rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full"
+				class="inline-block align-bottom bg-white dark:bg-zinc-900 rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full"
 				in:fly={{ y: -10, delay: 200, duration: 200 }}
 				out:fly={{ y: -10, duration: 200 }}
 			>
@@ -62,12 +62,12 @@
 						</div>
 						<div class="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
 							<h3
-								class="whitespace-pre-wrap text-lg leading-6 font-medium text-gray-900 dark:text-white"
+								class="whitespace-pre-wrap text-lg leading-6 font-medium text-zinc-900 dark:text-white"
 								id="modal-title"
 							>
 								{title}
 							</h3>
-							<div class="whitespace-pre-wrap mt-2 w-full text-sm text-gray-500">{description}</div>
+							<div class="whitespace-pre-wrap mt-2 w-full text-sm text-zinc-500">{description}</div>
 						</div>
 					</div>
 				</div>
@@ -82,7 +82,7 @@
 					<button
 						type="button"
 						on:click={() => (showDialog = false)}
-						class="mt-3 w-full inline-flex justify-center rounded-lg border dark:text-white dark:hover:bg-gray-700 dark:bg-gray-900 border-gray-300 dark:border-gray-700 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 hover:bg-gray-50 focus:outline-none sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm"
+						class="mt-3 w-full inline-flex justify-center rounded-lg border dark:text-white dark:hover:bg-zinc-700 dark:bg-zinc-900 border-zinc-300 dark:border-zinc-700 shadow-sm px-4 py-2 bg-white text-base font-medium text-zinc-700 hover:bg-zinc-50 focus:outline-none sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm"
 					>
 						{cancelText}
 					</button>

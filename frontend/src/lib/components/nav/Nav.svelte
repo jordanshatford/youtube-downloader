@@ -9,7 +9,7 @@
 	let showMobileMenu = false
 </script>
 
-<nav class="bg-white dark:bg-gray-800 shadow dark:shadow-dark fixed top-0 z-40 w-full">
+<nav class="bg-white dark:bg-zinc-800 shadow dark:shadow-dark fixed top-0 z-40 w-full">
 	<div class="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8">
 		<div class="relative flex items-center justify-between h-16">
 			<div class="absolute inset-y-0 left-0 flex items-center sm:hidden">
@@ -17,7 +17,7 @@
 					on:click={() => (showMobileMenu = !showMobileMenu)}
 					class="{showMobileMenu
 						? 'hover:text-red-600'
-						: 'hover:text-indigo-800 dark:hover:text-indigo-600'} dark:text-gray-200"
+						: 'hover:text-indigo-800 dark:hover:text-indigo-600'} dark:text-zinc-200"
 					icon={showMobileMenu ? XIcon : MenuIcon}
 					size="1.5x"
 				/>

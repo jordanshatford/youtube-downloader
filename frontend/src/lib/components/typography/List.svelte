@@ -6,9 +6,9 @@
 
 <ol class="list-decimal py-6 md:mx-32 mx-6 text-left">
 	{#each items as item}
-		<li class="mt-3 text-gray-700 dark:text-gray-300">{item.title}</li>
+		<li class="mt-3 text-zinc-700 dark:text-zinc-300">{item.title}</li>
 		{#if item.description}
-			<p class="mt-1 text-gray-500">{item.description}</p>
+			<p class="mt-1 text-zinc-500">{item.description}</p>
 		{/if}
 	{/each}
 </ol>

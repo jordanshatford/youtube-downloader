@@ -40,7 +40,7 @@
 			<Alert title="Setting Updated" variant={Variant.SUCCESS} />
 		{/if}
 	</div>
-	<p class="text-center mt-4 max-w-xl mx-auto text-gray-500">
+	<p class="text-center mt-4 max-w-xl mx-auto text-zinc-500">
 		{audioFormatDescriptions[$settings.format]}
 	</p>
 </div>
