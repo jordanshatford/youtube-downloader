@@ -24,11 +24,7 @@
 		/>
 	</Confirm>
 	{#if awaitingFileBlob}
-		<IconButton
-			icon={LoaderIcon}
-			size="1.5x"
-			class="animate-spin"
-		/>
+		<IconButton icon={LoaderIcon} size="1.5x" class="animate-spin" />
 	{:else}
 		<IconButton
 			on:click={() => dispatch('download')}

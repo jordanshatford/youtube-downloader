@@ -1,0 +1,27 @@
+name: Build and Lint fronted
+
+on:
+  push:
+    branches:
+      - main
+      - develop
+    paths:
+      - 'frontend/**'
+
+jobs:
+  build:
+    runs-on: ubuntu-20.04
+    defaults:
+      run:
+        working-directory: ./frontend
+    steps:
+      - name: Checkout source code
+        uses: actions/checkout@v2
+      - name: Install dependencies
+        run: npm install
+      - name: Run diagnostics check
+        run: npm run check -- --output machine
+      - name: Run linting check
+        run: npm run lint
+      - name: Run build
+        run: npm run build

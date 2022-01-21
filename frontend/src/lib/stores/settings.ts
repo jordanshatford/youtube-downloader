@@ -1,7 +1,6 @@
 import { browser } from '$app/env'
 import { writable } from 'svelte/store'
 import type { AudioSettings } from '$lib/utils/types'
-import { AudioFormat } from '$lib/utils/types'
 import config from '$lib/config'
 
 function createSettingsStore() {

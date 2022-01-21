@@ -90,15 +90,13 @@ function createDownloadsStore() {
 		fetch(endpoint, options).then(async (response) => {
 			if (response.ok) {
 				// The file blob is returned
-				return response
-					.blob()
-					.then((blob) => {
-						update((state) => {
-							state[id].awaitingFileBlob = false
-							return state
-						})
-						fileSaver.saveAs(blob, `${downloads[id].title}.${downloads[id].options.format}`)
+				return response.blob().then((blob) => {
+					update((state) => {
+						state[id].awaitingFileBlob = false
+						return state
 					})
+					fileSaver.saveAs(blob, `${downloads[id].title}.${downloads[id].options.format}`)
+				})
 			} else {
 				// file was not found on the server a json error message is returned
 				return response.json().then(() => {
