@@ -6,7 +6,7 @@
 	export let isMobileMenu = false
 
 	$: classNames =
-		$page.path === route.path
+		$page.url.pathname === route.path
 			? 'text-zinc-700 dark:text-white bg-zinc-100 dark:bg-zinc-900'
 			: 'text-zinc-400 dark:text-zinc-300 hover:bg-zinc-100 dark:hover:bg-zinc-700'
 </script>
