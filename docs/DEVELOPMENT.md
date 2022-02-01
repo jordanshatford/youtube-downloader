@@ -5,7 +5,7 @@ To run the application for development purposes, you can use [Docker Compose](ht
 
 You can run the application using the following command:
 ```bash
-docker-compose -f docker-compose.dev.yml up --build
+docker-compose up --build
 ```
 
 ## Without Docker

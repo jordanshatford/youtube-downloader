@@ -12,5 +12,5 @@ WORKDIR /frontend
 
 RUN npm run-script build
 
-ENV HOST=0.0.0.0
-CMD [ "npm", "run", "preview" ]
+EXPOSE 3000
+CMD [ "npm", "run", "preview", "--", "--host" ]

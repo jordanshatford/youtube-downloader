@@ -1,4 +1,4 @@
-version: '3.8'
+version: '3.3'
 
 services:
   backend:
@@ -9,11 +9,12 @@ services:
     environment:
       - ALLOWED_ORIGIN=http://localhost:3000
   frontend:
-    build: ./frontend
+    build:
+      context: ./frontend
+      args:
+        - VITE_SERVER_ADDR=http://localhost:8000
     restart: always
     ports:
       - 3000:3000
-    environment:
-      - VITE_SERVER_ADDR=http://localhost:8000
     depends_on:
       - backend
