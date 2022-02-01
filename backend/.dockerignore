@@ -1,0 +1,8 @@
+__pycache__
+*.pyc
+*.pyd
+*.pyo
+.env*
+pip-log.txt
+.git*
+.flake8

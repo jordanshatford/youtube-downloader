@@ -1,5 +1,10 @@
-node_modules/
-Dockerfile*
-docker-compose*
+.git
 .dockerignore
 .gitignore
+.github/*
+.svelte-kit
+README.md
+Dockerfile
+
+build
+node_modules

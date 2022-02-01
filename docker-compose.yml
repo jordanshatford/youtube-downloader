@@ -2,19 +2,30 @@ version: '3.3'
 
 services:
   backend:
-    build: ./backend
+    build:
+      context: ./backend
+    image: youtube-to-mp3-backend:latest
     restart: always
+    environment:
+      DEBUG: 1
+      HOST: 0.0.0.0
+      PORT: 8080
+      ALLOWED_ORIGIN: http://localhost:3000
     ports:
       - 8000:8080
-    environment:
-      - ALLOWED_ORIGIN=http://localhost:3000
+    volumes:
+      - ./backend:/backend
   frontend:
     build:
       context: ./frontend
-      args:
-        - VITE_SERVER_ADDR=http://localhost:8000
+    image: youtube-to-mp3-frontend:latest
     restart: always
+    environment:
+      VITE_SERVER_ADDR: http://localhost:8000
     ports:
       - 3000:3000
+      - 24678:24678
+    volumes:
+      - ./frontend:/frontend
     depends_on:
       - backend

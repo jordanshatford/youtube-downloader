@@ -1,16 +1,14 @@
 FROM node:16-alpine
 
-ARG VITE_SERVER_ADDR
-ENV VITE_SERVER_ADDR ${VITE_SERVER_ADDR}
+ENV NODE_ENV development
 
-COPY package*.json /frontend/
 WORKDIR /frontend
+
+COPY package*.json ./
 RUN npm install
 
-COPY . /frontend
-WORKDIR /frontend
-
-RUN npm run-script build
+COPY . .
 
 EXPOSE 3000
-CMD [ "npm", "run", "preview", "--", "--host" ]
+EXPOSE 24678
+CMD [ "npm", "run", "dev", "--", "--host" ]

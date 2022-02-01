@@ -7,13 +7,13 @@ RUN apt-get update -y \
        python3-pip python-dev ffmpeg \
     && rm -rf /var/lib/apt/lists/*
 
-COPY requirements.txt /backend/requirements.txt
 WORKDIR /backend
+
+COPY requirements.txt ./
 RUN pip3 install --no-cache-dir --upgrade pip \
     && pip3 install --no-cache-dir -r requirements.txt
 
-COPY . /backend
-WORKDIR /backend
+COPY . .
 
 ENTRYPOINT ["python3"]
 CMD ["main.py"]
