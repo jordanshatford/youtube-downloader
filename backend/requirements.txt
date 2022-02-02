@@ -1,5 +1,5 @@
-fastapi==0.70.0
-sse-starlette==0.9.0
-uvicorn==0.15.0
-youtube-dl==2021.6.6
-youtube-search-python==1.5.2
+fastapi==0.73.0
+sse-starlette==0.10.3
+uvicorn==0.17.1
+youtube-dl==2021.12.17
+youtube-search-python==1.6.2
