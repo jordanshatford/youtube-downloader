@@ -1,5 +1,5 @@
-fastapi==0.73.0
+fastapi==0.74.1
 sse-starlette==0.10.3
-uvicorn==0.17.1
+uvicorn==0.17.5
 youtube-dl==2021.12.17
 youtube-search-python==1.6.2
