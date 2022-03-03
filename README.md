@@ -13,7 +13,7 @@
 [![Powered By YoutubeDL](https://img.shields.io/badge/powered%20by-youtube--dl-%23FF0000.svg?style=flat&logo=youtube)](https://youtube-dl.org/)
 [![Hosted On Vercel](https://img.shields.io/badge/hosted%20on-vercel-%23000000.svg?style=flat&logo=vercel)](https://vercel.com/) 
 [![Hosted On Heroku](https://img.shields.io/badge/hosted%20on-heroku-%23430098.svg?style=flat&logo=heroku)](https://heroku.com) 
-[![License: MIT](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat&logo=license)](https://github.com/navneetsharmaui/sveltekit-blog/blob/main/LICENSE)
+[![License: MIT](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat&logo=license)](https://github.com/jordanshatford/youtube-to-mp3/blob/main/LICENSE.md)
 
 ![readme-image](https://user-images.githubusercontent.com/37837288/142290058-7d41d84a-6c8b-434b-b0fe-2a507838bc83.jpg)
 
