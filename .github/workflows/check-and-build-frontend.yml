@@ -28,9 +28,9 @@ jobs:
         uses: actions/checkout@v2
       - name: Install dependencies
         run: npm install
-      - name: Run diagnostics check
-        run: npm run check -- --output machine
       - name: Run linting check
         run: npm run lint
       - name: Run build
         run: npm run build
+      - name: Run diagnostics check
+        run: npm run check -- --output machine
