@@ -1,15 +1,18 @@
-name: Build, Lint, and Check Frontend
+name: CI
 
 on:
   push:
     branches:
       - main
-      - develop
     paths:
       - 'frontend/**'
+  pull_request:
+    types: [opened, synchronize]
+    paths: 'frontend/**'
 
 jobs:
-  build:
+  frontend:
+    name: Frontend
     runs-on: ${{ matrix.os }}
     strategy:
       fail-fast: false
