@@ -1,10 +1,10 @@
-FROM ubuntu:20.04
+FROM ubuntu:22.04
 
 ENV DEBIAN_FRONTEND=noninteractive
 
 RUN apt-get update -y \
     && apt-get install -y --no-install-recommends \
-       python3-pip python-dev ffmpeg \
+       python3-pip python3-dev ffmpeg \
     && rm -rf /var/lib/apt/lists/*
 
 WORKDIR /backend
