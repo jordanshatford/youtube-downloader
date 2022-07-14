@@ -8,7 +8,6 @@ on:
       - 'frontend/**'
   pull_request:
     types: [opened, synchronize]
-    paths: 'frontend/**'
 
 jobs:
   frontend:
