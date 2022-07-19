@@ -11,28 +11,25 @@ on:
 
 jobs:
   frontend:
-    name: Frontend
+    name: Frontend (Build, Lint, Check)
     runs-on: ${{ matrix.os }}
     strategy:
-      fail-fast: false
       matrix:
         os: [macos-latest, ubuntu-latest]
-        node-version: [16.x, 17.x, 18.x]
+        node-version: [16.x 18.x]
     defaults:
       run:
         working-directory: ./frontend
     steps:
-      - name: Setup node version ${{ matrix.node-version }}
-        uses: actions/setup-node@v3
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node-version }}
-      - name: Checkout source code
-        uses: actions/checkout@v3
       - name: Install dependencies
         run: npm install
       - name: Run linting check
         run: npm run lint
-      - name: Run build
-        run: npm run build
       - name: Run diagnostics check
         run: npm run check -- --output machine
+      - name: Run build
+        run: npm run build
