@@ -15,7 +15,7 @@ const config = {
 			fallback: 'index.html'
 		}),
 		prerender: {
-			enabled: false
+			enabled: true
 		}
 	}
 }

@@ -10,7 +10,7 @@ services:
       DEBUG: 1
       HOST: 0.0.0.0
       PORT: 8080
-      ALLOWED_ORIGIN: http://localhost:3000
+      ALLOWED_ORIGIN: http://localhost:5173
     ports:
       - 8000:8080
     volumes:
@@ -23,7 +23,7 @@ services:
     environment:
       VITE_SERVER_ADDR: http://localhost:8000
     ports:
-      - 3000:3000
+      - 5173:5173
       - 24678:24678
     volumes:
       - ./frontend:/frontend

@@ -11,8 +11,8 @@ The frontend also utilizes other technologies like:
 
 ## Developing
 To setup the frontend for local development you must first ensure that you have the following dependencies installed:
-  - [NodeJS](https://nodejs.org/en/) (version v14.18.1 or above)
-  - [NPM](https://www.npmjs.com/) (version 6.14.15 or above) `this will be installed with NodeJS`
+  - [NodeJS](https://nodejs.org/en/)
+  - [NPM](https://www.npmjs.com/)
 
 Now you can install the project specific dependencies using:
 ```bash

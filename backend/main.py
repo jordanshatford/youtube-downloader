@@ -33,7 +33,7 @@ app = FastAPI(
     openapi_tags=tags_metadata,
 )
 
-allowed_origin = os.environ.get("ALLOWED_ORIGIN", "http://localhost:3000")
+allowed_origin = os.environ.get("ALLOWED_ORIGIN", "http://localhost:5173")
 
 app.add_middleware(
     CORSMiddleware,
