@@ -35,6 +35,9 @@ class YoutubeDownloadThread(threading.Thread):
                     "key": "FFmpegExtractAudio",
                     "preferredcodec": options.format,
                     "preferredquality": "192",
+                },
+                {
+                    'key': 'FFmpegMetadata'
                 }
             ],
         }
