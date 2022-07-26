@@ -15,21 +15,21 @@ from utils.models import Video
 router = APIRouter()
 
 
-@router.post("/downloads", tags=["downloads"], response_model=Message)
+@router.post('/downloads', tags=['downloads'], response_model=Message)
 def add_download(video: Video, response: Response, sessionId: str):
     download_manager = session_manager.get_download_manager(sessionId)
 
     if video.options is None:
         response.status_code = status.HTTP_500_INTERNAL_SERVER_ERROR
         return {
-            "title": "Audio Options Invalid",
-            "message": "Download failed, audio options not correct.",
+            'title': 'Audio Options Invalid',
+            'message': 'Download failed, audio options not correct.',
         }
 
     download_manager.add(video.id, video.url, video.options)
     return {
-        "title": "File Added",
-        "message": "The requested file has been successfully added to download.",
+        'title': 'File Added',
+        'message': 'The requested file has been successfully added to download.',
     }
 
 
@@ -48,13 +48,13 @@ async def status_stream(request: Request, session_id: str):
         session_manager.remove(session_id)
 
 
-@router.get("/downloads/status", tags=["downloads"])
+@router.get('/downloads/status', tags=['downloads'])
 async def downloads_status(request: Request, sessionId: str):
     event_source = status_stream(request, session_id=sessionId)
     return EventSourceResponse(event_source)
 
 
-@router.get("/downloads/{video_id}", tags=["downloads"], response_model=Message)
+@router.get('/downloads/{video_id}', tags=['downloads'], response_model=Message)
 def get_download(video_id: str, response: Response, sessionId: str):
     download_manager = session_manager.get_download_manager(sessionId)
     path = download_manager.get_download(video_id)
@@ -63,16 +63,16 @@ def get_download(video_id: str, response: Response, sessionId: str):
     else:
         response.status_code = status.HTTP_500_INTERNAL_SERVER_ERROR
         return {
-            "title": "File Missing",
-            "message": "This file was not found on the server. Try downloading again.",
+            'title': 'File Missing',
+            'message': 'This file was not found on the server. Try downloading again.',
         }
 
 
-@router.delete("/downloads/{video_id}", tags=["downloads"], response_model=Message)
+@router.delete('/downloads/{video_id}', tags=['downloads'], response_model=Message)
 def delete_download(video_id: str, sessionId: str):
     download_manager = session_manager.get_download_manager(sessionId)
     download_manager.remove(video_id)
     return {
-        "title": "File Removed",
-        "message": "The requested file has been removed from the server.",
+        'title': 'File Removed',
+        'message': 'The requested file has been removed from the server.',
     }

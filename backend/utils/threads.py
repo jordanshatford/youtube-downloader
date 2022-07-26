@@ -26,19 +26,17 @@ class YoutubeDownloadThread(threading.Thread):
         self._status_update = status_update
 
         YOUTUBE_DL_OPTIONS = {
-            "format": "bestaudio/best",
-            "progress_hooks": [self.download_progress_hook],
-            "outtmpl": f"{self._output_directory}/{self._id}.%(ext)s",
-            "quiet": True,
-            "postprocessors": [
+            'format': 'bestaudio/best',
+            'progress_hooks': [self.download_progress_hook],
+            'outtmpl': f'{self._output_directory}/{self._id}.%(ext)s',
+            'quiet': True,
+            'postprocessors': [
                 {
-                    "key": "FFmpegExtractAudio",
-                    "preferredcodec": options.format,
-                    "preferredquality": "192",
+                    'key': 'FFmpegExtractAudio',
+                    'preferredcodec': options.format,
+                    'preferredquality': '192',
                 },
-                {
-                    'key': 'FFmpegMetadata'
-                }
+                {'key': 'FFmpegMetadata'},
             ],
         }
         self._downloader = YoutubeDL(YOUTUBE_DL_OPTIONS)
@@ -53,12 +51,12 @@ class YoutubeDownloadThread(threading.Thread):
         )
 
     def download_progress_hook(self, progress_info: dict) -> None:
-        if progress_info.get("status", None) == "finished":
+        if progress_info.get('status', None) == 'finished':
             self._status_update(self._id, Status.PROCESSING)
 
     def get_file_location(self) -> str:
         path = os.path.join(
-            self._output_directory, f"{self._id}.{self._options.format}"
+            self._output_directory, f'{self._id}.{self._options.format}'
         )
         return path
 

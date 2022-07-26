@@ -7,6 +7,6 @@ from utils.youtube import search_youtube
 router = APIRouter()
 
 
-@router.get("/search", tags=["search"], response_model=List[Video])
+@router.get('/search', tags=['search'], response_model=List[Video])
 def search(term: str, results: int = 12):
     return search_youtube(term, results)
