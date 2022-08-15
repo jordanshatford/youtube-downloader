@@ -28,7 +28,7 @@ app = FastAPI(
     },
     license_info={
         'name': 'MIT License',
-        'url': 'https://github.com/jordanshatford/youtube-to-mp3/blob/main/LICENSE.md',
+        'url': 'https://github.com/jordanshatford/youtube-to-mp3/blob/main/LICENSE',
     },
     openapi_tags=tags_metadata,
 )
