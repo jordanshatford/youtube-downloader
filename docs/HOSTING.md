@@ -23,7 +23,7 @@ VITE_SERVER_ADDR=https://some-address.com
 ```
 
 ## Backend
-The backend of this application is hosted using [Heroku](https://www.heroku.com/).
+The backend of this application is hosted using [Render](https://render.com/).
 
 It is hosted as a container running the backend server as a web application.
 
@@ -33,6 +33,6 @@ The following `Config Vars` should be specified for the backend application:
 # the address of the frontend (used to allow CORS origin)
 ALLOWED_ORIGIN=https://some-address.com
 
-# NOTE: on Heroku this does not need to be specified as it is specifed by Heroku itself
+# NOTE: on Render this does not need to be specified as it is detected by Render itself
 PORT=8080
 ```

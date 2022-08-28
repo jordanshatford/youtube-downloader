@@ -12,7 +12,7 @@
 [![Powered By FFMPEG](https://img.shields.io/badge/powered%20by-ffmpeg-%23007808.svg?style=flat&logo=ffmpeg)](https://www.ffmpeg.org/)
 [![Powered By YoutubeDL](https://img.shields.io/badge/powered%20by-youtube--dl-%23FF0000.svg?style=flat&logo=youtube)](https://youtube-dl.org/)
 [![Hosted On Vercel](https://img.shields.io/badge/hosted%20on-vercel-%23000000.svg?style=flat&logo=vercel)](https://vercel.com/) 
-[![Hosted On Heroku](https://img.shields.io/badge/hosted%20on-heroku-%23430098.svg?style=flat&logo=heroku)](https://heroku.com) 
+[![Hosted On Render](https://img.shields.io/badge/hosted%20on-render-%2346E3B7.svg?style=flat&logo=render)](https://render.com/) 
 [![License: MIT](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat&logo=license)](https://github.com/jordanshatford/youtube-to-mp3/blob/main/LICENSE)
 
 ![readme-image](https://user-images.githubusercontent.com/37837288/142290058-7d41d84a-6c8b-434b-b0fe-2a507838bc83.jpg)
