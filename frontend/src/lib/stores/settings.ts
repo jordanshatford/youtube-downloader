@@ -1,4 +1,4 @@
-import { browser } from '$app/env'
+import { browser } from '$app/environment'
 import { writable } from 'svelte/store'
 import type { AudioSettings } from '$lib/utils/types'
 import config from '$lib/config'
