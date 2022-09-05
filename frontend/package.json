@@ -12,11 +12,11 @@
 		"format": "prettier --ignore-path .gitignore --write --plugin-search-dir=. ."
 	},
 	"devDependencies": {
-		"@sveltejs/adapter-static": "1.0.0-next.39",
-		"@sveltejs/kit": "^1.0.0-next.445",
+		"@sveltejs/adapter-static": "1.0.0-next.42",
+		"@sveltejs/kit": "^1.0.0-next.469",
 		"@types/file-saver": "^2.0.5",
 		"@typescript-eslint/eslint-plugin": "^5.35.1",
-		"@typescript-eslint/parser": "^5.35.1",
+		"@typescript-eslint/parser": "^5.36.1",
 		"autoprefixer": "^10.4.8",
 		"cssnano": "^5.1.13",
 		"eslint": "^8.23.0",
@@ -26,13 +26,13 @@
 		"postcss-load-config": "^4.0.1",
 		"prettier": "^2.7.1",
 		"prettier-plugin-svelte": "^2.7.0",
-		"svelte": "^3.49.0",
-		"svelte-check": "^2.8.1",
+		"svelte": "^3.50.0",
+		"svelte-check": "^2.9.0",
 		"svelte-preprocess": "^4.10.7",
 		"tailwindcss": "^3.1.8",
 		"tslib": "^2.4.0",
 		"typescript": "^4.8.2",
-		"vite": "^3.0.9"
+		"vite": "^3.1.0"
 	},
 	"type": "module",
 	"dependencies": {
