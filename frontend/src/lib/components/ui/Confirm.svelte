@@ -19,7 +19,7 @@
 		functionToCall['func'](...functionToCall['args'])
 	}
 
-	function confirm(func: any, ...args: any[]) {
+	function confirm(func: unknown, ...args: unknown[]) {
 		functionToCall = { func, args }
 		showDialog = true
 	}
