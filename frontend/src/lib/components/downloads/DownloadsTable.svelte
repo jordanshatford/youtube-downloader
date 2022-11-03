@@ -2,7 +2,6 @@
 	import StatusBadge from '$lib/components/StatusBadge.svelte'
 	import DownloadActions from '$lib/components/downloads/DownloadActions.svelte'
 	import { downloads } from '$lib/stores/downloads'
-	import { Status } from '$lib/utils/types'
 	import type { VideoInfo } from '$lib/utils/types'
 
 	export let items: Record<string, VideoInfo>
@@ -53,13 +52,12 @@
 					<StatusBadge status={downloadInfo.status} />
 				</td>
 				<td class="px-6 py-4 whitespace-nowrap text-zinc-500 dark:text-zinc-300 text-right">
-					{#if downloadInfo.status === Status.DONE}
-						<DownloadActions
-							awaitingFileBlob={downloadInfo.awaitingFileBlob}
-							on:delete={() => downloads.remove(downloadInfo.id)}
-							on:download={() => downloads.getFile(downloadInfo.id)}
-						/>
-					{/if}
+					<DownloadActions
+						status={downloadInfo.status}
+						awaitingFileBlob={downloadInfo.awaitingFileBlob}
+						on:delete={() => downloads.remove(downloadInfo.id)}
+						on:download={() => downloads.getFile(downloadInfo.id)}
+					/>
 				</td>
 			</tr>
 		{/each}
