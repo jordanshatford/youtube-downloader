@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { createEventDispatcher } from 'svelte'
-	import { Trash2Icon, DownloadIcon, LoaderIcon } from 'svelte-feather-icons'
+	import { Trash2Icon, DownloadIcon, LoaderIcon, RotateCwIcon } from 'svelte-feather-icons'
 	import IconButton from '$lib/components/ui/IconButton.svelte'
 	import Confirm from '$lib/components/ui/Confirm.svelte'
 	import { Status } from '$lib/utils/types'
@@ -27,7 +27,14 @@
 			/>
 		</Confirm>
 	{/if}
-	{#if status === Status.DONE}
+	{#if [Status.ERROR, Status.UNDEFINED].includes(status)}
+		<IconButton
+			on:click={() => dispatch('restart')}
+			icon={RotateCwIcon}
+			size="1.5x"
+			class="hover:text-indigo-800 dark:hover:text-indigo-600"
+		/>
+	{:else if status === Status.DONE}
 		{#if awaitingFileBlob}
 			<IconButton icon={LoaderIcon} size="1.5x" class="animate-spin" />
 		{:else}

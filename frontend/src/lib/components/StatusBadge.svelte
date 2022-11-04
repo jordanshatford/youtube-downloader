@@ -12,14 +12,17 @@
 		case Status.WAITING:
 			className = 'bg-yellow-200 text-yellow-800'
 			icon = LoaderIcon
+			iconClass = 'animate-spin'
 			break
 		case Status.DOWNLOADING:
 			className = 'bg-blue-200 text-blue-800'
 			icon = LoaderIcon
+			iconClass = 'animate-spin'
 			break
 		case Status.PROCESSING:
 			className = 'bg-purple-200 text-purple-800'
 			icon = LoaderIcon
+			iconClass = 'animate-spin'
 			break
 		case Status.DONE:
 			className = 'bg-green-200 text-green-800'
