@@ -57,7 +57,6 @@
 						awaitingFileBlob={downloadInfo.awaitingFileBlob}
 						on:delete={() => downloads.remove(downloadInfo.id)}
 						on:restart={() => {
-							console.error('test')
 							downloads.remove(downloadInfo.id)
 							downloads.add(downloadInfo)
 						}}
