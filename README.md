@@ -43,7 +43,7 @@
   </p>
 </p>
 
-YouTube Audio Downloader is a full stack application created to allow users to download the audio from [Youtube](https://www.youtube.com/) videos to various audio formats.
+YouTube Audio Downloader is a full stack application created to allow users to download the audio from [YouTube](https://www.youtube.com/) videos to various audio formats.
 
 # Features
   - Dark and Light theme
