@@ -19,7 +19,7 @@
 </script>
 
 <svelte:head>
-	<title>Settings - {config.app.title}</title>
+	<title>Settings - {config.about.title}</title>
 </svelte:head>
 
 <div>

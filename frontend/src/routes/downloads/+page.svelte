@@ -7,7 +7,7 @@
 </script>
 
 <svelte:head>
-	<title>Downloads - {config.app.title}</title>
+	<title>Downloads - {config.about.title}</title>
 </svelte:head>
 
 <div>

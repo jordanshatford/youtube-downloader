@@ -7,7 +7,7 @@
 </script>
 
 <svelte:head>
-	<title>Terms of Use - {config.app.title}</title>
+	<title>Terms of Use - {config.about.title}</title>
 </svelte:head>
 
 <div class="pb-6">

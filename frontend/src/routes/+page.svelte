@@ -13,7 +13,7 @@
 </script>
 
 <svelte:head>
-	<title>Search - {config.app.title}</title>
+	<title>Search - {config.about.title}</title>
 </svelte:head>
 
 <div>

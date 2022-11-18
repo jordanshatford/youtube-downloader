@@ -1,7 +1,7 @@
 import type { ListItem } from '$lib/utils/types'
 import config from '$lib/config'
 
-export const websiteName = config.app.hostname
+export const websiteName = config.about.hostname
 
 export const faqs: ListItem[] = [
 	{
