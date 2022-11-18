@@ -6,7 +6,7 @@ export const env = {
 
 const config = {
 	about: {
-		title: "Youtube Audio Downloader",
+		title: "YouTube Audio Downloader",
 		hostname: "youtubeaudiodownloader.vercel.app",
 	},
 	settings: {
@@ -19,7 +19,7 @@ const config = {
 		key: 'theme',
 		default: Theme.DARK
 	},
-	github: "https://github.com/jordanshatford/youtube-to-mp3",
+	github: "https://github.com/jordanshatford/youtube-audio-downloader",
 	copyright: {
 		owner: "Jordan Shatford",
 		year: 2022,

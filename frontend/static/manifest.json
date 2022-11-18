@@ -1,7 +1,7 @@
 {
-	"name": "Youtube Audio Downloader",
+	"name": "YouTube Audio Downloader",
 	"short_name": "YT Audio Downloader",
-	"description": "Download audio from Youtube videos.",
+	"description": "Download audio from YouTube videos.",
 	"start_url": "/index.html",
 	"background_color": "#1F2937",
 	"theme_color": "#1F2937",

@@ -10,25 +10,25 @@ from utils.managers import session_manager
 
 tags_metadata = [
     {'name': 'session', 'description': 'Get session id to use for future requests.'},
-    {'name': 'search', 'description': 'Search youtube for videos.'},
-    {'name': 'downloads', 'description': 'Manage downloads of videos from youtube.'},
+    {'name': 'search', 'description': 'Search YouTube for videos.'},
+    {'name': 'downloads', 'description': 'Manage downloads of videos from YouTube.'},
 ]
 
 description = """
-Youtube Audio Downloader API works with the frontend website to
+YouTube Audio Downloader API works with the frontend website to
 allow users to download specific videos as audio files.
 """
 
 app = FastAPI(
-    title='Youtube to MP3 API',
+    title='YouTube to MP3 API',
     description=description,
     contact={
-        'name': 'Youtube to MP3',
-        'url': 'https://github.com/jordanshatford/youtube-to-mp3',
+        'name': 'YouTube to MP3',
+        'url': 'https://github.com/jordanshatford/youtube-audio-downloader',
     },
     license_info={
         'name': 'MIT License',
-        'url': 'https://github.com/jordanshatford/youtube-to-mp3/blob/main/LICENSE',
+        'url': 'https://github.com/jordanshatford/youtube-audio-downloader/blob/main/LICENSE',
     },
     openapi_tags=tags_metadata,
 )
