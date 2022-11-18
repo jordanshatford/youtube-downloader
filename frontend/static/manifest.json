@@ -1,7 +1,7 @@
 {
-	"name": "Youtube to MP3",
-	"short_name": "YtMP3",
-	"description": "Download audio from Youtube videos as MP3.",
+	"name": "Youtube Audio Downloader",
+	"short_name": "YT Audio Downloader",
+	"description": "Download audio from Youtube videos.",
 	"start_url": "/index.html",
 	"background_color": "#1F2937",
 	"theme_color": "#1F2937",

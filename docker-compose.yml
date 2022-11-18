@@ -4,7 +4,7 @@ services:
   backend:
     build:
       context: ./backend
-    image: youtube-to-mp3-backend:latest
+    image: youtubeaudiodownloader-backend:latest
     restart: always
     environment:
       DEBUG: 1
@@ -18,7 +18,7 @@ services:
   frontend:
     build:
       context: ./frontend
-    image: youtube-to-mp3-frontend:latest
+    image: youtubeaudiodownloader-frontend:latest
     restart: always
     environment:
       VITE_SERVER_ADDR: http://localhost:8000

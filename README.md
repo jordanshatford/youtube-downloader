@@ -1,4 +1,4 @@
-# Youtube to MP3
+# Youtube Audio Downloader
 
 [![Powered By Sveltekit](https://img.shields.io/badge/powered%20by-svelte-%23FF3E00.svg?style=flat&logo=svelte)](https://kit.svelte.dev/) 
 [![Language: TypeScript](https://img.shields.io/badge/language-typescript-%233178C6.svg?style=flat&logo=typescript)](https://www.typescriptlang.org/) 
@@ -13,11 +13,11 @@
 [![Powered By YoutubeDL](https://img.shields.io/badge/powered%20by-youtube--dl-%23FF0000.svg?style=flat&logo=youtube)](https://youtube-dl.org/)
 [![Hosted On Vercel](https://img.shields.io/badge/hosted%20on-vercel-%23000000.svg?style=flat&logo=vercel)](https://vercel.com/) 
 [![Hosted On Render](https://img.shields.io/badge/hosted%20on-render-%2346E3B7.svg?style=flat&logo=render)](https://render.com/) 
-[![License: MIT](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat&logo=license)](https://github.com/jordanshatford/youtube-to-mp3/blob/main/LICENSE)
+[![License: MIT](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat&logo=license)](https://github.com/jordanshatford/youtubeaudiodownloader/blob/main/LICENSE)
 
 ![readme-image](https://user-images.githubusercontent.com/37837288/142290058-7d41d84a-6c8b-434b-b0fe-2a507838bc83.jpg)
 
-Youtube to MP3 is a full stack application created to allow users to download various formats of audio from videos on [Youtube](https://www.youtube.com/).
+YouTube Audio Downloader is a full stack application created to allow users to download various formats of audio from videos on [Youtube](https://www.youtube.com/).
 
 ## Features
   - Dark and Light UI themes

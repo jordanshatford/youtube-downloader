@@ -15,7 +15,7 @@ tags_metadata = [
 ]
 
 description = """
-Youtube to MP3 API works with the frontend website to
+Youtube Audio Downloader API works with the frontend website to
 allow users to download specific videos as audio files.
 """
 

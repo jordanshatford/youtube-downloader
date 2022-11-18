@@ -1,7 +1,7 @@
 # Hosting
 
 ## Frontend
-The frontend of this application is hosted using [Vercel](https://vercel.com/) and can be found at [Youtube to MP3](https://ytmp3.vercel.app/).
+The frontend of this application is hosted using [Vercel](https://vercel.com/) and can be found at [Youtube Audio Downloader](https://youtubeaudiodownloader.vercel.app/).
 
 To host using [Vercel](https://vercel.com/), you must specify the following `Build & Development Settings`:
 

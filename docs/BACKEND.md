@@ -27,11 +27,11 @@ The backend can be run using [Docker](https://www.docker.com) and the provided D
 
 You can build the Docker container using the following command from within the backend folder:
 ```bash
-docker build -t ytmp3-backend .
+docker build -t youtubeaudiodownloader-backend .
 ```
 
 You can run the Docker container using the following command:
 ```bash
 # NOTE: you can specify whichever port you want to run the backend on
-docker run -p 8000:8000 ytmp3-backend
+docker run -p 8000:8000 youtubeaudiodownloader-backend
 ```
