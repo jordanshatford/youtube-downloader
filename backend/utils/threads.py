@@ -42,12 +42,12 @@ class YoutubeDownloadThread(threading.Thread):
         self._downloader = YoutubeDL(YOUTUBE_DL_OPTIONS)
         self._downloader.add_post_processor(
             FileProcessingComplete(
-                self._id, self._status_update, downloader=self._downloader
-            )
+                self._id, self._status_update, downloader=self._downloader,
+            ),
         )
 
-        super(YoutubeDownloadThread, self).__init__(
-            group=None, target=None, name=None, daemon=True
+        super().__init__(
+            group=None, target=None, name=None, daemon=True,
         )
 
     def download_progress_hook(self, progress_info: dict) -> None:
@@ -56,7 +56,7 @@ class YoutubeDownloadThread(threading.Thread):
 
     def get_file_location(self) -> str:
         path = os.path.join(
-            self._output_directory, f'{self._id}.{self._options.format}'
+            self._output_directory, f'{self._id}.{self._options.format}',
         )
         return path
 
@@ -94,7 +94,9 @@ class RepeatedTimer:
     def start(self):
         if not self.is_running:
             self.next_call += self.interval
-            self._timer = threading.Timer(self.next_call - time.time(), self._run)
+            self._timer = threading.Timer(
+                self.next_call - time.time(), self._run,
+            )
             self._timer.daemon = True
             self._timer.start()
             self.is_running = True

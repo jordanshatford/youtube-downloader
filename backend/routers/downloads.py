@@ -29,7 +29,7 @@ def add_download(video: Video, response: Response, sessionId: str):
     download_manager.add(video.id, video.url, video.options)
     return {
         'title': 'File Added',
-        'message': 'The requested file has been successfully added to download.',
+        'message': 'The requested file has been successfully added to download.',   # noqa: E501
     }
 
 
@@ -39,7 +39,9 @@ async def status_stream(request: Request, session_id: str):
             if await request.is_disconnected():
                 break
             try:
-                msg = session_manager.get_status_queue(session_id).get(block=False)
+                msg = session_manager.get_status_queue(
+                    session_id,
+                ).get(block=False)
                 yield dict(data=msg)
             except queue.Empty:
                 pass
@@ -54,7 +56,7 @@ async def downloads_status(request: Request, sessionId: str):
     return EventSourceResponse(event_source)
 
 
-@router.get('/downloads/{video_id}', tags=['downloads'], response_model=Message)
+@router.get('/downloads/{video_id}', tags=['downloads'], response_model=Message)   # noqa: E501
 def get_download(video_id: str, response: Response, sessionId: str):
     download_manager = session_manager.get_download_manager(sessionId)
     path = download_manager.get_download(video_id)
@@ -64,11 +66,11 @@ def get_download(video_id: str, response: Response, sessionId: str):
         response.status_code = status.HTTP_500_INTERNAL_SERVER_ERROR
         return {
             'title': 'File Missing',
-            'message': 'This file was not found on the server. Try downloading again.',
+            'message': 'This file was not found on the server. Try downloading again.',   # noqa: E501
         }
 
 
-@router.delete('/downloads/{video_id}', tags=['downloads'], response_model=Message)
+@router.delete('/downloads/{video_id}', tags=['downloads'], response_model=Message)  # noqa: E501
 def delete_download(video_id: str, sessionId: str):
     download_manager = session_manager.get_download_manager(sessionId)
     download_manager.remove(video_id)

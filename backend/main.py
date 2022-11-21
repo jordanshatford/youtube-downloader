@@ -9,9 +9,9 @@ from starlette.middleware.cors import CORSMiddleware
 from utils.managers import session_manager
 
 tags_metadata = [
-    {'name': 'session', 'description': 'Get session id to use for future requests.'},
+    {'name': 'session', 'description': 'Get session id to use for future requests.'},   # noqa: E501
     {'name': 'search', 'description': 'Search YouTube for videos.'},
-    {'name': 'downloads', 'description': 'Manage downloads of videos from YouTube.'},
+    {'name': 'downloads', 'description': 'Manage downloads of videos from YouTube.'},   # noqa: E501
 ]
 
 description = """
@@ -28,7 +28,7 @@ app = FastAPI(
     },
     license_info={
         'name': 'MIT License',
-        'url': 'https://github.com/jordanshatford/youtube-audio-downloader/blob/main/LICENSE',
+        'url': 'https://github.com/jordanshatford/youtube-audio-downloader/blob/main/LICENSE',   # noqa: E501
     },
     openapi_tags=tags_metadata,
 )

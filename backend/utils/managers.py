@@ -16,7 +16,7 @@ from .threads import YoutubeDownloadThread
 
 
 class AudioDownloadManager:
-    def __init__(self, output_dir: str, announcer: Callable[[str, Status], None]):
+    def __init__(self, output_dir: str, announcer: Callable[[str, Status], None]):  # noqa: E501
         self._announcer = announcer
         self._downloads: Dict[str, YoutubeDownloadThread] = {}
         self._output_dir = output_dir
@@ -24,7 +24,7 @@ class AudioDownloadManager:
     def add(self, video_id: str, url: str, options: AudioOptions) -> None:
         if video_id not in self._downloads:
             download = YoutubeDownloadThread(
-                video_id, url, options, self._output_dir, self.send_status_update
+                video_id, url, options, self._output_dir, self.send_status_update,  # noqa: E501
             )
             self._downloads[video_id] = download
             download.start()
@@ -53,7 +53,7 @@ class Session:
         self._output_dir = os.path.join(session_dir, id)
         self._last_use = datetime.now()
         self.download_manager = AudioDownloadManager(
-            self._output_dir, announcer=self._status_update
+            self._output_dir, announcer=self._status_update,
         )
         self.status_queue: Queue[str] = Queue()
 
@@ -71,7 +71,11 @@ class Session:
             pass
 
     def _status_update(self, video_id: str, status: Status):
-        self.status_queue.put(json.dumps(format_status_update(video_id, status)))
+        self.status_queue.put(
+            json.dumps(
+                format_status_update(video_id, status),
+            ),
+        )
 
 
 class SessionManager:
@@ -85,12 +89,14 @@ class SessionManager:
         self._session_dir = session_dir
         self._session_too_old_duration = session_to_old_duration
         self._cleanup_interval = cleanup_interval
-        self._cleanup_timer = RepeatedTimer(self._cleanup_interval, self.cleanup)
+        self._cleanup_timer = RepeatedTimer(
+            self._cleanup_interval, self.cleanup,
+        )
 
     def cleanup(self, force: bool = False):
         for session_id in self._sessions.copy():
             session_not_used = self._sessions[session_id].session_older_than(
-                self._session_too_old_duration
+                self._session_too_old_duration,
             )
             if session_not_used or force:
                 self.remove(session_id)
