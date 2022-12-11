@@ -43,7 +43,7 @@
 								{downloadInfo.title}
 							</div>
 							<div class="text-sm text-zinc-500 dark:text-zinc-400 underline">
-								<a href={downloadInfo.url} target="_blank">Link</a>
+								<a href={downloadInfo.url} target="_blank" rel="noreferrer">Link</a>
 							</div>
 						</div>
 					</div>

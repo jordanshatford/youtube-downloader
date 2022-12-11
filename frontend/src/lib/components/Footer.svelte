@@ -26,6 +26,7 @@
 				href={config.github}
 				class="text-2xl hover:text-indigo-800 dark:hover:text-indigo-600 text-zinc-500 dark:text-zinc-200"
 				target="_blank"
+				rel="noreferrer"
 			>
 				<GithubIcon size="1x" />
 			</a>

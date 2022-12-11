@@ -13,7 +13,7 @@
 	<article
 		class="rounded-lg dark:bg-zinc-800 overflow-hidden shadow dark:shadow-dark border border-zinc-200 dark:border-zinc-800"
 	>
-		<a href={result.url} target="_blank">
+		<a href={result.url} target="_blank" rel="noreferrer">
 			<img alt="Thumbnail" class="block h-auto w-full" src={result.thumbnail} />
 		</a>
 		<header class="flex items-center justify-between leading-tight p-2 md:p-4">
@@ -22,6 +22,7 @@
 					class="no-underline hover:underline text-zinc-900 dark:text-white"
 					href={result.url}
 					target="_blank"
+					rel="noreferrer"
 				>
 					{result.title}
 				</a>
@@ -33,6 +34,7 @@
 				class="flex items-center no-underline hover:underline text-zinc-800 dark:text-zinc-400"
 				href={result.channel.url}
 				target="_blank"
+				rel="noreferrer"
 			>
 				<img
 					alt={result.channel.name}
