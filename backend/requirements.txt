@@ -1,4 +1,4 @@
-fastapi==0.88.0
+fastapi==0.89.1
 sse-starlette==1.2.1
 uvicorn==0.20.0
 youtube-dl==2021.12.17
