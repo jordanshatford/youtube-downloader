@@ -4,8 +4,6 @@ on:
   push:
     branches:
       - main
-    paths:
-      - 'frontend/**'
   pull_request:
   workflow_dispatch:
 
@@ -33,3 +31,24 @@ jobs:
         run: npm run check -- --output machine
       - name: Run build
         run: npm run build
+
+  backend:
+    name: Backend (Pre-commit)
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest]
+        python-version: [3.x]
+    defaults:
+      run:
+        working-directory: ./backend
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-python@v4
+        with:
+          python-version: ${{ matrix.python-version }}
+      - uses: pre-commit/action@v3.0.0
+        with:
+          extra_args: --config ./backend/.pre-commit-config.yaml --all-files
+      - uses: pre-commit-ci/lite-action@v1.0.1
+        if: always()
