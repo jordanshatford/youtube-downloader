@@ -1,7 +1,7 @@
-import type { ListItem } from '$lib/utils/types'
-import config from '$lib/config'
+import type { ListItem } from '$lib/utils/types';
+import config from '$lib/config';
 
-export const websiteName = config.about.hostname
+export const websiteName = config.about.hostname;
 
 export const termsOfUse: ListItem[] = [
 	{
@@ -121,4 +121,4 @@ export const termsOfUse: ListItem[] = [
 			`These terms of use, and any rights and licenses granted hereunder, may not be transferred or assigned by you, but may be assigned by ` +
 			`${websiteName} without restriction.`
 	}
-]
+];

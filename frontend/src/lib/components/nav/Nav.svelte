@@ -1,12 +1,12 @@
 <script lang="ts">
-	import { MenuIcon, XIcon } from 'svelte-feather-icons'
-	import IconButton from '$lib/components/ui/IconButton.svelte'
-	import { routes } from '$lib/utils/route'
-	import Logo from '$lib/components/ui/Logo.svelte'
-	import ThemeChangeIcon from '$lib/components/ui/ThemeChangeIcon.svelte'
-	import NavItem from '$lib/components/nav/NavItem.svelte'
+	import { MenuIcon, XIcon } from 'svelte-feather-icons';
+	import IconButton from '$lib/components/ui/IconButton.svelte';
+	import { routes } from '$lib/utils/route';
+	import Logo from '$lib/components/ui/Logo.svelte';
+	import ThemeChangeIcon from '$lib/components/ui/ThemeChangeIcon.svelte';
+	import NavItem from '$lib/components/nav/NavItem.svelte';
 
-	let showMobileMenu = false
+	let showMobileMenu = false;
 </script>
 
 <nav class="bg-white dark:bg-zinc-800 shadow dark:shadow-dark fixed top-0 z-40 w-full">

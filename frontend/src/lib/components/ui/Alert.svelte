@@ -4,12 +4,12 @@
 		AlertTriangleIcon,
 		AlertCircleIcon,
 		InfoIcon
-	} from 'svelte-feather-icons'
-	import { Variant } from '$lib/utils/types'
+	} from 'svelte-feather-icons';
+	import { Variant } from '$lib/utils/types';
 
-	export let variant: Variant
-	export let title: string
-	export let message: string = null
+	export let variant: Variant;
+	export let title: string;
+	export let message: string = null;
 
 	const themes = {
 		[Variant.DANGER]: {
@@ -28,7 +28,7 @@
 			icon: InfoIcon,
 			class: 'text-blue-800 bg-blue-200'
 		}
-	}
+	};
 </script>
 
 <div

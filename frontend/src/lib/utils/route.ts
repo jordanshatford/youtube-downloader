@@ -1,15 +1,15 @@
 export class RoutePathConstants {
-	public static SEARCH = '/'
-	public static DOWNLOADS = '/downloads'
-	public static SETTINGS = '/settings'
-	public static FAQ = '/faq'
-	public static TERMS_OF_USE = '/terms'
+	public static SEARCH = '/';
+	public static DOWNLOADS = '/downloads';
+	public static SETTINGS = '/settings';
+	public static FAQ = '/faq';
+	public static TERMS_OF_USE = '/terms';
 }
 
 export type Route = {
-	path: string
-	label: string
-}
+	path: string;
+	label: string;
+};
 
 export const routes: Route[] = [
 	{
@@ -24,4 +24,4 @@ export const routes: Route[] = [
 		label: 'Settings',
 		path: RoutePathConstants.SETTINGS
 	}
-]
+];

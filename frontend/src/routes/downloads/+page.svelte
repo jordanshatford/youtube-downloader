@@ -1,9 +1,9 @@
 <script lang="ts">
-	import Title from '$lib/components/typography/Title.svelte'
-	import Description from '$lib/components/typography/Description.svelte'
-	import { downloads } from '$lib/stores/downloads'
-	import DownloadsTable from '$lib/components/downloads/DownloadsTable.svelte'
-	import config from '$lib/config'
+	import Title from '$lib/components/typography/Title.svelte';
+	import Description from '$lib/components/typography/Description.svelte';
+	import { downloads } from '$lib/stores/downloads';
+	import DownloadsTable from '$lib/components/downloads/DownloadsTable.svelte';
+	import config from '$lib/config';
 </script>
 
 <svelte:head>

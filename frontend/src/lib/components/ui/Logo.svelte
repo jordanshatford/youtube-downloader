@@ -1,6 +1,6 @@
 <script lang="ts">
-	import { goto } from '$app/navigation'
-	import { RoutePathConstants } from '$lib/utils/route'
+	import { goto } from '$app/navigation';
+	import { RoutePathConstants } from '$lib/utils/route';
 </script>
 
 <button class="focus:outline-none" on:click={() => goto(RoutePathConstants.SEARCH)}>

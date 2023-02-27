@@ -1,11 +1,11 @@
 <script lang="ts">
-	import IconButton from '$lib/components/ui/IconButton.svelte'
-	import { MoonIcon, SunIcon } from 'svelte-feather-icons'
-	import { theme } from '$lib/stores/theme'
+	import IconButton from '$lib/components/ui/IconButton.svelte';
+	import { MoonIcon, SunIcon } from 'svelte-feather-icons';
+	import { theme } from '$lib/stores/theme';
 
-	let className = ''
-	export { className as class }
-	export let size = '1.5x'
+	let className = '';
+	export { className as class };
+	export let size = '1.5x';
 </script>
 
 <IconButton

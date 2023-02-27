@@ -1,45 +1,45 @@
 <script lang="ts">
-	import { CheckCircleIcon, AlertCircleIcon, LoaderIcon } from 'svelte-feather-icons'
-	import { Status } from '$lib/utils/types'
+	import { CheckCircleIcon, AlertCircleIcon, LoaderIcon } from 'svelte-feather-icons';
+	import { Status } from '$lib/utils/types';
 
-	export let status: Status
+	export let status: Status;
 
-	let className: string
-	let icon = CheckCircleIcon
-	let iconClass = 'animate-spin'
+	let className: string;
+	let icon = CheckCircleIcon;
+	let iconClass = 'animate-spin';
 
 	$: switch (status) {
 		case Status.WAITING:
-			className = 'bg-yellow-200 text-yellow-800'
-			icon = LoaderIcon
-			iconClass = 'animate-spin'
-			break
+			className = 'bg-yellow-200 text-yellow-800';
+			icon = LoaderIcon;
+			iconClass = 'animate-spin';
+			break;
 		case Status.DOWNLOADING:
-			className = 'bg-blue-200 text-blue-800'
-			icon = LoaderIcon
-			iconClass = 'animate-spin'
-			break
+			className = 'bg-blue-200 text-blue-800';
+			icon = LoaderIcon;
+			iconClass = 'animate-spin';
+			break;
 		case Status.PROCESSING:
-			className = 'bg-purple-200 text-purple-800'
-			icon = LoaderIcon
-			iconClass = 'animate-spin'
-			break
+			className = 'bg-purple-200 text-purple-800';
+			icon = LoaderIcon;
+			iconClass = 'animate-spin';
+			break;
 		case Status.DONE:
-			className = 'bg-green-200 text-green-800'
-			icon = CheckCircleIcon
-			iconClass = ''
-			break
+			className = 'bg-green-200 text-green-800';
+			icon = CheckCircleIcon;
+			iconClass = '';
+			break;
 		case Status.ERROR:
-			className = 'bg-red-200 text-red-800'
-			icon = AlertCircleIcon
-			iconClass = ''
-			break
+			className = 'bg-red-200 text-red-800';
+			icon = AlertCircleIcon;
+			iconClass = '';
+			break;
 		default:
-			status = Status.UNDEFINED
-			className = 'bg-red-200 text-red-800'
-			icon = AlertCircleIcon
-			iconClass = ''
-			break
+			status = Status.UNDEFINED;
+			className = 'bg-red-200 text-red-800';
+			icon = AlertCircleIcon;
+			iconClass = '';
+			break;
 	}
 </script>
 

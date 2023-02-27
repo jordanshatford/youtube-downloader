@@ -1,12 +1,12 @@
 <script lang="ts">
-	import StatusButton from '$lib/components/StatusButton.svelte'
-	import { PlusIcon } from 'svelte-feather-icons'
-	import IconButton from '$lib/components/ui/IconButton.svelte'
-	import { downloads } from '$lib/stores/downloads'
-	import type { VideoInfo } from '$lib/utils/types'
-	import { Status } from '$lib/utils/types'
+	import StatusButton from '$lib/components/StatusButton.svelte';
+	import { PlusIcon } from 'svelte-feather-icons';
+	import IconButton from '$lib/components/ui/IconButton.svelte';
+	import { downloads } from '$lib/stores/downloads';
+	import type { VideoInfo } from '$lib/utils/types';
+	import { Status } from '$lib/utils/types';
 
-	export let result: VideoInfo
+	export let result: VideoInfo;
 </script>
 
 <div class="my-1 px-1 w-full md:w-1/2 lg:my-4 lg:px-4 lg:w-1/3">

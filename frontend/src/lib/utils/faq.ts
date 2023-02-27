@@ -1,7 +1,7 @@
-import type { ListItem } from '$lib/utils/types'
-import config from '$lib/config'
+import type { ListItem } from '$lib/utils/types';
+import config from '$lib/config';
 
-export const websiteName = config.about.hostname
+export const websiteName = config.about.hostname;
 
 export const faqs: ListItem[] = [
 	{
@@ -49,4 +49,4 @@ export const faqs: ListItem[] = [
 			'If an error has occured it is likely that you will not be able to download that video for one of many reasons. You can ' +
 			'attempt the download process again, but if an error occurs multiple times, the video may not be available to download.'
 	}
-]
+];

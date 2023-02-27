@@ -1,20 +1,20 @@
 <script lang="ts">
-	import { settings } from '$lib/stores/settings'
-	import Select from '$lib/components/ui/Select.svelte'
-	import { audioFormatOptions, audioFormatDescriptions } from '$lib/utils/audio-settings'
-	import Title from '$lib/components/typography/Title.svelte'
-	import Description from '$lib/components/typography/Description.svelte'
-	import Alert from '$lib/components/ui/Alert.svelte'
-	import { Variant } from '$lib/utils/types'
-	import config from '$lib/config'
+	import { settings } from '$lib/stores/settings';
+	import Select from '$lib/components/ui/Select.svelte';
+	import { audioFormatOptions, audioFormatDescriptions } from '$lib/utils/audio-settings';
+	import Title from '$lib/components/typography/Title.svelte';
+	import Description from '$lib/components/typography/Description.svelte';
+	import Alert from '$lib/components/ui/Alert.svelte';
+	import { Variant } from '$lib/utils/types';
+	import config from '$lib/config';
 
-	let showSavedAlert = false
+	let showSavedAlert = false;
 
 	function onSettingsChange() {
-		showSavedAlert = true
+		showSavedAlert = true;
 		setTimeout(() => {
-			showSavedAlert = false
-		}, 3000)
+			showSavedAlert = false;
+		}, 3000);
 	}
 </script>
 

@@ -1,4 +1,4 @@
-import { AudioFormat } from '$lib/utils/types'
+import { AudioFormat } from '$lib/utils/types';
 
 export const audioFormatOptions = [
 	{ value: AudioFormat.MP3, text: 'MP3' },
@@ -7,7 +7,7 @@ export const audioFormatOptions = [
 	{ value: AudioFormat.M4A, text: 'M4A' },
 	{ value: AudioFormat.OPUS, text: 'OPUS' },
 	{ value: AudioFormat.WAV, text: 'WAV' }
-]
+];
 
 export const audioFormatDescriptions = {
 	[AudioFormat.MP3]:
@@ -49,4 +49,4 @@ export const audioFormatDescriptions = {
 		'rates and bitrates but are often saved in a 44.1 kHz, 16-bit, stereo format, which is the standard ' +
 		'format used for CD audio. The WAVE format is based on the Resource Interchange File Format (RIFF), ' +
 		'a file container format primarily used to save video and sound.'
-}
+};

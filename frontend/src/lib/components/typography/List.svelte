@@ -1,7 +1,7 @@
 <script lang="ts">
-	import type { ListItem } from '$lib/utils/types'
+	import type { ListItem } from '$lib/utils/types';
 
-	export let items: ListItem[]
+	export let items: ListItem[];
 </script>
 
 <ol class="list-decimal py-6 md:mx-32 mx-6 text-left">

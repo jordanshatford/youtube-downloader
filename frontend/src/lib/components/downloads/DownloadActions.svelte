@@ -1,13 +1,13 @@
 <script lang="ts">
-	import { createEventDispatcher } from 'svelte'
-	import { Trash2Icon, DownloadIcon, LoaderIcon, RotateCwIcon } from 'svelte-feather-icons'
-	import IconButton from '$lib/components/ui/IconButton.svelte'
-	import Confirm from '$lib/components/ui/Confirm.svelte'
-	import { Status } from '$lib/utils/types'
+	import { createEventDispatcher } from 'svelte';
+	import { Trash2Icon, DownloadIcon, LoaderIcon, RotateCwIcon } from 'svelte-feather-icons';
+	import IconButton from '$lib/components/ui/IconButton.svelte';
+	import Confirm from '$lib/components/ui/Confirm.svelte';
+	import { Status } from '$lib/utils/types';
 
-	const dispatch = createEventDispatcher()
-	export let status: Status
-	export let awaitingFileBlob = false
+	const dispatch = createEventDispatcher();
+	export let status: Status;
+	export let awaitingFileBlob = false;
 </script>
 
 <div>

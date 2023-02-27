@@ -1,9 +1,9 @@
 <script lang="ts">
-	import Title from '$lib/components/typography/Title.svelte'
-	import Description from '$lib/components/typography/Description.svelte'
-	import List from '$lib/components/typography/List.svelte'
-	import { termsOfUse, websiteName } from '$lib/utils/terms-of-use'
-	import config from '$lib/config'
+	import Title from '$lib/components/typography/Title.svelte';
+	import Description from '$lib/components/typography/Description.svelte';
+	import List from '$lib/components/typography/List.svelte';
+	import { termsOfUse, websiteName } from '$lib/utils/terms-of-use';
+	import config from '$lib/config';
 </script>
 
 <svelte:head>

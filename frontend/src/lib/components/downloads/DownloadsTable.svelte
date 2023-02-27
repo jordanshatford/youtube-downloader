@@ -1,10 +1,10 @@
 <script lang="ts">
-	import StatusBadge from '$lib/components/StatusBadge.svelte'
-	import DownloadActions from '$lib/components/downloads/DownloadActions.svelte'
-	import { downloads } from '$lib/stores/downloads'
-	import type { VideoInfo } from '$lib/utils/types'
+	import StatusBadge from '$lib/components/StatusBadge.svelte';
+	import DownloadActions from '$lib/components/downloads/DownloadActions.svelte';
+	import { downloads } from '$lib/stores/downloads';
+	import type { VideoInfo } from '$lib/utils/types';
 
-	export let items: Record<string, VideoInfo>
+	export let items: Record<string, VideoInfo>;
 </script>
 
 <table class="min-w-full divide-y divide-zinc-200 dark:divide-zinc-800 table-auto">
@@ -57,8 +57,8 @@
 						awaitingFileBlob={downloadInfo.awaitingFileBlob}
 						on:delete={() => downloads.remove(downloadInfo.id)}
 						on:restart={() => {
-							downloads.remove(downloadInfo.id)
-							downloads.add(downloadInfo)
+							downloads.remove(downloadInfo.id);
+							downloads.add(downloadInfo);
 						}}
 						on:download={() => downloads.getFile(downloadInfo.id)}
 					/>

@@ -1,27 +1,27 @@
 <script lang="ts">
-	import { InfoIcon } from 'svelte-feather-icons'
-	import { fly, fade } from 'svelte/transition'
+	import { InfoIcon } from 'svelte-feather-icons';
+	import { fly, fade } from 'svelte/transition';
 
-	export let confirmText = 'Confirm'
-	export let cancelText = 'Cancel'
-	export let description = ''
-	export let title = 'Confirm?'
+	export let confirmText = 'Confirm';
+	export let cancelText = 'Cancel';
+	export let description = '';
+	export let title = 'Confirm?';
 
-	let showDialog = false
+	let showDialog = false;
 
 	let functionToCall = {
 		func: null,
 		args: null
-	}
+	};
 
 	function callFunction() {
-		showDialog = true
-		functionToCall['func'](...functionToCall['args'])
+		showDialog = true;
+		functionToCall['func'](...functionToCall['args']);
 	}
 
 	function confirm(func: unknown, ...args: unknown[]) {
-		functionToCall = { func, args }
-		showDialog = true
+		functionToCall = { func, args };
+		showDialog = true;
 	}
 </script>
 

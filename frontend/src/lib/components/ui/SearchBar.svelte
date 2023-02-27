@@ -1,15 +1,15 @@
 <script lang="ts">
-	import { createEventDispatcher } from 'svelte'
-	import { SearchIcon, LoaderIcon } from 'svelte-feather-icons'
+	import { createEventDispatcher } from 'svelte';
+	import { SearchIcon, LoaderIcon } from 'svelte-feather-icons';
 
-	const dispatch = createEventDispatcher()
+	const dispatch = createEventDispatcher();
 
-	export let loading = false
-	export let searchTerm: string
+	export let loading = false;
+	export let searchTerm: string;
 
 	function dispatchSearch(event: KeyboardEvent) {
 		if (event.key === 'Enter' && searchTerm.length > 0) {
-			dispatch('search', { term: searchTerm })
+			dispatch('search', { term: searchTerm });
 		}
 	}
 </script>

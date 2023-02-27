@@ -30,28 +30,28 @@ export enum AudioFormat {
 }
 
 export type AudioSettings = {
-	format: AudioFormat
-}
+	format: AudioFormat;
+};
 
 export type ListItem = {
-	title: string
-	description?: string
-}
+	title: string;
+	description?: string;
+};
 
 export type ChannelInfo = {
-	name: string
-	url?: string
-	thumbnail?: string
-}
+	name: string;
+	url?: string;
+	thumbnail?: string;
+};
 
 export type VideoInfo = {
-	id: string
-	url: string
-	title: string
-	thumbnail: string
-	duration?: string
-	channel?: ChannelInfo
-	status?: Status
-	options?: AudioSettings
-	awaitingFileBlob?: boolean
-}
+	id: string;
+	url: string;
+	title: string;
+	thumbnail: string;
+	duration?: string;
+	channel?: ChannelInfo;
+	status?: Status;
+	options?: AudioSettings;
+	awaitingFileBlob?: boolean;
+};

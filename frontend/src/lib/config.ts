@@ -1,8 +1,8 @@
-import { AudioFormat, Theme } from '$lib/utils/types'
+import { AudioFormat, Theme } from '$lib/utils/types';
 
 export const env = {
 	serverAddress: import.meta.env.VITE_SERVER_ADDR as string
-}
+};
 
 const config = {
 	about: {
@@ -24,6 +24,6 @@ const config = {
 		owner: 'Jordan Shatford',
 		year: 2022
 	}
-}
+};
 
-export default config
+export default config;

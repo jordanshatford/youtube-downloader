@@ -1,14 +1,14 @@
 <script lang="ts">
-	import Title from '$lib/components/typography/Title.svelte'
-	import Description from '$lib/components/typography/Description.svelte'
-	import { search } from '$lib/stores/search'
-	import SearchBar from '$lib/components/ui/SearchBar.svelte'
-	import ResultCard from '$lib/components/ResultCard.svelte'
-	import config from '$lib/config'
+	import Title from '$lib/components/typography/Title.svelte';
+	import Description from '$lib/components/typography/Description.svelte';
+	import { search } from '$lib/stores/search';
+	import SearchBar from '$lib/components/ui/SearchBar.svelte';
+	import ResultCard from '$lib/components/ResultCard.svelte';
+	import config from '$lib/config';
 
 	function searchVideos(event: CustomEvent) {
-		let term = event.detail.term
-		search.get(term)
+		let term = event.detail.term;
+		search.get(term);
 	}
 </script>
 

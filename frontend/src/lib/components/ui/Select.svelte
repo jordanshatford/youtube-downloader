@@ -1,8 +1,8 @@
 <script lang="ts">
-	export let title: string
-	export let value: number | string
-	export let options: { value: number | string; text: string }[]
-	export let disabled = false
+	export let title: string;
+	export let value: number | string;
+	export let options: { value: number | string; text: string }[];
+	export let disabled = false;
 </script>
 
 <div>
