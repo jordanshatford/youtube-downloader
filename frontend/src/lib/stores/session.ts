@@ -4,7 +4,7 @@ import { getApiEndpoint, APIEndpointConstants } from '$lib/utils/api';
 function createSessionStore() {
 	const RE_ATTEMPT_INTERVAL = 10000;
 
-	const { subscribe, set } = writable(null);
+	const { subscribe, set } = writable<string | null>(null);
 
 	async function setup() {
 		const { endpoint, options } = getApiEndpoint({

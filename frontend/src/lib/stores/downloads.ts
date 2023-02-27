@@ -10,7 +10,7 @@ function createDownloadsStore() {
 
 	const { subscribe, set, update } = writable(downloads);
 
-	let downloadStatus: EventSource = null;
+	let downloadStatus: EventSource | null = null;
 
 	function setupStatusListener() {
 		const { endpoint } = getApiEndpoint({
@@ -95,7 +95,7 @@ function createDownloadsStore() {
 						state[id].awaitingFileBlob = false;
 						return state;
 					});
-					fileSaver.saveAs(blob, `${downloads[id].title}.${downloads[id].options.format}`);
+					fileSaver.saveAs(blob, `${downloads[id].title}.${downloads?.[id]?.options?.format}`);
 				});
 			} else {
 				// file was not found on the server a json error message is returned

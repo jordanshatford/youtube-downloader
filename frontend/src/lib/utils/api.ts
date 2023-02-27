@@ -36,14 +36,14 @@ export function getApiEndpoint(config: {
 	if (get(session)) {
 		config.queryParams = {
 			...config.queryParams,
-			sessionId: get(session)
+			sessionId: get(session) ?? ''
 		};
 	}
 
 	// Generate and add queryParam string for the key values specified
 	if (config.queryParams !== undefined) {
 		const queryParamsString = Object.keys(config.queryParams)
-			.map((key) => `${key}=${config.queryParams[key]}`)
+			.map((key) => `${key}=${config?.queryParams?.[key]}`)
 			.join('&');
 		endpointString = `${endpointString}?${queryParamsString}`;
 	}

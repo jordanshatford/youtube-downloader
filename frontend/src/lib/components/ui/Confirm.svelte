@@ -9,13 +9,14 @@
 
 	let showDialog = false;
 
-	let functionToCall = {
+	let functionToCall: { func: unknown | null; args: unknown[] } = {
 		func: null,
-		args: null
+		args: []
 	};
 
 	function callFunction() {
 		showDialog = true;
+		// @ts-expect-error Object is of type "unknown"
 		functionToCall['func'](...functionToCall['args']);
 	}
 

@@ -32,17 +32,17 @@
 		<footer class="flex items-center justify-between leading-none p-2 md:p-4">
 			<a
 				class="flex items-center no-underline hover:underline text-zinc-800 dark:text-zinc-400"
-				href={result.channel.url}
+				href={result.channel?.url}
 				target="_blank"
 				rel="noreferrer"
 			>
 				<img
-					alt={result.channel.name}
+					alt={result.channel?.name}
 					class="block w-10 h-10 rounded-lg"
-					src={result.channel.thumbnail}
+					src={result.channel?.thumbnail}
 				/>
 				<p class="ml-2 text-sm">
-					{result.channel.name}
+					{result.channel?.name}
 				</p>
 			</a>
 			{#if !(result.id in $downloads)}
@@ -53,7 +53,7 @@
 					size="1.5x"
 				/>
 			{:else}
-				<StatusButton status={$downloads[result.id]?.status} />
+				<StatusButton status={$downloads[result.id]?.status ?? Status.UNDEFINED} />
 			{/if}
 		</footer>
 	</article>

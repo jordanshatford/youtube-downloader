@@ -11,9 +11,9 @@ function createSettingsStore() {
 
 	if (browser) {
 		const data = localStorage?.getItem(SETTINGS_KEY);
-		const parsedData = JSON.parse(data) as AudioSettings;
 
-		if (parsedData) {
+		if (data !== null) {
+			const parsedData = JSON.parse(data) as AudioSettings;
 			set(parsedData);
 		}
 	}

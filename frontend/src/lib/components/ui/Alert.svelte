@@ -9,7 +9,7 @@
 
 	export let variant: Variant;
 	export let title: string;
-	export let message: string = null;
+	export let message: string | null = null;
 
 	const themes = {
 		[Variant.DANGER]: {

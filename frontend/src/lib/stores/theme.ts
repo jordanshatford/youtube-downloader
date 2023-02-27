@@ -24,7 +24,7 @@ function createThemeStore() {
 	});
 
 	function applyDark() {
-		document.querySelector('html').classList.add(Theme.DARK);
+		document.querySelector('html')?.classList.add(Theme.DARK);
 	}
 
 	function toggle() {
@@ -32,7 +32,7 @@ function createThemeStore() {
 			state = state === Theme.DARK ? Theme.LIGHT : Theme.DARK;
 			return state;
 		});
-		document.querySelector('html').classList.toggle(Theme.DARK);
+		document.querySelector('html')?.classList.toggle(Theme.DARK);
 	}
 
 	return {
