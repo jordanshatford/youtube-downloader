@@ -29,6 +29,6 @@ const config = {
 		}
 	},
 	plugins: []
-}
+};
 
-module.exports = config
+module.exports = config;
