@@ -1,7 +1,7 @@
 import os
 from typing import Callable
 
-from youtube_dl.postprocessor.common import PostProcessor
+from yt_dlp.postprocessor import PostProcessor
 
 from .helpers import Status
 

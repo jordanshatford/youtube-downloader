@@ -5,6 +5,7 @@ The backend for this project is written using the [Python](https://www.python.or
 The backend also utilizes other technologies like:
   - [FFMPEG](https://www.ffmpeg.org/)
   - [YouTubeDL](https://youtube-dl.org/)
+  - [YT DLP](https://github.com/yt-dlp/yt-dlp)
 
 ## Developing
 To setup the backend for local development you must first ensure that you have the following dependencies installed:

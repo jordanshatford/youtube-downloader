@@ -3,7 +3,7 @@ import threading
 import time
 from typing import Callable
 
-from youtube_dl import YoutubeDL
+from yt_dlp import YoutubeDL
 
 from .helpers import Status
 from .models import AudioOptions
