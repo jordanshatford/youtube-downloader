@@ -2,7 +2,7 @@
 	import { CheckCircleIcon, AlertCircleIcon, LoaderIcon } from 'svelte-feather-icons';
 	import { Status } from '$lib/utils/types';
 
-	export let status: Status;
+	export let status: Status | undefined;
 
 	let className: string;
 	let icon = CheckCircleIcon;
