@@ -16,7 +16,7 @@
 		"@types/cookie": "^0.5.1",
 		"@types/file-saver": "^2.0.5",
 		"@typescript-eslint/eslint-plugin": "^5.54.0",
-		"@typescript-eslint/parser": "^5.54.0",
+		"@typescript-eslint/parser": "^5.57.0",
 		"autoprefixer": "^10.4.13",
 		"cssnano": "^5.1.15",
 		"eslint": "^8.35.0",
