@@ -7,9 +7,9 @@ To host using [Vercel](https://vercel.com/), you must specify the following `Bui
 
 ```
 Framework Preset: SvelteKit
-Build Command: `npm run build` or `svelte-kit build`
+Build Command: `pnpm run build` or `svelte-kit build`
 Output Directory: build
-Install Command: `yarn install` or `npm install`
+Install Command: `yarn install` or `pnpm install`
 Development Command: svelte-kit dev
 ```
 

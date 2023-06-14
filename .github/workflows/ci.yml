@@ -23,14 +23,17 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node-version }}
+      - uses: pnpm/action-setup@v2
+        with:
+          version: 8
       - name: Install dependencies
-        run: npm install
+        run: pnpm install
       - name: Run linting check
-        run: npm run lint
+        run: pnpm lint
       - name: Run diagnostics check
-        run: npm run check -- --output machine
+        run: pnpm check -- --output machine
       - name: Run build
-        run: npm run build
+        run: pnpm build
 
   backend:
     name: Backend (Pre-commit)
