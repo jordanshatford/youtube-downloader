@@ -6,7 +6,7 @@
 </script>
 
 <script lang="ts">
-	type T = $$Generic<Record<string, unknown>>;
+	type T = $$Generic<Record<string, unknown>>; // eslint-disable-line no-undef
 	export let columns: TableColumn[] = [];
 	export let rows: T[] = [];
 

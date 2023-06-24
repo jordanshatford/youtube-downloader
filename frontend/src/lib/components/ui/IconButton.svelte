@@ -1,7 +1,7 @@
 <script lang="ts">
-	import type { SvelteComponent } from 'svelte';
+	import type { PlusIcon } from 'svelte-feather-icons';
 
-	export let icon: typeof SvelteComponent;
+	export let icon: typeof PlusIcon;
 	export let size = '1x';
 	let className = '';
 	export { className as class };
