@@ -4,3 +4,4 @@ sessions/
 .env
 .vscode/
 .mypy_cache/
+venv/

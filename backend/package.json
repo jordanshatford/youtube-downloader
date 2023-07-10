@@ -1,0 +1,12 @@
+{
+	"name": "backend",
+	"version": "0.1.0",
+	"scripts": {
+		"dev": "pnpm venv:generate && pnpm venv:activate && pnpm venv:install && pnpm venv:run",
+		"venv:generate": "python3 -m venv venv",
+        "venv:activate": "source venv/bin/activate",
+        "venv:install": "python3 -m pip install -r requirements.txt",
+        "venv:run": "python3 main.py",
+        "venv:remove": "rm -rf venv/"
+	}
+}

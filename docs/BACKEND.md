@@ -13,14 +13,26 @@ To setup the backend for local development you must first ensure that you have t
   - [Python](https://www.python.org/)
   - [PIP](https://pypi.org/project/pip/)
 
+Optionally: create and activate the Venv to use:
+```
+python3 -m venv venv
+source venv/bin/activate
+```
+
 Now you can install the project specific dependencies using:
 ```bash
-pip install -r requirements.txt
+python3 -m pip install -r requirements.txt
 ```
 
 Once the project dependencies are installed you can start backend server using:
 ```bash
-python main.py
+python3 main.py
+```
+
+## Using PNPM
+The backend can be run using [PNPM](https://pnpm.io/) to handle setting up the Venv, installing dependencies, and running the server. You can run the backend using:
+```bash
+pnpm dev
 ```
 
 ## Using Docker
