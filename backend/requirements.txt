@@ -1,4 +1,4 @@
-fastapi==0.99.0
+fastapi==0.100.0
 sse-starlette==1.6.1
 uvicorn==0.22.0
 youtube-search-python==1.6.6
