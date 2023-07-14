@@ -2,7 +2,8 @@
 	"name": "backend",
 	"version": "0.1.0",
 	"scripts": {
-		"dev": "python3 -m venv venv && source venv/bin/activate && python3 -m pip install -r requirements.txt && python3 main.py",
-        "clean": "rm -rf venv/"
+		"dev": "./scripts.sh run",
+		"prepare": "./scripts.sh prepare",
+		"format": "./scripts.sh format"
 	}
 }
