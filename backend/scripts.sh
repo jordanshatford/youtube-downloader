@@ -2,7 +2,7 @@
 
 # Prepare the environment for the user
 prepare()
-{   
+{
     # Clean to return enviroment to original state
     clean
     # Install pre-commit hooks
