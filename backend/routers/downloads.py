@@ -39,10 +39,10 @@ async def status_stream(request: Request, session_id: str):
             if await request.is_disconnected():
                 break
             try:
-                msg = session_manager.get_status_queue(
+                update = session_manager.get_status_queue(
                     session_id,
                 ).get(block=False)
-                yield dict(data=msg)
+                yield update.dict()
             except queue.Empty:
                 pass
             await asyncio.sleep(1)

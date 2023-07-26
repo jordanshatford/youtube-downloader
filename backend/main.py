@@ -49,7 +49,7 @@ app.include_router(downloads.router)
 
 
 @app.on_event('shutdown')
-def shutdown_cleanup():
+def shutdown_cleanup() -> None:
     print('Cleaning up all session for shutdown', flush=True)
     session_manager.cleanup(force=True)
 

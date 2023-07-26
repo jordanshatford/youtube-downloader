@@ -1,4 +1,3 @@
-import json
 import os
 import shutil
 from datetime import datetime
@@ -8,9 +7,9 @@ from typing import Callable
 from typing import Dict
 from typing import Union
 
-from .helpers import format_status_update
-from .helpers import Status
 from .models import AudioOptions
+from .models import Status
+from .models import StatusUpdate
 from .threads import RepeatedTimer
 from .threads import YoutubeDownloadThread
 
@@ -55,7 +54,7 @@ class Session:
         self.download_manager = AudioDownloadManager(
             self._output_dir, announcer=self._status_update,
         )
-        self.status_queue: Queue[str] = Queue()
+        self.status_queue: Queue[StatusUpdate] = Queue()
 
     def update_use_time(self):
         self._last_use = datetime.now()
@@ -72,8 +71,9 @@ class Session:
 
     def _status_update(self, video_id: str, status: Status):
         self.status_queue.put(
-            json.dumps(
-                format_status_update(video_id, status),
+            StatusUpdate(
+                id=video_id,
+                status=status,
             ),
         )
 
@@ -119,7 +119,7 @@ class SessionManager:
             self.setup_session(id)
             return self._sessions[id].download_manager
 
-    def get_status_queue(self, id: str) -> Queue:
+    def get_status_queue(self, id: str) -> Queue[StatusUpdate]:
         self._update_session_use_time(id)
         try:
             return self._sessions[id].status_queue

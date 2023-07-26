@@ -3,7 +3,7 @@ from typing import Callable
 
 from yt_dlp.postprocessor import PostProcessor
 
-from .helpers import Status
+from .models import Status
 
 
 class FileProcessingComplete(PostProcessor):
