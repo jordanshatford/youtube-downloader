@@ -42,7 +42,7 @@ async def status_stream(request: Request, session_id: str):
                 update = session_manager.get_status_queue(
                     session_id,
                 ).get(block=False)
-                yield update.dict()
+                yield dict(data=update.json())
             except queue.Empty:
                 pass
             await asyncio.sleep(1)
