@@ -45,11 +45,7 @@ function createDownloadsStore() {
 		const { endpoint, options } = getApiEndpoint({
 			base: APIEndpointConstants.DOWNLOADS,
 			method: 'POST',
-			body: JSON.stringify({
-				id: downloadInfo.id,
-				url: downloadInfo.url,
-				options: downloadInfo.options
-			})
+			body: JSON.stringify(downloadInfo)
 		});
 		fetch(endpoint, options).catch((err) => {
 			console.error('Failed to add video to download ', err);
