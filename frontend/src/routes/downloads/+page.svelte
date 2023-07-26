@@ -32,7 +32,7 @@
 
 <div>
 	<Title>Downloads</Title>
-	<Description>View videos being converted to MP3</Description>
+	<Description>View videos being converted</Description>
 	<div class="flex flex-col mt-4">
 		<div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
 			<div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">

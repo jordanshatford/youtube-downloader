@@ -20,10 +20,10 @@ allow users to download specific videos as audio files.
 """
 
 app = FastAPI(
-    title='YouTube to MP3 API',
+    title='YouTube Audio Downloader API',
     description=description,
     contact={
-        'name': 'YouTube to MP3',
+        'name': 'YouTube Audio Downloader',
         'url': 'https://github.com/jordanshatford/youtube-audio-downloader',
     },
     license_info={
