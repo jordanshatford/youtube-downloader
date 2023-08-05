@@ -16,7 +16,7 @@ router = APIRouter()
 
 
 @router.post('/downloads', tags=['downloads'], response_model=Message)
-def add_download(video: Video, response: Response, sessionId: str):
+def post_download(video: Video, response: Response, sessionId: str):
     download_manager = session_manager.get_download_manager(sessionId)
 
     if video.options is None:
@@ -51,7 +51,7 @@ async def status_stream(request: Request, session_id: str):
 
 
 @router.get('/downloads/status', tags=['downloads'])
-async def downloads_status(request: Request, sessionId: str):
+async def get_downloads_status(request: Request, sessionId: str):
     event_source = status_stream(request, session_id=sessionId)
     return EventSourceResponse(event_source)
 
