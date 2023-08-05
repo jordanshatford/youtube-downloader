@@ -29,18 +29,18 @@ class AudioOptions(BaseModel):
 
 class Channel(BaseModel):
     name: str
-    url: Optional[str]
-    thumbnail: Optional[str]
+    url: Optional[str] = None
+    thumbnail: Optional[str] = None
 
 
 class Video(BaseModel):
     id: str
     url: str
-    options: Optional[AudioOptions]
-    title: Optional[str]
-    duration: Optional[str]
-    thumbnail: Optional[str]
-    channel: Optional[Channel]
+    options: Optional[AudioOptions] = None
+    title: Optional[str] = None
+    duration: Optional[str] = None
+    thumbnail: Optional[str] = None
+    channel: Optional[Channel] = None
 
 
 class Session(BaseModel):
