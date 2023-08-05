@@ -8,20 +8,10 @@ from routers import session
 from starlette.middleware.cors import CORSMiddleware
 from utils.managers import session_manager
 
-tags_metadata = [
-    {'name': 'session', 'description': 'Get session id to use for future requests.'},   # noqa: E501
-    {'name': 'search', 'description': 'Search YouTube for videos.'},
-    {'name': 'downloads', 'description': 'Manage downloads of videos from YouTube.'},   # noqa: E501
-]
-
-description = """
-YouTube Audio Downloader API works with the frontend website to
-allow users to download specific videos as audio files.
-"""
 
 app = FastAPI(
     title='YouTube Audio Downloader API',
-    description=description,
+    description='API to search and download YouTube videos in various audio formats.',  # noqa: E501
     contact={
         'name': 'YouTube Audio Downloader',
         'url': 'https://github.com/jordanshatford/youtube-audio-downloader',
@@ -30,7 +20,11 @@ app = FastAPI(
         'name': 'MIT License',
         'url': 'https://github.com/jordanshatford/youtube-audio-downloader/blob/main/LICENSE',   # noqa: E501
     },
-    openapi_tags=tags_metadata,
+    openapi_tags=[
+        {'name': 'session', 'description': 'Get session id to use for future requests.'},   # noqa: E501
+        {'name': 'search', 'description': 'Search YouTube for videos.'},
+        {'name': 'downloads', 'description': 'Manage downloads of videos from YouTube.'},   # noqa: E501
+    ],
 )
 
 allowed_origin = os.environ.get('ALLOWED_ORIGIN', 'http://localhost:5173')
