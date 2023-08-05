@@ -2,11 +2,19 @@ import os
 
 import uvicorn
 from fastapi import FastAPI
+from fastapi import routing
 from routers import downloads
 from routers import search
 from routers import session
 from starlette.middleware.cors import CORSMiddleware
 from utils.managers import session_manager
+
+
+# Note: this requires that function names for each route are unique. If not
+#       the openapi spec will have duplicate unique ID's. We use this to ensure
+#       the generated client has reasonable function names.
+def generate_custom_unique_id(route: routing.APIRoute):
+    return route.name
 
 
 app = FastAPI(
@@ -25,6 +33,7 @@ app = FastAPI(
         {'name': 'search', 'description': 'Search YouTube for videos.'},
         {'name': 'downloads', 'description': 'Manage downloads of videos from YouTube.'},   # noqa: E501
     ],
+    generate_unique_id_function=generate_custom_unique_id,
 )
 
 allowed_origin = os.environ.get('ALLOWED_ORIGIN', 'http://localhost:5173')

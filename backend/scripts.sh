@@ -25,6 +25,13 @@ format()
     pre-commit run --all-files
 }
 
+# Generate openapi.json from the backend app
+generate()
+{
+    # Enter the virtual environment and run the generation script
+    source venv/bin/activate && python3 generate_openapi.py
+}
+
 # Clean up existing virtualenv and uninstall pre-commit hooks. This is used to return
 # the environment to its original state.
 clean()
@@ -46,6 +53,8 @@ help()
 case "$1" in
     prepare)
         prepare; ;;
+    generate)
+        generate; ;;
     run)
         run; ;;
     format)

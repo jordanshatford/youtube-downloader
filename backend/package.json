@@ -3,7 +3,8 @@
 	"version": "0.1.0",
 	"scripts": {
 		"dev": "./scripts.sh run",
-		"prepare": "./scripts.sh prepare",
-		"format": "./scripts.sh format"
+		"prepare": "./scripts.sh prepare && pnpm generate:openapi",
+		"format": "./scripts.sh format",
+		"generate:openapi": "./scripts.sh generate"
 	}
 }

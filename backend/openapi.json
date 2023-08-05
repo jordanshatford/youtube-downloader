@@ -1,0 +1,512 @@
+{
+    "openapi": "3.1.0",
+    "info": {
+        "title": "YouTube Audio Downloader API",
+        "description": "API to search and download YouTube videos in various audio formats.",
+        "contact": {
+            "name": "YouTube Audio Downloader",
+            "url": "https://github.com/jordanshatford/youtube-audio-downloader"
+        },
+        "license": {
+            "name": "MIT License",
+            "url": "https://github.com/jordanshatford/youtube-audio-downloader/blob/main/LICENSE"
+        },
+        "version": "0.1.0"
+    },
+    "paths": {
+        "/search": {
+            "get": {
+                "tags": [
+                    "search"
+                ],
+                "summary": "Get Search",
+                "operationId": "get_search",
+                "parameters": [
+                    {
+                        "name": "term",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "title": "Term"
+                        }
+                    },
+                    {
+                        "name": "results",
+                        "in": "query",
+                        "required": false,
+                        "schema": {
+                            "type": "integer",
+                            "default": 12,
+                            "title": "Results"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/Video"
+                                    },
+                                    "title": "Response Get Search"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/session": {
+            "get": {
+                "tags": [
+                    "session"
+                ],
+                "summary": "Get Session",
+                "operationId": "get_session",
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Session"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/downloads": {
+            "post": {
+                "tags": [
+                    "downloads"
+                ],
+                "summary": "Post Download",
+                "operationId": "post_download",
+                "parameters": [
+                    {
+                        "name": "sessionId",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "title": "Sessionid"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Video"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Message"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/downloads/status": {
+            "get": {
+                "tags": [
+                    "downloads"
+                ],
+                "summary": "Get Downloads Status",
+                "operationId": "get_downloads_status",
+                "parameters": [
+                    {
+                        "name": "sessionId",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "title": "Sessionid"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/downloads/{video_id}": {
+            "get": {
+                "tags": [
+                    "downloads"
+                ],
+                "summary": "Get Download",
+                "operationId": "get_download",
+                "parameters": [
+                    {
+                        "name": "video_id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "title": "Video Id"
+                        }
+                    },
+                    {
+                        "name": "sessionId",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "title": "Sessionid"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Message"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "downloads"
+                ],
+                "summary": "Delete Download",
+                "operationId": "delete_download",
+                "parameters": [
+                    {
+                        "name": "video_id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "title": "Video Id"
+                        }
+                    },
+                    {
+                        "name": "sessionId",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "title": "Sessionid"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Message"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "AudioFormat": {
+                "type": "string",
+                "enum": [
+                    "mp3",
+                    "aac",
+                    "flac",
+                    "m4a",
+                    "opus",
+                    "wav"
+                ],
+                "title": "AudioFormat"
+            },
+            "AudioOptions": {
+                "properties": {
+                    "format": {
+                        "$ref": "#/components/schemas/AudioFormat"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "format"
+                ],
+                "title": "AudioOptions"
+            },
+            "Channel": {
+                "properties": {
+                    "name": {
+                        "type": "string",
+                        "title": "Name"
+                    },
+                    "url": {
+                        "anyOf": [
+                            {
+                                "type": "string"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Url"
+                    },
+                    "thumbnail": {
+                        "anyOf": [
+                            {
+                                "type": "string"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Thumbnail"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "name"
+                ],
+                "title": "Channel"
+            },
+            "HTTPValidationError": {
+                "properties": {
+                    "detail": {
+                        "items": {
+                            "$ref": "#/components/schemas/ValidationError"
+                        },
+                        "type": "array",
+                        "title": "Detail"
+                    }
+                },
+                "type": "object",
+                "title": "HTTPValidationError"
+            },
+            "Message": {
+                "properties": {
+                    "title": {
+                        "type": "string",
+                        "title": "Title"
+                    },
+                    "message": {
+                        "type": "string",
+                        "title": "Message"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "title",
+                    "message"
+                ],
+                "title": "Message"
+            },
+            "Session": {
+                "properties": {
+                    "id": {
+                        "type": "string",
+                        "title": "Id"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "id"
+                ],
+                "title": "Session"
+            },
+            "ValidationError": {
+                "properties": {
+                    "loc": {
+                        "items": {
+                            "anyOf": [
+                                {
+                                    "type": "string"
+                                },
+                                {
+                                    "type": "integer"
+                                }
+                            ]
+                        },
+                        "type": "array",
+                        "title": "Location"
+                    },
+                    "msg": {
+                        "type": "string",
+                        "title": "Message"
+                    },
+                    "type": {
+                        "type": "string",
+                        "title": "Error Type"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "loc",
+                    "msg",
+                    "type"
+                ],
+                "title": "ValidationError"
+            },
+            "Video": {
+                "properties": {
+                    "id": {
+                        "type": "string",
+                        "title": "Id"
+                    },
+                    "url": {
+                        "type": "string",
+                        "title": "Url"
+                    },
+                    "options": {
+                        "anyOf": [
+                            {
+                                "$ref": "#/components/schemas/AudioOptions"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ]
+                    },
+                    "title": {
+                        "anyOf": [
+                            {
+                                "type": "string"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Title"
+                    },
+                    "duration": {
+                        "anyOf": [
+                            {
+                                "type": "string"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Duration"
+                    },
+                    "thumbnail": {
+                        "anyOf": [
+                            {
+                                "type": "string"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Thumbnail"
+                    },
+                    "channel": {
+                        "anyOf": [
+                            {
+                                "$ref": "#/components/schemas/Channel"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ]
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "id",
+                    "url"
+                ],
+                "title": "Video"
+            }
+        }
+    },
+    "tags": [
+        {
+            "name": "session",
+            "description": "Get session id to use for future requests."
+        },
+        {
+            "name": "search",
+            "description": "Search YouTube for videos."
+        },
+        {
+            "name": "downloads",
+            "description": "Manage downloads of videos from YouTube."
+        }
+    ]
+}
