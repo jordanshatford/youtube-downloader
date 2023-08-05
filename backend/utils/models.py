@@ -14,8 +14,17 @@ class Status(str, enum.Enum):
     UNDEFINED = 'UNDEFINED'
 
 
+class AudioFormat(str, enum.Enum):
+    MP3 = 'mp3'
+    AAC = 'aac'
+    FLAC = 'flac'
+    M4A = 'm4a'
+    OPUS = 'opus'
+    WAV = 'wav'
+
+
 class AudioOptions(BaseModel):
-    format: str
+    format: AudioFormat
 
 
 class Channel(BaseModel):
