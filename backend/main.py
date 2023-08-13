@@ -60,6 +60,6 @@ def shutdown_cleanup() -> None:
 if __name__ == '__main__':
     host = os.environ.get('HOST', '0.0.0.0')
     port = int(os.environ.get('PORT', 8080))
-    debug = int(os.environ.get('DEBUG', 0)) == 1
+    dev = os.environ.get('DEV') is not None
     print(f'Serving on {host}:{port}', flush=True)
-    uvicorn.run('main:app', host=host, port=port, reload=debug)
+    uvicorn.run('main:app', host=host, port=port, reload=dev)

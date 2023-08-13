@@ -7,7 +7,7 @@ services:
     image: youtubeaudiodownloader-backend:latest
     restart: always
     environment:
-      DEBUG: 1
+      DEV: true
       HOST: 0.0.0.0
       PORT: 8080
       ALLOWED_ORIGIN: http://localhost:5173
