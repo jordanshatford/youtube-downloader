@@ -4,8 +4,7 @@ ENV DEBIAN_FRONTEND=noninteractive
 
 RUN apt-get update -y
 
-RUN apt-get install -y --no-install-recommends python3-dev python3-pip python3-venv ffmpeg \
-    && rm -rf /var/lib/apt/lists/*
+RUN apt-get install -y --no-install-recommends python3-dev python3-pip python3-venv ffmpeg
 
 WORKDIR /backend
 
