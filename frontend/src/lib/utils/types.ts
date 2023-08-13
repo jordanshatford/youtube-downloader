@@ -12,7 +12,8 @@ export enum Variant {
 	DANGER = 'danger',
 	SUCCESS = 'success',
 	WARNING = 'warning',
-	INFO = 'info'
+	INFO = 'info',
+	DEFAULT = 'default'
 }
 
 export enum Theme {

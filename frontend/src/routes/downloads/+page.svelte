@@ -2,6 +2,7 @@
 	import { Trash2Icon, DownloadIcon, LoaderIcon, RotateCwIcon } from 'svelte-feather-icons';
 	import IconButton from '$lib/components/ui/IconButton.svelte';
 	import Title from '$lib/components/typography/Title.svelte';
+	import Tag from '$lib/components/ui/Tag.svelte';
 	import Description from '$lib/components/typography/Description.svelte';
 	import { downloads } from '$lib/stores/downloads';
 	import StatusBadge from '$lib/components/StatusBadge.svelte';
@@ -14,6 +15,10 @@
 		{
 			key: 'info',
 			title: 'Info'
+		},
+		{
+			key: 'format',
+			title: 'Format'
 		},
 		{
 			key: 'status',
@@ -55,6 +60,8 @@
 										</div>
 									</div>
 								</div>
+							{:else if column.key === 'format'}
+								<Tag>{row.options?.format.toUpperCase()}</Tag>
 							{:else if column.key === 'status'}
 								<StatusBadge status={row.status} />
 							{:else if column.key === 'actions'}
