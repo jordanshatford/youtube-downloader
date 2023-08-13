@@ -7,7 +7,7 @@
 	} from 'svelte-feather-icons';
 	import { Variant } from '$lib/utils/types';
 
-	export let variant: Variant;
+	export let variant: Variant = Variant.DEFAULT;
 	export let title: string;
 	export let message: string | null = null;
 
@@ -27,6 +27,10 @@
 		[Variant.INFO]: {
 			icon: InfoIcon,
 			class: 'text-blue-800 bg-blue-200'
+		},
+		[Variant.DEFAULT]: {
+			icon: undefined,
+			class: 'bg-zinc-400 text-zinc-800'
 		}
 	};
 </script>
@@ -37,7 +41,9 @@
 >
 	<div class="sm:flex items-center">
 		<div class="flex items-end">
-			<svelte:component this={themes[variant].icon} size="1.5x" class={themes[variant].class} />
+			{#if themes[variant].icon}
+				<svelte:component this={themes[variant].icon} size="1.5x" class={themes[variant].class} />
+			{/if}
 			<p class="mx-2 font-bold {themes[variant].class}">{title}</p>
 		</div>
 		{#if message}
