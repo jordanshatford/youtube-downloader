@@ -8,13 +8,7 @@ export enum Status {
 	UNDEFINED = 'UNDEFINED'
 }
 
-export enum Variant {
-	DANGER = 'danger',
-	SUCCESS = 'success',
-	WARNING = 'warning',
-	INFO = 'info',
-	DEFAULT = 'default'
-}
+export type Variant = 'default' | 'info' | 'success' | 'warning' | 'danger';
 
 export enum Theme {
 	LIGHT = 'light',

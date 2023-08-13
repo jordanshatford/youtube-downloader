@@ -1,24 +1,24 @@
 <script lang="ts">
-	import { Variant } from '$lib/utils/types';
+	import type { Variant } from '$lib/utils/types';
 
-	export let variant: Variant = Variant.DEFAULT;
+	export let variant: Variant = 'default';
 
 	let className: string;
 
 	$: switch (variant) {
-		case Variant.WARNING:
+		case 'warning':
 			className = 'bg-yellow-200 text-yellow-800';
 			break;
-		case Variant.INFO:
+		case 'info':
 			className = 'bg-blue-200 text-blue-800';
 			break;
-		case Variant.SUCCESS:
+		case 'success':
 			className = 'bg-green-200 text-green-800';
 			break;
-		case Variant.DANGER:
+		case 'danger':
 			className = 'bg-red-200 text-red-800';
 			break;
-		default:
+		case 'default':
 			className = 'bg-zinc-400 text-zinc-800';
 			break;
 	}

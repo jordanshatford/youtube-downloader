@@ -5,30 +5,30 @@
 		AlertCircleIcon,
 		InfoIcon
 	} from 'svelte-feather-icons';
-	import { Variant } from '$lib/utils/types';
+	import type { Variant } from '$lib/utils/types';
 
-	export let variant: Variant = Variant.DEFAULT;
+	export let variant: Variant = 'default';
 	export let title: string;
 	export let message: string | null = null;
 
 	const themes = {
-		[Variant.DANGER]: {
+		danger: {
 			icon: AlertCircleIcon,
 			class: 'text-red-800 bg-red-200'
 		},
-		[Variant.SUCCESS]: {
+		success: {
 			icon: CheckCircleIcon,
 			class: 'text-green-700 bg-green-200'
 		},
-		[Variant.WARNING]: {
+		warning: {
 			icon: AlertTriangleIcon,
 			class: 'text-yellow-600 bg-yellow-200'
 		},
-		[Variant.INFO]: {
+		info: {
 			icon: InfoIcon,
 			class: 'text-blue-800 bg-blue-200'
 		},
-		[Variant.DEFAULT]: {
+		default: {
 			icon: undefined,
 			class: 'bg-zinc-400 text-zinc-800'
 		}

@@ -5,7 +5,6 @@
 	import Title from '$lib/components/typography/Title.svelte';
 	import Description from '$lib/components/typography/Description.svelte';
 	import Alert from '$lib/components/ui/Alert.svelte';
-	import { Variant } from '$lib/utils/types';
 	import config from '$lib/config';
 
 	let showSavedAlert = false;
@@ -37,7 +36,7 @@
 			</div>
 		</div>
 		{#if showSavedAlert}
-			<Alert title="Setting Updated" variant={Variant.SUCCESS} />
+			<Alert title="Setting Updated" variant="success" />
 		{/if}
 	</div>
 	<p class="text-center mt-4 max-w-xl mx-auto text-zinc-500">
