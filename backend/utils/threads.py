@@ -33,7 +33,7 @@ class YoutubeDownloadThread(threading.Thread):
             'postprocessors': [
                 {
                     'key': 'FFmpegExtractAudio',
-                    'preferredcodec': options.format,
+                    'preferredcodec': options.format.value,
                     'preferredquality': '192',
                 },
                 {'key': 'FFmpegMetadata'},
@@ -56,7 +56,7 @@ class YoutubeDownloadThread(threading.Thread):
 
     def get_file_location(self) -> str:
         path = os.path.join(
-            self._output_directory, f'{self._id}.{self._options.format}',
+            self._output_directory, f'{self._id}.{self._options.format.value}',
         )
         return path
 
