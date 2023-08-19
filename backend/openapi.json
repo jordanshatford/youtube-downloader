@@ -143,46 +143,6 @@
                 }
             }
         },
-        "/downloads/status": {
-            "get": {
-                "tags": [
-                    "downloads"
-                ],
-                "summary": "Get Downloads Status",
-                "operationId": "get_downloads_status",
-                "parameters": [
-                    {
-                        "name": "sessionId",
-                        "in": "query",
-                        "required": true,
-                        "schema": {
-                            "type": "string",
-                            "title": "Sessionid"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "Successful Response",
-                        "content": {
-                            "application/json": {
-                                "schema": {}
-                            }
-                        }
-                    },
-                    "422": {
-                        "description": "Validation Error",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/HTTPValidationError"
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        },
         "/downloads/{video_id}": {
             "get": {
                 "tags": [

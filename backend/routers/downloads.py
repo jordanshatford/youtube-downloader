@@ -50,7 +50,7 @@ async def status_stream(request: Request, session_id: str):
         session_manager.remove(session_id)
 
 
-@router.get('/downloads/status', tags=['downloads'])
+@router.get('/downloads/status', tags=['downloads'], include_in_schema=False)
 async def get_downloads_status(request: Request, sessionId: str):
     event_source = status_stream(request, session_id=sessionId)
     return EventSourceResponse(event_source)
