@@ -61,5 +61,5 @@ if __name__ == '__main__':
     host = os.environ.get('HOST', '0.0.0.0')
     port = int(os.environ.get('PORT', 8080))
     dev = os.environ.get('DEV') is not None
-    print(f'Serving on {host}:{port}', flush=True)
+    print(f'Serving on {host}:{port} (reload={dev})', flush=True)
     uvicorn.run('main:app', host=host, port=port, reload=dev)
