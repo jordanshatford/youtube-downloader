@@ -1,3 +1,4 @@
+from pydantic import HttpUrl
 from youtubesearchpython import VideosSearch
 
 from .models import Channel
@@ -16,14 +17,13 @@ def search_youtube(term: str, results_size: int) -> list[Video]:
 def format_search_result(result: dict) -> Video:
     return Video(
         id=result['id'],
-        url=result['link'],
-        options=None,
+        url=HttpUrl(result['link']),
         title=result['title'],
         duration=result['duration'],
-        thumbnail=result['thumbnails'][0]['url'],
+        thumbnail=HttpUrl(result['thumbnails'][0]['url']),
         channel=Channel(
             name=result['channel']['name'],
-            url=result['channel']['link'],
-            thumbnail=result['channel']['thumbnails'][0]['url'],
+            url=HttpUrl(result['channel']['link']),
+            thumbnail=HttpUrl(result['channel']['thumbnails'][0]['url']),
         ),
     )
