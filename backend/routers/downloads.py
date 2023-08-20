@@ -15,14 +15,14 @@ from utils.models import Video
 router = APIRouter()
 
 
-@router.post('/downloads', tags=['downloads'], response_model=Message)
-def post_download(video: Video, response: Response, session_id: str):
+@router.post('/downloads', tags=['downloads'])
+def post_download(video: Video, session_id: str) -> Message:
     download_manager = session_manager.get_download_manager(session_id)
     download_manager.add(video)
-    return {
-        'title': 'File Added',
-        'message': 'The requested file has been successfully added to download.',   # noqa: E501
-    }
+    return Message(
+        title='Video Added',
+        message='Video added to be downloaded.',
+    )
 
 
 async def status_stream(request: Request, session_id: str):
@@ -48,25 +48,25 @@ async def get_downloads_status(request: Request, session_id: str):
     return EventSourceResponse(event_source)
 
 
-@router.get('/downloads/{video_id}', tags=['downloads'], response_model=Message)   # noqa: E501
-def get_download(video_id: str, response: Response, session_id: str):
+@router.get('/downloads/{video_id}', tags=['downloads'])
+def get_download(video_id: str, response: Response, session_id: str) -> Message:  # noqa E501
     download_manager = session_manager.get_download_manager(session_id)
     path = download_manager.get_download(video_id)
     if path is not None and os.path.exists(path):
         return FileResponse(path)
     else:
         response.status_code = status.HTTP_500_INTERNAL_SERVER_ERROR
-        return {
-            'title': 'File Missing',
-            'message': 'This file was not found on the server. Try downloading again.',   # noqa: E501
-        }
+        return Message(
+            title='Audio File Missing',
+            message='Audio file for video missing',
+        )
 
 
-@router.delete('/downloads/{video_id}', tags=['downloads'], response_model=Message)  # noqa: E501
-def delete_download(video_id: str, session_id: str):
+@router.delete('/downloads/{video_id}', tags=['downloads'])
+def delete_download(video_id: str, session_id: str) -> Message:
     download_manager = session_manager.get_download_manager(session_id)
     download_manager.remove(video_id)
-    return {
-        'title': 'File Removed',
-        'message': 'The requested file has been removed from the server.',
-    }
+    return Message(
+        title='File Removed',
+        message='The requested file has been removed from the server.',
+    )
