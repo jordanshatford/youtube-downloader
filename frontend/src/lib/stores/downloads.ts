@@ -103,8 +103,8 @@ function createDownloadsStore() {
 						state[id].awaitingFileBlob = false;
 						return state;
 					});
-					const filename = `${downloads[id].title}.${downloads?.[id]?.options?.format}`
-					saveAs(blob, filename)
+					const filename = `${downloads[id].title}.${downloads?.[id]?.options?.format}`;
+					saveAs(blob, filename);
 				});
 			} else {
 				// file was not found on the server a json error message is returned
