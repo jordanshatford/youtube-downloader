@@ -33,7 +33,6 @@
 	},
 	"type": "module",
 	"dependencies": {
-		"file-saver": "^2.0.5",
 		"svelte-feather-icons": "^4.0.1"
 	}
 }

@@ -1,9 +1,21 @@
 import { writable, get } from 'svelte/store';
-import fileSaver from 'file-saver';
 import type { VideoInfo } from '$lib/utils/types';
 import { getApiEndpoint, APIEndpointConstants } from '$lib/utils/api';
 import { Status, AudioFormat } from '$lib/utils/types';
 import { settings } from '$lib/stores/settings';
+
+function saveAs(blob: Blob, name: string) {
+	// Create anchor tag referencing the blob
+	const url = window.URL.createObjectURL(blob);
+	const a = document.createElement('a');
+	a.href = url;
+	a.download = name;
+	// Append anchor and click to download
+	document.body.appendChild(a);
+	a.click();
+	// Cleanup
+	a.remove();
+}
 
 function createDownloadsStore() {
 	const downloads: Record<string, VideoInfo> = {};
@@ -91,7 +103,8 @@ function createDownloadsStore() {
 						state[id].awaitingFileBlob = false;
 						return state;
 					});
-					fileSaver.saveAs(blob, `${downloads[id].title}.${downloads?.[id]?.options?.format}`);
+					const filename = `${downloads[id].title}.${downloads?.[id]?.options?.format}`
+					saveAs(blob, filename)
 				});
 			} else {
 				// file was not found on the server a json error message is returned
