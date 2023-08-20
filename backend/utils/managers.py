@@ -4,8 +4,6 @@ from datetime import datetime
 from datetime import timedelta
 from queue import Queue
 from typing import Callable
-from typing import Dict
-from typing import Union
 
 from .models import Status
 from .models import StatusUpdate
@@ -17,7 +15,7 @@ from .threads import YoutubeDownloadThread
 class AudioDownloadManager:
     def __init__(self, output_dir: str, announcer: Callable[[str, Status], None]):  # noqa: E501
         self._announcer = announcer
-        self._downloads: Dict[str, YoutubeDownloadThread] = {}
+        self._downloads: dict[str, YoutubeDownloadThread] = {}
         self._output_dir = output_dir
 
     def __contains__(self, video_id: str) -> bool:
@@ -36,7 +34,7 @@ class AudioDownloadManager:
             self._downloads[video_id].remove()
             self._downloads.pop(video_id, None)
 
-    def get_download(self, video_id: str) -> Union[str, None]:
+    def get_download(self, video_id: str) -> str | None:
         if video_id not in self._downloads:
             return None
         return self._downloads[video_id].get_file_location()
@@ -84,7 +82,7 @@ class SessionManager:
         cleanup_interval: int = 60 * 60 * 3,  # 3 hours
         session_to_old_duration: int = 60 * 60 * 2,  # 2 hours
     ):
-        self._sessions: Dict[str, Session] = {}
+        self._sessions: dict[str, Session] = {}
         self._session_dir = session_dir
         self._session_too_old_duration = session_to_old_duration
         self._cleanup_interval = cleanup_interval

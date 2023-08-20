@@ -1,12 +1,10 @@
-from typing import List
-
 from youtubesearchpython import VideosSearch
 
 from .models import Channel
 from .models import Video
 
 
-def search_youtube(term: str, results_size: int) -> List[Video]:
+def search_youtube(term: str, results_size: int) -> list[Video]:
     try:
         results = VideosSearch(term, limit=int(results_size))
         videos = results.result()['result']
