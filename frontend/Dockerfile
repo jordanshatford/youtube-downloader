@@ -13,4 +13,4 @@ COPY . .
 
 EXPOSE 5173
 EXPOSE 24678
-CMD [ "pnpm", "run", "dev", "--", "--host" ]
+CMD [ "pnpm", "dev", "--host" ]
