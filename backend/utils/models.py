@@ -2,6 +2,7 @@ import enum
 from typing import Optional
 
 from pydantic import BaseModel
+from pydantic import HttpUrl
 
 
 # NOTE: this needs to be synced with the frontend enum
@@ -29,17 +30,17 @@ class AudioOptions(BaseModel):
 
 class Channel(BaseModel):
     name: str
-    url: Optional[str] = None
-    thumbnail: Optional[str] = None
+    url: Optional[HttpUrl] = None
+    thumbnail: Optional[HttpUrl] = None
 
 
 class Video(BaseModel):
     id: str
-    url: str
+    url: HttpUrl
     options: AudioOptions = AudioOptions(format=AudioFormat.MP3)
     title: Optional[str] = None
     duration: Optional[str] = None
-    thumbnail: Optional[str] = None
+    thumbnail: Optional[HttpUrl] = None
     channel: Optional[Channel] = None
 
 
