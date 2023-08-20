@@ -100,12 +100,12 @@
                 "operationId": "post_download",
                 "parameters": [
                     {
-                        "name": "sessionId",
+                        "name": "session_id",
                         "in": "query",
                         "required": true,
                         "schema": {
                             "type": "string",
-                            "title": "Sessionid"
+                            "title": "Session Id"
                         }
                     }
                 ],
@@ -161,12 +161,12 @@
                         }
                     },
                     {
-                        "name": "sessionId",
+                        "name": "session_id",
                         "in": "query",
                         "required": true,
                         "schema": {
                             "type": "string",
-                            "title": "Sessionid"
+                            "title": "Session Id"
                         }
                     }
                 ],
@@ -210,12 +210,12 @@
                         }
                     },
                     {
-                        "name": "sessionId",
+                        "name": "session_id",
                         "in": "query",
                         "required": true,
                         "schema": {
                             "type": "string",
-                            "title": "Sessionid"
+                            "title": "Session Id"
                         }
                     }
                 ],

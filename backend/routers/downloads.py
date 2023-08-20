@@ -16,8 +16,8 @@ router = APIRouter()
 
 
 @router.post('/downloads', tags=['downloads'], response_model=Message)
-def post_download(video: Video, response: Response, sessionId: str):
-    download_manager = session_manager.get_download_manager(sessionId)
+def post_download(video: Video, response: Response, session_id: str):
+    download_manager = session_manager.get_download_manager(session_id)
 
     if video.options is None:
         response.status_code = status.HTTP_500_INTERNAL_SERVER_ERROR
@@ -51,14 +51,14 @@ async def status_stream(request: Request, session_id: str):
 
 
 @router.get('/downloads/status', tags=['downloads'], include_in_schema=False)
-async def get_downloads_status(request: Request, sessionId: str):
-    event_source = status_stream(request, session_id=sessionId)
+async def get_downloads_status(request: Request, session_id: str):
+    event_source = status_stream(request, session_id=session_id)
     return EventSourceResponse(event_source)
 
 
 @router.get('/downloads/{video_id}', tags=['downloads'], response_model=Message)   # noqa: E501
-def get_download(video_id: str, response: Response, sessionId: str):
-    download_manager = session_manager.get_download_manager(sessionId)
+def get_download(video_id: str, response: Response, session_id: str):
+    download_manager = session_manager.get_download_manager(session_id)
     path = download_manager.get_download(video_id)
     if path is not None and os.path.exists(path):
         return FileResponse(path)
@@ -71,8 +71,8 @@ def get_download(video_id: str, response: Response, sessionId: str):
 
 
 @router.delete('/downloads/{video_id}', tags=['downloads'], response_model=Message)  # noqa: E501
-def delete_download(video_id: str, sessionId: str):
-    download_manager = session_manager.get_download_manager(sessionId)
+def delete_download(video_id: str, session_id: str):
+    download_manager = session_manager.get_download_manager(session_id)
     download_manager.remove(video_id)
     return {
         'title': 'File Removed',

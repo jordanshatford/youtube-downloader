@@ -36,7 +36,7 @@ export function getApiEndpoint(config: {
 	if (get(session)) {
 		config.queryParams = {
 			...config.queryParams,
-			sessionId: get(session) ?? ''
+			session_id: get(session) ?? ''
 		};
 	}
 
