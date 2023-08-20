@@ -2,7 +2,7 @@
     "openapi": "3.1.0",
     "info": {
         "title": "YouTube Audio Downloader API",
-        "description": "API to search and download YouTube videos in various audio formats.",
+        "summary": "Search and download YouTube videos in various audio formats.",
         "contact": {
             "name": "YouTube Audio Downloader",
             "url": "https://github.com/jordanshatford/youtube-audio-downloader"
@@ -279,7 +279,10 @@
                     "url": {
                         "anyOf": [
                             {
-                                "type": "string"
+                                "type": "string",
+                                "maxLength": 2083,
+                                "minLength": 1,
+                                "format": "uri"
                             },
                             {
                                 "type": "null"
@@ -290,7 +293,10 @@
                     "thumbnail": {
                         "anyOf": [
                             {
-                                "type": "string"
+                                "type": "string",
+                                "maxLength": 2083,
+                                "minLength": 1,
+                                "format": "uri"
                             },
                             {
                                 "type": "null"
@@ -314,7 +320,10 @@
                     "url": {
                         "anyOf": [
                             {
-                                "type": "string"
+                                "type": "string",
+                                "maxLength": 2083,
+                                "minLength": 1,
+                                "format": "uri"
                             },
                             {
                                 "type": "null"
@@ -325,7 +334,10 @@
                     "thumbnail": {
                         "anyOf": [
                             {
-                                "type": "string"
+                                "type": "string",
+                                "maxLength": 2083,
+                                "minLength": 1,
+                                "format": "uri"
                             },
                             {
                                 "type": "null"
@@ -427,17 +439,20 @@
                     },
                     "url": {
                         "type": "string",
+                        "maxLength": 2083,
+                        "minLength": 1,
+                        "format": "uri",
                         "title": "Url"
                     },
                     "options": {
-                        "anyOf": [
+                        "allOf": [
                             {
                                 "$ref": "#/components/schemas/AudioOptions"
-                            },
-                            {
-                                "type": "null"
                             }
-                        ]
+                        ],
+                        "default": {
+                            "format": "mp3"
+                        }
                     },
                     "title": {
                         "anyOf": [
@@ -464,7 +479,10 @@
                     "thumbnail": {
                         "anyOf": [
                             {
-                                "type": "string"
+                                "type": "string",
+                                "maxLength": 2083,
+                                "minLength": 1,
+                                "format": "uri"
                             },
                             {
                                 "type": "null"
@@ -498,17 +516,20 @@
                     },
                     "url": {
                         "type": "string",
+                        "maxLength": 2083,
+                        "minLength": 1,
+                        "format": "uri",
                         "title": "Url"
                     },
                     "options": {
-                        "anyOf": [
+                        "allOf": [
                             {
                                 "$ref": "#/components/schemas/AudioOptions"
-                            },
-                            {
-                                "type": "null"
                             }
-                        ]
+                        ],
+                        "default": {
+                            "format": "mp3"
+                        }
                     },
                     "title": {
                         "anyOf": [
@@ -535,7 +556,10 @@
                     "thumbnail": {
                         "anyOf": [
                             {
-                                "type": "string"
+                                "type": "string",
+                                "maxLength": 2083,
+                                "minLength": 1,
+                                "format": "uri"
                             },
                             {
                                 "type": "null"
@@ -571,15 +595,15 @@
     "tags": [
         {
             "name": "session",
-            "description": "Get session id to use for future requests."
+            "description": "Session management."
         },
         {
             "name": "search",
-            "description": "Search YouTube for videos."
+            "description": "Search YouTube."
         },
         {
             "name": "downloads",
-            "description": "Manage downloads of videos from YouTube."
+            "description": "Download management."
         }
     ]
 }

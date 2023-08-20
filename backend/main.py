@@ -10,6 +10,9 @@ from starlette.middleware.cors import CORSMiddleware
 from utils.managers import session_manager
 
 
+GITHUB_URL: str = 'https://github.com/jordanshatford/youtube-audio-downloader'
+
+
 # Note: this requires that function names for each route are unique. If not
 #       the openapi spec will have duplicate unique ID's. We use this to ensure
 #       the generated client has reasonable function names.
@@ -19,19 +22,19 @@ def generate_custom_unique_id(route: routing.APIRoute):
 
 app = FastAPI(
     title='YouTube Audio Downloader API',
-    description='API to search and download YouTube videos in various audio formats.',  # noqa: E501
+    summary='Search and download YouTube videos in various audio formats.',
     contact={
         'name': 'YouTube Audio Downloader',
-        'url': 'https://github.com/jordanshatford/youtube-audio-downloader',
+        'url': GITHUB_URL,
     },
     license_info={
         'name': 'MIT License',
-        'url': 'https://github.com/jordanshatford/youtube-audio-downloader/blob/main/LICENSE',   # noqa: E501
+        'url': f'{GITHUB_URL}/blob/main/LICENSE',
     },
     openapi_tags=[
-        {'name': 'session', 'description': 'Get session id to use for future requests.'},   # noqa: E501
-        {'name': 'search', 'description': 'Search YouTube for videos.'},
-        {'name': 'downloads', 'description': 'Manage downloads of videos from YouTube.'},   # noqa: E501
+        {'name': 'session', 'description': 'Session management.'},
+        {'name': 'search', 'description': 'Search YouTube.'},
+        {'name': 'downloads', 'description': 'Download management.'},
     ],
     generate_unique_id_function=generate_custom_unique_id,
 )
