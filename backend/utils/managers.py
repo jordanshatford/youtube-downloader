@@ -20,6 +20,9 @@ class AudioDownloadManager:
         self._downloads: Dict[str, YoutubeDownloadThread] = {}
         self._output_dir = output_dir
 
+    def __contains__(self, video_id: str) -> bool:
+        return video_id in self._downloads
+
     def add(self, video_id: str, url: str, options: AudioOptions) -> None:
         if video_id not in self._downloads:
             download = YoutubeDownloadThread(
@@ -93,6 +96,9 @@ class SessionManager:
             self._cleanup_interval, self.cleanup,
         )
 
+    def __contains__(self, id: str) -> bool:
+        return id in self._sessions
+
     def cleanup(self, force: bool = False):
         for session_id in self._sessions.copy():
             session_not_used = self._sessions[session_id].session_older_than(
@@ -105,33 +111,26 @@ class SessionManager:
         self._sessions[id] = Session(id, self._session_dir)
 
     def remove(self, id: str):
-        try:
+        if id in self._sessions:
             self._sessions[id].cleanup()
             self._sessions.pop(id, None)
-        except KeyError:
-            pass
 
     def get_download_manager(self, id: str) -> AudioDownloadManager:
         self._update_session_use_time(id)
-        try:
-            return self._sessions[id].download_manager
-        except KeyError:
+        if id not in self._sessions:
             self.setup_session(id)
-            return self._sessions[id].download_manager
+        return self._sessions[id].download_manager
 
     def get_status_queue(self, id: str) -> Queue[StatusUpdate]:
         self._update_session_use_time(id)
-        try:
-            return self._sessions[id].status_queue
-        except KeyError:
+        if id not in self._sessions:
             self.setup_session(id)
-            return self._sessions[id].status_queue
+        return self._sessions[id].status_queue
 
     def _update_session_use_time(self, id: str):
-        try:
-            self._sessions[id].update_use_time()
-        except KeyError:
+        if id not in self._sessions:
             self.setup_session(id)
+        self._sessions[id].update_use_time()
 
 
 session_manager = SessionManager()
