@@ -18,14 +18,6 @@ router = APIRouter()
 @router.post('/downloads', tags=['downloads'], response_model=Message)
 def post_download(video: Video, response: Response, session_id: str):
     download_manager = session_manager.get_download_manager(session_id)
-
-    if video.options is None:
-        response.status_code = status.HTTP_500_INTERNAL_SERVER_ERROR
-        return {
-            'title': 'Audio Options Invalid',
-            'message': 'Download failed, audio options not correct.',
-        }
-
     download_manager.add(video)
     return {
         'title': 'File Added',

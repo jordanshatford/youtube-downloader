@@ -36,7 +36,7 @@ class Channel(BaseModel):
 class Video(BaseModel):
     id: str
     url: str
-    options: Optional[AudioOptions] = None
+    options: AudioOptions = AudioOptions(format=AudioFormat.MP3)
     title: Optional[str] = None
     duration: Optional[str] = None
     thumbnail: Optional[str] = None

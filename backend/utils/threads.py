@@ -5,8 +5,6 @@ from typing import Callable
 
 from yt_dlp import YoutubeDL
 
-from .models import AudioFormat
-from .models import AudioOptions
 from .models import Status
 from .models import Video
 from .processors import FileProcessingComplete
@@ -22,10 +20,6 @@ class YoutubeDownloadThread(threading.Thread):
         self._video = video
         self._output_directory = output_directory
         self._status_update = status_update
-
-        # Set default options if they are not provided
-        if self._video.options is None:
-            self._video.options = AudioOptions(format=AudioFormat.MP3)
 
         YOUTUBE_DL_OPTIONS = {
             'format': 'bestaudio/best',
@@ -57,8 +51,6 @@ class YoutubeDownloadThread(threading.Thread):
             self._status_update(self._video.id, Status.PROCESSING)
 
     def get_file_location(self) -> str:
-        # We know the options have been set in this case
-        assert (self._video.options is not None)
         filename = f'{self._video.id}.{self._video.options.format.value}'
         return os.path.join(self._output_directory, filename)
 
