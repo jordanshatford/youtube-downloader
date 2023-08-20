@@ -15,7 +15,7 @@ prepare()
 run()
 {
     # Enter the virtual environment and run the application
-    source venv/bin/activate && python3 main.py
+    source venv/bin/activate && DEV=true python3 main.py
 }
 
 # Run formatting on the backend code
