@@ -7,9 +7,9 @@ from typing import Callable
 from typing import Dict
 from typing import Union
 
-from .models import AudioOptions
 from .models import Status
 from .models import StatusUpdate
+from .models import Video
 from .threads import RepeatedTimer
 from .threads import YoutubeDownloadThread
 
@@ -23,27 +23,23 @@ class AudioDownloadManager:
     def __contains__(self, video_id: str) -> bool:
         return video_id in self._downloads
 
-    def add(self, video_id: str, url: str, options: AudioOptions) -> None:
-        if video_id not in self._downloads:
+    def add(self, video: Video) -> None:
+        if video.id not in self._downloads:
             download = YoutubeDownloadThread(
-                video_id, url, options, self._output_dir, self.send_status_update,  # noqa: E501
+                video, self._output_dir, self.send_status_update,
             )
-            self._downloads[video_id] = download
+            self._downloads[video.id] = download
             download.start()
 
     def remove(self, video_id: str) -> None:
-        try:
+        if video_id in self._downloads:
             self._downloads[video_id].remove()
             self._downloads.pop(video_id, None)
-        except KeyError:
-            pass
 
     def get_download(self, video_id: str) -> Union[str, None]:
-        try:
-            path = self._downloads[video_id].get_file_location()
-            return path
-        except KeyError:
+        if video_id not in self._downloads:
             return None
+        return self._downloads[video_id].get_file_location()
 
     def send_status_update(self, video_id: str, status: Status) -> None:
         self._announcer(video_id, status)

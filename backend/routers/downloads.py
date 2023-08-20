@@ -26,7 +26,7 @@ def post_download(video: Video, response: Response, session_id: str):
             'message': 'Download failed, audio options not correct.',
         }
 
-    download_manager.add(video.id, video.url, video.options)
+    download_manager.add(video)
     return {
         'title': 'File Added',
         'message': 'The requested file has been successfully added to download.',   # noqa: E501
