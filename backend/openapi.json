@@ -57,6 +57,9 @@
                             }
                         }
                     },
+                    "404": {
+                        "description": "No results for search"
+                    },
                     "422": {
                         "description": "Validation Error",
                         "content": {
@@ -120,12 +123,12 @@
                     }
                 },
                 "responses": {
-                    "200": {
+                    "201": {
                         "description": "Successful Response",
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/Message"
+                                    "$ref": "#/components/schemas/Video-Output"
                                 }
                             }
                         }
@@ -181,6 +184,9 @@
                             }
                         }
                     },
+                    "404": {
+                        "description": "Download not found."
+                    },
                     "422": {
                         "description": "Validation Error",
                         "content": {
@@ -220,15 +226,11 @@
                     }
                 ],
                 "responses": {
-                    "200": {
-                        "description": "Successful Response",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/Message"
-                                }
-                            }
-                        }
+                    "204": {
+                        "description": "Successful Response"
+                    },
+                    "404": {
+                        "description": "Download not found."
                     },
                     "422": {
                         "description": "Validation Error",
@@ -272,7 +274,17 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "Successful Response"
+                        "description": "Successful Response",
+                        "content": {
+                            "audio/*": {
+                                "schema": {
+                                    "type": "file"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "File not found."
                     },
                     "422": {
                         "description": "Validation Error",
@@ -324,6 +336,9 @@
                                 }
                             }
                         }
+                    },
+                    "404": {
+                        "description": "Download not found."
                     },
                     "422": {
                         "description": "Validation Error",
@@ -461,24 +476,6 @@
                 },
                 "type": "object",
                 "title": "HTTPValidationError"
-            },
-            "Message": {
-                "properties": {
-                    "title": {
-                        "type": "string",
-                        "title": "Title"
-                    },
-                    "message": {
-                        "type": "string",
-                        "title": "Message"
-                    }
-                },
-                "type": "object",
-                "required": [
-                    "title",
-                    "message"
-                ],
-                "title": "Message"
             },
             "Session": {
                 "properties": {

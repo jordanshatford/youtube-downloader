@@ -48,11 +48,6 @@ class Session(BaseModel):
     id: str
 
 
-class Message(BaseModel):
-    title: str
-    message: str
-
-
 class StatusUpdate(BaseModel):
     id: str
     status: Status
