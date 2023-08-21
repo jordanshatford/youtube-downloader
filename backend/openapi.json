@@ -176,7 +176,7 @@
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/Message"
+                                    "$ref": "#/components/schemas/Video-Output"
                                 }
                             }
                         }
@@ -226,6 +226,101 @@
                             "application/json": {
                                 "schema": {
                                     "$ref": "#/components/schemas/Message"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/downloads/{video_id}/file": {
+            "get": {
+                "tags": [
+                    "downloads"
+                ],
+                "summary": "Get Download File",
+                "operationId": "get_download_file",
+                "parameters": [
+                    {
+                        "name": "video_id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "title": "Video Id"
+                        }
+                    },
+                    {
+                        "name": "session_id",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "title": "Session Id"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful Response"
+                    },
+                    "422": {
+                        "description": "Validation Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/downloads/{video_id}/status": {
+            "get": {
+                "tags": [
+                    "downloads"
+                ],
+                "summary": "Get Download Status",
+                "operationId": "get_download_status",
+                "parameters": [
+                    {
+                        "name": "video_id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "title": "Video Id"
+                        }
+                    },
+                    {
+                        "name": "session_id",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "title": "Session Id"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/StatusUpdate"
                                 }
                             }
                         }
@@ -397,6 +492,35 @@
                     "id"
                 ],
                 "title": "Session"
+            },
+            "Status": {
+                "type": "string",
+                "enum": [
+                    "WAITING",
+                    "DOWNLOADING",
+                    "PROCESSING",
+                    "DONE",
+                    "ERROR",
+                    "UNDEFINED"
+                ],
+                "title": "Status"
+            },
+            "StatusUpdate": {
+                "properties": {
+                    "id": {
+                        "type": "string",
+                        "title": "Id"
+                    },
+                    "status": {
+                        "$ref": "#/components/schemas/Status"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "id",
+                    "status"
+                ],
+                "title": "StatusUpdate"
             },
             "ValidationError": {
                 "properties": {

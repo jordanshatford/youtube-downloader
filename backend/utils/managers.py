@@ -34,10 +34,8 @@ class AudioDownloadManager:
             self._downloads[video_id].remove()
             self._downloads.pop(video_id, None)
 
-    def get_download(self, video_id: str) -> str | None:
-        if video_id not in self._downloads:
-            return None
-        return self._downloads[video_id].get_file_location()
+    def get(self, video_id: str) -> YoutubeDownloadThread | None:
+        return self._downloads.get(video_id, None)
 
     def send_status_update(self, video_id: str, status: Status) -> None:
         self._announcer(video_id, status)

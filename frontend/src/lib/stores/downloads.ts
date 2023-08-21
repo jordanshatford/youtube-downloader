@@ -93,7 +93,7 @@ function createDownloadsStore() {
 		const { endpoint, options } = getApiEndpoint({
 			base: APIEndpointConstants.DOWNLOADS,
 			method: 'GET',
-			urlParam: id
+			urlParam: `${id}/file`
 		});
 		fetch(endpoint, options).then(async (response) => {
 			if (response.ok) {

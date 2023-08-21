@@ -3,6 +3,7 @@ import os
 import queue
 
 from fastapi import APIRouter
+from fastapi import HTTPException
 from fastapi import Request
 from fastapi import Response
 from fastapi import status
@@ -10,6 +11,7 @@ from fastapi.responses import FileResponse
 from sse_starlette.sse import EventSourceResponse
 from utils.managers import session_manager
 from utils.models import Message
+from utils.models import StatusUpdate
 from utils.models import Video
 
 router = APIRouter()
@@ -49,17 +51,33 @@ async def get_downloads_status(request: Request, session_id: str):
 
 
 @router.get('/downloads/{video_id}', tags=['downloads'])
-def get_download(video_id: str, response: Response, session_id: str) -> Message:  # noqa E501
+def get_download(video_id: str, session_id: str) -> Video:  # noqa E501
     download_manager = session_manager.get_download_manager(session_id)
-    path = download_manager.get_download(video_id)
-    if path is not None and os.path.exists(path):
-        return FileResponse(path)
+    download = download_manager.get(video_id)
+    if download is None:
+        raise HTTPException(status_code=status.HTTP_500_INTERNAL_SERVER_ERROR)
     else:
-        response.status_code = status.HTTP_500_INTERNAL_SERVER_ERROR
-        return Message(
-            title='Audio File Missing',
-            message='Audio file for video missing',
-        )
+        return download.video
+
+
+@router.get('/downloads/{video_id}/file', tags=['downloads'], response_class=FileResponse)  # noqa E501
+def get_download_file(video_id: str, session_id: str):
+    download_manager = session_manager.get_download_manager(session_id)
+    download = download_manager.get(video_id)
+    if download is not None and os.path.exists(download.get_file_location()):
+        return FileResponse(download.get_file_location())
+    else:
+        raise HTTPException(status_code=status.HTTP_500_INTERNAL_SERVER_ERROR)
+
+
+@router.get('/downloads/{video_id}/status', tags=['downloads'])
+def get_download_status(video_id: str, response: Response, session_id: str) -> StatusUpdate:  # noqa E501
+    download_manager = session_manager.get_download_manager(session_id)
+    download = download_manager.get(video_id)
+    if download is None:
+        raise HTTPException(status_code=status.HTTP_500_INTERNAL_SERVER_ERROR)
+    else:
+        return StatusUpdate(id=download.video.id, status=download.status)
 
 
 @router.delete('/downloads/{video_id}', tags=['downloads'])
