@@ -17,19 +17,20 @@ class YoutubeDownloadThread(threading.Thread):
         output_directory: str,
         status_update: Callable[[str, Status], None],
     ):
-        self._video = video
+        self.video = video
         self._output_directory = output_directory
         self._status_update = status_update
+        self.status = Status.WAITING
 
         YOUTUBE_DL_OPTIONS = {
             'format': 'bestaudio/best',
             'progress_hooks': [self.download_progress_hook],
-            'outtmpl': f'{self._output_directory}/{self._video.id}.%(ext)s',
+            'outtmpl': f'{self._output_directory}/{self.video.id}.%(ext)s',
             'quiet': True,
             'postprocessors': [
                 {
                     'key': 'FFmpegExtractAudio',
-                    'preferredcodec': self._video.options.format.value,
+                    'preferredcodec': self.video.options.format.value,
                     'preferredquality': '192',
                 },
                 {'key': 'FFmpegMetadata'},
@@ -38,7 +39,7 @@ class YoutubeDownloadThread(threading.Thread):
         self._downloader = YoutubeDL(YOUTUBE_DL_OPTIONS)
         self._downloader.add_post_processor(
             FileProcessingComplete(
-                self._video.id, self._status_update, downloader=self._downloader,   # noqa: E501
+                self._handle_status_update, downloader=self._downloader,
             ),
         )
 
@@ -48,10 +49,10 @@ class YoutubeDownloadThread(threading.Thread):
 
     def download_progress_hook(self, progress_info: dict) -> None:
         if progress_info.get('status', None) == 'finished':
-            self._status_update(self._video.id, Status.PROCESSING)
+            self._handle_status_update(Status.PROCESSING)
 
     def get_file_location(self) -> str:
-        filename = f'{self._video.id}.{self._video.options.format.value}'
+        filename = f'{self.video.id}.{self.video.options.format.value}'
         return os.path.join(self._output_directory, filename)
 
     def remove(self) -> bool:
@@ -62,11 +63,15 @@ class YoutubeDownloadThread(threading.Thread):
         return False
 
     def run(self):
-        self._status_update(self._video.id, Status.DOWNLOADING)
+        self._handle_status_update(Status.DOWNLOADING)
         try:
-            self._downloader.download([str(self._video.url)])
+            self._downloader.download([str(self.video.url)])
         except Exception:
-            self._status_update(self._video.id, Status.ERROR)
+            self._handle_status_update(Status.ERROR)
+
+    def _handle_status_update(self, status: Status) -> None:
+        self.status = status
+        self._status_update(self.video.id, status)
 
 
 class RepeatedTimer:
