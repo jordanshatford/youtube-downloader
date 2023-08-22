@@ -49,7 +49,7 @@ YouTube Audio Downloader is a full stack application created to allow users to d
   - Dark and Light theme
   - Search YouTube for videos directly
   - Conversion of multiple YouTube videos at once
-  - Select between multiple audio formats (MP3, AAC, FLAC, M4A, OBUS, WAV)
+  - Select between multiple audio formats (MP3, AAC, FLAC, M4A, OPUS, WAV)
   - High quality audio files
 
 # Additional Documentation
