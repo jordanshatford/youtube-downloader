@@ -58,7 +58,7 @@
                         }
                     },
                     "404": {
-                        "description": "No results for search"
+                        "description": "Not Found"
                     },
                     "422": {
                         "description": "Validation Error",
@@ -133,6 +133,9 @@
                             }
                         }
                     },
+                    "404": {
+                        "description": "Not Found"
+                    },
                     "422": {
                         "description": "Validation Error",
                         "content": {
@@ -185,7 +188,7 @@
                         }
                     },
                     "404": {
-                        "description": "Download not found."
+                        "description": "Not Found"
                     },
                     "422": {
                         "description": "Validation Error",
@@ -230,7 +233,7 @@
                         "description": "Successful Response"
                     },
                     "404": {
-                        "description": "Download not found."
+                        "description": "Not Found"
                     },
                     "422": {
                         "description": "Validation Error",
@@ -284,7 +287,7 @@
                         }
                     },
                     "404": {
-                        "description": "File not found."
+                        "description": "Not Found"
                     },
                     "422": {
                         "description": "Validation Error",
@@ -338,7 +341,7 @@
                         }
                     },
                     "404": {
-                        "description": "Download not found."
+                        "description": "Not Found"
                     },
                     "422": {
                         "description": "Validation Error",

@@ -12,10 +12,16 @@ from utils.managers import session_manager
 from utils.models import StatusUpdate
 from utils.models import Video
 
-router = APIRouter()
+router = APIRouter(
+    prefix='/downloads',
+    tags=['downloads'],
+    responses={
+        status.HTTP_404_NOT_FOUND: {},
+    },
+)
 
 
-@router.post('/downloads', tags=['downloads'], status_code=status.HTTP_201_CREATED)  # noqa E501
+@router.post('', status_code=status.HTTP_201_CREATED)
 def post_download(video: Video, session_id: str) -> Video:
     download_manager = session_manager.get_download_manager(session_id)
     download_manager.add(video)
@@ -39,19 +45,13 @@ async def status_stream(request: Request, session_id: str):
         session_manager.remove(session_id)
 
 
-@router.get('/downloads/status', tags=['downloads'], include_in_schema=False)
+@router.get('/status', include_in_schema=False)
 async def get_downloads_status(request: Request, session_id: str):
     event_source = status_stream(request, session_id=session_id)
     return EventSourceResponse(event_source)
 
 
-@router.get(
-    '/downloads/{video_id}', tags=['downloads'], responses={
-        status.HTTP_404_NOT_FOUND: {
-            'description': 'Download not found.',
-        },
-    },
-)
+@router.get('/{video_id}')
 def get_download(video_id: str, session_id: str) -> Video:
     download_manager = session_manager.get_download_manager(session_id)
     download = download_manager.get(video_id)
@@ -62,12 +62,9 @@ def get_download(video_id: str, session_id: str) -> Video:
 
 
 @router.get(
-    '/downloads/{video_id}/file', tags=['downloads'], response_class=FileResponse, responses={  # noqa E501
+    '/{video_id}/file', response_class=FileResponse, responses={
         status.HTTP_200_OK: {
             'content': {'audio/*': {'schema': {'type': 'file'}}},
-        },
-        status.HTTP_404_NOT_FOUND: {
-            'description': 'File not found.',
         },
     },
 )
@@ -80,13 +77,7 @@ def get_download_file(video_id: str, session_id: str):
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND)
 
 
-@router.get(
-    '/downloads/{video_id}/status', tags=['downloads'], responses={
-        status.HTTP_404_NOT_FOUND: {
-            'description': 'Download not found.',
-        },
-    },
-)
+@router.get('/{video_id}/status')
 def get_download_status(video_id: str, session_id: str) -> StatusUpdate:
     download_manager = session_manager.get_download_manager(session_id)
     download = download_manager.get(video_id)
@@ -96,13 +87,7 @@ def get_download_status(video_id: str, session_id: str) -> StatusUpdate:
         return StatusUpdate(id=download.video.id, status=download.status)
 
 
-@router.delete(
-    '/downloads/{video_id}', tags=['downloads'], status_code=status.HTTP_204_NO_CONTENT, responses={  # noqa E501
-        status.HTTP_404_NOT_FOUND: {
-            'description': 'Download not found.',
-        },
-    },
-)
+@router.delete('/{video_id}', status_code=status.HTTP_204_NO_CONTENT)
 def delete_download(video_id: str, session_id: str) -> None:
     download_manager = session_manager.get_download_manager(session_id)
     if video_id in download_manager:
