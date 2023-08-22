@@ -1,5 +1,6 @@
 import os
 import shutil
+import uuid
 from datetime import datetime
 from datetime import timedelta
 from queue import Queue
@@ -98,6 +99,11 @@ class SessionManager:
             )
             if session_not_used or force:
                 self.remove(session_id)
+
+    def create(self) -> str:
+        session_id = str(uuid.uuid4())
+        self.setup_session(session_id)
+        return session_id
 
     def setup_session(self, id: str):
         self._sessions[id] = Session(id, self._session_dir)
