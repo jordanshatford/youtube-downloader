@@ -13,7 +13,7 @@ class FileProcessingComplete(PostProcessor):
         self._status_update = status_update
         super().__init__(downloader=downloader)
 
-    def run(self, information: dict):
+    def run(self, information: dict[str, str]):
         filepath = information['filepath']
         if os.path.exists(filepath):
             self._status_update(Status.DONE)

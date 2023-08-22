@@ -1,3 +1,5 @@
+from typing import Any
+
 from pydantic import HttpUrl
 from youtubesearchpython import VideosSearch
 
@@ -14,7 +16,7 @@ def search_youtube(term: str, results_size: int) -> list[Video]:
         return []
 
 
-def format_search_result(result: dict) -> Video:
+def format_search_result(result: dict[str, Any]) -> Video:
     return Video(
         id=result['id'],
         url=HttpUrl(result['link']),
