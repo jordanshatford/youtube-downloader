@@ -1,5 +1,4 @@
 import enum
-from typing import Optional
 
 from pydantic import BaseModel
 from pydantic import HttpUrl
@@ -30,18 +29,18 @@ class AudioOptions(BaseModel):
 
 class Channel(BaseModel):
     name: str
-    url: Optional[HttpUrl] = None
-    thumbnail: Optional[HttpUrl] = None
+    url: HttpUrl | None = None
+    thumbnail: HttpUrl | None = None
 
 
 class Video(BaseModel):
     id: str
     url: HttpUrl
     options: AudioOptions = AudioOptions(format=AudioFormat.MP3)
-    title: Optional[str] = None
-    duration: Optional[str] = None
-    thumbnail: Optional[HttpUrl] = None
-    channel: Optional[Channel] = None
+    title: str | None = None
+    duration: str | None = None
+    thumbnail: HttpUrl | None = None
+    channel: Channel | None = None
 
 
 class Session(BaseModel):
