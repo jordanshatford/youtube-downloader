@@ -21,8 +21,8 @@
     <a href="https://www.ffmpeg.org/">
       <img src="https://img.shields.io/badge/Powered%20by-FFMPEG-%23007808.svg?style=flat&logo=ffmpeg" alt="Powered by FFMPEG">
     </a>
-    <a href="https://youtube-dl.org/">
-      <img src="https://img.shields.io/badge/Powered%20by-youtube--dl-%23FF0000.svg?style=flat&logo=youtube" alt="Powered by YouTubeDL">
+    <a href="https://github.com/yt-dlp/yt-dlp">
+      <img src="https://img.shields.io/badge/Powered%20by-yt--dlp-%23FF0000.svg?style=flat&logo=youtube" alt="Powered by yt-dlp">
     </a>
     <a href="https://vercel.com/">
       <img src="https://img.shields.io/badge/Hosted%20on-Vercel-%23000000.svg?style=flat&logo=vercel" alt="Hosted on Vercel">
