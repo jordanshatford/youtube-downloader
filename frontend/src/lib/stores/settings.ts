@@ -1,6 +1,6 @@
 import { browser } from '$app/environment';
 import { writable } from 'svelte/store';
-import type { AudioSettings } from '$lib/utils/types';
+import { AudioFormat, type AudioSettings } from '$lib/utils/types';
 import config from '$lib/config';
 
 function createSettingsStore() {
@@ -14,6 +14,10 @@ function createSettingsStore() {
 
 		if (data !== null) {
 			const parsedData = JSON.parse(data) as AudioSettings;
+			// Default to MP3 if localstorage value is not valid
+			if (!(parsedData.format in AudioFormat)) {
+				parsedData.format = AudioFormat.MP3;
+			}
 			set(parsedData);
 		}
 	}
