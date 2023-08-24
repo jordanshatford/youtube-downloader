@@ -32,7 +32,7 @@ app = FastAPI(
     summary=pyproject_data['description'],
     contact={
         'name': pyproject_data['authors'][0]['name'],
-        'email': pyproject_data['authors'][0]['email'],
+        'url': pyproject_data['urls']['Repository'],
     },
     license_info={
         'name': pyproject_data['license']['text'],

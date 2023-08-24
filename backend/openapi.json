@@ -5,7 +5,7 @@
         "summary": "API to search and download YouTube videos in various audio formats.",
         "contact": {
             "name": "Jordan Shatford",
-            "email": "jordanshatford@live.com"
+            "url": "https://github.com/jordanshatford/youtube-audio-downloader"
         },
         "license": {
             "name": "MIT License",
