@@ -1,35 +1,47 @@
 #!/bin/sh
 
+# Location for venv
+VENV_PATH=venv/bin/activate
+
 # Prepare the environment for the user
 prepare()
 {
     # Clean to return enviroment to original state
     clean
+    # Setup virtual enviroment and install dependencies
+    python3 -m venv venv
+    source $VENV_PATH
+    python -m pip install --upgrade pip
+    python -m pip install -r requirements.txt
     # Install pre-commit hooks
+    python -m pip install pre-commit
     pre-commit install
-    # Setup virtual enviroment for use in other commands
-    python3 -m venv venv && source venv/bin/activate && python3 -m pip install -r requirements.txt && deactivate
+    deactivate
 }
 
-# Run the backend application
-run()
+# Run the backend application in dev mode
+dev()
 {
     # Enter the virtual environment and run the application
-    source venv/bin/activate && DEV=true python3 main.py
+    source $VENV_PATH
+    DEV=true python -m yad_api.main
 }
 
 # Run formatting on the backend code
 format()
 {
     # Run pre-commit on all files
+    source $VENV_PATH
     pre-commit run --all-files
+    deactivate
 }
 
 # Generate openapi.json from the backend app
 generate()
 {
     # Enter the virtual environment and run the generation script
-    source venv/bin/activate && python3 generate_openapi.py
+    source $VENV_PATH
+    python generate_openapi.py
 }
 
 # Clean up existing virtualenv and uninstall pre-commit hooks. This is used to return
@@ -37,7 +49,9 @@ generate()
 clean()
 {
     # Uninstall any pre-commit hooks
+    source $VENV_PATH
     pre-commit uninstall
+    deactivate
     # Remove virtual environment
     rm -rf venv/
 }
@@ -55,8 +69,8 @@ case "$1" in
         prepare; ;;
     generate)
         generate; ;;
-    run)
-        run; ;;
+    dev)
+        dev; ;;
     format)
         format; ;;
     clean)
