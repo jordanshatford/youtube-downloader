@@ -44,7 +44,7 @@ class AudioDownloadManager:
 
 class Session:
     def __init__(self, id: str, session_dir: str):
-        self._id = id
+        self.id = id
         self._output_dir = os.path.join(session_dir, id)
         self._last_use = datetime.now()
         self.download_manager = AudioDownloadManager(
@@ -92,6 +92,22 @@ class SessionManager:
     def __contains__(self, id: str) -> bool:
         return id in self._sessions
 
+    def create(self) -> str:
+        session_id = str(uuid.uuid4())
+        self._sessions[session_id] = Session(session_id, self._session_dir)
+        return session_id
+
+    def get(self, id: str) -> Session | None:
+        # Update use time of session
+        if id in self._sessions:
+            self._sessions[id].update_use_time()
+        return self._sessions.get(id, None)
+
+    def remove(self, id: str):
+        if id in self._sessions:
+            self._sessions[id].cleanup()
+            self._sessions.pop(id, None)
+
     def cleanup(self, force: bool = False):
         for session_id in self._sessions.copy():
             session_not_used = self._sessions[session_id].session_older_than(
@@ -99,36 +115,6 @@ class SessionManager:
             )
             if session_not_used or force:
                 self.remove(session_id)
-
-    def create(self) -> str:
-        session_id = str(uuid.uuid4())
-        self.setup_session(session_id)
-        return session_id
-
-    def setup_session(self, id: str):
-        self._sessions[id] = Session(id, self._session_dir)
-
-    def remove(self, id: str):
-        if id in self._sessions:
-            self._sessions[id].cleanup()
-            self._sessions.pop(id, None)
-
-    def get_download_manager(self, id: str) -> AudioDownloadManager:
-        self._update_session_use_time(id)
-        if id not in self._sessions:
-            self.setup_session(id)
-        return self._sessions[id].download_manager
-
-    def get_status_queue(self, id: str) -> Queue[StatusUpdate]:
-        self._update_session_use_time(id)
-        if id not in self._sessions:
-            self.setup_session(id)
-        return self._sessions[id].status_queue
-
-    def _update_session_use_time(self, id: str):
-        if id not in self._sessions:
-            self.setup_session(id)
-        self._sessions[id].update_use_time()
 
 
 session_manager = SessionManager()

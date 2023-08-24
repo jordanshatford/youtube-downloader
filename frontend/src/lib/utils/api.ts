@@ -26,6 +26,7 @@ export function getApiEndpoint(config: {
 	body?: BodyInit;
 	urlParam?: string;
 	queryParams?: Record<string, string | number>;
+	sessionIdInQueryParams?: boolean;
 }): RequestInfo {
 	let endpointString = `${env.serverAddress}${config.base}`;
 	// If add urlParam to end of endpoint if needed
@@ -33,7 +34,7 @@ export function getApiEndpoint(config: {
 		endpointString = `${endpointString}/${config.urlParam}`;
 	}
 
-	if (get(session)) {
+	if (get(session) && config.sessionIdInQueryParams) {
 		config.queryParams = {
 			...config.queryParams,
 			session_id: get(session) ?? ''
@@ -50,7 +51,8 @@ export function getApiEndpoint(config: {
 
 	const headers: Record<string, string> = {
 		Accept: 'application/json',
-		'Content-Type': 'application/json'
+		'Content-Type': 'application/json',
+		Authorization: `Bearer ${get(session) ?? ''}`
 	};
 
 	return {

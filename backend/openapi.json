@@ -1,7 +1,7 @@
 {
     "openapi": "3.1.0",
     "info": {
-        "title": "YouTube Audio Downloader API",
+        "title": "youtube-audio-downloader-api",
         "summary": "API to search and download YouTube videos in various audio formats.",
         "contact": {
             "name": "Jordan Shatford",
@@ -21,6 +21,11 @@
                 ],
                 "summary": "Get Search",
                 "operationId": "get_search",
+                "security": [
+                    {
+                        "HTTPBearer": []
+                    }
+                ],
                 "parameters": [
                     {
                         "name": "term",
@@ -56,6 +61,9 @@
                                 }
                             }
                         }
+                    },
+                    "403": {
+                        "description": "Forbidden"
                     },
                     "404": {
                         "description": "Not Found"
@@ -101,26 +109,15 @@
                 ],
                 "summary": "Post Download",
                 "operationId": "post_download",
-                "parameters": [
-                    {
-                        "name": "session_id",
-                        "in": "query",
-                        "required": true,
-                        "schema": {
-                            "type": "string",
-                            "title": "Session Id"
-                        }
-                    }
-                ],
                 "requestBody": {
-                    "required": true,
                     "content": {
                         "application/json": {
                             "schema": {
                                 "$ref": "#/components/schemas/Video-Input"
                             }
                         }
-                    }
+                    },
+                    "required": true
                 },
                 "responses": {
                     "201": {
@@ -132,6 +129,9 @@
                                 }
                             }
                         }
+                    },
+                    "403": {
+                        "description": "Forbidden"
                     },
                     "404": {
                         "description": "Not Found"
@@ -146,7 +146,12 @@
                             }
                         }
                     }
-                }
+                },
+                "security": [
+                    {
+                        "HTTPBearer": []
+                    }
+                ]
             }
         },
         "/downloads/{video_id}": {
@@ -156,6 +161,11 @@
                 ],
                 "summary": "Get Download",
                 "operationId": "get_download",
+                "security": [
+                    {
+                        "HTTPBearer": []
+                    }
+                ],
                 "parameters": [
                     {
                         "name": "video_id",
@@ -164,15 +174,6 @@
                         "schema": {
                             "type": "string",
                             "title": "Video Id"
-                        }
-                    },
-                    {
-                        "name": "session_id",
-                        "in": "query",
-                        "required": true,
-                        "schema": {
-                            "type": "string",
-                            "title": "Session Id"
                         }
                     }
                 ],
@@ -186,6 +187,9 @@
                                 }
                             }
                         }
+                    },
+                    "403": {
+                        "description": "Forbidden"
                     },
                     "404": {
                         "description": "Not Found"
@@ -208,6 +212,11 @@
                 ],
                 "summary": "Delete Download",
                 "operationId": "delete_download",
+                "security": [
+                    {
+                        "HTTPBearer": []
+                    }
+                ],
                 "parameters": [
                     {
                         "name": "video_id",
@@ -217,20 +226,14 @@
                             "type": "string",
                             "title": "Video Id"
                         }
-                    },
-                    {
-                        "name": "session_id",
-                        "in": "query",
-                        "required": true,
-                        "schema": {
-                            "type": "string",
-                            "title": "Session Id"
-                        }
                     }
                 ],
                 "responses": {
                     "204": {
                         "description": "Successful Response"
+                    },
+                    "403": {
+                        "description": "Forbidden"
                     },
                     "404": {
                         "description": "Not Found"
@@ -255,6 +258,11 @@
                 ],
                 "summary": "Get Download File",
                 "operationId": "get_download_file",
+                "security": [
+                    {
+                        "HTTPBearer": []
+                    }
+                ],
                 "parameters": [
                     {
                         "name": "video_id",
@@ -263,15 +271,6 @@
                         "schema": {
                             "type": "string",
                             "title": "Video Id"
-                        }
-                    },
-                    {
-                        "name": "session_id",
-                        "in": "query",
-                        "required": true,
-                        "schema": {
-                            "type": "string",
-                            "title": "Session Id"
                         }
                     }
                 ],
@@ -285,6 +284,9 @@
                                 }
                             }
                         }
+                    },
+                    "403": {
+                        "description": "Forbidden"
                     },
                     "404": {
                         "description": "Not Found"
@@ -309,6 +311,11 @@
                 ],
                 "summary": "Get Download Status",
                 "operationId": "get_download_status",
+                "security": [
+                    {
+                        "HTTPBearer": []
+                    }
+                ],
                 "parameters": [
                     {
                         "name": "video_id",
@@ -317,15 +324,6 @@
                         "schema": {
                             "type": "string",
                             "title": "Video Id"
-                        }
-                    },
-                    {
-                        "name": "session_id",
-                        "in": "query",
-                        "required": true,
-                        "schema": {
-                            "type": "string",
-                            "title": "Session Id"
                         }
                     }
                 ],
@@ -339,6 +337,9 @@
                                 }
                             }
                         }
+                    },
+                    "403": {
+                        "description": "Forbidden"
                     },
                     "404": {
                         "description": "Not Found"
@@ -713,6 +714,12 @@
                     "channel"
                 ],
                 "title": "Video"
+            }
+        },
+        "securitySchemes": {
+            "HTTPBearer": {
+                "type": "http",
+                "scheme": "bearer"
             }
         }
     },

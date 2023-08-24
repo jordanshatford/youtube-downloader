@@ -27,7 +27,8 @@ function createDownloadsStore() {
 	function setupStatusListener() {
 		const { endpoint } = getApiEndpoint({
 			base: APIEndpointConstants.DOWNLOADS,
-			urlParam: 'status'
+			urlParam: 'status',
+			sessionIdInQueryParams: true
 		});
 		downloadStatus = new EventSource(endpoint);
 
