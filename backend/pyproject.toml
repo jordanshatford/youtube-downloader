@@ -3,7 +3,7 @@ name = "yad-api"
 version = "1.0.0"
 description = "API to search and download YouTube videos in various audio formats."
 readme = "../README.md"
-requires-python = ">=3.10"
+requires-python = ">=3.11"
 license = {text = "MIT License"}
 authors = [
     {name = "Jordan Shatford", email = "jordanshatford@live.com"},
