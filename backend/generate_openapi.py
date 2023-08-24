@@ -1,6 +1,6 @@
 import json
 
-from yad_api.main import app
+from app.main import app
 
 OUTPUT_FILENAME = 'openapi.json'
 

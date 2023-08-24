@@ -8,9 +8,10 @@ from fastapi import Request
 from fastapi import status
 from fastapi.responses import FileResponse
 from sse_starlette.sse import EventSourceResponse
-from yad_api.models import StatusUpdate
-from yad_api.models import Video
-from yad_api.utils.managers import session_manager
+
+from ..models import StatusUpdate
+from ..models import Video
+from ..utils.managers import session_manager
 
 router = APIRouter(
     prefix='/downloads',

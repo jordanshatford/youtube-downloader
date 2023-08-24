@@ -6,10 +6,11 @@ import uvicorn
 from fastapi import FastAPI
 from fastapi import routing
 from starlette.middleware.cors import CORSMiddleware
-from yad_api.routers import downloads
-from yad_api.routers import search
-from yad_api.routers import session
-from yad_api.utils.managers import session_manager
+
+from .routers import downloads
+from .routers import search
+from .routers import session
+from .utils.managers import session_manager
 
 # Read data from pyproject.toml file
 pyproject_data: dict[str, Any] = {}
@@ -28,7 +29,7 @@ def generate_custom_unique_id(route: routing.APIRoute):
 
 
 app = FastAPI(
-    title='YouTube Audio Downloader API',
+    title=pyproject_data['name'],
     summary=pyproject_data['description'],
     contact={
         'name': pyproject_data['authors'][0]['name'],
@@ -73,7 +74,7 @@ def main():
     port = int(os.environ.get('PORT', 8080))
     dev = os.environ.get('DEV') is not None
     print(f'Serving on {host}:{port} (reload={dev})', flush=True)
-    uvicorn.run('yad_api.main:app', host=host, port=port, reload=dev)
+    uvicorn.run('app.main:app', host=host, port=port, reload=dev)
 
 
 if __name__ == '__main__':

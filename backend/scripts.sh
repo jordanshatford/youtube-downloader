@@ -24,7 +24,7 @@ dev()
 {
     # Enter the virtual environment and run the application
     source $VENV_PATH
-    DEV=true python -m yad_api.main
+    DEV=true python -m app.main
 }
 
 # Run formatting on the backend code

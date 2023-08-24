@@ -20,4 +20,4 @@ RUN /opt/venv/bin/python3 -m pip install --no-cache-dir --upgrade pip \
 COPY . .
 
 ENTRYPOINT ["/opt/venv/bin/python3"]
-CMD ["-m", "yad_api.main"]
+CMD ["-m", "app.main"]

@@ -1,5 +1,5 @@
 [project]
-name = "yad-api"
+name = "youtube-audio-downloader-api"
 version = "1.0.0"
 description = "API to search and download YouTube videos in various audio formats."
 readme = "../README.md"
