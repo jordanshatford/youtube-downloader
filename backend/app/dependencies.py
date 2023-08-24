@@ -10,7 +10,7 @@ from fastapi.security import HTTPBearer
 
 from .utils.managers import Session
 from .utils.managers import session_manager
-
+from .utils.threads import YoutubeDownloadThread
 
 AdditionResponses: TypeAlias = dict[int | str, dict[str, Any]]
 
@@ -39,3 +39,24 @@ def get_request_session(credentials: HTTPBearerCredentials) -> Session:
 
 
 DependsSession: TypeAlias = Annotated[Session, Depends(get_request_session)]
+
+
+# Responses which should be included in all routes that depend on a download
+depends_download_responses: AdditionResponses = {
+    **depends_session_responses,
+    status.HTTP_404_NOT_FOUND: {},
+}
+
+
+def get_request_download(video_id: str, session: DependsSession) -> YoutubeDownloadThread:  # noqa: E501
+    download = session.download_manager.get(video_id)
+    if download is None:
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND)
+    return download
+
+
+DependsDownload: TypeAlias = Annotated[
+    YoutubeDownloadThread, Depends(
+        get_request_download,
+    ),
+]

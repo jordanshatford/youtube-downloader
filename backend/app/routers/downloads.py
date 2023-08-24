@@ -9,7 +9,8 @@ from fastapi import status
 from fastapi.responses import FileResponse
 from sse_starlette.sse import EventSourceResponse
 
-from ..dependencies import depends_session_responses
+from ..dependencies import depends_download_responses
+from ..dependencies import DependsDownload
 from ..dependencies import DependsSession
 from ..models import StatusUpdate
 from ..models import Video
@@ -20,7 +21,7 @@ router = APIRouter(
     prefix='/downloads',
     tags=['downloads'],
     responses={
-        **depends_session_responses,
+        **depends_download_responses,
         status.HTTP_404_NOT_FOUND: {},
     },
 )
@@ -58,12 +59,8 @@ async def get_downloads_status(request: Request, session_id: str):
 
 
 @router.get('/{video_id}')
-def get_download(video_id: str, session: DependsSession) -> Video:
-    download = session.download_manager.get(video_id)
-    if download is None:
-        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND)
-    else:
-        return download.video
+def get_download(download: DependsDownload) -> Video:
+    return download.video
 
 
 @router.get(
@@ -73,21 +70,16 @@ def get_download(video_id: str, session: DependsSession) -> Video:
         },
     },
 )
-def get_download_file(video_id: str, session: DependsSession):
-    download = session.download_manager.get(video_id)
-    if download is not None and os.path.exists(download.get_file_location()):
+def get_download_file(download: DependsDownload):
+    if os.path.exists(download.get_file_location()):
         return FileResponse(download.get_file_location())
     else:
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND)
 
 
 @router.get('/{video_id}/status')
-def get_download_status(video_id: str, session: DependsSession) -> StatusUpdate:  # noqa: E501
-    download = session.download_manager.get(video_id)
-    if download is None:
-        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND)
-    else:
-        return StatusUpdate(id=download.video.id, status=download.status)
+def get_download_status(download: DependsDownload) -> StatusUpdate:
+    return StatusUpdate(id=download.video.id, status=download.status)
 
 
 @router.delete('/{video_id}', status_code=status.HTTP_204_NO_CONTENT)
