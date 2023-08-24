@@ -24,12 +24,6 @@
     <a href="https://github.com/yt-dlp/yt-dlp">
       <img src="https://img.shields.io/badge/Powered%20by-yt--dlp-%23FF0000.svg?style=flat&logo=youtube" alt="Powered by yt-dlp">
     </a>
-    <a href="https://vercel.com/">
-      <img src="https://img.shields.io/badge/Hosted%20on-Vercel-%23000000.svg?style=flat&logo=vercel" alt="Hosted on Vercel">
-    </a>
-    <a href="https://render.com/">
-      <img src="https://img.shields.io/badge/Hosted%20on-Render-%2346E3B7.svg?style=flat&logo=render" alt="Hosted on Render">
-    </a>
     <a href="https://github.com/jordanshatford/youtubeaudiodownloader/blob/main/LICENSE">
       <img src="https://img.shields.io/badge/License-MIT-black.svg?style=flat&logo=license" alt="License: MIT">
     </a>
