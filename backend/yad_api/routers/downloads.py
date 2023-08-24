@@ -8,9 +8,9 @@ from fastapi import Request
 from fastapi import status
 from fastapi.responses import FileResponse
 from sse_starlette.sse import EventSourceResponse
+from yad_api.models import StatusUpdate
+from yad_api.models import Video
 from yad_api.utils.managers import session_manager
-from yad_api.utils.models import StatusUpdate
-from yad_api.utils.models import Video
 
 router = APIRouter(
     prefix='/downloads',
@@ -45,6 +45,7 @@ async def status_stream(request: Request, session_id: str):
         session_manager.remove(session_id)
 
 
+# Exclude from OpenAPI schema as there is no support for Server Sent Events.
 @router.get('/status', include_in_schema=False)
 async def get_downloads_status(request: Request, session_id: str):
     event_source = status_stream(request, session_id=session_id)

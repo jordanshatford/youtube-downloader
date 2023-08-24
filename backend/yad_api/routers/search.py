@@ -1,7 +1,7 @@
 from fastapi import APIRouter
 from fastapi import HTTPException
 from fastapi import status
-from yad_api.utils.models import Video
+from yad_api.models import Video
 from yad_api.utils.youtube import search_youtube
 
 router = APIRouter(

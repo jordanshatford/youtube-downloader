@@ -6,9 +6,9 @@ from datetime import timedelta
 from queue import Queue
 from typing import Callable
 
-from .models import Status
-from .models import StatusUpdate
-from .models import Video
+from ..models import Status
+from ..models import StatusUpdate
+from ..models import Video
 from .threads import RepeatedTimer
 from .threads import YoutubeDownloadThread
 

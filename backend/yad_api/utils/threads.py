@@ -5,8 +5,8 @@ from typing import Callable
 
 from yt_dlp import YoutubeDL
 
-from .models import Status
-from .models import Video
+from ..models import Status
+from ..models import Video
 from .processors import FileProcessingComplete
 
 
