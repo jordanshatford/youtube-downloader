@@ -20,15 +20,17 @@ from ..utils.managers import session_manager
 router = APIRouter(
     prefix='/downloads',
     tags=['downloads'],
-    responses={
-        **depends_download_responses,
-        status.HTTP_404_NOT_FOUND: {},
-    },
+    responses=depends_download_responses,
 )
 
 
+@router.get('')
+def get_downloads(session: DependsSession) -> list[Video]:
+    return session.download_manager.get_all_videos()
+
+
 @router.post('', status_code=status.HTTP_201_CREATED)
-def post_download(video: Video, session: DependsSession) -> Video:
+def post_downloads(video: Video, session: DependsSession) -> Video:
     session.download_manager.add(video)
     return video
 

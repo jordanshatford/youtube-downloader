@@ -103,12 +103,46 @@
             }
         },
         "/downloads": {
+            "get": {
+                "tags": [
+                    "downloads"
+                ],
+                "summary": "Get Downloads",
+                "operationId": "get_downloads",
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "items": {
+                                        "$ref": "#/components/schemas/Video-Output"
+                                    },
+                                    "type": "array",
+                                    "title": "Response Get Downloads"
+                                }
+                            }
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "security": [
+                    {
+                        "HTTPBearer": []
+                    }
+                ]
+            },
             "post": {
                 "tags": [
                     "downloads"
                 ],
-                "summary": "Post Download",
-                "operationId": "post_download",
+                "summary": "Post Downloads",
+                "operationId": "post_downloads",
                 "requestBody": {
                     "content": {
                         "application/json": {

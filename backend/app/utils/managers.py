@@ -38,6 +38,9 @@ class AudioDownloadManager:
     def get(self, video_id: str) -> YoutubeDownloadThread | None:
         return self._downloads.get(video_id, None)
 
+    def get_all_videos(self) -> list[Video]:
+        return [d.video for d in self._downloads.values()]
+
     def send_status_update(self, video_id: str, status: Status) -> None:
         self._announcer(video_id, status)
 
