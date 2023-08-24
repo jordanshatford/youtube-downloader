@@ -1,0 +1,14 @@
+[project]
+name = "yad-api"
+version = "1.0.0"
+description = "API to search and download YouTube videos in various audio formats."
+readme = "../README.md"
+requires-python = ">=3.10"
+license = {text = "MIT License"}
+authors = [
+    {name = "Jordan Shatford", email = "jordanshatford@live.com"},
+]
+
+[project.urls]
+Documentation = "https://github.com/jordanshatford/youtube-audio-downloader/tree/main/docs"
+Repository = "https://github.com/jordanshatford/youtube-audio-downloader"

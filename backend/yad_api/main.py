@@ -1,16 +1,23 @@
 import os
+import tomllib
+from typing import Any
 
 import uvicorn
 from fastapi import FastAPI
 from fastapi import routing
-from routers import downloads
-from routers import search
-from routers import session
 from starlette.middleware.cors import CORSMiddleware
-from utils.managers import session_manager
+from yad_api.routers import downloads
+from yad_api.routers import search
+from yad_api.routers import session
+from yad_api.utils.managers import session_manager
 
-
-GITHUB_URL: str = 'https://github.com/jordanshatford/youtube-audio-downloader'
+# Read data from pyproject.toml file
+pyproject_data: dict[str, Any] = {}
+pyproject_path = os.path.join(
+    os.path.dirname(__file__), '..', 'pyproject.toml',
+)
+with open(pyproject_path, 'rb') as f:
+    pyproject_data = tomllib.load(f)['project']
 
 
 # Note: this requires that function names for each route are unique. If not
@@ -22,20 +29,21 @@ def generate_custom_unique_id(route: routing.APIRoute):
 
 app = FastAPI(
     title='YouTube Audio Downloader API',
-    summary='Search and download YouTube videos in various audio formats.',
+    summary=pyproject_data['description'],
     contact={
-        'name': 'YouTube Audio Downloader',
-        'url': GITHUB_URL,
+        'name': pyproject_data['authors'][0]['name'],
+        'email': pyproject_data['authors'][0]['email'],
     },
     license_info={
-        'name': 'MIT License',
-        'url': f'{GITHUB_URL}/blob/main/LICENSE',
+        'name': pyproject_data['license']['text'],
+        'url': f'{pyproject_data["urls"]["Repository"]}/blob/main/LICENSE',
     },
     openapi_tags=[
         {'name': 'session', 'description': 'Session management.'},
         {'name': 'search', 'description': 'Search YouTube.'},
         {'name': 'downloads', 'description': 'Download management.'},
     ],
+    version=pyproject_data['version'],
     generate_unique_id_function=generate_custom_unique_id,
 )
 
@@ -60,9 +68,13 @@ def shutdown_cleanup() -> None:
     session_manager.cleanup(force=True)
 
 
-if __name__ == '__main__':
+def main():
     host = os.environ.get('HOST', '0.0.0.0')
     port = int(os.environ.get('PORT', 8080))
     dev = os.environ.get('DEV') is not None
     print(f'Serving on {host}:{port} (reload={dev})', flush=True)
-    uvicorn.run('main:app', host=host, port=port, reload=dev)
+    uvicorn.run('yad_api.main:app', host=host, port=port, reload=dev)
+
+
+if __name__ == '__main__':
+    main()

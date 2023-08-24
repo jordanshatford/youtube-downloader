@@ -2,16 +2,16 @@
     "openapi": "3.1.0",
     "info": {
         "title": "YouTube Audio Downloader API",
-        "summary": "Search and download YouTube videos in various audio formats.",
+        "summary": "API to search and download YouTube videos in various audio formats.",
         "contact": {
-            "name": "YouTube Audio Downloader",
-            "url": "https://github.com/jordanshatford/youtube-audio-downloader"
+            "name": "Jordan Shatford",
+            "email": "jordanshatford@live.com"
         },
         "license": {
             "name": "MIT License",
             "url": "https://github.com/jordanshatford/youtube-audio-downloader/blob/main/LICENSE"
         },
-        "version": "0.1.0"
+        "version": "1.0.0"
     },
     "paths": {
         "/search": {

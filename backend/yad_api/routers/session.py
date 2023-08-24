@@ -1,6 +1,6 @@
 from fastapi import APIRouter
-from utils.managers import session_manager
-from utils.models import Session
+from yad_api.utils.managers import session_manager
+from yad_api.utils.models import Session
 
 router = APIRouter(
     prefix='/session',
