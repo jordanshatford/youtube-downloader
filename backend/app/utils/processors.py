@@ -8,7 +8,7 @@ from ..models import Status
 
 class FileProcessingComplete(PostProcessor):
     def __init__(
-        self, status_update: Callable[[Status], None], downloader=None,  # noqa: E501
+        self, status_update: Callable[[Status], None], downloader=None,
     ):
         self._status_update = status_update
         super().__init__(downloader=downloader)
