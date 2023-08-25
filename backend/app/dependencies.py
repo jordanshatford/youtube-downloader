@@ -48,7 +48,9 @@ depends_download_responses: AdditionResponses = {
 }
 
 
-def get_request_download(video_id: str, session: DependsSession) -> YoutubeDownloadThread:  # noqa: E501
+def get_request_download(
+    video_id: str, session: DependsSession,
+) -> YoutubeDownloadThread:
     download = session.download_manager.get(video_id)
     if download is None:
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND)

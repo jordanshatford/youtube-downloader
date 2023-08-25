@@ -14,7 +14,10 @@ from .threads import YoutubeDownloadThread
 
 
 class AudioDownloadManager:
-    def __init__(self, output_dir: str, announcer: Callable[[str, Status], None]):  # noqa: E501
+    def __init__(
+        self, output_dir: str,
+        announcer: Callable[[str, Status], None],
+    ):
         self._announcer = announcer
         self._downloads: dict[str, YoutubeDownloadThread] = {}
         self._output_dir = output_dir

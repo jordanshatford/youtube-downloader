@@ -18,7 +18,10 @@ router = APIRouter(
 
 
 @router.get('')
-def get_search(session: DependsSession, term: str, results: int = 12) -> list[Video]:  # noqa: E501
+def get_search(
+    session: DependsSession, term: str,
+    results: int = 12,
+) -> list[Video]:
     session.update_use_time()
     videos = search_youtube(term, results)
     if len(videos) == 0:

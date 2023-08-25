@@ -10,6 +10,7 @@ from fastapi.responses import FileResponse
 from sse_starlette.sse import EventSourceResponse
 
 from ..dependencies import depends_download_responses
+from ..dependencies import depends_session_responses
 from ..dependencies import DependsDownload
 from ..dependencies import DependsSession
 from ..models import StatusUpdate
@@ -20,7 +21,7 @@ from ..utils.managers import session_manager
 router = APIRouter(
     prefix='/downloads',
     tags=['downloads'],
-    responses=depends_download_responses,
+    responses=depends_session_responses,
 )
 
 
@@ -60,13 +61,14 @@ async def get_downloads_status(request: Request, session_id: str):
     return EventSourceResponse(event_source)
 
 
-@router.get('/{video_id}')
+@router.get('/{video_id}', responses=depends_download_responses)
 def get_download(download: DependsDownload) -> Video:
     return download.video
 
 
 @router.get(
     '/{video_id}/file', response_class=FileResponse, responses={
+        **depends_download_responses,
         status.HTTP_200_OK: {
             'content': {'audio/*': {'schema': {'type': 'file'}}},
         },
@@ -79,14 +81,17 @@ def get_download_file(download: DependsDownload):
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND)
 
 
-@router.get('/{video_id}/status')
+@router.get('/{video_id}/status', responses=depends_download_responses)
 def get_download_status(download: DependsDownload) -> StatusUpdate:
     return StatusUpdate(id=download.video.id, status=download.status)
 
 
-@router.delete('/{video_id}', status_code=status.HTTP_204_NO_CONTENT)
-def delete_download(video_id: str, session: DependsSession) -> None:
-    if video_id in session.download_manager:
-        session.download_manager.remove(video_id)
-    else:
-        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND)
+@router.delete(
+    '/{video_id}', status_code=status.HTTP_204_NO_CONTENT,
+    responses=depends_download_responses,
+)
+def delete_download(
+    download: DependsDownload,
+    session: DependsSession,
+) -> None:
+    session.download_manager.remove(download.video.id)
