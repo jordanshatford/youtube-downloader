@@ -5,7 +5,7 @@ from typing import Any
 import uvicorn
 from fastapi import FastAPI
 from fastapi import routing
-from starlette.middleware.cors import CORSMiddleware
+from fastapi.middleware.cors import CORSMiddleware
 
 from .routers import downloads
 from .routers import search
