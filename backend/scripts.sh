@@ -25,6 +25,7 @@ dev()
     # Enter the virtual environment and run the application
     source $VENV_PATH
     DEV=true python -m app.main
+    deactivate
 }
 
 # Run formatting on the backend code
@@ -42,6 +43,7 @@ generate()
     # Enter the virtual environment and run the generation script
     source $VENV_PATH
     python generate_openapi.py
+    deactivate
 }
 
 # Clean up existing virtualenv and uninstall pre-commit hooks. This is used to return
