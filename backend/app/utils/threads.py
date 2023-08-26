@@ -76,7 +76,7 @@ class YoutubeDownloadThread(threading.Thread):
 
 class RepeatedTimer:
     def __init__(self, interval: int, function: Callable, *args, **kwargs):
-        self._timer = None
+        self._timer: threading.Timer | None = None
         self.interval = interval
         self.function = function
         self.args = args
@@ -101,5 +101,6 @@ class RepeatedTimer:
             self.is_running = True
 
     def stop(self):
-        self._timer.cancel()
+        if self._timer is not None:
+            self._timer.cancel()
         self.is_running = False
