@@ -2,7 +2,6 @@ import os
 import tomllib
 from typing import Any
 
-import uvicorn
 from fastapi import FastAPI
 from fastapi import routing
 from fastapi.middleware.cors import CORSMiddleware
@@ -67,15 +66,3 @@ app.include_router(downloads.router)
 def shutdown_cleanup() -> None:
     print('Cleaning up all session for shutdown', flush=True)
     session_manager.cleanup(force=True)
-
-
-def main():
-    host = os.environ.get('HOST', '0.0.0.0')
-    port = int(os.environ.get('PORT', 8080))
-    dev = os.environ.get('DEV') is not None
-    print(f'Serving on {host}:{port} (reload={dev})', flush=True)
-    uvicorn.run('app.main:app', host=host, port=port, reload=dev)
-
-
-if __name__ == '__main__':
-    main()
