@@ -26,12 +26,15 @@ python3 -m pip install -r requirements.txt
 
 Once the project dependencies are installed you can start backend server using:
 ```bash
-python3 main.py
+uvicorn app.main:app --host 0.0.0.0 --port 8080 --reload
 ```
 
 ## Using PNPM
 The backend can be run using [PNPM](https://pnpm.io/) to handle setting up the Venv, installing dependencies, and running the server. You can run the backend using:
 ```bash
+# Install dependencies
+pnpm install
+# Run the application in dev mode
 pnpm dev
 ```
 
@@ -41,6 +44,8 @@ The backend can be run using [Docker](https://www.docker.com) and the provided D
 You can build the Docker container using the following command from within the backend folder:
 ```bash
 docker build -t youtubeaudiodownloader-backend .
+
+# NOTE: you can specify the --target as `production` or `development`. By default it will use `production`
 ```
 
 You can run the Docker container using the following command:

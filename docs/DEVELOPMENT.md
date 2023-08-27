@@ -5,7 +5,9 @@ To run the application for development purposes, you can use [Docker Compose](ht
 
 You can run the application using the following command:
 ```bash
-docker-compose up --build
+docker compose -f docker-compose.dev.yml up --build
+
+# NOTE: running the dev version will ensure that hot reload is available to the user.
 ```
 
 ## Without Docker

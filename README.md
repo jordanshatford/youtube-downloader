@@ -37,18 +37,15 @@
   </p>
 </p>
 
-YouTube Audio Downloader is a full stack application created to allow users to download the audio from [YouTube](https://www.youtube.com/) videos to various audio formats.
+YouTube Audio Downloader is a full stack application created to allow users to download the audio of specified [YouTube](https://www.youtube.com/) videos. Various audio format options are available based on the users needs.
 
 # Features
-  - Dark and Light theme
-  - Search YouTube for videos directly
-  - Conversion of multiple YouTube videos at once
-  - Select between multiple audio formats (MP3, AAC, FLAC, M4A, OPUS, WAV)
-  - High quality audio files
+  - Search YouTube for videos by term
+  - Convert multiple videos to audio concurrently
+  - Variety of available audio formats to choose (MP3, AAC, FLAC, M4A, OPUS, WAV)
+  - Produces files with high quality audio
+  - Dark and light theme options
 
-# Additional Documentation
-  - [Frontend](./docs/FRONTEND.md)
-  - [Backend](./docs/BACKEND.md)
-  - [Development](./docs/DEVELOPMENT.md)
-  - [Deployment](./docs/DEPLOYMENT.md)
-  - [Hosting](./docs/HOSTING.md)
+# Documentation
+
+Documentation for the project can be found [here](./docs/README.md).

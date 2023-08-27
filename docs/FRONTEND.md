@@ -49,5 +49,12 @@ pnpm build
 pnpm preview
 ```
 
-## Docker
-Docker has not yet been implemented for the SvelteKit frontend.
+## Using Docker
+The frontend can be run using [Docker](https://www.docker.com) and the provided Dockerfile.
+
+You can build the Docker container using the following command from within the backend folder:
+```bash
+docker build -t youtubeaudiodownloader-frontend .
+
+# NOTE: you can specify the --target as `production` or `development`. By default it will use `production`
+```
