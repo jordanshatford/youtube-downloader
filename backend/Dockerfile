@@ -1,23 +1,26 @@
-FROM ubuntu:23.10
+FROM python:3.11 as base
 
-ENV DEBIAN_FRONTEND=noninteractive
-
+# Ensure FFMPEG is available
 RUN apt-get update -y
-
-RUN apt-get install -y --no-install-recommends python3-dev python3-pip python3-venv ffmpeg
+RUN apt-get install -y ffmpeg
 
 WORKDIR /backend
 
-RUN python3 -m venv /opt/venv
+# Install required python packages
+COPY ./requirements.txt /backend/requirements.txt
+RUN pip install --no-cache-dir -r requirements.txt
 
-COPY requirements.txt ./
+# Copy over source and config files
+COPY ./app /backend/app
+COPY ./pyproject.toml /backend/pyproject.toml
 
-RUN . /opt/venv/bin/activate
+# Expose port we are running the backend on
+EXPOSE 8080
 
-RUN /opt/venv/bin/python3 -m pip install --no-cache-dir --upgrade pip \
-    && /opt/venv/bin/python3 -m pip install --no-cache-dir -r requirements.txt
+# In development run the application with reload active
+FROM base as development
+CMD [ "uvicorn", "app.main:app", "--host=0.0.0.0", "--port=8080", "--reload" ]
 
-COPY . .
-
-ENTRYPOINT ["/opt/venv/bin/python3"]
-CMD ["-m", "app.main"]
+# In production run the application without reload
+FROM base as production
+CMD [ "uvicorn", "app.main:app", "--host=0.0.0.0", "--port=8080" ]
