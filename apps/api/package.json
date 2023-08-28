@@ -3,9 +3,9 @@
 	"version": "1.0.0",
   "license": "MIT",
 	"scripts": {
-		"dev": "./scripts.sh dev",
-		"prepare": "./scripts.sh prepare && pnpm generate:openapi",
-		"format": "./scripts.sh format",
-		"generate:openapi": "./scripts.sh generate"
+		"dev": "bash scripts.sh dev",
+		"prep": "bash scripts.sh prepare && pnpm generate:openapi",
+		"fmt": "bash scripts.sh format",
+		"generate:openapi": "bash scripts.sh generate"
 	}
 }

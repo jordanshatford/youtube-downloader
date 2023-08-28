@@ -39,7 +39,7 @@
 
 YouTube Audio Downloader is a full stack application created to allow users to download the audio of specified [YouTube](https://www.youtube.com/) videos. Various audio format options are available based on the users needs.
 
-# Features
+## Features
   - Search YouTube for videos by term
   - Convert multiple videos to audio concurrently
   - Variety of available audio formats to choose (MP3, AAC, FLAC, M4A, OPUS, WAV)
@@ -48,4 +48,5 @@ YouTube Audio Downloader is a full stack application created to allow users to d
 
 # Documentation
 
+## Documentation
 Documentation for the project can be found [here](./docs/README.md).
