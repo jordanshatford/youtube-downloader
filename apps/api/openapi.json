@@ -55,7 +55,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/Video-Output"
+                    "$ref": "#/components/schemas/Video"
                   },
                   "title": "Response Get Search"
                 }
@@ -136,7 +136,7 @@
               "application/json": {
                 "schema": {
                   "items": {
-                    "$ref": "#/components/schemas/Video-Output"
+                    "$ref": "#/components/schemas/Video"
                   },
                   "type": "array",
                   "title": "Response Get Downloads"
@@ -164,7 +164,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/Video-Input"
+                "$ref": "#/components/schemas/Video"
               }
             }
           },
@@ -176,7 +176,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Video-Output"
+                  "$ref": "#/components/schemas/Video"
                 }
               }
             }
@@ -231,7 +231,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Video-Output"
+                  "$ref": "#/components/schemas/Video"
                 }
               }
             }
@@ -432,7 +432,7 @@
         ],
         "title": "AudioOptions"
       },
-      "Channel-Input": {
+      "Channel": {
         "properties": {
           "name": {
             "type": "string",
@@ -470,49 +470,6 @@
         "type": "object",
         "required": [
           "name"
-        ],
-        "title": "Channel"
-      },
-      "Channel-Output": {
-        "properties": {
-          "name": {
-            "type": "string",
-            "title": "Name"
-          },
-          "url": {
-            "anyOf": [
-              {
-                "type": "string",
-                "maxLength": 2083,
-                "minLength": 1,
-                "format": "uri"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Url"
-          },
-          "thumbnail": {
-            "anyOf": [
-              {
-                "type": "string",
-                "maxLength": 2083,
-                "minLength": 1,
-                "format": "uri"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Thumbnail"
-          }
-        },
-        "type": "object",
-        "required": [
-          "name",
-          "url",
-          "thumbnail"
         ],
         "title": "Channel"
       },
@@ -604,7 +561,7 @@
         ],
         "title": "ValidationError"
       },
-      "Video-Input": {
+      "Video": {
         "properties": {
           "id": {
             "type": "string",
@@ -666,7 +623,7 @@
           "channel": {
             "anyOf": [
               {
-                "$ref": "#/components/schemas/Channel-Input"
+                "$ref": "#/components/schemas/Channel"
               },
               {
                 "type": "null"
@@ -678,88 +635,6 @@
         "required": [
           "id",
           "url"
-        ],
-        "title": "Video"
-      },
-      "Video-Output": {
-        "properties": {
-          "id": {
-            "type": "string",
-            "title": "Id"
-          },
-          "url": {
-            "type": "string",
-            "maxLength": 2083,
-            "minLength": 1,
-            "format": "uri",
-            "title": "Url"
-          },
-          "options": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/AudioOptions"
-              }
-            ],
-            "default": {
-              "format": "mp3"
-            }
-          },
-          "title": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Title"
-          },
-          "duration": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Duration"
-          },
-          "thumbnail": {
-            "anyOf": [
-              {
-                "type": "string",
-                "maxLength": 2083,
-                "minLength": 1,
-                "format": "uri"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Thumbnail"
-          },
-          "channel": {
-            "anyOf": [
-              {
-                "$ref": "#/components/schemas/Channel-Output"
-              },
-              {
-                "type": "null"
-              }
-            ]
-          }
-        },
-        "type": "object",
-        "required": [
-          "id",
-          "url",
-          "options",
-          "title",
-          "duration",
-          "thumbnail",
-          "channel"
         ],
         "title": "Video"
       }

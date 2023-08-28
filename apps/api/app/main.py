@@ -45,6 +45,7 @@ app = FastAPI(
     ],
     version=pyproject_data['version'],
     generate_unique_id_function=generate_custom_unique_id,
+    separate_input_output_schemas=False,
 )
 
 allowed_origin = os.environ.get('ALLOWED_ORIGIN', 'http://localhost:5173')
