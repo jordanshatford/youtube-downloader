@@ -1,9 +1,11 @@
 {
 	"recommendations": [
 		"ms-azuretools.vscode-docker",
-        "EditorConfig.EditorConfig",
-        "ms-python.python",
-        "ms-python.vscode-pylance",
-        "svelte.svelte-vscode"
+    "EditorConfig.EditorConfig",
+    "ms-python.python",
+    "ms-python.vscode-pylance",
+    "svelte.svelte-vscode",
+    "dbaeumer.vscode-eslint",
+    "esbenp.prettier-vscode"
 	]
 }
