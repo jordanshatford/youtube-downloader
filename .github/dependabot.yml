@@ -4,31 +4,37 @@
 version: 2
 updates:
   - package-ecosystem: "pip"
-    directory: "/backend"
+    directory: "/apps/api"
     schedule:
       interval: "monthly"
     assignees:
       - "jordanshatford"
   - package-ecosystem: "docker"
-    directory: "/backend"
+    directory: "/apps/api"
     schedule:
       interval: "monthly"
     assignees:
       - "jordanshatford"
   - package-ecosystem: "npm"
-    directory: "/frontend"
+    directory: "/"
     schedule:
       interval: "monthly"
     assignees:
       - "jordanshatford"
   - package-ecosystem: "docker"
-    directory: "/frontend"
+    directory: "/apps/web"
     schedule:
       interval: "monthly"
     assignees:
       - "jordanshatford"
   - package-ecosystem: "github-actions"
     directory: "/"
+    schedule:
+      interval: "monthly"
+    assignees:
+      - "jordanshatford"
+  - package-ecosystem: "github-actions"
+    directory: "/.github/actions/setup-environment"
     schedule:
       interval: "monthly"
     assignees:

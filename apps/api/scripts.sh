@@ -1,5 +1,8 @@
 #!/bin/sh
 
+# Exit scripts if command fails
+set -e
+
 # Location for venv
 VENV_PATH=venv/bin/activate
 
@@ -19,7 +22,7 @@ prepare()
     deactivate
 }
 
-# Run the backend application in dev mode
+# Run the API in dev mode
 dev()
 {
     # Enter the virtual environment and run the application
@@ -28,7 +31,7 @@ dev()
     deactivate
 }
 
-# Run formatting on the backend code
+# Run formatting on the API code
 format()
 {
     # Run pre-commit on all files
@@ -37,7 +40,7 @@ format()
     deactivate
 }
 
-# Generate openapi.json from the backend app
+# Generate openapi.json from the API app
 generate()
 {
     # Enter the virtual environment and run the generation script

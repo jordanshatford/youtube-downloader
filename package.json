@@ -1,0 +1,19 @@
+{
+  "name": "youtube-audio-downloader",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "pnpm --filter @yad/api --filter @yad/web dev",
+    "api": "pnpm --filter @yad/api -- ",
+    "web": "pnpm --filter @yad/web -- ",
+    "lint": "pnpm -r lint",
+    "format": "pnpm -r format",
+    "check": "pnpm -r check"
+  },
+	"packageManager": "pnpm@8.7.0",
+	"engines": {
+		"pnpm": ">=8",
+		"node": ">=18"
+	}
+}

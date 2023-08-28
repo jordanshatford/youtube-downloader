@@ -1,23 +1,23 @@
 version: '3'
 
 services:
-  backend:
+  api:
     extends:
       file: docker-compose.yml
-      service: backend
+      service: api
     build:
       target: development
     volumes:
-      - ./backend:/backend
-  frontend:
+      - ./apps/api:/api
+  web:
     extends:
       file: docker-compose.yml
-      service: frontend
-    build: 
+      service: web
+    build:
       target: development
     ports:
       - 5173:5173
       - 24678:24678
     volumes:
-      - ./frontend:/frontend
-      - /frontend/node_modules
+      - ./apps/web:/web
+      - /web/node_modules

@@ -1,25 +1,25 @@
 version: '3'
 
 services:
-  backend:
+  api:
     build:
-      context: ./backend
+      context: ./apps/api
       target: production
-    image: youtubeaudiodownloader-backend:latest
+    image: youtubeaudiodownloader-api:latest
     restart: always
     environment:
       ALLOWED_ORIGIN: http://localhost:5173
     ports:
       - 8080:8080
-  frontend:
+  web:
     build:
-      context: ./frontend
+      context: ./apps/web
       target: production
-    image: youtubeaudiodownloader-frontend:latest
+    image: youtubeaudiodownloader-web:latest
     restart: always
     environment:
       VITE_SERVER_ADDR: http://localhost:8080
     ports:
       - 5173:5173
     depends_on:
-      - backend
+      - api

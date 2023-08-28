@@ -1,8 +1,9 @@
 {
-	"name": "frontend",
-	"version": "0.1.0",
+	"name": "@yad/web",
+	"version": "1.0.0",
 	"type": "module",
 	"scripts": {
+		"prepare": "svelte-kit sync",
 		"dev": "vite dev",
 		"build": "vite build",
 		"preview": "vite preview",
@@ -34,10 +35,5 @@
 		"tslib": "^2.6.1",
 		"typescript": "^5.1.6",
 		"vite": "^4.4.8"
-	},
-	"packageManager": "pnpm@8.7.0",
-	"engines": {
-		"pnpm": ">=8",
-		"node": ">=18"
 	}
 }

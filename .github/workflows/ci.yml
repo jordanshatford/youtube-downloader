@@ -8,51 +8,28 @@ on:
   workflow_dispatch:
 
 jobs:
-  frontend:
-    name: Frontend (Build, Lint, Check)
+  web:
+    name: Web (Build, Lint, Check)
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
         os: [macos-latest, ubuntu-latest]
         node-version: [18.x, 20.x]
-    defaults:
-      run:
-        working-directory: ./frontend
+        pnpm-version: [8]
+        python-version: ['3.11']
     steps:
       - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
+      - name: Setup Environment
+        uses: ./.github/actions/setup-environment
         with:
           node-version: ${{ matrix.node-version }}
-      - uses: pnpm/action-setup@v2
-        with:
-          version: 8
+          pnpm-version: ${{ matrix.pnpm-version }}
+          python-version: ${{ matrix.python-version }}
       - name: Install dependencies
         run: pnpm install
       - name: Run linting check
-        run: pnpm lint
+        run: pnpm web lint
       - name: Run diagnostics check
-        run: pnpm check -- --output machine
+        run: pnpm web check --output machine
       - name: Run build
-        run: pnpm build
-
-  backend:
-    name: Backend (Pre-commit)
-    runs-on: ${{ matrix.os }}
-    strategy:
-      matrix:
-        os: [ubuntu-latest]
-        python-version: ['3.11']
-    defaults:
-      run:
-        working-directory: ./backend
-    steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-python@v4
-        with:
-          python-version: ${{ matrix.python-version }}
-          cache: 'pip'
-      - uses: pre-commit/action@v3.0.0
-        with:
-          extra_args: --config ./backend/.pre-commit-config.yaml --all-files
-      - uses: pre-commit-ci/lite-action@v1.0.1
-        if: always()
+        run: pnpm web build
