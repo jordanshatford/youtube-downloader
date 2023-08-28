@@ -1,6 +1,6 @@
 <p align="center">
   <br />
-  <img width="150" height="150" src="./frontend/static/images/logo.png" alt="Logo">
+  <img width="150" height="150" src="./apps/web/static/images/logo.png" alt="Logo">
   <h1 align="center"><b>YouTube Audio Downloader</b></h1>
   <div align="center">
     <a href="https://kit.svelte.dev/">
