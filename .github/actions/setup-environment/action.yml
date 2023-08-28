@@ -18,7 +18,7 @@ runs:
   using: 'composite'
   steps:
     - name: Setup PNPM
-      uses: pnpm/actions-setup@v2
+      uses: pnpm/action-setup@v2
       with:
         version: ${{ inputs.pnpm-version }}
     - name: Setup Node
