@@ -1,6 +1,7 @@
 {
 	"name": "@yad/web",
 	"version": "1.0.0",
+  "license": "MIT",
 	"type": "module",
 	"scripts": {
 		"prepare": "svelte-kit sync",

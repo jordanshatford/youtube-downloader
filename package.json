@@ -2,6 +2,7 @@
   "name": "youtube-audio-downloader",
   "version": "1.0.0",
   "private": true,
+  "license": "MIT",
   "type": "module",
   "scripts": {
     "dev": "pnpm --filter @yad/api --filter @yad/web dev",

@@ -1,6 +1,7 @@
 {
 	"name": "@yad/api",
 	"version": "1.0.0",
+  "license": "MIT",
 	"scripts": {
 		"dev": "./scripts.sh dev",
 		"prepare": "./scripts.sh prepare && pnpm generate:openapi",
