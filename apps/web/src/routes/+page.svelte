@@ -6,7 +6,7 @@
 	import ResultCard from '$lib/components/ResultCard.svelte';
 	import config from '$lib/config';
 
-	function searchVideos(event: CustomEvent) {
+	function searchVideos(event: CustomEvent<{ term: string }>) {
 		let term = event.detail.term;
 		search.get(term);
 	}

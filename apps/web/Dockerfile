@@ -6,7 +6,7 @@ RUN npm install -g pnpm
 WORKDIR /frontend
 
 # Install required dependencies
-COPY package.json pnpm-lock.yaml svelte.config.js ./
+COPY package.json svelte.config.js ./
 RUN pnpm install
 
 # Copy over project files
