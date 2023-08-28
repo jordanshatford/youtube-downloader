@@ -5,16 +5,23 @@
   "license": "MIT",
   "type": "module",
   "scripts": {
+    "prepare": "husky install",
     "dev": "pnpm --filter @yad/api --filter @yad/web dev",
     "api": "pnpm --filter @yad/api -- ",
     "web": "pnpm --filter @yad/web -- ",
     "lint": "pnpm -r lint",
     "format": "pnpm -r format",
-    "check": "pnpm -r check"
+    "check": "pnpm -r check",
+    "commitlint": "commitlint --edit"
   },
-	"packageManager": "pnpm@8.7.0",
-	"engines": {
-		"pnpm": ">=8",
-		"node": ">=18"
-	}
+  "devDependencies": {
+    "@commitlint/cli": "^17.7.1",
+    "@commitlint/config-conventional": "^17.7.0",
+    "husky": "^8.0.3"
+  },
+  "packageManager": "pnpm@8.7.0",
+  "engines": {
+    "pnpm": ">=8",
+    "node": ">=18"
+  }
 }
