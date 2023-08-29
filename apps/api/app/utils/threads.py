@@ -47,18 +47,25 @@ class YoutubeDownloadThread(threading.Thread):
             group=None, target=None, name=None, daemon=True,
         )
 
+    @property
+    def filename(self) -> str:
+        return f'{self.video.id}.{self.video.options.format.value}'
+
+    @property
+    def path(self) -> str:
+        return os.path.join(self._output_directory, self.filename)
+
+    @property
+    def filename_using_title(self) -> str:
+        return f'{self.video.title}.{self.video.options.format.value}'
+
     def download_progress_hook(self, progress_info: dict[str, str]) -> None:
         if progress_info.get('status', None) == 'finished':
             self._handle_status_update(Status.PROCESSING)
 
-    def get_file_location(self) -> str:
-        filename = f'{self.video.id}.{self.video.options.format.value}'
-        return os.path.join(self._output_directory, filename)
-
     def remove(self) -> bool:
-        path = self.get_file_location()
-        if os.path.exists(path):
-            os.remove(path)
+        if os.path.exists(self.path):
+            os.remove(self.path)
             return True
         return False
 

@@ -75,8 +75,8 @@ def get_download(download: DependsDownload) -> Video:
     },
 )
 def get_download_file(download: DependsDownload):
-    if os.path.exists(download.get_file_location()):
-        return FileResponse(download.get_file_location())
+    if os.path.exists(download.path):
+        return FileResponse(download.path, filename=download.filename_using_title)
     else:
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND)
 
