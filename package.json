@@ -9,6 +9,7 @@
     "dev": "pnpm --filter @yad/api --filter @yad/web dev",
     "api": "pnpm --filter @yad/api -- ",
     "web": "pnpm --filter @yad/web -- ",
+    "build": "pnpm -r build",
     "lint": "pnpm -r lint",
     "format": "pnpm -r format",
     "check": "pnpm -r check",
