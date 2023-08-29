@@ -14,7 +14,7 @@ from ..dependencies import depends_session_responses
 from ..dependencies import DependsDownload
 from ..dependencies import DependsSession
 from ..models import StatusUpdate
-from ..models import Video
+from ..models import VideoWithOptions
 from ..utils.managers import Session
 from ..utils.managers import session_manager
 
@@ -26,12 +26,14 @@ router = APIRouter(
 
 
 @router.get('')
-def get_downloads(session: DependsSession) -> list[Video]:
+def get_downloads(session: DependsSession) -> list[VideoWithOptions]:
     return session.download_manager.get_all_videos()
 
 
 @router.post('', status_code=status.HTTP_201_CREATED)
-def post_downloads(video: Video, session: DependsSession) -> Video:
+def post_downloads(
+    video: VideoWithOptions, session: DependsSession,
+) -> VideoWithOptions:
     session.download_manager.add(video)
     return video
 
@@ -62,7 +64,7 @@ async def get_downloads_status(request: Request, session_id: str):
 
 
 @router.get('/{video_id}', responses=depends_download_responses)
-def get_download(download: DependsDownload) -> Video:
+def get_download(download: DependsDownload) -> VideoWithOptions:
     return download.video
 
 

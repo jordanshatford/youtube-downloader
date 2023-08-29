@@ -136,7 +136,7 @@
               "application/json": {
                 "schema": {
                   "items": {
-                    "$ref": "#/components/schemas/Video"
+                    "$ref": "#/components/schemas/VideoWithOptions"
                   },
                   "type": "array",
                   "title": "Response Get Downloads"
@@ -164,7 +164,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/Video"
+                "$ref": "#/components/schemas/VideoWithOptions"
               }
             }
           },
@@ -176,7 +176,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Video"
+                  "$ref": "#/components/schemas/VideoWithOptions"
                 }
               }
             }
@@ -231,7 +231,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Video"
+                  "$ref": "#/components/schemas/VideoWithOptions"
                 }
               }
             }
@@ -439,37 +439,25 @@
             "title": "Name"
           },
           "url": {
-            "anyOf": [
-              {
-                "type": "string",
-                "maxLength": 2083,
-                "minLength": 1,
-                "format": "uri"
-              },
-              {
-                "type": "null"
-              }
-            ],
+            "type": "string",
+            "maxLength": 2083,
+            "minLength": 1,
+            "format": "uri",
             "title": "Url"
           },
           "thumbnail": {
-            "anyOf": [
-              {
-                "type": "string",
-                "maxLength": 2083,
-                "minLength": 1,
-                "format": "uri"
-              },
-              {
-                "type": "null"
-              }
-            ],
+            "type": "string",
+            "maxLength": 2083,
+            "minLength": 1,
+            "format": "uri",
             "title": "Thumbnail"
           }
         },
         "type": "object",
         "required": [
-          "name"
+          "name",
+          "url",
+          "thumbnail"
         ],
         "title": "Channel"
       },
@@ -574,69 +562,82 @@
             "format": "uri",
             "title": "Url"
           },
-          "options": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/AudioOptions"
-              }
-            ],
-            "default": {
-              "format": "mp3"
-            }
-          },
           "title": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ],
+            "type": "string",
             "title": "Title"
           },
           "duration": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ],
+            "type": "string",
             "title": "Duration"
           },
           "thumbnail": {
-            "anyOf": [
-              {
-                "type": "string",
-                "maxLength": 2083,
-                "minLength": 1,
-                "format": "uri"
-              },
-              {
-                "type": "null"
-              }
-            ],
+            "type": "string",
+            "maxLength": 2083,
+            "minLength": 1,
+            "format": "uri",
             "title": "Thumbnail"
           },
           "channel": {
-            "anyOf": [
-              {
-                "$ref": "#/components/schemas/Channel"
-              },
-              {
-                "type": "null"
-              }
-            ]
+            "$ref": "#/components/schemas/Channel"
           }
         },
         "type": "object",
         "required": [
           "id",
-          "url"
+          "url",
+          "title",
+          "duration",
+          "thumbnail",
+          "channel"
         ],
         "title": "Video"
+      },
+      "VideoWithOptions": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "title": "Id"
+          },
+          "url": {
+            "type": "string",
+            "maxLength": 2083,
+            "minLength": 1,
+            "format": "uri",
+            "title": "Url"
+          },
+          "title": {
+            "type": "string",
+            "title": "Title"
+          },
+          "duration": {
+            "type": "string",
+            "title": "Duration"
+          },
+          "thumbnail": {
+            "type": "string",
+            "maxLength": 2083,
+            "minLength": 1,
+            "format": "uri",
+            "title": "Thumbnail"
+          },
+          "channel": {
+            "$ref": "#/components/schemas/Channel"
+          },
+          "options": {
+            "$ref": "#/components/schemas/AudioOptions"
+          }
+        },
+        "type": "object",
+        "required": [
+          "id",
+          "url",
+          "title",
+          "duration",
+          "thumbnail",
+          "channel",
+          "options"
+        ],
+        "title": "VideoWithOptions"
       }
     },
     "securitySchemes": {

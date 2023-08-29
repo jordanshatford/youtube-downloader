@@ -29,18 +29,21 @@ class AudioOptions(BaseModel):
 
 class Channel(BaseModel):
     name: str
-    url: HttpUrl | None = None
-    thumbnail: HttpUrl | None = None
+    url: HttpUrl
+    thumbnail: HttpUrl
 
 
 class Video(BaseModel):
     id: str
     url: HttpUrl
-    options: AudioOptions = AudioOptions(format=AudioFormat.MP3)
-    title: str | None = None
-    duration: str | None = None
-    thumbnail: HttpUrl | None = None
-    channel: Channel | None = None
+    title: str
+    duration: str
+    thumbnail: HttpUrl
+    channel: Channel
+
+
+class VideoWithOptions(Video):
+    options: AudioOptions
 
 
 class Session(BaseModel):

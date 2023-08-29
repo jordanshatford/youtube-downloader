@@ -6,14 +6,14 @@ from typing import Callable
 from yt_dlp import YoutubeDL
 
 from ..models import Status
-from ..models import Video
+from ..models import VideoWithOptions
 from .processors import FileProcessingComplete
 
 
 class YoutubeDownloadThread(threading.Thread):
     def __init__(
         self,
-        video: Video,
+        video: VideoWithOptions,
         output_directory: str,
         status_update: Callable[[str, Status], None],
     ):

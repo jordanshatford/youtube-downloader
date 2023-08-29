@@ -8,7 +8,7 @@ from typing import Callable
 
 from ..models import Status
 from ..models import StatusUpdate
-from ..models import Video
+from ..models import VideoWithOptions
 from .threads import RepeatedTimer
 from .threads import YoutubeDownloadThread
 
@@ -25,7 +25,7 @@ class AudioDownloadManager:
     def __contains__(self, video_id: str) -> bool:
         return video_id in self._downloads
 
-    def add(self, video: Video) -> None:
+    def add(self, video: VideoWithOptions) -> None:
         if video.id not in self._downloads:
             download = YoutubeDownloadThread(
                 video, self._output_dir, self.send_status_update,
@@ -41,7 +41,7 @@ class AudioDownloadManager:
     def get(self, video_id: str) -> YoutubeDownloadThread | None:
         return self._downloads.get(video_id, None)
 
-    def get_all_videos(self) -> list[Video]:
+    def get_all_videos(self) -> list[VideoWithOptions]:
         return [d.video for d in self._downloads.values()]
 
     def send_status_update(self, video_id: str, status: Status) -> None:
