@@ -8,14 +8,13 @@ on:
   workflow_dispatch:
 
 jobs:
-  web:
-    name: Web (Build, Lint, Check)
+  ci:
+    name: CI (Build, Lint, Format, Check)
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
         os: [macos-latest, ubuntu-latest]
         node-version: [18.x, 20.x]
-        pnpm-version: [8]
         python-version: ['3.11']
     steps:
       - uses: actions/checkout@v3
@@ -23,13 +22,14 @@ jobs:
         uses: ./.github/actions/setup-environment
         with:
           node-version: ${{ matrix.node-version }}
-          pnpm-version: ${{ matrix.pnpm-version }}
           python-version: ${{ matrix.python-version }}
       - name: Install dependencies
         run: pnpm install
-      - name: Run linting check
-        run: pnpm web lint
-      - name: Run diagnostics check
-        run: pnpm web check --output machine
-      - name: Run build
-        run: pnpm web build
+      - name: Lint
+        run: pnpm lint
+      - name: Format
+        run: pnpm format
+      - name: Check
+        run: pnpm check
+      - name: Build
+        run: pnpm build

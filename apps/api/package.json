@@ -6,9 +6,8 @@
     ".": "./openapi.json"
   },
 	"scripts": {
-		"dev": "bash scripts.sh dev",
-		"prep": "bash scripts.sh prepare && pnpm generate:openapi",
-		"fmt": "bash scripts.sh format",
-		"generate:openapi": "bash scripts.sh generate"
+		"dev": "./scripts.sh dev",
+		"format": "./scripts.sh format",
+		"generate:openapi": "./scripts.sh generate"
 	}
 }
