@@ -2,6 +2,9 @@
 	"name": "@yad/api",
 	"version": "1.0.0",
   "license": "MIT",
+  "exports": {
+    ".": "./openapi.json"
+  },
 	"scripts": {
 		"dev": "bash scripts.sh dev",
 		"prep": "bash scripts.sh prepare && pnpm generate:openapi",
