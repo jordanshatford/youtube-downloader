@@ -1,19 +1,19 @@
 import { browser } from '$app/environment';
 import { writable } from 'svelte/store';
-import { Theme } from '$lib/utils/types';
-import config from '$lib/config';
+
+const THEME_KEY = 'theme';
 
 function createThemeStore() {
-	const THEME_KEY = config.theme.key;
-	const DEFAULT_THEME_VALUE = config.theme.default;
-
-	const { subscribe, set, update } = writable(DEFAULT_THEME_VALUE);
+	const { subscribe, set, update } = writable<'light' | 'dark'>('light');
 
 	if (browser) {
-		const data = localStorage?.getItem(THEME_KEY) as Theme;
+		const data = localStorage?.getItem(THEME_KEY) as 'light' | 'dark';
 
 		if (data) {
 			set(data);
+			if (data === 'dark') {
+				document.querySelector('html')?.classList.add('dark');
+			}
 		}
 	}
 
@@ -23,22 +23,17 @@ function createThemeStore() {
 		}
 	});
 
-	function applyDark() {
-		document.querySelector('html')?.classList.add(Theme.DARK);
-	}
-
 	function toggle() {
 		update((state) => {
-			state = state === Theme.DARK ? Theme.LIGHT : Theme.DARK;
+			state = state === 'dark' ? 'light' : 'dark';
 			return state;
 		});
-		document.querySelector('html')?.classList.toggle(Theme.DARK);
+		document.querySelector('html')?.classList.toggle('dark');
 	}
 
 	return {
 		subscribe,
 		set,
-		applyDark,
 		toggle
 	};
 }

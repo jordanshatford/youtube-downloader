@@ -6,17 +6,12 @@
 	import Loading from '$lib/components/Loading.svelte';
 	import { session } from '$lib/stores/session';
 	import { downloads } from '$lib/stores/downloads';
-	import { theme } from '$lib/stores/theme';
-	import { Theme } from '$lib/utils/types';
 
 	$: if ($session) {
 		downloads.setupStatusListener();
 	}
 
 	onMount(async () => {
-		if ($theme === Theme.DARK) {
-			theme.applyDark();
-		}
 		await session.setup();
 	});
 </script>

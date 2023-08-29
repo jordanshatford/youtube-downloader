@@ -9,7 +9,7 @@ on:
 
 jobs:
   ci:
-    name: CI (Build, Lint, Format, Check)
+    name: CI (Lint, Format, Check, Build)
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:

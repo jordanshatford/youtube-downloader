@@ -10,11 +10,6 @@ export enum Status {
 
 export type Variant = 'default' | 'info' | 'success' | 'warning' | 'danger';
 
-export enum Theme {
-	LIGHT = 'light',
-	DARK = 'dark'
-}
-
 export enum AudioFormat {
 	MP3 = 'mp3',
 	AAC = 'aac',
