@@ -1,13 +1,38 @@
 import os
 import threading
 import time
+from typing import Any
 from typing import Callable
+from typing import Literal
+from typing import NotRequired
+from typing import TypeAlias
+from typing import TypedDict
 
 from yt_dlp import YoutubeDL
 
 from ..models import Status
 from ..models import VideoWithOptions
 from .processors import FileProcessingComplete
+
+
+# Basic type describing info_dict provided in hooks, Not specific as of now.
+YoutubeDLInfoDict: TypeAlias = dict[str, Any]
+
+
+# Info returned to a given download hook, excluding certain fields prefixed
+# with underscore.
+#
+# Note: NotRequired fields are not present when download is 'finished'.
+class DownloadHookInfo(TypedDict):
+    status: Literal['downloading', 'finished']
+    downloaded_bytes: float
+    total_bytes: float
+    filename: str
+    tmpfilename: NotRequired[str]
+    eta: NotRequired[int]
+    speed: float
+    elapsed: float
+    info_dict: YoutubeDLInfoDict
 
 
 class YoutubeDownloadThread(threading.Thread):
@@ -59,8 +84,11 @@ class YoutubeDownloadThread(threading.Thread):
     def filename_using_title(self) -> str:
         return f'{self.video.title}.{self.video.options.format.value}'
 
-    def download_progress_hook(self, progress_info: dict[str, str]) -> None:
-        if progress_info.get('status', None) == 'finished':
+    def download_progress_hook(self, progress_info: DownloadHookInfo) -> None:
+        status = progress_info.get('status')
+        if status == 'downloading':
+            self._handle_status_update(status=Status.DOWNLOADING)
+        elif status == 'finished':
             self._handle_status_update(Status.PROCESSING)
 
     def remove(self) -> bool:
