@@ -1,5 +1,6 @@
 {
 	"name": "@yad/api",
+  "private": true,
 	"version": "1.0.0",
   "license": "MIT",
   "exports": {
