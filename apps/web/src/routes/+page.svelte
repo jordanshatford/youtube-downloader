@@ -6,9 +6,8 @@
 	import ResultCard from '$lib/components/ResultCard.svelte';
 	import config from '$lib/config';
 
-	function searchVideos(event: CustomEvent<{ term: string }>) {
-		let term = event.detail.term;
-		search.get(term);
+	async function searchVideos(event: CustomEvent<{ term: string }>) {
+		await search.get(event.detail.term);
 	}
 </script>
 

@@ -25,6 +25,9 @@ importers:
 
   apps/web:
     dependencies:
+      '@yad/client':
+        specifier: workspace:*
+        version: link:../../packages/client
       svelte-feather-icons:
         specifier: ^4.0.1
         version: 4.0.1

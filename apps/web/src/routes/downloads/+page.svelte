@@ -1,12 +1,12 @@
 <script lang="ts">
 	import { Trash2Icon, DownloadIcon, LoaderIcon, RotateCwIcon } from 'svelte-feather-icons';
+	import { Status } from '@yad/client';
 	import IconButton from '$lib/components/ui/IconButton.svelte';
 	import Title from '$lib/components/typography/Title.svelte';
 	import Tag from '$lib/components/ui/Tag.svelte';
 	import Description from '$lib/components/typography/Description.svelte';
 	import { downloads } from '$lib/stores/downloads';
 	import StatusBadge from '$lib/components/StatusBadge.svelte';
-	import { Status } from '$lib/utils/types';
 	import config from '$lib/config';
 	import Table from '$lib/components/Table.svelte';
 	import Confirm from '$lib/components/ui/Confirm.svelte';
@@ -61,12 +61,12 @@
 									</div>
 								</div>
 							{:else if column.key === 'format'}
-								<Tag>{row.options?.format.toUpperCase()}</Tag>
+								<Tag>{row.options.format.toUpperCase()}</Tag>
 							{:else if column.key === 'status'}
 								<StatusBadge status={row.status} />
 							{:else if column.key === 'actions'}
 								<div>
-									{#if row.status && [Status.DONE, Status.ERROR, Status.UNDEFINED].includes(row.status)}
+									{#if [Status.DONE, Status.ERROR, Status.UNDEFINED].includes(row.status)}
 										<Confirm
 											title="Delete Audio?"
 											description="Are you sure you want to delete this audio? Deleting is permanent."
@@ -82,7 +82,7 @@
 											/>
 										</Confirm>
 									{/if}
-									{#if row.status && [Status.ERROR, Status.UNDEFINED].includes(row.status)}
+									{#if [Status.ERROR, Status.UNDEFINED].includes(row.status)}
 										<IconButton
 											on:click={() => {
 												downloads.remove(row.id);
@@ -97,7 +97,7 @@
 											<IconButton icon={LoaderIcon} size="1.5x" class="animate-spin" />
 										{:else}
 											<IconButton
-												on:click={() => downloads.getFile(row.id)}
+												on:click={async () => await downloads.getFile(row.id)}
 												icon={DownloadIcon}
 												size="1.5x"
 												class="hover:text-indigo-800 dark:hover:text-indigo-600"

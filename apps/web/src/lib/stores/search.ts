@@ -1,9 +1,8 @@
 import { writable } from 'svelte/store';
-import type { VideoInfo } from '$lib/utils/types';
-import { getApiEndpoint, APIEndpointConstants } from '$lib/utils/api';
+import { SearchService, type Video } from '@yad/client';
 
 function createSearchStore() {
-	const results: VideoInfo[] = [];
+	const results: Video[] = [];
 
 	const { subscribe, set, update } = writable({
 		term: '',
@@ -11,28 +10,18 @@ function createSearchStore() {
 		loading: false
 	});
 
-	function get(term: string) {
+	async function get(term: string) {
 		update((state) => {
 			state.term = term;
 			state.loading = true;
 			return state;
 		});
-		const { endpoint, options } = getApiEndpoint({
-			base: APIEndpointConstants.SEARCH,
-			method: 'GET',
-			queryParams: {
-				term: term
-			}
+		const results = await SearchService.getSearch(term);
+		update((state) => {
+			state.results = results;
+			state.loading = false;
+			return state;
 		});
-		fetch(endpoint, options)
-			.then((response) => response.json())
-			.then((results) => {
-				update((state) => {
-					state.results = results;
-					state.loading = false;
-					return state;
-				});
-			});
 	}
 
 	return {

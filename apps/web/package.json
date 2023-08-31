@@ -15,6 +15,7 @@
 		"format": "prettier --plugin prettier-plugin-svelte --write ."
 	},
 	"dependencies": {
+		"@yad/client": "workspace:*",
 		"svelte-feather-icons": "^4.0.1"
 	},
 	"devDependencies": {

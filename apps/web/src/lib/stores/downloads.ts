@@ -1,8 +1,18 @@
 import { writable, get } from 'svelte/store';
-import type { VideoInfo } from '$lib/utils/types';
-import { getApiEndpoint, APIEndpointConstants } from '$lib/utils/api';
-import { Status, AudioFormat } from '$lib/utils/types';
+import {
+	DownloadsService,
+	DownloadsStatusService,
+	Status,
+	AudioFormat,
+	type Video,
+	type VideoWithOptions
+} from '@yad/client';
 import { settings } from '$lib/stores/settings';
+
+interface VideoWithExtra extends VideoWithOptions {
+	status: Status;
+	awaitingFileBlob?: boolean;
+}
 
 function saveAs(blob: Blob, name: string) {
 	// Create anchor tag referencing the blob
@@ -18,55 +28,41 @@ function saveAs(blob: Blob, name: string) {
 }
 
 function createDownloadsStore() {
-	const downloads: Record<string, VideoInfo> = {};
+	const downloads: Record<string, VideoWithExtra> = {};
 
 	const { subscribe, set, update } = writable(downloads);
 
-	let downloadStatus: EventSource | null = null;
-
 	function setupStatusListener() {
-		const { endpoint } = getApiEndpoint({
-			base: APIEndpointConstants.DOWNLOADS,
-			urlParam: 'status',
-			sessionIdInQueryParams: true
-		});
-		downloadStatus = new EventSource(endpoint);
-
-		downloadStatus.onmessage = function (event) {
-			const data = JSON.parse(event.data);
+		DownloadsStatusService.setup((value) => {
 			update((state) => {
-				const videoId = data['id'];
-				const updatedStatus = data['status'];
-				state[videoId].status = updatedStatus;
+				state[value.id].status = value.status;
 				return state;
 			});
-		};
+		});
 	}
 
-	function add(downloadInfo: VideoInfo) {
-		if (downloadInfo.id in downloads) return;
+	function add(video: Video) {
+		if (video.id in downloads) return;
 
-		downloadInfo = {
-			...downloadInfo,
+		const info: VideoWithExtra = {
+			...video,
+			status: Status.WAITING,
 			options: {
 				format: get(settings).format ?? AudioFormat.MP3
 			}
 		};
 
 		// Add download to store using information we have already
-		update((state) => Object.assign(state, { [downloadInfo.id]: downloadInfo }));
-		const { endpoint, options } = getApiEndpoint({
-			base: APIEndpointConstants.DOWNLOADS,
-			method: 'POST',
-			body: JSON.stringify(downloadInfo)
-		});
-		fetch(endpoint, options).catch((err) => {
+		update((state) => Object.assign(state, { [info.id]: info }));
+		try {
+			DownloadsService.postDownloads(info);
+		} catch (err) {
 			console.error('Failed to add video to download ', err);
 			update((state) => {
-				state[downloadInfo.id].status = Status.ERROR;
+				state[info.id].status = Status.ERROR;
 				return state;
 			});
-		});
+		}
 	}
 
 	function remove(id: string) {
@@ -76,44 +72,27 @@ function createDownloadsStore() {
 			delete state[id];
 			return state;
 		});
-		const { endpoint, options } = getApiEndpoint({
-			base: APIEndpointConstants.DOWNLOADS,
-			method: 'DELETE',
-			urlParam: id
-		});
-		fetch(endpoint, options);
+		DownloadsService.deleteDownload(id);
 	}
 
-	function getFile(id: string) {
+	async function getFile(id: string) {
 		if (!(id in downloads)) return;
 
 		update((state) => {
 			state[id].awaitingFileBlob = true;
 			return state;
 		});
-		const { endpoint, options } = getApiEndpoint({
-			base: APIEndpointConstants.DOWNLOADS,
-			method: 'GET',
-			urlParam: `${id}/file`
-		});
-		fetch(endpoint, options).then(async (response) => {
-			if (response.ok) {
-				// The file blob is returned
-				return response.blob().then((blob) => {
-					update((state) => {
-						state[id].awaitingFileBlob = false;
-						return state;
-					});
-					const filename = `${downloads[id].title}.${downloads?.[id]?.options?.format}`;
-					saveAs(blob, filename);
-				});
-			} else {
-				// file was not found on the server a json error message is returned
-				return response.json().then(() => {
-					remove(id);
-				});
-			}
-		});
+		try {
+			const blob = await DownloadsService.getDownloadFile(id);
+			update((state) => {
+				state[id].awaitingFileBlob = false;
+				return state;
+			});
+			const filename = `${downloads[id].title}.${downloads?.[id]?.options?.format}`;
+			saveAs(blob, filename);
+		} catch {
+			remove(id);
+		}
 	}
 
 	return {

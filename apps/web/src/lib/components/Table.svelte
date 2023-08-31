@@ -1,14 +1,6 @@
-<script lang="ts" context="module">
-	export interface TableColumn {
-		key: string;
-		title: string;
-	}
-</script>
-
-<script lang="ts">
-	type T = $$Generic<Record<string, unknown>>; // eslint-disable-line no-undef
-	export let columns: TableColumn[] = [];
-	export let rows: T[] = [];
+<script lang="ts" generics="T extends object">
+	export let columns: { key: string; title: string }[] = [];
+	export let rows: T[] = []; // eslint-disable-line no-undef
 
 	const defaultClasses = {
 		table: 'min-w-full divide-y divide-zinc-200 dark:divide-zinc-800 table-auto',
@@ -50,9 +42,9 @@
 					{@const isLastCol = isLastColumn(index) ? 'text-right' : ''}
 					<td class={`${assignedClasses.td} ${isLastCol}`}>
 						{#if $$slots.cell}
-							<slot name="cell" {row} {column} cell={row[column.key]} />
+							<slot name="cell" {row} {column} />
 						{:else}
-							<span>{row[column.key]}</span>
+							<span></span>
 						{/if}
 					</td>
 				{/each}

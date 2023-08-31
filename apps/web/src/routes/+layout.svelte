@@ -1,11 +1,20 @@
 <script lang="ts">
 	import '../app.css';
 	import { onMount } from 'svelte';
+	import { OpenAPI } from '@yad/client';
 	import Nav from '$lib/components/nav/Nav.svelte';
 	import Footer from '$lib/components/Footer.svelte';
 	import Loading from '$lib/components/Loading.svelte';
 	import { session } from '$lib/stores/session';
 	import { downloads } from '$lib/stores/downloads';
+	import { env } from '$lib/config';
+
+	OpenAPI.BASE = env.serverAddress;
+
+	// Use session as token when making requests with client
+	OpenAPI.TOKEN = async () => {
+		return $session;
+	};
 
 	$: if ($session) {
 		downloads.setupStatusListener();

@@ -1,4 +1,4 @@
-import { AudioFormat } from '$lib/utils/types';
+import { AudioFormat } from '@yad/client';
 
 export const env = {
 	serverAddress: import.meta.env.VITE_SERVER_ADDR as string

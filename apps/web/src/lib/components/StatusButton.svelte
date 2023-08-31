@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { CheckCircleIcon, LoaderIcon, AlertCircleIcon } from 'svelte-feather-icons';
-	import { Status } from '$lib/utils/types';
+	import { Status } from '@yad/client';
 
 	export let status: Status;
 	let className = 'animate-spin';

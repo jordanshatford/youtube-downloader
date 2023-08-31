@@ -1,27 +1,19 @@
 import { writable } from 'svelte/store';
-import { getApiEndpoint, APIEndpointConstants } from '$lib/utils/api';
+import { SessionService } from '@yad/client';
 
 function createSessionStore() {
 	const RE_ATTEMPT_INTERVAL = 10000;
 
-	const { subscribe, set } = writable<string | null>(null);
+	const { subscribe, set } = writable<string>('');
 
 	async function setup() {
-		const { endpoint, options } = getApiEndpoint({
-			base: APIEndpointConstants.SESSION,
-			method: 'GET'
-		});
-		await fetch(endpoint, options)
-			.then((response) => {
-				return response.json();
-			})
-			.then((data) => {
-				set(data?.id);
-			})
-			.catch((err) => {
-				console.error('Connection failed, could not connect to internal server. ', err);
-				_reAttempt();
-			});
+		try {
+			const session = await SessionService.getSession();
+			set(session.id);
+		} catch (err) {
+			console.error('Connection failed, could not connect to internal server. ', err);
+			_reAttempt();
+		}
 	}
 
 	async function _reAttempt() {
@@ -33,7 +25,7 @@ function createSessionStore() {
 	return {
 		subscribe,
 		setup,
-		reset: () => set(null)
+		reset: () => set('')
 	};
 }
 
