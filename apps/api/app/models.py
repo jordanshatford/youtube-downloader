@@ -15,6 +15,7 @@ class DownloadState(str, enum.Enum):
 
 class DownloadStatus(BaseModel):
     state: DownloadState
+    progress: float | None = None
 
 
 class DownloadStatusUpdate(DownloadStatus):

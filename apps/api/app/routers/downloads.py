@@ -44,11 +44,10 @@ async def status_stream(request: Request, session: Session):
             if await request.is_disconnected():
                 break
             try:
-                update = session.status_queue.get(block=False)
+                update = session.status_queue.get_nowait()
                 yield dict(data=update.json())
             except queue.Empty:
-                pass
-            await asyncio.sleep(1)
+                await asyncio.sleep(1)
     except (asyncio.CancelledError, asyncio.exceptions.InvalidStateError):
         session_manager.remove(session.id)
 

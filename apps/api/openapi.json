@@ -478,6 +478,17 @@
           "state": {
             "$ref": "#/components/schemas/DownloadState"
           },
+          "progress": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Progress"
+          },
           "id": {
             "type": "string",
             "title": "Id"

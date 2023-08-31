@@ -27,14 +27,22 @@ YoutubeDLInfoDict: TypeAlias = dict[str, Any]
 # Note: NotRequired fields are not present when download is 'finished'.
 class DownloadHookInfo(TypedDict):
     status: Literal['downloading', 'finished']
-    downloaded_bytes: float
-    total_bytes: float
+    downloaded_bytes: int
+    total_bytes: int
     filename: str
     tmpfilename: NotRequired[str]
     eta: NotRequired[int]
     speed: float
     elapsed: float
     info_dict: YoutubeDLInfoDict
+
+
+def get_progress(info: DownloadHookInfo) -> float | None:
+    downloaded_bytes = info.get('downloaded_bytes')
+    total_bytes = info.get('total_bytes')
+    if downloaded_bytes is None or total_bytes is None:
+        return None
+    return (downloaded_bytes / total_bytes) * 100
 
 
 class YoutubeDownloadThread(threading.Thread):
@@ -90,7 +98,10 @@ class YoutubeDownloadThread(threading.Thread):
         status = progress_info.get('status')
         if status == 'downloading':
             self._handle_status_update(
-                DownloadStatus(state=DownloadState.DOWNLOADING),
+                DownloadStatus(
+                    state=DownloadState.DOWNLOADING,
+                    progress=get_progress(progress_info),
+                ),
             )
         elif status == 'finished':
             self._handle_status_update(
