@@ -2,7 +2,7 @@
 /* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-import type { StatusUpdate } from '../models/StatusUpdate';
+import type { DownloadStatusUpdate } from '../models/DownloadStatusUpdate';
 import type { VideoWithOptions } from '../models/VideoWithOptions';
 
 import type { CancelablePromise } from '../core/CancelablePromise';
@@ -119,12 +119,12 @@ export class DownloadsService {
   /**
    * Get Download Status
    * @param videoId
-   * @returns StatusUpdate Successful Response
+   * @returns DownloadStatusUpdate Successful Response
    * @throws ApiError
    */
   public static getDownloadStatus(
     videoId: string,
-  ): CancelablePromise<StatusUpdate> {
+  ): CancelablePromise<DownloadStatusUpdate> {
     return __request(OpenAPI, {
       method: 'GET',
       url: '/downloads/{video_id}/status',

@@ -2,7 +2,7 @@ import { writable, get } from 'svelte/store';
 import {
 	DownloadsService,
 	DownloadsStatusService,
-	Status,
+	DownloadState,
 	AudioFormat,
 	type Video,
 	type VideoWithOptions
@@ -10,7 +10,7 @@ import {
 import { settings } from '$lib/stores/settings';
 
 interface VideoWithExtra extends VideoWithOptions {
-	status: Status;
+	state: DownloadState;
 	awaitingFileBlob?: boolean;
 }
 
@@ -35,7 +35,7 @@ function createDownloadsStore() {
 	function setupStatusListener() {
 		DownloadsStatusService.setup((value) => {
 			update((state) => {
-				state[value.id].status = value.status;
+				state[value.id].state = value.state;
 				return state;
 			});
 		});
@@ -46,7 +46,7 @@ function createDownloadsStore() {
 
 		const info: VideoWithExtra = {
 			...video,
-			status: Status.WAITING,
+			state: DownloadState.WAITING,
 			options: {
 				format: get(settings).format ?? AudioFormat.MP3
 			}
@@ -59,7 +59,7 @@ function createDownloadsStore() {
 		} catch (err) {
 			console.error('Failed to add video to download ', err);
 			update((state) => {
-				state[info.id].status = Status.ERROR;
+				state[info.id].state = DownloadState.ERROR;
 				return state;
 			});
 		}

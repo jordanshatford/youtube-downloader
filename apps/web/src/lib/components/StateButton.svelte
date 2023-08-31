@@ -1,29 +1,29 @@
 <script lang="ts">
 	import { CheckCircleIcon, LoaderIcon, AlertCircleIcon } from 'svelte-feather-icons';
-	import { Status } from '@yad/client';
+	import { DownloadState } from '@yad/client';
 
-	export let status: Status;
+	export let state: DownloadState;
 	let className = 'animate-spin';
 	let icon = LoaderIcon;
 
-	$: switch (status) {
-		case Status.WAITING:
+	$: switch (state) {
+		case DownloadState.WAITING:
 			className = 'text-yellow-600 animate-spin';
 			icon = LoaderIcon;
 			break;
-		case Status.DOWNLOADING:
+		case DownloadState.DOWNLOADING:
 			className = 'text-blue-600 animate-spin';
 			icon = LoaderIcon;
 			break;
-		case Status.PROCESSING:
+		case DownloadState.PROCESSING:
 			className = 'text-purple-600 animate-spin';
 			icon = LoaderIcon;
 			break;
-		case Status.DONE:
+		case DownloadState.DONE:
 			className = 'text-green-600';
 			icon = CheckCircleIcon;
 			break;
-		case Status.ERROR:
+		case DownloadState.ERROR:
 		default:
 			className = 'text-red-600';
 			icon = AlertCircleIcon;

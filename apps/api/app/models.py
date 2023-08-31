@@ -4,14 +4,21 @@ from pydantic import BaseModel
 from pydantic import HttpUrl
 
 
-# NOTE: this needs to be synced with the frontend enum
-class Status(str, enum.Enum):
+class DownloadState(str, enum.Enum):
     WAITING = 'WAITING'
     DOWNLOADING = 'DOWNLOADING'
     PROCESSING = 'PROCESSING'
     DONE = 'DONE'
     ERROR = 'ERROR'
     UNDEFINED = 'UNDEFINED'
+
+
+class DownloadStatus(BaseModel):
+    state: DownloadState
+
+
+class DownloadStatusUpdate(DownloadStatus):
+    id: str
 
 
 class AudioFormat(str, enum.Enum):
@@ -48,8 +55,3 @@ class VideoWithOptions(Video):
 
 class Session(BaseModel):
     id: str
-
-
-class StatusUpdate(BaseModel):
-    id: str
-    status: Status

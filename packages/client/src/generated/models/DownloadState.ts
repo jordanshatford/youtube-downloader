@@ -3,7 +3,7 @@
 /* tslint:disable */
 /* eslint-disable */
 
-export enum Status {
+export enum DownloadState {
   WAITING = 'WAITING',
   DOWNLOADING = 'DOWNLOADING',
   PROCESSING = 'PROCESSING',

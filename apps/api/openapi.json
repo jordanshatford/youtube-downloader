@@ -381,7 +381,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/StatusUpdate"
+                  "$ref": "#/components/schemas/DownloadStatusUpdate"
                 }
               }
             }
@@ -461,6 +461,35 @@
         ],
         "title": "Channel"
       },
+      "DownloadState": {
+        "type": "string",
+        "enum": [
+          "WAITING",
+          "DOWNLOADING",
+          "PROCESSING",
+          "DONE",
+          "ERROR",
+          "UNDEFINED"
+        ],
+        "title": "DownloadState"
+      },
+      "DownloadStatusUpdate": {
+        "properties": {
+          "state": {
+            "$ref": "#/components/schemas/DownloadState"
+          },
+          "id": {
+            "type": "string",
+            "title": "Id"
+          }
+        },
+        "type": "object",
+        "required": [
+          "state",
+          "id"
+        ],
+        "title": "DownloadStatusUpdate"
+      },
       "HTTPValidationError": {
         "properties": {
           "detail": {
@@ -486,35 +515,6 @@
           "id"
         ],
         "title": "Session"
-      },
-      "Status": {
-        "type": "string",
-        "enum": [
-          "WAITING",
-          "DOWNLOADING",
-          "PROCESSING",
-          "DONE",
-          "ERROR",
-          "UNDEFINED"
-        ],
-        "title": "Status"
-      },
-      "StatusUpdate": {
-        "properties": {
-          "id": {
-            "type": "string",
-            "title": "Id"
-          },
-          "status": {
-            "$ref": "#/components/schemas/Status"
-          }
-        },
-        "type": "object",
-        "required": [
-          "id",
-          "status"
-        ],
-        "title": "StatusUpdate"
       },
       "ValidationError": {
         "properties": {

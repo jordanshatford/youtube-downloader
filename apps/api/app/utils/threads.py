@@ -10,7 +10,9 @@ from typing import TypedDict
 
 from yt_dlp import YoutubeDL
 
-from ..models import Status
+from ..models import DownloadState
+from ..models import DownloadStatus
+from ..models import DownloadStatusUpdate
 from ..models import VideoWithOptions
 from .processors import FileProcessingComplete
 
@@ -40,12 +42,12 @@ class YoutubeDownloadThread(threading.Thread):
         self,
         video: VideoWithOptions,
         output_directory: str,
-        status_update: Callable[[str, Status], None],
+        status_update: Callable[[DownloadStatusUpdate], None],
     ):
         self.video = video
         self._output_directory = output_directory
         self._status_update = status_update
-        self.status = Status.WAITING
+        self.status = DownloadStatus(state=DownloadState.WAITING)
 
         YOUTUBE_DL_OPTIONS = {
             'format': 'bestaudio/best',
@@ -87,9 +89,13 @@ class YoutubeDownloadThread(threading.Thread):
     def download_progress_hook(self, progress_info: DownloadHookInfo) -> None:
         status = progress_info.get('status')
         if status == 'downloading':
-            self._handle_status_update(status=Status.DOWNLOADING)
+            self._handle_status_update(
+                DownloadStatus(state=DownloadState.DOWNLOADING),
+            )
         elif status == 'finished':
-            self._handle_status_update(Status.PROCESSING)
+            self._handle_status_update(
+                DownloadStatus(state=DownloadState.PROCESSING),
+            )
 
     def remove(self) -> bool:
         if os.path.exists(self.path):
@@ -98,15 +104,23 @@ class YoutubeDownloadThread(threading.Thread):
         return False
 
     def run(self):
-        self._handle_status_update(Status.DOWNLOADING)
+        self._handle_status_update(
+            DownloadStatus(state=DownloadState.DOWNLOADING),
+        )
         try:
             self._downloader.download([str(self.video.url)])
         except Exception:
-            self._handle_status_update(Status.ERROR)
+            self._handle_status_update(
+                DownloadStatus(state=DownloadState.ERROR),
+            )
 
-    def _handle_status_update(self, status: Status) -> None:
-        self.status = status
-        self._status_update(self.video.id, status)
+    def _handle_status_update(self, update: DownloadStatus) -> None:
+        self.status = update
+        self._status_update(
+            DownloadStatusUpdate(
+                id=self.video.id, **update.dict(),
+            ),
+        )
 
 
 class RepeatedTimer:

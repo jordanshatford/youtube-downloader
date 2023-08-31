@@ -3,10 +3,10 @@
 /* tslint:disable */
 /* eslint-disable */
 
-import type { Status } from './Status';
+import type { DownloadState } from './DownloadState';
 
-export type StatusUpdate = {
+export type DownloadStatusUpdate = {
+  state: DownloadState;
   id: string;
-  status: Status;
 };
 

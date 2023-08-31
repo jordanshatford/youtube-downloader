@@ -13,7 +13,7 @@ from ..dependencies import depends_download_responses
 from ..dependencies import depends_session_responses
 from ..dependencies import DependsDownload
 from ..dependencies import DependsSession
-from ..models import StatusUpdate
+from ..models import DownloadStatusUpdate
 from ..models import VideoWithOptions
 from ..utils.managers import Session
 from ..utils.managers import session_manager
@@ -65,7 +65,7 @@ async def get_downloads_status(request: Request, session_id: str):
 
 @router.get('/{video_id}', responses=depends_download_responses)
 def get_download(download: DependsDownload) -> VideoWithOptions:
-    return download.video
+    return DownloadStatusUpdate(id=download.video.id, **download.status.dict())
 
 
 @router.get(
@@ -86,8 +86,8 @@ def get_download_file(download: DependsDownload):
 
 
 @router.get('/{video_id}/status', responses=depends_download_responses)
-def get_download_status(download: DependsDownload) -> StatusUpdate:
-    return StatusUpdate(id=download.video.id, status=download.status)
+def get_download_status(download: DependsDownload) -> DownloadStatusUpdate:
+    return download.status
 
 
 @router.delete(

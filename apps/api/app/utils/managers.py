@@ -6,8 +6,7 @@ from datetime import timedelta
 from queue import Queue
 from typing import Callable
 
-from ..models import Status
-from ..models import StatusUpdate
+from ..models import DownloadStatusUpdate
 from ..models import VideoWithOptions
 from .threads import RepeatedTimer
 from .threads import YoutubeDownloadThread
@@ -16,7 +15,7 @@ from .threads import YoutubeDownloadThread
 class AudioDownloadManager:
     def __init__(
         self, output_dir: str,
-        announcer: Callable[[str, Status], None],
+        announcer: Callable[[DownloadStatusUpdate], None],
     ):
         self._announcer = announcer
         self._downloads: dict[str, YoutubeDownloadThread] = {}
@@ -44,8 +43,8 @@ class AudioDownloadManager:
     def get_all_videos(self) -> list[VideoWithOptions]:
         return [d.video for d in self._downloads.values()]
 
-    def send_status_update(self, video_id: str, status: Status) -> None:
-        self._announcer(video_id, status)
+    def send_status_update(self, update: DownloadStatusUpdate) -> None:
+        self._announcer(update)
 
 
 class Session:
@@ -56,7 +55,7 @@ class Session:
         self.download_manager = AudioDownloadManager(
             self._output_dir, announcer=self._status_update,
         )
-        self.status_queue: Queue[StatusUpdate] = Queue()
+        self.status_queue: Queue[DownloadStatusUpdate] = Queue()
 
     def update_use_time(self):
         self._last_use = datetime.now()
@@ -71,13 +70,8 @@ class Session:
         except FileNotFoundError:
             pass
 
-    def _status_update(self, video_id: str, status: Status):
-        self.status_queue.put(
-            StatusUpdate(
-                id=video_id,
-                status=status,
-            ),
-        )
+    def _status_update(self, update: DownloadStatusUpdate):
+        self.status_queue.put(update)
 
 
 class SessionManager:

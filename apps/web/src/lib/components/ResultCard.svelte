@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { PlusIcon } from 'svelte-feather-icons';
 	import type { Video } from '@yad/client';
-	import StatusButton from '$lib/components/StatusButton.svelte';
+	import StateButton from '$lib/components/StateButton.svelte';
 	import IconButton from '$lib/components/ui/IconButton.svelte';
 	import { downloads } from '$lib/stores/downloads';
 
@@ -52,7 +52,7 @@
 					size="1.5x"
 				/>
 			{:else}
-				<StatusButton status={$downloads[result.id].status} />
+				<StateButton state={$downloads[result.id].state} />
 			{/if}
 		</footer>
 	</article>
