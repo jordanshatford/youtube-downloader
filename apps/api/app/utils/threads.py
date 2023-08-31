@@ -94,13 +94,14 @@ class YoutubeDownloadThread(threading.Thread):
     def filename_using_title(self) -> str:
         return f'{self.video.title}.{self.video.options.format.value}'
 
-    def download_progress_hook(self, progress_info: DownloadHookInfo) -> None:
-        status = progress_info.get('status')
+    def download_progress_hook(self, info: DownloadHookInfo) -> None:
+        status = info.get('status')
         if status == 'downloading':
             self._handle_status_update(
                 DownloadStatus(
                     state=DownloadState.DOWNLOADING,
-                    progress=get_progress(progress_info),
+                    progress=get_progress(info),
+                    eta=info.get('eta'),
                 ),
             )
         elif status == 'finished':

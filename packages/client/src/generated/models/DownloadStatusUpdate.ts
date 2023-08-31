@@ -8,6 +8,7 @@ import type { DownloadState } from './DownloadState';
 export type DownloadStatusUpdate = {
   state: DownloadState;
   progress?: (number | null);
+  eta?: (number | null);
   id: string;
 };
 

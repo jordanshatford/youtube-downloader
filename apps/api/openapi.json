@@ -489,6 +489,17 @@
             ],
             "title": "Progress"
           },
+          "eta": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Eta"
+          },
           "id": {
             "type": "string",
             "title": "Id"
