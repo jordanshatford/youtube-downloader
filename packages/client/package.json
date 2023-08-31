@@ -7,7 +7,7 @@
   "scripts": {
     "build": "tsc --project tsconfig.json",
     "check": "tsc --project tsconfig.json --noEmit",
-    "generate": "openapi --input ../../apps/api/openapi.json --output ./src/generated --indent 2"
+    "generate": "openapi --input ../../apps/api/openapi.json --output ./src/generated --client fetch --indent 2"
   },
   "devDependencies": {
     "openapi-typescript-codegen": "^0.25.0",
