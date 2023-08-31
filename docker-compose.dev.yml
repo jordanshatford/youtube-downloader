@@ -19,5 +19,8 @@ services:
       - 5173:5173
       - 24678:24678
     volumes:
-      - ./apps/web:/web
-      - /web/node_modules
+      - ./apps/web:/code/apps/web
+      - /code/apps/web/node_modules
+      - ./packages/client:/code/packages/client
+      - /code/packages/client/node_modules
+

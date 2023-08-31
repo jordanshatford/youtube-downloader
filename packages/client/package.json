@@ -1,0 +1,16 @@
+{
+  "name": "@yad/client",
+  "private": true,
+  "version": "1.0.0",
+  "license": "MIT",
+  "main": "./src/index.ts",
+  "scripts": {
+    "build": "tsc --project tsconfig.json",
+    "check": "tsc --project tsconfig.json --noEmit",
+    "generate": "openapi --input ../../apps/api/openapi.json --output ./src/generated --indent 2"
+  },
+  "devDependencies": {
+    "openapi-typescript-codegen": "^0.25.0",
+    "typescript": "^5.2.2"
+  }
+}

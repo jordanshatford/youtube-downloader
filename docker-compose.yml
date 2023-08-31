@@ -13,7 +13,7 @@ services:
       - 8080:8080
   web:
     build:
-      context: ./apps/web
+      context: .
       target: production
     image: youtubeaudiodownloader-web:latest
     restart: always

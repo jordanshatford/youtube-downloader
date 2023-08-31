@@ -6,9 +6,11 @@
   "type": "module",
   "scripts": {
     "prepare": "husky install",
+    "generate": "pnpm --filter @yad/api generate:openapi && pnpm --filter @yad/client generate",
     "dev": "pnpm --filter @yad/api --filter @yad/web dev",
     "api": "pnpm --filter @yad/api -- ",
     "web": "pnpm --filter @yad/web -- ",
+    "client": "pnpm --filter @yad/client -- ",
     "build": "pnpm -r build",
     "lint": "pnpm -r lint",
     "format": "pnpm -r format",
@@ -19,6 +21,11 @@
     "@commitlint/cli": "^17.7.1",
     "@commitlint/config-conventional": "^17.7.0",
     "husky": "^8.0.3"
+  },
+  "pnpm": {
+    "overrides": {
+      "json-schema-ref-parser": "npm:@apidevtools/json-schema-ref-parser@10.1.0"
+    }
   },
   "packageManager": "pnpm@8.7.0",
   "engines": {

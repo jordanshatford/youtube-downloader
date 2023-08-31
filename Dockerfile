@@ -1,16 +1,17 @@
 FROM node:lts-alpine as base
 
-# Install PNPM the package manager we use
-RUN npm install -g pnpm
+RUN corepack enable
 
-WORKDIR /frontend
+WORKDIR /code
 
 # Install required dependencies
-COPY package.json svelte.config.js ./
-RUN pnpm install
+COPY package.json pnpm-lock.yaml pnpm-workspace.yaml ./
 
 # Copy over project files
-COPY . .
+COPY apps/ /code/apps/
+COPY packages/ /code/packages/
+
+RUN pnpm install
 
 # Expose port we are running the frontend on
 EXPOSE 5173
@@ -18,9 +19,9 @@ EXPOSE 5173
 # In development we expose the Vite hot reload port and install all dependencies
 FROM base as development
 EXPOSE 24678
-CMD [ "pnpm", "dev", "--host" ]
+CMD [ "pnpm", "web", "dev", "--host" ]
 
 # In production we run the build version of code without hot reload
 FROM base as production
-RUN pnpm build
-CMD [ "pnpm", "preview", "--host", "--port=5173" ]
+RUN pnpm web build
+CMD [ "pnpm", "web", "preview", "--host", "--port=5173" ]
