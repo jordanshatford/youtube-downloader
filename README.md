@@ -46,7 +46,14 @@ YouTube Audio Downloader is a full stack application created to allow users to d
   - Produces files with high quality audio
   - Dark and light theme options
 
-# Documentation
-
 ## Documentation
 Documentation for the project can be found [here](./docs/README.md).
+
+## Monorepo structure:
+
+### Apps:
+- `api`: An API developed in Python using [FastAPI](https://fastapi.tiangolo.com/).
+- `web`: A web application developed in [SvelteKit](https://kit.svelte.dev/).
+
+### Packages:
+- `client`: A TypeScript API client generated from the OpenAPI specification for the API using [OpenAPI Typescript Codegen](https://github.com/ferdikoomen/openapi-typescript-codegen/blob/master/docs/basic-usage.md).
