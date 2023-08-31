@@ -3,18 +3,35 @@
 
 version: 2
 updates:
-  - package-ecosystem: "pip"
-    directory: "/apps/api"
+  # Github Actions dependabot checks
+  - package-ecosystem: "github-actions"
+    directory: "/.github/actions/setup-environment"
     schedule:
       interval: "monthly"
     assignees:
       - "jordanshatford"
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "monthly"
+    assignees:
+      - "jordanshatford"
+
+  # API dependabot checks
   - package-ecosystem: "docker"
     directory: "/apps/api"
     schedule:
       interval: "monthly"
     assignees:
       - "jordanshatford"
+  - package-ecosystem: "pip"
+    directory: "/apps/api"
+    schedule:
+      interval: "monthly"
+    assignees:
+      - "jordanshatford"
+
+  # TypeScript packages dependabot checks
   - package-ecosystem: "npm"
     directory: "/"
     schedule:
@@ -22,19 +39,7 @@ updates:
     assignees:
       - "jordanshatford"
   - package-ecosystem: "docker"
-    directory: "/apps/web"
-    schedule:
-      interval: "monthly"
-    assignees:
-      - "jordanshatford"
-  - package-ecosystem: "github-actions"
     directory: "/"
-    schedule:
-      interval: "monthly"
-    assignees:
-      - "jordanshatford"
-  - package-ecosystem: "github-actions"
-    directory: "/.github/actions/setup-environment"
     schedule:
       interval: "monthly"
     assignees:
