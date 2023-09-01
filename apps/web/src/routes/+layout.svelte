@@ -1,7 +1,7 @@
 <script lang="ts">
 	import '../app.css';
 	import { onMount } from 'svelte';
-	import { OpenAPI } from '@yad/client';
+	import { OpenAPI } from '@yd/client';
 	import Nav from '$lib/components/nav/Nav.svelte';
 	import Footer from '$lib/components/Footer.svelte';
 	import Loading from '$lib/components/Loading.svelte';

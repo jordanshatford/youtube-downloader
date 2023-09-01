@@ -1,5 +1,5 @@
 {
-	"name": "@yad/web",
+	"name": "@yd/web",
 	"private": true,
 	"version": "1.0.0",
 	"license": "MIT",
@@ -15,7 +15,7 @@
 		"format": "prettier --plugin prettier-plugin-svelte --write ."
 	},
 	"dependencies": {
-		"@yad/client": "workspace:*",
+		"@yd/client": "workspace:*",
 		"svelte-feather-icons": "^4.0.1"
 	},
 	"devDependencies": {

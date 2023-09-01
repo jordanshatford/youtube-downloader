@@ -1,5 +1,5 @@
 import { writable } from 'svelte/store';
-import { SearchService, type Video } from '@yad/client';
+import { SearchService, type Video } from '@yd/client';
 
 function createSearchStore() {
 	const results: Video[] = [];

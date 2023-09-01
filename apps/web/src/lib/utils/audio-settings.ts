@@ -1,4 +1,4 @@
-import { AudioFormat } from '@yad/client';
+import { AudioFormat } from '@yd/client';
 
 export const audioFormatOptions = [
 	{ value: AudioFormat.MP3, text: 'MP3' },

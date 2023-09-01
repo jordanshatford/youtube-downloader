@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { CheckCircleIcon, LoaderIcon, AlertCircleIcon } from 'svelte-feather-icons';
-	import { DownloadState } from '@yad/client';
+	import { DownloadState } from '@yd/client';
 
 	export let state: DownloadState;
 	let className = 'animate-spin';

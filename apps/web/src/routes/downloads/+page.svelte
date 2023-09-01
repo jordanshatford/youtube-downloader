@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { Trash2Icon, DownloadIcon, LoaderIcon, RotateCwIcon } from 'svelte-feather-icons';
-	import { DownloadState } from '@yad/client';
+	import { DownloadState } from '@yd/client';
 	import IconButton from '$lib/components/ui/IconButton.svelte';
 	import Title from '$lib/components/typography/Title.svelte';
 	import Tag from '$lib/components/ui/Tag.svelte';

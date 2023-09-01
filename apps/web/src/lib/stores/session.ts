@@ -1,5 +1,5 @@
 import { writable } from 'svelte/store';
-import { SessionService } from '@yad/client';
+import { SessionService } from '@yd/client';
 
 function createSessionStore() {
 	const RE_ATTEMPT_INTERVAL = 10000;

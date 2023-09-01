@@ -1,5 +1,5 @@
 import { writable } from 'svelte/store';
-import type { AudioOptions } from '@yad/client';
+import type { AudioOptions } from '@yd/client';
 import { browser } from '$app/environment';
 import config from '$lib/config';
 

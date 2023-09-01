@@ -6,7 +6,7 @@ import {
 	AudioFormat,
 	type Video,
 	type VideoWithOptions
-} from '@yad/client';
+} from '@yd/client';
 import { settings } from '$lib/stores/settings';
 
 interface VideoWithExtra extends VideoWithOptions {

@@ -1,4 +1,4 @@
-import { AudioFormat } from '@yad/client';
+import { AudioFormat } from '@yd/client';
 
 export const env = {
 	serverAddress: import.meta.env.VITE_SERVER_ADDR as string
