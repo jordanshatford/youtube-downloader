@@ -15,10 +15,12 @@ class DownloadState(str, enum.Enum):
 
 class DownloadStatus(BaseModel):
     state: DownloadState
-    # Progress in percent (Only shown when state is DOWNLOADING)
+    # Progress in percent (Only valid when state is DOWNLOADING)
     progress: float | None = None
-    # ETA in seconds (Only shown when state is DOWNLOADING)
+    # ETA in seconds (Only valid when state is DOWNLOADING)
     eta: int | None = None
+    # Postprocessor currently running (Only valid when state is PROCESSING)
+    postprocessor: str | None = None
 
 
 class DownloadStatusUpdate(DownloadStatus):

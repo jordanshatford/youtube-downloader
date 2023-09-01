@@ -9,6 +9,7 @@ export type DownloadStatusUpdate = {
   state: DownloadState;
   progress?: (number | null);
   eta?: (number | null);
+  postprocessor?: (string | null);
   id: string;
 };
 

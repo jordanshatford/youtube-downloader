@@ -14,7 +14,6 @@ from ..models import DownloadState
 from ..models import DownloadStatus
 from ..models import DownloadStatusUpdate
 from ..models import VideoWithOptions
-from .processors import FileProcessingComplete
 
 
 # Basic type describing info_dict provided in hooks, Not specific as of now.
@@ -25,7 +24,7 @@ YoutubeDLInfoDict: TypeAlias = dict[str, Any]
 # with underscore.
 #
 # Note: NotRequired fields are not present when download is 'finished'.
-class DownloadHookInfo(TypedDict):
+class ProgressHookInfo(TypedDict):
     status: Literal['downloading', 'finished']
     downloaded_bytes: int
     total_bytes: int
@@ -37,7 +36,13 @@ class DownloadHookInfo(TypedDict):
     info_dict: YoutubeDLInfoDict
 
 
-def get_progress(info: DownloadHookInfo) -> float | None:
+class PostprocessorHookInfo(TypedDict):
+    status: Literal['started', 'finished']
+    postprocessor: str
+    info_dict: YoutubeDLInfoDict
+
+
+def get_progress(info: ProgressHookInfo) -> float | None:
     downloaded_bytes = info.get('downloaded_bytes')
     total_bytes = info.get('total_bytes')
     if downloaded_bytes is None or total_bytes is None:
@@ -59,7 +64,9 @@ class YoutubeDownloadThread(threading.Thread):
 
         YOUTUBE_DL_OPTIONS = {
             'format': 'bestaudio/best',
-            'progress_hooks': [self.download_progress_hook],
+            'progress_hooks': [self.progress_hook],
+            'postprocessor_hooks': [self.postprocessor_hook],
+            'post_hooks': [self.post_hook],
             'outtmpl': f'{self._output_directory}/{self.video.id}.%(ext)s',
             'quiet': True,
             'postprocessors': [
@@ -72,11 +79,6 @@ class YoutubeDownloadThread(threading.Thread):
             ],
         }
         self._downloader = YoutubeDL(YOUTUBE_DL_OPTIONS)
-        self._downloader.add_post_processor(
-            FileProcessingComplete(
-                self._handle_status_update, downloader=self._downloader,
-            ),
-        )
 
         super().__init__(
             group=None, target=None, name=None, daemon=True,
@@ -94,7 +96,7 @@ class YoutubeDownloadThread(threading.Thread):
     def filename_using_title(self) -> str:
         return f'{self.video.title}.{self.video.options.format.value}'
 
-    def download_progress_hook(self, info: DownloadHookInfo) -> None:
+    def progress_hook(self, info: ProgressHookInfo) -> None:
         status = info.get('status')
         if status == 'downloading':
             self._handle_status_update(
@@ -108,6 +110,27 @@ class YoutubeDownloadThread(threading.Thread):
             self._handle_status_update(
                 DownloadStatus(state=DownloadState.PROCESSING),
             )
+
+    def postprocessor_hook(self, info: PostprocessorHookInfo) -> None:
+        status = info.get('status')
+        postprocessor: str | None
+        if status == 'started':
+            postprocessor = info.get('postprocessor')
+        elif status == 'finished':
+            postprocessor = None
+        self._handle_status_update(
+            DownloadStatus(
+                state=DownloadState.PROCESSING,
+                postprocessor=postprocessor,
+            ),
+        )
+
+    def post_hook(self, _filepath: str) -> None:
+        self._handle_status_update(
+            DownloadStatus(
+                state=DownloadState.DONE,
+            ),
+        )
 
     def remove(self) -> bool:
         if os.path.exists(self.path):

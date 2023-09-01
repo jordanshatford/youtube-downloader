@@ -500,6 +500,17 @@
             ],
             "title": "Eta"
           },
+          "postprocessor": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Postprocessor"
+          },
           "id": {
             "type": "string",
             "title": "Id"
