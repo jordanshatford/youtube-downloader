@@ -15,9 +15,9 @@ from .threads import YoutubeDownloadThread
 class AudioDownloadManager:
     def __init__(
         self, output_dir: str,
-        announcer: Callable[[DownloadStatusUpdate], None],
+        status_hook: Callable[[DownloadStatusUpdate], None],
     ):
-        self._announcer = announcer
+        self._status_hook = status_hook
         self._downloads: dict[str, YoutubeDownloadThread] = {}
         self._output_dir = output_dir
 
@@ -44,7 +44,7 @@ class AudioDownloadManager:
         return [d.video for d in self._downloads.values()]
 
     def send_status_update(self, update: DownloadStatusUpdate) -> None:
-        self._announcer(update)
+        self._status_hook(update)
 
 
 class Session:
@@ -53,7 +53,7 @@ class Session:
         self._output_dir = os.path.join(session_dir, id)
         self._last_use = datetime.now()
         self.download_manager = AudioDownloadManager(
-            self._output_dir, announcer=self._status_update,
+            self._output_dir, self._status_hook,
         )
         self.status_queue: Queue[DownloadStatusUpdate] = Queue()
 
@@ -70,7 +70,7 @@ class Session:
         except FileNotFoundError:
             pass
 
-    def _status_update(self, update: DownloadStatusUpdate):
+    def _status_hook(self, update: DownloadStatusUpdate):
         self.status_queue.put(update)
 
 

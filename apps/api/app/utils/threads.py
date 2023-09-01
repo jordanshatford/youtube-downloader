@@ -55,11 +55,11 @@ class YoutubeDownloadThread(threading.Thread):
         self,
         video: VideoWithOptions,
         output_directory: str,
-        status_update: Callable[[DownloadStatusUpdate], None],
+        status_hook: Callable[[DownloadStatusUpdate], None],
     ):
         self.video = video
         self._output_directory = output_directory
-        self._status_update = status_update
+        self._status_hook = status_hook
         self.status = DownloadStatus(state=DownloadState.WAITING)
 
         YOUTUBE_DL_OPTIONS = {
@@ -151,7 +151,7 @@ class YoutubeDownloadThread(threading.Thread):
 
     def _handle_status_update(self, update: DownloadStatus) -> None:
         self.status = update
-        self._status_update(
+        self._status_hook(
             DownloadStatusUpdate(
                 id=self.video.id, **update.dict(),
             ),
