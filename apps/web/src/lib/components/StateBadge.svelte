@@ -2,7 +2,7 @@
 	import { CheckCircleIcon, AlertCircleIcon, LoaderIcon } from 'svelte-feather-icons';
 	import { DownloadState } from '@yad/client';
 
-	export let state: DownloadState = DownloadState.UNDEFINED;
+	export let state: DownloadState = DownloadState.ERROR;
 
 	let className: string;
 	let icon = CheckCircleIcon;
@@ -30,7 +30,6 @@
 			iconClass = '';
 			break;
 		case DownloadState.ERROR:
-		case DownloadState.UNDEFINED:
 			className = 'bg-red-200 text-red-800';
 			icon = AlertCircleIcon;
 			iconClass = '';

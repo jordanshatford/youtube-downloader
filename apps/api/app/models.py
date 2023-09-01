@@ -10,7 +10,6 @@ class DownloadState(str, enum.Enum):
     PROCESSING = 'PROCESSING'
     DONE = 'DONE'
     ERROR = 'ERROR'
-    UNDEFINED = 'UNDEFINED'
 
 
 class DownloadStatus(BaseModel):

@@ -66,7 +66,7 @@
 								<StateBadge state={row.state} />
 							{:else if column.key === 'actions'}
 								<div>
-									{#if [DownloadState.DONE, DownloadState.ERROR, DownloadState.UNDEFINED].includes(row.state)}
+									{#if [DownloadState.DONE, DownloadState.ERROR].includes(row.state)}
 										<Confirm
 											title="Delete Audio?"
 											description="Are you sure you want to delete this audio? Deleting is permanent."
@@ -82,7 +82,7 @@
 											/>
 										</Confirm>
 									{/if}
-									{#if [DownloadState.ERROR, DownloadState.UNDEFINED].includes(row.state)}
+									{#if [DownloadState.ERROR].includes(row.state)}
 										<IconButton
 											on:click={() => {
 												downloads.remove(row.id);

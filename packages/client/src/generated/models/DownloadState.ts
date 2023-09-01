@@ -9,5 +9,4 @@ export enum DownloadState {
   PROCESSING = 'PROCESSING',
   DONE = 'DONE',
   ERROR = 'ERROR',
-  UNDEFINED = 'UNDEFINED',
 }

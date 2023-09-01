@@ -468,8 +468,7 @@
           "DOWNLOADING",
           "PROCESSING",
           "DONE",
-          "ERROR",
-          "UNDEFINED"
+          "ERROR"
         ],
         "title": "DownloadState"
       },
