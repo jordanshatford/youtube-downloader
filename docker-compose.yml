@@ -5,7 +5,7 @@ services:
     build:
       context: ./apps/api
       target: production
-    image: youtubeaudiodownloader-api:latest
+    image: yd/api:latest
     restart: always
     environment:
       ALLOWED_ORIGIN: http://localhost:5173
@@ -15,7 +15,7 @@ services:
     build:
       context: .
       target: production
-    image: youtubeaudiodownloader-web:latest
+    image: yd/web:latest
     restart: always
     environment:
       VITE_SERVER_ADDR: http://localhost:8080
