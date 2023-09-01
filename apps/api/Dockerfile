@@ -1,4 +1,4 @@
-FROM python:3.11 as base
+FROM python:3.11 AS base
 
 # Ensure FFMPEG is available
 RUN apt-get update -y
@@ -18,9 +18,9 @@ COPY ./pyproject.toml /api/pyproject.toml
 EXPOSE 8080
 
 # In development run the application with reload active
-FROM base as development
+FROM base AS development
 CMD [ "uvicorn", "app.main:app", "--host=0.0.0.0", "--port=8080", "--reload" ]
 
 # In production run the application without reload
-FROM base as production
+FROM base AS production
 CMD [ "uvicorn", "app.main:app", "--host=0.0.0.0", "--port=8080" ]
