@@ -52,7 +52,9 @@
 					size="1.5x"
 				/>
 			{:else}
-				<StateIcon state={$downloads[result.id].state} />
+				<div class="p-2">
+					<StateIcon state={$downloads[result.id].state} />
+				</div>
 			{/if}
 		</footer>
 	</article>

@@ -3,6 +3,7 @@
 	import { DownloadState } from '@yd/client';
 
 	export let state: DownloadState;
+	export let size: string = '1.5x';
 	let className = 'animate-spin';
 	let icon = LoaderIcon;
 
@@ -30,6 +31,4 @@
 	}
 </script>
 
-<div class="p-2">
-	<svelte:component this={icon} class={className} size="1.5x" />
-</div>
+<svelte:component this={icon} class={className} {size} />
