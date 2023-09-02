@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { PlusIcon } from 'svelte-feather-icons';
 	import type { Video } from '@yd/client';
-	import StateButton from '$lib/components/StateButton.svelte';
+	import StateIcon from '$lib/components/StateIcon.svelte';
 	import IconButton from '$lib/components/ui/IconButton.svelte';
 	import { downloads } from '$lib/stores/downloads';
 
@@ -52,7 +52,7 @@
 					size="1.5x"
 				/>
 			{:else}
-				<StateButton state={$downloads[result.id].state} />
+				<StateIcon state={$downloads[result.id].state} />
 			{/if}
 		</footer>
 	</article>

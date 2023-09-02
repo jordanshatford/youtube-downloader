@@ -24,7 +24,6 @@
 			icon = CheckCircleIcon;
 			break;
 		case DownloadState.ERROR:
-		default:
 			className = 'text-red-600';
 			icon = AlertCircleIcon;
 			break;
