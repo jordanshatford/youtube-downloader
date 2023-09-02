@@ -9,19 +9,15 @@
 
 	let showDialog = false;
 
-	let functionToCall: { func: unknown | null; args: unknown[] } = {
-		func: null,
-		args: []
-	};
+	let onConfirmFunction = () => {};
 
 	function callFunction() {
 		showDialog = true;
-		// @ts-expect-error Object is of type "unknown"
-		functionToCall['func'](...functionToCall['args']);
+		onConfirmFunction();
 	}
 
-	function confirm(func: unknown, ...args: unknown[]) {
-		functionToCall = { func, args };
+	function confirm(f: () => void) {
+		onConfirmFunction = f;
 		showDialog = true;
 	}
 </script>

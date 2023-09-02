@@ -75,7 +75,7 @@
 											let:confirm={onConfirm}
 										>
 											<IconButton
-												on:click={() => onConfirm(downloads.remove, row.id)}
+												on:click={() => onConfirm(() => downloads.remove(row.id))}
 												icon={Trash2Icon}
 												size="1.5x"
 												class="hover:text-red-600 mr-2"
