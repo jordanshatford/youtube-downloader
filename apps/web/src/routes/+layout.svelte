@@ -7,6 +7,7 @@
 	import Loading from '$lib/components/Loading.svelte';
 	import { session } from '$lib/stores/session';
 	import { downloads } from '$lib/stores/downloads';
+	import { Toasts } from '$lib/components/ui/toast';
 	import { env } from '$lib/config';
 
 	OpenAPI.BASE = env.serverAddress;
@@ -25,6 +26,7 @@
 	});
 </script>
 
+<Toasts position="bottom-right" />
 <div class="min-h-screen h-full dark:bg-zinc-900">
 	{#if $session}
 		<div class="h-full">
