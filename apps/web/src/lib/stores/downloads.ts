@@ -8,6 +8,7 @@ import {
 	type VideoWithOptions
 } from '@yd/client';
 import { settings } from '$lib/stores/settings';
+import { toast } from '$lib/components/ui/toast';
 
 interface VideoWithExtra extends VideoWithOptions {
 	state: DownloadState;
@@ -41,7 +42,7 @@ function createDownloadsStore() {
 		});
 	}
 
-	function add(video: Video) {
+	async function add(video: Video) {
 		if (video.id in downloads) return;
 
 		const info: VideoWithExtra = {
@@ -52,11 +53,13 @@ function createDownloadsStore() {
 			}
 		};
 
-		// Add download to store using information we have already
 		update((state) => Object.assign(state, { [info.id]: info }));
 		try {
-			DownloadsService.postDownloads(info);
+			const result = await DownloadsService.postDownloads(info);
+			toast.info(`Added '${video.title}' to downloads.`);
+			update((state) => Object.assign(state, { [result.id]: result }));
 		} catch (err) {
+			toast.error(`Failed to add '${video.title}' to downloads.`);
 			console.error('Failed to add video to download ', err);
 			update((state) => {
 				state[info.id].state = DownloadState.ERROR;
@@ -65,14 +68,20 @@ function createDownloadsStore() {
 		}
 	}
 
-	function remove(id: string) {
+	async function remove(id: string) {
 		if (!(id in downloads)) return;
 
-		update((state) => {
-			delete state[id];
-			return state;
-		});
-		DownloadsService.deleteDownload(id);
+		try {
+			await DownloadsService.deleteDownload(id);
+			toast.success('Download removed successfully.');
+			update((state) => {
+				delete state[id];
+				return state;
+			});
+		} catch (err) {
+			toast.error('Failed to remove download.');
+			console.error('Failed to remove download ', err);
+		}
 	}
 
 	async function getFile(id: string) {
@@ -84,13 +93,14 @@ function createDownloadsStore() {
 		});
 		try {
 			const blob = await DownloadsService.getDownloadFile(id);
+			const filename = `${downloads[id].title}.${downloads?.[id]?.options?.format}`;
+			saveAs(blob, filename);
 			update((state) => {
 				state[id].awaitingFileBlob = false;
 				return state;
 			});
-			const filename = `${downloads[id].title}.${downloads?.[id]?.options?.format}`;
-			saveAs(blob, filename);
 		} catch {
+			toast.error('Failed to get file for download.');
 			remove(id);
 		}
 	}

@@ -19,7 +19,7 @@
 		<div class="md:flex mb-2">
 			<div class="w-full mt-4">
 				<Select
-					on:change={() => toast.success('Settings saved.')}
+					on:change={() => toast.success('Settings saved successfully.')}
 					title="Format:"
 					options={audioFormatOptions}
 					bind:value={$settings.format}

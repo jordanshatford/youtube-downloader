@@ -1,5 +1,6 @@
 import { writable } from 'svelte/store';
 import { SessionService } from '@yd/client';
+import { toast } from '$lib/components/ui/toast';
 
 function createSessionStore() {
 	const RE_ATTEMPT_INTERVAL = 10000;
@@ -11,6 +12,7 @@ function createSessionStore() {
 			const session = await SessionService.getSession();
 			set(session.id);
 		} catch (err) {
+			toast.error('Failed to get session. Reattempting shortly.');
 			console.error('Connection failed, could not connect to internal server. ', err);
 			_reAttempt();
 		}
