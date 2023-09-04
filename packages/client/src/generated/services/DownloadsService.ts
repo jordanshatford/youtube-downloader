@@ -4,6 +4,7 @@
 /* eslint-disable */
 import type { DownloadStatusUpdate } from '../models/DownloadStatusUpdate';
 import type { VideoWithOptions } from '../models/VideoWithOptions';
+import type { VideoWithOptionsAndStatus } from '../models/VideoWithOptionsAndStatus';
 
 import type { CancelablePromise } from '../core/CancelablePromise';
 import { OpenAPI } from '../core/OpenAPI';
@@ -13,10 +14,10 @@ export class DownloadsService {
 
   /**
    * Get Downloads
-   * @returns VideoWithOptions Successful Response
+   * @returns VideoWithOptionsAndStatus Successful Response
    * @throws ApiError
    */
-  public static getDownloads(): CancelablePromise<Array<VideoWithOptions>> {
+  public static getDownloads(): CancelablePromise<Array<VideoWithOptionsAndStatus>> {
     return __request(OpenAPI, {
       method: 'GET',
       url: '/downloads',
