@@ -15,6 +15,7 @@ from ..dependencies import DependsDownload
 from ..dependencies import DependsSession
 from ..models import DownloadStatusUpdate
 from ..models import VideoWithOptions
+from ..models import VideoWithOptionsAndStatus
 from ..utils.managers import Session
 from ..utils.managers import session_manager
 
@@ -26,7 +27,7 @@ router = APIRouter(
 
 
 @router.get('')
-def get_downloads(session: DependsSession) -> list[VideoWithOptions]:
+def get_downloads(session: DependsSession) -> list[VideoWithOptionsAndStatus]:
     return session.download_manager.get_all_videos()
 
 
@@ -86,7 +87,7 @@ def get_download_file(download: DependsDownload):
 
 @router.get('/{video_id}/status', responses=depends_download_responses)
 def get_download_status(download: DependsDownload) -> DownloadStatusUpdate:
-    return download.status
+    return DownloadStatusUpdate(id=download.video.id, **download.status)
 
 
 @router.delete(

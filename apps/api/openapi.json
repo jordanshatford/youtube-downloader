@@ -136,7 +136,7 @@
               "application/json": {
                 "schema": {
                   "items": {
-                    "$ref": "#/components/schemas/VideoWithOptions"
+                    "$ref": "#/components/schemas/VideoWithOptionsAndStatus"
                   },
                   "type": "array",
                   "title": "Response Get Downloads"
@@ -472,6 +472,51 @@
         ],
         "title": "DownloadState"
       },
+      "DownloadStatus": {
+        "properties": {
+          "state": {
+            "$ref": "#/components/schemas/DownloadState"
+          },
+          "progress": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Progress"
+          },
+          "eta": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Eta"
+          },
+          "postprocessor": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Postprocessor"
+          }
+        },
+        "type": "object",
+        "required": [
+          "state"
+        ],
+        "title": "DownloadStatus"
+      },
       "DownloadStatusUpdate": {
         "properties": {
           "state": {
@@ -670,6 +715,57 @@
           "options"
         ],
         "title": "VideoWithOptions"
+      },
+      "VideoWithOptionsAndStatus": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "title": "Id"
+          },
+          "url": {
+            "type": "string",
+            "maxLength": 2083,
+            "minLength": 1,
+            "format": "uri",
+            "title": "Url"
+          },
+          "title": {
+            "type": "string",
+            "title": "Title"
+          },
+          "duration": {
+            "type": "string",
+            "title": "Duration"
+          },
+          "thumbnail": {
+            "type": "string",
+            "maxLength": 2083,
+            "minLength": 1,
+            "format": "uri",
+            "title": "Thumbnail"
+          },
+          "channel": {
+            "$ref": "#/components/schemas/Channel"
+          },
+          "options": {
+            "$ref": "#/components/schemas/AudioOptions"
+          },
+          "status": {
+            "$ref": "#/components/schemas/DownloadStatus"
+          }
+        },
+        "type": "object",
+        "required": [
+          "id",
+          "url",
+          "title",
+          "duration",
+          "thumbnail",
+          "channel",
+          "options",
+          "status"
+        ],
+        "title": "VideoWithOptionsAndStatus"
       }
     },
     "securitySchemes": {

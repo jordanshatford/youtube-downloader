@@ -58,5 +58,9 @@ class VideoWithOptions(Video):
     options: AudioOptions
 
 
+class VideoWithOptionsAndStatus(VideoWithOptions):
+    status: DownloadStatus
+
+
 class Session(BaseModel):
     id: str
