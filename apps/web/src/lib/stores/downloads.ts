@@ -85,9 +85,9 @@ function createDownloadsStore() {
 			const filename = `${downloads[id].title}.${downloads?.[id]?.options?.format}`;
 			saveAs(blob, filename);
 			updateDownload(id, { awaitingFileBlob: false });
-		} catch {
+		} catch (err) {
 			toast.error('Failed to get file for download.');
-			remove(id);
+			console.error('Failed to get file for download ', err);
 		}
 	}
 
