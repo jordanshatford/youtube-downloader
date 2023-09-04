@@ -1,5 +1,8 @@
 name: Bug report
 description: Report an issue with the project
+labels: ["bug"]
+assignees:
+  - jordanshatford
 body:
   - type: markdown
     attributes:
