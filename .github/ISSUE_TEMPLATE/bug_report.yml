@@ -1,5 +1,5 @@
 name: Bug report
-description: Report an issue with the project
+description: Report an issue with the project.
 labels: ["bug"]
 assignees:
   - jordanshatford
@@ -54,5 +54,5 @@ body:
     id: additional-context
     attributes:
       label: Additional information
-      description: Any additional information you deem as important to fixing the reported bug.
+      description: Any additional information, context, or screenshots important to fixing this bug.
       placeholder: Additional information
