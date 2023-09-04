@@ -22,7 +22,6 @@
 		"@sveltejs/adapter-auto": "^2.1.0",
 		"@sveltejs/kit": "^1.24.0",
 		"@types/cookie": "^0.5.1",
-		"@types/file-saver": "^2.0.5",
 		"@typescript-eslint/eslint-plugin": "^6.5.0",
 		"@typescript-eslint/parser": "^6.5.0",
 		"@yd/config": "workspace:*",
