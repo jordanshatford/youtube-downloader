@@ -15,6 +15,10 @@ function createSettingsStore() {
 
 		if (data !== null) {
 			const parsedData = JSON.parse(data) as AudioOptions;
+			// Make sure a value is set, if nothing is set use the default
+			if (!parsedData.format) {
+				parsedData.format = DEFAULT_SETTINGS.format;
+			}
 			set(parsedData);
 		}
 	}
