@@ -1,0 +1,13 @@
+{
+  "name": "@yd/config",
+  "private": true,
+  "version": "1.0.0",
+  "license": "MIT",
+  "exports": {
+    "./tailwind": "./tailwind.config.js"
+  },
+  "scripts": {},
+  "devDependencies": {
+    "tailwindcss": "^3.3.3"
+  }
+}
