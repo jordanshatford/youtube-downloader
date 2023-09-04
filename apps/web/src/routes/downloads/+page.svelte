@@ -63,10 +63,10 @@
 							{:else if column.key === 'format'}
 								<Tag>{row.options.format.toUpperCase()}</Tag>
 							{:else if column.key === 'state'}
-								<StateBadge state={row.state} />
+								<StateBadge state={row.status.state} />
 							{:else if column.key === 'actions'}
 								<div>
-									{#if [DownloadState.DONE, DownloadState.ERROR].includes(row.state)}
+									{#if [DownloadState.DONE, DownloadState.ERROR].includes(row.status.state)}
 										<Confirm
 											title="Delete Audio?"
 											description="Are you sure you want to delete this audio? Deleting is permanent."
@@ -82,7 +82,7 @@
 											/>
 										</Confirm>
 									{/if}
-									{#if [DownloadState.ERROR].includes(row.state)}
+									{#if [DownloadState.ERROR].includes(row.status.state)}
 										<IconButton
 											on:click={() => {
 												downloads.remove(row.id);
@@ -92,7 +92,7 @@
 											size="1.5x"
 											class="hover:text-indigo-800 dark:hover:text-indigo-600"
 										/>
-									{:else if row.state === DownloadState.DONE}
+									{:else if row.status.state === DownloadState.DONE}
 										{#if row.awaitingFileBlob}
 											<IconButton icon={LoaderIcon} size="1.5x" class="animate-spin" />
 										{:else}

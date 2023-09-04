@@ -53,7 +53,7 @@
 				/>
 			{:else}
 				<div class="p-2">
-					<StateIcon state={$downloads[result.id].state} />
+					<StateIcon state={$downloads[result.id].status.state} />
 				</div>
 			{/if}
 		</footer>

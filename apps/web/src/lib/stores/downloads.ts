@@ -3,15 +3,13 @@ import {
 	DownloadsService,
 	DownloadsStatusService,
 	DownloadState,
-	AudioFormat,
 	type Video,
-	type VideoWithOptions
+	type VideoWithOptionsAndStatus
 } from '@yd/client';
 import { settings } from '$lib/stores/settings';
 import { toast } from '$lib/components/ui/toast';
 
-interface VideoWithExtra extends VideoWithOptions {
-	state: DownloadState;
+interface VideoWithExtra extends VideoWithOptionsAndStatus {
 	awaitingFileBlob?: boolean;
 }
 
@@ -35,10 +33,7 @@ function createDownloadsStore() {
 
 	function setupStatusListener() {
 		DownloadsStatusService.setup((value) => {
-			update((state) => {
-				state[value.id].state = value.state;
-				return state;
-			});
+			updateDownload(value.id, { status: value });
 		});
 	}
 
@@ -47,24 +42,21 @@ function createDownloadsStore() {
 
 		const info: VideoWithExtra = {
 			...video,
-			state: DownloadState.WAITING,
+			status: { state: DownloadState.WAITING },
 			options: {
-				format: get(settings).format ?? AudioFormat.MP3
+				format: get(settings).format
 			}
 		};
 
-		update((state) => Object.assign(state, { [info.id]: info }));
+		updateDownload(info.id, info);
 		try {
 			const result = await DownloadsService.postDownloads(info);
 			toast.info(`Added '${video.title}' to downloads.`);
-			update((state) => Object.assign(state, { [result.id]: result }));
+			updateDownload(result.id, result);
 		} catch (err) {
 			toast.error(`Failed to add '${video.title}' to downloads.`);
 			console.error('Failed to add video to download ', err);
-			update((state) => {
-				state[info.id].state = DownloadState.ERROR;
-				return state;
-			});
+			updateDownload(info.id, { status: { state: DownloadState.ERROR } });
 		}
 	}
 
@@ -87,22 +79,25 @@ function createDownloadsStore() {
 	async function getFile(id: string) {
 		if (!(id in downloads)) return;
 
-		update((state) => {
-			state[id].awaitingFileBlob = true;
-			return state;
-		});
+		updateDownload(id, { awaitingFileBlob: true });
 		try {
 			const blob = await DownloadsService.getDownloadFile(id);
 			const filename = `${downloads[id].title}.${downloads?.[id]?.options?.format}`;
 			saveAs(blob, filename);
-			update((state) => {
-				state[id].awaitingFileBlob = false;
-				return state;
-			});
+			updateDownload(id, { awaitingFileBlob: false });
 		} catch {
 			toast.error('Failed to get file for download.');
 			remove(id);
 		}
+	}
+
+	function updateDownload(id: string, updatedValue: Partial<VideoWithExtra>) {
+		update((state) => {
+			const oldValue = state[id];
+			const value = { ...oldValue, ...updatedValue };
+			state[id] = value;
+			return state;
+		});
 	}
 
 	return {
