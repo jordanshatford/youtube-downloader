@@ -50,7 +50,7 @@ async def status_stream(request: Request, session: Session):
             except queue.Empty:
                 await asyncio.sleep(1)
     except (asyncio.CancelledError, asyncio.exceptions.InvalidStateError):
-        session_manager.remove(session.id)
+        pass
 
 
 # Exclude from OpenAPI schema as there is no support for Server Sent Events.
