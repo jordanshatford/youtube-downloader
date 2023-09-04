@@ -43,7 +43,7 @@ class AudioDownloadManager:
 
     def get_all_videos(self) -> list[VideoWithOptionsAndStatus]:
         return [
-            VideoWithOptionsAndStatus(**d.video, status=d.status)
+            VideoWithOptionsAndStatus(**d.video.dict(), status=d.status)
             for d in self._downloads.values()
         ]
 

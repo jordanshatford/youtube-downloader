@@ -28,8 +28,6 @@ HTTPBearerCredentials: TypeAlias = Annotated[
     ),
 ]
 
-# Dependency that the request has a current session available
-
 
 def get_request_session(credentials: HTTPBearerCredentials) -> Session:
     session = session_manager.get(credentials.credentials)
@@ -38,6 +36,7 @@ def get_request_session(credentials: HTTPBearerCredentials) -> Session:
     return session
 
 
+# Dependency that the request has a current session available
 DependsSession: TypeAlias = Annotated[Session, Depends(get_request_session)]
 
 
@@ -57,6 +56,7 @@ def get_request_download(
     return download
 
 
+# Dependency that the request has a current related download available
 DependsDownload: TypeAlias = Annotated[
     YoutubeDownloadThread, Depends(
         get_request_download,

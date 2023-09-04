@@ -65,7 +65,7 @@ async def get_downloads_status(request: Request, session_id: str):
 
 @router.get('/{video_id}', responses=depends_download_responses)
 def get_download(download: DependsDownload) -> VideoWithOptions:
-    return DownloadStatusUpdate(id=download.video.id, **download.status.dict())
+    return download.video
 
 
 @router.get(
@@ -87,7 +87,7 @@ def get_download_file(download: DependsDownload):
 
 @router.get('/{video_id}/status', responses=depends_download_responses)
 def get_download_status(download: DependsDownload) -> DownloadStatusUpdate:
-    return DownloadStatusUpdate(id=download.video.id, **download.status)
+    return DownloadStatusUpdate(**download.status.dict(), id=download.video.id)
 
 
 @router.delete(

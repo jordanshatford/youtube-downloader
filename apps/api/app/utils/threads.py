@@ -113,7 +113,7 @@ class YoutubeDownloadThread(threading.Thread):
 
     def postprocessor_hook(self, info: PostprocessorHookInfo) -> None:
         status = info.get('status')
-        postprocessor: str | None
+        postprocessor: str | None = None
         if status == 'started':
             postprocessor = info.get('postprocessor')
         elif status == 'finished':
