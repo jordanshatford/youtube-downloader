@@ -8,12 +8,13 @@
 <script lang="ts">
 	import '../app.css';
 	import { onMount } from 'svelte';
-	import { Toasts } from '@yd/ui';
+	import { Toasts, Footer } from '@yd/ui';
 	import Nav from '$lib/components/nav/Nav.svelte';
-	import Footer from '$lib/components/Footer.svelte';
 	import Loading from '$lib/components/Loading.svelte';
 	import { session } from '$lib/stores/session';
 	import { downloads } from '$lib/stores/downloads';
+	import config from '$lib/config';
+	import { RoutePathConstants } from '$lib/utils/route';
 
 	// Use session as token when making requests with client
 	OpenAPI.TOKEN = async () => {
@@ -42,4 +43,17 @@
 		<Loading />
 	{/if}
 </div>
-<Footer />
+<Footer
+	copyright={config.copyright}
+	links={[
+		{
+			href: RoutePathConstants.FAQ,
+			title: 'faq'
+		},
+		{
+			href: RoutePathConstants.TERMS_OF_USE,
+			title: 'terms of use'
+		}
+	]}
+	githubLink={config.github}
+/>
