@@ -11,7 +11,7 @@
 	 *
 	 * The will also effect how the toasts stack on each other.
 	 */
-	export let position: ToastPosition = 'bottom-left';
+	export let position: ToastPosition = 'bottom-right';
 
 	/** The animation properties. */
 	export let animation: ToastAnimation | undefined = undefined;
