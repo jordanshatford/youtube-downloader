@@ -1,5 +1,5 @@
 <script lang="ts">
-	import type { Variant } from '$lib/utils/types';
+	import type { Variant } from '@yd/ui';
 
 	export let variant: Variant = 'default';
 
@@ -15,7 +15,7 @@
 		case 'success':
 			className = 'bg-green-200 text-green-800';
 			break;
-		case 'danger':
+		case 'error':
 			className = 'bg-red-200 text-red-800';
 			break;
 		case 'default':

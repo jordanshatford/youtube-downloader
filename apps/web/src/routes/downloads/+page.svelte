@@ -68,7 +68,7 @@
 								<div>
 									{#if [DownloadState.DONE, DownloadState.ERROR].includes(row.status.state)}
 										<Confirm
-											variant="danger"
+											variant="error"
 											title="Delete Audio?"
 											description="Are you sure you want to delete this audio? Deleting is permanent."
 											cancelText="Cancel"

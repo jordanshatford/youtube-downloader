@@ -1,7 +1,7 @@
 <script lang="ts">
-	import { AlertCircleIcon, CheckCircleIcon, AlertTriangleIcon, InfoIcon } from '@yd/ui';
 	import { fly, fade } from 'svelte/transition';
-	import type { Variant } from '$lib/utils/types';
+	import { AlertCircleIcon, CheckCircleIcon, AlertTriangleIcon, InfoIcon } from '@yd/ui';
+	import type { Variant } from '@yd/ui';
 
 	export let confirmText = 'Confirm';
 	export let cancelText = 'Cancel';
@@ -10,7 +10,7 @@
 	export let variant: Variant = 'info';
 
 	const themes = {
-		danger: {
+		error: {
 			icon: AlertCircleIcon,
 			class: 'text-red-800 bg-red-200'
 		},

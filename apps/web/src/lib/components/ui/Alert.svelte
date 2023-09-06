@@ -1,13 +1,13 @@
 <script lang="ts">
 	import { CheckCircleIcon, AlertTriangleIcon, AlertCircleIcon, InfoIcon } from '@yd/ui';
-	import type { Variant } from '$lib/utils/types';
+	import type { Variant } from '@yd/ui';
 
 	export let variant: Variant = 'default';
 	export let title: string;
 	export let message: string | null = null;
 
 	const themes = {
-		danger: {
+		error: {
 			icon: AlertCircleIcon,
 			class: 'text-red-800 bg-red-200'
 		},
