@@ -7,6 +7,7 @@
 	let showMobileMenu = false;
 
 	export let links: LinkInfo[];
+	export let activeLink: string;
 </script>
 
 <nav class="bg-white dark:bg-zinc-800 shadow dark:shadow-dark fixed top-0 z-40 w-full">
@@ -29,7 +30,7 @@
 				<div class="hidden sm:block sm:ml-6">
 					<div class="flex space-x-4">
 						{#each links as link (link.href)}
-							<NavBarItem {link} />
+							<NavBarItem {link} {activeLink} />
 						{/each}
 					</div>
 				</div>
@@ -45,7 +46,7 @@
 		<div>
 			<div class="px-2 pt-2 pb-3 space-y-1">
 				{#each links as link (link.href)}
-					<NavBarItem on:click={() => (showMobileMenu = false)} {link} isMobileMenu />
+					<NavBarItem on:click={() => (showMobileMenu = false)} {link} {activeLink} isMobileMenu />
 				{/each}
 			</div>
 		</div>

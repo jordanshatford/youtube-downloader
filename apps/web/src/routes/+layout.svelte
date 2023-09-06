@@ -8,6 +8,7 @@
 <script lang="ts">
 	import '../app.css';
 	import { onMount } from 'svelte';
+	import { page } from '$app/stores';
 	import { Toasts, NavBar, Footer } from '@yd/ui';
 	import Loading from '$lib/components/Loading.svelte';
 	import { session } from '$lib/stores/session';
@@ -35,7 +36,7 @@
 <div class="min-h-screen h-full dark:bg-zinc-900">
 	{#if $session}
 		<div class="h-full">
-			<NavBar {links}>
+			<NavBar {links} activeLink={$page.url.pathname}>
 				<Logo slot="logo" />
 				<ThemeChangeIcon slot="right" />
 			</NavBar>

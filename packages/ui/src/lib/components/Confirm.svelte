@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { fly, fade } from 'svelte/transition';
-	import type { Variant } from '$lib/types';
-	import { variantMapping } from '$lib/utilities';
+	import type { Variant } from '../types';
+	import { variantMapping } from '../utilities';
 
 	export let confirmText = 'Confirm';
 	export let cancelText = 'Cancel';

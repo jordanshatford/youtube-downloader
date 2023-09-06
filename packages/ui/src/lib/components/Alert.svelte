@@ -1,6 +1,6 @@
 <script lang="ts">
-	import type { Variant } from '$lib/types';
-	import { variantMapping } from '$lib/utilities';
+	import type { Variant } from '../types';
+	import { variantMapping } from '../utilities';
 
 	export let variant: Variant = 'default';
 	export let title: string;
