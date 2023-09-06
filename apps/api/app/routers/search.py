@@ -10,8 +10,7 @@ from ..utils.youtube import search_youtube
 router = APIRouter(
     prefix='/search',
     tags=['search'],
-    responses={
-        **depends_session_responses,
+    responses=depends_session_responses | {
         status.HTTP_404_NOT_FOUND: {},
     },
 )

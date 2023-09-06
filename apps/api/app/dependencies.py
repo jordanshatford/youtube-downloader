@@ -41,8 +41,7 @@ DependsSession: TypeAlias = Annotated[Session, Depends(get_request_session)]
 
 
 # Responses which should be included in all routes that depend on a download
-depends_download_responses: AdditionResponses = {
-    **depends_session_responses,
+depends_download_responses: AdditionResponses = depends_session_responses | {
     status.HTTP_404_NOT_FOUND: {},
 }
 

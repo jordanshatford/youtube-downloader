@@ -69,8 +69,8 @@ def get_download(download: DependsDownload) -> VideoWithOptions:
 
 
 @router.get(
-    '/{video_id}/file', response_class=FileResponse, responses={
-        **depends_download_responses,
+    '/{video_id}/file', response_class=FileResponse,
+    responses=depends_download_responses | {
         status.HTTP_200_OK: {
             'content': {'audio/*': {'schema': {'type': 'file'}}},
         },
