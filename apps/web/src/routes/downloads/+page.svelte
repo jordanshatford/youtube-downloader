@@ -1,13 +1,12 @@
 <script lang="ts">
 	import { DownloadState } from '@yd/client';
 	import { TrashIcon, DownloadIcon, LoaderIcon, RotateCwIcon } from '@yd/ui';
-	import { Confirm, Tag, IconButton } from '@yd/ui';
+	import { Confirm, Tag, IconButton, Table } from '@yd/ui';
 	import Title from '$lib/components/typography/Title.svelte';
 	import Description from '$lib/components/typography/Description.svelte';
 	import { downloads } from '$lib/stores/downloads';
 	import StateBadge from '$lib/components/StateBadge.svelte';
 	import config from '$lib/config';
-	import Table from '$lib/components/Table.svelte';
 
 	const columns = [
 		{

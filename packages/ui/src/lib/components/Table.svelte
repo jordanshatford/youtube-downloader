@@ -44,7 +44,7 @@
 						{#if $$slots.cell}
 							<slot name="cell" {row} {column} />
 						{:else}
-							<span></span>
+							<span />
 						{/if}
 					</td>
 				{/each}
