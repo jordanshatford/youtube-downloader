@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { Title, Description } from '@yd/ui';
 	import { search } from '$lib/stores/search';
-	import SearchBar from '$lib/components/ui/SearchBar.svelte';
+	import SearchBar from '$lib/components/SearchBar.svelte';
 	import ResultCard from '$lib/components/ResultCard.svelte';
 	import config from '$lib/config';
 

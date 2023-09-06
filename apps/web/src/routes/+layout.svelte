@@ -14,8 +14,8 @@
 	import { downloads } from '$lib/stores/downloads';
 	import config from '$lib/config';
 	import { RoutePathConstants, links } from '$lib/utils/route';
-	import Logo from '$lib/components/ui/Logo.svelte';
-	import ThemeChangeIcon from '$lib/components/ui/ThemeChangeIcon.svelte';
+	import Logo from '$lib/components/Logo.svelte';
+	import ThemeChangeIcon from '$lib/components/ThemeChangeIcon.svelte';
 
 	// Use session as token when making requests with client
 	OpenAPI.TOKEN = async () => {
