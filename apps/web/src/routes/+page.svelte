@@ -1,6 +1,5 @@
 <script lang="ts">
-	import Title from '$lib/components/typography/Title.svelte';
-	import Description from '$lib/components/typography/Description.svelte';
+	import { Title, Description } from '@yd/ui';
 	import { search } from '$lib/stores/search';
 	import SearchBar from '$lib/components/ui/SearchBar.svelte';
 	import ResultCard from '$lib/components/ResultCard.svelte';

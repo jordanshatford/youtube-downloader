@@ -6,12 +6,7 @@ export class RoutePathConstants {
 	public static TERMS_OF_USE = '/terms';
 }
 
-export type Route = {
-	href: string;
-	text: string;
-};
-
-export const links: Route[] = [
+export const links: { href: string; text: string }[] = [
 	{
 		text: 'Search',
 		href: RoutePathConstants.SEARCH

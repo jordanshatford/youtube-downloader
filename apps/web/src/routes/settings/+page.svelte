@@ -1,9 +1,7 @@
 <script lang="ts">
-	import { toast, Select } from '@yd/ui';
+	import { toast, Select, Title, Description } from '@yd/ui';
 	import { settings } from '$lib/stores/settings';
 	import { audioFormatOptions, audioFormatDescriptions } from '$lib/utils/audio-settings';
-	import Title from '$lib/components/typography/Title.svelte';
-	import Description from '$lib/components/typography/Description.svelte';
 	import config from '$lib/config';
 </script>
 

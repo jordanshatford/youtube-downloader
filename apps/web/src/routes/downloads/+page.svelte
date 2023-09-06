@@ -1,9 +1,7 @@
 <script lang="ts">
 	import { DownloadState } from '@yd/client';
 	import { TrashIcon, DownloadIcon, LoaderIcon, RotateCwIcon } from '@yd/ui';
-	import { Confirm, Tag, IconButton, Table } from '@yd/ui';
-	import Title from '$lib/components/typography/Title.svelte';
-	import Description from '$lib/components/typography/Description.svelte';
+	import { Confirm, Tag, IconButton, Table, Title, Description } from '@yd/ui';
 	import { downloads } from '$lib/stores/downloads';
 	import StateBadge from '$lib/components/StateBadge.svelte';
 	import config from '$lib/config';
