@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { fly, fade } from 'svelte/transition';
-	import { AlertCircleIcon, CheckCircleIcon, AlertTriangleIcon, InfoIcon } from '@yd/ui';
-	import type { Variant } from '@yd/ui';
+	import { AlertCircleIcon, CheckCircleIcon, AlertTriangleIcon, InfoIcon } from '../icons';
+	import type { Variant } from '../types';
 
 	export let confirmText = 'Confirm';
 	export let cancelText = 'Cancel';
@@ -34,11 +34,11 @@
 
 	let showDialog = false;
 
-	let onConfirmFunction = () => {};
+	let onConfirmFunction: (() => void) | undefined = undefined;
 
 	function callFunction() {
 		showDialog = true;
-		onConfirmFunction();
+		onConfirmFunction?.();
 	}
 
 	function confirm(f: () => void) {

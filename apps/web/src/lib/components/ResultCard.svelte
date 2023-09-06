@@ -1,8 +1,7 @@
 <script lang="ts">
 	import type { Video } from '@yd/client';
-	import { PlusIcon } from '@yd/ui';
+	import { PlusIcon, IconButton } from '@yd/ui';
 	import StateIcon from '$lib/components/StateIcon.svelte';
-	import IconButton from '$lib/components/ui/IconButton.svelte';
 	import { downloads } from '$lib/stores/downloads';
 
 	export let result: Video;

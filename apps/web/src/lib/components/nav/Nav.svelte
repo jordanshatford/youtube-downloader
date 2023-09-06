@@ -1,6 +1,5 @@
 <script lang="ts">
-	import { MenuIcon, XIcon } from '@yd/ui';
-	import IconButton from '$lib/components/ui/IconButton.svelte';
+	import { MenuIcon, XIcon, IconButton } from '@yd/ui';
 	import { routes } from '$lib/utils/route';
 	import Logo from '$lib/components/ui/Logo.svelte';
 	import ThemeChangeIcon from '$lib/components/ui/ThemeChangeIcon.svelte';

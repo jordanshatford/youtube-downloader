@@ -1,5 +1,5 @@
 <script lang="ts">
-	import type { Variant } from '@yd/ui';
+	import type { Variant } from '../types';
 
 	export let variant: Variant = 'default';
 

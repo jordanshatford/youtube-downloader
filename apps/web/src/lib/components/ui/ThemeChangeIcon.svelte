@@ -1,6 +1,5 @@
 <script lang="ts">
-	import IconButton from '$lib/components/ui/IconButton.svelte';
-	import { MoonIcon, SunIcon } from '@yd/ui';
+	import { MoonIcon, SunIcon, IconButton } from '@yd/ui';
 	import { theme } from '$lib/stores/theme';
 
 	let className = '';

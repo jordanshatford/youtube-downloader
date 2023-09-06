@@ -1,5 +1,5 @@
 <script lang="ts">
-	import type { PlusIcon } from '@yd/ui';
+	import type { PlusIcon } from '../icons';
 
 	export let icon: typeof PlusIcon;
 	export let size = '1x';
