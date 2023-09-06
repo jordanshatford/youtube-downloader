@@ -1,6 +1,6 @@
 import { writable } from 'svelte/store';
 import { SessionService } from '@yd/client';
-import { toast } from '$lib/components/ui/toast';
+import { toast } from '@yd/ui';
 
 function createSessionStore() {
 	const RE_ATTEMPT_INTERVAL = 10000;

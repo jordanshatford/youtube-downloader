@@ -1,11 +1,11 @@
 <script lang="ts">
+	import { toast } from '@yd/ui';
 	import { settings } from '$lib/stores/settings';
 	import Select from '$lib/components/ui/Select.svelte';
 	import { audioFormatOptions, audioFormatDescriptions } from '$lib/utils/audio-settings';
 	import Title from '$lib/components/typography/Title.svelte';
 	import Description from '$lib/components/typography/Description.svelte';
 	import config from '$lib/config';
-	import { toast } from '$lib/components/ui/toast';
 </script>
 
 <svelte:head>

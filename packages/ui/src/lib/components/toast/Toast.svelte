@@ -1,5 +1,5 @@
 <script lang="ts" context="module">
-	import { XCircleIcon, CheckCircleIcon, AlertCircleIcon, LoaderIcon, InfoIcon } from '@yd/ui';
+	import { XCircleIcon, CheckCircleIcon, AlertCircleIcon, LoaderIcon, InfoIcon } from '../../icons';
 	export const ICONS_MAP: { readonly [T in ToastType]: typeof XCircleIcon } = {
 		error: XCircleIcon,
 		info: InfoIcon,
@@ -13,7 +13,7 @@
 	import type { ToastType } from './types';
 	import { toast as _toast, position } from './stores';
 	import type { ToastComponent } from './types';
-	import { XIcon } from '@yd/ui';
+	import { XIcon } from '../../icons';
 	export let toast: ToastComponent;
 </script>
 

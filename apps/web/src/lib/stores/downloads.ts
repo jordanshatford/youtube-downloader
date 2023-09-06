@@ -6,8 +6,8 @@ import {
 	type Video,
 	type VideoWithOptionsAndStatus
 } from '@yd/client';
+import { toast } from '@yd/ui';
 import { settings } from '$lib/stores/settings';
-import { toast } from '$lib/components/ui/toast';
 
 interface VideoWithExtra extends VideoWithOptionsAndStatus {
 	awaitingFileBlob?: boolean;

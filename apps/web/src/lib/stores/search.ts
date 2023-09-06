@@ -1,6 +1,6 @@
 import { writable } from 'svelte/store';
 import { SearchService, type Video } from '@yd/client';
-import { toast } from '$lib/components/ui/toast';
+import { toast } from '@yd/ui';
 
 function createSearchStore() {
 	const results: Video[] = [];
