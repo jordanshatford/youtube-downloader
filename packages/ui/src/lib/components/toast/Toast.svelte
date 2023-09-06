@@ -1,10 +1,16 @@
 <script lang="ts" context="module">
-	import { XCircleIcon, CheckCircleIcon, AlertCircleIcon, LoaderIcon, InfoIcon } from '../../icons';
-	export const ICONS_MAP: { readonly [T in ToastType]: typeof XCircleIcon } = {
-		error: XCircleIcon,
+	import {
+		AlertCircleIcon,
+		CheckCircleIcon,
+		AlertTriangleIcon,
+		LoaderIcon,
+		InfoIcon
+	} from '../../icons';
+	export const ICONS_MAP: { readonly [T in ToastType]: typeof AlertCircleIcon } = {
+		error: AlertCircleIcon,
+		warning: AlertTriangleIcon,
 		info: InfoIcon,
 		success: CheckCircleIcon,
-		warning: AlertCircleIcon,
 		promise: LoaderIcon
 	};
 </script>

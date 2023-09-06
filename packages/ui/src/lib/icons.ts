@@ -7,6 +7,7 @@ export {
 	InfoIcon,
 	LoaderIcon,
 	MenuIcon,
+	MinusCircleIcon,
 	MoonIcon,
 	PlusIcon,
 	RotateCwIcon,

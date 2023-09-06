@@ -1,36 +1,13 @@
 <script lang="ts">
 	import { fly, fade } from 'svelte/transition';
-	import { AlertCircleIcon, CheckCircleIcon, AlertTriangleIcon, InfoIcon } from '../icons';
-	import type { Variant } from '../types';
+	import type { Variant } from '$lib/types';
+	import { variantMapping } from '$lib/utilities';
 
 	export let confirmText = 'Confirm';
 	export let cancelText = 'Cancel';
 	export let description = '';
 	export let title = 'Confirm?';
-	export let variant: Variant = 'info';
-
-	const themes = {
-		error: {
-			icon: AlertCircleIcon,
-			class: 'text-red-800 bg-red-200'
-		},
-		success: {
-			icon: CheckCircleIcon,
-			class: 'text-green-700 bg-green-200'
-		},
-		warning: {
-			icon: AlertTriangleIcon,
-			class: 'text-yellow-600 bg-yellow-200'
-		},
-		info: {
-			icon: InfoIcon,
-			class: 'text-blue-800 bg-blue-200'
-		},
-		default: {
-			icon: InfoIcon,
-			class: 'bg-zinc-400 text-zinc-800'
-		}
-	};
+	export let variant: Variant = 'default';
 
 	let showDialog = false;
 
@@ -78,11 +55,11 @@
 				<div class="px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
 					<div class="sm:flex sm:items-start">
 						<div
-							class="mx-auto flex-shrink-0 flex items-center justify-center h-12 w-12 rounded-full bg-blue-200 sm:mx-0 sm:h-10 sm:w-10 {themes[
+							class="mx-auto flex-shrink-0 flex items-center justify-center h-12 w-12 rounded-full bg-blue-200 sm:mx-0 sm:h-10 sm:w-10 {variantMapping[
 								variant
 							].class}"
 						>
-							<svelte:component this={themes[variant].icon} size="2x" />
+							<svelte:component this={variantMapping[variant].icon} size="2x" />
 						</div>
 						<div class="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
 							<h3
