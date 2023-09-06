@@ -12,11 +12,6 @@
 			"svelte": "./src/lib/index.ts"
 		}
 	},
-	"files": [
-		"dist",
-		"!dist/**/*.test.*",
-		"!dist/**/*.spec.*"
-	],
 	"scripts": {
 		"prepare": "svelte-kit sync",
 		"dev": "vite dev",
