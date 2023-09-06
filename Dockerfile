@@ -2,16 +2,11 @@ FROM node:lts-alpine AS base
 
 RUN corepack enable
 
-WORKDIR /code
-
 # Install required dependencies
-COPY package.json pnpm-lock.yaml pnpm-workspace.yaml ./
+COPY . /code/
 
-# Copy over project files
-COPY apps/ /code/apps/
-COPY packages/ /code/packages/
-
-RUN pnpm install
+WORKDIR /code
+RUN corepack prepare && pnpm install
 
 # Expose port we are running the frontend on
 EXPOSE 5173
