@@ -1,4 +1,5 @@
 // Component exports
+export { NavBar } from './components/nav';
 export { Toast, Toasts, toast } from './components/toast';
 export { default as Alert } from './components/Alert.svelte';
 export { default as Confirm } from './components/Confirm.svelte';

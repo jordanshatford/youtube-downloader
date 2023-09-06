@@ -7,21 +7,21 @@ export class RoutePathConstants {
 }
 
 export type Route = {
-	path: string;
-	label: string;
+	href: string;
+	text: string;
 };
 
-export const routes: Route[] = [
+export const links: Route[] = [
 	{
-		label: 'Search',
-		path: RoutePathConstants.SEARCH
+		text: 'Search',
+		href: RoutePathConstants.SEARCH
 	},
 	{
-		label: 'Downloads',
-		path: RoutePathConstants.DOWNLOADS
+		text: 'Downloads',
+		href: RoutePathConstants.DOWNLOADS
 	},
 	{
-		label: 'Settings',
-		path: RoutePathConstants.SETTINGS
+		text: 'Settings',
+		href: RoutePathConstants.SETTINGS
 	}
 ];

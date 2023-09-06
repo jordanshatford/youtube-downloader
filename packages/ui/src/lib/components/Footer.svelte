@@ -1,9 +1,10 @@
 <script lang="ts">
 	import { GithubIcon } from '../icons';
+	import type { LinkInfo } from '../types';
 
 	export let githubLink: string | undefined = undefined;
 	export let copyright: { owner: string; year: number } | undefined = undefined;
-	export let links: { href: string; title: string }[] = [];
+	export let links: LinkInfo[] = [];
 </script>
 
 <footer class="bg-white dark:bg-zinc-800 border-t border-zinc-200 dark:border-zinc-900">
@@ -17,7 +18,7 @@
 			{#each links as link, index (link.href)}
 				{@const isLast = index === links.length - 1}
 				<a href={link.href} class="hover:text-indigo-800 dark:hover:text-indigo-600">
-					{link.title}
+					{link.text}
 				</a>
 				{#if !isLast}
 					<span> - </span>
