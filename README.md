@@ -57,3 +57,4 @@ Documentation for the project can be found [here](./docs/README.md).
 
 ### Packages:
 - `client`: A TypeScript API client generated from the OpenAPI specification for the API using [OpenAPI Typescript Codegen](https://github.com/ferdikoomen/openapi-typescript-codegen/blob/master/docs/basic-usage.md).
+- `config`: Common configs shared between other packages and apps in the monorepo.
