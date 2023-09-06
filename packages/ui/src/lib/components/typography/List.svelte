@@ -1,5 +1,5 @@
 <script lang="ts">
-	export let items: { title: string, description: string }[];
+	export let items: { title: string; description?: string }[];
 </script>
 
 <ol class="list-decimal py-6 md:mx-32 mx-6 text-left">
