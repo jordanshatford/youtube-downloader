@@ -1,6 +1,6 @@
 <script lang="ts">
-	import { Trash2Icon, DownloadIcon, LoaderIcon, RotateCwIcon } from 'svelte-feather-icons';
 	import { DownloadState } from '@yd/client';
+	import { TrashIcon, DownloadIcon, LoaderIcon, RotateCwIcon } from '@yd/ui';
 	import IconButton from '$lib/components/ui/IconButton.svelte';
 	import Title from '$lib/components/typography/Title.svelte';
 	import Tag from '$lib/components/ui/Tag.svelte';
@@ -77,7 +77,7 @@
 										>
 											<IconButton
 												on:click={() => onConfirm(() => downloads.remove(row.id))}
-												icon={Trash2Icon}
+												icon={TrashIcon}
 												size="1.5x"
 												class="hover:text-red-600 mr-2"
 											/>

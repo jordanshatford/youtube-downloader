@@ -1,10 +1,5 @@
 <script lang="ts">
-	import {
-		CheckCircleIcon,
-		AlertTriangleIcon,
-		AlertCircleIcon,
-		InfoIcon
-	} from 'svelte-feather-icons';
+	import { CheckCircleIcon, AlertTriangleIcon, AlertCircleIcon, InfoIcon } from '@yd/ui';
 	import type { Variant } from '$lib/utils/types';
 
 	export let variant: Variant = 'default';

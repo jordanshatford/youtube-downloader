@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { GithubIcon } from 'svelte-feather-icons';
+	import { GithubIcon } from '@yd/ui';
 	import { RoutePathConstants } from '$lib/utils/route';
 	import config from '$lib/config';
 </script>

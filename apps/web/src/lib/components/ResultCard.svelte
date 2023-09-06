@@ -1,6 +1,6 @@
 <script lang="ts">
-	import { PlusIcon } from 'svelte-feather-icons';
 	import type { Video } from '@yd/client';
+	import { PlusIcon } from '@yd/ui';
 	import StateIcon from '$lib/components/StateIcon.svelte';
 	import IconButton from '$lib/components/ui/IconButton.svelte';
 	import { downloads } from '$lib/stores/downloads';

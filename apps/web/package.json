@@ -16,7 +16,7 @@
 	},
 	"dependencies": {
 		"@yd/client": "workspace:*",
-		"svelte-feather-icons": "^4.0.1"
+		"@yd/ui": "workspace:*"
 	},
 	"devDependencies": {
 		"@sveltejs/adapter-auto": "^2.1.0",

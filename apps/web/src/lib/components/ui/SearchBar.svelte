@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { createEventDispatcher } from 'svelte';
-	import { SearchIcon, LoaderIcon } from 'svelte-feather-icons';
+	import { SearchIcon, LoaderIcon } from '@yd/ui';
 
 	const dispatch = createEventDispatcher();
 

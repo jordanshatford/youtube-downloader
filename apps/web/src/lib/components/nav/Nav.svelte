@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { MenuIcon, XIcon } from 'svelte-feather-icons';
+	import { MenuIcon, XIcon } from '@yd/ui';
 	import IconButton from '$lib/components/ui/IconButton.svelte';
 	import { routes } from '$lib/utils/route';
 	import Logo from '$lib/components/ui/Logo.svelte';

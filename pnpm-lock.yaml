@@ -28,9 +28,9 @@ importers:
       '@yd/client':
         specifier: workspace:*
         version: link:../../packages/client
-      svelte-feather-icons:
-        specifier: ^4.0.1
-        version: 4.0.1
+      '@yd/ui':
+        specifier: workspace:*
+        version: link:../../packages/ui
     devDependencies:
       '@sveltejs/adapter-auto':
         specifier: ^2.1.0
@@ -106,6 +106,10 @@ importers:
         version: 3.3.3(ts-node@10.9.1)
 
   packages/ui:
+    dependencies:
+      svelte-feather-icons:
+        specifier: ^4.0.1
+        version: 4.0.1
     devDependencies:
       '@sveltejs/adapter-auto':
         specifier: ^2.0.0

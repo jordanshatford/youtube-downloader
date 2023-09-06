@@ -1,5 +1,5 @@
 <script lang="ts">
-	import type { PlusIcon } from 'svelte-feather-icons';
+	import type { PlusIcon } from '@yd/ui';
 
 	export let icon: typeof PlusIcon;
 	export let size = '1x';

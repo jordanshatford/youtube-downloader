@@ -1,6 +1,6 @@
 <script lang="ts">
-	import { CheckCircleIcon, LoaderIcon, AlertCircleIcon } from 'svelte-feather-icons';
 	import { DownloadState } from '@yd/client';
+	import { CheckCircleIcon, LoaderIcon, AlertCircleIcon } from '@yd/ui';
 
 	export let state: DownloadState;
 	export let size: string = '1.5x';
