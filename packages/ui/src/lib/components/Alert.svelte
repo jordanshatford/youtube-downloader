@@ -1,6 +1,6 @@
 <script lang="ts">
-	import { CheckCircleIcon, AlertTriangleIcon, AlertCircleIcon, InfoIcon } from '@yd/ui';
-	import type { Variant } from '@yd/ui';
+	import { CheckCircleIcon, AlertTriangleIcon, AlertCircleIcon, InfoIcon } from '../icons';
+	import type { Variant } from '../types';
 
 	export let variant: Variant = 'default';
 	export let title: string;
