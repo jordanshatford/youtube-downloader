@@ -1,12 +1,23 @@
 FROM node:lts-alpine AS base
 
-RUN corepack enable
+WORKDIR /code
+
+# Setup corepack with version of pnpm specified in package.json
+COPY package.json pnpm-lock.yaml pnpm-workspace.yaml /code/
+RUN corepack enable && \
+    corepack prepare && \
+    pnpm config set store-dir /tmp/cache/pnpm
+
+# Fetch build and runtime dependencies
+RUN --mount=type=cache,target=/tmp/cache \
+    pnpm fetch --workspace-root
 
 # Install required dependencies
 COPY . /code/
 
-WORKDIR /code
-RUN corepack prepare && pnpm install
+# Install dependencies cached above
+RUN --mount=type=cache,target=/tmp/cache \
+    pnpm install -r --offline
 
 # Expose port we are running the frontend on
 EXPOSE 5173
