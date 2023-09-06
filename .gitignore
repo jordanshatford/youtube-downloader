@@ -1,6 +1,2 @@
 node_modules/
-__pycache__/
-sessions/
-.env
-.mypy_cache/
-venv/
+
