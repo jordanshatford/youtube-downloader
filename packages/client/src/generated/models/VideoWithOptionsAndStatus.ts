@@ -3,8 +3,8 @@
 /* tslint:disable */
 /* eslint-disable */
 
-import type { AudioOptions } from './AudioOptions';
 import type { Channel } from './Channel';
+import type { DownloadOptions } from './DownloadOptions';
 import type { DownloadStatus } from './DownloadStatus';
 
 export type VideoWithOptionsAndStatus = {
@@ -14,7 +14,7 @@ export type VideoWithOptionsAndStatus = {
   duration: string;
   thumbnail: string;
   channel: Channel;
-  options: AudioOptions;
+  options: DownloadOptions;
   status: DownloadStatus;
 };
 

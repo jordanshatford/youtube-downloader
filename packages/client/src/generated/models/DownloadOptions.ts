@@ -6,7 +6,7 @@
 import type { AudioFormat } from './AudioFormat';
 import type { DownloadQuality } from './DownloadQuality';
 
-export type AudioOptions = {
+export type DownloadOptions = {
   format: AudioFormat;
   quality: DownloadQuality;
 };

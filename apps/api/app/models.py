@@ -40,7 +40,7 @@ class DownloadQuality(str, enum.Enum):
     WORST = 'worst'
 
 
-class AudioOptions(BaseModel):
+class DownloadOptions(BaseModel):
     format: AudioFormat
     quality: DownloadQuality
 
@@ -61,7 +61,7 @@ class Video(BaseModel):
 
 
 class VideoWithOptions(Video):
-    options: AudioOptions
+    options: DownloadOptions
 
 
 class VideoWithOptionsAndStatus(VideoWithOptions):

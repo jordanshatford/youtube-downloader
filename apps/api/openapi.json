@@ -420,22 +420,6 @@
         ],
         "title": "AudioFormat"
       },
-      "AudioOptions": {
-        "properties": {
-          "format": {
-            "$ref": "#/components/schemas/AudioFormat"
-          },
-          "quality": {
-            "$ref": "#/components/schemas/DownloadQuality"
-          }
-        },
-        "type": "object",
-        "required": [
-          "format",
-          "quality"
-        ],
-        "title": "AudioOptions"
-      },
       "Channel": {
         "properties": {
           "name": {
@@ -464,6 +448,22 @@
           "thumbnail"
         ],
         "title": "Channel"
+      },
+      "DownloadOptions": {
+        "properties": {
+          "format": {
+            "$ref": "#/components/schemas/AudioFormat"
+          },
+          "quality": {
+            "$ref": "#/components/schemas/DownloadQuality"
+          }
+        },
+        "type": "object",
+        "required": [
+          "format",
+          "quality"
+        ],
+        "title": "DownloadOptions"
       },
       "DownloadQuality": {
         "type": "string",
@@ -713,7 +713,7 @@
             "$ref": "#/components/schemas/Channel"
           },
           "options": {
-            "$ref": "#/components/schemas/AudioOptions"
+            "$ref": "#/components/schemas/DownloadOptions"
           }
         },
         "type": "object",
@@ -760,7 +760,7 @@
             "$ref": "#/components/schemas/Channel"
           },
           "options": {
-            "$ref": "#/components/schemas/AudioOptions"
+            "$ref": "#/components/schemas/DownloadOptions"
           },
           "status": {
             "$ref": "#/components/schemas/DownloadStatus"

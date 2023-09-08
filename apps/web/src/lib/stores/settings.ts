@@ -1,10 +1,10 @@
 import { writable } from 'svelte/store';
-import { AudioFormat, DownloadQuality, type AudioOptions } from '@yd/client';
+import { AudioFormat, DownloadQuality, type DownloadOptions } from '@yd/client';
 import { browser } from '$app/environment';
 
 function createSettingsStore() {
 	const SETTINGS_KEY = 'settings';
-	const DEFAULT_SETTINGS: AudioOptions = {
+	const DEFAULT_SETTINGS: DownloadOptions = {
 		format: AudioFormat.MP3,
 		quality: DownloadQuality.BEST
 	};
@@ -15,7 +15,7 @@ function createSettingsStore() {
 		const data = localStorage?.getItem(SETTINGS_KEY);
 
 		if (data !== null) {
-			const parsedData = JSON.parse(data) as AudioOptions;
+			const parsedData = JSON.parse(data) as DownloadOptions;
 			// Make sure a value is set, if nothing is set use the default
 			if (!Object.values(AudioFormat).includes(parsedData.format)) {
 				parsedData.format = DEFAULT_SETTINGS.format;
