@@ -46,8 +46,8 @@ YouTube Audio Downloader is a full stack application created to allow users to d
   - Produces files with high quality audio
   - Dark and light theme options
 
-## Documentation
-Documentation for the project can be found [here](./docs/README.md).
+# Developer Guide
+Please refer to the [contributing guide](CONTRIBUTING.md) for how to install the project for development purposes.
 
 ## Monorepo structure:
 
