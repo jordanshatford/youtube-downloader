@@ -1,5 +1,6 @@
 import argparse
 import os
+import platform
 import subprocess
 import venv
 
@@ -14,6 +15,9 @@ cwd = os.getcwd()
 venv_name = 'venv'
 venv_dir = os.path.join(cwd, venv_name)
 venv_bin = os.path.join(venv_dir, 'bin')
+# On windows it appears to be in another directory
+if platform.system() == 'Windows':
+    venv_bin = os.path.join(venv_dir, 'Scripts')
 venv_bin_pip = os.path.join(venv_bin, 'pip')
 venv.create(venv_dir, with_pip=True)
 subprocess.run([venv_bin_pip, 'install', '--upgrade', 'pip'], cwd=cwd)
