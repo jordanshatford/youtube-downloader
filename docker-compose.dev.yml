@@ -8,7 +8,7 @@ services:
     build:
       target: development
     volumes:
-      - ./apps/api:/api
+      - ./apps/api:/workspace
   web:
     extends:
       file: docker-compose.yml
@@ -19,10 +19,10 @@ services:
       - 5173:5173
       - 24678:24678
     volumes:
-      - .:/code
-      - /code/node_modules
-      - /code/apps/web/node_modules
-      - /code/packages/client/node_modules
-      - /code/packages/config/node_modules
-      - /code/packages/ui/node_modules
+      - .:/workspace
+      - /workspace/node_modules
+      - /workspace/apps/web/node_modules
+      - /workspace/packages/client/node_modules
+      - /workspace/packages/config/node_modules
+      - /workspace/packages/ui/node_modules
 

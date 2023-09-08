@@ -1,9 +1,9 @@
 FROM node:lts-alpine AS base
 
-WORKDIR /code
+WORKDIR /workspace
 
 # Setup corepack with version of pnpm specified in package.json
-COPY package.json pnpm-lock.yaml pnpm-workspace.yaml /code/
+COPY package.json pnpm-lock.yaml pnpm-workspace.yaml /workspace/
 RUN corepack enable && \
     corepack prepare && \
     pnpm config set store-dir /tmp/cache/pnpm
@@ -13,7 +13,7 @@ RUN --mount=type=cache,target=/tmp/cache \
     pnpm fetch --workspace-root
 
 # Install required dependencies
-COPY . /code/
+COPY . /workspace/
 
 # Install dependencies cached above
 RUN --mount=type=cache,target=/tmp/cache \

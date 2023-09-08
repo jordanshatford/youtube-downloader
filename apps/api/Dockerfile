@@ -4,15 +4,15 @@ FROM python:3.11 AS base
 RUN apt-get update -y
 RUN apt-get install -y ffmpeg
 
-WORKDIR /api
+WORKDIR /workspace
 
 # Install required python packages
-COPY ./requirements.txt /api/requirements.txt
+COPY ./requirements.txt /workspace/requirements.txt
 RUN pip install --no-cache-dir -r requirements.txt
 
 # Copy over source and config files
-COPY ./app /api/app
-COPY ./pyproject.toml /api/pyproject.toml
+COPY ./app /workspace/app
+COPY ./pyproject.toml /workspace/pyproject.toml
 
 # Expose port we are running the api on
 EXPOSE 8080
