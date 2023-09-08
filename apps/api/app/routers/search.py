@@ -2,10 +2,10 @@ from fastapi import APIRouter
 from fastapi import HTTPException
 from fastapi import status
 
+from ..core.youtube import search_youtube
 from ..dependencies import depends_session_responses
 from ..dependencies import DependsSession
 from ..models import Video
-from ..utils.youtube import search_youtube
 
 router = APIRouter(
     prefix='/search',

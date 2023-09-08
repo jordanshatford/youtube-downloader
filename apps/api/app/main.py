@@ -9,7 +9,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from .routers import downloads
 from .routers import search
 from .routers import session
-from .utils.managers import session_manager
+from .session import session_manager
 
 # Read data from pyproject.toml file
 pyproject_data: dict[str, Any] = {}

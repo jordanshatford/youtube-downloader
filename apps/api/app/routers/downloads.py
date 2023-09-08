@@ -16,8 +16,8 @@ from ..dependencies import DependsSession
 from ..models import DownloadStatusUpdate
 from ..models import VideoWithOptions
 from ..models import VideoWithOptionsAndStatus
-from ..utils.managers import Session
-from ..utils.managers import session_manager
+from ..session import Session
+from ..session import session_manager
 
 router = APIRouter(
     prefix='/downloads',

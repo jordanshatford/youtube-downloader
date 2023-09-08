@@ -8,9 +8,9 @@ from fastapi import status
 from fastapi.security import HTTPAuthorizationCredentials
 from fastapi.security import HTTPBearer
 
-from .utils.managers import Session
-from .utils.managers import session_manager
-from .utils.threads import YoutubeDownloadThread
+from .core.threads import YoutubeDownloadThread
+from .session import Session
+from .session import session_manager
 
 AdditionResponses: TypeAlias = dict[int | str, dict[str, Any]]
 

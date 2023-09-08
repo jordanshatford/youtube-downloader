@@ -4,7 +4,7 @@ from fastapi import status
 from ..dependencies import depends_session_responses
 from ..dependencies import DependsSession
 from ..models import Session
-from ..utils.managers import session_manager
+from ..session import session_manager
 
 router = APIRouter(
     prefix='/session',
