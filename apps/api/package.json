@@ -7,8 +7,8 @@
     ".": "./openapi.json"
   },
 	"scripts": {
-		"dev": "./scripts.sh dev",
-		"format": "./scripts.sh format",
-		"generate:openapi": "./scripts.sh generate"
+		"dev": "python3 scripts.py dev",
+		"format": "python3 scripts.py format",
+		"generate:openapi": "python3 scripts.py generate"
 	}
 }

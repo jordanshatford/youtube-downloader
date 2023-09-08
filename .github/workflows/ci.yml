@@ -29,7 +29,6 @@ jobs:
         run: pnpm lint
       - name: Format
         run: pnpm format
-        if: ${{ matrix.os != 'windows-latest' }}
       - name: Check
         run: pnpm check
       - name: Build
