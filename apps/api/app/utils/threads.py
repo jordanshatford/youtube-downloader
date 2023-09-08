@@ -61,9 +61,9 @@ class YoutubeDownloadThread(threading.Thread):
         self._output_directory = output_directory
         self._status_hook = status_hook
         self.status = DownloadStatus(state=DownloadState.WAITING)
-
+        quality = self.video.options.quality.value
         YOUTUBE_DL_OPTIONS = {
-            'format': 'bestaudio/best',
+            'format': f'{quality}audio/{quality}',
             'progress_hooks': [self.progress_hook],
             'postprocessor_hooks': [self.postprocessor_hook],
             'post_hooks': [self.post_hook],

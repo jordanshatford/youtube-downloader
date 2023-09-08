@@ -1,13 +1,14 @@
 import { AudioFormat } from '@yd/client';
 
-export const audioFormatOptions = [
-	{ value: AudioFormat.MP3, text: 'MP3' },
-	{ value: AudioFormat.AAC, text: 'AAC' },
-	{ value: AudioFormat.FLAC, text: 'FLAC' },
-	{ value: AudioFormat.M4A, text: 'M4A' },
-	{ value: AudioFormat.OPUS, text: 'OPUS' },
-	{ value: AudioFormat.WAV, text: 'WAV' }
-];
+// Map enum to select options
+export function toSelectOptions(value: Record<string, string>) {
+	return Object.entries(value).map(([key, value]) => {
+		return {
+			value,
+			text: key
+		};
+	});
+}
 
 export const audioFormatDescriptions = {
 	[AudioFormat.MP3]:

@@ -1,7 +1,8 @@
 <script lang="ts">
+	import { AudioFormat, DownloadQuality } from '@yd/client';
 	import { toast, Select, Title, Description } from '@yd/ui';
 	import { settings } from '$lib/stores/settings';
-	import { audioFormatOptions, audioFormatDescriptions } from '$lib/utils/audio-settings';
+	import { toSelectOptions, audioFormatDescriptions } from '$lib/utils/audio-settings';
 	import config from '$lib/config';
 </script>
 
@@ -18,8 +19,14 @@
 				<Select
 					on:change={() => toast.success('Settings saved successfully.')}
 					title="Format:"
-					options={audioFormatOptions}
+					options={toSelectOptions(AudioFormat)}
 					bind:value={$settings.format}
+				/>
+				<Select
+					on:change={() => toast.success('Settings saved successfully.')}
+					title="Quality:"
+					options={toSelectOptions(DownloadQuality)}
+					bind:value={$settings.quality}
 				/>
 			</div>
 		</div>

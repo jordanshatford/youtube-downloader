@@ -35,8 +35,14 @@ class AudioFormat(str, enum.Enum):
     WAV = 'wav'
 
 
+class DownloadQuality(str, enum.Enum):
+    BEST = 'best'
+    WORST = 'worst'
+
+
 class AudioOptions(BaseModel):
     format: AudioFormat
+    quality: DownloadQuality
 
 
 class Channel(BaseModel):

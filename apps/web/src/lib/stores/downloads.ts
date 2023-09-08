@@ -43,9 +43,7 @@ function createDownloadsStore() {
 		const info: VideoWithExtra = {
 			...video,
 			status: { state: DownloadState.WAITING },
-			options: {
-				format: get(settings).format
-			}
+			options: get(settings)
 		};
 
 		updateDownload(info.id, info);

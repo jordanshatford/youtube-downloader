@@ -424,11 +424,15 @@
         "properties": {
           "format": {
             "$ref": "#/components/schemas/AudioFormat"
+          },
+          "quality": {
+            "$ref": "#/components/schemas/DownloadQuality"
           }
         },
         "type": "object",
         "required": [
-          "format"
+          "format",
+          "quality"
         ],
         "title": "AudioOptions"
       },
@@ -460,6 +464,14 @@
           "thumbnail"
         ],
         "title": "Channel"
+      },
+      "DownloadQuality": {
+        "type": "string",
+        "enum": [
+          "best",
+          "worst"
+        ],
+        "title": "DownloadQuality"
       },
       "DownloadState": {
         "type": "string",
