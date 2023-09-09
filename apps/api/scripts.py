@@ -5,51 +5,51 @@ import subprocess
 import venv
 
 
-# Parse command called from package.json
+# Parse command called.
 parser = argparse.ArgumentParser()
 parser.add_argument('command', choices=['dev', 'format', 'generate'])
 args = parser.parse_args()
 
-# Setup and install required packages into venv
-cwd = os.getcwd()
-venv_name = 'venv'
-venv_dir = os.path.join(cwd, venv_name)
-venv_bin = os.path.join(venv_dir, 'bin')
-# On windows it appears to be in another directory
-if platform.system() == 'Windows':
-    venv_bin = os.path.join(venv_dir, 'Scripts')
-venv_bin_pip = os.path.join(venv_bin, 'pip')
+
+# Setup the initial venv.
+venv_dir = os.path.join(os.getcwd(), 'venv')
 venv.create(venv_dir, with_pip=True)
-subprocess.run([venv_bin_pip, 'install', '--upgrade', 'pip'], cwd=cwd)
-subprocess.run(
-    [
-        venv_bin_pip, 'install', '-r',
-        os.path.abspath('requirements.txt'),
-    ], cwd=cwd,
-)
+
+
+# Get path to bins in the venv.
+venv_bin_dir = 'Scripts' if platform.system() == 'Windows' else 'bin'
+venv_bin = os.path.join(venv_dir, venv_bin_dir)
+
+
+# Run a command with passed args in the venv.
+def venv_run(
+    command: str, args: list[str],
+) -> subprocess.CompletedProcess[bytes]:
+    return subprocess.run(
+        [
+            os.path.join(venv_bin, command),
+            *args,
+        ], cwd=os.getcwd(),
+    )
+
+
+# Install project dependencies.
+venv_run('pip', ['install', '--upgrade', 'pip'])
+venv_run('pip', ['install', '-r', 'requirements.txt'])
+
 
 if args.command == 'dev':
-    # Run the API application with reloading enabled
-    subprocess.run(
-        [
-            os.path.join(venv_bin, 'uvicorn'), 'app.main:app',
-            '--host', '0.0.0.0', '--port', '8080', '--reload',
-        ], cwd=cwd,
+    # Run the api with reloading enabled.
+    venv_run(
+        'uvicorn', [
+            'app.main:app', '--host',
+            '0.0.0.0', '--port', '8080', '--reload',
+        ],
     )
 elif args.command == 'format':
-    # Install pre-commit and run formatting on all code in the API app
-    subprocess.run([venv_bin_pip, 'install', 'pre-commit'], cwd=cwd)
-    subprocess.run(
-        [
-            os.path.join(venv_bin, 'pre-commit'),
-            'run', '--all-files',
-        ], cwd=cwd,
-    )
+    # Run pre-commit hooks on the api code.
+    venv_run('pip', ['install', 'pre-commit'])
+    venv_run('pre-commit', ['run', '--all-files'])
 elif args.command == 'generate':
-    # Generate openapi.json from the app using the generate_openapi.py script
-    subprocess.run(
-        [
-            os.path.join(venv_bin, 'python'),
-            'generate_openapi.py',
-        ], cwd=cwd,
-    )
+    # Generate openapi.json from the api.
+    venv_run('python', ['generate_openapi.py'])
