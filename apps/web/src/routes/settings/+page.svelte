@@ -18,20 +18,26 @@
 			<div class="w-full mt-4">
 				<Select
 					on:change={() => toast.success('Settings saved successfully.')}
-					title="Format:"
-					options={toSelectOptions(AudioFormat)}
-					bind:value={$settings.format}
-				/>
-				<Select
-					on:change={() => toast.success('Settings saved successfully.')}
 					title="Quality:"
 					options={toSelectOptions(DownloadQuality)}
 					bind:value={$settings.quality}
 				/>
+				<Select
+					on:change={() => toast.success('Settings saved successfully.')}
+					title="Embed metadata:"
+					options={toSelectOptions({ YES: true, NO: false })}
+					bind:value={$settings.embed_metadata}
+				/>
+				<Select
+					on:change={() => toast.success('Settings saved successfully.')}
+					title="Format:"
+					options={toSelectOptions(AudioFormat)}
+					bind:value={$settings.format}
+				/>
+				<p class="text-center mt-4 max-w-xl mx-auto text-zinc-500">
+					{audioFormatDescriptions[$settings.format]}
+				</p>
 			</div>
 		</div>
 	</div>
-	<p class="text-center mt-4 max-w-xl mx-auto text-zinc-500">
-		{audioFormatDescriptions[$settings.format]}
-	</p>
 </div>

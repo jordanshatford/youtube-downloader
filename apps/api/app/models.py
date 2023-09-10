@@ -43,6 +43,7 @@ class DownloadQuality(str, enum.Enum):
 class DownloadOptions(BaseModel):
     format: AudioFormat
     quality: DownloadQuality
+    embed_metadata: bool
 
 
 class Channel(BaseModel):

@@ -6,7 +6,8 @@ function createSettingsStore() {
 	const SETTINGS_KEY = 'settings';
 	const DEFAULT_SETTINGS: DownloadOptions = {
 		format: AudioFormat.MP3,
-		quality: DownloadQuality.BEST
+		quality: DownloadQuality.BEST,
+		embed_metadata: true
 	};
 
 	const { subscribe, set, update } = writable(DEFAULT_SETTINGS);
@@ -22,6 +23,9 @@ function createSettingsStore() {
 			}
 			if (!Object.values(DownloadQuality).includes(parsedData.quality)) {
 				parsedData.quality = DEFAULT_SETTINGS.quality;
+			}
+			if (parsedData.embed_metadata == undefined) {
+				parsedData.embed_metadata = DEFAULT_SETTINGS.embed_metadata;
 			}
 			set(parsedData);
 		}

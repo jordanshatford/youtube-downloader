@@ -62,6 +62,16 @@ class YoutubeDownloadThread(threading.Thread):
         self._status_hook = status_hook
         self.status = DownloadStatus(state=DownloadState.WAITING)
         quality = self.video.options.quality.value
+        postprocessors: list[dict[str, str]] = [
+            {
+                'key': 'FFmpegExtractAudio',
+                'preferredcodec': self.video.options.format.value,
+                'preferredquality': '192',
+            },
+        ]
+        # Only append metadata to the video if enabled by user
+        if self.video.options.embed_metadata:
+            postprocessors.append({'key': 'FFmpegMetadata'})
         YOUTUBE_DL_OPTIONS = {
             'format': f'{quality}audio/{quality}',
             'progress_hooks': [self.progress_hook],
@@ -69,14 +79,7 @@ class YoutubeDownloadThread(threading.Thread):
             'post_hooks': [self.post_hook],
             'outtmpl': f'{self._output_directory}/{self.video.id}.%(ext)s',
             'quiet': True,
-            'postprocessors': [
-                {
-                    'key': 'FFmpegExtractAudio',
-                    'preferredcodec': self.video.options.format.value,
-                    'preferredquality': '192',
-                },
-                {'key': 'FFmpegMetadata'},
-            ],
+            'postprocessors': postprocessors,
         }
         self._downloader = YoutubeDL(YOUTUBE_DL_OPTIONS)
 

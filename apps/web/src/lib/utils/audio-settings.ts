@@ -1,7 +1,7 @@
 import { AudioFormat } from '@yd/client';
 
 // Map enum to select options
-export function toSelectOptions(value: Record<string, string>) {
+export function toSelectOptions<T extends object>(value: T) {
 	return Object.entries(value).map(([key, value]) => {
 		return {
 			value,

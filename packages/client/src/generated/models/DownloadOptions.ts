@@ -9,5 +9,6 @@ import type { DownloadQuality } from './DownloadQuality';
 export type DownloadOptions = {
   format: AudioFormat;
   quality: DownloadQuality;
+  embed_metadata: boolean;
 };
 

@@ -456,12 +456,17 @@
           },
           "quality": {
             "$ref": "#/components/schemas/DownloadQuality"
+          },
+          "embed_metadata": {
+            "type": "boolean",
+            "title": "Embed Metadata"
           }
         },
         "type": "object",
         "required": [
           "format",
-          "quality"
+          "quality",
+          "embed_metadata"
         ],
         "title": "DownloadOptions"
       },
