@@ -8,6 +8,7 @@
   },
 	"scripts": {
 		"dev": "python3 scripts.py dev",
+		"lint": "python3 scripts.py lint",
 		"format": "python3 scripts.py format",
 		"generate:openapi": "python3 scripts.py generate"
 	}

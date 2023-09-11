@@ -7,7 +7,7 @@ import venv
 
 # Parse command called.
 parser = argparse.ArgumentParser()
-parser.add_argument('command', choices=['dev', 'format', 'generate'])
+parser.add_argument('command', choices=['dev', 'lint', 'format', 'generate'])
 args = parser.parse_args()
 
 
@@ -46,7 +46,7 @@ if args.command == 'dev':
             '0.0.0.0', '--port', '8080', '--reload',
         ],
     )
-elif args.command == 'format':
+elif args.command == 'format' or args.command == 'lint':
     # Run pre-commit hooks on the api code.
     venv_run('pip', ['install', 'pre-commit'])
     venv_run('pre-commit', ['run', '--all-files'])
