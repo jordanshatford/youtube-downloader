@@ -17,15 +17,15 @@
 <div>
 	<Title>Search</Title>
 	<Description>Search YouTube for the videos you want to download and convert to audio</Description>
-	<div class="max-w-xl mx-auto overflow-hidden md:max-w-xl">
+	<div class="mx-auto max-w-xl overflow-hidden md:max-w-xl">
 		<div class="md:flex">
-			<div class="w-full mt-4">
+			<div class="mt-4 w-full">
 				<SearchBar on:search={searchVideos} loading={$search.loading} searchTerm={$search.term} />
 			</div>
 		</div>
 	</div>
-	<div class="container mt-8 pb-8 mx-auto px-4 md:px-12">
-		<div class="flex flex-wrap -mx-1 lg:-mx-4">
+	<div class="container mx-auto mt-8 px-4 pb-8 md:px-12">
+		<div class="-mx-1 flex flex-wrap lg:-mx-4">
 			{#each $search.results as result (result.id)}
 				<ResultCard {result} />
 			{/each}

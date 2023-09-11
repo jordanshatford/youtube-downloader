@@ -1,10 +1,10 @@
 <div class="bg-white dark:bg-zinc-900">
 	<div class="flex h-screen">
 		<div class="m-auto text-center">
-			<div class="inline-block relative w-100 overflow-hidden align-middle">
+			<div class="w-100 relative inline-block overflow-hidden align-middle">
 				<div class="text-zinc-900 dark:text-white">
 					<svg
-						class="mt-8 animate-spin relative inline-block"
+						class="relative mt-8 inline-block animate-spin"
 						width="7rem"
 						height="7rem"
 						xmlns="http://www.w3.org/2000/svg"

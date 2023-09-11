@@ -11,6 +11,6 @@
 			: 'text-zinc-400 dark:text-zinc-300 hover:bg-zinc-100 dark:hover:bg-zinc-700';
 </script>
 
-<a on:click href={link.href} class:block={isMobileMenu} class="{classNames} px-3 py-2 rounded-lg">
+<a on:click href={link.href} class:block={isMobileMenu} class="{classNames} rounded-lg px-3 py-2">
 	{link.text}
 </a>

@@ -7,13 +7,13 @@
 	export let links: LinkInfo[] = [];
 </script>
 
-<footer class="bg-white dark:bg-zinc-800 border-t border-zinc-200 dark:border-zinc-900">
-	<div class="flex flex-col items-center px-8 py-6 mx-auto max-w-6xl sm:flex-row">
+<footer class="border-t border-zinc-200 bg-white dark:border-zinc-900 dark:bg-zinc-800">
+	<div class="mx-auto flex max-w-6xl flex-col items-center px-8 py-6 sm:flex-row">
 		{#if copyright}
 			<p class="text-zinc-400">© {copyright.year} {copyright.owner}</p>
 		{/if}
 		<span
-			class="inline-flex justify-end mt-4 space-x-5 sm:ml-auto sm:mt-0 sm:justify-start text-zinc-500 dark:text-zinc-200"
+			class="mt-4 inline-flex justify-end space-x-5 text-zinc-500 dark:text-zinc-200 sm:ml-auto sm:mt-0 sm:justify-start"
 		>
 			{#each links as link, index (link.href)}
 				{@const isLast = index === links.length - 1}
@@ -25,11 +25,11 @@
 				{/if}
 			{/each}
 		</span>
-		<span class="inline-flex justify-center mt-4 space-x-5 sm:ml-auto sm:mt-0 sm:justify-start">
+		<span class="mt-4 inline-flex justify-center space-x-5 sm:ml-auto sm:mt-0 sm:justify-start">
 			{#if githubLink}
 				<a
 					href={githubLink}
-					class="text-2xl hover:text-indigo-800 dark:hover:text-indigo-600 text-zinc-500 dark:text-zinc-200"
+					class="text-2xl text-zinc-500 hover:text-indigo-800 dark:text-zinc-200 dark:hover:text-indigo-600"
 					target="_blank"
 					rel="noreferrer"
 				>

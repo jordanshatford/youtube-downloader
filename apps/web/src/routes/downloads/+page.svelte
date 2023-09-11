@@ -33,24 +33,24 @@
 <div>
 	<Title>Downloads</Title>
 	<Description>View videos being converted</Description>
-	<div class="flex flex-col mt-4">
+	<div class="mt-4 flex flex-col">
 		<div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
-			<div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
+			<div class="inline-block min-w-full py-2 align-middle sm:px-6 lg:px-8">
 				<div
-					class="rounded-lg shadow dark:shadow-dark overflow-hidden border border-zinc-200 dark:border-zinc-800"
+					class="overflow-hidden rounded-lg border border-zinc-200 shadow dark:border-zinc-800 dark:shadow-dark"
 				>
 					<Table {columns} rows={Object.values($downloads)}>
 						<span slot="cell" let:column let:row>
 							{#if column.key === 'info'}
 								<div class="flex items-center">
-									<div class="hidden md:block flex-shrink-0 h-10 w-18">
-										<img class="h-10 w-18 rounded-lg" src={row.thumbnail} alt="Thumbnail" />
+									<div class="w-18 hidden h-10 flex-shrink-0 md:block">
+										<img class="w-18 h-10 rounded-lg" src={row.thumbnail} alt="Thumbnail" />
 									</div>
-									<div class="md:ml-4 lg:max-w-lg md:max-w-xs sm:max-w-xxs max-w-xxxs truncate">
-										<div class="text-sm truncate font-medium text-zinc-800 dark:text-white">
+									<div class="sm:max-w-xxs max-w-xxxs truncate md:ml-4 md:max-w-xs lg:max-w-lg">
+										<div class="truncate text-sm font-medium text-zinc-800 dark:text-white">
 											{row.title}
 										</div>
-										<div class="text-sm text-zinc-500 dark:text-zinc-400 underline">
+										<div class="text-sm text-zinc-500 underline dark:text-zinc-400">
 											<a href={row.url} target="_blank" rel="noreferrer">Link</a>
 										</div>
 									</div>
@@ -74,7 +74,7 @@
 												on:click={() => onConfirm(() => downloads.remove(row.id))}
 												icon={TrashIcon}
 												size="1.5x"
-												class="hover:text-red-600 mr-2"
+												class="mr-2 hover:text-red-600"
 											/>
 										</Confirm>
 									{/if}

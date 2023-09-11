@@ -10,6 +10,6 @@
 <IconButton
 	on:click={() => theme.toggle()}
 	icon={$theme === 'dark' ? SunIcon : MoonIcon}
-	class="{className} hover:text-indigo-800 dark:hover:text-indigo-600 text-zinc-500 dark:text-zinc-200 dark:bg-zinc-800"
+	class="{className} text-zinc-500 hover:text-indigo-800 dark:bg-zinc-800 dark:text-zinc-200 dark:hover:text-indigo-600"
 	{size}
 />

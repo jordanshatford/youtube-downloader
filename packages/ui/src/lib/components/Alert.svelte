@@ -9,9 +9,9 @@
 
 <div
 	class="{variantMapping[variant]
-		.class} shadow dark:shadow-dark rounded-lg md:flex justify-between items-center top-0 py-2 px-2"
+		.class} top-0 items-center justify-between rounded-lg px-2 py-2 shadow dark:shadow-dark md:flex"
 >
-	<div class="sm:flex items-center">
+	<div class="items-center sm:flex">
 		<div class="flex items-end">
 			{#if variantMapping[variant].icon}
 				<svelte:component

@@ -33,14 +33,14 @@
 </script>
 
 <Toasts position="bottom-right" />
-<div class="min-h-screen h-full dark:bg-zinc-900">
+<div class="h-full min-h-screen dark:bg-zinc-900">
 	{#if $session}
 		<div class="h-full">
 			<NavBar {links} activeLink={$page.url.pathname}>
 				<Logo slot="logo" />
 				<ThemeChangeIcon slot="right" />
 			</NavBar>
-			<main class="h-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-20">
+			<main class="mx-auto h-full max-w-7xl px-4 pt-20 sm:px-6 lg:px-8">
 				<slot />
 			</main>
 		</div>

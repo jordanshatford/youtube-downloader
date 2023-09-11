@@ -7,6 +7,6 @@
 	export { className as class };
 </script>
 
-<button on:click class="{className} border-none focus:outline-none p-2">
+<button on:click class="{className} border-none p-2 focus:outline-none">
 	<svelte:component this={icon} {size} />
 </button>

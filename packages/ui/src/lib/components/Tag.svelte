@@ -24,8 +24,8 @@
 	}
 </script>
 
-<div class="rounded-lg flex items-center justify-center {className}">
-	<div class="rounded-lg flex items-center justify-center h-full w-full">
+<div class="flex items-center justify-center rounded-lg {className}">
+	<div class="flex h-full w-full items-center justify-center rounded-lg">
 		<slot />
 	</div>
 </div>

@@ -2,7 +2,7 @@
 	export let items: { title: string; description?: string }[];
 </script>
 
-<ol class="list-decimal py-6 md:mx-32 mx-6 text-left">
+<ol class="mx-6 list-decimal py-6 text-left md:mx-32">
 	{#each items as item}
 		<li class="mt-3 text-zinc-700 dark:text-zinc-300">{item.title}</li>
 		{#if item.description}

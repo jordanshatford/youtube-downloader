@@ -7,17 +7,17 @@
 	export let result: Video;
 </script>
 
-<div class="my-1 px-1 w-full md:w-1/2 lg:my-4 lg:px-4 lg:w-1/3">
+<div class="my-1 w-full px-1 md:w-1/2 lg:my-4 lg:w-1/3 lg:px-4">
 	<article
-		class="rounded-lg dark:bg-zinc-800 overflow-hidden shadow dark:shadow-dark border border-zinc-200 dark:border-zinc-800"
+		class="overflow-hidden rounded-lg border border-zinc-200 shadow dark:border-zinc-800 dark:bg-zinc-800 dark:shadow-dark"
 	>
 		<a href={result.url} target="_blank" rel="noreferrer">
 			<img alt="Thumbnail" class="block h-auto w-full" src={result.thumbnail} />
 		</a>
-		<header class="flex items-center justify-between leading-tight p-2 md:p-4">
+		<header class="flex items-center justify-between p-2 leading-tight md:p-4">
 			<h1 class="text-lg">
 				<a
-					class="no-underline hover:underline text-zinc-900 dark:text-white"
+					class="text-zinc-900 no-underline hover:underline dark:text-white"
 					href={result.url}
 					target="_blank"
 					rel="noreferrer"
@@ -25,18 +25,18 @@
 					{result.title}
 				</a>
 			</h1>
-			<p class="text-zinc-700 dark:text-zinc-300 text-sm">{result.duration}</p>
+			<p class="text-sm text-zinc-700 dark:text-zinc-300">{result.duration}</p>
 		</header>
-		<footer class="flex items-center justify-between leading-none p-2 md:p-4">
+		<footer class="flex items-center justify-between p-2 leading-none md:p-4">
 			<a
-				class="flex items-center no-underline hover:underline text-zinc-800 dark:text-zinc-400"
+				class="flex items-center text-zinc-800 no-underline hover:underline dark:text-zinc-400"
 				href={result.channel.url}
 				target="_blank"
 				rel="noreferrer"
 			>
 				<img
 					alt={result.channel.name}
-					class="block w-10 h-10 rounded-lg"
+					class="block h-10 w-10 rounded-lg"
 					src={result.channel.thumbnail}
 				/>
 				<p class="ml-2 text-sm">
@@ -47,7 +47,7 @@
 				<IconButton
 					on:click={() => downloads.add(result)}
 					icon={PlusIcon}
-					class="text-black dark:text-white hover:text-purple-800 dark:hover:text-purple-600"
+					class="text-black hover:text-purple-800 dark:text-white dark:hover:text-purple-600"
 					size="1.5x"
 				/>
 			{:else}

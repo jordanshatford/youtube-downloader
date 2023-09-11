@@ -13,9 +13,9 @@
 <div>
 	<Title>Settings</Title>
 	<Description>Set preferred settings for the videos you convert</Description>
-	<div class="max-w-xl mx-auto overflow-hidden md:max-w-xl">
-		<div class="md:flex mb-2">
-			<div class="w-full mt-4">
+	<div class="mx-auto max-w-xl overflow-hidden md:max-w-xl">
+		<div class="mb-2 md:flex">
+			<div class="mt-4 w-full">
 				<Select
 					on:change={() => toast.success('Settings saved successfully.')}
 					title="Quality:"
@@ -34,7 +34,7 @@
 					options={toSelectOptions(AudioFormat)}
 					bind:value={$settings.format}
 				/>
-				<p class="text-center mt-4 max-w-xl mx-auto text-zinc-500">
+				<p class="mx-auto mt-4 max-w-xl text-center text-zinc-500">
 					{audioFormatDescriptions[$settings.format]}
 				</p>
 			</div>

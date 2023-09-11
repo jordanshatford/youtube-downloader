@@ -25,9 +25,9 @@
 	}
 </script>
 
-<div class="h-8 w-36 rounded-lg flex items-center justify-center {className}">
-	<div class="rounded-lg flex items-center justify-center h-full w-full">
-		<span class="text-sm pr-2">{state}</span>
+<div class="flex h-8 w-36 items-center justify-center rounded-lg {className}">
+	<div class="flex h-full w-full items-center justify-center rounded-lg">
+		<span class="pr-2 text-sm">{state}</span>
 		<StateIcon {state} size="1x" />
 	</div>
 </div>
