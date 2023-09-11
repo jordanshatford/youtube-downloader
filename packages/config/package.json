@@ -8,7 +8,7 @@
 		"./eslint/svelte": "./eslint/svelte.js",
 		"./prettier/base": "./prettier/base.js",
 		"./prettier/svelte": "./prettier/svelte.js",
-		"./tailwind": "./tailwind.config.js",
+		"./tailwind": "./tailwind/base.js",
 		"./typescript": "./typescript.json"
 	},
 	"prettier": "./prettier/base",
