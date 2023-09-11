@@ -17,7 +17,7 @@
 		<header class="flex items-center justify-between p-2 leading-tight md:p-4">
 			<h1 class="text-lg">
 				<a
-					class="text-zinc-900 no-underline hover:underline dark:text-white"
+					class="line-clamp-2 text-zinc-900 no-underline hover:underline dark:text-white"
 					href={result.url}
 					target="_blank"
 					rel="noreferrer"
