@@ -5,6 +5,7 @@
   "license": "MIT",
   "exports": {
     "./tailwind": "./tailwind.config.js",
+    "./eslint/typescript": "./eslint/typescript.js",
     "./eslint/svelte": "./eslint/svelte.js"
   },
   "scripts": {},

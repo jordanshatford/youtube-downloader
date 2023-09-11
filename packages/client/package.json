@@ -1,16 +1,20 @@
 {
-  "name": "@yd/client",
-  "private": true,
-  "version": "1.0.0",
-  "license": "MIT",
-  "main": "./src/index.ts",
-  "scripts": {
-    "build": "tsc --project tsconfig.json",
-    "check": "tsc --project tsconfig.json --noEmit",
-    "generate": "openapi --input ../../apps/api/openapi.json --output ./src/generated --client fetch --indent 2 && git apply ./patches/*.patch"
-  },
-  "devDependencies": {
-    "openapi-typescript-codegen": "^0.25.0",
-    "typescript": "^5.2.2"
-  }
+	"name": "@yd/client",
+	"private": true,
+	"version": "1.0.0",
+	"license": "MIT",
+	"main": "./src/index.ts",
+	"scripts": {
+		"build": "tsc --project tsconfig.json",
+		"check": "tsc --project tsconfig.json --noEmit",
+		"generate": "openapi --input ../../apps/api/openapi.json --output ./src/generated --client fetch --indent 2 && git apply ./patches/*.patch",
+		"lint": "prettier --check . && eslint .",
+		"format": "prettier --write ."
+	},
+	"devDependencies": {
+		"@yd/config": "workspace:*",
+		"openapi-typescript-codegen": "^0.25.0",
+		"prettier": "^3.0.3",
+		"typescript": "^5.2.2"
+	}
 }
