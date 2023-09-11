@@ -4,10 +4,10 @@
 	"version": "1.0.0",
 	"license": "MIT",
 	"exports": {
-		"./tailwind": "./tailwind.config.js",
 		"./eslint/typescript": "./eslint/typescript.js",
 		"./eslint/svelte": "./eslint/svelte.js",
 		"./prettier": "./prettier/index.js",
+		"./tailwind": "./tailwind.config.js",
 		"./typescript": "./typescript.json"
 	},
 	"prettier": "./prettier",
