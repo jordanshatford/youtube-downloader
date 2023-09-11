@@ -7,7 +7,7 @@
     "./tailwind": "./tailwind.config.js",
     "./eslint/typescript": "./eslint/typescript.js",
     "./eslint/svelte": "./eslint/svelte.js",
-		"./tsconfig": "./tsconfig.json"
+		"./typescript": "./typescript.json"
   },
   "scripts": {},
   "devDependencies": {
