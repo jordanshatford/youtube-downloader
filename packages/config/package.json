@@ -9,7 +9,7 @@
 		"./prettier/base": "./prettier/base.js",
 		"./prettier/svelte": "./prettier/svelte.js",
 		"./tailwind": "./tailwind/base.js",
-		"./typescript": "./typescript.json"
+		"./tsconfig": "./tsconfig/base.json"
 	},
 	"prettier": "./prettier/base",
 	"scripts": {
