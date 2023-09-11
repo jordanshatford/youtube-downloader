@@ -11,6 +11,7 @@
     "api": "pnpm --filter @yd/api -- ",
     "web": "pnpm --filter @yd/web -- ",
     "client": "pnpm --filter @yd/client -- ",
+		"cfg": "pnpm --filter @yd/config -- ",
     "ui": "pnpm --filter @yd/ui -- ",
     "build": "pnpm -r build",
     "lint": "pnpm -r lint",

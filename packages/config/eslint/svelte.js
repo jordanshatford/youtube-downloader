@@ -1,9 +1,6 @@
 /** @type {import('eslint').Linter.Config} */
 module.exports = {
-	extends: [
-    require.resolve('./typescript.js'),
-		'plugin:svelte/recommended',
-	],
+	extends: [require.resolve('./typescript.js'), 'plugin:svelte/recommended'],
 	parserOptions: {
 		extraFileExtensions: ['.svelte']
 	},
