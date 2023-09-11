@@ -14,7 +14,6 @@
 	"devDependencies": {
 		"@yd/config": "workspace:*",
 		"openapi-typescript-codegen": "^0.25.0",
-		"prettier": "^3.0.3",
 		"typescript": "^5.2.2"
 	}
 }

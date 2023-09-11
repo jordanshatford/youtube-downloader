@@ -50,15 +50,6 @@ importers:
       postcss:
         specifier: ^8.4.29
         version: 8.4.29
-      prettier:
-        specifier: ^3.0.3
-        version: 3.0.3
-      prettier-plugin-svelte:
-        specifier: ^3.0.3
-        version: 3.0.3(prettier@3.0.3)(svelte@4.2.0)
-      prettier-plugin-tailwindcss:
-        specifier: ^0.5.4
-        version: 0.5.4(prettier-plugin-svelte@3.0.3)(prettier@3.0.3)
       svelte:
         specifier: ^4.2.0
         version: 4.2.0
@@ -86,9 +77,6 @@ importers:
       openapi-typescript-codegen:
         specifier: ^0.25.0
         version: 0.25.0
-      prettier:
-        specifier: ^3.0.3
-        version: 3.0.3
       typescript:
         specifier: ^5.2.2
         version: 5.2.2
@@ -109,7 +97,16 @@ importers:
         version: 9.0.0(eslint@8.48.0)
       eslint-plugin-svelte:
         specifier: ^2.33.0
-        version: 2.33.0(eslint@8.48.0)(ts-node@10.9.1)
+        version: 2.33.0(eslint@8.48.0)(svelte@4.2.0)(ts-node@10.9.1)
+      prettier:
+        specifier: ^3.0.3
+        version: 3.0.3
+      prettier-plugin-svelte:
+        specifier: ^3.0.3
+        version: 3.0.3(prettier@3.0.3)(svelte@4.2.0)
+      prettier-plugin-tailwindcss:
+        specifier: ^0.5.4
+        version: 0.5.4(prettier-plugin-svelte@3.0.3)(prettier@3.0.3)
       tailwindcss:
         specifier: ^3.3.3
         version: 3.3.3(ts-node@10.9.1)
@@ -138,15 +135,6 @@ importers:
       postcss:
         specifier: ^8.4.29
         version: 8.4.29
-      prettier:
-        specifier: ^3.0.3
-        version: 3.0.3
-      prettier-plugin-svelte:
-        specifier: ^3.0.3
-        version: 3.0.3(prettier@3.0.3)(svelte@4.2.0)
-      prettier-plugin-tailwindcss:
-        specifier: ^0.5.4
-        version: 0.5.4(prettier-plugin-svelte@3.0.3)(prettier@3.0.3)
       publint:
         specifier: ^0.2.2
         version: 0.2.2
@@ -1594,7 +1582,7 @@ packages:
       eslint: 8.48.0
     dev: true
 
-  /eslint-plugin-svelte@2.33.0(eslint@8.48.0)(ts-node@10.9.1):
+  /eslint-plugin-svelte@2.33.0(eslint@8.48.0)(svelte@4.2.0)(ts-node@10.9.1):
     resolution: {integrity: sha512-kk7Z4BfxVjFYJseFcOpS8kiKNio7KnAnhFagmM89h1wNSKlM7tIn+uguNQppKM9leYW+S+Us0Rjg2Qg3zsEcvg==}
     engines: {node: ^14.17.0 || >=16.0.0}
     peerDependencies:
@@ -1615,7 +1603,8 @@ packages:
       postcss-safe-parser: 6.0.0(postcss@8.4.29)
       postcss-selector-parser: 6.0.13
       semver: 7.5.4
-      svelte-eslint-parser: 0.33.0
+      svelte: 4.2.0
+      svelte-eslint-parser: 0.33.0(svelte@4.2.0)
     transitivePeerDependencies:
       - supports-color
       - ts-node
@@ -3217,7 +3206,7 @@ packages:
       - sugarss
     dev: true
 
-  /svelte-eslint-parser@0.33.0:
+  /svelte-eslint-parser@0.33.0(svelte@4.2.0):
     resolution: {integrity: sha512-5awZ6Bs+Tb/zQwa41PSdcLynAVQTwW0HGyCBjtbAQ59taLZqDgQSMzRlDmapjZdDtzERm0oXDZNE0E+PKJ6ryg==}
     engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
     peerDependencies:
@@ -3231,6 +3220,7 @@ packages:
       espree: 9.6.1
       postcss: 8.4.29
       postcss-scss: 4.0.7(postcss@8.4.29)
+      svelte: 4.2.0
     dev: true
 
   /svelte-feather-icons@4.0.1:
