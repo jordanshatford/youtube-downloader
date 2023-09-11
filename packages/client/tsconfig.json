@@ -1,10 +1,11 @@
 {
 	"$schema": "https://json.schemastore.org/tsconfig",
+	"extends": "@yd/config/tsconfig",
 	"compilerOptions": {
-		"module": "commonjs",
+		"lib": ["ESNext", "DOM"],
 		"target": "es2020",
-		"declaration": true,
-		"outDir": "./dist"
+		"moduleResolution": "Node",
+		"outDir": "dist"
 	},
 	"include": ["src/**/*"]
 }
