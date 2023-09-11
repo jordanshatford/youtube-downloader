@@ -6,11 +6,12 @@
 	"exports": {
 		"./eslint/typescript": "./eslint/typescript.js",
 		"./eslint/svelte": "./eslint/svelte.js",
-		"./prettier": "./prettier/index.js",
+		"./prettier/base": "./prettier/base.js",
+		"./prettier/svelte": "./prettier/svelte.js",
 		"./tailwind": "./tailwind.config.js",
 		"./typescript": "./typescript.json"
 	},
-	"prettier": "./prettier",
+	"prettier": "./prettier/base",
 	"scripts": {
 		"lint": "prettier --check . && eslint .",
 		"format": "prettier --write ."
