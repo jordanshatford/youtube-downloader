@@ -5,10 +5,10 @@
 		{
 			"path": "apps/web"
 		},
-    {
+		{
 			"path": "packages/client"
 		},
-    {
+		{
 			"path": "packages/ui"
 		}
 	]
