@@ -86,6 +86,7 @@ function createDownloadsStore() {
 		} catch (err) {
 			toast.error('Failed to get file for download.');
 			console.error('Failed to get file for download ', err);
+			updateDownload(id, { awaitingFileBlob: false, status: { state: DownloadState.ERROR } });
 		}
 	}
 
