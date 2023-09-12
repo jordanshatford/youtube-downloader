@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { DownloadState } from '@yd/client';
 	import { DownloadIcon, LoaderIcon, RotateIcon, TrashIcon } from '@yd/ui';
-	import { Confirm, Tag, IconButton, Table, Title, Description } from '@yd/ui';
+	import { Confirm, Badge, IconButton, Table, Title, Description } from '@yd/ui';
 	import { downloads } from '$lib/stores/downloads';
 	import StateBadge from '$lib/components/StateBadge.svelte';
 	import config from '$lib/config';
@@ -56,7 +56,7 @@
 									</div>
 								</div>
 							{:else if column.key === 'format'}
-								<Tag>{row.options.format.toUpperCase()}</Tag>
+								<Badge>{row.options.format.toUpperCase()}</Badge>
 							{:else if column.key === 'state'}
 								<StateBadge state={row.status.state} />
 							{:else if column.key === 'actions'}
