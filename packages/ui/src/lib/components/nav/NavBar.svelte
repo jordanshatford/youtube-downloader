@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { MenuIcon, XIcon } from '../../icons';
+	import { MenuIcon, XMarkIcon } from '../../icons';
 	import IconButton from '../IconButton.svelte';
 	import type { LinkInfo } from '../../types';
 	import NavBarItem from './NavBarItem.svelte';
@@ -18,9 +18,8 @@
 					on:click={() => (showMobileMenu = !showMobileMenu)}
 					class="{showMobileMenu
 						? 'hover:text-red-600'
-						: 'hover:text-indigo-800 dark:hover:text-indigo-600'} dark:text-zinc-200"
-					icon={showMobileMenu ? XIcon : MenuIcon}
-					size="1.5x"
+						: 'hover:text-indigo-800 dark:hover:text-indigo-600'} h-10 w-10 dark:text-zinc-200"
+					src={showMobileMenu ? XMarkIcon : MenuIcon}
 				/>
 			</div>
 			<div class="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">

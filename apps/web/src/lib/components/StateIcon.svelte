@@ -1,9 +1,8 @@
 <script lang="ts">
 	import { DownloadState } from '@yd/client';
-	import { CheckCircleIcon, LoaderIcon, AlertCircleIcon } from '@yd/ui';
+	import { CheckCircleIcon, LoaderIcon, ExclamationCircleIcon, Icon } from '@yd/ui';
 
 	export let state: DownloadState;
-	export let size: string = '1.5x';
 	let className = 'animate-spin';
 	let icon = LoaderIcon;
 
@@ -26,9 +25,9 @@
 			break;
 		case DownloadState.ERROR:
 			className = 'text-red-600';
-			icon = AlertCircleIcon;
+			icon = ExclamationCircleIcon;
 			break;
 	}
 </script>
 
-<svelte:component this={icon} class={className} {size} />
+<Icon src={icon} class="h-5 w-5 {className}" />

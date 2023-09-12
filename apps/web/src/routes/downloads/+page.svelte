@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { DownloadState } from '@yd/client';
-	import { TrashIcon, DownloadIcon, LoaderIcon, RotateCwIcon } from '@yd/ui';
+	import { DownloadIcon, LoaderIcon, RotateIcon, TrashIcon } from '@yd/ui';
 	import { Confirm, Tag, IconButton, Table, Title, Description } from '@yd/ui';
 	import { downloads } from '$lib/stores/downloads';
 	import StateBadge from '$lib/components/StateBadge.svelte';
@@ -72,9 +72,8 @@
 										>
 											<IconButton
 												on:click={() => onConfirm(() => downloads.remove(row.id))}
-												icon={TrashIcon}
-												size="1.5x"
-												class="mr-2 hover:text-red-600"
+												src={TrashIcon}
+												class="mr-2 h-10 w-10 hover:text-red-600"
 											/>
 										</Confirm>
 									{/if}
@@ -84,19 +83,17 @@
 												downloads.remove(row.id);
 												downloads.add(row);
 											}}
-											icon={RotateCwIcon}
-											size="1.5x"
-											class="hover:text-indigo-800 dark:hover:text-indigo-600"
+											src={RotateIcon}
+											class="h-10 w-10 hover:text-indigo-800 dark:hover:text-indigo-600"
 										/>
 									{:else if row.status.state === DownloadState.DONE}
 										{#if row.awaitingFileBlob}
-											<IconButton icon={LoaderIcon} size="1.5x" class="animate-spin" />
+											<IconButton src={LoaderIcon} class="h-10 w-10 animate-spin" />
 										{:else}
 											<IconButton
 												on:click={async () => await downloads.getFile(row.id)}
-												icon={DownloadIcon}
-												size="1.5x"
-												class="hover:text-indigo-800 dark:hover:text-indigo-600"
+												src={DownloadIcon}
+												class="h-10 w-10 hover:text-indigo-800 dark:hover:text-indigo-600"
 											/>
 										{/if}
 									{/if}

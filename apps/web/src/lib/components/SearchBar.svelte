@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { createEventDispatcher } from 'svelte';
-	import { SearchIcon, LoaderIcon } from '@yd/ui';
+	import { MagnifyingGlassIcon, LoaderIcon, Icon } from '@yd/ui';
 
 	const dispatch = createEventDispatcher();
 
@@ -17,11 +17,10 @@
 <div class="w-full">
 	<div class="flex">
 		<div class="pointer-events-none z-10 flex w-10 items-center justify-center pl-1 text-center">
-			{#if loading}
-				<LoaderIcon size="1.5x" class="animate-spin text-zinc-400" />
-			{:else}
-				<SearchIcon size="1.5x" class="text-zinc-400" />
-			{/if}
+			<Icon
+				src={loading ? LoaderIcon : MagnifyingGlassIcon}
+				class="h-5 w-5 text-zinc-400 {loading && 'animate-spin'}"
+			/>
 		</div>
 		<input
 			disabled={loading}

@@ -1,6 +1,7 @@
 <script lang="ts">
 	import type { Variant } from '../types';
 	import { variantMapping } from '../utilities';
+	import { Icon } from '../icons';
 
 	export let variant: Variant = 'default';
 	export let title: string;
@@ -14,11 +15,7 @@
 	<div class="items-center sm:flex">
 		<div class="flex items-end">
 			{#if variantMapping[variant].icon}
-				<svelte:component
-					this={variantMapping[variant].icon}
-					size="1.5x"
-					class={variantMapping[variant].class}
-				/>
+				<Icon src={variantMapping[variant].icon} class="h-5 w-5 {variantMapping[variant].class}" />
 			{/if}
 			<p class="mx-2 font-bold {variantMapping[variant].class}">{title}</p>
 		</div>

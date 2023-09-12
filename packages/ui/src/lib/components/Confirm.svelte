@@ -2,6 +2,7 @@
 	import { fly, fade } from 'svelte/transition';
 	import type { Variant } from '../types';
 	import { variantMapping } from '../utilities';
+	import { Icon } from '../icons';
 
 	export let confirmText = 'Confirm';
 	export let cancelText = 'Cancel';
@@ -59,7 +60,7 @@
 								variant
 							].class}"
 						>
-							<svelte:component this={variantMapping[variant].icon} size="2x" />
+							<Icon src={variantMapping[variant].icon} class="h-8 w-8" />
 						</div>
 						<div class="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left">
 							<h3

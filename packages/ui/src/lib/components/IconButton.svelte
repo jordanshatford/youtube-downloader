@@ -1,12 +1,12 @@
 <script lang="ts">
-	import type { PlusIcon } from '../icons';
+	import { Icon, type IconSource } from '../icons';
 
-	export let icon: typeof PlusIcon;
-	export let size = '1x';
+	export let src: IconSource;
+	export let theme: string | undefined = undefined;
 	let className = '';
 	export { className as class };
 </script>
 
 <button on:click class="{className} border-none p-2 focus:outline-none">
-	<svelte:component this={icon} {size} />
+	<Icon {src} {theme} />
 </button>

@@ -1,23 +1,24 @@
 import type { Variant } from './types';
 import {
-	AlertCircleIcon,
-	AlertTriangleIcon,
+	type IconSource,
+	ExclamationCircleIcon,
+	ExclamationTriangleIcon,
 	CheckCircleIcon,
-	InfoIcon,
+	InformationCircleIcon,
 	MinusCircleIcon
 } from './icons';
 
-export const variantMapping: Record<Variant, { icon: typeof MinusCircleIcon; class: string }> = {
+export const variantMapping: Record<Variant, { icon: IconSource; class: string }> = {
 	error: {
-		icon: AlertCircleIcon,
+		icon: ExclamationCircleIcon,
 		class: 'text-red-800 bg-red-200'
 	},
 	warning: {
-		icon: AlertTriangleIcon,
+		icon: ExclamationTriangleIcon,
 		class: 'text-yellow-600 bg-yellow-200'
 	},
 	info: {
-		icon: InfoIcon,
+		icon: InformationCircleIcon,
 		class: 'text-blue-800 bg-blue-200'
 	},
 	success: {

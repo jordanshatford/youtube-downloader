@@ -1,15 +1,16 @@
 <script lang="ts" context="module">
 	import {
-		AlertCircleIcon,
+		ExclamationCircleIcon,
 		CheckCircleIcon,
-		AlertTriangleIcon,
+		ExclamationTriangleIcon,
 		LoaderIcon,
-		InfoIcon
+		InformationCircleIcon,
+		type IconSource
 	} from '../../icons';
-	export const ICONS_MAP: { readonly [T in ToastType]: typeof AlertCircleIcon } = {
-		error: AlertCircleIcon,
-		warning: AlertTriangleIcon,
-		info: InfoIcon,
+	export const ICONS_MAP: { readonly [T in ToastType]: IconSource } = {
+		error: ExclamationCircleIcon,
+		warning: ExclamationTriangleIcon,
+		info: InformationCircleIcon,
 		success: CheckCircleIcon,
 		promise: LoaderIcon
 	};
@@ -19,7 +20,7 @@
 	import type { ToastType } from './types';
 	import { toast as _toast, position } from './stores';
 	import type { ToastComponent } from './types';
-	import { XIcon } from '../../icons';
+	import { XMarkIcon, Icon } from '../../icons';
 	export let toast: ToastComponent;
 </script>
 
@@ -32,14 +33,14 @@
 >
 	<div class="yd-toast-bar" />
 	<div class="yd-toast-icon {toast.type}">
-		<svelte:component this={ICONS_MAP[toast.type]} size="1.5x" />
+		<Icon src={ICONS_MAP[toast.type]} class="h-5 w-5" />
 	</div>
 	<div class="yd-toast-message">
 		{toast.message}
 	</div>
 	{#if toast.closable && toast.type !== 'promise'}
 		<button type="button" class="yd-toast-dismiss" on:click={() => _toast.remove(toast.id)}>
-			<XIcon size="1x" />
+			<Icon src={XMarkIcon} class="h-5 w-5" />
 		</button>
 	{/if}
 </div>

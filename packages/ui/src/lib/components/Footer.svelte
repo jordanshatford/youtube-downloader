@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { GithubIcon } from '../icons';
+	import { GithubIcon, Icon } from '../icons';
 	import type { LinkInfo } from '../types';
 
 	export let githubLink: string | undefined = undefined;
@@ -33,7 +33,7 @@
 					target="_blank"
 					rel="noreferrer"
 				>
-					<GithubIcon size="1x" />
+					<Icon src={GithubIcon} class="h-6 w-6" />
 				</a>
 			{/if}
 		</span>

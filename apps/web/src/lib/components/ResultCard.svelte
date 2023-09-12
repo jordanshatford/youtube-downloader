@@ -46,9 +46,8 @@
 			{#if !(result.id in $downloads)}
 				<IconButton
 					on:click={() => downloads.add(result)}
-					icon={PlusIcon}
-					class="text-black hover:text-purple-800 dark:text-white dark:hover:text-purple-600"
-					size="1.5x"
+					src={PlusIcon}
+					class="h-10 w-10 text-black hover:text-purple-800 dark:text-white dark:hover:text-purple-600"
 				/>
 			{:else}
 				<div class="p-2">

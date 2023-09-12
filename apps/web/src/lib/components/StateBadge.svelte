@@ -28,6 +28,6 @@
 <div class="flex h-8 w-36 items-center justify-center rounded-lg {className}">
 	<div class="flex h-full w-full items-center justify-center rounded-lg">
 		<span class="pr-2 text-sm">{state}</span>
-		<StateIcon {state} size="1x" />
+		<StateIcon {state} />
 	</div>
 </div>
