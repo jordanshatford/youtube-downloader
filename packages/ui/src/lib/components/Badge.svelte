@@ -76,7 +76,7 @@
 	const { spanClass, iconClass, textClass, buttonClass } = badge({ variant, loading });
 </script>
 
-<span {...$$restProps} class={spanClass()}>
+<span {...$$restProps} class={spanClass({ class: $$props.class })}>
 	<span class="h-5">
 		{#if _icon}
 			<Icon src={_icon} theme="solid" class={iconClass()} />

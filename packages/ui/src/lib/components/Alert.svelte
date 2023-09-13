@@ -59,7 +59,7 @@
 	const { divClass, iconClass, titleClass, descriptionClass } = alert({ variant });
 </script>
 
-<div {...$$restProps} role="alert" class={divClass()}>
+<div {...$$restProps} role="alert" class={divClass({ class: $$props.class })}>
 	<div class={iconClass()}>
 		{#if icon}
 			<Icon src={icon} theme="solid" class="h-5 w-5" />
