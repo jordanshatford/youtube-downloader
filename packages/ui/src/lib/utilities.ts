@@ -40,9 +40,9 @@ export const variantMapping: Record<Variant, { icon: IconSource; class: string }
  */
 export function toIcon(value: unknown, extras: { loading?: boolean }): IconSource | undefined {
 	if (extras?.loading) {
-    return LoaderIcon;
-  }
-  switch (value) {
+		return LoaderIcon;
+	}
+	switch (value) {
 		case 'error':
 			return ExclamationCircleIcon;
 		case 'warning':
