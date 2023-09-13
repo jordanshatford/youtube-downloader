@@ -1,7 +1,5 @@
 <script lang="ts">
-	import type { LinkInfo } from '../../types';
-
-	export let link: LinkInfo;
+	export let link: { href: string; text: string };
 	export let activeLink: string;
 	export let isMobileMenu = false;
 

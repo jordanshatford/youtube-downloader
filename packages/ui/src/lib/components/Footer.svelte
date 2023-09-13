@@ -1,10 +1,9 @@
 <script lang="ts">
 	import { GithubIcon, Icon } from '../icons';
-	import type { LinkInfo } from '../types';
 
 	export let githubLink: string | undefined = undefined;
 	export let copyright: { owner: string; year: number } | undefined = undefined;
-	export let links: LinkInfo[] = [];
+	export let links: { href: string; text: string }[] = [];
 </script>
 
 <footer class="border-t border-zinc-200 bg-white dark:border-zinc-900 dark:bg-zinc-800">

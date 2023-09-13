@@ -1,12 +1,11 @@
 <script lang="ts">
 	import { MenuIcon, XMarkIcon } from '../../icons';
 	import IconButton from '../IconButton.svelte';
-	import type { LinkInfo } from '../../types';
 	import NavBarItem from './NavBarItem.svelte';
 
 	let showMobileMenu = false;
 
-	export let links: LinkInfo[];
+	export let links: { href: string; text: string }[];
 	export let activeLink: string;
 </script>
 
