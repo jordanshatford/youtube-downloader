@@ -79,9 +79,9 @@
 									{/if}
 									{#if [DownloadState.ERROR].includes(row.status.state)}
 										<IconButton
-											on:click={() => {
-												downloads.remove(row.id);
-												downloads.add(row);
+											on:click={async () => {
+												await downloads.remove(row.id);
+												await downloads.add(row);
 											}}
 											src={RotateIcon}
 											class="h-10 w-10 hover:text-indigo-800 dark:hover:text-indigo-600"
