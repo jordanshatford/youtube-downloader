@@ -55,3 +55,9 @@ export function toIcon(value: unknown, extras?: { loading?: boolean }): IconSour
 			return undefined;
 	}
 }
+
+/**
+ * Helper function to check if running in browser
+ * @returns true when running in browser, false otherwise
+ */
+export const browser = () => typeof window !== 'undefined';

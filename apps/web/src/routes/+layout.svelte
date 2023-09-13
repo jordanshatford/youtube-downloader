@@ -9,14 +9,13 @@
 	import '../app.css';
 	import { onMount } from 'svelte';
 	import { page } from '$app/stores';
-	import { Toasts, NavBar, Footer } from '@yd/ui';
+	import { Toasts, NavBar, Footer, ThemeToggle } from '@yd/ui';
 	import Loading from '$lib/components/Loading.svelte';
 	import { session } from '$lib/stores/session';
 	import { downloads } from '$lib/stores/downloads';
 	import config from '$lib/config';
 	import { RoutePathConstants, links } from '$lib/utils/route';
 	import Logo from '$lib/components/Logo.svelte';
-	import ThemeChangeIcon from '$lib/components/ThemeChangeIcon.svelte';
 
 	// Use session as token when making requests with client
 	OpenAPI.TOKEN = async () => {
@@ -38,7 +37,7 @@
 		<div class="h-full">
 			<NavBar {links} activeLink={$page.url.pathname}>
 				<Logo slot="logo" />
-				<ThemeChangeIcon slot="right" />
+				<ThemeToggle slot="right" />
 			</NavBar>
 			<main class="mx-auto h-full max-w-7xl px-4 pt-20 sm:px-6 lg:px-8">
 				<slot />

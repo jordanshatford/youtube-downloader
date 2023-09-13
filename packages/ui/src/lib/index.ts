@@ -1,5 +1,6 @@
 // Component exports
 export { NavBar } from './components/nav';
+export { ThemeToggle, theme } from './components/theme';
 export { Toast, Toasts, toast } from './components/toast';
 export { Description, List, Title } from './components/typography';
 export { default as Alert, type AlertVariants } from './components/Alert.svelte';
