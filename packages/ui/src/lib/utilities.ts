@@ -38,8 +38,11 @@ export const variantMapping: Record<Variant, { icon: IconSource; class: string }
  * @param value some unknown value, could be string, number, boolean, etc
  * @returns IconSource or undefined
  */
-export function toIcon(value: unknown): IconSource | undefined {
-	switch (value) {
+export function toIcon(value: unknown, extras: { loading?: boolean }): IconSource | undefined {
+	if (extras?.loading) {
+    return LoaderIcon;
+  }
+  switch (value) {
 		case 'error':
 			return ExclamationCircleIcon;
 		case 'warning':
@@ -48,8 +51,6 @@ export function toIcon(value: unknown): IconSource | undefined {
 			return InformationCircleIcon;
 		case 'success':
 			return CheckCircleIcon;
-		case 'loading':
-			return LoaderIcon;
 		default:
 			return undefined;
 	}

@@ -30,28 +30,21 @@
 					buttonClass:
 						'bg-emerald-200 text-emerald-700 hover:bg-emerald-300 dark:bg-emerald-800 dark:text-emerald-100 dark:hover:bg-emerald-900'
 				},
-				loading: {
-					spanClass: 'bg-purple-100 text-purple-700 dark:bg-purple-700 dark:text-purple-100',
-					buttonClass:
-						'bg-purple-200 text-purple-700 hover:bg-purple-300 dark:bg-purple-800 dark:text-purple-100 dark:hover:bg-purple-900'
-				},
 				default: {
 					spanClass: 'bg-zinc-100 text-zinc-700 dark:bg-zinc-700 dark:text-zinc-100',
 					buttonClass:
 						'bg-zinc-200 text-zinc-700 hover:bg-zinc-300 dark:bg-zinc-800 dark:text-zinc-100 dark:hover:bg-zinc-900'
 				}
+			},
+			loading: {
+				true: {
+					iconClass: 'animate-spin'
+				}
 			}
 		},
 		defaultVariants: {
 			variant: 'default'
-		},
-		compoundSlots: [
-			{
-				slots: ['iconClass'],
-				variant: 'loading',
-				class: ['animate-spin']
-			}
-		]
+		}
 	});
 
 	export type BadgeVariants = VariantProps<typeof badge>;
@@ -70,15 +63,17 @@
 	interface $$Props extends HTMLAttributes<HTMLSpanElement>, BadgeVariants {
 		closable?: boolean;
 		icon?: boolean | IconSource;
+		loading?: boolean;
 	}
 
 	export let variant: $$Props['variant'] = 'default';
 	export let closable: $$Props['closable'] = false;
 	export let icon: $$Props['icon'] = false;
+	export let loading: $$Props['loading'] = false;
 
-	const _icon = typeof icon === 'object' ? icon : toIcon(variant);
+	const _icon = typeof icon === 'object' ? icon : toIcon(variant, { loading });
 
-	const { spanClass, iconClass, textClass, buttonClass } = badge({ variant });
+	const { spanClass, iconClass, textClass, buttonClass } = badge({ variant, loading });
 </script>
 
 <span {...$$restProps} class={spanClass()}>
