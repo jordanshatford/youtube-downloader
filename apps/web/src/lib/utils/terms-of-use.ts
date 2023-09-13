@@ -1,9 +1,11 @@
-import type { ListItem } from '$lib/utils/types';
 import config from '$lib/config';
 
 export const websiteName = config.about.hostname;
 
-export const termsOfUse: ListItem[] = [
+export const termsOfUse: {
+	title: string;
+	description?: string;
+}[] = [
 	{
 		title: 'YOUR ACCEPTANCE',
 		description:

@@ -1,9 +1,11 @@
-import type { ListItem } from '$lib/utils/types';
 import config from '$lib/config';
 
 export const websiteName = config.about.hostname;
 
-export const faqs: ListItem[] = [
+export const faqs: {
+	title: string;
+	description?: string;
+}[] = [
 	{
 		title: `Is ${websiteName} free to use?`,
 		description: `Yes, ${websiteName} is completely free to use as long as you permissions to do so with any copyright material.`
