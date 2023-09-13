@@ -58,6 +58,23 @@ function createDownloadsStore() {
 		}
 	}
 
+	async function restart(id: string) {
+		if (!(id in downloads)) return;
+
+		const info = downloads[id];
+
+		updateDownload(info.id, info);
+		try {
+			const result = await DownloadsService.putDownloads(info);
+			toast.info(`Restarted download of '${info.title}'.`);
+			updateDownload(result.id, result);
+		} catch (err) {
+			toast.error(`Failed to restart '${info.title}' download.`);
+			console.error('Failed to restart download ', err);
+			updateDownload(info.id, { status: { state: DownloadState.ERROR } });
+		}
+	}
+
 	async function remove(id: string) {
 		if (!(id in downloads)) return;
 
@@ -103,6 +120,7 @@ function createDownloadsStore() {
 		subscribe,
 		setupStatusListener,
 		add,
+		restart,
 		remove,
 		getFile,
 		reset: () => set({})

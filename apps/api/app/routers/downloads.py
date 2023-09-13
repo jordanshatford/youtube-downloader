@@ -39,6 +39,13 @@ def post_downloads(
     return video
 
 
+@router.put('')
+def put_downloads(video: VideoWithOptions, session: DependsSession) -> VideoWithOptions:
+    session.download_manager.remove(video.id)
+    session.download_manager.add(video)
+    return video
+
+
 async def status_stream(request: Request, session: Session):
     try:
         while True:

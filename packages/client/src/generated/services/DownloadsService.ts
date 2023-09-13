@@ -28,6 +28,27 @@ export class DownloadsService {
   }
 
   /**
+   * Put Downloads
+   * @param requestBody
+   * @returns VideoWithOptions Successful Response
+   * @throws ApiError
+   */
+  public static putDownloads(
+    requestBody: VideoWithOptions,
+  ): CancelablePromise<VideoWithOptions> {
+    return __request(OpenAPI, {
+      method: 'PUT',
+      url: '/downloads',
+      body: requestBody,
+      mediaType: 'application/json',
+      errors: {
+        403: `Forbidden`,
+        422: `Validation Error`,
+      },
+    });
+  }
+
+  /**
    * Post Downloads
    * @param requestBody
    * @returns VideoWithOptions Successful Response
