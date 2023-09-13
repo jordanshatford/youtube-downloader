@@ -4,6 +4,7 @@
 	const badge = tv({
 		slots: {
 			spanClass: 'inline-flex items-center justify-center rounded-lg px-2.5 py-1',
+			iconClass: '-ms-1 me-1.5 w-5',
 			textClass: 'whitespace-nowrap text-sm h-5',
 			buttonClass: '-me-1 ms-1.5 inline-block rounded-full p-0.5 w-4 h-4'
 		},
@@ -29,6 +30,11 @@
 					buttonClass:
 						'bg-emerald-200 text-emerald-700 hover:bg-emerald-300 dark:bg-emerald-800 dark:text-emerald-100 dark:hover:bg-emerald-900'
 				},
+				loading: {
+					spanClass: 'bg-purple-100 text-purple-700 dark:bg-purple-700 dark:text-purple-100',
+					buttonClass:
+						'bg-purple-200 text-purple-700 hover:bg-purple-300 dark:bg-purple-800 dark:text-purple-100 dark:hover:bg-purple-900'
+				},
 				default: {
 					spanClass: 'bg-zinc-100 text-zinc-700 dark:bg-zinc-700 dark:text-zinc-100',
 					buttonClass:
@@ -38,7 +44,14 @@
 		},
 		defaultVariants: {
 			variant: 'default'
-		}
+		},
+		compoundSlots: [
+			{
+				slots: ['iconClass'],
+				variant: 'loading',
+				class: ['animate-spin']
+			}
+		]
 	});
 
 	export type BadgeVariants = VariantProps<typeof badge>;
@@ -56,22 +69,22 @@
 
 	interface $$Props extends HTMLAttributes<HTMLSpanElement>, BadgeVariants {
 		closable?: boolean;
-		showIcon?: boolean;
-		icon?: IconSource;
+		icon?: boolean | IconSource;
 	}
 
 	export let variant: $$Props['variant'] = 'default';
 	export let closable: $$Props['closable'] = false;
-	export let showIcon: $$Props['showIcon'] = false;
-	export let icon: $$Props['icon'] = toIcon(variant);
+	export let icon: $$Props['icon'] = false;
 
-	const { spanClass, textClass, buttonClass } = badge({ variant });
+	const _icon = typeof icon === 'object' ? icon : toIcon(variant);
+
+	const { spanClass, iconClass, textClass, buttonClass } = badge({ variant });
 </script>
 
 <span {...$$restProps} class={spanClass()}>
 	<span class="h-5">
-		{#if showIcon && icon}
-			<Icon src={icon} theme="solid" class="-ms-1 me-1.5 w-5" />
+		{#if _icon}
+			<Icon src={_icon} theme="solid" class={iconClass()} />
 		{/if}
 	</span>
 	<p class={textClass()}><slot /></p>

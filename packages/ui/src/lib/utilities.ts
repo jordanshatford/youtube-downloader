@@ -6,7 +6,8 @@ import {
 	ExclamationTriangleIcon,
 	CheckCircleIcon,
 	InformationCircleIcon,
-	MinusCircleIcon
+	MinusCircleIcon,
+	LoaderIcon
 } from './icons';
 
 export const variantMapping: Record<Variant, { icon: IconSource; class: string }> = {
@@ -47,7 +48,9 @@ export function toIcon(value: unknown): IconSource | undefined {
 			return InformationCircleIcon;
 		case 'success':
 			return CheckCircleIcon;
-		case 'default':
-			return MinusCircleIcon;
+		case 'loading':
+			return LoaderIcon;
+		default:
+			return undefined;
 	}
 }
