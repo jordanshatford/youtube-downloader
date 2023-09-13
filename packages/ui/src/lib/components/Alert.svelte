@@ -1,37 +1,34 @@
-<script lang="ts">
-	import type { HTMLAttributes } from 'svelte/elements';
+<script lang="ts" context="module">
 	import { tv, type VariantProps } from 'tailwind-variants';
-	import { Icon } from '../icons';
-	import { toIcon } from '../utilities';
 
 	const alert = tv({
 		slots: {
-			base: 'rounded border-s-4 p-4',
-			icon: 'flex items-center gap-2',
-			title: 'block font-medium',
-			description: 'mt-2 text-sm'
+			divClass: 'rounded border-s-4 p-4',
+			iconClass: 'flex items-center gap-2',
+			titleClass: 'block font-medium',
+			descriptionClass: 'mt-2 text-sm'
 		},
 		variants: {
 			variant: {
 				error: {
-					base: 'border-red-500 bg-red-50 dark:border-red-600 dark:bg-red-900',
-					icon: 'text-red-800 dark:text-red-100',
-					description: 'text-red-700 dark:text-red-200'
+					divClass: 'border-red-500 bg-red-50 dark:border-red-600 dark:bg-red-900',
+					iconClass: 'text-red-800 dark:text-red-100',
+					descriptionClass: 'text-red-700 dark:text-red-200'
 				},
 				warning: {
-					base: 'border-yellow-500 bg-yellow-50 dark:border-yellow-600 dark:bg-yellow-900',
-					icon: 'text-yellow-800 dark:text-yellow-100',
-					description: 'text-yellow-700 dark:text-yellow-200'
+					divClass: 'border-yellow-500 bg-yellow-50 dark:border-yellow-600 dark:bg-yellow-900',
+					iconClass: 'text-yellow-800 dark:text-yellow-100',
+					descriptionClass: 'text-yellow-700 dark:text-yellow-200'
 				},
 				info: {
-					base: 'border-blue-500 bg-blue-50 dark:border-blue-600 dark:bg-blue-900',
-					icon: 'text-blue-800 dark:text-blue-100',
-					description: 'text-blue-700 dark:text-blue-200'
+					divClass: 'border-blue-500 bg-blue-50 dark:border-blue-600 dark:bg-blue-900',
+					iconClass: 'text-blue-800 dark:text-blue-100',
+					descriptionClass: 'text-blue-700 dark:text-blue-200'
 				},
 				success: {
-					base: 'border-emerald-500 bg-emerald-50 dark:border-emerald-600 dark:bg-emerald-900',
-					icon: 'text-emerald-800 dark:text-emerald-100',
-					description: 'text-emerald-700 dark:text-emerald-200'
+					divClass: 'border-emerald-500 bg-emerald-50 dark:border-emerald-600 dark:bg-emerald-900',
+					iconClass: 'text-emerald-800 dark:text-emerald-100',
+					descriptionClass: 'text-emerald-700 dark:text-emerald-200'
 				}
 			}
 		},
@@ -40,7 +37,15 @@
 		}
 	});
 
-	interface $$Props extends HTMLAttributes<HTMLDivElement>, VariantProps<typeof alert> {
+	export type AlertVariants = VariantProps<typeof alert>;
+</script>
+
+<script lang="ts">
+	import type { HTMLAttributes } from 'svelte/elements';
+	import { Icon } from '../icons';
+	import { toIcon } from '../utilities';
+
+	interface $$Props extends HTMLAttributes<HTMLDivElement>, AlertVariants {
 		title?: string;
 		description?: string;
 	}
@@ -51,15 +56,10 @@
 
 	const icon = toIcon(variant);
 
-	const {
-		base,
-		icon: iconClass,
-		title: titleClass,
-		description: descriptionClass
-	} = alert({ variant });
+	const { divClass, iconClass, titleClass, descriptionClass } = alert({ variant });
 </script>
 
-<div {...$$restProps} role="alert" class={base()}>
+<div {...$$restProps} role="alert" class={divClass()}>
 	<div class={iconClass()}>
 		{#if icon}
 			<Icon src={icon} theme="solid" class="h-5 w-5" />
