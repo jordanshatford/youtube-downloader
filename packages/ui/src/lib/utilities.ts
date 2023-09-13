@@ -38,7 +38,7 @@ export const variantMapping: Record<Variant, { icon: IconSource; class: string }
  * @param value some unknown value, could be string, number, boolean, etc
  * @returns IconSource or undefined
  */
-export function toIcon(value: unknown, extras: { loading?: boolean }): IconSource | undefined {
+export function toIcon(value: unknown, extras?: { loading?: boolean }): IconSource | undefined {
 	if (extras?.loading) {
 		return LoaderIcon;
 	}
