@@ -14,6 +14,7 @@ export {
 	MinusCircle as MinusCircleIcon,
 	Moon as MoonIcon,
 	Plus as PlusIcon,
+	PlusCircle as PlusCircleIcon,
 	ArrowPath as RotateIcon,
 	Sun as SunIcon,
 	Trash as TrashIcon,

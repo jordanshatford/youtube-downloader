@@ -1,14 +1,10 @@
-import config from '$lib/config';
-
-export const websiteName = config.about.hostname;
-
 export const faqs: {
 	title: string;
-	description?: string;
+	description: string;
 }[] = [
 	{
-		title: `Is ${websiteName} free to use?`,
-		description: `Yes, ${websiteName} is completely free to use as long as you permissions to do so with any copyright material.`
+		title: `Is this site free to use?`,
+		description: `Yes, it is completely free to use as long as you permissions to do so with any copyright material.`
 	},
 	{
 		title: 'Is there a limit to the number of videos I can convert?',
@@ -37,7 +33,7 @@ export const faqs: {
 	},
 	{
 		title: 'Can I convert videos on my mobile device?',
-		description: `Yes, ${websiteName} supports converting and downloading files on mobile devices.`
+		description: `Yes, this site supports converting and downloading files on mobile devices.`
 	},
 	{
 		title: 'My download is stuck on (waiting, downloading, processing), what should I do?',

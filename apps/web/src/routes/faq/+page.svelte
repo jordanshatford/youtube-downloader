@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { Title, Description, List } from '@yd/ui';
+	import { Title, Description, Faq } from '@yd/ui';
 	import { faqs } from '$lib/utils/faq';
 	import config from '$lib/config';
 </script>
@@ -11,5 +11,9 @@
 <div>
 	<Title>FAQ</Title>
 	<Description>Frequently Asked Questions</Description>
-	<List items={faqs} />
+	<div class="space-y-4 py-8">
+		{#each faqs as faq (faq.title)}
+			<Faq question={faq.title} answer={faq.description} />
+		{/each}
+	</div>
 </div>
