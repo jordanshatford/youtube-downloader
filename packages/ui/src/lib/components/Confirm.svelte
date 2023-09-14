@@ -3,11 +3,18 @@
 
 	const confirmClasses = tv({
 		slots: {
+			backgroundOuterDivClass:
+				'flex min-h-screen items-end justify-center px-4 pb-20 pt-4 text-center sm:block sm:p-0',
+			backgroundTransitionDivClass:
+				'fixed inset-0 cursor-pointer bg-zinc-800 bg-opacity-75 transition-opacity',
+			contentDivClass:
+				'inline-block transform overflow-hidden rounded-lg bg-white text-left align-bottom shadow-xl transition-all dark:bg-zinc-900 sm:my-8 sm:w-full sm:max-w-lg sm:align-middle',
+			mainDivClass: 'px-4 pb-4 pt-5 sm:p-6 sm:pb-4',
 			iconDivClass:
 				'mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full sm:mx-0 sm:h-10 sm:w-10',
 			titleClass: 'whitespace-pre-wrap text-lg font-medium leading-6 text-zinc-900 dark:text-white',
 			descriptionClass: 'mt-2 w-full whitespace-pre-wrap text-sm text-zinc-500',
-			buttonDivClass: 'flex flex-wrap px-4 py-3 sm:flex-row-reverse sm:px-6',
+			footerDivClass: 'flex flex-wrap px-4 py-3 sm:flex-row-reverse sm:px-6',
 			confirmButtonClass:
 				'inline-flex w-full justify-center rounded-lg border border-transparent px-4 py-2 text-base font-medium text-white shadow-sm focus:outline-none sm:ml-3 sm:w-auto sm:text-sm',
 			cancelButtonClass:
@@ -16,7 +23,7 @@
 		variants: {
 			variant: {
 				error: {
-					iconDivClass: 'text-red-800 bg-red-200',
+					iconDivClass: 'text-red-500 bg-red-100',
 					confirmButtonClass: 'bg-red-600 hover:bg-red-700'
 				},
 				warning: {
@@ -68,10 +75,14 @@
 	const icon = toIcon(variant);
 
 	const {
+		backgroundOuterDivClass,
+		backgroundTransitionDivClass,
+		contentDivClass,
+		mainDivClass,
 		iconDivClass,
 		titleClass,
 		descriptionClass,
-		buttonDivClass,
+		footerDivClass,
 		confirmButtonClass,
 		cancelButtonClass
 	} = confirmClasses({
@@ -102,11 +113,9 @@
 		role="dialog"
 		aria-modal="true"
 	>
-		<div
-			class="flex min-h-screen items-end justify-center px-4 pb-20 pt-4 text-center sm:block sm:p-0"
-		>
+		<div class={backgroundOuterDivClass()}>
 			<div
-				class="fixed inset-0 cursor-pointer bg-zinc-800 bg-opacity-75 transition-opacity"
+				class={backgroundTransitionDivClass()}
 				aria-hidden="true"
 				on:click={() => (showDialog = false)}
 				in:fade={{ duration: 300 }}
@@ -117,11 +126,12 @@
 				>&#8203;</span
 			>
 			<div
-				class="inline-block transform overflow-hidden rounded-lg bg-white text-left align-bottom shadow-xl transition-all dark:bg-zinc-900 sm:my-8 sm:w-full sm:max-w-lg sm:align-middle"
+				{...$$restProps}
+				class={contentDivClass({ class: $$props.class })}
 				in:fly={{ y: -10, delay: 200, duration: 200 }}
 				out:fly={{ y: -10, duration: 200 }}
 			>
-				<div class="px-4 pb-4 pt-5 sm:p-6 sm:pb-4">
+				<div class={mainDivClass()}>
 					<div class="sm:flex sm:items-start">
 						{#if icon}
 							<div class={iconDivClass()}>
@@ -136,7 +146,7 @@
 						</div>
 					</div>
 				</div>
-				<div class={buttonDivClass()}>
+				<div class={footerDivClass()}>
 					<button type="button" on:click={callFunction} class={confirmButtonClass()}>
 						{confirmText}
 					</button>
