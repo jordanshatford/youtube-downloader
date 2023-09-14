@@ -11,6 +11,11 @@
 	export let theme: string | undefined = undefined;
 </script>
 
-<button on:click {...$$restProps} class="border-none p-2 focus:outline-none {$$props.class}">
+<button
+	on:click
+	{...$$restProps}
+	type="button"
+	class="border-none p-2 focus:outline-none {$$props.class}"
+>
 	<Icon {src} {theme} />
 </button>
