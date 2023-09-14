@@ -1,12 +1,16 @@
 <script lang="ts">
+	import type { HTMLButtonAttributes } from 'svelte/elements';
 	import { Icon, type IconSource } from '../icons';
+
+	interface $$Props extends HTMLButtonAttributes {
+		src: IconSource;
+		theme?: string;
+	}
 
 	export let src: IconSource;
 	export let theme: string | undefined = undefined;
-	let className = '';
-	export { className as class };
 </script>
 
-<button on:click class="{className} border-none p-2 focus:outline-none">
+<button on:click {...$$restProps} class="border-none p-2 focus:outline-none {$$props.class}">
 	<Icon {src} {theme} />
 </button>
