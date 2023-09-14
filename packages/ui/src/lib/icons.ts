@@ -7,6 +7,7 @@ export {
 	ArrowDownTray as DownloadIcon,
 	ExclamationCircle as ExclamationCircleIcon,
 	ExclamationTriangle as ExclamationTriangleIcon,
+	Cog6Tooth as GearIcon,
 	InformationCircle as InformationCircleIcon,
 	MagnifyingGlass as MagnifyingGlassIcon,
 	Bars3 as MenuIcon,

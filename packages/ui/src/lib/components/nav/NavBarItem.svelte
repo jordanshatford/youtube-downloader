@@ -1,5 +1,7 @@
 <script lang="ts">
-	export let link: { href: string; text: string };
+	import { type IconSource, Icon } from '../../icons';
+
+	export let link: { href: string; text: string; icon?: IconSource };
 	export let activeLink: string;
 	export let isMobileMenu = false;
 
@@ -9,6 +11,14 @@
 			: 'text-zinc-400 dark:text-zinc-300 hover:bg-zinc-100 dark:hover:bg-zinc-700';
 </script>
 
-<a on:click href={link.href} class:block={isMobileMenu} class="{classNames} rounded-lg px-3 py-2">
+<a
+	on:click
+	href={link.href}
+	class:block={isMobileMenu}
+	class="{classNames} flex flex-row items-center rounded-lg px-3 py-2"
+>
+	{#if link.icon}
+		<Icon src={link.icon} theme="solid" class="h-6 w-6 pr-2" />
+	{/if}
 	{link.text}
 </a>
