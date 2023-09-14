@@ -72,12 +72,12 @@ export class DownloadsService {
   /**
    * Get Download
    * @param videoId
-   * @returns VideoWithOptions Successful Response
+   * @returns VideoWithOptionsAndStatus Successful Response
    * @throws ApiError
    */
   public static getDownload(
     videoId: string,
-  ): CancelablePromise<VideoWithOptions> {
+  ): CancelablePromise<VideoWithOptionsAndStatus> {
     return __request(OpenAPI, {
       method: 'GET',
       url: '/downloads/{video_id}',

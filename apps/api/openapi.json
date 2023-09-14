@@ -278,7 +278,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/VideoWithOptions"
+                  "$ref": "#/components/schemas/VideoWithOptionsAndStatus"
                 }
               }
             }
