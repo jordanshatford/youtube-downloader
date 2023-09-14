@@ -398,59 +398,6 @@
           }
         }
       }
-    },
-    "/downloads/{video_id}/status": {
-      "get": {
-        "tags": [
-          "downloads"
-        ],
-        "summary": "Get Download Status",
-        "operationId": "get_download_status",
-        "security": [
-          {
-            "HTTPBearer": []
-          }
-        ],
-        "parameters": [
-          {
-            "name": "video_id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "title": "Video Id"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Successful Response",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/DownloadStatusUpdate"
-                }
-              }
-            }
-          },
-          "403": {
-            "description": "Forbidden"
-          },
-          "404": {
-            "description": "Not Found"
-          },
-          "422": {
-            "description": "Validation Error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HTTPValidationError"
-                }
-              }
-            }
-          }
-        }
-      }
     }
   },
   "components": {
@@ -580,56 +527,6 @@
           "state"
         ],
         "title": "DownloadStatus"
-      },
-      "DownloadStatusUpdate": {
-        "properties": {
-          "state": {
-            "$ref": "#/components/schemas/DownloadState"
-          },
-          "progress": {
-            "anyOf": [
-              {
-                "type": "number"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Progress"
-          },
-          "eta": {
-            "anyOf": [
-              {
-                "type": "integer"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Eta"
-          },
-          "postprocessor": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Postprocessor"
-          },
-          "id": {
-            "type": "string",
-            "title": "Id"
-          }
-        },
-        "type": "object",
-        "required": [
-          "state",
-          "id"
-        ],
-        "title": "DownloadStatusUpdate"
       },
       "HTTPValidationError": {
         "properties": {

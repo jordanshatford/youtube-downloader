@@ -13,7 +13,6 @@ from ..dependencies import depends_download_responses
 from ..dependencies import depends_session_responses
 from ..dependencies import DependsDownload
 from ..dependencies import DependsSession
-from ..models import DownloadStatusUpdate
 from ..models import VideoWithOptions
 from ..models import VideoWithOptionsAndStatus
 from ..session import Session
@@ -40,7 +39,9 @@ def post_downloads(
 
 
 @router.put('')
-def put_downloads(video: VideoWithOptions, session: DependsSession) -> VideoWithOptions:
+def put_downloads(
+    video: VideoWithOptions, session: DependsSession,
+) -> VideoWithOptions:
     session.download_manager.remove(video.id)
     session.download_manager.add(video)
     return video
@@ -72,7 +73,9 @@ async def get_downloads_status(request: Request, session_id: str):
 
 @router.get('/{video_id}', responses=depends_download_responses)
 def get_download(download: DependsDownload) -> VideoWithOptionsAndStatus:
-    return VideoWithOptionsAndStatus(**download.video.dict(), status=download.status)
+    return VideoWithOptionsAndStatus(
+        **download.video.dict(), status=download.status,
+    )
 
 
 @router.get(
@@ -90,11 +93,6 @@ def get_download_file(download: DependsDownload):
         )
     else:
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND)
-
-
-@router.get('/{video_id}/status', responses=depends_download_responses)
-def get_download_status(download: DependsDownload) -> DownloadStatusUpdate:
-    return DownloadStatusUpdate(**download.status.dict(), id=download.video.id)
 
 
 @router.delete(

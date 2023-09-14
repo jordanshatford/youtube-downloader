@@ -7,7 +7,7 @@ from queue import Queue
 
 from .core.managers import AudioDownloadManager
 from .core.threads import RepeatedTimer
-from .models import DownloadStatusUpdate
+from .models import VideoWithOptionsAndStatus
 
 
 class Session:
@@ -18,7 +18,7 @@ class Session:
         self.download_manager = AudioDownloadManager(
             self._output_dir, self._status_hook,
         )
-        self.status_queue: Queue[DownloadStatusUpdate] = Queue()
+        self.status_queue: Queue[VideoWithOptionsAndStatus] = Queue()
 
     def update_use_time(self):
         self._last_use = datetime.now()
@@ -33,7 +33,7 @@ class Session:
         except FileNotFoundError:
             pass
 
-    def _status_hook(self, update: DownloadStatusUpdate):
+    def _status_hook(self, update: VideoWithOptionsAndStatus):
         self.status_queue.put(update)
 
 

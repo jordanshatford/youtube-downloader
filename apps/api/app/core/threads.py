@@ -12,8 +12,8 @@ from yt_dlp import YoutubeDL
 
 from ..models import DownloadState
 from ..models import DownloadStatus
-from ..models import DownloadStatusUpdate
 from ..models import VideoWithOptions
+from ..models import VideoWithOptionsAndStatus
 
 
 # Basic type describing info_dict provided in hooks, Not specific as of now.
@@ -55,7 +55,7 @@ class YoutubeDownloadThread(threading.Thread):
         self,
         video: VideoWithOptions,
         output_directory: str,
-        status_hook: Callable[[DownloadStatusUpdate], None],
+        status_hook: Callable[[VideoWithOptionsAndStatus], None],
     ):
         self.video = video
         self._output_directory = output_directory
@@ -155,8 +155,8 @@ class YoutubeDownloadThread(threading.Thread):
     def _handle_status_update(self, update: DownloadStatus) -> None:
         self.status = update
         self._status_hook(
-            DownloadStatusUpdate(
-                id=self.video.id, **update.dict(),
+            VideoWithOptionsAndStatus(
+                **self.video.dict(), status=update,
             ),
         )
 

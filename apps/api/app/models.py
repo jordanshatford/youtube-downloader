@@ -4,6 +4,21 @@ from pydantic import BaseModel
 from pydantic import HttpUrl
 
 
+class Channel(BaseModel):
+    name: str
+    url: HttpUrl
+    thumbnail: HttpUrl
+
+
+class Video(BaseModel):
+    id: str
+    url: HttpUrl
+    title: str
+    duration: str
+    thumbnail: HttpUrl
+    channel: Channel
+
+
 class DownloadState(str, enum.Enum):
     WAITING = 'WAITING'
     DOWNLOADING = 'DOWNLOADING'
@@ -20,10 +35,6 @@ class DownloadStatus(BaseModel):
     eta: int | None = None
     # Postprocessor currently running (Only valid when state is PROCESSING)
     postprocessor: str | None = None
-
-
-class DownloadStatusUpdate(DownloadStatus):
-    id: str
 
 
 class AudioFormat(str, enum.Enum):
@@ -44,21 +55,6 @@ class DownloadOptions(BaseModel):
     format: AudioFormat
     quality: DownloadQuality
     embed_metadata: bool
-
-
-class Channel(BaseModel):
-    name: str
-    url: HttpUrl
-    thumbnail: HttpUrl
-
-
-class Video(BaseModel):
-    id: str
-    url: HttpUrl
-    title: str
-    duration: str
-    thumbnail: HttpUrl
-    channel: Channel
 
 
 class VideoWithOptions(Video):

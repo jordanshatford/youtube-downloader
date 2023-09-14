@@ -33,7 +33,7 @@ function createDownloadsStore() {
 
 	function setupStatusListener() {
 		DownloadsStatusService.setup((value) => {
-			updateDownload(value.id, { status: value });
+			updateDownload(value.id, value);
 		});
 	}
 

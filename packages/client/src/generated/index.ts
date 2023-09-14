@@ -13,7 +13,6 @@ export type { DownloadOptions } from './models/DownloadOptions';
 export { DownloadQuality } from './models/DownloadQuality';
 export { DownloadState } from './models/DownloadState';
 export type { DownloadStatus } from './models/DownloadStatus';
-export type { DownloadStatusUpdate } from './models/DownloadStatusUpdate';
 export type { HTTPValidationError } from './models/HTTPValidationError';
 export type { Session } from './models/Session';
 export type { ValidationError } from './models/ValidationError';

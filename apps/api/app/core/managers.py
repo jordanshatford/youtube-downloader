@@ -1,6 +1,5 @@
 from typing import Callable
 
-from ..models import DownloadStatusUpdate
 from ..models import VideoWithOptions
 from ..models import VideoWithOptionsAndStatus
 from .threads import YoutubeDownloadThread
@@ -9,7 +8,7 @@ from .threads import YoutubeDownloadThread
 class AudioDownloadManager:
     def __init__(
         self, output_dir: str,
-        status_hook: Callable[[DownloadStatusUpdate], None],
+        status_hook: Callable[[VideoWithOptionsAndStatus], None],
     ):
         self._status_hook = status_hook
         self._downloads: dict[str, YoutubeDownloadThread] = {}
@@ -40,5 +39,5 @@ class AudioDownloadManager:
             for d in self._downloads.values()
         ]
 
-    def send_status_update(self, update: DownloadStatusUpdate) -> None:
+    def send_status_update(self, update: VideoWithOptionsAndStatus) -> None:
         self._status_hook(update)
