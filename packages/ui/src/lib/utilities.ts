@@ -25,6 +25,8 @@ export function toIcon(value: unknown, extras?: { loading?: boolean }): IconSour
 			return InformationCircleIcon;
 		case 'success':
 			return CheckCircleIcon;
+		case 'promise':
+			return LoaderIcon;
 		default:
 			return undefined;
 	}
