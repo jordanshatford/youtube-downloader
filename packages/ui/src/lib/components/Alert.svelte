@@ -11,29 +11,34 @@
 		variants: {
 			variant: {
 				error: {
-					divClass: 'border-red-500 bg-red-50 dark:border-red-600 dark:bg-red-900',
-					iconClass: 'text-red-800 dark:text-red-100',
+					divClass: 'border-red-500 bg-red-100 dark:border-red-600 dark:bg-red-800',
+					iconClass: 'text-red-700 dark:text-red-100',
 					descriptionClass: 'text-red-700 dark:text-red-200'
 				},
 				warning: {
-					divClass: 'border-yellow-500 bg-yellow-50 dark:border-yellow-600 dark:bg-yellow-900',
-					iconClass: 'text-yellow-800 dark:text-yellow-100',
+					divClass: 'border-yellow-500 bg-yellow-100 dark:border-yellow-600 dark:bg-yellow-800',
+					iconClass: 'text-yellow-700 dark:text-yellow-100',
 					descriptionClass: 'text-yellow-700 dark:text-yellow-200'
 				},
 				info: {
-					divClass: 'border-blue-500 bg-blue-50 dark:border-blue-600 dark:bg-blue-900',
-					iconClass: 'text-blue-800 dark:text-blue-100',
+					divClass: 'border-blue-500 bg-blue-100 dark:border-blue-600 dark:bg-blue-800',
+					iconClass: 'text-blue-700 dark:text-blue-100',
 					descriptionClass: 'text-blue-700 dark:text-blue-200'
 				},
 				success: {
-					divClass: 'border-emerald-500 bg-emerald-50 dark:border-emerald-600 dark:bg-emerald-900',
-					iconClass: 'text-emerald-800 dark:text-emerald-100',
+					divClass: 'border-emerald-500 bg-emerald-100 dark:border-emerald-600 dark:bg-emerald-800',
+					iconClass: 'text-emerald-700 dark:text-emerald-100',
 					descriptionClass: 'text-emerald-700 dark:text-emerald-200'
+				},
+				default: {
+					divClass: 'border-zinc-500 bg-zinc-100 dark:border-zinc-400 dark:bg-zinc-700',
+					iconClass: 'text-zinc-700 dark:text-zinc-100',
+					descriptionClass: 'text-zinc-700 dark:text-zinc-100'
 				}
 			}
 		},
 		defaultVariants: {
-			variant: 'info'
+			variant: 'default'
 		}
 	});
 
@@ -50,7 +55,7 @@
 		description?: string;
 	}
 
-	export let variant: $$Props['variant'] = 'info';
+	export let variant: $$Props['variant'] = 'default';
 	export let title: $$Props['title'] = undefined;
 	export let description: $$Props['title'] = undefined;
 
