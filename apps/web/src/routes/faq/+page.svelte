@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { Title, Description, Faq } from '@yd/ui';
+	import { Title, Description, CollapsibleSection } from '@yd/ui';
 	import { faqs } from '$lib/utils/faq';
 	import config from '$lib/config';
 </script>
@@ -13,7 +13,7 @@
 	<Description>Frequently Asked Questions</Description>
 	<div class="space-y-4 py-8">
 		{#each faqs as faq (faq.title)}
-			<Faq question={faq.title} answer={faq.description} />
+			<CollapsibleSection {...faq} />
 		{/each}
 	</div>
 </div>

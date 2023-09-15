@@ -2,8 +2,8 @@
 	import { MinusCircleIcon, PlusCircleIcon } from '../icons';
 	import IconButton from './IconButton.svelte';
 
-	export let question: string;
-	export let answer: string;
+	export let title: string;
+	export let description: string;
 
 	let open: boolean = false;
 </script>
@@ -16,7 +16,7 @@
 		class="flex cursor-pointer items-center justify-between gap-1.5 text-zinc-900 dark:text-white"
 	>
 		<h2 class="font-medium">
-			{question}
+			{title}
 		</h2>
 		<IconButton
 			src={open ? MinusCircleIcon : PlusCircleIcon}
@@ -26,7 +26,7 @@
 	</summary>
 	{#if open}
 		<p class="mt-4 text-sm leading-relaxed text-zinc-600 dark:text-zinc-300">
-			{answer}
+			{description}
 		</p>
 	{/if}
 </details>
