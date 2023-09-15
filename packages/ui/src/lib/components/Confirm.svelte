@@ -23,20 +23,20 @@
 		variants: {
 			variant: {
 				error: {
-					iconDivClass: 'text-red-500 bg-red-100',
-					confirmButtonClass: 'bg-red-600 hover:bg-red-700'
+					iconDivClass: 'bg-red-100 text-red-700 dark:bg-red-700 dark:text-red-100',
+					confirmButtonClass: 'bg-red-700 hover:bg-red-600'
 				},
 				warning: {
-					iconDivClass: 'text-yellow-800 bg-yellow-200',
-					confirmButtonClass: 'bg-yellow-600 hover:bg-yellow-700'
+					iconDivClass: 'bg-yellow-100 text-yellow-700 dark:bg-yellow-700 dark:text-yellow-100',
+					confirmButtonClass: 'bg-yellow-700 hover:bg-yellow-600'
 				},
 				info: {
-					iconDivClass: 'text-blue-800 bg-blue-200',
-					confirmButtonClass: 'bg-blue-600 hover:bg-blue-700'
+					iconDivClass: 'bg-blue-100 text-blue-700 dark:bg-blue-700 dark:text-blue-100',
+					confirmButtonClass: 'bg-blue-700 hover:bg-blue-600'
 				},
 				success: {
-					iconDivClass: 'text-emerald-800 bg-emerald-200',
-					confirmButtonClass: 'bg-emerald-600 hover:bg-emerald-700'
+					iconDivClass: 'bg-emerald-100 text-emerald-700 dark:bg-emerald-700 dark:text-emerald-100',
+					confirmButtonClass: 'bg-emerald-700 hover:bg-emerald-600'
 				},
 				default: {
 					iconDivClass: 'text-zinc-800 bg-zinc-200',
@@ -135,7 +135,7 @@
 					<div class="sm:flex sm:items-start">
 						{#if icon}
 							<div class={iconDivClass()}>
-								<Icon src={icon} theme="outline" class="h-8 w-8" />
+								<Icon src={icon} theme="solid" class="h-8 w-8" />
 							</div>
 						{/if}
 						<div class="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left">
