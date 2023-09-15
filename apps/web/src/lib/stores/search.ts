@@ -12,24 +12,31 @@ function createSearchStore() {
 	});
 
 	async function get(term: string) {
+		let hasSearchChanged = false;
 		update((state) => {
+			if (state.term === term) {
+				return state;
+			}
+			hasSearchChanged = true;
 			state.term = term;
 			state.loading = true;
 			return state;
 		});
-		let results: Video[] = [];
-		try {
-			results = await SearchService.getSearch(term);
-			toast.success(`Found ${results.length} search results.`);
-		} catch (err) {
-			toast.error('Failed to get search results.');
-			console.error('Failed to search for videos ', err);
+		if (hasSearchChanged) {
+			let results: Video[] = [];
+			try {
+				results = await SearchService.getSearch(term);
+				toast.success(`Found ${results.length} search results.`);
+			} catch (err) {
+				toast.error('Failed to get search results.');
+				console.error('Failed to search for videos ', err);
+			}
+			update((state) => {
+				state.results = results;
+				state.loading = false;
+				return state;
+			});
 		}
-		update((state) => {
-			state.results = results;
-			state.loading = false;
-			return state;
-		});
 	}
 
 	return {
