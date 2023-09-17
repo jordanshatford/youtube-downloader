@@ -13,27 +13,31 @@
 	const lookup: Record<DownloadState, { icon: IconSource; class: string }> = {
 		[DownloadState.WAITING]: {
 			icon: LoaderIcon,
-			class: 'text-yellow-600 animate-spin'
+			class: 'bg-yellow-100 text-yellow-700 dark:bg-yellow-700 dark:text-yellow-100 animate-spin'
 		},
 		[DownloadState.DOWNLOADING]: {
 			icon: LoaderIcon,
-			class: 'text-blue-600 animate-spin'
+			class: 'bg-blue-100 text-blue-700 dark:bg-blue-700 dark:text-blue-100 animate-spin'
 		},
 		[DownloadState.PROCESSING]: {
 			icon: LoaderIcon,
-			class: 'text-blue-600 animate-spin'
+			class: 'bg-blue-100 text-blue-700 dark:bg-blue-700 dark:text-blue-100 animate-spin'
 		},
 		[DownloadState.ERROR]: {
 			icon: ExclamationCircleIcon,
-			class: 'text-red-600'
+			class: 'bg-red-100 text-red-700 dark:bg-red-700 dark:text-red-100'
 		},
 		[DownloadState.DONE]: {
 			icon: CheckCircleIcon,
-			class: 'text-green-600'
+			class: 'bg-emerald-100 text-emerald-700 dark:bg-emerald-700 dark:text-emerald-100'
 		}
 	};
 </script>
 
 {#key state}
-	<Icon src={lookup[state].icon} theme="solid" class="h-5 w-5 {lookup[state].class}" />
+	<Icon
+		src={lookup[state].icon}
+		theme="solid"
+		class="h-8 w-8 rounded-full p-1 {lookup[state].class}"
+	/>
 {/key}

@@ -50,9 +50,7 @@
 					class="h-10 w-10 text-black hover:text-purple-800 dark:text-white dark:hover:text-purple-600"
 				/>
 			{:else}
-				<div class="p-2">
-					<StateIcon state={$downloads[result.id].status.state} />
-				</div>
+				<StateIcon state={$downloads[result.id].status.state} />
 			{/if}
 		</footer>
 	</article>
