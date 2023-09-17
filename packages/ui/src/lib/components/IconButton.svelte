@@ -7,8 +7,8 @@
 		theme?: string;
 	}
 
-	export let src: IconSource;
-	export let theme: string | undefined = undefined;
+	export let src: $$Props['src'];
+	export let theme: $$Props['theme'] = undefined;
 </script>
 
 <button
