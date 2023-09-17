@@ -4,6 +4,7 @@
 	const badge = tv({
 		slots: {
 			spanClass: 'inline-flex items-center justify-center rounded-lg px-2.5 py-1',
+			iconWrapperClass: 'h-5',
 			iconClass: '-ms-1 me-1.5 w-5',
 			textClass: 'whitespace-nowrap text-sm h-5',
 			buttonClass: '-me-1 ms-1.5 inline-block rounded-full p-0.5 w-4 h-4'
@@ -73,11 +74,14 @@
 
 	const _icon = typeof icon === 'object' ? icon : toIcon(variant, { loading });
 
-	const { spanClass, iconClass, textClass, buttonClass } = badge({ variant, loading });
+	const { spanClass, iconWrapperClass, iconClass, textClass, buttonClass } = badge({
+		variant,
+		loading
+	});
 </script>
 
 <span {...$$restProps} class={spanClass({ class: $$props.class })}>
-	<span class="h-5">
+	<span class={iconWrapperClass()}>
 		{#if _icon}
 			<Icon src={_icon} theme="solid" class={iconClass()} />
 		{/if}

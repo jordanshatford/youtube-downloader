@@ -3,15 +3,20 @@
 
 	const confirmClasses = tv({
 		slots: {
+			outerDivClass: 'fixed inset-0 z-50 overflow-y-auto',
 			backgroundOuterDivClass:
 				'flex min-h-screen items-end justify-center px-4 pb-20 pt-4 text-center sm:block sm:p-0',
 			backgroundTransitionDivClass:
 				'fixed inset-0 cursor-pointer bg-zinc-800 bg-opacity-75 transition-opacity',
+			trickCenteringSpanClass: 'hidden sm:inline-block sm:h-screen sm:align-middle',
 			contentDivClass:
 				'inline-block transform overflow-hidden rounded-lg bg-white text-left align-bottom shadow-xl transition-all dark:bg-zinc-900 sm:my-8 sm:w-full sm:max-w-lg sm:align-middle',
 			mainDivClass: 'px-4 pb-4 pt-5 sm:p-6 sm:pb-4',
+			mainDivInnerClass: 'sm:flex sm:items-start',
 			iconDivClass:
 				'mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full sm:mx-0 sm:h-10 sm:w-10',
+			iconClass: 'h-8 w-8',
+			textDivClass: 'mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left',
 			titleClass: 'whitespace-pre-wrap text-lg font-medium leading-6 text-zinc-900 dark:text-white',
 			descriptionClass: 'mt-2 w-full whitespace-pre-wrap text-sm text-zinc-500',
 			footerDivClass: 'flex flex-wrap px-4 py-3 sm:flex-row-reverse sm:px-6',
@@ -75,11 +80,16 @@
 	const icon = toIcon(variant);
 
 	const {
+		outerDivClass,
 		backgroundOuterDivClass,
 		backgroundTransitionDivClass,
+		trickCenteringSpanClass,
 		contentDivClass,
 		mainDivClass,
+		mainDivInnerClass,
 		iconDivClass,
+		iconClass,
+		textDivClass,
 		titleClass,
 		descriptionClass,
 		footerDivClass,
@@ -107,12 +117,7 @@
 <slot {confirm} />
 
 {#if showDialog}
-	<div
-		class="fixed inset-0 z-50 overflow-y-auto"
-		aria-labelledby="modal-title"
-		role="dialog"
-		aria-modal="true"
-	>
+	<div class={outerDivClass()} aria-labelledby="modal-title" role="dialog" aria-modal="true">
 		<div class={backgroundOuterDivClass()}>
 			<div
 				class={backgroundTransitionDivClass()}
@@ -122,9 +127,7 @@
 				out:fade={{ delay: 200, duration: 200 }}
 			/>
 			<!-- This element is to trick the browser into centering the modal contents. -->
-			<span class="hidden sm:inline-block sm:h-screen sm:align-middle" aria-hidden="true"
-				>&#8203;</span
-			>
+			<span class={trickCenteringSpanClass()} aria-hidden="true">&#8203;</span>
 			<div
 				{...$$restProps}
 				class={contentDivClass({ class: $$props.class })}
@@ -132,13 +135,13 @@
 				out:fly={{ y: -10, duration: 200 }}
 			>
 				<div class={mainDivClass()}>
-					<div class="sm:flex sm:items-start">
+					<div class={mainDivInnerClass()}>
 						{#if icon}
 							<div class={iconDivClass()}>
-								<Icon src={icon} theme="solid" class="h-8 w-8" />
+								<Icon src={icon} theme="solid" class={iconClass()} />
 							</div>
 						{/if}
-						<div class="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left">
+						<div class={textDivClass()}>
 							<h3 class={titleClass()} id="modal-title">
 								{title}
 							</h3>
