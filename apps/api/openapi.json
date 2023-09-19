@@ -249,6 +249,35 @@
         ]
       }
     },
+    "/downloads/options": {
+      "get": {
+        "tags": [
+          "downloads"
+        ],
+        "summary": "Get Downloads Options",
+        "operationId": "get_downloads_options",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AvailableDownloadOptions"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ]
+      }
+    },
     "/downloads/{video_id}": {
       "get": {
         "tags": [
@@ -413,6 +442,38 @@
           "wav"
         ],
         "title": "AudioFormat"
+      },
+      "AvailableDownloadOptions": {
+        "properties": {
+          "format": {
+            "items": {
+              "$ref": "#/components/schemas/AudioFormat"
+            },
+            "type": "array",
+            "title": "Format"
+          },
+          "quality": {
+            "items": {
+              "$ref": "#/components/schemas/DownloadQuality"
+            },
+            "type": "array",
+            "title": "Quality"
+          },
+          "embed_metadata": {
+            "items": {
+              "type": "boolean"
+            },
+            "type": "array",
+            "title": "Embed Metadata"
+          }
+        },
+        "type": "object",
+        "required": [
+          "format",
+          "quality",
+          "embed_metadata"
+        ],
+        "title": "AvailableDownloadOptions"
       },
       "Channel": {
         "properties": {

@@ -2,6 +2,7 @@
 /* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
+import type { AvailableDownloadOptions } from '../models/AvailableDownloadOptions';
 import type { VideoWithOptions } from '../models/VideoWithOptions';
 import type { VideoWithOptionsAndStatus } from '../models/VideoWithOptionsAndStatus';
 
@@ -64,6 +65,21 @@ export class DownloadsService {
       errors: {
         403: `Forbidden`,
         422: `Validation Error`,
+      },
+    });
+  }
+
+  /**
+   * Get Downloads Options
+   * @returns AvailableDownloadOptions Successful Response
+   * @throws ApiError
+   */
+  public static getDownloadsOptions(): CancelablePromise<AvailableDownloadOptions> {
+    return __request(OpenAPI, {
+      method: 'GET',
+      url: '/downloads/options',
+      errors: {
+        403: `Forbidden`,
       },
     });
   }

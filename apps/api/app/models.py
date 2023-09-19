@@ -51,6 +51,12 @@ class DownloadQuality(str, enum.Enum):
     WORST = 'worst'
 
 
+class AvailableDownloadOptions(BaseModel):
+    format: list[AudioFormat]
+    quality: list[DownloadQuality]
+    embed_metadata: list[bool]
+
+
 class DownloadOptions(BaseModel):
     format: AudioFormat
     quality: DownloadQuality

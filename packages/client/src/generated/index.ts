@@ -8,6 +8,7 @@ export { OpenAPI } from './core/OpenAPI';
 export type { OpenAPIConfig } from './core/OpenAPI';
 
 export { AudioFormat } from './models/AudioFormat';
+export type { AvailableDownloadOptions } from './models/AvailableDownloadOptions';
 export type { Channel } from './models/Channel';
 export type { DownloadOptions } from './models/DownloadOptions';
 export { DownloadQuality } from './models/DownloadQuality';

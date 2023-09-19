@@ -13,6 +13,9 @@ from ..dependencies import depends_download_responses
 from ..dependencies import depends_session_responses
 from ..dependencies import DependsDownload
 from ..dependencies import DependsSession
+from ..models import AudioFormat
+from ..models import AvailableDownloadOptions
+from ..models import DownloadQuality
 from ..models import VideoWithOptions
 from ..models import VideoWithOptionsAndStatus
 from ..session import Session
@@ -45,6 +48,15 @@ def put_downloads(
     session.download_manager.remove(video.id)
     session.download_manager.add(video)
     return video
+
+
+@router.get('/options')
+def get_downloads_options(session: DependsSession) -> AvailableDownloadOptions:
+    return AvailableDownloadOptions(
+        format=[f for f in AudioFormat],
+        quality=[q for q in DownloadQuality],
+        embed_metadata=[True, False],
+    )
 
 
 async def status_stream(request: Request, session: Session):
