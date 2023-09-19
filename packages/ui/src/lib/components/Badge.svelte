@@ -1,7 +1,7 @@
 <script lang="ts" context="module">
 	import { tv, type VariantProps } from 'tailwind-variants';
 
-	const badge = tv({
+	const badgeClasses = tv({
 		slots: {
 			spanClass: 'inline-flex items-center justify-center rounded-lg px-2.5 py-1',
 			iconWrapperClass: 'h-5',
@@ -48,7 +48,7 @@
 		}
 	});
 
-	export type BadgeVariants = VariantProps<typeof badge>;
+	export type BadgeVariants = VariantProps<typeof badgeClasses>;
 </script>
 
 <script lang="ts">
@@ -74,7 +74,7 @@
 
 	const _icon = typeof icon === 'object' ? icon : toIcon(variant, { loading });
 
-	const { spanClass, iconWrapperClass, iconClass, textClass, buttonClass } = badge({
+	const { spanClass, iconWrapperClass, iconClass, textClass, buttonClass } = badgeClasses({
 		variant,
 		loading
 	});

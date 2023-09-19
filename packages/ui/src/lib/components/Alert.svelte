@@ -1,7 +1,7 @@
 <script lang="ts" context="module">
 	import { tv, type VariantProps } from 'tailwind-variants';
 
-	const alert = tv({
+	const alertClasses = tv({
 		slots: {
 			divClass: 'rounded border-s-4 p-4',
 			iconDivClass: 'flex items-center gap-2',
@@ -43,7 +43,7 @@
 		}
 	});
 
-	export type AlertVariants = VariantProps<typeof alert>;
+	export type AlertVariants = VariantProps<typeof alertClasses>;
 </script>
 
 <script lang="ts">
@@ -62,7 +62,9 @@
 
 	const icon = toIcon(variant);
 
-	const { divClass, iconDivClass, iconClass, titleClass, descriptionClass } = alert({ variant });
+	const { divClass, iconDivClass, iconClass, titleClass, descriptionClass } = alertClasses({
+		variant
+	});
 </script>
 
 <div {...$$restProps} role="alert" class={divClass({ class: $$props.class })}>
