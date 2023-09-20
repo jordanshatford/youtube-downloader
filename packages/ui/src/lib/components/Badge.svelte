@@ -61,16 +61,13 @@
 		close: undefined;
 	}>();
 
-	interface $$Props extends HTMLAttributes<HTMLSpanElement>, BadgeVariants {
-		closable?: boolean;
-		icon?: boolean | IconSource;
-		loading?: boolean;
-	}
+	let className: string = '';
+	export { className as class };
 
-	export let variant: $$Props['variant'] = 'default';
-	export let closable: $$Props['closable'] = false;
-	export let icon: $$Props['icon'] = false;
-	export let loading: $$Props['loading'] = false;
+	export let variant: BadgeVariants['variant'] = 'default';
+	export let closable: boolean = false;
+	export let icon: boolean | IconSource = false;
+	export let loading: boolean = false;
 
 	const _icon = typeof icon === 'object' ? icon : toIcon(variant, { loading });
 
@@ -80,7 +77,7 @@
 	});
 </script>
 
-<span {...$$restProps} class={spanClass({ class: $$props.class })}>
+<span {...$$restProps} class={spanClass({ class: className })}>
 	<span class={iconWrapperClass()}>
 		{#if _icon}
 			<Icon src={_icon} theme="solid" class={iconClass()} />

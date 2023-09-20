@@ -59,23 +59,18 @@
 </script>
 
 <script lang="ts">
-	import type { HTMLAttributes } from 'svelte/elements';
 	import { fly, fade } from 'svelte/transition';
 	import { Icon } from '../icons';
 	import { toIcon } from '../utilities';
 
-	interface $$Props extends HTMLAttributes<HTMLDivElement>, ConfirmVariants {
-		title: string;
-		description: string;
-		confirmText: string;
-		cancelText: string;
-	}
+	let className: string = '';
+	export { className as class };
 
-	export let variant: $$Props['variant'] = 'info';
-	export let title: $$Props['title'] = 'Confirm?';
-	export let description: $$Props['description'] = '';
-	export let confirmText: $$Props['confirmText'] = 'Confirm';
-	export let cancelText: $$Props['cancelText'] = 'Cancel';
+	export let variant: ConfirmVariants['variant'] = 'info';
+	export let title: string = 'Confirm?';
+	export let description: string = '';
+	export let confirmText: string = 'Confirm';
+	export let cancelText: string = 'Cancel';
 
 	const icon = toIcon(variant);
 
@@ -130,7 +125,7 @@
 			<span class={trickCenteringSpanClass()} aria-hidden="true">&#8203;</span>
 			<div
 				{...$$restProps}
-				class={contentDivClass({ class: $$props.class })}
+				class={contentDivClass({ class: className })}
 				in:fly={{ y: -10, delay: 200, duration: 200 }}
 				out:fly={{ y: -10, duration: 200 }}
 			>

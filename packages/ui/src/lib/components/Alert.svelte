@@ -47,18 +47,15 @@
 </script>
 
 <script lang="ts">
-	import type { HTMLAttributes } from 'svelte/elements';
 	import { Icon } from '../icons';
 	import { toIcon } from '../utilities';
 
-	interface $$Props extends HTMLAttributes<HTMLDivElement>, AlertVariants {
-		title?: string;
-		description?: string;
-	}
+	let className: string = '';
+	export { className as class };
 
-	export let variant: $$Props['variant'] = 'default';
-	export let title: $$Props['title'] = undefined;
-	export let description: $$Props['title'] = undefined;
+	export let variant: AlertVariants['variant'] = 'default';
+	export let title: string | undefined = undefined;
+	export let description: string | undefined = undefined;
 
 	const icon = toIcon(variant);
 
@@ -67,7 +64,7 @@
 	});
 </script>
 
-<div {...$$restProps} role="alert" class={divClass({ class: $$props.class })}>
+<div {...$$restProps} role="alert" class={divClass({ class: className })}>
 	<div class={iconDivClass()}>
 		{#if icon}
 			<Icon src={icon} theme="solid" class={iconClass()} />
