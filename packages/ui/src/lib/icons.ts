@@ -4,6 +4,8 @@ export { Icon, type IconSource } from '@steeze-ui/svelte-icon';
 // Icon sources reexported for use
 export {
 	CheckCircle as CheckCircleIcon,
+	ChevronLeft as ChevronLeftIcon,
+	ChevronRight as ChevronRightIcon,
 	ArrowDownTray as DownloadIcon,
 	ExclamationCircle as ExclamationCircleIcon,
 	ExclamationTriangle as ExclamationTriangleIcon,

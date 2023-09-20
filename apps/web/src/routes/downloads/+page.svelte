@@ -1,10 +1,17 @@
 <script lang="ts">
 	import { DownloadState } from '@yd/client';
-	import { DownloadIcon, LoaderIcon, RotateIcon, TrashIcon } from '@yd/ui';
+	import { DownloadIcon, LoaderIcon, RotateIcon, TrashIcon, Pagination } from '@yd/ui';
 	import { Confirm, Badge, IconButton, Table, Title, Description } from '@yd/ui';
 	import { downloads } from '$lib/stores/downloads';
 	import StateBadge from '$lib/components/StateBadge.svelte';
 	import config from '$lib/config';
+
+	let page = 1;
+	let pageSize = 10;
+
+	$: totalPages = Math.ceil(Object.keys($downloads).length / pageSize);
+	$: start = (page - 1) * pageSize;
+	$: currentPageDownloads = Object.values($downloads).slice(start, start + pageSize);
 
 	const columns = [
 		{
@@ -39,7 +46,7 @@
 				<div
 					class="overflow-hidden rounded-lg border border-zinc-200 shadow dark:border-zinc-800 dark:shadow-dark"
 				>
-					<Table {columns} rows={Object.values($downloads)}>
+					<Table {columns} rows={currentPageDownloads}>
 						<span slot="cell" let:column let:row>
 							{#if column.key === 'info'}
 								<div class="flex items-center">
@@ -99,6 +106,7 @@
 						</span>
 					</Table>
 				</div>
+				<Pagination bind:page {totalPages} class="py-4" />
 			</div>
 		</div>
 	</div>
