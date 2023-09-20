@@ -53,7 +53,6 @@
 
 <script lang="ts">
 	import { createEventDispatcher } from 'svelte';
-	import type { HTMLAttributes } from 'svelte/elements';
 	import { Icon, XMarkIcon, type IconSource } from '../icons';
 	import { toIcon } from '../utilities';
 
