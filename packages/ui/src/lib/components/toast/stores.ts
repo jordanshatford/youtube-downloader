@@ -1,12 +1,11 @@
 import { writable, get } from 'svelte/store';
-import { DEFAULT_OPTIONS, DEFAULT_POSITION, objectMerge } from './utils';
+import { DEFAULT_OPTIONS, DEFAULT_POSITION } from './utils';
 import { browser } from '../../utilities';
 
 import type {
 	ToastFunction,
 	ToastVariant,
 	ToastPosition,
-	ToastFunctionOptions,
 	ToastComponent,
 	ToastPromiseFunction,
 	ToastAddOptions
@@ -14,18 +13,15 @@ import type {
 
 const TOASTS = writable<ToastComponent[]>([]);
 
-const addToast = (
+function addToast(
 	variant: ToastVariant,
 	title: string,
 	description: string,
 	{ opts, id }: ToastAddOptions
-) => {
-	const uuid = id || crypto.randomUUID();
+) {
+	const uuid = id ?? crypto.randomUUID();
 
-	const { closable, infinite, onMount, onRemove, duration } = objectMerge(
-		DEFAULT_OPTIONS,
-		opts
-	) as Required<ToastFunctionOptions>;
+	const { closable, duration, infinite, onMount, onRemove } = { ...DEFAULT_OPTIONS, ...opts };
 
 	const props: ToastComponent = {
 		id: uuid,
@@ -49,7 +45,7 @@ const addToast = (
 	}
 
 	return uuid;
-};
+}
 
 const upsert = (props: ToastComponent, id: string) => {
 	if (get(TOASTS).find((toast) => toast.id === id)) {
@@ -67,7 +63,7 @@ const upsert = (props: ToastComponent, id: string) => {
 	}
 };
 const remove = (id: string) => {
-	if (get(TOASTS).find((el) => el.id === id))
+	if (get(TOASTS).some((el) => el.id === id))
 		TOASTS.update((toasts) => toasts.filter((toast) => toast.id !== id));
 };
 const clear = () => {
@@ -108,58 +104,27 @@ const promise: ToastPromiseFunction<unknown> = (promise, opts) => {
 		});
 };
 
-const createStore = () => {
+const createToastStore = () => {
 	const { subscribe } = TOASTS;
-
 	return {
-		/**
-		 * Add a info type toast.\
-		 * Usually indicates information to the user, but isn’t important.
-		 * @param message The message to be displayed in the toast.
-		 * @param opts Options for the toast.
-		 */
+		// Add an information toast.
 		info,
-		/**
-		 * Add a success type toast.\
-		 * Indicates to the user something good has happened.
-		 * @param message The message to be displayed in the toast.
-		 * @param opts Options for the toast.
-		 */
+		// Add a success toast.
 		success,
-		/**
-		 * Add a warning type toast.\
-		 * Tell the user something may be wrong but isn’t critical.
-		 * @param message The message to be displayed in the toast.
-		 * @param opts Options for the toast.
-		 */
+		// Add a warning toast.
 		warning,
-		/**
-		 * Add an error type toast.\
-		 * Alert the user something critical has happened.
-		 * @param message The message to be displayed in the toast.
-		 * @param opts Options for the toast.
-		 */
+		// Add an error toast.
 		error,
-		/**
-		 * Add a promise toast chain.\
-		 * Indicates to the user that something is happening in the background.
-		 * @param promise The promise to be used.
-		 * @param opts Options for the promise chain.
-		 */
+		// Add a promise chain toast.
 		promise,
-		/**
-		 * Remove a toast based on the unique ID.
-		 * @param id The unique ID of the toast.
-		 */
+		// Remove a single toast based on the ID passed.
 		remove,
-		/**
-		 * Removes all toasts.
-		 */
+		// Remove all toasts.
 		clear,
 		subscribe
 	};
 };
 
-export const toast = createStore();
+export const toast = createToastStore();
 
 export const position = writable<ToastPosition>(DEFAULT_POSITION);

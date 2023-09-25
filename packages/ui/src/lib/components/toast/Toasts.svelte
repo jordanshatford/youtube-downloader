@@ -3,7 +3,7 @@
 	import { flip } from 'svelte/animate';
 	import Toast from './Toast.svelte';
 	import { toast as toasts, position as _position } from './stores';
-	import { DEFAULT_ANIMATION, DEFAULT_POSITION, objectMerge } from './utils';
+	import { DEFAULT_ANIMATION, DEFAULT_POSITION } from './utils';
 	import type { ToastPosition, ToastAnimation } from './types';
 
 	/**
@@ -17,7 +17,7 @@
 	export let animation: ToastAnimation | undefined = undefined;
 
 	$_position = position;
-	const ANIMATION = objectMerge(DEFAULT_ANIMATION, animation);
+	const ANIMATION = { ...DEFAULT_ANIMATION, ...animation };
 </script>
 
 <div
