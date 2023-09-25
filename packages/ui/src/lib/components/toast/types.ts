@@ -14,7 +14,7 @@ export type ToastPosition =
 	| 'bottom-right';
 
 /** The type of toast. */
-export type ToastType = ToastVariants['variant'];
+export type ToastVariant = ToastVariants['variant'];
 
 /** Simple helper to define the internal functions. */
 export type ToastFunction = (
@@ -97,7 +97,7 @@ export interface ToastComponent extends ToastComponentOptions {
 	/** The unique ID of the toast. */
 	id: string;
 	/** The attention level of the toast. */
-	type: ToastType;
+	variant: ToastVariant;
 	/** The title and description to display to the end user. */
 	title: string;
 	description: string;

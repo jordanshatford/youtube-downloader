@@ -58,7 +58,7 @@
 
 	export let toast: ToastComponent;
 
-	$: icon = toIcon(toast.type);
+	$: icon = toIcon(toast.variant);
 
 	const {
 		outerDivClass,
@@ -71,7 +71,7 @@
 		titleClass,
 		descriptionClass
 	} = toastClasses({
-		variant: toast.type
+		variant: toast.variant
 	});
 </script>
 
@@ -83,7 +83,7 @@
 	class={outerDivClass()}
 >
 	<div class={outerContentDivClass()}>
-		{#if toast.closable && toast.type !== 'promise'}
+		{#if toast.closable && toast.variant !== 'promise'}
 			<IconButton
 				src={XMarkIcon}
 				class={closeIconClass()}
@@ -92,8 +92,8 @@
 		{/if}
 		<div class={contentDivClass()}>
 			{#if icon}
-				<div class={iconDivClass({ variant: toast.type })}>
-					<Icon src={icon} theme="solid" class={iconClass({ variant: toast.type })} />
+				<div class={iconDivClass({ variant: toast.variant })}>
+					<Icon src={icon} theme="solid" class={iconClass({ variant: toast.variant })} />
 				</div>
 			{/if}
 			<div class={textDivClass()}>

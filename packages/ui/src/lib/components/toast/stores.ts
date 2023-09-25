@@ -1,9 +1,10 @@
 import { writable, get } from 'svelte/store';
 import { DEFAULT_OPTIONS, objectMerge } from './utils';
+import { browser } from '../../utilities';
 
 import type {
 	ToastFunction,
-	ToastType,
+	ToastVariant,
 	ToastPosition,
 	ToastFunctionOptions,
 	ToastComponent,
@@ -14,7 +15,7 @@ import type {
 const TOASTS = writable<ToastComponent[]>([]);
 
 const addToast = (
-	type: ToastType,
+	variant: ToastVariant,
 	title: string,
 	description: string,
 	{ opts, id }: ToastAddOptions
@@ -28,7 +29,7 @@ const addToast = (
 
 	const props: ToastComponent = {
 		id: uuid,
-		type,
+		variant,
 		title,
 		description,
 		duration,
@@ -36,11 +37,11 @@ const addToast = (
 		infinite
 	};
 
-	if (typeof window !== 'undefined') onMount?.();
+	if (browser()) onMount?.();
 
 	upsert(props, uuid);
 
-	if (!infinite && type !== 'promise') {
+	if (!infinite && variant !== 'promise') {
 		setTimeout(() => {
 			remove(uuid);
 			onRemove?.();

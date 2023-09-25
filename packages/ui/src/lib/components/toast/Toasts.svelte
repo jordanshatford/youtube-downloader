@@ -1,8 +1,8 @@
 <script lang="ts">
-	import Toast from './Toast.svelte';
-	import { toast as toasts, position as toastPos } from './stores';
 	import { scale } from 'svelte/transition';
 	import { flip } from 'svelte/animate';
+	import Toast from './Toast.svelte';
+	import { toast as toasts, position as toastPos } from './stores';
 	import { DEFAULT_ANIMATION, objectMerge } from './utils';
 	import type { ToastPosition, ToastAnimation } from './types';
 
