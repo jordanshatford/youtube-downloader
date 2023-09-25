@@ -1,5 +1,5 @@
 import { writable, get } from 'svelte/store';
-import { DEFAULT_OPTIONS, objectMerge } from './utils';
+import { DEFAULT_OPTIONS, DEFAULT_POSITION, objectMerge } from './utils';
 import { browser } from '../../utilities';
 
 import type {
@@ -162,4 +162,4 @@ const createStore = () => {
 
 export const toast = createStore();
 
-export const position = writable<ToastPosition>('bottom-left');
+export const position = writable<ToastPosition>(DEFAULT_POSITION);

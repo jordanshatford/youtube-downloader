@@ -2,8 +2,8 @@
 	import { scale } from 'svelte/transition';
 	import { flip } from 'svelte/animate';
 	import Toast from './Toast.svelte';
-	import { toast as toasts, position as toastPos } from './stores';
-	import { DEFAULT_ANIMATION, objectMerge } from './utils';
+	import { toast as toasts, position as _position } from './stores';
+	import { DEFAULT_ANIMATION, DEFAULT_POSITION, objectMerge } from './utils';
 	import type { ToastPosition, ToastAnimation } from './types';
 
 	/**
@@ -11,12 +11,12 @@
 	 *
 	 * The will also effect how the toasts stack on each other.
 	 */
-	export let position: ToastPosition = 'bottom-right';
+	export let position: ToastPosition = DEFAULT_POSITION;
 
 	/** The animation properties. */
 	export let animation: ToastAnimation | undefined = undefined;
 
-	$toastPos = position;
+	$_position = position;
 	const ANIMATION = objectMerge(DEFAULT_ANIMATION, animation);
 </script>
 

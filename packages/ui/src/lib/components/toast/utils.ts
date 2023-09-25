@@ -1,4 +1,9 @@
-import type { ToastComponentOptions, ToastAnimation } from './types';
+import type { ToastComponentOptions, ToastAnimation, ToastPosition } from './types';
+
+/**
+ * The default position for all toasts
+ */
+export const DEFAULT_POSITION: ToastPosition = 'bottom-right';
 
 /**
  * The default options for the toasts.
