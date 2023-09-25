@@ -50,7 +50,7 @@
 </script>
 
 <script lang="ts">
-	import { toast as _toast, position } from './stores';
+	import { toast as _toast } from './stores';
 	import type { ToastComponent } from './types';
 	import { XMarkIcon, Icon } from '../../icons';
 	import { toIcon } from '../../utilities';
@@ -75,13 +75,7 @@
 	});
 </script>
 
-<div
-	id="yd-toast-{toast.id}"
-	data-position={$position}
-	aria-live="polite"
-	role="status"
-	class={outerDivClass()}
->
+<div id="yd-toast-{toast.id}" aria-live="polite" role="status" class={outerDivClass()}>
 	<div class={outerContentDivClass()}>
 		{#if toast.closable && toast.variant !== 'promise'}
 			<IconButton
