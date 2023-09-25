@@ -4,7 +4,7 @@ import type { ToastComponentOptions, ToastAnimation } from './types';
  * The default options for the toasts.
  */
 export const DEFAULT_OPTIONS: ToastComponentOptions = {
-	closable: false,
+	closable: true,
 	duration: 5000,
 	infinite: false
 };

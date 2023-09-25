@@ -49,10 +49,9 @@ function createDownloadsStore() {
 		updateDownload(info.id, info);
 		try {
 			const result = await DownloadsService.postDownloads(info);
-			toast.info(`Added '${video.title}' to downloads.`);
 			updateDownload(result.id, result);
 		} catch (err) {
-			toast.error(`Failed to add '${video.title}' to downloads.`);
+			toast.error('Error', `Failed to add '${video.title}' to downloads.`);
 			console.error('Failed to add video to download ', err);
 			updateDownload(info.id, { status: { state: DownloadState.ERROR } });
 		}
@@ -66,10 +65,9 @@ function createDownloadsStore() {
 		updateDownload(info.id, info);
 		try {
 			const result = await DownloadsService.putDownloads(info);
-			toast.info(`Restarted download of '${info.title}'.`);
 			updateDownload(result.id, result);
 		} catch (err) {
-			toast.error(`Failed to restart '${info.title}' download.`);
+			toast.error('Error', `Failed to restart '${info.title}' download.`);
 			console.error('Failed to restart download ', err);
 			updateDownload(info.id, { status: { state: DownloadState.ERROR } });
 		}
@@ -80,13 +78,13 @@ function createDownloadsStore() {
 
 		try {
 			await DownloadsService.deleteDownload(id);
-			toast.success('Download removed successfully.');
+			toast.success('Deleted', 'Download removed successfully.');
 			update((state) => {
 				delete state[id];
 				return state;
 			});
 		} catch (err) {
-			toast.error('Failed to remove download.');
+			toast.error('Error', 'Failed to remove download.');
 			console.error('Failed to remove download ', err);
 		}
 	}
@@ -101,7 +99,7 @@ function createDownloadsStore() {
 			saveAs(blob, filename);
 			updateDownload(id, { awaitingFileBlob: false });
 		} catch (err) {
-			toast.error('Failed to get file for download.');
+			toast.error('Error', 'Failed to get file for download.');
 			console.error('Failed to get file for download ', err);
 			updateDownload(id, { awaitingFileBlob: false, status: { state: DownloadState.ERROR } });
 		}

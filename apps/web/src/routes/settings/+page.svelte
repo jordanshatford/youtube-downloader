@@ -17,19 +17,19 @@
 		<div class="mb-2 md:flex">
 			<div class="mt-4 w-full">
 				<Select
-					on:change={() => toast.success('Settings saved successfully.')}
+					on:change={() => toast.success('Updated', 'Quality settings updated successfully.')}
 					title="Quality:"
 					options={toSelectOptions(DownloadQuality)}
 					bind:value={$settings.quality}
 				/>
 				<Select
-					on:change={() => toast.success('Settings saved successfully.')}
+					on:change={() => toast.success('Updated', 'Embedding settings updated successfully.')}
 					title="Embed metadata:"
 					options={toSelectOptions({ YES: true, NO: false })}
 					bind:value={$settings.embed_metadata}
 				/>
 				<Select
-					on:change={() => toast.success('Settings saved successfully.')}
+					on:change={() => toast.success('Updated', 'Format settings updated successfully.')}
 					title="Format:"
 					options={toSelectOptions(AudioFormat)}
 					bind:value={$settings.format}

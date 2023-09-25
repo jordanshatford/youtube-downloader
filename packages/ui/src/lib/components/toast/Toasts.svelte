@@ -20,10 +20,13 @@
 	const ANIMATION = objectMerge(DEFAULT_ANIMATION, animation);
 </script>
 
-<div class="yd-toast-container" data-position={position}>
+<div
+	class="pointer-events-none fixed top-0 z-[999] flex h-full w-full flex-col gap-y-1 overflow-hidden p-[16px] data-[position*=center]:left-2/4 data-[position*=left]:left-0 data-[position*=right]:right-0 data-[position*=center]:-translate-x-2/4 data-[position*=left]:items-start data-[position*=right]:items-end data-[position*=center]:items-center data-[position*=bottom]:justify-end"
+	data-position={position}
+>
 	{#each $toasts as toast (toast.id)}
 		<div
-			class="yd-toast-wrapper"
+			class="data-[position=bottom-center]:origin-bottom data-[position=bottom-left]:origin-bottom-left data-[position=bottom-right]:origin-bottom-right data-[position=top-center]:origin-top data-[position=top-left]:origin-top-left data-[position=top-right]:origin-top-right"
 			data-position={position}
 			in:scale={{
 				start: ANIMATION.start,
@@ -37,55 +40,3 @@
 		</div>
 	{/each}
 </div>
-
-<style>
-	.yd-toast-container {
-		position: fixed;
-		padding: var(--yd-toast-offset, 16px);
-		top: 0;
-		height: 100%;
-		width: 100%;
-		pointer-events: none;
-		z-index: 999;
-		display: flex;
-		flex-direction: column;
-		gap: var(--yd-toast-gap, 16px);
-		overflow: hidden;
-	}
-	.yd-toast-container[data-position*='center'] {
-		align-items: center;
-	}
-	.yd-toast-container[data-position*='bottom'] {
-		justify-content: flex-end;
-	}
-	.yd-toast-container[data-position*='center'] {
-		left: 50%;
-		transform: translateX(-50%);
-	}
-	.yd-toast-container[data-position*='-left'] {
-		left: 0;
-		align-items: flex-start;
-	}
-	.yd-toast-container[data-position*='-right'] {
-		right: 0;
-		align-items: flex-end;
-	}
-	.yd-toast-wrapper[data-position='bottom-center'] {
-		transform-origin: bottom center;
-	}
-	.yd-toast-wrapper[data-position='bottom-left'] {
-		transform-origin: bottom left;
-	}
-	.yd-toast-wrapper[data-position='bottom-right'] {
-		transform-origin: bottom right;
-	}
-	.yd-toast-wrapper[data-position='top-center'] {
-		transform-origin: top center;
-	}
-	.yd-toast-wrapper[data-position='top-left'] {
-		transform-origin: top left;
-	}
-	.yd-toast-wrapper[data-position='top-right'] {
-		transform-origin: top right;
-	}
-</style>

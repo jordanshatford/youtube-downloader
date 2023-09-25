@@ -1,108 +1,107 @@
 <script lang="ts" context="module">
-	import {
-		ExclamationCircleIcon,
-		CheckCircleIcon,
-		ExclamationTriangleIcon,
-		LoaderIcon,
-		InformationCircleIcon,
-		type IconSource
-	} from '../../icons';
-	export const ICONS_MAP: { readonly [T in ToastType]: IconSource } = {
-		error: ExclamationCircleIcon,
-		warning: ExclamationTriangleIcon,
-		info: InformationCircleIcon,
-		success: CheckCircleIcon,
-		promise: LoaderIcon
-	};
+	import { tv, type VariantProps } from 'tailwind-variants';
+
+	const toastClasses = tv({
+		slots: {
+			outerDivClass: 'pointer-events-auto relative flex space-y-5',
+			outerContentDivClass:
+				'border-secondary-50 relative mx-auto min-w-[300px] max-w-[400px] rounded-xl border bg-white p-3 text-sm shadow-lg dark:border-zinc-700 dark:bg-zinc-900',
+			contentDivClass: 'flex space-x-4',
+			closeIconClass:
+				'absolute right-2 top-1 ml-auto h-8 w-8 text-zinc-500 hover:text-zinc-900 dark:text-zinc-100 dark:hover:text-zinc-500',
+			iconDivClass: 'flex h-10 w-10 items-center justify-center rounded-full',
+			iconClass: 'h-6 w-6',
+			textDivClass: 'flex-1',
+			titleClass: 'pr-6 font-medium text-zinc-900 dark:text-zinc-100',
+			descriptionClass: 'mt-1 text-zinc-500 dark:text-zinc-300'
+		},
+		variants: {
+			variant: {
+				error: {
+					iconDivClass: 'bg-red-100 text-red-700 dark:bg-red-700 dark:text-red-100'
+				},
+				warning: {
+					iconDivClass: 'bg-yellow-100 text-yellow-700 dark:bg-yellow-700 dark:text-yellow-100'
+				},
+				info: {
+					iconDivClass: 'bg-blue-100 text-blue-700 dark:bg-blue-700 dark:text-blue-100'
+				},
+				success: {
+					iconDivClass: 'bg-emerald-100 text-emerald-700 dark:bg-emerald-700 dark:text-emerald-100'
+				},
+				promise: {
+					iconDivClass: 'bg-blue-100 text-blue-700 dark:bg-blue-700 dark:text-blue-100'
+				}
+			}
+		},
+		defaultVariants: {
+			variant: 'info'
+		},
+		compoundSlots: [
+			{
+				slots: ['iconClass'],
+				variant: 'promise',
+				class: 'animate-spin'
+			}
+		]
+	});
+
+	export type ToastVariants = VariantProps<typeof toastClasses>;
 </script>
 
 <script lang="ts">
-	import type { ToastType } from './types';
 	import { toast as _toast, position } from './stores';
 	import type { ToastComponent } from './types';
 	import { XMarkIcon, Icon } from '../../icons';
+	import { toIcon } from '../../utilities';
+	import IconButton from '../IconButton.svelte';
+
 	export let toast: ToastComponent;
+
+	$: icon = toIcon(toast.type);
+
+	const {
+		outerDivClass,
+		outerContentDivClass,
+		contentDivClass,
+		closeIconClass,
+		iconDivClass,
+		iconClass,
+		textDivClass,
+		titleClass,
+		descriptionClass
+	} = toastClasses({
+		variant: toast.type
+	});
 </script>
 
 <div
 	id="yd-toast-{toast.id}"
-	class="yd-toast {toast.type}"
 	data-position={$position}
 	aria-live="polite"
 	role="status"
+	class={outerDivClass()}
 >
-	<div class="yd-toast-bar" />
-	<div class="yd-toast-icon {toast.type}">
-		<Icon src={ICONS_MAP[toast.type]} class="h-5 w-5" />
+	<div class={outerContentDivClass()}>
+		{#if toast.closable && toast.type !== 'promise'}
+			<IconButton
+				src={XMarkIcon}
+				class={closeIconClass()}
+				on:click={() => _toast.remove(toast.id)}
+			/>
+		{/if}
+		<div class={contentDivClass()}>
+			{#if icon}
+				<div class={iconDivClass({ variant: toast.type })}>
+					<Icon src={icon} theme="solid" class={iconClass({ variant: toast.type })} />
+				</div>
+			{/if}
+			<div class={textDivClass()}>
+				<h4 class={titleClass()}>{toast.title}</h4>
+				<div class={descriptionClass()}>
+					{toast.description}
+				</div>
+			</div>
+		</div>
 	</div>
-	<div class="yd-toast-message">
-		{toast.message}
-	</div>
-	{#if toast.closable && toast.type !== 'promise'}
-		<button type="button" class="yd-toast-dismiss" on:click={() => _toast.remove(toast.id)}>
-			<Icon src={XMarkIcon} class="h-5 w-5" />
-		</button>
-	{/if}
 </div>
-
-<style>
-	.yd-toast {
-		background: var(--yd-toast-bg, #333);
-		color: var(--yd-toast-text, #fff);
-		padding: var(--yd-toast-padding, 12px 15px 12px 18px);
-		border-radius: var(--yd-toast-radius, 4px);
-		box-shadow: var(--yd-toast-shadow, 0 2px 7px rgba(0, 0, 0, 0.25));
-		font-size: var(--yd-toast-font-size, 14px);
-		position: relative;
-		overflow: hidden;
-		pointer-events: all;
-		display: flex;
-		gap: var(--yd-toast-dismiss-gap, 8px);
-		max-width: var(--yd-toast-max-width, unset);
-	}
-	.yd-toast-bar {
-		position: absolute;
-		top: 0;
-		left: 0;
-		width: var(--yd-toast-bar-width, 3px);
-		height: 100%;
-		background: var(--yd-toast-colour);
-	}
-	.yd-toast-icon {
-		min-width: var(--yd-toast-icon-size, 21px);
-		min-height: var(--yd-toast-icon-size, 21px);
-		max-width: var(--yd-toast-icon-size, 21px);
-		max-height: var(--yd-toast-icon-size, 21px);
-		color: var(--yd-toast-colour);
-	}
-	.yd-toast-icon.promise {
-		animation: promiseSpin 1s linear infinite;
-	}
-	.yd-toast-dismiss {
-		min-width: var(--yd-toast-icon-size, 21px);
-		min-height: var(--yd-toast-icon-size, 21px);
-		max-width: var(--yd-toast-icon-size, 21px);
-		max-height: var(--yd-toast-icon-size, 21px);
-		padding: var(--yd-toast-icon-padding, 2px);
-	}
-	.yd-toast.info {
-		--yd-toast-colour: var(--yd-toast-info-colour, #38bdf8);
-	}
-	.yd-toast.success {
-		--yd-toast-colour: var(--yd-toast-success-colour, #4ade80);
-	}
-	.yd-toast.warning {
-		--yd-toast-colour: var(--yd-toast-warning-colour, #fb923c);
-	}
-	.yd-toast.error {
-		--yd-toast-colour: var(--yd-toast-error-colour, #ef4444);
-	}
-	@keyframes promiseSpin {
-		from {
-			rotate: 0deg;
-		}
-		to {
-			rotate: 360deg;
-		}
-	}
-</style>

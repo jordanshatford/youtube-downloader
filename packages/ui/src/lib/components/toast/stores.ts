@@ -13,7 +13,12 @@ import type {
 
 const TOASTS = writable<ToastComponent[]>([]);
 
-const addToast = (type: ToastType, message: string, { opts, id }: ToastAddOptions) => {
+const addToast = (
+	type: ToastType,
+	title: string,
+	description: string,
+	{ opts, id }: ToastAddOptions
+) => {
 	const uuid = id || crypto.randomUUID();
 
 	const { closable, infinite, onMount, onRemove, duration } = objectMerge(
@@ -24,7 +29,8 @@ const addToast = (type: ToastType, message: string, { opts, id }: ToastAddOption
 	const props: ToastComponent = {
 		id: uuid,
 		type,
-		message,
+		title,
+		description,
 		duration,
 		closable,
 		infinite
@@ -67,28 +73,28 @@ const clear = () => {
 	TOASTS.set([]);
 };
 
-const info: ToastFunction = (message, opts = DEFAULT_OPTIONS) =>
-	addToast('info', message, { opts });
-const success: ToastFunction = (message, opts = DEFAULT_OPTIONS) =>
-	addToast('success', message, { opts });
-const warning: ToastFunction = (message, opts = DEFAULT_OPTIONS) =>
-	addToast('warning', message, { opts });
-const error: ToastFunction = (message, opts = DEFAULT_OPTIONS) =>
-	addToast('error', message, { opts });
+const info: ToastFunction = (title, description, opts = DEFAULT_OPTIONS) =>
+	addToast('info', title, description, { opts });
+const success: ToastFunction = (title, description, opts = DEFAULT_OPTIONS) =>
+	addToast('success', title, description, { opts });
+const warning: ToastFunction = (title, description, opts = DEFAULT_OPTIONS) =>
+	addToast('warning', title, description, { opts });
+const error: ToastFunction = (title, description, opts = DEFAULT_OPTIONS) =>
+	addToast('error', title, description, { opts });
 const promise: ToastPromiseFunction<unknown> = (promise, opts) => {
 	if (promise instanceof Promise === false) throw Error('`promise` is not a valid Promise.');
 
-	const id = addToast('promise', opts.loading, { opts });
+	const id = addToast('promise', opts.loading.title, opts.loading.description, { opts });
 
 	opts?.onStart?.();
 
 	promise
 		.then((data) => {
-			addToast('success', opts.success, { opts, id });
+			addToast('success', opts.success.title, opts.success.description, { opts, id });
 			opts?.onSuccess?.(data);
 		})
 		.catch((err) => {
-			addToast('error', opts.error, { opts, id });
+			addToast('error', opts.error.title, opts.error.description, { opts, id });
 			opts?.onError?.(err);
 		})
 		.finally(() => {

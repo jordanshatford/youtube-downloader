@@ -26,9 +26,9 @@ function createSearchStore() {
 			let results: Video[] = [];
 			try {
 				results = await SearchService.getSearch(term);
-				toast.success(`Found ${results.length} search results.`);
+				toast.success('Success', `Found ${results.length} search results.`);
 			} catch (err) {
-				toast.error('Failed to get search results.');
+				toast.error('Error', 'Failed to get search results.');
 				console.error('Failed to search for videos ', err);
 			}
 			update((state) => {

@@ -1,4 +1,4 @@
-import type { ComponentType } from 'svelte';
+import type { ToastVariants } from './Toast.svelte';
 
 /**
  * The position of the toasts.
@@ -14,20 +14,16 @@ export type ToastPosition =
 	| 'bottom-right';
 
 /** The type of toast. */
-export type ToastType = 'info' | 'success' | 'warning' | 'error' | 'promise';
+export type ToastType = ToastVariants['variant'];
 
 /** Simple helper to define the internal functions. */
-export type ToastFunction = (message: string, opts?: ToastFunctionOptions) => void;
+export type ToastFunction = (
+	title: string,
+	description: string,
+	opts?: ToastFunctionOptions
+) => void;
 
 export type ToastPromiseFunction<T> = (promise: Promise<T>, opts: ToastPromiseOptions) => void;
-
-/**
- * The custom component to rendered.
- *
- * First index will be the component.\
- * Second index will be any props you wish to pass down to your component.
- */
-export type ToastCustomComponent = [ComponentType, Record<string, unknown>];
 
 /** Toast component props. */
 export type ToastComponentOptions = Required<
@@ -39,13 +35,18 @@ export interface ToastAddOptions {
 	opts?: ToastFunctionOptions;
 }
 
+export interface ToastInfo {
+	title: string;
+	description: string;
+}
+
 export interface ToastPromiseOptions extends Partial<ToastFunctionOptions> {
 	/** The loading message of the promise. */
-	loading: string;
+	loading: ToastInfo;
 	/** The text to be displayed if the promise is resolved. */
-	success: string;
+	success: ToastInfo;
 	/** The text to be displayed if the promise is rejected. */
-	error: string;
+	error: ToastInfo;
 	/** Function the run when the promise has started. */
 	onStart?: () => void;
 	/**
@@ -97,6 +98,7 @@ export interface ToastComponent extends ToastComponentOptions {
 	id: string;
 	/** The attention level of the toast. */
 	type: ToastType;
-	/** The message to display to the end user. */
-	message: string;
+	/** The title and description to display to the end user. */
+	title: string;
+	description: string;
 }
