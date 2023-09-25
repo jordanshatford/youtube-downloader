@@ -1,5 +1,5 @@
-fastapi==0.103.0
+fastapi==0.103.1
 sse-starlette==1.6.5
 uvicorn==0.23.2
 youtube-search-python==1.6.6
-yt-dlp==2023.7.6
+yt-dlp==2023.9.24
