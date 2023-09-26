@@ -3,13 +3,12 @@ import { DEFAULT_OPTIONS, DEFAULT_POSITION } from './utils';
 import { browser } from '../../utilities';
 
 import type {
-	ToastFunction,
 	ToastVariant,
 	ToastPosition,
 	ToastComponent,
-	ToastPromiseFunction,
-	ToastAddOptions,
-	ToastComponentOptions
+	ToastComponentOptions,
+	ToastFunctionOptions,
+	ToastPromiseOptions
 } from './types';
 
 const TOASTS = writable<ToastComponent[]>([]);
@@ -18,7 +17,7 @@ function addToast(
 	variant: ToastVariant,
 	title: string,
 	description: string,
-	{ opts, id }: ToastAddOptions
+	{ opts, id }: { opts?: ToastFunctionOptions; id?: string }
 ) {
 	const uuid = id ?? crypto.randomUUID();
 
@@ -48,7 +47,7 @@ function addToast(
 	return uuid;
 }
 
-const upsert = (props: ToastComponent, id: string) => {
+function upsert(props: ToastComponent, id: string) {
 	if (get(TOASTS).find((toast) => toast.id === id)) {
 		TOASTS.update((toasts) => {
 			return toasts.map((toast) => {
@@ -62,24 +61,34 @@ const upsert = (props: ToastComponent, id: string) => {
 				(toasts = get(position).includes('bottom') ? [...toasts, props] : [props, ...toasts])
 		);
 	}
-};
-const remove = (id: string) => {
+}
+
+function remove(id: string) {
 	if (get(TOASTS).some((el) => el.id === id))
 		TOASTS.update((toasts) => toasts.filter((toast) => toast.id !== id));
-};
-const clear = () => {
-	TOASTS.set([]);
-};
+}
 
-const info: ToastFunction = (title, description, opts = get(options)) =>
+function clear() {
+	TOASTS.set([]);
+}
+
+function info(title: string, description: string, opts: ToastFunctionOptions = get(options)) {
 	addToast('info', title, description, { opts });
-const success: ToastFunction = (title, description, opts = get(options)) =>
+}
+
+function success(title: string, description: string, opts: ToastFunctionOptions = get(options)) {
 	addToast('success', title, description, { opts });
-const warning: ToastFunction = (title, description, opts = get(options)) =>
+}
+
+function warning(title: string, description: string, opts: ToastFunctionOptions = get(options)) {
 	addToast('warning', title, description, { opts });
-const error: ToastFunction = (title, description, opts = get(options)) =>
+}
+
+function error(title: string, description: string, opts: ToastFunctionOptions = get(options)) {
 	addToast('error', title, description, { opts });
-const promise: ToastPromiseFunction<unknown> = (promise, opts) => {
+}
+
+function promise<T>(promise: Promise<T>, opts: ToastPromiseOptions) {
 	if (promise instanceof Promise === false) throw Error('`promise` is not a valid Promise.');
 
 	const id = addToast('promise', opts.loading.title, opts.loading.description, { opts });
@@ -106,7 +115,7 @@ const promise: ToastPromiseFunction<unknown> = (promise, opts) => {
 			}
 			opts?.onFinish?.();
 		});
-};
+}
 
 const createToastStore = () => {
 	const { subscribe } = TOASTS;
