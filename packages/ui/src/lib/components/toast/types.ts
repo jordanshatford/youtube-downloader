@@ -26,9 +26,7 @@ export type ToastFunction = (
 export type ToastPromiseFunction<T> = (promise: Promise<T>, opts: ToastPromiseOptions) => void;
 
 /** Toast component props. */
-export type ToastComponentOptions = Required<
-	Omit<ToastFunctionOptions, 'component' | 'onMount' | 'onRemove'>
->;
+export type ToastComponentOptions = Required<Omit<ToastFunctionOptions, 'onMount' | 'onRemove'>>;
 
 export interface ToastAddOptions {
 	id?: string;

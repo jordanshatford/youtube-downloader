@@ -8,7 +8,8 @@ import type {
 	ToastPosition,
 	ToastComponent,
 	ToastPromiseFunction,
-	ToastAddOptions
+	ToastAddOptions,
+	ToastComponentOptions
 } from './types';
 
 const TOASTS = writable<ToastComponent[]>([]);
@@ -21,7 +22,7 @@ function addToast(
 ) {
 	const uuid = id ?? crypto.randomUUID();
 
-	const { closable, duration, infinite, onMount, onRemove } = { ...DEFAULT_OPTIONS, ...opts };
+	const { closable, duration, infinite, onMount, onRemove } = { ...get(options), ...opts };
 
 	const props: ToastComponent = {
 		id: uuid,
@@ -70,13 +71,13 @@ const clear = () => {
 	TOASTS.set([]);
 };
 
-const info: ToastFunction = (title, description, opts = DEFAULT_OPTIONS) =>
+const info: ToastFunction = (title, description, opts = get(options)) =>
 	addToast('info', title, description, { opts });
-const success: ToastFunction = (title, description, opts = DEFAULT_OPTIONS) =>
+const success: ToastFunction = (title, description, opts = get(options)) =>
 	addToast('success', title, description, { opts });
-const warning: ToastFunction = (title, description, opts = DEFAULT_OPTIONS) =>
+const warning: ToastFunction = (title, description, opts = get(options)) =>
 	addToast('warning', title, description, { opts });
-const error: ToastFunction = (title, description, opts = DEFAULT_OPTIONS) =>
+const error: ToastFunction = (title, description, opts = get(options)) =>
 	addToast('error', title, description, { opts });
 const promise: ToastPromiseFunction<unknown> = (promise, opts) => {
 	if (promise instanceof Promise === false) throw Error('`promise` is not a valid Promise.');
@@ -96,9 +97,12 @@ const promise: ToastPromiseFunction<unknown> = (promise, opts) => {
 		})
 		.finally(() => {
 			if (!opts?.infinite) {
-				setTimeout(() => {
-					remove(id);
-				}, opts.duration || DEFAULT_OPTIONS.duration);
+				setTimeout(
+					() => {
+						remove(id);
+					},
+					opts.duration ?? get(options).duration
+				);
 			}
 			opts?.onFinish?.();
 		});
@@ -128,3 +132,5 @@ const createToastStore = () => {
 export const toast = createToastStore();
 
 export const position = writable<ToastPosition>(DEFAULT_POSITION);
+
+export const options = writable<ToastComponentOptions>(DEFAULT_OPTIONS);
