@@ -7,9 +7,9 @@
 
 <script lang="ts">
 	import '../app.css';
-	import { onMount } from 'svelte';
-	import { page } from '$app/stores';
 	import { Toasts, NavBar, Footer, ThemeToggle } from '@yd/ui';
+	import { page } from '$app/stores';
+	import { browser } from '$app/environment';
 	import Loading from '$lib/components/Loading.svelte';
 	import { session } from '$lib/stores/session';
 	import { downloads } from '$lib/stores/downloads';
@@ -22,29 +22,31 @@
 		return $session;
 	};
 
-	$: if ($session) {
+	session.setup();
+
+	$: if ($session && browser) {
 		downloads.setupStatusListener();
 	}
-
-	onMount(async () => {
-		await session.setup();
-	});
 </script>
+
+<svelte:head>
+	<title>{config.about.title}</title>
+</svelte:head>
 
 <Toasts position="bottom-right" />
 <div class="h-full min-h-screen dark:bg-zinc-900">
-	{#if $session}
-		<div class="h-full">
-			<NavBar links={navbarLinks} activeLink={$page.url.pathname}>
-				<Logo slot="logo" />
-				<ThemeToggle slot="right" />
-			</NavBar>
-			<main class="mx-auto h-full max-w-7xl px-4 pt-20 sm:px-6 lg:px-8">
+	<div class="h-full">
+		<NavBar links={navbarLinks} activeLink={$page.url.pathname}>
+			<Logo slot="logo" />
+			<ThemeToggle slot="right" />
+		</NavBar>
+		<main class="mx-auto h-full max-w-7xl px-4 pt-20 sm:px-6 lg:px-8">
+			{#if $session}
 				<slot />
-			</main>
-		</div>
-	{:else}
-		<Loading />
-	{/if}
+			{:else}
+				<Loading />
+			{/if}
+		</main>
+	</div>
 </div>
 <Footer copyright={config.copyright} links={footerLinks} githubLink={config.github} />
