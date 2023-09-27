@@ -1,4 +1,5 @@
 import { DownloadIcon, GearIcon, MagnifyingGlassIcon, type IconSource } from '@yd/ui';
+
 export class RoutePathConstants {
 	public static SEARCH = '/';
 	public static DOWNLOADS = '/downloads';
@@ -7,7 +8,7 @@ export class RoutePathConstants {
 	public static TERMS_OF_USE = '/terms';
 }
 
-export const links: { href: string; text: string; icon?: IconSource }[] = [
+export const navbarLinks: { href: string; text: string; icon?: IconSource }[] = [
 	{
 		text: 'Search',
 		href: RoutePathConstants.SEARCH,
@@ -22,5 +23,16 @@ export const links: { href: string; text: string; icon?: IconSource }[] = [
 		text: 'Settings',
 		href: RoutePathConstants.SETTINGS,
 		icon: GearIcon
+	}
+];
+
+export const footerLinks: { href: string; text: string }[] = [
+	{
+		href: RoutePathConstants.FAQ,
+		text: 'faq'
+	},
+	{
+		href: RoutePathConstants.TERMS_OF_USE,
+		text: 'terms of use'
 	}
 ];

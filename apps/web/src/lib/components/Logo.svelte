@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { RoutePathConstants } from '$lib/utils/route';
+	import { RoutePathConstants } from '$lib/routes';
 </script>
 
 <a class="focus:outline-none" href={RoutePathConstants.SEARCH}>

@@ -14,7 +14,7 @@
 	import { session } from '$lib/stores/session';
 	import { downloads } from '$lib/stores/downloads';
 	import config from '$lib/config';
-	import { RoutePathConstants, links } from '$lib/utils/route';
+	import { navbarLinks, footerLinks } from '$lib/routes';
 	import Logo from '$lib/components/Logo.svelte';
 
 	// Use session as token when making requests with client
@@ -35,7 +35,7 @@
 <div class="h-full min-h-screen dark:bg-zinc-900">
 	{#if $session}
 		<div class="h-full">
-			<NavBar {links} activeLink={$page.url.pathname}>
+			<NavBar links={navbarLinks} activeLink={$page.url.pathname}>
 				<Logo slot="logo" />
 				<ThemeToggle slot="right" />
 			</NavBar>
@@ -47,17 +47,4 @@
 		<Loading />
 	{/if}
 </div>
-<Footer
-	copyright={config.copyright}
-	links={[
-		{
-			href: RoutePathConstants.FAQ,
-			text: 'faq'
-		},
-		{
-			href: RoutePathConstants.TERMS_OF_USE,
-			text: 'terms of use'
-		}
-	]}
-	githubLink={config.github}
-/>
+<Footer copyright={config.copyright} links={footerLinks} githubLink={config.github} />
