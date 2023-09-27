@@ -3,8 +3,8 @@ version: '3'
 services:
   api:
     build:
-      context: ./apps/api
-      target: production
+      context: .
+      target: api-production
     image: yd/api:latest
     restart: always
     environment:
@@ -14,7 +14,7 @@ services:
   web:
     build:
       context: .
-      target: production
+      target: web-production
     image: yd/web:latest
     restart: always
     environment:

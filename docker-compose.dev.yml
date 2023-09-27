@@ -6,15 +6,15 @@ services:
       file: docker-compose.yml
       service: api
     build:
-      target: development
+      target: api-development
     volumes:
-      - ./apps/api:/workspace
+      - ./apps/api:/workspace/api
   web:
     extends:
       file: docker-compose.yml
       service: web
     build:
-      target: development
+      target: web-development
     ports:
       - 5173:5173
       - 24678:24678
