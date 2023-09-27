@@ -12,7 +12,7 @@ function createSessionStore() {
 			const session = await SessionService.getSession();
 			set(session.id);
 		} catch (err) {
-			toast.error('Error', 'Failed to get session. Re-attempting shortly.');
+			toast.error('Error', 'Failed to setup session. Re-attempting shortly.');
 			console.error('Connection failed, could not connect to internal server. ', err);
 			_reAttempt();
 		}
