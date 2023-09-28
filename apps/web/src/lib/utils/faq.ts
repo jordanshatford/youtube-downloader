@@ -3,48 +3,43 @@ export const faqs: {
 	description: string;
 }[] = [
 	{
-		title: `Is this site free to use?`,
-		description: `Yes, it is completely free to use as long as you permissions to do so with any copyright material.`
-	},
-	{
-		title: 'Is there a limit to the number of videos I can convert?',
-		description: 'No, there is no limit so you can convert as many videos as you want.'
-	},
-	{
-		title: 'How do I convert a video to MP3?',
+		title: 'Is this site free to use?',
 		description:
-			'To convert a video to MP3, you should first make sure that your preferred format in the settings is MP3. Then, ' +
-			'you can search for a video or paste a link into the search bar on the home page. Then click the plus icon ' +
-			'to start the download process. To see information on the status of the download, navigate to the downloads ' +
-			'page. Once it has completely the download icon located to the right of the respective video on the downloads ' +
-			'page can be clicked to download the audio file.'
+			'Yes, it is completely free to use as long as you have permissions for any copyright material.'
 	},
 	{
-		title: 'How long does it take to convert a video?',
-		description:
-			'The time to convert a video may vary drastically based on the length of the video. On average it should take a minute ' +
-			'or so to convert a video 5 minutes in length.'
+		title: 'Is there a limit to the number of videos I can download and convert?',
+		description: 'No, there is no limit, so you can convert as many videos as you want.'
 	},
 	{
-		title: 'Is it possible to change the audio bitrate or format?',
+		title: 'How do I download and convert videos?',
 		description:
-			'It is currently only possible to change the audio format. This can be done by selecting your preferred format on the ' +
-			'settings page.'
+			'To download and convert a video, you should first make sure that you have configured the settings to your preferred ' +
+			'options. Then you can search for a video by term or with a link to get any relevant videos. Click the plus icon ' +
+			'to queue the video to download. To see information on the status of the download, navigate to the downloads ' +
+			'page. Once it has completely a clickable download button will appear in the table allowing you to download that video ' +
+			'directly to your device.'
+	},
+	{
+		title: 'How long does it take to download and convert a video?',
+		description:
+			'The time to download and convert a video will vary drastically based on the length of the video, and the settings you ' +
+			' have configured. You will be provided with progress information for progress of the download in the downloads page.'
 	},
 	{
 		title: 'Can I convert videos on my mobile device?',
-		description: `Yes, this site supports converting and downloading files on mobile devices.`
+		description: 'Yes, this site supports converting and downloading files on mobile devices.'
 	},
 	{
-		title: 'My download is stuck on (waiting, downloading, processing), what should I do?',
+		title: 'My download appears to be stuck, what should I do?',
 		description:
 			'If your download has been stuck for awhile, you may need to refresh the page and try to download again. If the video is ' +
-			'long then then the downloading portion of the process may take awhile so please be patient.'
+			'long then then the download and processing portions of the process may take awhile so please be patient.'
 	},
 	{
 		title: 'There was an error while trying to download, what should I do?',
 		description:
 			'If an error has occured it is likely that you will not be able to download that video for one of many reasons. You can ' +
-			'attempt the download process again, but if an error occurs multiple times, the video may not be available to download.'
+			'attempt the download process again, but if an error occurs multiple times, the video may be unavailable to download.'
 	}
 ];
