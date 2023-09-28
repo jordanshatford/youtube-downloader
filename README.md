@@ -24,7 +24,7 @@
     <a href="https://github.com/yt-dlp/yt-dlp">
       <img src="https://img.shields.io/badge/Powered%20by-yt--dlp-%23FF0000.svg?style=flat&logo=youtube" alt="Powered by yt-dlp">
     </a>
-    <a href="https://github.com/jordanshatford/youtubeaudiodownloader/blob/main/LICENSE">
+    <a href="https://github.com/jordanshatford/youtube-audio-downloader/blob/main/LICENSE">
       <img src="https://img.shields.io/badge/License-MIT-black.svg?style=flat&logo=license" alt="License: MIT">
     </a>
   </div>
