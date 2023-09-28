@@ -5,7 +5,7 @@
 </script>
 
 <svelte:head>
-	<title>FAQ - {config.about.title}</title>
+	<title>FAQ - {config.head.title}</title>
 </svelte:head>
 
 <div>

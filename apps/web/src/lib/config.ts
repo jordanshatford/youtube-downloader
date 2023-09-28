@@ -4,8 +4,22 @@ export const env = {
 
 const config = {
 	about: {
-		title: 'YouTube Audio Downloader',
 		hostname: 'youtubeaudiodownloader.vercel.app'
+	},
+	head: {
+		title: 'YouTube Downloader',
+		description:
+			'YouTube Downloader is a fast and free online tool to download and convert YouTube videos to various audio or video formats.',
+		url: 'https://youtubeaudiodownloader.vercel.app/',
+		keywords: [
+			'YouTube Downloader',
+			'YouTube Converter',
+			'YouTube',
+			'MP3',
+			'music',
+			'audio',
+			'video'
+		]
 	},
 	github: 'https://github.com/jordanshatford/youtube-audio-downloader',
 	copyright: {

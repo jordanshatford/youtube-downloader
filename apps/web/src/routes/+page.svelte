@@ -11,7 +11,7 @@
 </script>
 
 <svelte:head>
-	<title>Search - {config.about.title}</title>
+	<title>Search - {config.head.title}</title>
 </svelte:head>
 
 <div>

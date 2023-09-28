@@ -34,7 +34,7 @@
 </script>
 
 <svelte:head>
-	<title>Downloads - {config.about.title}</title>
+	<title>Downloads - {config.head.title}</title>
 </svelte:head>
 
 <div>

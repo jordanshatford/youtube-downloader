@@ -12,7 +12,7 @@
 </script>
 
 <svelte:head>
-	<title>Settings - {config.about.title}</title>
+	<title>Settings - {config.head.title}</title>
 </svelte:head>
 
 <div>
