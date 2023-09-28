@@ -29,7 +29,7 @@
 
 	$: content =
 		status.state === DownloadState.DOWNLOADING
-			? `${status.state} ${(status.progress ?? 0).toFixed(1)}%`
+			? `${status.state} ${(status.progress ?? 0).toFixed()}%`
 			: status.state;
 </script>
 
