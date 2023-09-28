@@ -1,7 +1,7 @@
 <p align="center">
   <br />
   <img width="150" height="150" src="./apps/web/static/images/logo.png" alt="Logo">
-  <h1 align="center"><b>YouTube Audio Downloader</b></h1>
+  <h1 align="center"><b>YouTube Downloader</b></h1>
   <div align="center">
     <a href="https://kit.svelte.dev/">
       <img src="https://img.shields.io/badge/Powered%20by-Svelte-%23FF3E00.svg?style=flat&logo=svelte" alt="Powered by SvelteKit">
@@ -29,7 +29,7 @@
     </a>
   </div>
   <p align="center">
-    Fast, high quality YouTube audio downloads
+    Fast, high quality YouTube downloads
     <br />
     <a href="https://youtubeaudiodownloader.vercel.app/"><strong>youtubeaudiodownloader.vercel »</strong></a>
     <br />
@@ -37,14 +37,16 @@
   </p>
 </p>
 
-YouTube Audio Downloader is a full stack application created to allow users to download the audio of specified [YouTube](https://www.youtube.com/) videos. Various audio format options are available based on the users needs.
+YouTube Downloader is a full stack application created to allow users to download [YouTube](https://www.youtube.com/) videos. The user is able to select from a variety of audio and video formats and other configuration options.
 
 ## Features
-  - Search YouTube for videos by term
-  - Convert multiple videos to audio concurrently
-  - Variety of available audio formats to choose (MP3, AAC, FLAC, M4A, OPUS, WAV)
-  - Produces files with high quality audio
-  - Dark and light theme options
+  - Directly search YouTube for videos.
+  - Download and convert multiple videos concurrently.
+  - Download quality options (best, worst).
+  - Options to automatically embed video metadata.
+  - Variety of audio formats supported (AAC, FLAC, M4A, MP3, OPUS, WAV).
+  - Variety of video formats supported (AVI, FLV, MKV, MOV, MP4, WEBM).
+  - Web UI with support for dark and light themes.
 
 # Developer Guide
 Please refer to the [contributing guide](CONTRIBUTING.md) for how to install the project for development purposes.
@@ -56,6 +58,6 @@ Please refer to the [contributing guide](CONTRIBUTING.md) for how to install the
 - `web`: A web application developed in [SvelteKit](https://kit.svelte.dev/).
 
 ### Packages:
-- `client`: A TypeScript API client generated from the OpenAPI specification for the API using [OpenAPI Typescript Codegen](https://github.com/ferdikoomen/openapi-typescript-codegen/blob/master/docs/basic-usage.md).
+- `client`: A TypeScript API client generated from the OpenAPI specification for the API using [OpenAPI TypeScript Codegen](https://github.com/ferdikoomen/openapi-typescript-codegen/blob/master/docs/basic-usage.md).
 - `config`: Common configs shared between other packages and apps in the monorepo.
 - `ui`: A UI library used by the project developed in [Svelte](https://svelte.dev/).

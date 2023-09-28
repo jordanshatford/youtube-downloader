@@ -1,8 +1,8 @@
 {
   "openapi": "3.1.0",
   "info": {
-    "title": "youtube-audio-downloader-api",
-    "summary": "API to search and download YouTube videos in various audio formats.",
+    "title": "youtube-downloader-api",
+    "summary": "API to search and download YouTube videos in various formats.",
     "contact": {
       "name": "Jordan Shatford",
       "url": "https://github.com/jordanshatford/youtube-audio-downloader"
@@ -439,10 +439,10 @@
       "AudioFormat": {
         "type": "string",
         "enum": [
-          "mp3",
           "aac",
           "flac",
           "m4a",
+          "mp3",
           "opus",
           "wav"
         ],

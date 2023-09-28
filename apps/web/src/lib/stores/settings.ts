@@ -16,7 +16,7 @@ function createSettingsStore() {
 		quality: DownloadQuality.BEST,
 		embed_metadata: true
 	};
-  const DEFAULT_VIDEO_FORMAT: VideoFormat = VideoFormat.MP4;
+	const DEFAULT_VIDEO_FORMAT: VideoFormat = VideoFormat.MP4;
 
 	const { subscribe, set, update } = writable(DEFAULT_SETTINGS);
 

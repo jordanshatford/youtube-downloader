@@ -1,7 +1,7 @@
 [project]
-name = "youtube-audio-downloader-api"
+name = "youtube-downloader-api"
 version = "1.0.0"
-description = "API to search and download YouTube videos in various audio formats."
+description = "API to search and download YouTube videos in various formats."
 readme = "../README.md"
 requires-python = ">=3.11"
 license = {text = "MIT License"}

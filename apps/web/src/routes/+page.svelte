@@ -16,7 +16,7 @@
 
 <div>
 	<Title>Search</Title>
-	<Description>Search YouTube for the videos you want to download and convert to audio</Description>
+	<Description>Search YouTube for the videos you want to download.</Description>
 	<div class="mx-auto max-w-xl overflow-hidden md:max-w-xl">
 		<div class="md:flex">
 			<div class="mt-4 w-full">

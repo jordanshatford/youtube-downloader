@@ -39,7 +39,7 @@
 
 <div>
 	<Title>Downloads</Title>
-	<Description>View videos being converted</Description>
+	<Description>View videos being downloaded and converted.</Description>
 	<div class="mt-4 flex flex-col">
 		<div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
 			<div class="inline-block min-w-full py-2 align-middle sm:px-6 lg:px-8">
@@ -71,8 +71,8 @@
 									{#if [DownloadState.DONE, DownloadState.ERROR].includes(row.status.state)}
 										<Confirm
 											variant="error"
-											title="Delete Audio?"
-											description="Are you sure you want to delete this audio? Deleting is permanent."
+											title="Delete download?"
+											description="Are you sure you want to delete this download? Deleting is permanent."
 											cancelText="Cancel"
 											confirmText="Delete"
 											let:confirm={onConfirm}

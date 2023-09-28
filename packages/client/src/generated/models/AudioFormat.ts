@@ -4,10 +4,10 @@
 /* eslint-disable */
 
 export enum AudioFormat {
-  MP3 = 'mp3',
   AAC = 'aac',
   FLAC = 'flac',
   M4A = 'm4a',
+  MP3 = 'mp3',
   OPUS = 'opus',
   WAV = 'wav',
 }
