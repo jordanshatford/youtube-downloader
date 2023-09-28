@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { Title, Description, CollapsibleSection } from '@yd/ui';
+	import { Title, CollapsibleSection } from '@yd/ui';
 	import { faqs } from '$lib/utils/faq';
 	import config from '$lib/config';
 </script>
@@ -9,8 +9,7 @@
 </svelte:head>
 
 <div>
-	<Title>FAQ</Title>
-	<Description>Frequently Asked Questions.</Description>
+	<Title>Frequently Asked Questions</Title>
 	<div class="space-y-4 py-8">
 		{#each faqs as faq (faq.title)}
 			<CollapsibleSection {...faq} />

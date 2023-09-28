@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { DownloadState } from '@yd/client';
 	import { DownloadIcon, LoaderIcon, RotateIcon, TrashIcon, Pagination } from '@yd/ui';
-	import { Confirm, Badge, IconButton, Table, Title, Description } from '@yd/ui';
+	import { Confirm, Badge, IconButton, Table, Title } from '@yd/ui';
 	import { downloads } from '$lib/stores/downloads';
 	import StatusBadge from '$lib/components/StatusBadge.svelte';
 	import config from '$lib/config';
@@ -39,7 +39,6 @@
 
 <div>
 	<Title>Downloads</Title>
-	<Description>View videos being downloaded and converted.</Description>
 	<div class="mt-4 flex flex-col">
 		<div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
 			<div class="inline-block min-w-full py-2 align-middle sm:px-6 lg:px-8">

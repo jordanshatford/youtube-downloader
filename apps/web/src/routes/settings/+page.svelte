@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { AudioFormat, DownloadQuality, DownloadType, VideoFormat } from '@yd/client';
-	import { toast, Select, Title, Description } from '@yd/ui';
+	import { toast, Select, Title } from '@yd/ui';
 	import { settings } from '$lib/stores/settings';
 	import config from '$lib/config';
 
@@ -25,7 +25,6 @@
 
 <div>
 	<Title>Settings</Title>
-	<Description>Set preferred settings for the videos you download and convert.</Description>
 	<div class="mx-auto max-w-xl overflow-hidden md:max-w-xl">
 		<div class="mb-2 md:flex">
 			<div class="mt-4 w-full">

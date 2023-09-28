@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { Title, Description } from '@yd/ui';
+	import { Title } from '@yd/ui';
 	import { search } from '$lib/stores/search';
 	import SearchBar from '$lib/components/SearchBar.svelte';
 	import ResultCard from '$lib/components/ResultCard.svelte';
@@ -16,7 +16,6 @@
 
 <div>
 	<Title>Search</Title>
-	<Description>Search YouTube for the videos you want to download.</Description>
 	<div class="mx-auto max-w-xl overflow-hidden md:max-w-xl">
 		<div class="md:flex">
 			<div class="mt-4 w-full">
