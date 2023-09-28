@@ -1,8 +1,10 @@
 <script lang="ts">
-	import { DownloadState } from '@yd/client';
+	import { DownloadState, type DownloadStatus } from '@yd/client';
 	import { Badge, type BadgeVariants } from '@yd/ui';
 
-	export let state: DownloadState = DownloadState.ERROR;
+	export let status: DownloadStatus = {
+		state: DownloadState.ERROR
+	};
 
 	const lookup: Record<DownloadState, BadgeVariants> = {
 		[DownloadState.WAITING]: {
@@ -24,10 +26,15 @@
 			variant: 'success'
 		}
 	};
+
+	$: content =
+		status.state === DownloadState.DOWNLOADING
+			? `${status.state} ${(status.progress ?? 0).toFixed(1)}%`
+			: status.state;
 </script>
 
 <div class="flex h-8 w-36 items-center justify-start">
-	{#key state}
-		<Badge icon {...lookup[state]}>{state}</Badge>
+	{#key status}
+		<Badge icon {...lookup[status.state]}>{content}</Badge>
 	{/key}
 </div>

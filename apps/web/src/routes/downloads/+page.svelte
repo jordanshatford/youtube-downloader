@@ -3,7 +3,7 @@
 	import { DownloadIcon, LoaderIcon, RotateIcon, TrashIcon, Pagination } from '@yd/ui';
 	import { Confirm, Badge, IconButton, Table, Title, Description } from '@yd/ui';
 	import { downloads } from '$lib/stores/downloads';
-	import StateBadge from '$lib/components/StateBadge.svelte';
+	import StatusBadge from '$lib/components/StatusBadge.svelte';
 	import config from '$lib/config';
 
 	let page = 1;
@@ -65,7 +65,7 @@
 							{:else if column.key === 'format'}
 								<Badge>{row.options.format.toUpperCase()}</Badge>
 							{:else if column.key === 'state'}
-								<StateBadge state={row.status.state} />
+								<StatusBadge status={row.status} />
 							{:else if column.key === 'actions'}
 								<div>
 									{#if [DownloadState.DONE, DownloadState.ERROR].includes(row.status.state)}
