@@ -10,7 +10,7 @@
 
 <div>
 	<Title>FAQ</Title>
-	<Description>Frequently Asked Questions</Description>
+	<Description>Frequently Asked Questions.</Description>
 	<div class="space-y-4 py-8">
 		{#each faqs as faq (faq.title)}
 			<CollapsibleSection {...faq} />

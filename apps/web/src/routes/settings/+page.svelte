@@ -17,7 +17,7 @@
 
 <div>
 	<Title>Settings</Title>
-	<Description>Set preferred settings for the videos you convert</Description>
+	<Description>Set preferred settings for the videos you download and convert.</Description>
 	<div class="mx-auto max-w-xl overflow-hidden md:max-w-xl">
 		<div class="mb-2 md:flex">
 			<div class="mt-4 w-full">
