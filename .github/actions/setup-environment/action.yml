@@ -1,5 +1,5 @@
 name: Setup environment
-description: Setup CI environment for running YouTube Audio Downloader
+description: Setup CI environment
 inputs:
   node-version:
     description: Node version to use
