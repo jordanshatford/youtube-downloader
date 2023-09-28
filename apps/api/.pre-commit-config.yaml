@@ -3,31 +3,35 @@ repos:
 -   repo: https://github.com/pre-commit/pre-commit-hooks
     rev: v4.4.0
     hooks:
-    -   id: end-of-file-fixer
     -   id: trailing-whitespace
-    -   id: requirements-txt-fixer
+    -   id: end-of-file-fixer
+    -   id: debug-statements
+    -   id: check-yaml
     -   id: double-quote-string-fixer
--   repo: https://github.com/PyCQA/flake8
-    rev: 6.1.0
-    hooks:
-    -   id: flake8
--   repo: https://github.com/pre-commit/mirrors-autopep8
-    rev: v2.0.4
-    hooks:
-    -   id: autopep8
--   repo: https://github.com/pre-commit/mirrors-mypy
-    rev: v1.5.1
-    hooks:
-    -   id: mypy
+    -   id: requirements-txt-fixer
 -   repo: https://github.com/asottile/reorder_python_imports
-    rev: v3.10.0
+    rev: v3.11.0
     hooks:
     -   id: reorder-python-imports
+        args: [--py311-plus]
 -   repo: https://github.com/asottile/add-trailing-comma
     rev: v3.1.0
     hooks:
     -   id: add-trailing-comma
 -   repo: https://github.com/asottile/pyupgrade
-    rev: v3.10.1
+    rev: v3.13.0
     hooks:
     -   id: pyupgrade
+        args: [--py311-plus]
+-   repo: https://github.com/hhatto/autopep8
+    rev: v2.0.4
+    hooks:
+    -   id: autopep8
+-   repo: https://github.com/PyCQA/flake8
+    rev: 6.1.0
+    hooks:
+    -   id: flake8
+-   repo: https://github.com/pre-commit/mirrors-mypy
+    rev: v1.5.1
+    hooks:
+    -   id: mypy

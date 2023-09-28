@@ -1,8 +1,8 @@
 import os
 import threading
 import time
+from collections.abc import Callable
 from typing import Any
-from typing import Callable
 from typing import Literal
 from typing import NotRequired
 from typing import TypeAlias
