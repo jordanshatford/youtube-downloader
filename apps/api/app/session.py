@@ -5,7 +5,7 @@ from datetime import datetime
 from datetime import timedelta
 from queue import Queue
 
-from .core.managers import AudioDownloadManager
+from .core.managers import DownloadManager
 from .core.threads import RepeatedTimer
 from .models import VideoWithOptionsAndStatus
 
@@ -15,7 +15,7 @@ class Session:
         self.id = id
         self._output_dir = os.path.join(session_dir, id)
         self._last_use = datetime.now()
-        self.download_manager = AudioDownloadManager(
+        self.download_manager = DownloadManager(
             self._output_dir, self._status_hook,
         )
         self.status_queue: Queue[VideoWithOptionsAndStatus] = Queue()

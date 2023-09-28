@@ -5,7 +5,7 @@ from ..models import VideoWithOptionsAndStatus
 from .threads import YoutubeDownloadThread
 
 
-class AudioDownloadManager:
+class DownloadManager:
     def __init__(
         self, output_dir: str,
         status_hook: Callable[[VideoWithOptionsAndStatus], None],
