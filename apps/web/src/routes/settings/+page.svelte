@@ -2,8 +2,16 @@
 	import { AudioFormat, DownloadQuality, DownloadType, VideoFormat } from '@yd/client';
 	import { toast, Select, Title, Description } from '@yd/ui';
 	import { settings } from '$lib/stores/settings';
-	import { toSelectOptions, formatDescriptions } from '$lib/utils/settings';
 	import config from '$lib/config';
+
+	function toSelectOptions<T extends object>(value: T) {
+		return Object.entries(value).map(([key, value]) => {
+			return {
+				value,
+				text: key
+			};
+		});
+	}
 
 	const lookup: Record<DownloadType, object> = {
 		[DownloadType.AUDIO]: AudioFormat,
@@ -45,9 +53,6 @@
 					options={toSelectOptions(lookup[$settings.type])}
 					bind:value={$settings.format}
 				/>
-				<p class="mx-auto mt-4 max-w-xl text-center text-zinc-500">
-					{formatDescriptions[$settings.format]}
-				</p>
 			</div>
 		</div>
 	</div>
