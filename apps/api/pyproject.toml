@@ -10,4 +10,4 @@ authors = [
 ]
 
 [project.urls]
-Repository = "https://github.com/jordanshatford/youtube-audio-downloader"
+Repository = "https://github.com/jordanshatford/youtube-downloader"

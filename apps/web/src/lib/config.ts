@@ -21,7 +21,7 @@ const config = {
 			'video'
 		]
 	},
-	github: 'https://github.com/jordanshatford/youtube-audio-downloader',
+	github: 'https://github.com/jordanshatford/youtube-downloader',
 	copyright: {
 		owner: 'Jordan Shatford',
 		year: 2022
