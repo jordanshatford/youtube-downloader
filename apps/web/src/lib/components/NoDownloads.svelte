@@ -1,0 +1,21 @@
+<script lang="ts">
+	import { RoutePathConstants } from '$lib/routes';
+</script>
+
+<div class="-mt-16 grid h-screen place-content-center px-4">
+	<div class="text-center">
+		<h1 class="text-7xl font-black text-gray-300 dark:text-gray-600">Error</h1>
+		<p class="text-2xl font-bold tracking-tight text-gray-900 dark:text-white sm:text-4xl">
+			No downloads found.
+		</p>
+		<p class="mt-2 text-gray-500 dark:text-gray-400">
+			Try adding new downloads via the search page.
+		</p>
+		<a
+			href={RoutePathConstants.SEARCH}
+			class="mt-6 inline-block rounded bg-indigo-600 px-5 py-3 text-sm font-medium text-white hover:bg-indigo-700 focus:outline-none"
+		>
+			Go back to search
+		</a>
+	</div>
+</div>
