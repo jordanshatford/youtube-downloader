@@ -10,5 +10,4 @@ authors = [
 ]
 
 [project.urls]
-Documentation = "https://github.com/jordanshatford/youtube-audio-downloader/tree/main/docs"
 Repository = "https://github.com/jordanshatford/youtube-audio-downloader"
