@@ -10,8 +10,10 @@ from typing import TypedDict
 
 from yt_dlp import YoutubeDL
 
+from ..models import DownloadOptions
 from ..models import DownloadState
 from ..models import DownloadStatus
+from ..models import DownloadType
 from ..models import VideoWithOptions
 from ..models import VideoWithOptionsAndStatus
 
@@ -50,6 +52,19 @@ def get_progress(info: ProgressHookInfo) -> float | None:
     return (downloaded_bytes / total_bytes) * 100
 
 
+def get_ytdlp_format(options: DownloadOptions) -> str:
+    quality = options.quality.value
+    extension = options.format.value
+    # best[ext=X]/best or worst[ext=X]/worst
+    if (options.type == DownloadType.VIDEO):
+        return f'{quality}[ext={extension}]/{quality}'
+    # bestaudio[ext=X]/bestaudio/best or worstaudio[ext=X]/worstaudio/worst
+    elif (options.type == DownloadType.AUDIO):
+        return f'{quality}audio[ext={extension}]/{quality}audio/{quality}'
+    # Default to returning the quality (ie 'best' or 'worst')
+    return quality
+
+
 class YoutubeDownloadThread(threading.Thread):
     def __init__(
         self,
@@ -61,19 +76,27 @@ class YoutubeDownloadThread(threading.Thread):
         self._output_directory = output_directory
         self._status_hook = status_hook
         self.status = DownloadStatus(state=DownloadState.WAITING)
-        quality = self.video.options.quality.value
-        postprocessors: list[dict[str, str]] = [
-            {
+        postprocessors: list[dict[str, str]] = []
+        # Only append audio postprocessor if we are downloading audio format.
+        if self.video.options.type == DownloadType.AUDIO:
+            postprocessors.append({
                 'key': 'FFmpegExtractAudio',
                 'preferredcodec': self.video.options.format.value,
                 'preferredquality': '192',
-            },
-        ]
+            })
+        # Only append video postprocessor if we are downloading video format.
+        if self.video.options.type == DownloadType.VIDEO:
+            postprocessors.append(
+                {
+                    'key': 'FFmpegVideoConvertor',
+                    'preferedformat': self.video.options.format.value,
+                },
+            )
         # Only append metadata to the video if enabled by user
         if self.video.options.embed_metadata:
             postprocessors.append({'key': 'FFmpegMetadata'})
         YOUTUBE_DL_OPTIONS = {
-            'format': f'{quality}audio/{quality}',
+            'format': get_ytdlp_format(self.video.options),
             'progress_hooks': [self.progress_hook],
             'postprocessor_hooks': [self.postprocessor_hook],
             'post_hooks': [self.post_hook],

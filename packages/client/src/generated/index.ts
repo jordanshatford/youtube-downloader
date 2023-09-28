@@ -14,10 +14,12 @@ export type { DownloadOptions } from './models/DownloadOptions';
 export { DownloadQuality } from './models/DownloadQuality';
 export { DownloadState } from './models/DownloadState';
 export type { DownloadStatus } from './models/DownloadStatus';
+export { DownloadType } from './models/DownloadType';
 export type { HTTPValidationError } from './models/HTTPValidationError';
 export type { Session } from './models/Session';
 export type { ValidationError } from './models/ValidationError';
 export type { Video } from './models/Video';
+export { VideoFormat } from './models/VideoFormat';
 export type { VideoWithOptions } from './models/VideoWithOptions';
 export type { VideoWithOptionsAndStatus } from './models/VideoWithOptionsAndStatus';
 

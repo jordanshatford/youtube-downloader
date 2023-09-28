@@ -16,6 +16,8 @@ from ..dependencies import DependsSession
 from ..models import AudioFormat
 from ..models import AvailableDownloadOptions
 from ..models import DownloadQuality
+from ..models import DownloadType
+from ..models import VideoFormat
 from ..models import VideoWithOptions
 from ..models import VideoWithOptionsAndStatus
 from ..session import Session
@@ -53,7 +55,8 @@ def put_downloads(
 @router.get('/options')
 def get_downloads_options(session: DependsSession) -> AvailableDownloadOptions:
     return AvailableDownloadOptions(
-        format=[f for f in AudioFormat],
+        type=[t for t in DownloadType],
+        format=[f for f in AudioFormat] + [f for f in VideoFormat],
         quality=[q for q in DownloadQuality],
         embed_metadata=[True, False],
     )
@@ -94,7 +97,10 @@ def get_download(download: DependsDownload) -> VideoWithOptionsAndStatus:
     '/{video_id}/file', response_class=FileResponse,
     responses=depends_download_responses | {
         status.HTTP_200_OK: {
-            'content': {'audio/*': {'schema': {'type': 'file'}}},
+            'content': {
+                'audio/*': {'schema': {'type': 'file'}},
+                'video/*': {'schema': {'type': 'file'}},
+            },
         },
     },
 )

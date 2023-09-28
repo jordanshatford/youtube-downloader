@@ -1,4 +1,4 @@
-import { AudioFormat } from '@yd/client';
+import { AudioFormat, VideoFormat } from '@yd/client';
 
 // Map enum to select options
 export function toSelectOptions<T extends object>(value: T) {
@@ -10,7 +10,7 @@ export function toSelectOptions<T extends object>(value: T) {
 	});
 }
 
-export const audioFormatDescriptions = {
+export const formatDescriptions: Record<AudioFormat | VideoFormat, string> = {
 	[AudioFormat.MP3]:
 		'An MP3 file is an audio file saved in a compressed audio format developed by the ' +
 		'Moving Picture Experts Group (MPEG) that uses "Layer 3" audio compression ' +
@@ -49,5 +49,11 @@ export const audioFormatDescriptions = {
 		'utilized for storing waveform data. WAV files may contain audio recordings with different sampling ' +
 		'rates and bitrates but are often saved in a 44.1 kHz, 16-bit, stereo format, which is the standard ' +
 		'format used for CD audio. The WAVE format is based on the Resource Interchange File Format (RIFF), ' +
-		'a file container format primarily used to save video and sound.'
+		'a file container format primarily used to save video and sound.',
+	[VideoFormat.AVI]: '',
+	[VideoFormat.FLV]: '',
+	[VideoFormat.MKV]: '',
+	[VideoFormat.MOV]: '',
+	[VideoFormat.MP4]: '',
+	[VideoFormat.WEBM]: ''
 };

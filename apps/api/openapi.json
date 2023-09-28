@@ -406,6 +406,11 @@
                 "schema": {
                   "type": "file"
                 }
+              },
+              "video/*": {
+                "schema": {
+                  "type": "file"
+                }
               }
             }
           },
@@ -445,9 +450,23 @@
       },
       "AvailableDownloadOptions": {
         "properties": {
+          "type": {
+            "items": {
+              "$ref": "#/components/schemas/DownloadType"
+            },
+            "type": "array",
+            "title": "Type"
+          },
           "format": {
             "items": {
-              "$ref": "#/components/schemas/AudioFormat"
+              "anyOf": [
+                {
+                  "$ref": "#/components/schemas/AudioFormat"
+                },
+                {
+                  "$ref": "#/components/schemas/VideoFormat"
+                }
+              ]
             },
             "type": "array",
             "title": "Format"
@@ -469,6 +488,7 @@
         },
         "type": "object",
         "required": [
+          "type",
           "format",
           "quality",
           "embed_metadata"
@@ -506,8 +526,19 @@
       },
       "DownloadOptions": {
         "properties": {
+          "type": {
+            "$ref": "#/components/schemas/DownloadType"
+          },
           "format": {
-            "$ref": "#/components/schemas/AudioFormat"
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/AudioFormat"
+              },
+              {
+                "$ref": "#/components/schemas/VideoFormat"
+              }
+            ],
+            "title": "Format"
           },
           "quality": {
             "$ref": "#/components/schemas/DownloadQuality"
@@ -519,6 +550,7 @@
         },
         "type": "object",
         "required": [
+          "type",
           "format",
           "quality",
           "embed_metadata"
@@ -588,6 +620,14 @@
           "state"
         ],
         "title": "DownloadStatus"
+      },
+      "DownloadType": {
+        "type": "string",
+        "enum": [
+          "audio",
+          "video"
+        ],
+        "title": "DownloadType"
       },
       "HTTPValidationError": {
         "properties": {
@@ -690,6 +730,18 @@
           "channel"
         ],
         "title": "Video"
+      },
+      "VideoFormat": {
+        "type": "string",
+        "enum": [
+          "avi",
+          "flv",
+          "mkv",
+          "mov",
+          "mp4",
+          "webm"
+        ],
+        "title": "VideoFormat"
       },
       "VideoWithOptions": {
         "properties": {

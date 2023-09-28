@@ -37,6 +37,11 @@ class DownloadStatus(BaseModel):
     postprocessor: str | None = None
 
 
+class DownloadType(str, enum.Enum):
+    AUDIO = 'audio'
+    VIDEO = 'video'
+
+
 class AudioFormat(str, enum.Enum):
     MP3 = 'mp3'
     AAC = 'aac'
@@ -46,19 +51,30 @@ class AudioFormat(str, enum.Enum):
     WAV = 'wav'
 
 
+class VideoFormat(str, enum.Enum):
+    AVI = 'avi'
+    FLV = 'flv'
+    MKV = 'mkv'
+    MOV = 'mov'
+    MP4 = 'mp4'
+    WEBM = 'webm'
+
+
 class DownloadQuality(str, enum.Enum):
     BEST = 'best'
     WORST = 'worst'
 
 
 class AvailableDownloadOptions(BaseModel):
-    format: list[AudioFormat]
+    type: list[DownloadType]
+    format: list[AudioFormat | VideoFormat]
     quality: list[DownloadQuality]
     embed_metadata: list[bool]
 
 
 class DownloadOptions(BaseModel):
-    format: AudioFormat
+    type: DownloadType
+    format: AudioFormat | VideoFormat
     quality: DownloadQuality
     embed_metadata: bool
 
