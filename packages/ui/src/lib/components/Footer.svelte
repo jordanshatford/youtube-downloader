@@ -31,6 +31,7 @@
 					class="text-2xl text-zinc-500 hover:text-indigo-800 dark:text-zinc-200 dark:hover:text-indigo-600"
 					target="_blank"
 					rel="noreferrer"
+					aria-label="See source code on GitHub"
 				>
 					<Icon src={GithubIcon} class="h-6 w-6" />
 				</a>
