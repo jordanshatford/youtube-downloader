@@ -55,20 +55,6 @@
 		{:else if activePage === 'downloadoptions'}
 			<div class="mt-2">
 				<Select
-					id="quality"
-					on:change={() => toast.success('Updated', 'Quality settings updated successfully.')}
-					title="Quality:"
-					options={toSelectOptions(DownloadQuality)}
-					bind:value={$settings.quality}
-				/>
-				<Select
-					id="metadata"
-					on:change={() => toast.success('Updated', 'Embedding settings updated successfully.')}
-					title="Embed metadata:"
-					options={toSelectOptions({ YES: true, NO: false })}
-					bind:value={$settings.embed_metadata}
-				/>
-				<Select
 					id="type"
 					on:change={() => toast.success('Updated', 'Type settings updated successfully.')}
 					title="Type:"
@@ -81,6 +67,20 @@
 					title="Format:"
 					options={toSelectOptions(lookup[$settings.type])}
 					bind:value={$settings.format}
+				/>
+				<Select
+					id="quality"
+					on:change={() => toast.success('Updated', 'Quality settings updated successfully.')}
+					title="Quality:"
+					options={toSelectOptions(DownloadQuality)}
+					bind:value={$settings.quality}
+				/>
+				<Select
+					id="metadata"
+					on:change={() => toast.success('Updated', 'Embedding settings updated successfully.')}
+					title="Embed metadata:"
+					options={toSelectOptions({ YES: true, NO: false })}
+					bind:value={$settings.embed_metadata}
 				/>
 			</div>
 		{/if}
