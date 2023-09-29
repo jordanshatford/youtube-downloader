@@ -7,7 +7,7 @@ import {
 	type VideoWithOptionsAndStatus
 } from '@yd/client';
 import { toast } from '@yd/ui';
-import { settings } from '$lib/stores/settings';
+import { settings, userSettings } from '$lib/stores/settings';
 
 interface VideoWithExtra extends VideoWithOptionsAndStatus {
 	awaitingFileBlob?: boolean;
@@ -110,6 +110,12 @@ function createDownloadsStore() {
 			const oldValue = state[id];
 			const value = { ...oldValue, ...updatedValue };
 			state[id] = value;
+			// Automatically download file if enabled by the user.
+			if (get(userSettings).autoDownloadOnComplete) {
+				if (updatedValue.status?.state === DownloadState.DONE) {
+					getFile(value.id);
+				}
+			}
 			return state;
 		});
 	}

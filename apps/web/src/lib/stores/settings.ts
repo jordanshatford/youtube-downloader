@@ -70,3 +70,35 @@ function createSettingsStore() {
 }
 
 export const settings = createSettingsStore();
+
+function createUserSettingsStore() {
+	const USER_SETTINGS_KEY = 'settings';
+	const DEFAULT_USER_SETTINGS = {
+		autoDownloadOnComplete: false
+	};
+
+	const { subscribe, set, update } = writable(DEFAULT_USER_SETTINGS);
+
+	if (browser) {
+		const data = localStorage?.getItem(USER_SETTINGS_KEY);
+		if (data !== null) {
+			const parsedData = JSON.parse(data) as typeof DEFAULT_USER_SETTINGS;
+			set(parsedData);
+		}
+	}
+
+	subscribe((value) => {
+		if (browser) {
+			localStorage?.setItem(USER_SETTINGS_KEY, JSON.stringify(value));
+		}
+	});
+
+	return {
+		subscribe,
+		set,
+		update,
+		reset: () => set(DEFAULT_USER_SETTINGS)
+	};
+}
+
+export const userSettings = createUserSettingsStore();
