@@ -72,7 +72,7 @@ function createSettingsStore() {
 export const settings = createSettingsStore();
 
 function createUserSettingsStore() {
-	const USER_SETTINGS_KEY = 'settings';
+	const USER_SETTINGS_KEY = 'userSettings';
 	const DEFAULT_USER_SETTINGS = {
 		autoDownloadOnComplete: false
 	};
