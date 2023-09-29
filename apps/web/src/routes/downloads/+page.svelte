@@ -92,7 +92,7 @@
 											<IconButton
 												on:click={async () => await downloads.restart(row.id)}
 												src={RotateIcon}
-												class="h-10 w-10 hover:text-indigo-800 dark:hover:text-indigo-600"
+												class="h-10 w-10 hover:text-brand-600"
 											/>
 										{:else if row.status.state === DownloadState.DONE}
 											{#if row.awaitingFileBlob}
@@ -101,7 +101,7 @@
 												<IconButton
 													on:click={async () => await downloads.getFile(row.id)}
 													src={DownloadIcon}
-													class="h-10 w-10 hover:text-indigo-800 dark:hover:text-indigo-600"
+													class="h-10 w-10 hover:text-brand-600"
 												/>
 											{/if}
 										{/if}

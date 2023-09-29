@@ -28,7 +28,7 @@
 			bind:value={searchTerm}
 			on:keypress={dispatchSearch}
 			type="search"
-			class="-ml-10 w-full rounded-lg border-2 border-zinc-200 py-2 pl-10 pr-3 text-zinc-600 outline-none focus:border-indigo-600 focus:ring-transparent dark:border-zinc-600 dark:bg-zinc-800 dark:text-zinc-200 dark:disabled:bg-zinc-600"
+			class="-ml-10 w-full rounded-lg border-2 border-zinc-200 py-2 pl-10 pr-3 text-zinc-600 outline-none focus:border-brand-600 focus:ring-transparent dark:border-zinc-600 dark:bg-zinc-800 dark:text-zinc-200 dark:focus:border-brand-600 dark:disabled:bg-zinc-600"
 			placeholder="search"
 		/>
 	</div>

@@ -14,7 +14,7 @@ export default {
 				dark: '0px 2px 4px 0px hsla(0,0%,0%,0.14), 0px 2px 4px 0px hsla(0,0%,0%,0.12), 0px 2px 4px -1px hsla(0,0%,0%,0.2);'
 			},
 			colors: {
-				brand: colors.indigo
+				brand: colors.blue
 			}
 		}
 	},

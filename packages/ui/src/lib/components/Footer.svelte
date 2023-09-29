@@ -16,7 +16,7 @@
 		>
 			{#each links as link, index (link.href)}
 				{@const isLast = index === links.length - 1}
-				<a href={link.href} class="hover:text-indigo-800 dark:hover:text-indigo-600">
+				<a href={link.href} class="hover:text-brand-600">
 					{link.text}
 				</a>
 				{#if !isLast}
@@ -28,7 +28,7 @@
 			{#if githubLink}
 				<a
 					href={githubLink}
-					class="text-2xl text-zinc-500 hover:text-indigo-800 dark:text-zinc-200 dark:hover:text-indigo-600"
+					class="text-2xl text-zinc-500 hover:text-brand-600 dark:text-zinc-200 dark:hover:text-brand-600"
 					target="_blank"
 					rel="noreferrer"
 					aria-label="See source code on GitHub"
