@@ -12,6 +12,7 @@ export { default as IconButton } from './components/IconButton.svelte';
 export { default as Pagination } from './components/Pagination.svelte';
 export { default as Select } from './components/Select.svelte';
 export { default as Table } from './components/Table.svelte';
+export { default as Tabs } from './components/Tabs.svelte';
 
 // Icon exports
 export * from './icons';
