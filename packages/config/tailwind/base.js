@@ -33,5 +33,5 @@ export default {
 			textColor: ['responsive', 'dark', 'group-hover', 'focus-within', 'hover', 'focus', 'disabled']
 		}
 	},
-	plugins: []
+	plugins: [require('@tailwindcss/forms')]
 };
