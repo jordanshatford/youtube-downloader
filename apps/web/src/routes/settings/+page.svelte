@@ -29,24 +29,28 @@
 		<div class="mb-2 md:flex">
 			<div class="mt-4 w-full">
 				<Select
+					id="quality"
 					on:change={() => toast.success('Updated', 'Quality settings updated successfully.')}
 					title="Quality:"
 					options={toSelectOptions(DownloadQuality)}
 					bind:value={$settings.quality}
 				/>
 				<Select
+					id="metadata"
 					on:change={() => toast.success('Updated', 'Embedding settings updated successfully.')}
 					title="Embed metadata:"
 					options={toSelectOptions({ YES: true, NO: false })}
 					bind:value={$settings.embed_metadata}
 				/>
 				<Select
+					id="type"
 					on:change={() => toast.success('Updated', 'Type settings updated successfully.')}
 					title="Type:"
 					options={toSelectOptions(DownloadType)}
 					bind:value={$settings.type}
 				/>
 				<Select
+					id="format"
 					on:change={() => toast.success('Updated', 'Format settings updated successfully.')}
 					title="Format:"
 					options={toSelectOptions(lookup[$settings.type])}

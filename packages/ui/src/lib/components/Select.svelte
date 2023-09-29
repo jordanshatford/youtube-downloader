@@ -8,6 +8,7 @@
 <div>
 	<p class="p-2 dark:text-white">{title}</p>
 	<select
+		{...$$restProps}
 		{disabled}
 		on:change
 		bind:value

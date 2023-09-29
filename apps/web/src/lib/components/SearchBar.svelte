@@ -23,6 +23,7 @@
 			/>
 		</div>
 		<input
+			id="search"
 			disabled={loading}
 			bind:value={searchTerm}
 			on:keypress={dispatchSearch}
