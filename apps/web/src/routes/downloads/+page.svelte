@@ -2,7 +2,7 @@
 	import { Badge, Pagination, Table, Title } from '@yd/ui';
 	import { downloads } from '$lib/stores/downloads';
 	import DownloadActions from '$lib/components/DownloadActions.svelte';
-	import NoDownloads from '$lib/components/NoDownloads.svelte';
+	import NotFound from '$lib/components/NotFound.svelte';
 	import StatusBadge from '$lib/components/StatusBadge.svelte';
 	import config from '$lib/config';
 
@@ -39,7 +39,11 @@
 </svelte:head>
 
 {#if totalDownloads === 0}
-	<NoDownloads />
+	<NotFound
+		title="Error"
+		subtitle="No downloads found."
+		description="Try adding new downloads via the search page."
+	/>
 {:else}
 	<div>
 		<Title>Downloads</Title>
