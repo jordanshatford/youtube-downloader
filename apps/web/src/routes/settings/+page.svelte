@@ -28,10 +28,18 @@
 
 	let activePage = tabs[0].key;
 
-	const lookup: Record<DownloadType, object> = {
-		[DownloadType.AUDIO]: AudioFormat,
-		[DownloadType.VIDEO]: VideoFormat
-	};
+	$: formatGroups = [
+		{
+			text: 'Audio',
+			options: toSelectOptions(AudioFormat),
+			disabled: $settings.type !== DownloadType.AUDIO
+		},
+		{
+			text: 'Video',
+			options: toSelectOptions(VideoFormat),
+			disabled: $settings.type !== DownloadType.VIDEO
+		}
+	];
 </script>
 
 <svelte:head>
@@ -65,7 +73,7 @@
 					id="format"
 					on:change={() => toast.success('Updated', 'Format settings updated successfully.')}
 					title="Format:"
-					options={toSelectOptions(lookup[$settings.type])}
+					groups={formatGroups}
 					bind:value={$settings.format}
 				/>
 				<Select
