@@ -1,8 +1,7 @@
 <script lang="ts">
-	import { DownloadState } from '@yd/client';
-	import { DownloadIcon, LoaderIcon, RotateIcon, TrashIcon, Pagination } from '@yd/ui';
-	import { Confirm, Badge, IconButton, Table, Title } from '@yd/ui';
+	import { Badge, Pagination, Table, Title } from '@yd/ui';
 	import { downloads } from '$lib/stores/downloads';
+	import DownloadActions from '$lib/components/DownloadActions.svelte';
 	import NoDownloads from '$lib/components/NoDownloads.svelte';
 	import StatusBadge from '$lib/components/StatusBadge.svelte';
 	import config from '$lib/config';
@@ -71,41 +70,7 @@
 								{:else if column.key === 'state'}
 									<StatusBadge status={row.status} />
 								{:else if column.key === 'actions'}
-									<div>
-										{#if [DownloadState.DONE, DownloadState.ERROR].includes(row.status.state)}
-											<Confirm
-												variant="error"
-												title="Delete download?"
-												description="Are you sure you want to delete this download? Deleting is permanent."
-												cancelText="Cancel"
-												confirmText="Delete"
-												let:confirm={onConfirm}
-											>
-												<IconButton
-													on:click={() => onConfirm(() => downloads.remove(row.id))}
-													src={TrashIcon}
-													class="mr-2 h-10 w-10 hover:text-red-600"
-												/>
-											</Confirm>
-										{/if}
-										{#if [DownloadState.ERROR].includes(row.status.state)}
-											<IconButton
-												on:click={async () => await downloads.restart(row.id)}
-												src={RotateIcon}
-												class="h-10 w-10 hover:text-brand-600"
-											/>
-										{:else if row.status.state === DownloadState.DONE}
-											{#if row.awaitingFileBlob}
-												<IconButton src={LoaderIcon} class="h-10 w-10 animate-spin" />
-											{:else}
-												<IconButton
-													on:click={async () => await downloads.getFile(row.id)}
-													src={DownloadIcon}
-													class="h-10 w-10 hover:text-brand-600"
-												/>
-											{/if}
-										{/if}
-									</div>
+									<DownloadActions video={row} />
 								{/if}
 							</span>
 						</Table>

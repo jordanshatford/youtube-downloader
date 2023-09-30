@@ -9,7 +9,7 @@ import {
 import { toast } from '@yd/ui';
 import { settings, userSettings } from '$lib/stores/settings';
 
-interface VideoWithExtra extends VideoWithOptionsAndStatus {
+export interface VideoWithExtra extends VideoWithOptionsAndStatus {
 	awaitingFileBlob?: boolean;
 }
 

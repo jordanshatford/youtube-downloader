@@ -17,7 +17,7 @@ export {
 	Moon as MoonIcon,
 	Plus as PlusIcon,
 	PlusCircle as PlusCircleIcon,
-	ArrowPath as RotateIcon,
+	ArrowPath as ArrowPathIcon,
 	Sun as SunIcon,
 	Trash as TrashIcon,
 	XMark as XMarkIcon
