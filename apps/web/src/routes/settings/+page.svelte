@@ -15,14 +15,14 @@
 
 	let tabs = [
 		{
-			key: 'general',
-			title: 'General',
-			icon: GearIcon
-		},
-		{
 			key: 'downloadoptions',
 			title: 'Download Options',
 			icon: DownloadIcon
+		},
+		{
+			key: 'other',
+			title: 'Other',
+			icon: GearIcon
 		}
 	];
 
@@ -62,18 +62,7 @@
 <div>
 	<div class="mx-auto max-w-xl overflow-hidden md:max-w-xl">
 		<Tabs {tabs} bind:active={activePage} />
-		{#if activePage === 'general'}
-			<div class="mt-2">
-				<Select
-					id="autoDownload"
-					title="Automatically download when complete:"
-					bind:value={$userSettings.autoDownloadOnComplete}
-					options={toSelectOptions({ YES: true, NO: false })}
-					on:change={() =>
-						toast.success('Updated', 'Automatic download settings updated successfully.')}
-				/>
-			</div>
-		{:else if activePage === 'downloadoptions'}
+		{#if activePage === 'downloadoptions'}
 			<div class="mt-2">
 				<Select
 					id="type"
@@ -102,6 +91,17 @@
 					bind:value={$settings.embed_metadata}
 					options={toSelectOptions({ YES: true, NO: false })}
 					on:change={() => toast.success('Updated', 'Embedding settings updated successfully.')}
+				/>
+			</div>
+		{:else if activePage === 'other'}
+			<div class="mt-2">
+				<Select
+					id="autoDownload"
+					title="Automatically download when complete:"
+					bind:value={$userSettings.autoDownloadOnComplete}
+					options={toSelectOptions({ YES: true, NO: false })}
+					on:change={() =>
+						toast.success('Updated', 'Automatic download settings updated successfully.')}
 				/>
 			</div>
 		{/if}
