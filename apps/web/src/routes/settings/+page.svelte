@@ -40,6 +40,19 @@
 			disabled: $settings.type !== DownloadType.VIDEO
 		}
 	];
+
+	function onTypeChange() {
+		// Set default format based on type
+		switch ($settings.type) {
+			case DownloadType.VIDEO:
+				$settings.format = VideoFormat.AVI;
+				break;
+			case DownloadType.AUDIO:
+				$settings.format = AudioFormat.AAC;
+				break;
+		}
+		toast.success('Updated', 'Type settings updated successfully.');
+	}
 </script>
 
 <svelte:head>
@@ -53,42 +66,42 @@
 			<div class="mt-2">
 				<Select
 					id="autoDownload"
+					title="Automatically download when complete:"
+					bind:value={$userSettings.autoDownloadOnComplete}
+					options={toSelectOptions({ YES: true, NO: false })}
 					on:change={() =>
 						toast.success('Updated', 'Automatic download settings updated successfully.')}
-					title="Automatically download when complete:"
-					options={toSelectOptions({ YES: true, NO: false })}
-					bind:value={$userSettings.autoDownloadOnComplete}
 				/>
 			</div>
 		{:else if activePage === 'downloadoptions'}
 			<div class="mt-2">
 				<Select
 					id="type"
-					on:change={() => toast.success('Updated', 'Type settings updated successfully.')}
 					title="Type:"
-					options={toSelectOptions(DownloadType)}
 					bind:value={$settings.type}
+					options={toSelectOptions(DownloadType)}
+					on:change={onTypeChange}
 				/>
 				<Select
 					id="format"
-					on:change={() => toast.success('Updated', 'Format settings updated successfully.')}
 					title="Format:"
-					groups={formatGroups}
 					bind:value={$settings.format}
+					groups={formatGroups}
+					on:change={() => toast.success('Updated', 'Format settings updated successfully.')}
 				/>
 				<Select
 					id="quality"
-					on:change={() => toast.success('Updated', 'Quality settings updated successfully.')}
 					title="Quality:"
-					options={toSelectOptions(DownloadQuality)}
 					bind:value={$settings.quality}
+					options={toSelectOptions(DownloadQuality)}
+					on:change={() => toast.success('Updated', 'Quality settings updated successfully.')}
 				/>
 				<Select
 					id="metadata"
-					on:change={() => toast.success('Updated', 'Embedding settings updated successfully.')}
 					title="Embed metadata:"
-					options={toSelectOptions({ YES: true, NO: false })}
 					bind:value={$settings.embed_metadata}
+					options={toSelectOptions({ YES: true, NO: false })}
+					on:change={() => toast.success('Updated', 'Embedding settings updated successfully.')}
 				/>
 			</div>
 		{/if}
