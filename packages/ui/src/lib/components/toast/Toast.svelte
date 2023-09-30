@@ -8,7 +8,7 @@
 				'border-secondary-50 relative mx-auto min-w-[300px] max-w-[400px] rounded-xl border bg-white p-3 text-sm shadow-lg dark:border-zinc-700 dark:bg-zinc-900',
 			contentDivClass: 'flex space-x-4',
 			closeIconClass:
-				'absolute right-2 top-1 ml-auto h-8 w-8 text-zinc-500 hover:text-zinc-900 dark:text-zinc-100 dark:hover:text-zinc-500',
+				'absolute right-3 top-2 ml-auto h-4 w-4 text-zinc-500 hover:text-zinc-900 dark:text-zinc-100 dark:hover:text-zinc-500',
 			iconDivClass: 'flex h-10 w-10 items-center justify-center rounded-full',
 			iconClass: 'h-6 w-6',
 			textDivClass: 'flex-1',

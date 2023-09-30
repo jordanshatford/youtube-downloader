@@ -21,7 +21,7 @@
 		<IconButton
 			src={open ? MinusCircleIcon : PlusCircleIcon}
 			on:click={() => (open = !open)}
-			class="h-10 w-10"
+			class="h-6 w-6"
 		/>
 	</summary>
 	{#if open}
