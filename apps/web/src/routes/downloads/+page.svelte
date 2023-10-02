@@ -1,14 +1,15 @@
 <script lang="ts">
 	import { Badge, Pagination, Table, Title } from '@yd/ui';
 	import { downloads } from '$lib/stores/downloads';
+	import { userSettings } from '$lib/stores/settings';
 	import DownloadActions from '$lib/components/DownloadActions.svelte';
 	import NotFound from '$lib/components/NotFound.svelte';
 	import StatusBadge from '$lib/components/StatusBadge.svelte';
 	import config from '$lib/config';
 
 	let page = 1;
-	let pageSize = 10;
 
+	$: pageSize = $userSettings.downloadsPageSize;
 	$: totalDownloads = Object.keys($downloads).length;
 	$: totalPages = Math.ceil(totalDownloads / pageSize);
 	$: start = (page - 1) * pageSize;

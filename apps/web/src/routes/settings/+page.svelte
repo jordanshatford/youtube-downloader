@@ -96,6 +96,14 @@
 		{:else if activePage === 'other'}
 			<div class="mt-2">
 				<Select
+					id="downloadPageSize"
+					title="Downloads page size:"
+					bind:value={$userSettings.downloadsPageSize}
+					options={[...Array(11 + 5).keys()].slice(5).map((v) => ({ value: v, text: `${v}` }))}
+					on:change={() =>
+						toast.success('Updated', 'Downloads page size setting updated successfully.')}
+				/>
+				<Select
 					id="autoDownload"
 					title="Automatically download when complete:"
 					bind:value={$userSettings.autoDownloadOnComplete}

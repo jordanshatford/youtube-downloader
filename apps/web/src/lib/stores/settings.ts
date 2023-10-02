@@ -74,7 +74,8 @@ export const settings = createSettingsStore();
 function createUserSettingsStore() {
 	const USER_SETTINGS_KEY = 'userSettings';
 	const DEFAULT_USER_SETTINGS = {
-		autoDownloadOnComplete: false
+		autoDownloadOnComplete: false,
+		downloadsPageSize: 10
 	};
 
 	const { subscribe, set, update } = writable(DEFAULT_USER_SETTINGS);
@@ -83,6 +84,13 @@ function createUserSettingsStore() {
 		const data = localStorage?.getItem(USER_SETTINGS_KEY);
 		if (data !== null) {
 			const parsedData = JSON.parse(data) as typeof DEFAULT_USER_SETTINGS;
+			if (
+				!parsedData.downloadsPageSize ||
+				Number.isNaN(parsedData.downloadsPageSize) ||
+				Number(parsedData.downloadsPageSize) < 1
+			) {
+				parsedData.downloadsPageSize = DEFAULT_USER_SETTINGS.downloadsPageSize;
+			}
 			set(parsedData);
 		}
 	}
