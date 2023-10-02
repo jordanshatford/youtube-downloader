@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { Button } from '@yd/ui';
 	import { RoutePathConstants } from '$lib/routes';
 
 	export let title: string = '404';
@@ -15,11 +16,8 @@
 		<p class="mt-2 text-gray-500 dark:text-gray-400">
 			{description}
 		</p>
-		<a
-			href={RoutePathConstants.SEARCH}
-			class="mt-6 inline-block rounded bg-brand-600 px-5 py-3 text-sm font-medium text-white hover:opacity-90 focus:outline-none"
+		<Button class="mt-6 inline-block" variant="info" href={RoutePathConstants.SEARCH}
+			>Go back to search</Button
 		>
-			Go back to search
-		</a>
 	</div>
 </div>

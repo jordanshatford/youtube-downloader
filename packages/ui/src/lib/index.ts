@@ -6,6 +6,7 @@ export { Title } from './components/typography';
 export { default as ActionIcon } from './components/ActionIcon.svelte';
 export { default as Alert, type AlertVariants } from './components/Alert.svelte';
 export { default as Badge, type BadgeVariants } from './components/Badge.svelte';
+export { default as Button, type ButtonVariants } from './components/Button.svelte';
 export { default as ButtonGroup } from './components/ButtonGroup.svelte';
 export { default as Card } from './components/Card.svelte';
 export { default as Confirm, type ConfirmVariants } from './components/Confirm.svelte';

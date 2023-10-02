@@ -20,38 +20,28 @@
 			titleClass: 'whitespace-pre-wrap text-lg font-medium leading-6 text-zinc-900 dark:text-white',
 			descriptionClass: 'mt-2 w-full whitespace-pre-wrap text-sm text-zinc-500',
 			footerDivClass: 'flex flex-wrap px-4 py-3 sm:flex-row-reverse sm:px-6',
-			confirmButtonClass:
-				'inline-flex w-full justify-center rounded-lg border border-transparent px-4 py-2 text-base font-medium text-white shadow-sm focus:outline-none sm:ml-3 sm:w-auto sm:text-sm',
+			confirmButtonClass: 'inline-flex w-full justify-center sm:ml-3 sm:w-auto sm:text-sm',
 			cancelButtonClass:
-				'mt-3 inline-flex w-full justify-center rounded-lg border border-zinc-300 bg-white px-4 py-2 text-base font-medium text-zinc-700 shadow-sm hover:bg-zinc-50 focus:outline-none dark:border-zinc-700 dark:bg-zinc-900 dark:text-white dark:hover:bg-zinc-700 sm:ml-3 sm:mt-0 sm:w-auto sm:text-sm'
+				'mt-3 inline-flex w-full justify-center sm:ml-3 sm:mt-0 sm:w-auto sm:text-sm'
 		},
 		variants: {
 			variant: {
 				error: {
-					iconDivClass: 'bg-red-100 text-red-700 dark:bg-red-700 dark:text-red-100',
-					confirmButtonClass: 'bg-red-700 hover:bg-red-600'
+					iconDivClass: 'bg-red-100 text-red-700 dark:bg-red-700 dark:text-red-100'
 				},
 				warning: {
-					iconDivClass: 'bg-yellow-100 text-yellow-700 dark:bg-yellow-700 dark:text-yellow-100',
-					confirmButtonClass: 'bg-yellow-700 hover:bg-yellow-600'
+					iconDivClass: 'bg-yellow-100 text-yellow-700 dark:bg-yellow-700 dark:text-yellow-100'
 				},
 				info: {
-					iconDivClass: 'bg-blue-100 text-blue-700 dark:bg-blue-700 dark:text-blue-100',
-					confirmButtonClass: 'bg-blue-700 hover:bg-blue-600'
+					iconDivClass: 'bg-blue-100 text-blue-700 dark:bg-blue-700 dark:text-blue-100'
 				},
 				success: {
-					iconDivClass: 'bg-emerald-100 text-emerald-700 dark:bg-emerald-700 dark:text-emerald-100',
-					confirmButtonClass: 'bg-emerald-700 hover:bg-emerald-600'
-				},
-				default: {
-					iconDivClass: 'text-zinc-800 bg-zinc-200',
-					confirmButtonClass:
-						'border-zinc-300 bg-white text-zinc-700 hover:bg-zinc-50 dark:border-zinc-700 dark:bg-zinc-900 dark:text-white dark:hover:bg-zinc-700'
+					iconDivClass: 'bg-emerald-100 text-emerald-700 dark:bg-emerald-700 dark:text-emerald-100'
 				}
 			}
 		},
 		defaultVariants: {
-			variant: 'default'
+			variant: 'info'
 		}
 	});
 
@@ -60,6 +50,7 @@
 
 <script lang="ts">
 	import { fly, fade } from 'svelte/transition';
+	import { Button } from '../index';
 	import { Icon } from '../icons';
 	import { toIcon } from '../utilities';
 
@@ -145,12 +136,14 @@
 					</div>
 				</div>
 				<div class={footerDivClass()}>
-					<button type="button" on:click={callFunction} class={confirmButtonClass()}>
-						{confirmText}
-					</button>
-					<button type="button" on:click={() => (showDialog = false)} class={cancelButtonClass()}>
-						{cancelText}
-					</button>
+					<Button {variant} class={confirmButtonClass()} on:click={callFunction}
+						>{confirmText}</Button
+					>
+					<Button
+						variant="secondary"
+						class={cancelButtonClass()}
+						on:click={() => (showDialog = false)}>{cancelText}</Button
+					>
 				</div>
 			</div>
 		</div>
