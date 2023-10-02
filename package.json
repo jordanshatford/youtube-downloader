@@ -11,7 +11,7 @@
     "api": "pnpm --filter @yd/api -- ",
     "web": "pnpm --filter @yd/web -- ",
     "client": "pnpm --filter @yd/client -- ",
-		"cfg": "pnpm --filter @yd/config -- ",
+    "cfg": "pnpm --filter @yd/config -- ",
     "ui": "pnpm --filter @yd/ui -- ",
     "build": "pnpm -r build",
     "lint": "pnpm -r lint",
@@ -20,7 +20,7 @@
     "commitlint": "commitlint --edit"
   },
   "devDependencies": {
-    "@commitlint/cli": "^17.7.1",
+    "@commitlint/cli": "^17.7.2",
     "@commitlint/config-conventional": "^17.7.0",
     "husky": "^8.0.3"
   },
