@@ -48,11 +48,20 @@ app = FastAPI(
     separate_input_output_schemas=False,
 )
 
-allowed_origin = os.environ.get('ALLOWED_ORIGIN', 'http://localhost:5173')
+# Default localhost to be allowed.
+allow_origins = [
+    'http://localhost',
+    'http://localhost:5173',
+]
+
+# Allow additional origin specfied in env variable if present.
+additional_origin = os.environ.get('ALLOWED_ORIGIN', None)
+if additional_origin is not None:
+    allow_origins.append(additional_origin)
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=[allowed_origin],
+    allow_origins=allow_origins,
     allow_credentials=True,
     allow_methods=['POST', 'PUT', 'GET', 'DELETE'],
     allow_headers=['*'],
