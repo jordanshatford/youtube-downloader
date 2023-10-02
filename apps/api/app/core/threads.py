@@ -55,9 +55,11 @@ def get_progress(info: ProgressHookInfo) -> float | None:
 def get_ytdlp_format(options: DownloadOptions) -> str:
     quality = options.quality.value
     extension = options.format.value
-    # best[ext=X]/best or worst[ext=X]/worst
+    # bestvideo*[ext=X]+bestaudio/bestvideo*+bestaudio/best or
+    # worstvideo*[ext=X]+worstaudio/worstvideo*+worstaudio/worst
     if (options.type == DownloadType.VIDEO):
-        return f'{quality}[ext={extension}]/{quality}'
+        proper_ext = f'{quality}video*[ext={extension}]+{quality}audio'
+        return f'{proper_ext}/{quality}video*+{quality}audio/{quality}'
     # bestaudio[ext=X]/bestaudio/best or worstaudio[ext=X]/worstaudio/worst
     elif (options.type == DownloadType.AUDIO):
         return f'{quality}audio[ext={extension}]/{quality}audio/{quality}'
