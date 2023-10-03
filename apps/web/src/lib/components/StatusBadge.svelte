@@ -28,7 +28,9 @@
 	};
 
 	$: content =
-		status.state === DownloadState.DOWNLOADING
+		status.state === DownloadState.DOWNLOADING &&
+		status.progress !== undefined &&
+		status.progress !== null
 			? `${status.state} ${(status.progress ?? 0).toFixed()}%`
 			: status.state;
 </script>
