@@ -35,8 +35,6 @@
 			: status.state;
 </script>
 
-<div class="flex h-8 w-36 items-center justify-start">
-	{#key status}
-		<Badge icon {...lookup[status.state]}>{content}</Badge>
-	{/key}
-</div>
+{#key status}
+	<Badge icon {...lookup[status.state]}>{content}</Badge>
+{/key}
