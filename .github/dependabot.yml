@@ -7,13 +7,13 @@ updates:
   - package-ecosystem: "github-actions"
     directory: "/.github/actions/setup-environment"
     schedule:
-      interval: "monthly"
+      interval: "weekly"
     assignees:
       - "jordanshatford"
   - package-ecosystem: "github-actions"
     directory: "/"
     schedule:
-      interval: "monthly"
+      interval: "weekly"
     assignees:
       - "jordanshatford"
 
@@ -21,13 +21,13 @@ updates:
   - package-ecosystem: "docker"
     directory: "/apps/api"
     schedule:
-      interval: "monthly"
+      interval: "weekly"
     assignees:
       - "jordanshatford"
   - package-ecosystem: "pip"
     directory: "/apps/api"
     schedule:
-      interval: "monthly"
+      interval: "weekly"
     assignees:
       - "jordanshatford"
     groups:
@@ -39,7 +39,7 @@ updates:
   - package-ecosystem: "npm"
     directory: "/"
     schedule:
-      interval: "monthly"
+      interval: "weekly"
     assignees:
       - "jordanshatford"
     groups:
@@ -50,6 +50,6 @@ updates:
   - package-ecosystem: "docker"
     directory: "/"
     schedule:
-      interval: "monthly"
+      interval: "weekly"
     assignees:
       - "jordanshatford"
