@@ -13,6 +13,7 @@ export { default as Confirm, type ConfirmVariants } from './components/Confirm.s
 export { default as CollapsibleSection } from './components/CollapsibleSection.svelte';
 export { default as Footer } from './components/Footer.svelte';
 export { default as IconButton } from './components/IconButton.svelte';
+export { default as Modal } from './components/Modal.svelte';
 export { default as Pagination } from './components/Pagination.svelte';
 export { default as ProgressBar, type ProgressBarVariants } from './components/ProgressBar.svelte';
 export { default as Select } from './components/Select.svelte';
