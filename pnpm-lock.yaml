@@ -17,6 +17,9 @@ importers:
       '@commitlint/config-conventional':
         specifier: ^17.7.0
         version: 17.7.0
+      '@commitlint/types':
+        specifier: ^17.4.4
+        version: 17.4.4
       husky:
         specifier: ^8.0.3
         version: 8.0.3
