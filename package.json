@@ -3,7 +3,6 @@
   "version": "1.0.0",
   "private": true,
   "license": "MIT",
-  "type": "module",
   "scripts": {
     "prepare": "husky install",
     "generate": "pnpm --filter @yd/api generate:openapi && pnpm --filter @yd/client generate",
@@ -22,6 +21,7 @@
   "devDependencies": {
     "@commitlint/cli": "^17.7.2",
     "@commitlint/config-conventional": "^17.7.0",
+    "@commitlint/types": "^17.4.4",
     "husky": "^8.0.3"
   },
   "pnpm": {
