@@ -30,6 +30,10 @@ updates:
       interval: "monthly"
     assignees:
       - "jordanshatford"
+    groups:
+      api-python:
+        patterns:
+          - "*"
 
   # TypeScript packages dependabot checks
   - package-ecosystem: "npm"
@@ -38,6 +42,11 @@ updates:
       interval: "monthly"
     assignees:
       - "jordanshatford"
+    groups:
+      prod-deps:
+        dependency-type: "production"
+      dev-deps:
+        dependency-type: "development"
   - package-ecosystem: "docker"
     directory: "/"
     schedule:
