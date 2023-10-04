@@ -43,9 +43,9 @@ updates:
     assignees:
       - "jordanshatford"
     groups:
-      prod-deps:
+      prod-npm:
         dependency-type: "production"
-      dev-deps:
+      dev-npm:
         dependency-type: "development"
   - package-ecosystem: "docker"
     directory: "/"
