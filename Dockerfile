@@ -33,7 +33,7 @@ RUN pnpm web build
 CMD [ "pnpm", "web", "preview", "--host", "--port=5173" ]
 
 
-FROM python:3.11 AS api-base
+FROM python:3.12 AS api-base
 
 # Ensure FFMPEG is available
 RUN apt-get update -y
