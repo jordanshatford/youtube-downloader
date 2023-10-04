@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { DownloadState, type DownloadStatus } from '@yd/client';
-	import { Badge, type BadgeVariants } from '@yd/ui';
+	import { Badge, type BadgeVariants, ProgressBar } from '@yd/ui';
 
 	export let status: DownloadStatus = {
 		state: DownloadState.ERROR
@@ -26,15 +26,13 @@
 			variant: 'success'
 		}
 	};
-
-	$: content =
-		status.state === DownloadState.DOWNLOADING &&
-		status.progress !== undefined &&
-		status.progress !== null
-			? `${status.state} ${(status.progress ?? 0).toFixed()}%`
-			: status.state;
 </script>
 
 {#key status}
-	<Badge icon {...lookup[status.state]}>{content}</Badge>
+	<Badge icon {...lookup[status.state]}>
+		{status.state}
+		{#if status.progress}
+			<ProgressBar class="-ml-7 -mr-2 mt-2" value={status.progress} />
+		{/if}
+	</Badge>
 {/key}
