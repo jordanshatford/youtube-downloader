@@ -11,7 +11,7 @@ insert_final_newline = true
 [*.sh]
 indent_size = 4
 
-[*.py]
+[*.{py, pyi}]
 indent_size = 4
 
 [*.{svelte,js,json}]
