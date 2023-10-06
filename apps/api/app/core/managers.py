@@ -35,7 +35,7 @@ class DownloadManager:
 
     def get_all_videos(self) -> list[VideoWithOptionsAndStatus]:
         return [
-            VideoWithOptionsAndStatus(**d.video.dict(), status=d.status)
+            VideoWithOptionsAndStatus(**d.video.model_dump(), status=d.status)
             for d in self._downloads.values()
         ]
 

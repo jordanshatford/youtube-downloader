@@ -89,7 +89,7 @@ async def get_downloads_status(request: Request, session_id: str):
 @router.get('/{video_id}', responses=depends_download_responses)
 def get_download(download: DependsDownload) -> VideoWithOptionsAndStatus:
     return VideoWithOptionsAndStatus(
-        **download.video.dict(), status=download.status,
+        **download.video.model_dump(), status=download.status,
     )
 
 
