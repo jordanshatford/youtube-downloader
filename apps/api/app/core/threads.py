@@ -181,7 +181,7 @@ class YoutubeDownloadThread(threading.Thread):
         self.status = update
         self._status_hook(
             VideoWithOptionsAndStatus(
-                **self.video.dict(), status=update,
+                **self.video.model_dump(), status=update,
             ),
         )
 
