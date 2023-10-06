@@ -69,7 +69,7 @@ async def status_stream(request: Request, session: Session):
                 break
             try:
                 update = session.status_queue.get_nowait()
-                yield dict(data=update.json())
+                yield dict(data=update.model_dump_json())
             except queue.Empty:
                 await asyncio.sleep(1)
     except (asyncio.CancelledError, asyncio.exceptions.InvalidStateError):
