@@ -187,7 +187,10 @@ class YoutubeDownloadThread(threading.Thread):
 
 
 class RepeatedTimer:
-    def __init__(self, interval: int, function: Callable, *args, **kwargs):
+    def __init__(
+        self, interval: int, function: Callable[..., None],
+        *args: Any, **kwargs: Any,
+    ):
         self._timer: threading.Timer | None = None
         self.interval = interval
         self.function = function
