@@ -31,7 +31,7 @@
   <p align="center">
     Fast, high quality YouTube downloads
     <br />
-    <a href="https://youtubeaudiodownloader.vercel.app/"><strong>youtubeaudiodownloader.vercel »</strong></a>
+    <a href="https://youtubedownloader.duckdns.org"><strong>youtubedownloader.duckdns.org »</strong></a>
     <br />
     <br />
   </p>
