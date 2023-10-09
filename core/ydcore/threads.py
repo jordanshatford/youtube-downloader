@@ -28,8 +28,8 @@ YoutubeDLInfoDict: TypeAlias = dict[str, Any]
 # Note: NotRequired fields are not present when download is 'finished'.
 class ProgressHookInfo(TypedDict):
     status: Literal['downloading', 'finished']
-    downloaded_bytes: int
-    total_bytes: int
+    downloaded_bytes: NotRequired[int]
+    total_bytes: NotRequired[int]
     filename: str
     tmpfilename: NotRequired[str]
     eta: NotRequired[int]
