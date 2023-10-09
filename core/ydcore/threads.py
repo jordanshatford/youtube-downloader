@@ -3,45 +3,18 @@ import threading
 import time
 from collections.abc import Callable
 from typing import Any
-from typing import Literal
-from typing import NotRequired
-from typing import TypeAlias
-from typing import TypedDict
 
 from yt_dlp import YoutubeDL
 
+from .config.ytdlp import PostprocessorHookInfo
+from .config.ytdlp import ProgressHookInfo
+from .config.ytdlp import YoutubeDLParams
 from .models import DownloadOptions
 from .models import DownloadState
 from .models import DownloadStatus
 from .models import DownloadType
 from .models import VideoWithOptions
 from .models import VideoWithOptionsAndStatus
-
-
-# Basic type describing info_dict provided in hooks, Not specific as of now.
-YoutubeDLInfoDict: TypeAlias = dict[str, Any]
-
-
-# Info returned to a given download hook, excluding certain fields prefixed
-# with underscore.
-#
-# Note: NotRequired fields are not present when download is 'finished'.
-class ProgressHookInfo(TypedDict):
-    status: Literal['downloading', 'finished']
-    downloaded_bytes: NotRequired[int]
-    total_bytes: NotRequired[int]
-    filename: str
-    tmpfilename: NotRequired[str]
-    eta: NotRequired[int]
-    speed: float
-    elapsed: float
-    info_dict: YoutubeDLInfoDict
-
-
-class PostprocessorHookInfo(TypedDict):
-    status: Literal['started', 'finished']
-    postprocessor: str
-    info_dict: YoutubeDLInfoDict
 
 
 def get_progress(info: ProgressHookInfo) -> float | None:
@@ -97,7 +70,7 @@ class YoutubeDownloadThread(threading.Thread):
         # Only append metadata to the video if enabled by user
         if self.video.options.embed_metadata:
             postprocessors.append({'key': 'FFmpegMetadata'})
-        YOUTUBE_DL_OPTIONS = {
+        YOUTUBE_DL_OPTIONS: YoutubeDLParams = {
             'format': get_ytdlp_format(self.video.options),
             'progress_hooks': [self.progress_hook],
             'postprocessor_hooks': [self.postprocessor_hook],
