@@ -20,6 +20,8 @@ from .models import VideoWithOptionsAndStatus
 def get_progress(info: ProgressHookInfo) -> float | None:
     downloaded_bytes = info.get('downloaded_bytes')
     total_bytes = info.get('total_bytes')
+    if total_bytes is None:
+        total_bytes = info.get('total_bytes_estimate')
     if downloaded_bytes is None or total_bytes is None:
         return None
     return (downloaded_bytes / total_bytes) * 100
