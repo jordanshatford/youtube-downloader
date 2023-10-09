@@ -39,22 +39,25 @@ FROM python:3.12 AS api-base
 RUN apt-get update -y
 RUN apt-get install -y ffmpeg
 
-WORKDIR /workspace/api
+WORKDIR /workspace/apps/api
+
+# Copy core functionality
+COPY ./core /workspace/core/
 
 # Install required python packages
-COPY ./apps/api/requirements.txt /workspace/api/requirements.txt
+COPY ./apps/api/requirements.txt /workspace/apps/api/requirements.txt
 RUN pip install --no-cache-dir -r requirements.txt
 
 # Copy over source and config files
-COPY ./apps/api/app /workspace/api/app
-COPY ./apps/api/pyproject.toml /workspace/api/pyproject.toml
+COPY ./apps/api/app /workspace/apps/api/app
+COPY ./apps/api/pyproject.toml /workspace/apps/api/pyproject.toml
 
 # Expose port we are running the api on
 EXPOSE 8080
 
 # In development run the application with reload active
 FROM api-base AS api-development
-CMD [ "uvicorn", "app.main:app", "--host=0.0.0.0", "--port=8080", "--reload" ]
+CMD [ "uvicorn", "app.main:app", "--host=0.0.0.0", "--port=8080", "--reload", "--reload-dir", "../../" ]
 
 # In production run the application without reload
 FROM api-base AS api-production
