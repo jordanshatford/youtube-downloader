@@ -76,6 +76,7 @@
 	function callFunction() {
 		showDialog = true;
 		onConfirmFunction?.();
+		showDialog = false;
 	}
 
 	function confirm(f: () => void) {
