@@ -483,7 +483,7 @@ class YoutubeDLParams(TypedDict):
     noresizebuffer: NotRequired[bool | None]
     # Number of times to retry for expected network errors. Default is 0
     # for API, but 10 for CLI.
-    retries: NotRequired[int | None]
+    retries: NotRequired[int | Literal['infinite'] | None]
     # Number of times to retry on file access error (default: 3)
     file_access_retries: NotRequired[int | None]
     # Try to continue downloads if possible.
