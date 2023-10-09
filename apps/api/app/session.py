@@ -5,9 +5,9 @@ from datetime import datetime
 from datetime import timedelta
 from queue import Queue
 
-from .core.managers import DownloadManager
-from .core.threads import RepeatedTimer
-from .models import VideoWithOptionsAndStatus
+from ydcore import DownloadManager
+from ydcore import RepeatedTimer
+from ydcore import VideoWithOptionsAndStatus
 
 
 class Session:

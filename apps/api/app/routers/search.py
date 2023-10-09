@@ -1,11 +1,11 @@
 from fastapi import APIRouter
 from fastapi import HTTPException
 from fastapi import status
+from ydcore import Video
+from ydcore import YouTubeVideoSearch
 
-from ..core.youtube import search_youtube
 from ..dependencies import depends_session_responses
 from ..dependencies import DependsSession
-from ..models import Video
 
 router = APIRouter(
     prefix='/search',
@@ -22,7 +22,7 @@ def get_search(
     results: int = 12,
 ) -> list[Video]:
     session.update_use_time()
-    videos = search_youtube(term, results)
+    videos = YouTubeVideoSearch(term, results).results()
     if len(videos) == 0:
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND)
     else:
