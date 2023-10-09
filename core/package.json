@@ -1,8 +1,8 @@
 {
 	"name": "@yd/core",
-  "private": true,
+	"private": true,
 	"version": "1.0.0",
-  "license": "MIT",
+	"license": "MIT",
 	"scripts": {
 		"format": "python3 scripts.py format"
 	}
