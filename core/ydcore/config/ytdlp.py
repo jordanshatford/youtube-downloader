@@ -9,10 +9,6 @@ from typing import TypeAlias
 from typing import TypedDict
 
 
-# TODO: make total=False and Requried for anything actually
-#       required for all below TypedDicts
-# TODO: cleanup most of Any types where possible
-# TODO: better type this later
 class InfoDict(TypedDict):
     pass
 
