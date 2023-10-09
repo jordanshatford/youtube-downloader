@@ -107,6 +107,10 @@ class YoutubeDownloadThread(threading.Thread):
                     eta=info.get('eta'),
                 ),
             )
+        elif status == 'error':
+            self._handle_status_update(
+                DownloadStatus(state=DownloadState.ERROR),
+            )
         elif status == 'finished':
             self._handle_status_update(
                 DownloadStatus(state=DownloadState.PROCESSING),
@@ -115,7 +119,7 @@ class YoutubeDownloadThread(threading.Thread):
     def postprocessor_hook(self, info: PostprocessorHookInfo) -> None:
         status = info.get('status')
         postprocessor: str | None = None
-        if status == 'started':
+        if status == 'started' or status == 'processing':
             postprocessor = info.get('postprocessor')
         elif status == 'finished':
             postprocessor = None
