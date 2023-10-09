@@ -25,11 +25,14 @@ class YouTubeVideoSearch:
             return []
 
     def format_search_result(self, result: dict[str, Any]) -> Video:
+        duration = result.get('duration', None)
+        if duration is None:
+            duration = '--:--'
         return Video(
             id=result['id'],
             url=result['link'],
             title=result['title'],
-            duration=result['duration'],
+            duration=duration,
             thumbnail=result['thumbnails'][0]['url'],
             channel=Channel(
                 name=result['channel']['name'],
