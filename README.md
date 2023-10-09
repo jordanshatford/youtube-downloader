@@ -57,6 +57,9 @@ Please refer to the [contributing guide](CONTRIBUTING.md) for how to install the
 - `api`: An API developed in Python using [FastAPI](https://fastapi.tiangolo.com/).
 - `web`: A web application developed in [SvelteKit](https://kit.svelte.dev/).
 
+### Core:
+- `core`: The core of the project written in [Python](https://www.python.org/), referred to internally as ydcore. This contains the majority of the downloaders functionality, and is usable in various host applications.
+
 ### Packages:
 - `client`: A TypeScript API client generated from the OpenAPI specification for the API using [OpenAPI TypeScript Codegen](https://github.com/ferdikoomen/openapi-typescript-codegen/).
 - `config`: Common configs shared between other packages and apps in the monorepo.

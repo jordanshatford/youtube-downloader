@@ -9,6 +9,7 @@
     "dev": "pnpm --filter @yd/api --filter @yd/web dev",
     "api": "pnpm --filter @yd/api -- ",
     "web": "pnpm --filter @yd/web -- ",
+		"core": "pnpm --filter @yd/core --",
     "client": "pnpm --filter @yd/client -- ",
     "cfg": "pnpm --filter @yd/config -- ",
     "ui": "pnpm --filter @yd/ui -- ",
