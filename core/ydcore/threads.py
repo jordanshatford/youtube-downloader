@@ -22,7 +22,7 @@ def get_progress(info: ProgressHookInfo) -> float | None:
     total_bytes = info.get('total_bytes')
     if total_bytes is None:
         total_bytes = info.get('total_bytes_estimate')
-    if downloaded_bytes is None or total_bytes is None:
+    if downloaded_bytes is None or total_bytes is None or total_bytes <= 0:
         return None
     return (downloaded_bytes / total_bytes) * 100
 
