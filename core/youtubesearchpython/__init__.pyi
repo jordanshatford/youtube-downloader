@@ -1,10 +1,6 @@
 from typing import Any
 
 
-
-
-
-
 class __ResultMode:
     json = 0
     dict = 1
