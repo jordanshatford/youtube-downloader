@@ -581,7 +581,7 @@ class YoutubeDLParams(TypedDict):
     # Register a custom postprocessor, A list of functions that get called
     # as the final step for each video file, after all postprocessors have
     # been called. The filename will be passed as the only argument
-    post_hooks: NotRequired[Sequence[Any] | None]
+    post_hooks: NotRequired[Sequence[Callable[[str], None]] | None]
     # Use external_downloader = {'m3u8': 'native'} or {'m3u8': 'ffmpeg'}.
     # Use the native HLS downloader instead of ffmpeg/avconv if True, otherwise
     # use ffmpeg/avconv if False, otherwise use downloader suggested by
