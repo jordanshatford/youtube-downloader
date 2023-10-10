@@ -1,5 +1,4 @@
-from collections.abc import Callable
-
+from .config import StatusHook
 from .models import VideoWithOptions
 from .models import VideoWithOptionsAndStatus
 from .threads import YoutubeDownloadThread
@@ -8,7 +7,7 @@ from .threads import YoutubeDownloadThread
 class DownloadManager:
     def __init__(
         self, output_dir: str,
-        status_hook: Callable[[VideoWithOptionsAndStatus], None],
+        status_hook: StatusHook,
     ):
         self._status_hook = status_hook
         self._downloads: dict[str, YoutubeDownloadThread] = {}
