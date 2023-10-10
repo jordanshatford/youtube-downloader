@@ -12,7 +12,6 @@ from .models import VideoFormat
 from .models import VideoWithOptions
 from .models import VideoWithOptionsAndStatus
 from .search import YouTubeVideoSearch
-from .threads import RepeatedTimer
 from .threads import YoutubeDownloadThread
 
 __all__ = [
@@ -25,7 +24,6 @@ __all__ = [
     'DownloadStatus',
     'DownloadType',
     'DownloadQuality',
-    'RepeatedTimer',
     'Video',
     'VideoFormat',
     'YouTubeVideoSearch',
