@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { AudioFormat, DownloadQuality, DownloadType, VideoFormat } from '@yd/client';
-	import { toast, Select, Tabs, GearIcon, DownloadIcon } from '@yd/ui';
+	import { toast, Select, Tabs, GearIcon, DownloadIcon, CodeBracketIcon } from '@yd/ui';
 	import { settings, userSettings } from '$lib/stores/settings';
 	import config from '$lib/config';
 
@@ -18,6 +18,11 @@
 			key: 'downloadoptions',
 			title: 'Download Options',
 			icon: DownloadIcon
+		},
+		{
+			key: 'embed',
+			title: 'Embed Options',
+			icon: CodeBracketIcon
 		},
 		{
 			key: 'other',
@@ -85,9 +90,12 @@
 					options={toSelectOptions(DownloadQuality)}
 					on:change={() => toast.success('Updated', 'Quality settings updated successfully.')}
 				/>
+			</div>
+		{:else if activePage === 'embed'}
+			<div class="mt-2">
 				<Select
 					id="metadata"
-					title="Embed metadata:"
+					title="Metadata:"
 					bind:value={$settings.embed_metadata}
 					options={toSelectOptions({ YES: true, NO: false })}
 					on:change={() =>
@@ -95,7 +103,7 @@
 				/>
 				<Select
 					id="thumbnail"
-					title="Embed thumbnail:"
+					title="Thumbnail:"
 					bind:value={$settings.embed_thumbnail}
 					options={toSelectOptions({ YES: true, NO: false })}
 					on:change={() =>
@@ -103,7 +111,7 @@
 				/>
 				<Select
 					id="subtitles"
-					title="Embed subtitles:"
+					title="Subtitles:"
 					bind:value={$settings.embed_subtitles}
 					options={toSelectOptions({ YES: true, NO: false })}
 					on:change={() =>

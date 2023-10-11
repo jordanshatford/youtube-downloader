@@ -6,6 +6,7 @@ export {
 	CheckCircle as CheckCircleIcon,
 	ChevronLeft as ChevronLeftIcon,
 	ChevronRight as ChevronRightIcon,
+	CodeBracket as CodeBracketIcon,
 	ArrowDownTray as DownloadIcon,
 	ExclamationCircle as ExclamationCircleIcon,
 	ExclamationTriangle as ExclamationTriangleIcon,
