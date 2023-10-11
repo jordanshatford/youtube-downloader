@@ -1,5 +1,7 @@
 <script lang="ts">
-	export let title: string;
+	export let id: string;
+	export let label: string;
+	export let helpText: string | undefined = undefined;
 	export let value: number | string | boolean | undefined;
 	export let options: { value: number | string | boolean; text: string }[] = [];
 	export let groups: { text: string; disabled?: boolean; options: typeof options }[] = [];
@@ -7,9 +9,10 @@
 </script>
 
 <div>
-	<p class="p-2 dark:text-white">{title}</p>
+	<label for={id} class="my-1 block dark:text-white">{label}</label>
 	<select
 		{...$$restProps}
+		{id}
 		{disabled}
 		bind:value
 		on:change
@@ -29,4 +32,7 @@
 			{/each}
 		{/if}
 	</select>
+	{#if helpText}
+		<p class="mt-1 text-sm text-zinc-500">{helpText}</p>
+	{/if}
 </div>

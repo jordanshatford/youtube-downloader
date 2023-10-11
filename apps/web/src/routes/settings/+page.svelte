@@ -71,21 +71,21 @@
 			<div class="mt-2">
 				<Select
 					id="type"
-					title="Type:"
+					label="Type:"
 					bind:value={$settings.type}
 					options={toSelectOptions(DownloadType)}
 					on:change={onTypeChange}
 				/>
 				<Select
 					id="format"
-					title="Format:"
+					label="Format:"
 					bind:value={$settings.format}
 					groups={formatGroups}
 					on:change={() => toast.success('Updated', 'Format settings updated successfully.')}
 				/>
 				<Select
 					id="quality"
-					title="Quality:"
+					label="Quality:"
 					bind:value={$settings.quality}
 					options={toSelectOptions(DownloadQuality)}
 					on:change={() => toast.success('Updated', 'Quality settings updated successfully.')}
@@ -100,7 +100,8 @@
 				/>
 				<Select
 					id="metadata"
-					title="Metadata:"
+					label="Metadata:"
+					helpText="Embed information from the video into the download."
 					bind:value={$settings.embed_metadata}
 					options={toSelectOptions({ YES: true, NO: false })}
 					on:change={() =>
@@ -108,7 +109,8 @@
 				/>
 				<Select
 					id="thumbnail"
-					title="Thumbnail:"
+					label="Thumbnail:"
+					helpText="Attempt to embed thumbnail. May not always work."
 					bind:value={$settings.embed_thumbnail}
 					options={toSelectOptions({ YES: true, NO: false })}
 					on:change={() =>
@@ -116,7 +118,8 @@
 				/>
 				<Select
 					id="subtitles"
-					title="Subtitles:"
+					label="Subtitles:"
+					helpText="Attempt to embed subtitles. May not always work."
 					bind:value={$settings.embed_subtitles}
 					options={toSelectOptions({ YES: true, NO: false })}
 					on:change={() =>
@@ -127,7 +130,7 @@
 			<div class="mt-2">
 				<Select
 					id="downloadPageSize"
-					title="Downloads page size:"
+					label="Downloads page size:"
 					bind:value={$userSettings.downloadsPageSize}
 					options={[...Array(11 + 5).keys()].slice(5).map((v) => ({ value: v, text: `${v}` }))}
 					on:change={() =>
@@ -135,7 +138,7 @@
 				/>
 				<Select
 					id="autoDownload"
-					title="Automatically download when complete:"
+					label="Automatically download when complete:"
 					bind:value={$userSettings.autoDownloadOnComplete}
 					options={toSelectOptions({ YES: true, NO: false })}
 					on:change={() =>
