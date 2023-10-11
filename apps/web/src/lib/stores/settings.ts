@@ -14,7 +14,7 @@ function createSettingsStore() {
 		type: DownloadType.AUDIO,
 		format: AudioFormat.MP3,
 		quality: DownloadQuality.BEST,
-		embed_metadata: true,
+		embed_metadata: false,
 		embed_thumbnail: false,
 		embed_subtitles: false
 	};
