@@ -3,7 +3,8 @@
 
 	const badgeClasses = tv({
 		slots: {
-			spanClass: 'inline-flex items-center justify-center rounded-lg px-2.5 py-1',
+			spanClass:
+				'inline-flex items-center justify-center rounded-lg px-2.5 py-1 hover:cursor-default',
 			iconWrapperClass: 'h-5',
 			iconClass: '-ms-1 me-1.5 w-5',
 			textClass: 'whitespace-nowrap text-sm h-5',
