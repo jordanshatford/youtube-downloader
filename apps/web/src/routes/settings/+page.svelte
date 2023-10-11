@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { AudioFormat, DownloadQuality, DownloadType, VideoFormat } from '@yd/client';
-	import { toast, Select, Tabs, GearIcon, DownloadIcon, CodeBracketIcon } from '@yd/ui';
+	import { Alert, toast, Select, Tabs, GearIcon, DownloadIcon, CodeBracketIcon } from '@yd/ui';
 	import { settings, userSettings } from '$lib/stores/settings';
 	import config from '$lib/config';
 
@@ -93,6 +93,11 @@
 			</div>
 		{:else if activePage === 'embed'}
 			<div class="mt-2">
+				<Alert
+					variant="warning"
+					title="Warning!"
+					description="Enabling these options could drastically increase the processing time."
+				/>
 				<Select
 					id="metadata"
 					title="Metadata:"
