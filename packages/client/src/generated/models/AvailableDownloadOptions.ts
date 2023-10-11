@@ -14,5 +14,6 @@ export type AvailableDownloadOptions = {
   quality: Array<DownloadQuality>;
   embed_metadata: Array<boolean>;
   embed_thumbnail: Array<boolean>;
+  embed_subtitles: Array<boolean>;
 };
 

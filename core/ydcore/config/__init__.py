@@ -75,9 +75,15 @@ class DownloadConfig:
         if self._video.options.embed_thumbnail:
             postprocessors.append({
                 'key': 'EmbedThumbnail',
-                'already_have_thumbnail': True,
+                'already_have_thumbnail': False,
             })
             self._overrides['writethumbnail'] = True
+        if self._video.options.embed_subtitles:
+            postprocessors.append({
+                'key': 'FFmpegEmbedSubtitle',
+                'already_have_subtitle': False,
+            })
+            self._overrides['writesubtitles'] = True
 
         return {
             **DEFAULT_YTDLP_PARAMS,

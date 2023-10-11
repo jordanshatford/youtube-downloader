@@ -491,6 +491,13 @@
             },
             "type": "array",
             "title": "Embed Thumbnail"
+          },
+          "embed_subtitles": {
+            "items": {
+              "type": "boolean"
+            },
+            "type": "array",
+            "title": "Embed Subtitles"
           }
         },
         "type": "object",
@@ -499,7 +506,8 @@
           "format",
           "quality",
           "embed_metadata",
-          "embed_thumbnail"
+          "embed_thumbnail",
+          "embed_subtitles"
         ],
         "title": "AvailableDownloadOptions"
       },
@@ -558,6 +566,10 @@
           "embed_thumbnail": {
             "type": "boolean",
             "title": "Embed Thumbnail"
+          },
+          "embed_subtitles": {
+            "type": "boolean",
+            "title": "Embed Subtitles"
           }
         },
         "type": "object",
@@ -566,7 +578,8 @@
           "format",
           "quality",
           "embed_metadata",
-          "embed_thumbnail"
+          "embed_thumbnail",
+          "embed_subtitles"
         ],
         "title": "DownloadOptions"
       },

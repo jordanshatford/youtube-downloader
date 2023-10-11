@@ -71,6 +71,7 @@ class AvailableDownloadOptions(BaseModel):
     quality: list[DownloadQuality]
     embed_metadata: list[bool]
     embed_thumbnail: list[bool]
+    embed_subtitles: list[bool]
 
 
 class DownloadOptions(BaseModel):
@@ -79,6 +80,7 @@ class DownloadOptions(BaseModel):
     quality: DownloadQuality
     embed_metadata: bool
     embed_thumbnail: bool
+    embed_subtitles: bool
 
 
 class VideoWithOptions(Video):

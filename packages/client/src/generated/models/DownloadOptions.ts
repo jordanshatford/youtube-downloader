@@ -14,5 +14,6 @@ export type DownloadOptions = {
   quality: DownloadQuality;
   embed_metadata: boolean;
   embed_thumbnail: boolean;
+  embed_subtitles: boolean;
 };
 

@@ -101,6 +101,14 @@
 					on:change={() =>
 						toast.success('Updated', 'Thumbnail embedding settings updated successfully.')}
 				/>
+				<Select
+					id="subtitles"
+					title="Embed subtitles:"
+					bind:value={$settings.embed_subtitles}
+					options={toSelectOptions({ YES: true, NO: false })}
+					on:change={() =>
+						toast.success('Updated', 'Subtitle embedding settings updated successfully.')}
+				/>
 			</div>
 		{:else if activePage === 'other'}
 			<div class="mt-2">

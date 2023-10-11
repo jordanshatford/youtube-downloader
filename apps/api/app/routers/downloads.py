@@ -60,6 +60,7 @@ def get_downloads_options(session: DependsSession) -> AvailableDownloadOptions:
         quality=[q for q in DownloadQuality],
         embed_metadata=[True, False],
         embed_thumbnail=[True, False],
+        embed_subtitles=[True, False],
     )
 
 

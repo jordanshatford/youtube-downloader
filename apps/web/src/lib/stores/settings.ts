@@ -15,7 +15,8 @@ function createSettingsStore() {
 		format: AudioFormat.MP3,
 		quality: DownloadQuality.BEST,
 		embed_metadata: true,
-		embed_thumbnail: false
+		embed_thumbnail: false,
+		embed_subtitles: false
 	};
 	const DEFAULT_VIDEO_FORMAT: VideoFormat = VideoFormat.MP4;
 
@@ -53,6 +54,9 @@ function createSettingsStore() {
 			}
 			if (parsedData.embed_thumbnail == undefined) {
 				parsedData.embed_thumbnail = DEFAULT_SETTINGS.embed_thumbnail;
+			}
+			if (parsedData.embed_subtitles == undefined) {
+				parsedData.embed_subtitles = DEFAULT_SETTINGS.embed_subtitles;
 			}
 			set(parsedData);
 		}
