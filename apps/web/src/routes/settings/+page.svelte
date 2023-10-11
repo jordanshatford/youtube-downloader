@@ -90,7 +90,16 @@
 					title="Embed metadata:"
 					bind:value={$settings.embed_metadata}
 					options={toSelectOptions({ YES: true, NO: false })}
-					on:change={() => toast.success('Updated', 'Embedding settings updated successfully.')}
+					on:change={() =>
+						toast.success('Updated', 'Metadata embedding settings updated successfully.')}
+				/>
+				<Select
+					id="thumbnail"
+					title="Embed thumbnail:"
+					bind:value={$settings.embed_thumbnail}
+					options={toSelectOptions({ YES: true, NO: false })}
+					on:change={() =>
+						toast.success('Updated', 'Thumbnail embedding settings updated successfully.')}
 				/>
 			</div>
 		{:else if activePage === 'other'}

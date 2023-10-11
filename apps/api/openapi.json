@@ -484,6 +484,13 @@
             },
             "type": "array",
             "title": "Embed Metadata"
+          },
+          "embed_thumbnail": {
+            "items": {
+              "type": "boolean"
+            },
+            "type": "array",
+            "title": "Embed Thumbnail"
           }
         },
         "type": "object",
@@ -491,7 +498,8 @@
           "type",
           "format",
           "quality",
-          "embed_metadata"
+          "embed_metadata",
+          "embed_thumbnail"
         ],
         "title": "AvailableDownloadOptions"
       },
@@ -546,6 +554,10 @@
           "embed_metadata": {
             "type": "boolean",
             "title": "Embed Metadata"
+          },
+          "embed_thumbnail": {
+            "type": "boolean",
+            "title": "Embed Thumbnail"
           }
         },
         "type": "object",
@@ -553,7 +565,8 @@
           "type",
           "format",
           "quality",
-          "embed_metadata"
+          "embed_metadata",
+          "embed_thumbnail"
         ],
         "title": "DownloadOptions"
       },

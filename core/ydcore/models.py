@@ -70,6 +70,7 @@ class AvailableDownloadOptions(BaseModel):
     format: list[AudioFormat | VideoFormat]
     quality: list[DownloadQuality]
     embed_metadata: list[bool]
+    embed_thumbnail: list[bool]
 
 
 class DownloadOptions(BaseModel):
@@ -77,6 +78,7 @@ class DownloadOptions(BaseModel):
     format: AudioFormat | VideoFormat
     quality: DownloadQuality
     embed_metadata: bool
+    embed_thumbnail: bool
 
 
 class VideoWithOptions(Video):

@@ -51,7 +51,7 @@ class DownloadConfig:
 
     @property
     def as_ytdlp_params(self) -> YoutubeDLParams:
-        postprocessors: list[dict[str, str]] = []
+        postprocessors: list[dict[str, str | bool | int]] = []
         # Only append audio postprocessor if we are downloading audio format.
         if self._video.options.type == DownloadType.AUDIO:
             postprocessors.append({
@@ -70,6 +70,13 @@ class DownloadConfig:
         # Only append metadata to the video if enabled by user
         if self._video.options.embed_metadata:
             postprocessors.append({'key': 'FFmpegMetadata'})
+        # Only append thumbnail embedding if enabled by user
+        if self._video.options.embed_thumbnail:
+            postprocessors.append({
+                'key': 'EmbedThumbnail',
+                'already_have_thumbnail': True,
+            })
+            self._overrides['writethumbnail'] = True
 
         return {
             **DEFAULT_YTDLP_PARAMS,

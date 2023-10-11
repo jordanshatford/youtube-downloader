@@ -13,5 +13,6 @@ export type AvailableDownloadOptions = {
   format: Array<(AudioFormat | VideoFormat)>;
   quality: Array<DownloadQuality>;
   embed_metadata: Array<boolean>;
+  embed_thumbnail: Array<boolean>;
 };
 

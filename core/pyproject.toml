@@ -9,6 +9,7 @@ authors = [
 ]
 dependencies = [
     "yt-dlp==2023.10.7",
+    "mutagen==1.47.0",
     "youtube-search-python>=1.6.6,<1.7.0",
     "pydantic>=2.1.1,<3.0.0",
 ]

@@ -59,6 +59,7 @@ def get_downloads_options(session: DependsSession) -> AvailableDownloadOptions:
         format=[f for f in AudioFormat] + [f for f in VideoFormat],
         quality=[q for q in DownloadQuality],
         embed_metadata=[True, False],
+        embed_thumbnail=[True, False],
     )
 
 

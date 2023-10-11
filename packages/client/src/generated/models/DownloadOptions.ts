@@ -13,5 +13,6 @@ export type DownloadOptions = {
   format: (AudioFormat | VideoFormat);
   quality: DownloadQuality;
   embed_metadata: boolean;
+  embed_thumbnail: boolean;
 };
 
