@@ -84,6 +84,7 @@ class DownloadConfig:
                 'already_have_subtitle': False,
             })
             self._overrides['writesubtitles'] = True
+            self._overrides['subtitlesformat'] = 'best'
 
         return {
             **DEFAULT_YTDLP_PARAMS,
