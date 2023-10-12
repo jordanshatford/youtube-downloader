@@ -81,6 +81,7 @@
 				<Select
 					id="type"
 					label="Type:"
+					helpText="Whether the download should be a video or audio file. This will limit format options."
 					bind:value={$settings.type}
 					options={toSelectOptions(DownloadType)}
 					on:change={onTypeChange}
@@ -88,6 +89,7 @@
 				<Select
 					id="format"
 					label="Format:"
+					helpText="The format of file you want for the download."
 					bind:value={$settings.format}
 					groups={formatGroups}
 					on:change={() => toast.success('Updated', 'Format settings updated successfully.')}
@@ -95,6 +97,7 @@
 				<Select
 					id="quality"
 					label="Quality:"
+					helpText="The preferred quality for the download."
 					bind:value={$settings.quality}
 					options={toSelectOptions(DownloadQuality)}
 					on:change={() => toast.success('Updated', 'Quality settings updated successfully.')}
@@ -137,6 +140,7 @@
 				<Select
 					id="downloadPageSize"
 					label="Downloads page size:"
+					helpText="Size of each page on the downloads tab."
 					bind:value={$userSettings.downloadsPageSize}
 					options={[...Array(11 + 5).keys()].slice(5).map((v) => ({ value: v, text: `${v}` }))}
 					on:change={() =>
