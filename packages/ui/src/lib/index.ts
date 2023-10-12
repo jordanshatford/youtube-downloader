@@ -10,6 +10,7 @@ export { default as Button, type ButtonVariants } from './components/Button.svel
 export { default as ButtonGroup } from './components/ButtonGroup.svelte';
 export { default as Card } from './components/Card.svelte';
 export { default as Confirm, type ConfirmVariants } from './components/Confirm.svelte';
+export { default as Toggle } from './components/Toggle.svelte';
 export { default as CollapsibleSection } from './components/CollapsibleSection.svelte';
 export { default as Footer } from './components/Footer.svelte';
 export { default as IconButton } from './components/IconButton.svelte';
