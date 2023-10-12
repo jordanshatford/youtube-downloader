@@ -33,9 +33,6 @@ class SearchCore:
         self.searchPreferences = searchPreferences
         self.timeout = timeout
         self.continuationKey: str | None = None
-        self.url: Any = None
-        self.data = None
-        self.timeout = 2
 
     def sync_create(self):
         self._makeRequest()
