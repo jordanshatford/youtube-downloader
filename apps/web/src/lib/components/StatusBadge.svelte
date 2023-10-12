@@ -6,6 +6,14 @@
 		state: DownloadState.ERROR
 	};
 
+	const postProcessorLookup: Record<string, string> = {
+		extractaudio: 'EXTRACTING AUDIO',
+		Metadata: 'EMBEDDING',
+		embedthumbnail: 'EMBEDDING',
+		EmbedSubtitle: 'EMBEDDING',
+		MoveFiles: 'FINALIZING'
+	};
+
 	const lookup: Record<DownloadState, BadgeVariants> = {
 		[DownloadState.WAITING]: {
 			variant: 'warning',
@@ -26,11 +34,15 @@
 			variant: 'success'
 		}
 	};
+
+	$: text = status.postprocessor
+		? postProcessorLookup[status.postprocessor?.toLowerCase()] ?? status.state
+		: status.state;
 </script>
 
 {#key status}
 	<Badge icon {...lookup[status.state]}>
-		{status.state}
+		{text}
 		{#if status.progress}
 			<ProgressBar class="-ml-7 -mr-2 mt-2" value={status.progress} />
 		{/if}
