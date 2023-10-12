@@ -13,20 +13,17 @@ export class SearchService {
   /**
    * Get Search
    * @param term
-   * @param results
    * @returns Video Successful Response
    * @throws ApiError
    */
   public static getSearch(
     term: string,
-    results: number = 12,
   ): CancelablePromise<Array<Video>> {
     return __request(OpenAPI, {
       method: 'GET',
       url: '/search',
       query: {
         'term': term,
-        'results': results,
       },
       errors: {
         403: `Forbidden`,

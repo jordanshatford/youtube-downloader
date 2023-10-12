@@ -17,12 +17,9 @@ router = APIRouter(
 
 
 @router.get('')
-def get_search(
-    session: DependsSession, term: str,
-    results: int = 12,
-) -> list[Video]:
+def get_search(session: DependsSession, term: str) -> list[Video]:
     session.update_use_time()
-    videos = YouTubeVideoSearch(term, results).results()
+    videos = YouTubeVideoSearch(term).results()
     if len(videos) == 0:
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND)
     else:

@@ -35,16 +35,6 @@
               "type": "string",
               "title": "Term"
             }
-          },
-          {
-            "name": "results",
-            "in": "query",
-            "required": false,
-            "schema": {
-              "type": "integer",
-              "default": 12,
-              "title": "Results"
-            }
           }
         ],
         "responses": {
