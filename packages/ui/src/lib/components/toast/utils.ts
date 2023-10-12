@@ -10,7 +10,7 @@ export const DEFAULT_POSITION: ToastPosition = 'bottom-right';
  */
 export const DEFAULT_OPTIONS: ToastComponentOptions = {
 	closable: true,
-	duration: 5000,
+	duration: 3000,
 	infinite: false
 };
 
