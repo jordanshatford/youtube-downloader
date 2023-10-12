@@ -1,22 +1,18 @@
 import json
 from typing import Any
 
-from youtubesearchpython import VideosSearch
-
-from .models import Channel
-from .models import Video
-
-DEFAULT_SEARCH_RESULTS_LIMIT = 12
+from ..models import Channel
+from ..models import Video
+from .core import VideosSearch
 
 
 class YouTubeVideoSearch:
-    def __init__(self, term: str, limit: int = DEFAULT_SEARCH_RESULTS_LIMIT):
+    def __init__(self, term: str):
         self._term = term
-        self._limit = limit
 
     def results(self) -> list[Video]:
         try:
-            results = VideosSearch(self._term, limit=self._limit).result()
+            results = VideosSearch(self._term).result()
             if isinstance(results, str):
                 results = json.loads(results)
             videos = results.get('result', [])
