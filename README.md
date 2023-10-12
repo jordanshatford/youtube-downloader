@@ -43,7 +43,7 @@ YouTube Downloader is a full stack application created to allow users to downloa
   - Directly search YouTube for videos.
   - Download and convert multiple videos concurrently.
   - Download quality options (best, worst).
-  - Options to automatically embed video metadata.
+  - Option to automatically embed video metadata, thumbnail, and subtitles.
   - Variety of audio formats supported (AAC, FLAC, M4A, MP3, OPUS, WAV).
   - Variety of video formats supported (AVI, FLV, MKV, MOV, MP4, WEBM).
   - Web UI with support for dark and light themes.
