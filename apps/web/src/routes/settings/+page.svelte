@@ -1,6 +1,15 @@
 <script lang="ts">
 	import { AudioFormat, DownloadQuality, DownloadType, VideoFormat } from '@yd/client';
-	import { Alert, toast, Select, Tabs, GearIcon, DownloadIcon, CodeBracketIcon } from '@yd/ui';
+	import {
+		Alert,
+		toast,
+		Select,
+		Tabs,
+		GearIcon,
+		DownloadIcon,
+		CodeBracketIcon,
+		Toggle
+	} from '@yd/ui';
 	import { settings, userSettings } from '$lib/stores/settings';
 	import config from '$lib/config';
 
@@ -98,30 +107,27 @@
 					title="Warning!"
 					description="Enabling these options could drastically increase the processing time."
 				/>
-				<Select
+				<Toggle
 					id="metadata"
 					label="Metadata:"
-					helpText="Embed information from the video into the download."
-					bind:value={$settings.embed_metadata}
-					options={toSelectOptions({ YES: true, NO: false })}
+					helpText="Embed extracted information from the video into the download."
+					bind:checked={$settings.embed_metadata}
 					on:change={() =>
 						toast.success('Updated', 'Metadata embedding settings updated successfully.')}
 				/>
-				<Select
+				<Toggle
 					id="thumbnail"
 					label="Thumbnail:"
-					helpText="Attempt to embed thumbnail. May not always work."
-					bind:value={$settings.embed_thumbnail}
-					options={toSelectOptions({ YES: true, NO: false })}
+					helpText="Attempt to embed thumbnail. Depending on other settings, this may not always work."
+					bind:checked={$settings.embed_thumbnail}
 					on:change={() =>
 						toast.success('Updated', 'Thumbnail embedding settings updated successfully.')}
 				/>
-				<Select
+				<Toggle
 					id="subtitles"
 					label="Subtitles:"
-					helpText="Attempt to embed subtitles. May not always work."
-					bind:value={$settings.embed_subtitles}
-					options={toSelectOptions({ YES: true, NO: false })}
+					helpText="Attempt to embed subtitles. Depending on other settings, this may not always work."
+					bind:checked={$settings.embed_subtitles}
 					on:change={() =>
 						toast.success('Updated', 'Subtitle embedding settings updated successfully.')}
 				/>
