@@ -142,11 +142,11 @@
 					on:change={() =>
 						toast.success('Updated', 'Downloads page size setting updated successfully.')}
 				/>
-				<Select
+				<Toggle
 					id="autoDownload"
 					label="Automatically download when complete:"
-					bind:value={$userSettings.autoDownloadOnComplete}
-					options={toSelectOptions({ YES: true, NO: false })}
+					helpText="Once a download is complete it will automatically be downloaded to your device."
+					bind:checked={$userSettings.autoDownloadOnComplete}
 					on:change={() =>
 						toast.success('Updated', 'Automatic download settings updated successfully.')}
 				/>
