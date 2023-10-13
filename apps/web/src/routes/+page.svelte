@@ -5,8 +5,8 @@
 	import ResultCard from '$lib/components/ResultCard.svelte';
 	import config from '$lib/config';
 
-	async function searchVideos(event: CustomEvent<{ term: string }>) {
-		await search.get(event.detail.term);
+	async function searchVideos(event: CustomEvent<{ query: string }>) {
+		await search.get(event.detail.query);
 	}
 </script>
 
@@ -19,7 +19,7 @@
 	<div class="mx-auto max-w-xl overflow-hidden md:max-w-xl">
 		<div class="md:flex">
 			<div class="mt-4 w-full">
-				<SearchBar on:search={searchVideos} loading={$search.loading} searchTerm={$search.term} />
+				<SearchBar on:search={searchVideos} loading={$search.loading} query={$search.query} />
 			</div>
 		</div>
 	</div>

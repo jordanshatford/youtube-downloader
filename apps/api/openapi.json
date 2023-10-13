@@ -28,12 +28,12 @@
         ],
         "parameters": [
           {
-            "name": "term",
+            "name": "query",
             "in": "query",
             "required": true,
             "schema": {
               "type": "string",
-              "title": "Term"
+              "title": "Query"
             }
           }
         ],

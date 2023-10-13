@@ -5,11 +5,11 @@
 	const dispatch = createEventDispatcher();
 
 	export let loading = false;
-	export let searchTerm: string;
+	export let query: string;
 
 	function dispatchSearch(event: KeyboardEvent) {
-		if (event.key === 'Enter' && searchTerm.length > 0) {
-			dispatch('search', { term: searchTerm });
+		if (event.key === 'Enter' && query.length > 0) {
+			dispatch('search', { query: query });
 		}
 	}
 </script>
@@ -25,7 +25,7 @@
 		<input
 			id="search"
 			disabled={loading}
-			bind:value={searchTerm}
+			bind:value={query}
 			on:keypress={dispatchSearch}
 			type="search"
 			class="-ml-10 w-full rounded-lg border-2 border-zinc-200 py-2 pl-10 pr-3 text-zinc-600 outline-none focus:border-brand-600 focus:ring-transparent dark:border-zinc-600 dark:bg-zinc-800 dark:text-zinc-200 dark:focus:border-brand-600 dark:disabled:bg-zinc-600"

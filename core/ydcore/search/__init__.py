@@ -7,9 +7,9 @@ from .core import VideosSearch
 
 
 class YouTubeVideoSearch:
-    def __init__(self, term: str):
-        self._term = term
-        self._search = VideosSearch(self._term)
+    def __init__(self, query: str):
+        self._query = query
+        self._search = VideosSearch(self._query)
 
     def results(self) -> list[Video]:
         try:

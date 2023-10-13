@@ -6,26 +6,26 @@ function createSearchStore() {
 	const results: Video[] = [];
 
 	const { subscribe, set, update } = writable({
-		term: '',
+		query: '',
 		results: results,
 		loading: false
 	});
 
-	async function get(term: string) {
+	async function get(query: string) {
 		let hasSearchChanged = false;
 		update((state) => {
-			if (state.term === term) {
+			if (state.query === query) {
 				return state;
 			}
 			hasSearchChanged = true;
-			state.term = term;
+			state.query = query;
 			state.loading = true;
 			return state;
 		});
 		if (hasSearchChanged) {
 			let results: Video[] = [];
 			try {
-				results = await SearchService.getSearch(term);
+				results = await SearchService.getSearch(query);
 				toast.success('Success', `Found ${results.length} search results.`);
 			} catch (err) {
 				toast.error('Error', 'Failed to get search results.');
@@ -63,7 +63,7 @@ function createSearchStore() {
 		subscribe,
 		get,
 		getMore,
-		reset: () => set({ term: '', results: [], loading: false })
+		reset: () => set({ query: '', results: [], loading: false })
 	};
 }
 
