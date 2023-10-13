@@ -11,6 +11,7 @@ from typing import Any
 
 from ydcore import DownloadManager
 from ydcore import VideoWithOptionsAndStatus
+from ydcore import YouTubeVideoSearch
 
 
 class RepeatedTimer:
@@ -56,6 +57,7 @@ class Session:
         self.download_manager = DownloadManager(
             self._output_dir, self._status_hook,
         )
+        self.search: YouTubeVideoSearch | None = None
         self.status_queue: Queue[VideoWithOptionsAndStatus] = Queue()
 
     def update_use_time(self):

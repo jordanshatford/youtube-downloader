@@ -71,6 +71,42 @@
         }
       }
     },
+    "/search/next": {
+      "get": {
+        "tags": [
+          "search"
+        ],
+        "summary": "Get Next Search",
+        "operationId": "get_next_search",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "items": {
+                    "$ref": "#/components/schemas/Video"
+                  },
+                  "type": "array",
+                  "title": "Response Get Next Search"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ]
+      }
+    },
     "/session": {
       "get": {
         "tags": [

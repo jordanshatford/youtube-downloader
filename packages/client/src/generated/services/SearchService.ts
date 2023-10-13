@@ -33,4 +33,20 @@ export class SearchService {
     });
   }
 
+  /**
+   * Get Next Search
+   * @returns Video Successful Response
+   * @throws ApiError
+   */
+  public static getNextSearch(): CancelablePromise<Array<Video>> {
+    return __request(OpenAPI, {
+      method: 'GET',
+      url: '/search/next',
+      errors: {
+        403: `Forbidden`,
+        404: `Not Found`,
+      },
+    });
+  }
+
 }
