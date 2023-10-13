@@ -39,9 +39,30 @@ function createSearchStore() {
 		}
 	}
 
+	async function getMore() {
+		update((state) => {
+			state.loading = true;
+			return state;
+		});
+		let results: Video[] = [];
+		try {
+			results = await SearchService.getNextSearch();
+			toast.success('Success', `Found ${results.length} more search results.`);
+		} catch (err) {
+			toast.error('Error', 'Failed to get more search results.');
+			console.error('Failed to get more search videos ', err);
+		}
+		update((state) => {
+			state.results = [...state.results, ...results];
+			state.loading = false;
+			return state;
+		});
+	}
+
 	return {
 		subscribe,
 		get,
+		getMore,
 		reset: () => set({ term: '', results: [], loading: false })
 	};
 }
