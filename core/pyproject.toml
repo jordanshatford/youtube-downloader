@@ -8,7 +8,7 @@ authors = [
     {name = "Jordan Shatford", email = "jordanshatford@live.com"},
 ]
 dependencies = [
-    "yt-dlp==2023.10.7",
+    "yt-dlp==2023.10.13",
     "mutagen==1.47.0",
     "pydantic>=2.1.1,<3.0.0",
 ]
