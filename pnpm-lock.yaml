@@ -125,8 +125,8 @@ importers:
         specifier: ^2.2.3
         version: 2.2.3
       '@steeze-ui/simple-icons':
-        specifier: ^1.5.1
-        version: 1.5.1
+        specifier: ^1.6.0
+        version: 1.6.0
       '@steeze-ui/svelte-icon':
         specifier: ^1.5.0
         version: 1.5.0(svelte@4.2.1)
@@ -720,8 +720,8 @@ packages:
     resolution: {integrity: sha512-bv4YK375U9TDS50SmJ5VdFy2UmMhgKbJCCbo6IUU3qs2luEj2VX6sQoDy96j8AIKttxMd62ih1j0lZj7CTjIfA==}
     dev: false
 
-  /@steeze-ui/simple-icons@1.5.1:
-    resolution: {integrity: sha512-XspfzOCghi5QZZ+CUJM/WKgVEBZVhXxPMBW/m4t6WY4U1KDKYEgcZufLzt+rBVQHQgv4LpWaPeAHlNQbETQ3eA==}
+  /@steeze-ui/simple-icons@1.6.0:
+    resolution: {integrity: sha512-Mi6J1Ydo7CFGTqDcXL2/nHqjE0gUON8ehv7ziyS/HJccNLI27if9FRa7oUqhE84RogcLxqftfD7MGxO6nFlNBA==}
     dev: false
 
   /@steeze-ui/svelte-icon@1.5.0(svelte@4.2.1):
