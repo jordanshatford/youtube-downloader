@@ -116,11 +116,12 @@ class DownloadConfig:
     def _progress_hook(self, info: ProgressHookInfo) -> None:
         status = info.get('status')
         if status == 'downloading':
+            eta = info.get('eta')
             self._handle_status_update(
                 DownloadStatus(
                     state=DownloadState.DOWNLOADING,
                     progress=get_progress(info),
-                    eta=info.get('eta'),
+                    eta=int(eta) if eta else None,
                 ),
             )
         elif status == 'error':
