@@ -37,11 +37,6 @@ class DownloadStatus(BaseModel):
     postprocessor: str | None = None
 
 
-class DownloadType(str, enum.Enum):
-    AUDIO = 'audio'
-    VIDEO = 'video'
-
-
 class AudioFormat(str, enum.Enum):
     AAC = 'aac'
     FLAC = 'flac'
