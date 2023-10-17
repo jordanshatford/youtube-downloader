@@ -2,9 +2,11 @@ import os
 from collections.abc import Callable
 from typing import TypeAlias
 
+from ..models import AudioFormat
 from ..models import DownloadState
 from ..models import DownloadStatus
 from ..models import DownloadType
+from ..models import VideoFormat
 from ..models import VideoWithOptions
 from ..models import VideoWithOptionsAndStatus
 from .ytdlp import PostprocessorHookInfo
@@ -17,8 +19,9 @@ StatusHook: TypeAlias = Callable[[VideoWithOptionsAndStatus], None]
 # options.
 # Note: if a default isnt provided then the yt-dlp default will be used.
 DEFAULT_YTDLP_PARAMS: YoutubeDLParams = {
-    'quiet': True,
+    'quiet': False,
     'retries': 5,
+    'verbose': True,
 }
 
 
@@ -51,17 +54,26 @@ class DownloadConfig:
         return False
 
     @property
+    def _download_type(self) -> DownloadType:
+        if self._video.options.format in VideoFormat:
+            return DownloadType.VIDEO
+        elif self._video.options.format in AudioFormat:
+            return DownloadType.AUDIO
+        else:
+            return DownloadType.VIDEO
+
+    @property
     def as_ytdlp_params(self) -> YoutubeDLParams:
         postprocessors: list[dict[str, str | bool | int]] = []
         # Only append audio postprocessor if we are downloading audio format.
-        if self._video.options.type == DownloadType.AUDIO:
+        if self._download_type == DownloadType.AUDIO:
             postprocessors.append({
                 'key': 'FFmpegExtractAudio',
                 'preferredcodec': self._video.options.format.value,
                 'preferredquality': '192',
             })
         # Only append video postprocessor if we are downloading video format.
-        if self._video.options.type == DownloadType.VIDEO:
+        if self._download_type == DownloadType.VIDEO:
             postprocessors.append(
                 {
                     'key': 'FFmpegVideoConvertor',
@@ -104,11 +116,11 @@ class DownloadConfig:
         extension = options.format.value
         # bestvideo*[ext=X]+bestaudio/bestvideo*+bestaudio/best or
         # worstvideo*[ext=X]+worstaudio/worstvideo*+worstaudio/worst
-        if (options.type == DownloadType.VIDEO):
+        if (self._download_type == DownloadType.VIDEO):
             proper_ext = f'{quality}video*[ext={extension}]+{quality}audio'
             return f'{proper_ext}/{quality}video*+{quality}audio/{quality}'
         # bestaudio[ext=X]/bestaudio/best or worstaudio[ext=X]/worstaudio/worst
-        elif (options.type == DownloadType.AUDIO):
+        elif (self._download_type == DownloadType.AUDIO):
             return f'{quality}audio[ext={extension}]/{quality}audio/{quality}'
         # Default to returning the quality (ie 'best' or 'worst')
         return quality

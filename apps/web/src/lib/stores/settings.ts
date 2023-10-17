@@ -1,24 +1,16 @@
 import { writable } from 'svelte/store';
-import {
-	AudioFormat,
-	DownloadQuality,
-	type DownloadOptions,
-	DownloadType,
-	VideoFormat
-} from '@yd/client';
+import { AudioFormat, DownloadQuality, type DownloadOptions, VideoFormat } from '@yd/client';
 import { browser } from '$app/environment';
 
 function createSettingsStore() {
 	const SETTINGS_KEY = 'settings';
 	const DEFAULT_SETTINGS: DownloadOptions = {
-		type: DownloadType.AUDIO,
-		format: AudioFormat.MP3,
+		format: VideoFormat.MP4,
 		quality: DownloadQuality.BEST,
 		embed_metadata: false,
 		embed_thumbnail: false,
 		embed_subtitles: false
 	};
-	const DEFAULT_VIDEO_FORMAT: VideoFormat = VideoFormat.MP4;
 
 	const { subscribe, set, update } = writable(DEFAULT_SETTINGS);
 
@@ -27,25 +19,11 @@ function createSettingsStore() {
 
 		if (data !== null) {
 			const parsedData = JSON.parse(data) as DownloadOptions;
-			// Make sure value is set for type
-			if (!Object.values(DownloadType).includes(parsedData.type)) {
-				parsedData.type = DEFAULT_SETTINGS.type;
-			}
+			const supportedFormats = [...Object.values(AudioFormat), ...Object.values(VideoFormat)];
 			// Make sure a value is set, if nothing is set use the default
-			if (
-				parsedData.type === DownloadType.AUDIO &&
-				!Object.values(AudioFormat).includes(parsedData.format as AudioFormat)
-			) {
+			if (!supportedFormats.includes(parsedData.format)) {
 				parsedData.format = DEFAULT_SETTINGS.format;
 			}
-
-			if (
-				parsedData.type === DownloadType.VIDEO &&
-				!Object.values(VideoFormat).includes(parsedData.format as VideoFormat)
-			) {
-				parsedData.format = DEFAULT_VIDEO_FORMAT;
-			}
-
 			if (!Object.values(DownloadQuality).includes(parsedData.quality)) {
 				parsedData.quality = DEFAULT_SETTINGS.quality;
 			}

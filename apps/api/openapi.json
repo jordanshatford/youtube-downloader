@@ -476,13 +476,6 @@
       },
       "AvailableDownloadOptions": {
         "properties": {
-          "type": {
-            "items": {
-              "$ref": "#/components/schemas/DownloadType"
-            },
-            "type": "array",
-            "title": "Type"
-          },
           "format": {
             "items": {
               "anyOf": [
@@ -528,7 +521,6 @@
         },
         "type": "object",
         "required": [
-          "type",
           "format",
           "quality",
           "embed_metadata",
@@ -568,9 +560,6 @@
       },
       "DownloadOptions": {
         "properties": {
-          "type": {
-            "$ref": "#/components/schemas/DownloadType"
-          },
           "format": {
             "anyOf": [
               {
@@ -600,7 +589,6 @@
         },
         "type": "object",
         "required": [
-          "type",
           "format",
           "quality",
           "embed_metadata",
@@ -672,14 +660,6 @@
           "state"
         ],
         "title": "DownloadStatus"
-      },
-      "DownloadType": {
-        "type": "string",
-        "enum": [
-          "audio",
-          "video"
-        ],
-        "title": "DownloadType"
       },
       "HTTPValidationError": {
         "properties": {

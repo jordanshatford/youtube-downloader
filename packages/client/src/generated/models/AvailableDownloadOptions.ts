@@ -5,11 +5,9 @@
 
 import type { AudioFormat } from './AudioFormat';
 import type { DownloadQuality } from './DownloadQuality';
-import type { DownloadType } from './DownloadType';
 import type { VideoFormat } from './VideoFormat';
 
 export type AvailableDownloadOptions = {
-  type: Array<DownloadType>;
   format: Array<(AudioFormat | VideoFormat)>;
   quality: Array<DownloadQuality>;
   embed_metadata: Array<boolean>;

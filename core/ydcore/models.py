@@ -66,7 +66,6 @@ class DownloadQuality(str, enum.Enum):
 
 
 class AvailableDownloadOptions(BaseModel):
-    type: list[DownloadType]
     format: list[AudioFormat | VideoFormat]
     quality: list[DownloadQuality]
     embed_metadata: list[bool]
@@ -75,7 +74,6 @@ class AvailableDownloadOptions(BaseModel):
 
 
 class DownloadOptions(BaseModel):
-    type: DownloadType
     format: AudioFormat | VideoFormat
     quality: DownloadQuality
     embed_metadata: bool

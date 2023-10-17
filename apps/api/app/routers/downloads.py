@@ -11,7 +11,6 @@ from sse_starlette.sse import EventSourceResponse
 from ydcore import AudioFormat
 from ydcore import AvailableDownloadOptions
 from ydcore import DownloadQuality
-from ydcore import DownloadType
 from ydcore import VideoFormat
 from ydcore import VideoWithOptions
 from ydcore import VideoWithOptionsAndStatus
@@ -55,7 +54,6 @@ def put_downloads(
 @router.get('/options')
 def get_downloads_options(session: DependsSession) -> AvailableDownloadOptions:
     return AvailableDownloadOptions(
-        type=[t for t in DownloadType],
         format=[f for f in AudioFormat] + [f for f in VideoFormat],
         quality=[q for q in DownloadQuality],
         embed_metadata=[True, False],

@@ -6,7 +6,6 @@ from .models import DownloadOptions
 from .models import DownloadQuality
 from .models import DownloadState
 from .models import DownloadStatus
-from .models import DownloadType
 from .models import Video
 from .models import VideoFormat
 from .models import VideoWithOptions
@@ -22,7 +21,6 @@ __all__ = [
     'DownloadOptions',
     'DownloadState',
     'DownloadStatus',
-    'DownloadType',
     'DownloadQuality',
     'Video',
     'VideoFormat',
