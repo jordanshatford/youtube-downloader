@@ -8,10 +8,11 @@
 
 	const postProcessorLookup: Record<string, string> = {
 		extractaudio: 'EXTRACTING AUDIO',
-		Metadata: 'EMBEDDING',
+		videoconvertor: 'CONVERTING VIDEO',
+		metadata: 'EMBEDDING',
 		embedthumbnail: 'EMBEDDING',
-		EmbedSubtitle: 'EMBEDDING',
-		MoveFiles: 'FINALIZING'
+		embedsubtitle: 'EMBEDDING',
+		movefiles: 'FINALIZING'
 	};
 
 	const lookup: Record<DownloadState, BadgeVariants> = {
