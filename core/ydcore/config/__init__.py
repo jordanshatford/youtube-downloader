@@ -18,9 +18,9 @@ StatusHook: TypeAlias = Callable[[VideoWithOptionsAndStatus], None]
 # options.
 # Note: if a default isnt provided then the yt-dlp default will be used.
 DEFAULT_YTDLP_PARAMS: YoutubeDLParams = {
-    'quiet': False,
+    'quiet': True,
     'retries': 5,
-    'verbose': True,
+    'verbose': False,
 }
 
 
