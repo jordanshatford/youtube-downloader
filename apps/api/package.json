@@ -7,8 +7,8 @@
     ".": "./openapi.json"
   },
 	"scripts": {
-		"dev": "python3 scripts.py dev",
-		"format": "python3 scripts.py format",
-		"generate:openapi": "python3 scripts.py generate"
+		"dev": "UVICORN_HOST=0.0.0.0 UVICORN_PORT=8080 UVICORN_RELOAD=true UVICORN_RELOAD_DIRS=../../ python3 ../../scripts.py run uvicorn app.main:app",
+		"format": "python3 ../../scripts.py pre-commit run",
+		"generate:openapi": "python3 ../../scripts.py run python generate_openapi.py"
 	}
 }
