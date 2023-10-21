@@ -17,7 +17,8 @@
     "lint": "pnpm -r lint",
     "format": "pnpm -r format",
     "check": "pnpm -r check",
-    "commitlint": "commitlint --edit"
+    "commitlint": "commitlint --edit",
+		"precommit:autoupdate": "python3 scripts.py pre-commit autoupdate"
   },
   "devDependencies": {
     "@commitlint/cli": "^17.8.0",
