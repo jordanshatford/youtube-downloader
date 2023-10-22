@@ -20,12 +20,11 @@ subparsers = parser.add_subparsers(dest='command', required=True)
 run = subparsers.add_parser(
     'run', help='Run a command in the venv.'
 )
-run.add_argument('input', nargs='+')
 pre_commit = subparsers.add_parser(
     'pre-commit', help='Run a pre-commit command in the venv.'
 )
 pre_commit.add_argument('script', choices=['run', 'autoupdate'])
-args = parser.parse_args()
+args, rest = parser.parse_known_args()
 
 cwd = os.path.join(
     os.path.dirname(os.path.realpath(__file__)),
@@ -74,4 +73,4 @@ if args.command == 'pre-commit':
         files = r.stdout.splitlines()
         venv_run('pre-commit', ['run', '--files'] + files)
 elif args.command == 'run':
-    venv_run(args.input[0], args.input[1:])
+    venv_run(rest[0], rest[1:])
