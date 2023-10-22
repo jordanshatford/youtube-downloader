@@ -49,7 +49,9 @@ def venv_run(
         [
             os.path.join(venv_bin_path, command),
             *args,
-        ], cwd=cwd,
+        ],
+        cwd=cwd,
+        check=True,
     )
 
 # Install dependencies if they exist in a requirements.txt file
@@ -68,6 +70,7 @@ if args.command == 'pre-commit':
             ['git', 'ls-files'],
             capture_output=True,
             text=True,
+            check=True,
             cwd=cwd
         )
         files = r.stdout.splitlines()
