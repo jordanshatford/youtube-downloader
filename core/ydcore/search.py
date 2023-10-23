@@ -18,13 +18,13 @@ def _get(source: dict[Any, Any], path: list[Any]) -> Any:
             if key in value:
                 value = value[key]
             else:
-                return None
+                raise KeyError(key)
         # If the key is for a list
         elif type(key) is int:
             if len(value) != 0:
                 value = value[key]
             else:
-                return None
+                raise KeyError(key)
     return value
 
 
@@ -46,8 +46,8 @@ class YouTubeSearch:
     def next(self) -> bool:
         # If continuation exists, fetch new results to replace existing ones.
         if self._continuation:
-            videos, continuation = self._fetch_and_parse()
-            self._results = videos
+            results, continuation = self._fetch_and_parse()
+            self._results = results
             self._continuation = continuation
             return True
         else:
