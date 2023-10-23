@@ -4,6 +4,7 @@
 	"version": "1.0.0",
 	"license": "MIT",
 	"scripts": {
+		"dev": "python3 ../../scripts.py run python ydcli",
 		"format": "python3 ../../scripts.py pre-commit run"
 	}
 }
