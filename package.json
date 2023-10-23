@@ -8,6 +8,7 @@
     "generate": "pnpm --filter @yd/api generate:openapi && pnpm --filter @yd/client generate",
     "dev": "pnpm --filter @yd/api --filter @yd/web dev",
     "api": "pnpm --filter @yd/api -- ",
+		"cli": "pnpm --filter @yd/cli -- ",
     "web": "pnpm --filter @yd/web -- ",
 		"core": "pnpm --filter @yd/core --",
     "client": "pnpm --filter @yd/client -- ",
