@@ -9,23 +9,11 @@ import platform
 import subprocess
 import venv
 
-parser = argparse.ArgumentParser(
-    'venv scripts',
-    formatter_class=argparse.ArgumentDefaultsHelpFormatter
-)
-parser.add_argument(
-    '--cwd',
-    nargs='?',
-    default=os.getcwd(),
-    help="The CWD relative to this script."
-)
+parser = argparse.ArgumentParser('venv scripts (internal use)', add_help=False)
+parser.add_argument('--cwd', nargs='?', default=os.getcwd())
 subparsers = parser.add_subparsers(dest='command', required=True)
-run = subparsers.add_parser(
-    'run', help='Run a command in the venv.'
-)
-pre_commit = subparsers.add_parser(
-    'pre-commit', help='Run a pre-commit command in the venv.'
-)
+run = subparsers.add_parser('run', add_help=False)
+pre_commit = subparsers.add_parser('pre-commit', add_help=False)
 pre_commit.add_argument('script', choices=['run', 'autoupdate'])
 args, rest = parser.parse_known_args()
 
