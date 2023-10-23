@@ -3,5 +3,7 @@
 	"private": true,
 	"version": "1.0.0",
 	"license": "MIT",
-	"scripts": {}
+	"scripts": {
+		"format": "python3 ../../scripts.py pre-commit run"
+	}
 }

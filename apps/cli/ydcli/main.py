@@ -1,10 +1,10 @@
 import sys
-from typing import Sequence
+from collections.abc import Sequence
 
 
 def main(argv: Sequence[str] | None = None) -> int:
     argv = argv if argv is not None else sys.argv[1:]
-    print("NOT IMPLEMENTED")
+    print('NOT IMPLEMENTED')
     return 1
 
 
