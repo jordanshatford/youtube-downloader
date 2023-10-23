@@ -54,7 +54,8 @@ Please refer to the [contributing guide](CONTRIBUTING.md) for how to install the
 ## Monorepo structure:
 
 ### Apps:
-- `api`: An API developed in Python using [FastAPI](https://fastapi.tiangolo.com/).
+- `api`: An API developed in [Python](https://www.python.org/) using [FastAPI](https://fastapi.tiangolo.com/).
+- `cli` A CLI tool developed in [Python](https://www.python.org/).
 - `web`: A web application developed in [SvelteKit](https://kit.svelte.dev/).
 
 ### Core:
