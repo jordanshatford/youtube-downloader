@@ -9,12 +9,15 @@ import platform
 import subprocess
 import venv
 
-parser = argparse.ArgumentParser('venv scripts')
+parser = argparse.ArgumentParser(
+    'venv scripts',
+    formatter_class=argparse.ArgumentDefaultsHelpFormatter
+)
 parser.add_argument(
     '--cwd',
     nargs='?',
     default=os.getcwd(),
-    help="The CWD relative to this script. Default: DIR script is called from."
+    help="The CWD relative to this script."
 )
 subparsers = parser.add_subparsers(dest='command', required=True)
 run = subparsers.add_parser(
