@@ -57,26 +57,29 @@ def venv_run(
         check=True,
     )
 
-# Install dependencies if they exist in a requirements.txt file
-venv_run('pip', ['install', '--upgrade', 'pip'])
-if os.path.exists('requirements.txt'):
-    venv_run('pip', ['install', '-r', 'requirements.txt'])
+try:
+    # Install dependencies if they exist in a requirements.txt file
+    venv_run('pip', ['install', '--upgrade', 'pip'])
+    if os.path.exists('requirements.txt'):
+        venv_run('pip', ['install', '-r', 'requirements.txt'])
 
-if args.command == 'pre-commit':
-    # Ensure pre-commit is installed
-    venv_run('pip', ['install', 'pre-commit'])
-    if args.script == 'autoupdate':
-        venv_run('pre-commit', ['autoupdate'])
-    elif args.script == 'run':
-        # Get a git tracked files in CWD to run pre-commit on.
-        r = subprocess.run(
-            ['git', 'ls-files'],
-            capture_output=True,
-            text=True,
-            check=True,
-            cwd=cwd
-        )
-        files = r.stdout.splitlines()
-        venv_run('pre-commit', ['run', '--files'] + files)
-elif args.command == 'run':
-    venv_run(rest[0], rest[1:])
+    if args.command == 'pre-commit':
+        # Ensure pre-commit is installed
+        venv_run('pip', ['install', 'pre-commit'])
+        if args.script == 'autoupdate':
+            venv_run('pre-commit', ['autoupdate'])
+        elif args.script == 'run':
+            # Get a git tracked files in CWD to run pre-commit on.
+            r = subprocess.run(
+                ['git', 'ls-files'],
+                capture_output=True,
+                text=True,
+                check=True,
+                cwd=cwd
+            )
+            files = r.stdout.splitlines()
+            venv_run('pre-commit', ['run', '--files'] + files)
+    elif args.command == 'run':
+        venv_run(rest[0], rest[1:])
+except subprocess.CalledProcessError as e:
+    raise SystemExit(e)
