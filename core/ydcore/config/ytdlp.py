@@ -23,7 +23,7 @@ class ProgressHookInfo(TypedDict):
     total_bytes: NotRequired[int | None]
     total_bytes_estimate: NotRequired[int | None]
     elapsed: NotRequired[float | None]
-    eta: NotRequired[int | None]
+    eta: NotRequired[float | None]
     speed: NotRequired[float | None]
     fragment_index: NotRequired[int | None]
     fragment_count: NotRequired[int | None]
