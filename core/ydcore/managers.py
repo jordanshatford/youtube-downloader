@@ -7,7 +7,7 @@ from .threads import YoutubeDownloadThread
 class DownloadManager:
     def __init__(
         self, output_dir: str,
-        status_hook: StatusHook,
+        status_hook: StatusHook | None = None,
     ):
         self._status_hook = status_hook
         self._downloads: dict[str, YoutubeDownloadThread] = {}
@@ -39,4 +39,5 @@ class DownloadManager:
         ]
 
     def send_status_update(self, update: VideoWithOptionsAndStatus) -> None:
-        self._status_hook(update)
+        if self._status_hook is not None:
+            self._status_hook(update)
