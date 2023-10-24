@@ -21,6 +21,7 @@ DEFAULT_YTDLP_PARAMS: YoutubeDLParams = {
     'quiet': True,
     'retries': 5,
     'verbose': False,
+    'noprogress': True,
 }
 
 
