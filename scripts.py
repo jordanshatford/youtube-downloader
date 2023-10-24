@@ -70,4 +70,4 @@ try:
     elif args.command == 'run':
         venv_run(rest[0], rest[1:])
 except subprocess.CalledProcessError as e:
-    raise SystemExit(e)
+    raise SystemExit(1)
