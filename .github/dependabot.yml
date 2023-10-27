@@ -10,12 +10,20 @@ updates:
       interval: "weekly"
     assignees:
       - "jordanshatford"
+    groups:
+      github-actions:
+        patterns:
+          - "*"
   - package-ecosystem: "github-actions"
     directory: "/"
     schedule:
       interval: "weekly"
     assignees:
       - "jordanshatford"
+    groups:
+      github-actions:
+        patterns:
+          - "*"
 
   # API dependabot checks
   - package-ecosystem: "pip"
