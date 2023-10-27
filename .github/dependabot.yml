@@ -42,7 +42,7 @@ updates:
     directory: "/apps/cli"
     schedule:
       interval: "weekly"
-    assigness:
+    assignees:
       - "jordanshatford"
     groups:
       cli-python:
@@ -54,7 +54,7 @@ updates:
     directory: "/core"
     schedule:
       interval: "weekly"
-    assigness:
+    assignees:
       - "jordanshatford"
     groups:
       core-python:
