@@ -18,12 +18,6 @@ updates:
       - "jordanshatford"
 
   # API dependabot checks
-  - package-ecosystem: "docker"
-    directory: "/apps/api"
-    schedule:
-      interval: "weekly"
-    assignees:
-      - "jordanshatford"
   - package-ecosystem: "pip"
     directory: "/apps/api"
     schedule:
@@ -59,7 +53,7 @@ updates:
         patterns:
           - "*"
 
-  # TypeScript packages dependabot checks
+  # NPM dependabot checks
   - package-ecosystem: "npm"
     directory: "/"
     schedule:
@@ -71,9 +65,15 @@ updates:
         dependency-type: "production"
       dev-npm:
         dependency-type: "development"
+
+  # Docker dependabot checks
   - package-ecosystem: "docker"
     directory: "/"
     schedule:
       interval: "weekly"
     assignees:
       - "jordanshatford"
+    groups:
+      docker:
+        patterns:
+          - "*"
