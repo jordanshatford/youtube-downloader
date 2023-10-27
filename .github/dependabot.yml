@@ -35,6 +35,18 @@ updates:
         patterns:
           - "*"
 
+  # CLI dependabot checks
+  - package-ecosystem: "pip"
+    directory: "/apps/cli"
+    schedule:
+      interval: "weekly"
+    assigness:
+      - "jordanshatford"
+    groups:
+      cli-python:
+        patterns:
+          - "*"
+
   # Core dependencies
   - package-ecosystem: "pip"
     directory: "/core"
