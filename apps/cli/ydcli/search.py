@@ -9,7 +9,7 @@ from .utils import validate_value_entered
 def run() -> int:
     term = questionary.text(
         message='Search term:', validate=validate_value_entered,
-    ).ask()
+    ).unsafe_ask()
     search = YouTubeSearch(term)
     videos = search.results
     # If no search results found exit with error code 1.

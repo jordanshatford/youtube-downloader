@@ -5,16 +5,19 @@ from . import search
 
 
 def main() -> int:
-    command = questionary.select(
-        'What do you want to do?',
-        ['Search', 'Download'],
-        default='Download',
-    ).ask()
-
-    if command == 'Search':
-        return search.run()
-    elif command == 'Download':
-        return download.run()
+    try:
+        command = questionary.select(
+            'What do you want to do?',
+            ['Search', 'Download'],
+            default='Download',
+        ).unsafe_ask()
+        if command == 'Search':
+            return search.run()
+        elif command == 'Download':
+            return download.run()
+    except KeyboardInterrupt:
+        questionary.print('\nCancelled by user\n')
+        return 1
     return 1
 
 
