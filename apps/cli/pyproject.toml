@@ -8,7 +8,8 @@ authors = [
     {name = "Jordan Shatford", email = "jordanshatford@live.com"},
 ]
 dependencies = [
-  "ydcore@{root:uri}/../../core"
+  "ydcore@{root:uri}/../../core",
+  "questionary>=2.0.1,<3.0.0"
 ]
 
 [project.scripts]
