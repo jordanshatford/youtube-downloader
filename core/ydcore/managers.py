@@ -1,3 +1,5 @@
+import time
+
 from .config import StatusHook
 from .models import VideoWithOptions
 from .models import VideoWithOptionsAndStatus
@@ -42,10 +44,7 @@ class DownloadManager:
         if self._status_hook is not None:
             self._status_hook(update)
 
-    def wait_for(self, video_id: str) -> None:
-        if video_id in self._downloads:
-            self._downloads[video_id].join()
-
     def wait_for_all(self) -> None:
         for download in self._downloads.values():
             download.join()
+        time.sleep(1)
