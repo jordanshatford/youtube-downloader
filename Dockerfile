@@ -32,6 +32,24 @@ FROM web-base AS web-production
 RUN pnpm web build
 CMD [ "pnpm", "web", "preview", "--host", "--port=5173" ]
 
+FROM python:3.12 as cli
+
+# Ensure FFMPEG is available
+RUN apt-get update -y
+RUN apt-get install -y ffmpeg
+
+WORKDIR /workspace/apps/cli
+
+# Copy core functionality
+COPY ./core /workspace/core/
+
+# Install required python packages
+COPY ./apps/cli/requirements.txt /workspace/apps/cli/requirements.txt
+COPY ./apps/cli/pyproject.toml /workspace/apps/cli/pyproject.toml
+COPY ./apps/cli/ydcli /workspace/apps/cli/ydcli
+RUN pip install --no-cache-dir -r requirements.txt
+
+ENTRYPOINT [ "python", "ydcli/__main__.py" ]
 
 FROM python:3.12 AS api-base
 

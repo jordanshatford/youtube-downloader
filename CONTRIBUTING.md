@@ -23,6 +23,12 @@ Setting up the project using docker is simple. Simply run the following command 
 docker compose -f docker-compose.dev.yml up --build
 ```
 
+To run the CLI application using docker you can run the following command:
+
+```sh
+docker compose run cli --build
+```
+
 > NOTE: using this method will only allow running the project. You must setup the project without docker to be able to generate, format, lint, and check the project.
 
 ### Without Docker

@@ -11,6 +11,11 @@ services:
       ALLOWED_ORIGIN: http://localhost:5173
     ports:
       - 8080:8080
+  cli:
+    build:
+      context: .
+      target: cli
+    image: yd/cli:latest
   web:
     build:
       context: .
