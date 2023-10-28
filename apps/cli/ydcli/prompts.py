@@ -3,7 +3,33 @@ from questionary import Choice
 from ydcore import AudioFormat
 from ydcore import DownloadOptions
 from ydcore import DownloadQuality
+from ydcore import Video
 from ydcore import VideoFormat
+from ydcore import YouTubeSearch
+
+from .validation import validate_value_entered
+
+
+def prompt_for_video() -> Video:
+    query = questionary.text(
+        message='Search term or URL:', validate=validate_value_entered,
+    ).unsafe_ask()
+    search = YouTubeSearch(query)
+    videos = search.results
+    # If no search results found, print that info and ask for another term.
+    if len(videos) == 0:
+        questionary.print('No search results found.')
+        return prompt_for_video()
+    video = questionary.select(
+        'Select a video:',
+        [
+            Choice(
+                str(video),
+                video,
+            ) for video in videos
+        ],
+    ).unsafe_ask()
+    return video
 
 
 def prompt_for_download_options() -> DownloadOptions:

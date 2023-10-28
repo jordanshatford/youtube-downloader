@@ -1,35 +1,17 @@
 import os
 
 import questionary
-from questionary import Choice
 from ydcore import DownloadManager
-from ydcore import YouTubeSearch
 
 from .prompts import prompt_for_download_options
+from .prompts import prompt_for_video
 from .utils import on_status_update
 from .validation import validate_youtube_url
 
 
 # Interactive search on CLI with various prompts for information
 def interactive_search() -> None:
-    term = questionary.text(
-        message='Search term:', validate=validate_value_entered,
-    ).unsafe_ask()
-    search = YouTubeSearch(term)
-    videos = search.results
-    # If no search results found, print that info and ask for another term.
-    if len(videos) == 0:
-        questionary.print('No search results found.')
-        return interactive_search()
-    video = questionary.select(
-        'Select a video:',
-        [
-            Choice(
-                str(video),
-                video,
-            ) for video in videos
-        ],
-    ).unsafe_ask()
+    video = prompt_for_video()
     print(video)
 
 
