@@ -53,8 +53,8 @@ def prompt_for_download_options() -> DownloadOptions:
         'Embed:',
         [
             Choice('Metadata', checked=True),
-            Choice('Thumbnail'),
             Choice('Subtitles'),
+            Choice('Thumbnail'),
         ],
     ).unsafe_ask()
     return DownloadOptions(
