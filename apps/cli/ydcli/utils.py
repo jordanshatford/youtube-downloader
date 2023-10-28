@@ -1,3 +1,5 @@
+import re
+
 from ydcore import Video
 
 
@@ -8,7 +10,13 @@ def validate_value_entered(value: str) -> str | bool:
 
 # Validate that user entered a youtube url
 def validate_youtube_url(value: str) -> str | bool:
-    return True if len(value) > 0 else 'Please enter a valid YouTube URL.'
+    regex = (
+        r'(https?://)?(www\.)?'
+        r'(youtube|youtu|youtube-nocookie)\.(com|be)/'
+        r'(watch\?v=|embed/|v/|.+\?v=)?([^&=%\?]{11})'
+    )
+    match = re.match(regex, value)
+    return True if bool(match) else 'Please enter a valid YouTube URL.'
 
 
 # Print list of videos to the console
