@@ -1,16 +1,17 @@
 from ydcore import Video
-from ydcore import YouTubeSearch
 
 
-# Take YouTube URL and return a Video with details if exists.
-def to_video(url: str) -> Video | None:
-    results = YouTubeSearch(url).results
-    return results[0] if len(results) > 0 else None
+# Validate that a user has actually entered a value
+def validate_value_entered(value: str) -> str | bool:
+    return True if len(value) > 0 else 'Please enter a value.'
 
 
-# Print videos list to console. Start is the number to prepend on the first
-# video. This function returns the next number in the sequence for future use.
-def print_videos(videos: list[Video], start: int = 1) -> int:
-    for index, video in enumerate(videos, start=start):
+# Validate that user entered a youtube url
+def validate_youtube_url(value: str) -> str | bool:
+    return True if len(value) > 0 else 'Please enter a valid YouTube URL.'
+
+
+# Print list of videos to the console
+def print_videos(videos: list[Video]) -> None:
+    for index, video in enumerate(videos, start=1):
         print(f'{index}. {video.url} - {video.title}')
-    return start + len(videos)
