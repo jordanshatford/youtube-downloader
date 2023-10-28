@@ -6,7 +6,7 @@ from .validation import validate_value_entered
 
 
 # Run search functionality. User will input term to search for.
-def run() -> int:
+def run() -> None:
     term = questionary.text(
         message='Search term:', validate=validate_value_entered,
     ).unsafe_ask()
@@ -26,4 +26,3 @@ def run() -> int:
         ],
     ).unsafe_ask()
     print(video)
-    return 0

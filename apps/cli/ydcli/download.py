@@ -43,7 +43,7 @@ def prompt_for_download_options() -> DownloadOptions:
 
 
 # Run the download for a video
-def run() -> int:
+def run() -> None:
     path = questionary.path(
         'Directory to store downloads:',
         only_directories=True,
@@ -59,4 +59,3 @@ def run() -> int:
     manager = DownloadManager(output_dir)
     manager.add_using_url(url, options)
     manager.wait_for_all()
-    return 0
