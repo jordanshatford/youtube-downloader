@@ -8,7 +8,7 @@ def main() -> int:
     try:
         command = questionary.select(
             'What do you want to do?',
-            ['Search', 'Download'],
+            ['Download', 'Search'],
             default='Download',
         ).unsafe_ask()
         if command == 'Search':
