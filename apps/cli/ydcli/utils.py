@@ -8,14 +8,14 @@ def on_status_update(update: VideoWithOptionsAndStatus) -> None:
     if state in [
         DownloadState.WAITING, DownloadState.ERROR, DownloadState.DONE,
     ]:
-        questionary.print(state)
+        questionary.print(state.value)
     elif state == DownloadState.DOWNLOADING:
         progress = update.status.progress
         questionary.print(
-            f'DOWNLOADING - {progress:3.0f}%' if progress else state,
+            f'{state.value} - {progress:3.0f}%' if progress else state,
         )
     elif state == DownloadState.PROCESSING:
         postprocessor = update.status.postprocessor
         questionary.print(
-            f'PROCESSING - {postprocessor}' if postprocessor else state,
+            f'{state.value} - {postprocessor}' if postprocessor else state,
         )
