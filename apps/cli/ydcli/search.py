@@ -1,8 +1,8 @@
 import questionary
+from questionary import Choice
 from ydcore import YouTubeSearch
 
-from .utils import print_videos
-from .utils import validate_value_entered
+from .validation import validate_value_entered
 
 
 # Run search functionality. User will input term to search for.
@@ -12,10 +12,18 @@ def run() -> int:
     ).unsafe_ask()
     search = YouTubeSearch(term)
     videos = search.results
-    # If no search results found exit with error code 1.
+    # If no search results found, print that info and ask for another term.
     if len(videos) == 0:
-        print('No search results found.')
-        return 1
-    # Print list of videos to the user
-    print_videos(videos)
+        questionary.print('No search results found.')
+        return run()
+    video = questionary.select(
+        'Select a video:',
+        [
+            Choice(
+                str(video),
+                video,
+            ) for video in videos
+        ],
+    ).unsafe_ask()
+    print(video)
     return 0

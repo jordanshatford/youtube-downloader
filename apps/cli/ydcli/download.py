@@ -8,7 +8,7 @@ from ydcore import DownloadOptions
 from ydcore import DownloadQuality
 from ydcore import VideoFormat
 
-from .utils import validate_youtube_url
+from .validation import validate_youtube_url
 
 
 def prompt_for_download_options() -> DownloadOptions:
