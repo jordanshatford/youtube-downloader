@@ -6,7 +6,7 @@ from ydcore import DownloadManager
 from ydcore import YouTubeSearch
 
 from .prompts import prompt_for_download_options
-from .validation import validate_value_entered
+from .utils import on_status_update
 from .validation import validate_youtube_url
 
 
@@ -47,6 +47,6 @@ def interactive_download() -> None:
     ).unsafe_ask()
     options = prompt_for_download_options()
     # Download and wait for video
-    manager = DownloadManager(output_dir)
+    manager = DownloadManager(output_dir, on_status_update)
     manager.add_using_url(url, options)
     manager.wait_for_all()
