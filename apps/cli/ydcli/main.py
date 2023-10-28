@@ -1,20 +1,37 @@
-import questionary
+import os
 
-from . import commands
+import questionary
+from ydcore import DownloadManager
+from ydcore import VideoWithOptions
+
+from .prompts import prompt_for_download_options
+from .prompts import prompt_for_video
+from .utils import on_status_update
 
 
 def main() -> int:
     try:
-        # Run comamnd based on user input
-        command = questionary.select(
-            'What do you want to do?',
-            ['Download', 'Search'],
-            default='Download',
+        # Get directory to output downloaded files to
+        path = questionary.path(
+            'Directory to store downloads:',
+            only_directories=True,
+            default='./downloads',
         ).unsafe_ask()
-        if command == 'Search':
-            commands.interactive_search()
-        elif command == 'Download':
-            commands.interactive_download()
+        output_dir = os.path.abspath(path)
+        questionary.print(f'Downloading files to: {output_dir}')
+        # Get a video based on user input
+        video = prompt_for_video()
+        # Get options for downloading the video
+        options = prompt_for_download_options()
+        # Download and wait for video to finish
+        manager = DownloadManager(output_dir, on_status_update)
+        manager.add(
+            VideoWithOptions(
+                **video.model_dump(),
+                options=options,
+            ),
+        )
+        manager.wait_for_all()
         # Exit successful if an error has not occurred
         return 0
     except KeyboardInterrupt:
