@@ -1,36 +1,8 @@
 import os
 
 import questionary
-from ydcore import DownloadManager
-from ydcore import VideoWithOptions
 
-from .prompts import prompt_for_download_options
-from .prompts import prompt_for_video
-from .utils import on_status_update
-
-
-def download_video(output_dir: str) -> int:
-    # Get a video based on user input
-    video = prompt_for_video()
-    # Get options for downloading the video
-    options = prompt_for_download_options()
-    # Download and wait for video to finish
-    manager = DownloadManager(output_dir, on_status_update)
-    manager.add(
-        VideoWithOptions(
-            **video.model_dump(),
-            options=options,
-        ),
-    )
-    manager.wait_for_all()
-    # Check if the user wants to download more
-    should_download_another = questionary.confirm(
-        'Do you want to download another?',
-    ).unsafe_ask()
-    if should_download_another:
-        return download_video(output_dir)
-    else:
-        return 0
+from .prompts import prompt_for_video_and_download
 
 
 def main() -> int:
@@ -43,7 +15,7 @@ def main() -> int:
         ).unsafe_ask()
         output_dir = os.path.abspath(path)
         questionary.print(f'Downloading files to: {output_dir}')
-        return download_video(output_dir)
+        return prompt_for_video_and_download(output_dir)
     except KeyboardInterrupt:
         questionary.print('\nCancelled by user\n')
         return 0

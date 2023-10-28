@@ -1,12 +1,15 @@
 import questionary
 from questionary import Choice
 from ydcore import AudioFormat
+from ydcore import DownloadManager
 from ydcore import DownloadOptions
 from ydcore import DownloadQuality
 from ydcore import Video
 from ydcore import VideoFormat
+from ydcore import VideoWithOptions
 from ydcore import YouTubeSearch
 
+from .utils import on_status_update
 from .validation import validate_value_entered
 
 
@@ -61,3 +64,27 @@ def prompt_for_download_options() -> DownloadOptions:
         embed_thumbnail='Thumbnail' in embedding,
         embed_subtitles='Subtitles' in embedding,
     )
+
+
+def prompt_for_video_and_download(output_dir: str) -> int:
+    # Get a video based on user input
+    video = prompt_for_video()
+    # Get options for downloading the video
+    options = prompt_for_download_options()
+    # Download and wait for video to finish
+    manager = DownloadManager(output_dir, on_status_update)
+    manager.add(
+        VideoWithOptions(
+            **video.model_dump(),
+            options=options,
+        ),
+    )
+    manager.wait_for_all()
+    # Check if the user wants to download more
+    should_download_another = questionary.confirm(
+        'Do you want to download another?',
+    ).unsafe_ask()
+    if should_download_another:
+        return prompt_for_video_and_download(output_dir)
+    else:
+        return 0
