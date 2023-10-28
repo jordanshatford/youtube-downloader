@@ -18,6 +18,9 @@ def main() -> int:
     except KeyboardInterrupt:
         questionary.print('\nCancelled by user\n')
         return 1
+    except Exception as e:
+        questionary.print(f'\nError: {e}')
+        return 1
     return 1
 
 
