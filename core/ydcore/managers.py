@@ -1,13 +1,9 @@
 import time
 
-from pydantic import HttpUrl
-
 from .config import StatusHook
-from .models import DownloadOptions
 from .models import VideoWithOptions
 from .models import VideoWithOptionsAndStatus
 from .threads import YoutubeDownloadThread
-from .utils import get_video_from_url
 
 
 class DownloadManager:
@@ -29,18 +25,6 @@ class DownloadManager:
             )
             self._downloads[video.id] = download
             download.start()
-
-    def add_using_url(
-        self, url: str | HttpUrl, options: DownloadOptions,
-    ) -> None:
-        video = get_video_from_url(url)
-        if video is not None:
-            return self.add(
-                VideoWithOptions(
-                    **video.model_dump(),
-                    options=options,
-                ),
-            )
 
     def remove(self, video_id: str) -> None:
         if video_id in self._downloads:
