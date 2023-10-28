@@ -17,7 +17,7 @@ def main() -> int:
             return download.run()
     except KeyboardInterrupt:
         questionary.print('\nCancelled by user\n')
-        return 1
+        return 0
     except Exception as e:
         questionary.print(f'\nError: {e}')
         return 1
