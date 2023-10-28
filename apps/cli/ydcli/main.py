@@ -1,7 +1,6 @@
 import questionary
 
-from . import download
-from . import search
+from . import commands
 
 
 def main() -> int:
@@ -13,9 +12,9 @@ def main() -> int:
             default='Download',
         ).unsafe_ask()
         if command == 'Search':
-            search.run()
+            commands.interactive_search()
         elif command == 'Download':
-            download.run()
+            commands.interactive_download()
         # Exit successful if an error has not occurred
         return 0
     except KeyboardInterrupt:
