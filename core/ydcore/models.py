@@ -9,6 +9,9 @@ class Channel(BaseModel):
     url: HttpUrl
     thumbnail: HttpUrl
 
+    def __str__(self):
+        return self.name
+
 
 class Video(BaseModel):
     id: str
@@ -17,6 +20,9 @@ class Video(BaseModel):
     duration: str
     thumbnail: HttpUrl
     channel: Channel
+
+    def __str__(self):
+        return f'{self.title} - {str(self.channel)}'
 
 
 class DownloadState(str, enum.Enum):
