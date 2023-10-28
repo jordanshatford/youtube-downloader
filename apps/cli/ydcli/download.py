@@ -19,12 +19,12 @@ def prompt_for_download_options() -> DownloadOptions:
             *[Choice(f.name, f) for f in VideoFormat],
         ],
         default=VideoFormat.MP4,
-    ).ask()
+    ).unsafe_ask()
     quality = questionary.select(
         'Quality:',
         [Choice(q.name, q) for q in DownloadQuality],
         default=DownloadQuality.BEST,
-    ).ask()
+    ).unsafe_ask()
     embedding = questionary.checkbox(
         'Embed:',
         [
@@ -32,7 +32,7 @@ def prompt_for_download_options() -> DownloadOptions:
             Choice('Thumbnail'),
             Choice('Subtitles'),
         ],
-    ).ask()
+    ).unsafe_ask()
     return DownloadOptions(
         format=fmt,
         quality=quality,
@@ -44,12 +44,18 @@ def prompt_for_download_options() -> DownloadOptions:
 
 # Run the download for a video
 def run() -> int:
+    path = questionary.path(
+        'Directory to store downloads:',
+        only_directories=True,
+        default='./downloads',
+    ).unsafe_ask()
+    output_dir = os.path.abspath(path)
+    questionary.print(f'Downloading files to: {output_dir}')
     url = questionary.text(
         message='Video URL:', validate=validate_youtube_url,
-    ).ask()
+    ).unsafe_ask()
     options = prompt_for_download_options()
     # Download and wait for video
-    output_dir = os.path.join(os.getcwd(), '__downloads__')
     manager = DownloadManager(output_dir)
     manager.add_using_url(url, options)
     manager.wait_for_all()
