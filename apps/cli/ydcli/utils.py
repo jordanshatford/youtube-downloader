@@ -2,6 +2,16 @@ from ydcore import DownloadState
 from ydcore import VideoWithOptionsAndStatus
 
 
+POSTPROCESSOR_LOOKUP = {
+    'extractaudio': 'EXTRACTING AUDIO',
+    'videoconvertor': 'CONVERTING VIDEO',
+    'metadata': 'EMBEDDING',
+    'embedthumbnail': 'EMBEDDING',
+    'embedsubtitle': 'EMBEDDING',
+    'movefiles': 'FINALIZING',
+}
+
+
 def on_status_update(update: VideoWithOptionsAndStatus) -> None:
     state = update.status.state
     progress = update.status.progress
@@ -10,6 +20,8 @@ def on_status_update(update: VideoWithOptionsAndStatus) -> None:
     if state == DownloadState.DOWNLOADING and progress is not None:
         output += f' - {progress:3.1f}%'
     elif state == DownloadState.PROCESSING and postprocessor is not None:
-        output += f' - {postprocessor}'
+        postprocessor_text = POSTPROCESSOR_LOOKUP.get(postprocessor.lower())
+        if postprocessor_text is not None:
+            output += f' - {postprocessor_text}'
     print('\033[K', end='\r')
     print(output, end='\n' if state == DownloadState.DONE else '\r')
