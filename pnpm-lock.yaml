@@ -133,8 +133,8 @@ importers:
         specifier: ^1.5.0
         version: 1.5.0(svelte@4.2.2)
       tailwind-variants:
-        specifier: ^0.1.17
-        version: 0.1.17(tailwindcss@3.3.5)
+        specifier: ^0.1.18
+        version: 0.1.18(tailwindcss@3.3.5)
     devDependencies:
       '@sveltejs/adapter-auto':
         specifier: ^2.1.0
@@ -3188,8 +3188,8 @@ packages:
     resolution: {integrity: sha512-3mFKyCo/MBcgyOTlrY8T7odzZFx+w+qKSMAmdFzRvqBfLlSigU6TZnlFHK0lkMwj9Bj8OYU+9yW9lmGuS0QEnQ==}
     dev: false
 
-  /tailwind-variants@0.1.17(tailwindcss@3.3.5):
-    resolution: {integrity: sha512-EJsiQPCdFbTEju6mW8xL/QQnSl1LBVWowhCfjvHTK4JLuOzpXD5+47q1nWNhSOa2W42mJGtY9d5TAtmnAfdK4g==}
+  /tailwind-variants@0.1.18(tailwindcss@3.3.5):
+    resolution: {integrity: sha512-yoydMYm3FbZRw7wak+E2sqwYv2Uo3YWRqVZR03DGqDGm0ytzDrEnWO/Q/GMHdhaz8adOvycKw/bwCgQFCfmfhg==}
     engines: {node: '>=16.x', pnpm: '>=7.x'}
     peerDependencies:
       tailwindcss: '*'
