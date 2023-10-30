@@ -47,7 +47,7 @@
 				class="h-8 w-8 p-1 text-black hover:text-brand-600 dark:text-white dark:hover:text-brand-600"
 			/>
 		{:else}
-			<StateIcon state={$downloads[result.id].status.state} />
+			<StateIcon state={$downloads[result.id].status?.state} />
 		{/if}
 	</footer>
 </Card>

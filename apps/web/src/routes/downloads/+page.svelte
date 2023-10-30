@@ -75,7 +75,7 @@
 								{:else if column.key === 'state'}
 									<StatusBadge status={row.status} />
 								{:else if column.key === 'actions'}
-									<DownloadActions video={row} />
+									<DownloadActions download={row} />
 								{/if}
 							</span>
 						</Table>
