@@ -2,11 +2,11 @@ import os
 from collections.abc import Callable
 from typing import TypeAlias
 
-from ..models import AudioFormat
-from ..models import Download
-from ..models import DownloadState
-from ..models import DownloadStatus
-from ..models import VideoFormat
+from .models import AudioFormat
+from .models import Download
+from .models import DownloadState
+from .models import DownloadStatus
+from .models import VideoFormat
 from .ytdlp import PostprocessorHookInfo
 from .ytdlp import ProgressHookInfo
 from .ytdlp import YoutubeDLParams
