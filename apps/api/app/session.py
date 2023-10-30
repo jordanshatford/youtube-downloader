@@ -9,8 +9,8 @@ from datetime import timedelta
 from queue import Queue
 from typing import Any
 
+from ydcore import Download
 from ydcore import DownloadManager
-from ydcore import VideoWithOptionsAndStatus
 from ydcore import YouTubeSearch
 
 
@@ -58,7 +58,7 @@ class Session:
             self._output_dir, self._status_hook,
         )
         self.search: YouTubeSearch | None = None
-        self.status_queue: Queue[VideoWithOptionsAndStatus] = Queue()
+        self.status_queue: Queue[Download] = Queue()
 
     def update_use_time(self):
         self._last_use = datetime.now()
@@ -73,7 +73,7 @@ class Session:
         except FileNotFoundError:
             pass
 
-    def _status_hook(self, update: VideoWithOptionsAndStatus):
+    def _status_hook(self, update: Download):
         self.status_queue.put(update)
 
 

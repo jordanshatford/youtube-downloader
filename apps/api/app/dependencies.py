@@ -7,7 +7,7 @@ from fastapi import HTTPException
 from fastapi import status
 from fastapi.security import HTTPAuthorizationCredentials
 from fastapi.security import HTTPBearer
-from ydcore import YoutubeDownloadThread
+from ydcore import Download
 
 from .session import Session
 from .session import session_manager
@@ -47,9 +47,9 @@ depends_download_responses: AdditionResponses = depends_session_responses | {
 
 
 def get_request_download(
-    video_id: str, session: DependsSession,
-) -> YoutubeDownloadThread:
-    download = session.download_manager.get(video_id)
+    download_id: str, session: DependsSession,
+) -> Download:
+    download = session.download_manager.get(download_id)
     if download is None:
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND)
     return download
@@ -57,7 +57,7 @@ def get_request_download(
 
 # Dependency that the request has a current related download available
 DependsDownload: TypeAlias = Annotated[
-    YoutubeDownloadThread, Depends(
+    Download, Depends(
         get_request_download,
     ),
 ]

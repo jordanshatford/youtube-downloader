@@ -162,7 +162,7 @@
               "application/json": {
                 "schema": {
                   "items": {
-                    "$ref": "#/components/schemas/VideoWithOptionsAndStatus"
+                    "$ref": "#/components/schemas/Download"
                   },
                   "type": "array",
                   "title": "Response Get Downloads"
@@ -190,7 +190,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/VideoWithOptions"
+                "$ref": "#/components/schemas/Download"
               }
             }
           },
@@ -202,7 +202,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/VideoWithOptions"
+                  "$ref": "#/components/schemas/Download"
                 }
               }
             }
@@ -237,7 +237,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/VideoWithOptions"
+                "$ref": "#/components/schemas/Download"
               }
             }
           },
@@ -249,7 +249,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/VideoWithOptions"
+                  "$ref": "#/components/schemas/Download"
                 }
               }
             }
@@ -304,7 +304,7 @@
         ]
       }
     },
-    "/downloads/{video_id}": {
+    "/downloads/{download_id}": {
       "get": {
         "tags": [
           "downloads"
@@ -318,12 +318,12 @@
         ],
         "parameters": [
           {
-            "name": "video_id",
+            "name": "download_id",
             "in": "path",
             "required": true,
             "schema": {
               "type": "string",
-              "title": "Video Id"
+              "title": "Download Id"
             }
           }
         ],
@@ -333,7 +333,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/VideoWithOptionsAndStatus"
+                  "$ref": "#/components/schemas/Download"
                 }
               }
             }
@@ -369,12 +369,12 @@
         ],
         "parameters": [
           {
-            "name": "video_id",
+            "name": "download_id",
             "in": "path",
             "required": true,
             "schema": {
               "type": "string",
-              "title": "Video Id"
+              "title": "Download Id"
             }
           }
         ],
@@ -401,7 +401,7 @@
         }
       }
     },
-    "/downloads/{video_id}/file": {
+    "/downloads/{download_id}/file": {
       "get": {
         "tags": [
           "downloads"
@@ -415,12 +415,12 @@
         ],
         "parameters": [
           {
-            "name": "video_id",
+            "name": "download_id",
             "in": "path",
             "required": true,
             "schema": {
               "type": "string",
-              "title": "Video Id"
+              "title": "Download Id"
             }
           }
         ],
@@ -557,6 +557,32 @@
           "thumbnail"
         ],
         "title": "Channel"
+      },
+      "Download": {
+        "properties": {
+          "video": {
+            "$ref": "#/components/schemas/Video"
+          },
+          "options": {
+            "$ref": "#/components/schemas/DownloadOptions"
+          },
+          "status": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/DownloadStatus"
+              }
+            ],
+            "default": {
+              "state": "WAITING"
+            }
+          }
+        },
+        "type": "object",
+        "required": [
+          "video",
+          "options"
+        ],
+        "title": "Download"
       },
       "DownloadOptions": {
         "properties": {
@@ -774,104 +800,6 @@
           "webm"
         ],
         "title": "VideoFormat"
-      },
-      "VideoWithOptions": {
-        "properties": {
-          "id": {
-            "type": "string",
-            "title": "Id"
-          },
-          "url": {
-            "type": "string",
-            "maxLength": 2083,
-            "minLength": 1,
-            "format": "uri",
-            "title": "Url"
-          },
-          "title": {
-            "type": "string",
-            "title": "Title"
-          },
-          "duration": {
-            "type": "string",
-            "title": "Duration"
-          },
-          "thumbnail": {
-            "type": "string",
-            "maxLength": 2083,
-            "minLength": 1,
-            "format": "uri",
-            "title": "Thumbnail"
-          },
-          "channel": {
-            "$ref": "#/components/schemas/Channel"
-          },
-          "options": {
-            "$ref": "#/components/schemas/DownloadOptions"
-          }
-        },
-        "type": "object",
-        "required": [
-          "id",
-          "url",
-          "title",
-          "duration",
-          "thumbnail",
-          "channel",
-          "options"
-        ],
-        "title": "VideoWithOptions"
-      },
-      "VideoWithOptionsAndStatus": {
-        "properties": {
-          "id": {
-            "type": "string",
-            "title": "Id"
-          },
-          "url": {
-            "type": "string",
-            "maxLength": 2083,
-            "minLength": 1,
-            "format": "uri",
-            "title": "Url"
-          },
-          "title": {
-            "type": "string",
-            "title": "Title"
-          },
-          "duration": {
-            "type": "string",
-            "title": "Duration"
-          },
-          "thumbnail": {
-            "type": "string",
-            "maxLength": 2083,
-            "minLength": 1,
-            "format": "uri",
-            "title": "Thumbnail"
-          },
-          "channel": {
-            "$ref": "#/components/schemas/Channel"
-          },
-          "options": {
-            "$ref": "#/components/schemas/DownloadOptions"
-          },
-          "status": {
-            "$ref": "#/components/schemas/DownloadStatus"
-          }
-        },
-        "type": "object",
-        "required": [
-          "id",
-          "url",
-          "title",
-          "duration",
-          "thumbnail",
-          "channel",
-          "options",
-          "status"
-        ],
-        "title": "VideoWithOptionsAndStatus"
       }
     },
     "securitySchemes": {
