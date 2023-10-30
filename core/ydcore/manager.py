@@ -4,7 +4,7 @@ import time
 from .config import StatusHook
 from .models import Download
 from .models import DownloadFile
-from .threads import YoutubeDownloadThread
+from .thread import YoutubeDownloadThread
 
 
 class DownloadManager:

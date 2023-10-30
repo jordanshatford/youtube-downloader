@@ -1,4 +1,4 @@
-from .managers import DownloadManager
+from .manager import DownloadManager
 from .models import AudioFormat
 from .models import AvailableDownloadOptions
 from .models import Channel
@@ -10,7 +10,7 @@ from .models import DownloadStatus
 from .models import Video
 from .models import VideoFormat
 from .search import YouTubeSearch
-from .threads import YoutubeDownloadThread
+from .thread import YoutubeDownloadThread
 
 __all__ = [
     'AudioFormat',
