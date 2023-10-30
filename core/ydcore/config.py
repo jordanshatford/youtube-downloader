@@ -7,6 +7,7 @@ from .models import Download
 from .models import DownloadState
 from .models import DownloadStatus
 from .models import VideoFormat
+from .utilities import get_ytdlp_progress
 from .ytdlp import PostprocessorHookInfo
 from .ytdlp import ProgressHookInfo
 from .ytdlp import YoutubeDLParams
@@ -22,16 +23,6 @@ DEFAULT_YTDLP_PARAMS: YoutubeDLParams = {
     'verbose': False,
     'noprogress': True,
 }
-
-
-def get_progress(info: ProgressHookInfo) -> float | None:
-    downloaded_bytes = info.get('downloaded_bytes')
-    total_bytes = info.get('total_bytes')
-    if total_bytes is None:
-        total_bytes = info.get('total_bytes_estimate')
-    if downloaded_bytes is None or total_bytes is None or total_bytes <= 0:
-        return None
-    return (downloaded_bytes / total_bytes) * 100
 
 
 class DownloadConfig:
