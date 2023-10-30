@@ -39,10 +39,6 @@ class YoutubeDownloadThread(threading.Thread):
     def path(self) -> str:
         return os.path.join(self._output_directory, self.filename)
 
-    @property
-    def filename_using_title(self) -> str:
-        return f'{self.video.title}.{self.video.options.format.value}'
-
     def remove(self) -> bool:
         if os.path.exists(self.path):
             os.remove(self.path)
