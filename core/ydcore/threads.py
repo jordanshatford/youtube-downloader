@@ -17,7 +17,6 @@ class YoutubeDownloadThread(threading.Thread):
         output_directory: str,
         status_hook: StatusHook,
     ):
-        self.video = video
         self._output_directory = output_directory
         self._config = DownloadConfig(self.video, output_directory)
         self._config.add_status_hook(status_hook)
@@ -25,6 +24,10 @@ class YoutubeDownloadThread(threading.Thread):
         super().__init__(
             group=None, target=None, name=None, daemon=True,
         )
+
+    @property
+    def video(self) -> VideoWithOptions:
+        return self._config.video
 
     @property
     def status(self) -> DownloadStatus:
