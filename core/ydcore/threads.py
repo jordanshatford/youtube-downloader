@@ -8,7 +8,6 @@ from .config import StatusHook
 from .models import DownloadState
 from .models import DownloadStatus
 from .models import VideoWithOptions
-from .models import VideoWithOptionsAndStatus
 
 
 class YoutubeDownloadThread(threading.Thread):
@@ -47,17 +46,11 @@ class YoutubeDownloadThread(threading.Thread):
 
     def run(self):
         self._config.on_status_update(
-            VideoWithOptionsAndStatus(
-                **self.video.model_dump(),
-                status=DownloadStatus(state=DownloadState.DOWNLOADING),
-            ),
+            DownloadStatus(state=DownloadState.DOWNLOADING),
         )
         try:
             self._downloader.download([str(self.video.url)])  # type: ignore
         except Exception:
             self._config.on_status_update(
-                VideoWithOptionsAndStatus(
-                    **self.video.model_dump(),
-                    status=DownloadStatus(state=DownloadState.ERROR),
-                ),
+                DownloadStatus(state=DownloadState.ERROR),
             )
