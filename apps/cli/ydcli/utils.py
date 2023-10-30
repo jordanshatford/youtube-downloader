@@ -1,5 +1,5 @@
+from ydcore import Download
 from ydcore import DownloadState
-from ydcore import VideoWithOptionsAndStatus
 
 
 POSTPROCESSOR_LOOKUP = {
@@ -12,7 +12,7 @@ POSTPROCESSOR_LOOKUP = {
 }
 
 
-def on_status_update(update: VideoWithOptionsAndStatus) -> None:
+def on_status_update(update: Download) -> None:
     state = update.status.state
     progress = update.status.progress
     postprocessor = update.status.postprocessor
@@ -20,7 +20,9 @@ def on_status_update(update: VideoWithOptionsAndStatus) -> None:
     if state == DownloadState.DOWNLOADING and progress is not None:
         output += f' - {progress:3.1f}%'
     elif state == DownloadState.PROCESSING and postprocessor is not None:
-        postprocessor_text = POSTPROCESSOR_LOOKUP.get(postprocessor.lower())
+        postprocessor_text = POSTPROCESSOR_LOOKUP.get(
+            postprocessor.lower(),
+        )
         if postprocessor_text is not None:
             output += f' - {postprocessor_text}'
     print('\033[K', end='\r')
