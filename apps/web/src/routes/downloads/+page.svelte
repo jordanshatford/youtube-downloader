@@ -59,14 +59,14 @@
 								{#if column.key === 'info'}
 									<div class="flex items-center">
 										<div class="w-18 hidden h-10 flex-shrink-0 md:block">
-											<img class="w-18 h-10 rounded-lg" src={row.thumbnail} alt="Thumbnail" />
+											<img class="w-18 h-10 rounded-lg" src={row.video.thumbnail} alt="Thumbnail" />
 										</div>
 										<div class="sm:max-w-xxs max-w-xxxs truncate md:ml-4 md:max-w-xs lg:max-w-lg">
 											<div class="truncate text-sm font-medium text-zinc-800 dark:text-white">
-												{row.title}
+												{row.video.title}
 											</div>
 											<div class="text-sm text-zinc-500 underline dark:text-zinc-400">
-												<a href={row.url} target="_blank" rel="noreferrer">Link</a>
+												<a href={row.video.url} target="_blank" rel="noreferrer">Link</a>
 											</div>
 										</div>
 									</div>

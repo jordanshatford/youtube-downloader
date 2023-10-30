@@ -4,12 +4,12 @@ import {
 	DownloadsStatusService,
 	DownloadState,
 	type Video,
-	type VideoWithOptionsAndStatus
+	type Download
 } from '@yd/client';
 import { toast } from '@yd/ui';
 import { settings, userSettings } from '$lib/stores/settings';
 
-export interface VideoWithExtra extends VideoWithOptionsAndStatus {
+export interface DownloadWithExtra extends Download {
 	awaitingFileBlob?: boolean;
 }
 
@@ -27,49 +27,49 @@ function saveAs(blob: Blob, name: string) {
 }
 
 function createDownloadsStore() {
-	const downloads: Record<string, VideoWithExtra> = {};
+	const downloads: Record<string, DownloadWithExtra> = {};
 
 	const { subscribe, set, update } = writable(downloads);
 
 	function setupStatusListener() {
-		DownloadsStatusService.setup((value) => {
-			updateDownload(value.id, value);
+		DownloadsStatusService.setup((download) => {
+			updateDownload(download.video.id, download);
 		});
 	}
 
 	async function add(video: Video) {
 		if (video.id in downloads) return;
 
-		const info: VideoWithExtra = {
-			...video,
+		const download: DownloadWithExtra = {
+			video,
 			status: { state: DownloadState.WAITING },
 			options: get(settings)
 		};
 
-		updateDownload(info.id, info);
+		updateDownload(download.video.id, download);
 		try {
-			const result = await DownloadsService.postDownloads(info);
-			updateDownload(result.id, result);
+			const result = await DownloadsService.postDownloads(download);
+			updateDownload(result.video.id, result);
 		} catch (err) {
 			toast.error('Error', `Failed to add '${video.title}' to downloads.`);
 			console.error('Failed to add video to download ', err);
-			updateDownload(info.id, { status: { state: DownloadState.ERROR } });
+			updateDownload(download.video.id, { status: { state: DownloadState.ERROR } });
 		}
 	}
 
 	async function restart(id: string) {
 		if (!(id in downloads)) return;
 
-		const info = downloads[id];
+		const download = downloads[id];
 
-		updateDownload(info.id, info);
+		updateDownload(download.video.id, download);
 		try {
-			const result = await DownloadsService.putDownloads(info);
-			updateDownload(result.id, result);
+			const result = await DownloadsService.putDownloads(download);
+			updateDownload(result.video.id, result);
 		} catch (err) {
-			toast.error('Error', `Failed to restart '${info.title}' download.`);
+			toast.error('Error', `Failed to restart '${download.video.title}' download.`);
 			console.error('Failed to restart download ', err);
-			updateDownload(info.id, { status: { state: DownloadState.ERROR } });
+			updateDownload(download.video.id, { status: { state: DownloadState.ERROR } });
 		}
 	}
 
@@ -95,7 +95,7 @@ function createDownloadsStore() {
 		updateDownload(id, { awaitingFileBlob: true });
 		try {
 			const blob = await DownloadsService.getDownloadFile(id);
-			const filename = `${downloads[id].title}.${downloads?.[id]?.options?.format}`;
+			const filename = `${downloads[id].video.title}.${downloads?.[id]?.options?.format}`;
 			saveAs(blob, filename);
 			updateDownload(id, { awaitingFileBlob: false });
 		} catch (err) {
@@ -105,7 +105,7 @@ function createDownloadsStore() {
 		}
 	}
 
-	function updateDownload(id: string, updatedValue: Partial<VideoWithExtra>) {
+	function updateDownload(id: string, updatedValue: Partial<DownloadWithExtra>) {
 		update((state) => {
 			const oldValue = state[id];
 			const value = { ...oldValue, ...updatedValue };
@@ -113,7 +113,7 @@ function createDownloadsStore() {
 			// Automatically download file if enabled by the user.
 			if (get(userSettings).autoDownloadOnComplete) {
 				if (updatedValue.status?.state === DownloadState.DONE) {
-					getFile(value.id);
+					getFile(value.video.id);
 				}
 			}
 			return state;

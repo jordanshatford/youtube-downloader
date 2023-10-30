@@ -1,24 +1,24 @@
 <script lang="ts">
 	import { DownloadState } from '@yd/client';
 	import { ActionIcon, ArrowPathIcon, ButtonGroup, Confirm, DownloadIcon, TrashIcon } from '@yd/ui';
-	import { downloads, type VideoWithExtra } from '$lib/stores/downloads';
+	import { downloads, type DownloadWithExtra } from '$lib/stores/downloads';
 
-	export let video: VideoWithExtra;
+	export let download: DownloadWithExtra;
 </script>
 
 <ButtonGroup>
 	<ActionIcon
 		title="Get Download File"
 		src={DownloadIcon}
-		loading={video.awaitingFileBlob}
-		disabled={video.status.state !== DownloadState.DONE}
-		on:click={async () => await downloads.getFile(video.id)}
+		loading={download.awaitingFileBlob}
+		disabled={download.status?.state !== DownloadState.DONE}
+		on:click={async () => await downloads.getFile(download.video.id)}
 	/>
 	<ActionIcon
 		title="Retry Download"
 		src={ArrowPathIcon}
-		disabled={video.status.state !== DownloadState.ERROR}
-		on:click={async () => await downloads.restart(video.id)}
+		disabled={download.status?.state !== DownloadState.ERROR}
+		on:click={async () => await downloads.restart(download.video.id)}
 	/>
 	<Confirm
 		variant="error"
@@ -31,8 +31,9 @@
 		<ActionIcon
 			title="Delete Download"
 			src={TrashIcon}
-			disabled={![DownloadState.DONE, DownloadState.ERROR].includes(video.status.state)}
-			on:click={() => onConfirm(() => downloads.remove(video.id))}
+			disabled={download.status?.state !== DownloadState.DONE &&
+				download.status?.state !== DownloadState.ERROR}
+			on:click={() => onConfirm(() => downloads.remove(download.video.id))}
 		/>
 	</Confirm>
 </ButtonGroup>
