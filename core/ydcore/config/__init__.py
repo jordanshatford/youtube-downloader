@@ -3,16 +3,15 @@ from collections.abc import Callable
 from typing import TypeAlias
 
 from ..models import AudioFormat
+from ..models import Download
 from ..models import DownloadState
 from ..models import DownloadStatus
 from ..models import VideoFormat
-from ..models import VideoWithOptions
-from ..models import VideoWithOptionsAndStatus
 from .ytdlp import PostprocessorHookInfo
 from .ytdlp import ProgressHookInfo
 from .ytdlp import YoutubeDLParams
 
-StatusHook: TypeAlias = Callable[[VideoWithOptionsAndStatus], None]
+StatusHook: TypeAlias = Callable[[Download], None]
 
 # Default params used with yt-dlp. These may be overriden by our download
 # options.
@@ -36,12 +35,11 @@ def get_progress(info: ProgressHookInfo) -> float | None:
 
 
 class DownloadConfig:
-    def __init__(self, video: VideoWithOptions, output_directory: str) -> None:
-        self.video = video
+    def __init__(self, download: Download, output_directory: str) -> None:
+        self.download = download
         self._output_directory = output_directory
         self._status_hooks: list[StatusHook] = []
         self._overrides: YoutubeDLParams = {}
-        self.status = DownloadStatus(state=DownloadState.WAITING)
 
     def add_status_hook(self, hook: StatusHook) -> None:
         self._status_hooks.append(hook)
@@ -54,7 +52,7 @@ class DownloadConfig:
 
     @property
     def filename(self) -> str:
-        return f'{self.video.id}.{self.video.options.format.value}'
+        return f'{self.download.video.id}.{self.download.options.format.value}'
 
     @property
     def path(self) -> str:
@@ -62,11 +60,11 @@ class DownloadConfig:
 
     @property
     def _is_audio_download(self) -> bool:
-        return self.video.options.format in AudioFormat
+        return self.download.options.format in AudioFormat
 
     @property
     def _is_video_download(self) -> bool:
-        return self.video.options.format in VideoFormat
+        return self.download.options.format in VideoFormat
 
     @property
     def as_ytdlp_params(self) -> YoutubeDLParams:
@@ -75,7 +73,7 @@ class DownloadConfig:
         if self._is_audio_download:
             postprocessors.append({
                 'key': 'FFmpegExtractAudio',
-                'preferredcodec': self.video.options.format.value,
+                'preferredcodec': self.download.options.format.value,
                 'preferredquality': '192',
             })
         # Only append video postprocessor if we are downloading video format.
@@ -83,20 +81,20 @@ class DownloadConfig:
             postprocessors.append(
                 {
                     'key': 'FFmpegVideoConvertor',
-                    'preferedformat': self.video.options.format.value,
+                    'preferedformat': self.download.options.format.value,
                 },
             )
         # Only append metadata to the video if enabled by user
-        if self.video.options.embed_metadata:
+        if self.download.options.embed_metadata:
             postprocessors.append({'key': 'FFmpegMetadata'})
         # Only append thumbnail embedding if enabled by user
-        if self.video.options.embed_thumbnail:
+        if self.download.options.embed_thumbnail:
             postprocessors.append({
                 'key': 'EmbedThumbnail',
                 'already_have_thumbnail': False,
             })
             self._overrides['writethumbnail'] = True
-        if self.video.options.embed_subtitles:
+        if self.download.options.embed_subtitles:
             postprocessors.append({
                 'key': 'FFmpegEmbedSubtitle',
                 'already_have_subtitle': False,
@@ -111,13 +109,13 @@ class DownloadConfig:
             'progress_hooks': [self._progress_hook],
             'postprocessor_hooks': [self._postprocessor_hook],
             'post_hooks': [self._post_hook],
-            'outtmpl': f'{self._output_directory}/{self.video.id}.%(ext)s',
+            'outtmpl': f'{self._output_directory}/{self.download.video.id}.%(ext)s',  # noqa
             'postprocessors': postprocessors,
         }
 
     @property
     def _ytdlp_format(self) -> str:
-        options = self.video.options
+        options = self.download.options
         quality = options.quality.value
         extension = options.format.value
         # bestvideo*[ext=X]+bestaudio/bestvideo*+bestaudio/best or
@@ -176,10 +174,7 @@ class DownloadConfig:
         )
 
     def _handle_status_update(self, update: DownloadStatus) -> None:
-        self.status = update
+        self.download.status = update
         # Call each hook with the update
-        value = VideoWithOptionsAndStatus(
-            **self.video.model_dump(), status=update,
-        )
         for h in self._status_hooks:
-            h(value)
+            h(self.download)

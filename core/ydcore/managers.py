@@ -1,8 +1,9 @@
+import os
 import time
 
 from .config import StatusHook
-from .models import VideoWithOptions
-from .models import VideoWithOptionsAndStatus
+from .models import Download
+from .models import DownloadFile
 from .threads import YoutubeDownloadThread
 
 
@@ -15,36 +16,41 @@ class DownloadManager:
         self._downloads: dict[str, YoutubeDownloadThread] = {}
         self._output_dir = output_dir
 
-    def __contains__(self, video_id: str) -> bool:
-        return video_id in self._downloads
+    def __contains__(self, download_id: str) -> bool:
+        return download_id in self._downloads
 
-    def add(self, video: VideoWithOptions) -> None:
-        if video.id not in self._downloads:
-            download = YoutubeDownloadThread(
-                video, self._output_dir, self.send_status_update,
+    def add(self, download: Download) -> Download:
+        if download.video.id not in self._downloads:
+            thread = YoutubeDownloadThread(
+                download, self._output_dir, self.send_status_update,
             )
-            self._downloads[video.id] = download
-            download.start()
+            self._downloads[download.video.id] = thread
+            thread.start()
+        return download
 
-    def remove(self, video_id: str) -> None:
-        if video_id in self._downloads:
-            self._downloads[video_id].remove()
-            self._downloads.pop(video_id, None)
+    def remove(self, download_id: str) -> None:
+        if download_id in self._downloads:
+            self._downloads[download_id].remove()
+            self._downloads.pop(download_id, None)
 
-    def get(self, video_id: str) -> YoutubeDownloadThread | None:
-        return self._downloads.get(video_id, None)
+    def get(self, download_id: str) -> Download | None:
+        thread = self._downloads.get(download_id, None)
+        return None if thread is None else thread.download
 
-    def get_all_videos(self) -> list[VideoWithOptionsAndStatus]:
-        return [
-            VideoWithOptionsAndStatus(**d.video.model_dump(), status=d.status)
-            for d in self._downloads.values()
-        ]
+    def get_all(self) -> list[Download]:
+        return [thread.download for thread in self._downloads.values()]
 
-    def send_status_update(self, update: VideoWithOptionsAndStatus) -> None:
+    def get_file(self, download_id: str) -> DownloadFile | None:
+        thread = self._downloads.get(download_id, None)
+        if thread is None or not os.path.exists(thread.path):
+            return None
+        return DownloadFile(name=thread.filename, path=thread.path)
+
+    def send_status_update(self, update: Download) -> None:
         if self._status_hook is not None:
             self._status_hook(update)
 
-    def wait_for_all(self) -> None:
+    def wait(self) -> None:
         for download in self._downloads.values():
             download.join()
         time.sleep(1)
