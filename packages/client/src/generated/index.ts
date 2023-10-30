@@ -10,6 +10,7 @@ export type { OpenAPIConfig } from './core/OpenAPI';
 export { AudioFormat } from './models/AudioFormat';
 export type { AvailableDownloadOptions } from './models/AvailableDownloadOptions';
 export type { Channel } from './models/Channel';
+export type { Download } from './models/Download';
 export type { DownloadOptions } from './models/DownloadOptions';
 export { DownloadQuality } from './models/DownloadQuality';
 export { DownloadState } from './models/DownloadState';
@@ -19,8 +20,6 @@ export type { Session } from './models/Session';
 export type { ValidationError } from './models/ValidationError';
 export type { Video } from './models/Video';
 export { VideoFormat } from './models/VideoFormat';
-export type { VideoWithOptions } from './models/VideoWithOptions';
-export type { VideoWithOptionsAndStatus } from './models/VideoWithOptionsAndStatus';
 
 export { DownloadsService } from './services/DownloadsService';
 export { SearchService } from './services/SearchService';

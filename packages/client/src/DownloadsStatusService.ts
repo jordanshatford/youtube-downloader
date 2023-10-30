@@ -1,6 +1,6 @@
 import type { ApiRequestOptions } from './generated/core/ApiRequestOptions';
 import { resolve } from './generated/core/request';
-import { type VideoWithOptionsAndStatus, OpenAPI } from './generated';
+import { type Download, OpenAPI } from './generated';
 
 type EventSourceHandler<T> = (event: T) => void;
 
@@ -13,7 +13,7 @@ const options: ApiRequestOptions = {
 
 export class DownloadsStatusService {
 	public static async setup(
-		onMessage?: EventSourceHandler<VideoWithOptionsAndStatus>,
+		onMessage?: EventSourceHandler<Download>,
 		onError?: EventSourceHandler<Event>,
 		onOpen?: EventSourceHandler<Event>
 	): Promise<void> {
@@ -25,7 +25,7 @@ export class DownloadsStatusService {
 		const source = new EventSource(url);
 		// Parse message data before callback.
 		source.onmessage = (event: MessageEvent) => {
-			const data = JSON.parse(event.data) as VideoWithOptionsAndStatus;
+			const data = JSON.parse(event.data) as Download;
 			onMessage?.(data);
 		};
 		// Forward onerror and onopen messages incase user wants to use them.

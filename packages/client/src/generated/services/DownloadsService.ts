@@ -3,8 +3,7 @@
 /* tslint:disable */
 /* eslint-disable */
 import type { AvailableDownloadOptions } from '../models/AvailableDownloadOptions';
-import type { VideoWithOptions } from '../models/VideoWithOptions';
-import type { VideoWithOptionsAndStatus } from '../models/VideoWithOptionsAndStatus';
+import type { Download } from '../models/Download';
 
 import type { CancelablePromise } from '../core/CancelablePromise';
 import { OpenAPI } from '../core/OpenAPI';
@@ -14,10 +13,10 @@ export class DownloadsService {
 
   /**
    * Get Downloads
-   * @returns VideoWithOptionsAndStatus Successful Response
+   * @returns Download Successful Response
    * @throws ApiError
    */
-  public static getDownloads(): CancelablePromise<Array<VideoWithOptionsAndStatus>> {
+  public static getDownloads(): CancelablePromise<Array<Download>> {
     return __request(OpenAPI, {
       method: 'GET',
       url: '/downloads',
@@ -30,12 +29,12 @@ export class DownloadsService {
   /**
    * Put Downloads
    * @param requestBody
-   * @returns VideoWithOptions Successful Response
+   * @returns Download Successful Response
    * @throws ApiError
    */
   public static putDownloads(
-    requestBody: VideoWithOptions,
-  ): CancelablePromise<VideoWithOptions> {
+    requestBody: Download,
+  ): CancelablePromise<Download> {
     return __request(OpenAPI, {
       method: 'PUT',
       url: '/downloads',
@@ -51,12 +50,12 @@ export class DownloadsService {
   /**
    * Post Downloads
    * @param requestBody
-   * @returns VideoWithOptions Successful Response
+   * @returns Download Successful Response
    * @throws ApiError
    */
   public static postDownloads(
-    requestBody: VideoWithOptions,
-  ): CancelablePromise<VideoWithOptions> {
+    requestBody: Download,
+  ): CancelablePromise<Download> {
     return __request(OpenAPI, {
       method: 'POST',
       url: '/downloads',
@@ -86,18 +85,18 @@ export class DownloadsService {
 
   /**
    * Get Download
-   * @param videoId
-   * @returns VideoWithOptionsAndStatus Successful Response
+   * @param downloadId
+   * @returns Download Successful Response
    * @throws ApiError
    */
   public static getDownload(
-    videoId: string,
-  ): CancelablePromise<VideoWithOptionsAndStatus> {
+    downloadId: string,
+  ): CancelablePromise<Download> {
     return __request(OpenAPI, {
       method: 'GET',
-      url: '/downloads/{video_id}',
+      url: '/downloads/{download_id}',
       path: {
-        'video_id': videoId,
+        'download_id': downloadId,
       },
       errors: {
         403: `Forbidden`,
@@ -109,18 +108,18 @@ export class DownloadsService {
 
   /**
    * Delete Download
-   * @param videoId
+   * @param downloadId
    * @returns void
    * @throws ApiError
    */
   public static deleteDownload(
-    videoId: string,
+    downloadId: string,
   ): CancelablePromise<void> {
     return __request(OpenAPI, {
       method: 'DELETE',
-      url: '/downloads/{video_id}',
+      url: '/downloads/{download_id}',
       path: {
-        'video_id': videoId,
+        'download_id': downloadId,
       },
       errors: {
         403: `Forbidden`,
@@ -132,18 +131,18 @@ export class DownloadsService {
 
   /**
    * Get Download File
-   * @param videoId
+   * @param downloadId
    * @returns binary Successful Response
    * @throws ApiError
    */
   public static getDownloadFile(
-    videoId: string,
+    downloadId: string,
   ): CancelablePromise<Blob> {
     return __request(OpenAPI, {
       method: 'GET',
-      url: '/downloads/{video_id}/file',
+      url: '/downloads/{download_id}/file',
       path: {
-        'video_id': videoId,
+        'download_id': downloadId,
       },
       errors: {
         403: `Forbidden`,

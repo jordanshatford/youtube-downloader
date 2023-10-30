@@ -3,18 +3,13 @@
 /* tslint:disable */
 /* eslint-disable */
 
-import type { Channel } from './Channel';
 import type { DownloadOptions } from './DownloadOptions';
 import type { DownloadStatus } from './DownloadStatus';
+import type { Video } from './Video';
 
-export type VideoWithOptionsAndStatus = {
-  id: string;
-  url: string;
-  title: string;
-  duration: string;
-  thumbnail: string;
-  channel: Channel;
+export type Download = {
+  video: Video;
   options: DownloadOptions;
-  status: DownloadStatus;
+  status?: DownloadStatus;
 };
 
