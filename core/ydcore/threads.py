@@ -35,11 +35,11 @@ class YoutubeDownloadThread(threading.Thread):
 
     @property
     def filename(self) -> str:
-        return f'{self.video.id}.{self.video.options.format.value}'
+        return self._config.filename
 
     @property
     def path(self) -> str:
-        return os.path.join(self._output_directory, self.filename)
+        return self._config.path
 
     def remove(self) -> bool:
         if os.path.exists(self.path):

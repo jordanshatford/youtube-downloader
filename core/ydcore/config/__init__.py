@@ -53,6 +53,14 @@ class DownloadConfig:
         self._overrides = params
 
     @property
+    def filename(self) -> str:
+        return f'{self.video.id}.{self.video.options.format.value}'
+
+    @property
+    def path(self) -> str:
+        return os.path.join(self._output_directory, self.filename)
+
+    @property
     def _is_audio_download(self) -> bool:
         return self.video.options.format in AudioFormat
 
