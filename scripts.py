@@ -44,24 +44,23 @@ def run_subprocess(
     )
 
 
-# Get root directory of git repository. Create venv in root of git repository
-result = run_subprocess(
-    ['git', 'rev-parse', '--show-toplevel'], capture_output=True
-)
-workspace_dir =result.stdout.splitlines()[0]
-
-# Create venv if not already there
-venv_dir_path = os.path.join(workspace_dir, 'venv')
-venv.create(venv_dir_path, with_pip=True)
-
-# Get path to bins in the venv (different location on windows)
-venv_bin_path = os.path.join(
-    venv_dir_path,
-    'Scripts' if platform.system() == 'Windows' else 'bin'
-)
-
-
 try:
+    # Get root directory of git repository. Create venv in root of git repository
+    result = run_subprocess(
+        ['git', 'rev-parse', '--show-toplevel'], capture_output=True
+    )
+    workspace_dir =result.stdout.splitlines()[0]
+
+    # Create venv if not already there
+    venv_dir_path = os.path.join(workspace_dir, 'venv')
+    venv.create(venv_dir_path, with_pip=True)
+
+    # Get path to bins in the venv (different location on windows)
+    venv_bin_path = os.path.join(
+        venv_dir_path,
+        'Scripts' if platform.system() == 'Windows' else 'bin'
+    )
+
     # Ensure pip is up to date and install any requirements
     run_subprocess(
         ['pip', 'install', '--upgrade', 'pip'], bin_path=venv_bin_path
@@ -89,4 +88,7 @@ try:
     elif args.command == 'run':
         run_subprocess(rest, bin_path=venv_bin_path)
 except subprocess.CalledProcessError as e:
+    raise SystemExit(1)
+except Exception as e:
+    print(f'Failed with unexpected error {e}')
     raise SystemExit(1)
