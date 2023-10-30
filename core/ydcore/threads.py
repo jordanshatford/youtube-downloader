@@ -19,15 +19,17 @@ class YoutubeDownloadThread(threading.Thread):
         status_hook: StatusHook,
     ):
         self.video = video
-        self.status = DownloadStatus(state=DownloadState.WAITING)
         self._output_directory = output_directory
-        self._status_hook = status_hook
         self._config = DownloadConfig(self.video, output_directory)
-        self._config.add_status_hook(self.handle_status_update)
+        self._config.add_status_hook(status_hook)
         self._downloader = YoutubeDL(self._config.as_ytdlp_params)
         super().__init__(
             group=None, target=None, name=None, daemon=True,
         )
+
+    @property
+    def status(self) -> DownloadStatus:
+        return self._config.status
 
     @property
     def filename(self) -> str:
@@ -48,7 +50,7 @@ class YoutubeDownloadThread(threading.Thread):
         return False
 
     def run(self):
-        self.handle_status_update(
+        self._config.on_status_update(
             VideoWithOptionsAndStatus(
                 **self.video.model_dump(),
                 status=DownloadStatus(state=DownloadState.DOWNLOADING),
@@ -57,13 +59,9 @@ class YoutubeDownloadThread(threading.Thread):
         try:
             self._downloader.download([str(self.video.url)])  # type: ignore
         except Exception:
-            self.handle_status_update(
+            self._config.on_status_update(
                 VideoWithOptionsAndStatus(
                     **self.video.model_dump(),
                     status=DownloadStatus(state=DownloadState.ERROR),
                 ),
             )
-
-    def handle_status_update(self, update: VideoWithOptionsAndStatus) -> None:
-        self.status = update.status
-        self._status_hook(update)

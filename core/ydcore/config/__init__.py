@@ -46,12 +46,11 @@ class DownloadConfig:
     def add_status_hook(self, hook: StatusHook) -> None:
         self._status_hooks.append(hook)
 
+    def on_status_update(self, update: VideoWithOptionsAndStatus) -> None:
+        self._handle_status_update(update.status)
+
     def add_ytdlp_params_overrides(self, params: YoutubeDLParams) -> None:
         self._overrides = params
-
-    def has_conflicts(self) -> bool:
-        # TODO: implement
-        return False
 
     @property
     def _is_audio_download(self) -> bool:
