@@ -38,7 +38,7 @@ class DownloadStatus(BaseModel):
     # Progress in percent (Only valid when state is DOWNLOADING)
     progress: float | None = None
     # ETA in seconds (Only valid when state is DOWNLOADING)
-    eta: int | None = None
+    eta: float | None = None
     # Postprocessor currently running (Only valid when state is PROCESSING)
     postprocessor: str | None = None
 

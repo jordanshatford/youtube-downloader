@@ -136,8 +136,8 @@ class DownloadConfig:
             self._handle_status_update(
                 DownloadStatus(
                     state=DownloadState.DOWNLOADING,
-                    progress=get_progress(info),
-                    eta=int(eta) if eta else None,
+                    progress=get_ytdlp_progress(info),
+                    eta=eta,
                 ),
             )
         elif status == 'error':
