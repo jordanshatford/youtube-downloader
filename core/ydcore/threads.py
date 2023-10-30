@@ -1,7 +1,7 @@
 import os
 import threading
 
-from yt_dlp import YoutubeDL
+from yt_dlp import YoutubeDL  # type: ignore
 
 from .config import DownloadConfig
 from .config import StatusHook
@@ -55,7 +55,7 @@ class YoutubeDownloadThread(threading.Thread):
             ),
         )
         try:
-            self._downloader.download([str(self.video.url)])
+            self._downloader.download([str(self.video.url)])  # type: ignore
         except Exception:
             self.handle_status_update(
                 VideoWithOptionsAndStatus(
