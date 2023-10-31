@@ -10,6 +10,7 @@ from sse_starlette.sse import EventSourceResponse
 from ydcore import AudioFormat
 from ydcore import AvailableDownloadOptions
 from ydcore import Download
+from ydcore import DownloadInput
 from ydcore import DownloadQuality
 from ydcore import VideoFormat
 
@@ -34,14 +35,14 @@ def get_downloads(session: DependsSession) -> list[Download]:
 
 @router.post('', status_code=status.HTTP_201_CREATED)
 def post_downloads(
-    download: Download, session: DependsSession,
+    download: DownloadInput, session: DependsSession,
 ) -> Download:
     return session.download_manager.add(download)
 
 
 @router.put('')
 def put_downloads(
-    download: Download, session: DependsSession,
+    download: DownloadInput, session: DependsSession,
 ) -> Download:
     session.download_manager.remove(download.video.id)
     return session.download_manager.add(download)

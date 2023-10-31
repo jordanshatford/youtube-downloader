@@ -190,7 +190,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/Download"
+                "$ref": "#/components/schemas/DownloadInput"
               }
             }
           },
@@ -237,7 +237,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/Download"
+                "$ref": "#/components/schemas/DownloadInput"
               }
             }
           },
@@ -567,14 +567,24 @@
             "$ref": "#/components/schemas/DownloadOptions"
           },
           "status": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/DownloadStatus"
-              }
-            ],
-            "default": {
-              "state": "WAITING"
-            }
+            "$ref": "#/components/schemas/DownloadStatus"
+          }
+        },
+        "type": "object",
+        "required": [
+          "video",
+          "options",
+          "status"
+        ],
+        "title": "Download"
+      },
+      "DownloadInput": {
+        "properties": {
+          "video": {
+            "$ref": "#/components/schemas/Video"
+          },
+          "options": {
+            "$ref": "#/components/schemas/DownloadOptions"
           }
         },
         "type": "object",
@@ -582,7 +592,7 @@
           "video",
           "options"
         ],
-        "title": "Download"
+        "title": "DownloadInput"
       },
       "DownloadOptions": {
         "properties": {
