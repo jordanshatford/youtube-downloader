@@ -8,7 +8,6 @@ from .models import DownloadInput
 from .models import DownloadState
 from .models import DownloadStatus
 from .models import VideoFormat
-from .utilities import get_ytdlp_progress
 from .ytdlp import PostprocessorHookInfo
 from .ytdlp import ProgressHookInfo
 from .ytdlp import YoutubeDLParams
@@ -141,7 +140,6 @@ class DownloadConfig:
                     state=DownloadState.DOWNLOADING,
                     downloaded_bytes=downloaded_bytes,
                     total_bytes=total_bytes,
-                    progress=get_ytdlp_progress(info),
                     elapsed=elapsed,
                     eta=eta,
                     speed=speed,
