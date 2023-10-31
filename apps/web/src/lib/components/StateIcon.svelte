@@ -8,7 +8,7 @@
 		type IconSource
 	} from '@yd/ui';
 
-	export let state: DownloadState = DownloadState.ERROR;
+	export let state: DownloadState;
 
 	const lookup: Record<DownloadState, { icon: IconSource; class: string }> = {
 		[DownloadState.WAITING]: {

@@ -11,13 +11,13 @@
 		title="Get Download File"
 		src={DownloadIcon}
 		loading={download.awaitingFileBlob}
-		disabled={download.status?.state !== DownloadState.DONE}
+		disabled={download.status.state !== DownloadState.DONE}
 		on:click={async () => await downloads.getFile(download.video.id)}
 	/>
 	<ActionIcon
 		title="Retry Download"
 		src={ArrowPathIcon}
-		disabled={download.status?.state !== DownloadState.ERROR}
+		disabled={download.status.state !== DownloadState.ERROR}
 		on:click={async () => await downloads.restart(download.video.id)}
 	/>
 	<Confirm
@@ -31,8 +31,7 @@
 		<ActionIcon
 			title="Delete Download"
 			src={TrashIcon}
-			disabled={download.status?.state !== DownloadState.DONE &&
-				download.status?.state !== DownloadState.ERROR}
+			disabled={![DownloadState.DONE, DownloadState.ERROR].includes(download.status.state)}
 			on:click={() => onConfirm(() => downloads.remove(download.video.id))}
 		/>
 	</Confirm>

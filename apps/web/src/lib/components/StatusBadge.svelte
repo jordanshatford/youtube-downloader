@@ -2,9 +2,7 @@
 	import { DownloadState, type DownloadStatus } from '@yd/client';
 	import { Badge, type BadgeVariants, ProgressBar } from '@yd/ui';
 
-	export let status: DownloadStatus = {
-		state: DownloadState.ERROR
-	};
+	export let status: DownloadStatus;
 
 	const postProcessorLookup: Record<string, string> = {
 		extractaudio: 'EXTRACTING AUDIO',
