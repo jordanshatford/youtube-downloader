@@ -1,7 +1,7 @@
 import questionary
 from questionary import Choice
 from ydcore import AudioFormat
-from ydcore import Download
+from ydcore import DownloadInput
 from ydcore import DownloadManager
 from ydcore import DownloadOptions
 from ydcore import DownloadQuality
@@ -73,7 +73,7 @@ def prompt_for_video_and_download(output_dir: str) -> int:
     options = prompt_for_download_options()
     # Download and wait for video to finish
     manager = DownloadManager(output_dir, on_status_update)
-    manager.add(Download(video=video, options=options))
+    manager.add(DownloadInput(video=video, options=options))
     manager.wait()
     # Check if the user wants to download more
     should_download_another = questionary.confirm(
