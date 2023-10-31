@@ -11,6 +11,7 @@ export { AudioFormat } from './models/AudioFormat';
 export type { AvailableDownloadOptions } from './models/AvailableDownloadOptions';
 export type { Channel } from './models/Channel';
 export type { Download } from './models/Download';
+export type { DownloadInput } from './models/DownloadInput';
 export type { DownloadOptions } from './models/DownloadOptions';
 export { DownloadQuality } from './models/DownloadQuality';
 export { DownloadState } from './models/DownloadState';

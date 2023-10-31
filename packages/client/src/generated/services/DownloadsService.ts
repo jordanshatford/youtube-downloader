@@ -4,6 +4,7 @@
 /* eslint-disable */
 import type { AvailableDownloadOptions } from '../models/AvailableDownloadOptions';
 import type { Download } from '../models/Download';
+import type { DownloadInput } from '../models/DownloadInput';
 
 import type { CancelablePromise } from '../core/CancelablePromise';
 import { OpenAPI } from '../core/OpenAPI';
@@ -33,7 +34,7 @@ export class DownloadsService {
    * @throws ApiError
    */
   public static putDownloads(
-    requestBody: Download,
+    requestBody: DownloadInput,
   ): CancelablePromise<Download> {
     return __request(OpenAPI, {
       method: 'PUT',
@@ -54,7 +55,7 @@ export class DownloadsService {
    * @throws ApiError
    */
   public static postDownloads(
-    requestBody: Download,
+    requestBody: DownloadInput,
   ): CancelablePromise<Download> {
     return __request(OpenAPI, {
       method: 'POST',
