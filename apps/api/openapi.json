@@ -657,6 +657,28 @@
           "state": {
             "$ref": "#/components/schemas/DownloadState"
           },
+          "downloaded_bytes": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Downloaded Bytes"
+          },
+          "total_bytes": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Total Bytes"
+          },
           "progress": {
             "anyOf": [
               {
@@ -668,6 +690,17 @@
             ],
             "title": "Progress"
           },
+          "elapsed": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Elapsed"
+          },
           "eta": {
             "anyOf": [
               {
@@ -678,6 +711,17 @@
               }
             ],
             "title": "Eta"
+          },
+          "speed": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Speed"
           },
           "postprocessor": {
             "anyOf": [

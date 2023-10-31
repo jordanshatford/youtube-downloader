@@ -129,12 +129,22 @@ class DownloadConfig:
     def _progress_hook(self, info: ProgressHookInfo) -> None:
         status = info.get('status')
         if status == 'downloading':
+            downloaded_bytes = info.get('downloaded_bytes')
+            total_bytes = info.get(
+                'total_bytes', info.get('total_bytes_estimate'),
+            )
+            elapsed = info.get('elapsed')
             eta = info.get('eta')
+            speed = info.get('speed')
             self._handle_status_update(
                 DownloadStatus(
                     state=DownloadState.DOWNLOADING,
+                    downloaded_bytes=downloaded_bytes,
+                    total_bytes=total_bytes,
                     progress=get_ytdlp_progress(info),
+                    elapsed=elapsed,
                     eta=eta,
+                    speed=speed,
                 ),
             )
         elif status == 'error':

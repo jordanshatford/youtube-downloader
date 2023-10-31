@@ -35,12 +35,15 @@ class DownloadState(str, enum.Enum):
 
 class DownloadStatus(BaseModel):
     state: DownloadState
-    # Progress in percent (Only valid when state is DOWNLOADING)
-    progress: float | None = None
-    # ETA in seconds (Only valid when state is DOWNLOADING)
-    eta: float | None = None
-    # Postprocessor currently running (Only valid when state is PROCESSING)
-    postprocessor: str | None = None
+    # The following are only valid when the state is DOWNLOADING
+    downloaded_bytes: int | None = None  # Bytes downloaded
+    total_bytes: int | None = None       # Bytes total (or estimate)
+    progress: float | None = None        # Progress in percent
+    elapsed: float | None = None         # Time elapsed in seconds
+    eta: float | None = None             # ETA in seconds
+    speed: float | None = None           # Speed of download (bytes/second)
+    # The following are only valid when the state is PROCESSING
+    postprocessor: str | None = None     # Postprocessor currently running
 
 
 class AudioFormat(str, enum.Enum):
