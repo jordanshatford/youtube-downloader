@@ -1,6 +1,7 @@
 import os
 import time
 
+from .config import DownloadConfig
 from .config import StatusHook
 from .models import Download
 from .models import DownloadFile
@@ -14,6 +15,7 @@ class DownloadManager:
         status_hook: StatusHook | None = None,
     ):
         self._status_hook = status_hook
+        self._configs: dict[str, DownloadConfig] = {}
         self._downloads: dict[str, YoutubeDownloadThread] = {}
         self._output_dir = output_dir
 
@@ -22,31 +24,35 @@ class DownloadManager:
 
     def add(self, download: DownloadInput) -> Download:
         if download.video.id not in self._downloads:
-            thread = YoutubeDownloadThread(
-                download, self._output_dir, self.send_status_update,
-            )
+            config = DownloadConfig(download, self._output_dir)
+            if self._status_hook:
+                config.add_status_hook(self._status_hook)
+            self._configs[download.video.id] = config
+            thread = YoutubeDownloadThread(self._configs[download.video.id])
             self._downloads[download.video.id] = thread
             thread.start()
-        thread = self._downloads[download.video.id]
-        return thread.download
+        return self._configs[download.video.id].download
 
     def remove(self, download_id: str) -> None:
         if download_id in self._downloads:
-            self._downloads[download_id].remove()
+            path = self._configs[download_id].path
+            if os.path.exists(path):
+                os.remove(path)
             self._downloads.pop(download_id, None)
+            self._configs.pop(download_id, None)
 
     def get(self, download_id: str) -> Download | None:
-        thread = self._downloads.get(download_id, None)
-        return None if thread is None else thread.download
+        config = self._configs.get(download_id, None)
+        return None if config is None else config.download
 
     def get_all(self) -> list[Download]:
-        return [thread.download for thread in self._downloads.values()]
+        return [config.download for config in self._configs.values()]
 
     def get_file(self, download_id: str) -> DownloadFile | None:
-        thread = self._downloads.get(download_id, None)
-        if thread is None or not os.path.exists(thread.path):
+        config = self._configs.get(download_id, None)
+        if config is None or not os.path.exists(config.path):
             return None
-        return DownloadFile(name=thread.filename, path=thread.path)
+        return DownloadFile(name=config.filename, path=config.path)
 
     def send_status_update(self, update: Download) -> None:
         if self._status_hook is not None:
@@ -55,4 +61,6 @@ class DownloadManager:
     def wait(self) -> None:
         for download in self._downloads.values():
             download.join()
+        self._configs = {}
+        self._downloads = {}
         time.sleep(1)
