@@ -11,7 +11,6 @@ from .models import DownloadStatus
 from .models import Video
 from .models import VideoFormat
 from .search import YouTubeSearch
-from .thread import YoutubeDownloadThread
 
 __all__ = [
     'AudioFormat',
@@ -27,5 +26,4 @@ __all__ = [
     'Video',
     'VideoFormat',
     'YouTubeSearch',
-    'YoutubeDownloadThread',
 ]
