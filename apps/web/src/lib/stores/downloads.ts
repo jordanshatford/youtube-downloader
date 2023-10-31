@@ -62,7 +62,6 @@ function createDownloadsStore() {
 
 		const download = downloads[id];
 
-		updateDownload(download.video.id, download);
 		try {
 			const result = await DownloadsService.putDownloads(download);
 			updateDownload(result.video.id, result);
