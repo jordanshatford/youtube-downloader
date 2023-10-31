@@ -4,6 +4,7 @@ import time
 from .config import StatusHook
 from .models import Download
 from .models import DownloadFile
+from .models import DownloadInput
 from .thread import YoutubeDownloadThread
 
 
@@ -19,14 +20,15 @@ class DownloadManager:
     def __contains__(self, download_id: str) -> bool:
         return download_id in self._downloads
 
-    def add(self, download: Download) -> Download:
+    def add(self, download: DownloadInput) -> Download:
         if download.video.id not in self._downloads:
             thread = YoutubeDownloadThread(
                 download, self._output_dir, self.send_status_update,
             )
             self._downloads[download.video.id] = thread
             thread.start()
-        return download
+        thread = self._downloads[download.video.id]
+        return thread.download
 
     def remove(self, download_id: str) -> None:
         if download_id in self._downloads:

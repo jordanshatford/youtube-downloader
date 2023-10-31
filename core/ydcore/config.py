@@ -4,6 +4,7 @@ from typing import TypeAlias
 
 from .models import AudioFormat
 from .models import Download
+from .models import DownloadInput
 from .models import DownloadState
 from .models import DownloadStatus
 from .models import VideoFormat
@@ -26,8 +27,13 @@ DEFAULT_YTDLP_PARAMS: YoutubeDLParams = {
 
 
 class DownloadConfig:
-    def __init__(self, download: Download, output_directory: str) -> None:
-        self.download = download
+    def __init__(self, download: DownloadInput, output_directory: str) -> None:
+        self.download = Download(
+            **download.model_dump(),
+            status=DownloadStatus(
+                state=DownloadState.WAITING,
+            ),
+        )
         self._output_directory = output_directory
         self._status_hooks: list[StatusHook] = []
         self._overrides: YoutubeDLParams = {}

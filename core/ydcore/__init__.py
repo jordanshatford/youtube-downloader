@@ -3,6 +3,7 @@ from .models import AudioFormat
 from .models import AvailableDownloadOptions
 from .models import Channel
 from .models import Download
+from .models import DownloadInput
 from .models import DownloadOptions
 from .models import DownloadQuality
 from .models import DownloadState
@@ -17,6 +18,7 @@ __all__ = [
     'AvailableDownloadOptions',
     'Channel',
     'Download',
+    'DownloadInput',
     'DownloadManager',
     'DownloadOptions',
     'DownloadState',

@@ -6,6 +6,7 @@ from yt_dlp import YoutubeDL  # type: ignore
 from .config import DownloadConfig
 from .config import StatusHook
 from .models import Download
+from .models import DownloadInput
 from .models import DownloadState
 from .models import DownloadStatus
 
@@ -13,7 +14,7 @@ from .models import DownloadStatus
 class YoutubeDownloadThread(threading.Thread):
     def __init__(
         self,
-        download: Download,
+        download: DownloadInput,
         output_directory: str,
         status_hook: StatusHook,
     ):

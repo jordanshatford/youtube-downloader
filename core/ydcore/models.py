@@ -82,12 +82,13 @@ class DownloadOptions(BaseModel):
     embed_subtitles: bool
 
 
-class Download(BaseModel):
+class DownloadInput(BaseModel):
     video: Video
     options: DownloadOptions
-    status: DownloadStatus = DownloadStatus(
-        state=DownloadState.WAITING,
-    )
+
+
+class Download(DownloadInput):
+    status: DownloadStatus
 
 
 class DownloadFile(BaseModel):
