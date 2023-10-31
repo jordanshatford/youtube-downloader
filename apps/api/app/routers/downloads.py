@@ -75,14 +75,13 @@ async def status_stream(request: Request, session: Session):
 
 # Exclude from OpenAPI schema as there is no support for Server Sent Events.
 @router.get('/status', include_in_schema=False)
-async def get_downloads_status(
+def get_downloads_status(
     request: Request, session_id: str,
 ) -> EventSourceResponse:
     session = session_manager.get(session_id)
     if session is None:
         raise HTTPException(status_code=status.HTTP_403_FORBIDDEN)
-    event_source = status_stream(request, session)
-    return EventSourceResponse(event_source)
+    return EventSourceResponse(status_stream(request, session))
 
 
 @router.get('/{download_id}', responses=depends_download_responses)

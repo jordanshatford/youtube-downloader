@@ -15,7 +15,7 @@ class DownloadManager:
         self, output_dir: str,
         status_hook: StatusHook | None = None,
         *,
-        num_threads: int | None = 2,
+        num_threads: int | None = None,
     ):
         self._status_hook = status_hook
         self._downloads: dict[str, DownloadConfig] = {}
