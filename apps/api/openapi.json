@@ -679,17 +679,6 @@
             ],
             "title": "Total Bytes"
           },
-          "progress": {
-            "anyOf": [
-              {
-                "type": "number"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Progress"
-          },
           "elapsed": {
             "anyOf": [
               {
@@ -733,11 +722,24 @@
               }
             ],
             "title": "Postprocessor"
+          },
+          "progress": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Progress",
+            "readOnly": true
           }
         },
         "type": "object",
         "required": [
-          "state"
+          "state",
+          "progress"
         ],
         "title": "DownloadStatus"
       },

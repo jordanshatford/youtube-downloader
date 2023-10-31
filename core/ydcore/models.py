@@ -1,8 +1,8 @@
 import enum
 
 from pydantic import BaseModel
+from pydantic import computed_field
 from pydantic import HttpUrl
-from pydantic import validator
 
 
 class Channel(BaseModel):
@@ -39,22 +39,21 @@ class DownloadStatus(BaseModel):
     # The following are only valid when the state is DOWNLOADING
     downloaded_bytes: int | None = None  # Bytes downloaded
     total_bytes: int | None = None       # Bytes total (or estimate)
-    progress: float | None = None        # Progress in percent
+
+    @computed_field  # type: ignore
+    @property
+    def progress(self) -> float | None:  # Progress in percent
+        if self.downloaded_bytes is None or self.total_bytes is None:
+            return None
+        if self.total_bytes <= 0:
+            return None
+        return (self.downloaded_bytes / self.total_bytes) * 100
+
     elapsed: float | None = None         # Time elapsed in seconds
     eta: float | None = None             # ETA in seconds
     speed: float | None = None           # Speed of download (bytes/second)
     # The following are only valid when the state is PROCESSING
     postprocessor: str | None = None     # Postprocessor currently running
-
-    @validator('progress', always=True)
-    def calculate_when_possible(
-        cls, _: float | None, values: dict[str, int],
-    ) -> float | None:
-        downloaded_bytes = values.get('downloaded_bytes')
-        total_bytes = values.get('total_bytes')
-        if downloaded_bytes is None or total_bytes is None or total_bytes <= 0:
-            return None
-        return (downloaded_bytes / total_bytes) * 100
 
 
 class AudioFormat(str, enum.Enum):

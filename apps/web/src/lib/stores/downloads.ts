@@ -30,18 +30,21 @@ function createDownloadsStore() {
 
 		const download: DownloadWithExtra = {
 			video,
-			status: { state: DownloadState.WAITING },
+			status: { state: DownloadState.WAITING, progress: null },
 			options: get(settings)
 		};
 
-		updateDownload(download.video.id, download);
+		// Add initial value for the download
+		update((state) => {
+			state[download.video.id] = download;
+			return state;
+		});
+
 		try {
 			const result = await DownloadsService.postDownloads(download);
 			updateDownload(result.video.id, result);
 		} catch (err) {
-			toast.error('Error', `Failed to add '${video.title}' to downloads.`);
-			console.error('Failed to add video to download ', err);
-			updateDownload(download.video.id, { status: { state: DownloadState.ERROR } });
+			handleError(download.video.id, `Failed to add '${video.title}' to downloads.`, err);
 		}
 	}
 
@@ -54,9 +57,7 @@ function createDownloadsStore() {
 			const result = await DownloadsService.putDownloads(download);
 			updateDownload(result.video.id, result);
 		} catch (err) {
-			toast.error('Error', `Failed to restart '${download.video.title}' download.`);
-			console.error('Failed to restart download ', err);
-			updateDownload(download.video.id, { status: { state: DownloadState.ERROR } });
+			handleError(download.video.id, `Failed to restart '${download.video.title}' download.`, err);
 		}
 	}
 
@@ -71,8 +72,7 @@ function createDownloadsStore() {
 				return state;
 			});
 		} catch (err) {
-			toast.error('Error', 'Failed to remove download.');
-			console.error('Failed to remove download ', err);
+			handleError(id, 'Failed to remove download.', err);
 		}
 	}
 
@@ -84,24 +84,34 @@ function createDownloadsStore() {
 			const blob = await DownloadsService.getDownloadFile(id);
 			const filename = `${downloads[id].video.title}.${downloads?.[id]?.options?.format}`;
 			saveAs(blob, filename);
-			updateDownload(id, { awaitingFileBlob: false });
 		} catch (err) {
-			toast.error('Error', 'Failed to get file for download.');
-			console.error('Failed to get file for download ', err);
-			updateDownload(id, { awaitingFileBlob: false, status: { state: DownloadState.ERROR } });
+			handleError(id, 'Failed to get file for download.', err);
+		} finally {
+			updateDownload(id, { awaitingFileBlob: false });
 		}
+	}
+
+	function handleError(downloadId: string, msg: string, error: unknown) {
+		toast.error('Error', msg);
+		console.error(msg, error);
+		updateDownload(downloadId, { status: { state: DownloadState.ERROR, progress: null } });
 	}
 
 	function updateDownload(id: string, updatedValue: Partial<DownloadWithExtra>) {
 		update((state) => {
-			const oldValue = state[id];
-			const value = { ...oldValue, ...updatedValue };
-			state[id] = value;
-			// Automatically download file if enabled by the user.
-			if (get(userSettings).autoDownloadOnComplete) {
-				if (updatedValue.status?.state === DownloadState.DONE) {
-					getFile(value.video.id);
+			if (id in state) {
+				// Merge and update values.
+				const oldValue = state[id];
+				const value: DownloadWithExtra = { ...oldValue, ...updatedValue };
+				state[id] = value;
+				// Automatically download file if enabled by the user.
+				if (get(userSettings).autoDownloadOnComplete) {
+					if (updatedValue.status?.state === DownloadState.DONE) {
+						getFile(value.video.id);
+					}
 				}
+			} else {
+				console.error('ID NOT IN STATE');
 			}
 			return state;
 		});
