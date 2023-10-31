@@ -39,7 +39,7 @@
 		: status.state;
 </script>
 
-{#key status}
+{#key status.state}
 	<Badge icon {...lookup[status.state]}>
 		{text}
 		{#if status.progress}
