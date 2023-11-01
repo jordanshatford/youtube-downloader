@@ -37,4 +37,16 @@ export class SessionService {
     });
   }
 
+  /**
+   * Get Session Validate
+   * @returns Session Successful Response
+   * @throws ApiError
+   */
+  public static getSessionValidate(): CancelablePromise<Session> {
+    return __request(OpenAPI, {
+      method: 'GET',
+      url: '/session/validate',
+    });
+  }
+
 }

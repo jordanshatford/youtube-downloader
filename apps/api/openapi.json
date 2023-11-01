@@ -148,6 +148,32 @@
         ]
       }
     },
+    "/session/validate": {
+      "get": {
+        "tags": [
+          "session"
+        ],
+        "summary": "Get Session Validate",
+        "operationId": "get_session_validate",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Session"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ]
+      }
+    },
     "/downloads": {
       "get": {
         "tags": [
