@@ -14,10 +14,10 @@ export interface DownloadWithExtra extends Download {
 	awaitingFileBlob?: boolean;
 }
 
-function createDownloadsStore() {
-	const downloads: Record<string, DownloadWithExtra> = {};
+const DOWNLOADS = writable<Record<string, DownloadWithExtra>>({});
 
-	const { subscribe, set, update } = writable(downloads);
+function createDownloadsStore() {
+	const { subscribe, set, update } = DOWNLOADS;
 
 	function setupStatusListener() {
 		DownloadsStatusService.setup((download) => {
@@ -25,8 +25,13 @@ function createDownloadsStore() {
 		});
 	}
 
+	async function init() {
+		const downloads = await DownloadsService.getDownloads();
+		set(downloads.reduce((prev, curr) => ({ ...prev, [curr.video.id]: curr }), {}));
+	}
+
 	async function add(video: Video) {
-		if (video.id in downloads) return;
+		if (video.id in get(DOWNLOADS)) return;
 
 		const download: DownloadWithExtra = {
 			video,
@@ -49,9 +54,9 @@ function createDownloadsStore() {
 	}
 
 	async function restart(id: string) {
-		if (!(id in downloads)) return;
+		if (!(id in get(DOWNLOADS))) return;
 
-		const download = downloads[id];
+		const download = get(DOWNLOADS)[id];
 
 		try {
 			const result = await DownloadsService.putDownloads(download);
@@ -62,7 +67,7 @@ function createDownloadsStore() {
 	}
 
 	async function remove(id: string) {
-		if (!(id in downloads)) return;
+		if (!(id in get(DOWNLOADS))) return;
 
 		try {
 			await DownloadsService.deleteDownload(id);
@@ -77,12 +82,13 @@ function createDownloadsStore() {
 	}
 
 	async function getFile(id: string) {
-		if (!(id in downloads)) return;
+		if (!(id in get(DOWNLOADS))) return;
 
 		updateDownload(id, { awaitingFileBlob: true });
 		try {
 			const blob = await DownloadsService.getDownloadFile(id);
-			const filename = `${downloads[id].video.title}.${downloads?.[id]?.options?.format}`;
+			const download = get(DOWNLOADS)[id];
+			const filename = `${download.video.title}.${download.options.format}`;
 			saveAs(blob, filename);
 		} catch (err) {
 			handleError(id, 'Failed to get file for download.', err);
@@ -119,6 +125,7 @@ function createDownloadsStore() {
 
 	return {
 		subscribe,
+		init,
 		setupStatusListener,
 		add,
 		restart,
