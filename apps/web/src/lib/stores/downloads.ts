@@ -88,7 +88,7 @@ function createDownloadsStore() {
 		try {
 			const blob = await DownloadsService.getDownloadFile(id);
 			const download = get(DOWNLOADS)[id];
-			const filename = `${download.video.title}.${download.options.format}`;
+			const filename = `${download.video.title} - ${download.video.channel.name}.${download.options.format}`;
 			saveAs(blob, filename);
 		} catch (err) {
 			handleError(id, 'Failed to get file for download.', err);
