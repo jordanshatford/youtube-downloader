@@ -19,9 +19,9 @@ class ProgressHookInfo(TypedDict):
     info_dict: InfoDict
     filename: NotRequired[str]
     tmpfilename: NotRequired[str]
-    downloaded_bytes: NotRequired[int]
-    total_bytes: NotRequired[int | None]
-    total_bytes_estimate: NotRequired[int | None]
+    downloaded_bytes: NotRequired[float]
+    total_bytes: NotRequired[float | None]
+    total_bytes_estimate: NotRequired[float | None]
     elapsed: NotRequired[float | None]
     eta: NotRequired[float | None]
     speed: NotRequired[float | None]

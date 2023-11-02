@@ -689,7 +689,7 @@
           "downloaded_bytes": {
             "anyOf": [
               {
-                "type": "integer"
+                "type": "number"
               },
               {
                 "type": "null"
@@ -700,7 +700,7 @@
           "total_bytes": {
             "anyOf": [
               {
-                "type": "integer"
+                "type": "number"
               },
               {
                 "type": "null"

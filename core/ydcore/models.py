@@ -37,8 +37,8 @@ class DownloadState(str, enum.Enum):
 class DownloadStatus(BaseModel):
     state: DownloadState
     # The following are only valid when the state is DOWNLOADING
-    downloaded_bytes: int | None = None  # Bytes downloaded
-    total_bytes: int | None = None       # Bytes total (or estimate)
+    downloaded_bytes: float | None = None  # Bytes downloaded
+    total_bytes: float | None = None       # Bytes total (or estimate)
 
     @computed_field  # type: ignore
     @property
