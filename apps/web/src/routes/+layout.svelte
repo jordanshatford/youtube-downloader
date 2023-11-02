@@ -10,8 +10,8 @@
 	import { setupSession } from '$lib/api';
 
 	let loading = true;
-	setupSession(() => {
-		downloads.init();
+	setupSession(async () => {
+		await downloads.init();
 		downloads.setupStatusListener();
 		loading = false;
 	});

@@ -20,7 +20,7 @@ const REATTEMPT_INTERVAL = 10000;
 
 // Function used to setup a users session with a callback when it is successful.
 // This will re-attempt to setup a session until successful.
-export async function setupSession(onSuccess?: () => void) {
+export async function setupSession(onSuccess?: () => Promise<void>): Promise<void> {
 	if (browser) {
 		// await session.setup();
 		console.log(SESSION_ID_KEY);
@@ -44,7 +44,7 @@ export async function setupSession(onSuccess?: () => void) {
 				}
 			}
 		}
-		onSuccess?.();
+		await onSuccess?.();
 	}
 }
 
