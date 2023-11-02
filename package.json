@@ -32,7 +32,7 @@
       "json-schema-ref-parser": "npm:@apidevtools/json-schema-ref-parser@10.1.0"
     }
   },
-  "packageManager": "pnpm@8.10.0",
+  "packageManager": "pnpm@8.10.2",
   "engines": {
     "pnpm": ">=8",
     "node": ">=18"
