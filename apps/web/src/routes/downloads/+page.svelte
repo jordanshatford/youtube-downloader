@@ -57,7 +57,7 @@
 						<Table {columns} rows={currentPageDownloads}>
 							<span slot="cell" let:column let:row>
 								{#if column.key === 'info'}
-									<div class="flex items-center">
+									<a href={row.video.url} target="_blank" class="flex items-center">
 										<div class="w-18 hidden h-10 flex-shrink-0 md:block">
 											<img class="w-18 h-10 rounded-lg" src={row.video.thumbnail} alt="Thumbnail" />
 										</div>
@@ -65,11 +65,11 @@
 											<div class="truncate text-sm font-medium text-zinc-800 dark:text-white">
 												{row.video.title}
 											</div>
-											<div class="text-sm text-zinc-500 underline dark:text-zinc-400">
-												<a href={row.video.url} target="_blank" rel="noreferrer">Link</a>
+											<div class="text-sm text-zinc-500 dark:text-zinc-400">
+												{row.video.channel.name}
 											</div>
 										</div>
-									</div>
+									</a>
 								{:else if column.key === 'format'}
 									<Badge>{row.options.format.toUpperCase()}</Badge>
 								{:else if column.key === 'state'}
