@@ -72,7 +72,11 @@ def prompt_for_video_and_download(output_dir: str) -> int:
     # Get options for downloading the video
     options = prompt_for_download_options()
     # Download and wait for video to finish
-    manager = DownloadManager(output_dir, on_status_update)
+    manager = DownloadManager(
+        output_dir,
+        on_status_update,
+        output_file_readable_name=True,
+    )
     manager.add(DownloadInput(video=video, options=options))
     manager.wait()
     # Check if the user wants to download more
