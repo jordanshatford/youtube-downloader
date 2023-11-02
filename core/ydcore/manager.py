@@ -12,14 +12,15 @@ from .models import DownloadInput
 
 class DownloadManager:
     def __init__(
-        self, output_dir: str,
+        self,
+        output_dir: str,
         status_hook: StatusHook | None = None,
         *,
         num_threads: int | None = None,
     ):
+        self._output_dir = output_dir
         self._status_hook = status_hook
         self._downloads: dict[str, DownloadConfig] = {}
-        self._output_dir = output_dir
         self._pool = ThreadPool(num_threads)
 
     def __contains__(self, download_id: str) -> bool:
@@ -53,10 +54,6 @@ class DownloadManager:
         if config is None or not os.path.exists(config.path):
             return None
         return DownloadFile(name=config.filename, path=config.path)
-
-    def send_status_update(self, update: Download) -> None:
-        if self._status_hook is not None:
-            self._status_hook(update)
 
     def wait(self) -> None:
         self._pool.close()
