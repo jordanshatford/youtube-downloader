@@ -1,32 +1,20 @@
-<script lang="ts" context="module">
-	import { OpenAPI } from '@yd/client';
-	import { env } from '$lib/config';
-
-	OpenAPI.BASE = env.serverAddress;
-</script>
-
 <script lang="ts">
 	import '../app.css';
 	import { Toasts, NavBar, Footer, ThemeToggle } from '@yd/ui';
 	import { page } from '$app/stores';
-	import { browser } from '$app/environment';
 	import Loading from '$lib/components/Loading.svelte';
-	import { session } from '$lib/stores/session';
 	import { downloads } from '$lib/stores/downloads';
 	import config from '$lib/config';
 	import { navbarLinks, footerLinks } from '$lib/routes';
 	import Logo from '$lib/components/Logo.svelte';
+	import { setupSession } from '$lib/api';
 
-	// Use session as token when making requests with client
-	OpenAPI.TOKEN = async () => {
-		return $session;
-	};
-
-	session.setup();
-
-	$: if ($session && browser) {
+	let loading = true;
+	setupSession(() => {
+		downloads.init();
 		downloads.setupStatusListener();
-	}
+		loading = false;
+	});
 </script>
 
 <svelte:head>
@@ -48,10 +36,10 @@
 			<ThemeToggle slot="right" />
 		</NavBar>
 		<main class="mx-auto h-full max-w-7xl px-4 pt-20 sm:px-6 lg:px-8">
-			{#if $session}
-				<slot />
-			{:else}
+			{#if loading}
 				<Loading />
+			{:else}
+				<slot />
 			{/if}
 		</main>
 	</div>
