@@ -46,6 +46,9 @@ export class SessionService {
     return __request(OpenAPI, {
       method: 'GET',
       url: '/session/validate',
+      errors: {
+        403: `Forbidden`,
+      },
     });
   }
 

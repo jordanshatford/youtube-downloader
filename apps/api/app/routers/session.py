@@ -26,6 +26,6 @@ def delete_session(session: DependsSession) -> None:
     session_manager.remove(session.id)
 
 
-@router.get('/validate')
+@router.get('/validate', responses=depends_session_responses)
 def get_session_validate(session: DependsSession) -> Session:
     return Session(id=session.id)
