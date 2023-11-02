@@ -26,7 +26,13 @@ DEFAULT_YTDLP_PARAMS: YoutubeDLParams = {
 
 
 class DownloadConfig:
-    def __init__(self, download: DownloadInput, output_directory: str) -> None:
+    def __init__(
+        self,
+        download: DownloadInput,
+        output_directory: str,
+        *,
+        output_file_readable_name: bool = False,
+    ) -> None:
         self.download = Download(
             **download.model_dump(),
             status=DownloadStatus(
@@ -34,6 +40,7 @@ class DownloadConfig:
             ),
         )
         self._output_directory = output_directory
+        self._output_file_readable_name = output_file_readable_name
         self._status_hooks: list[StatusHook] = []
         self._overrides: YoutubeDLParams = {}
 
@@ -98,6 +105,10 @@ class DownloadConfig:
             self._overrides['writesubtitles'] = True
             self._overrides['subtitlesformat'] = 'best'
 
+        filename = self.download.video.id
+        if self._output_file_readable_name:
+            filename = str(self.download.video)
+
         return {
             **DEFAULT_YTDLP_PARAMS,
             **self._overrides,
@@ -105,7 +116,7 @@ class DownloadConfig:
             'progress_hooks': [self._progress_hook],
             'postprocessor_hooks': [self._postprocessor_hook],
             'post_hooks': [self._post_hook],
-            'outtmpl': f'{self._output_directory}/{self.download.video.id}.%(ext)s',  # noqa
+            'outtmpl': f'{self._output_directory}/{filename}.%(ext)s',
             'postprocessors': postprocessors,
         }
 

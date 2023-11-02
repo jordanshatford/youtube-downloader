@@ -17,18 +17,24 @@ class DownloadManager:
         status_hook: StatusHook | None = None,
         *,
         num_threads: int | None = None,
+        output_file_readable_name: bool = False,
     ):
         self._output_dir = output_dir
         self._status_hook = status_hook
         self._downloads: dict[str, DownloadConfig] = {}
         self._pool = ThreadPool(num_threads)
+        self._output_file_readable_name = output_file_readable_name
 
     def __contains__(self, download_id: str) -> bool:
         return download_id in self._downloads
 
     def add(self, download: DownloadInput) -> Download:
         if download.video.id not in self._downloads:
-            config = DownloadConfig(download, self._output_dir)
+            config = DownloadConfig(
+                download,
+                self._output_dir,
+                output_file_readable_name=self._output_file_readable_name,
+            )
             if self._status_hook:
                 config.add_status_hook(self._status_hook)
             self._downloads[download.video.id] = config
