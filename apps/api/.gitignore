@@ -4,3 +4,4 @@ sessions/
 .env
 .mypy_cache/
 venv/
+*.log*

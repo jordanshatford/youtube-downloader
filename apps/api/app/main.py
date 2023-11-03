@@ -1,5 +1,7 @@
+import logging
 import os
 import tomllib
+from logging.handlers import RotatingFileHandler
 from typing import Any
 
 from fastapi import FastAPI
@@ -10,6 +12,22 @@ from .routers import downloads
 from .routers import search
 from .routers import session
 from .session import session_manager
+
+
+handler = RotatingFileHandler(
+    'output.log',
+    maxBytes=1024 * 1024 * 5,  # 5 MB
+    backupCount=5,
+)
+logging.basicConfig(
+    format='[%(asctime)s] %(levelname)s ' +
+           ' - %(name)s - %(module)s - %(funcName)s: %(message)s',
+    datefmt='%Y-%m-%d %H:%M:%S',
+    level=logging.WARNING,
+    handlers=[handler],
+)
+logging.getLogger('sse_starlette').setLevel(logging.ERROR)
+
 
 # Read data from pyproject.toml file
 pyproject_data: dict[str, Any] = {}
