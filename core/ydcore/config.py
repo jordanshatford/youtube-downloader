@@ -1,3 +1,4 @@
+import logging
 import os
 from collections.abc import Callable
 from typing import TypeAlias
@@ -11,6 +12,10 @@ from .models import VideoFormat
 from .ytdlp import PostprocessorHookInfo
 from .ytdlp import ProgressHookInfo
 from .ytdlp import YoutubeDLParams
+
+
+logger = logging.getLogger(__name__)
+
 
 StatusHook: TypeAlias = Callable[[Download], None]
 
@@ -109,7 +114,7 @@ class DownloadConfig:
         if self._output_file_readable_name:
             filename = str(self.download.video)
 
-        return {
+        params: YoutubeDLParams = {
             **DEFAULT_YTDLP_PARAMS,
             **self._overrides,
             'format': self._ytdlp_format,
@@ -119,6 +124,12 @@ class DownloadConfig:
             'outtmpl': f'{self._output_directory}/{filename}.%(ext)s',
             'postprocessors': postprocessors,
         }
+
+        logger.debug(
+            f'Downloading {self.download.video.url} with params: {params}.',
+        )
+
+        return params
 
     @property
     def _ytdlp_format(self) -> str:
@@ -137,8 +148,10 @@ class DownloadConfig:
         return quality
 
     def _progress_hook(self, info: ProgressHookInfo) -> None:
+        url = self.download.video.url
         status = info.get('status')
         if status == 'downloading':
+            logger.debug(f'Download status update DOWNLOADING for: {url}.')
             downloaded_bytes = info.get('downloaded_bytes')
             total_bytes = info.get(
                 'total_bytes', info.get('total_bytes_estimate'),
@@ -146,6 +159,13 @@ class DownloadConfig:
             elapsed = info.get('elapsed')
             eta = info.get('eta')
             speed = info.get('speed')
+            logger.debug(
+                'Downloading ({url}): ' +
+                f'downloaded_bytes={downloaded_bytes}, ' +
+                f'total_bytes={total_bytes}, ' +
+                f'elapsed={elapsed}, eta={eta}, ' +
+                f'speed={speed}.',
+            )
             self._handle_status_update(
                 DownloadStatus(
                     state=DownloadState.DOWNLOADING,
@@ -157,21 +177,31 @@ class DownloadConfig:
                 ),
             )
         elif status == 'error':
+            logger.error(f'Download status update ERROR for: {url}.')
             self._handle_status_update(
                 DownloadStatus(state=DownloadState.ERROR),
             )
         elif status == 'finished':
+            logger.debug(f'Download status update FINISHED for: {url}.')
             self._handle_status_update(
                 DownloadStatus(state=DownloadState.PROCESSING),
             )
 
     def _postprocessor_hook(self, info: PostprocessorHookInfo) -> None:
+        url = self.download.video.url
         status = info.get('status')
+        logger.debug(
+            f'Postprocessor status update {str(status).upper()} for: {url}.',
+        )
         postprocessor: str | None = None
         if status == 'started' or status == 'processing':
             postprocessor = info.get('postprocessor')
+            logger.debug(
+                f'Postprocessor {postprocessor} is {status.upper()}.',
+            )
         elif status == 'finished':
             postprocessor = None
+            logger.debug('Postprocessor is None.')
         self._handle_status_update(
             DownloadStatus(
                 state=DownloadState.PROCESSING,
@@ -180,8 +210,12 @@ class DownloadConfig:
         )
 
     def _post_hook(self, filepath: str) -> None:
+        logger.debug(
+            f'Post status update for: {self.download.video.url}.',
+        )
         state = DownloadState.DONE
         if not os.path.exists(filepath):
+            logger.error(f'File does not exist: {filepath}.')
             state = DownloadState.ERROR
         self._handle_status_update(
             DownloadStatus(

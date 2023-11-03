@@ -1,3 +1,4 @@
+import logging
 from typing import Any
 
 from pydantic import HttpUrl
@@ -5,6 +6,10 @@ from pydantic import HttpUrl
 from .innertube import InnerTubeClient
 from .models import Channel
 from .models import Video
+
+
+logger = logging.getLogger(__name__)
+
 
 _YOUTUBE_BASE_URL = 'https://www.youtube.com'
 
@@ -49,8 +54,12 @@ class YouTubeSearch:
             results, continuation = self._fetch_and_parse()
             self._results = results
             self._continuation = continuation
+            logging.debug(
+                f'Found {len(results)} results for search: {self._query}.',
+            )
             return True
         else:
+            logging.debug(f'No more results for search: {self._query}.')
             return False
 
     def _fetch_and_parse(self) -> tuple[list[Video], str | None]:

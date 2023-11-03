@@ -1,8 +1,12 @@
 import enum
+import logging
 
 from pydantic import BaseModel
 from pydantic import computed_field
 from pydantic import HttpUrl
+
+
+logger = logging.getLogger(__name__)
 
 
 class Channel(BaseModel):
@@ -44,8 +48,17 @@ class DownloadStatus(BaseModel):
     @property
     def progress(self) -> float | None:  # Progress in percent
         if self.downloaded_bytes is None or self.total_bytes is None:
+            logger.debug(
+                'Could not calculate progress: ' +
+                f'downloaded_bytes: {self.downloaded_bytes} ' +
+                f'total_bytes: {self.total_bytes}.',
+            )
             return None
         if self.total_bytes <= 0:
+            logger.debug(
+                'Could not calculate progress: ' +
+                f'total_bytes: {self.total_bytes} (<= 0).',
+            )
             return None
         return (self.downloaded_bytes / self.total_bytes) * 100
 

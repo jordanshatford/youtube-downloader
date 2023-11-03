@@ -1,5 +1,6 @@
 import enum
 import json
+import logging
 from collections.abc import MutableMapping
 from typing import Any
 from typing import Literal
@@ -7,6 +8,9 @@ from typing import TypedDict
 from urllib import parse
 from urllib.request import Request
 from urllib.request import urlopen
+
+
+logger = logging.getLogger(__name__)
 
 
 _INNERTUBE_BASE_URL = 'https://www.youtube.com/youtubei/v1'
@@ -53,6 +57,12 @@ class InnerTubeClient:
         self._headers = client['headers']
         self._language = language
         self._region = region
+        logger.debug(
+            'Initialize InnerTubeClient with: ' +
+            f'api_key={self._api_key}, context={self._client_context}, ' +
+            f'headers={self._headers}, lang={self._language}, ' +
+            f'region={self._region}.',
+        )
 
     @property
     def _base_params(self) -> dict[str, Any]:
@@ -84,6 +94,10 @@ class InnerTubeClient:
     def search(
         self, query: str, continuation: str | None = None,
     ) -> dict[str, Any]:
+        logger.debug(
+            'Attempting to search innertube API: ' +
+            f'query={query}, continuation={continuation}.',
+        )
         params: dict[str, Any] = {
             'query': query,
         }
@@ -120,6 +134,10 @@ class InnerTubeClient:
                 'Content-Length': str(len(data_bytes)),
             },
         )
+        logger.debug(
+            f'Calling innertube API with: url={url} request={request}.',
+        )
         response = urlopen(request, timeout=timeout)
         response_data = json.loads(response.read().decode('utf-8'))
+        logger.debug(f'Innertube API responded with: {response_data}.')
         return response_data
