@@ -6,7 +6,7 @@ from pydantic import computed_field
 from pydantic import HttpUrl
 
 
-logger = logging.getLogger(__name__)
+logger = logging.getLogger('ydcore')
 
 
 class Channel(BaseModel):

@@ -14,7 +14,7 @@ from .ytdlp import ProgressHookInfo
 from .ytdlp import YoutubeDLParams
 
 
-logger = logging.getLogger(__name__)
+logger = logging.getLogger('ydcore')
 
 
 StatusHook: TypeAlias = Callable[[Download], None]
@@ -160,7 +160,7 @@ class DownloadConfig:
             eta = info.get('eta')
             speed = info.get('speed')
             logger.debug(
-                'Downloading ({url}): ' +
+                f'Downloading ({url}): ' +
                 f'downloaded_bytes={downloaded_bytes}, ' +
                 f'total_bytes={total_bytes}, ' +
                 f'elapsed={elapsed}, eta={eta}, ' +

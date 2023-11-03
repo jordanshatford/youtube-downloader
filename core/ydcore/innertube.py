@@ -10,7 +10,7 @@ from urllib.request import Request
 from urllib.request import urlopen
 
 
-logger = logging.getLogger(__name__)
+logger = logging.getLogger('ydcore')
 
 
 _INNERTUBE_BASE_URL = 'https://www.youtube.com/youtubei/v1'
@@ -135,9 +135,10 @@ class InnerTubeClient:
             },
         )
         logger.debug(
-            f'Calling innertube API with: url={url} request={request}.',
+            f'Calling innertube API with: url={url}, ' +
+            f'data={request.data}, headers={request.headers}.',
         )
         response = urlopen(request, timeout=timeout)
         response_data = json.loads(response.read().decode('utf-8'))
-        logger.debug(f'Innertube API responded with: {response_data}.')
+        logger.debug(f'Innertube API responded to: url={url}.')
         return response_data

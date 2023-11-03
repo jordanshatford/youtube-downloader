@@ -11,7 +11,7 @@ from .models import DownloadFile
 from .models import DownloadInput
 
 
-logger = logging.getLogger(__name__)
+logger = logging.getLogger('ydcore')
 
 
 class DownloadManager:

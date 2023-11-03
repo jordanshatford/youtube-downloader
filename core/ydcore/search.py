@@ -8,7 +8,7 @@ from .models import Channel
 from .models import Video
 
 
-logger = logging.getLogger(__name__)
+logger = logging.getLogger('ydcore')
 
 
 _YOUTUBE_BASE_URL = 'https://www.youtube.com'
@@ -54,12 +54,12 @@ class YouTubeSearch:
             results, continuation = self._fetch_and_parse()
             self._results = results
             self._continuation = continuation
-            logging.debug(
+            logger.debug(
                 f'Found {len(results)} results for search: {self._query}.',
             )
             return True
         else:
-            logging.debug(f'No more results for search: {self._query}.')
+            logger.debug(f'No more results for search: {self._query}.')
             return False
 
     def _fetch_and_parse(self) -> tuple[list[Video], str | None]:
