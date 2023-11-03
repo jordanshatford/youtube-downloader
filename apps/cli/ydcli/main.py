@@ -1,8 +1,15 @@
+import logging
 import os
 
 import questionary
 
 from .prompts import prompt_for_video_and_download
+
+
+logging.basicConfig(
+    format='%(levelname)s: %(message)s',
+    level=logging.INFO,
+)
 
 
 def main() -> int:
