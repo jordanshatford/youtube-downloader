@@ -14,6 +14,7 @@
 		"package": "plasmo package",
 		"package:chrome": "plasmo package --target=chrome-mv3",
 		"package:firefox": "plasmo package --target=firefox-mv2",
+		"check": "svelte-check --tsconfig ./tsconfig.json",
 		"lint": "prettier --plugin prettier-plugin-svelte --plugin prettier-plugin-tailwindcss --check . && eslint .",
 		"format": "prettier --plugin prettier-plugin-svelte --plugin prettier-plugin-tailwindcss --write ."
 	},
@@ -26,6 +27,7 @@
 		"@types/chrome": "^0.0.248",
 		"@types/node": "^20.8.10",
 		"@yd/config": "workspace:*",
+		"svelte-check": "^3.5.2",
 		"typescript": "^5.2.2"
 	},
 	"manifest": {
