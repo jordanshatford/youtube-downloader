@@ -4,7 +4,7 @@
 	"include": [".plasmo/index.d.ts", "./**/*.ts", "./**/*.svelte"],
 	"compilerOptions": {
 		"paths": {
-			"~*": ["./src/*"]
+			"~*": ["./*"]
 		},
 		"baseUrl": ".",
 		"types": ["svelte", "chrome"]

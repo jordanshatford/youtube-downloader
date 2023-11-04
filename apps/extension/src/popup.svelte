@@ -1,20 +1,24 @@
 <script lang="ts">
 	import './style.css';
+	import icon from 'data-base64:~assets/icon.png';
 
-	let prefferred = window?.matchMedia?.('(prefers-color-scheme: dark)')?.matches;
-
-	let currentTab: chrome.tabs.Tab | null = null;
-	chrome.tabs.query({ currentWindow: true, active: true }, function (tabs) {
-		currentTab = tabs[0];
-	});
+	const isDark = window?.matchMedia?.('(prefers-color-scheme: dark)')?.matches;
+	if (isDark) {
+		document.querySelector('html')?.classList.add('dark');
+	} else {
+		document.querySelector('html')?.classList.remove('dark');
+	}
 </script>
 
-<div class="w-48">
-	<h2 class="text-center text-red-800">YouTube Downloader</h2>
-	<div>
-		{#if currentTab}
-			<p>Current Tab: {currentTab.title} dark: {prefferred}</p>
-		{/if}
+<div class="min-h-[325px] w-[325px] bg-white dark:bg-zinc-900">
+	<div class="flex h-screen flex-col items-center justify-center space-y-4">
+		<img src={icon} alt="Logo" class="h-20 w-20" />
+		<a
+			href="https://youtubedownloader.duckdns.org"
+			target="_blank"
+			class="text-zinc-800 underline dark:text-zinc-100"
+		>
+			Go to site
+		</a>
 	</div>
-	<a href="https://youtubedownloader.duckdns.org" target="_blank">Go to site</a>
 </div>
