@@ -19,6 +19,7 @@
 		"format": "prettier --plugin prettier-plugin-svelte --plugin prettier-plugin-tailwindcss --write ."
 	},
 	"dependencies": {
+		"@plasmohq/storage": "^1.8.1",
 		"plasmo": "^0.83.0",
 		"svelte": "^4.2.2",
 		"svelte-preprocess": "^5.0.4"
