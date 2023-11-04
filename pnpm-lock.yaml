@@ -47,9 +47,9 @@ importers:
       '@types/node':
         specifier: ^20.8.10
         version: 20.8.10
-      prettier:
-        specifier: ^3.0.3
-        version: 3.0.3
+      '@yd/config':
+        specifier: workspace:*
+        version: link:../../packages/config
       typescript:
         specifier: ^5.2.2
         version: 5.2.2

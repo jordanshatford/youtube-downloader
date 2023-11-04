@@ -1,39 +1,41 @@
 {
-  "name": "@yd/extension",
-  "displayName": "YouTube Downloader",
-  "version": "0.1.0",
-  "description": "YouTube Downloader browser extension.",
-  "author": "Jordan Shatford <jordanshatford@live.com>",
-  "scripts": {
-    "dev": "plasmo dev",
+	"name": "@yd/extension",
+	"displayName": "YouTube Downloader",
+	"version": "0.1.0",
+	"description": "YouTube Downloader browser extension.",
+	"author": "Jordan Shatford <jordanshatford@live.com>",
+	"scripts": {
+		"dev": "plasmo dev",
 		"dev:chrome": "plasmo dev --target=chrome-mv3",
 		"dev:firefox": "plasmo dev --target=firefox-mv2",
-    "build": "plasmo build",
+		"build": "plasmo build",
 		"build:chrome": "plasmo build --target=chrome-mv3",
 		"build:firefox": "plasmo build --target=firefox-mv2",
-    "package": "plasmo package",
+		"package": "plasmo package",
 		"package:chrome": "plasmo package --target=chrome-mv3",
-		"package:firefox": "plasmo package --target=firefox-mv2"
-  },
-  "dependencies": {
-    "plasmo": "^0.83.0",
+		"package:firefox": "plasmo package --target=firefox-mv2",
+		"lint": "prettier --plugin prettier-plugin-svelte --plugin prettier-plugin-tailwindcss --check . && eslint .",
+		"format": "prettier --plugin prettier-plugin-svelte --plugin prettier-plugin-tailwindcss --write ."
+	},
+	"dependencies": {
+		"plasmo": "^0.83.0",
 		"svelte": "^4.2.2",
 		"svelte-preprocess": "^5.0.4"
 	},
-  "devDependencies": {
-    "@types/chrome": "^0.0.248",
-    "@types/node": "^20.8.10",
-    "prettier": "^3.0.3",
-    "typescript": "^5.2.2"
-  },
-  "manifest": {
+	"devDependencies": {
+		"@types/chrome": "^0.0.248",
+		"@types/node": "^20.8.10",
+		"@yd/config": "workspace:*",
+		"typescript": "^5.2.2"
+	},
+	"manifest": {
 		"permissions": [
 			"contextMenus",
 			"tabs"
 		],
-    "host_permissions": [
-      "https://*/*",
+		"host_permissions": [
+			"https://*/*",
 			"http://*/*"
-    ]
-  }
+		]
+	}
 }

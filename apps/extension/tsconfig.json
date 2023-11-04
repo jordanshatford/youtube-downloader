@@ -1,20 +1,12 @@
 {
-  "extends": "plasmo/templates/tsconfig.base",
-  "exclude": [
-    "node_modules"
-  ],
-  "include": [
-    ".plasmo/index.d.ts",
-    "./**/*.ts",
-    "./**/*.svelte"
-  ],
-  "compilerOptions": {
-    "paths": {
-      "~*": [
-        "./src/*"
-      ]
-    },
-    "baseUrl": ".",
-    "types": ["svelte", "chrome"]
-  }
+	"extends": "plasmo/templates/tsconfig.base",
+	"exclude": ["node_modules"],
+	"include": [".plasmo/index.d.ts", "./**/*.ts", "./**/*.svelte"],
+	"compilerOptions": {
+		"paths": {
+			"~*": ["./src/*"]
+		},
+		"baseUrl": ".",
+		"types": ["svelte", "chrome"]
+	}
 }
