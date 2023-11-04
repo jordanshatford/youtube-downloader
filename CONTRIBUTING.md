@@ -42,8 +42,12 @@ corepack enable
 corepack prepare
 # Install all dependencies
 pnpm install
-# Run the projects api and web package in development mode
-pnpm dev
+# Run the projects API and web app in development mode
+pnpm dev:web
+# Run the projects API and extension in development mode
+pnpm dev:extension
+# Run the projects CLI in development mode
+pnpm cli dev
 ```
 
 #### Generating the client package
