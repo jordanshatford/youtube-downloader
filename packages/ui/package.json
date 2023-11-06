@@ -34,8 +34,8 @@
 		"svelte": "^4.0.0"
 	},
 	"devDependencies": {
-		"@sveltejs/adapter-auto": "^2.1.0",
-		"@sveltejs/kit": "^1.27.1",
+		"@sveltejs/adapter-auto": "^2.1.1",
+		"@sveltejs/kit": "^1.27.3",
 		"@sveltejs/package": "^2.2.2",
 		"@yd/config": "workspace:*",
 		"autoprefixer": "^10.4.16",
