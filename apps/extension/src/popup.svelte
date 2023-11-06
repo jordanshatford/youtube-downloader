@@ -1,13 +1,8 @@
 <script lang="ts">
 	import './style.css';
 	import icon from 'data-base64:~assets/icon.png';
-
-	const isDark = window?.matchMedia?.('(prefers-color-scheme: dark)')?.matches;
-	if (isDark) {
-		document.querySelector('html')?.classList.add('dark');
-	} else {
-		document.querySelector('html')?.classList.remove('dark');
-	}
+	import { initializeTheme } from '~lib/theme';
+	initializeTheme();
 </script>
 
 <div class="min-h-[325px] w-[325px] bg-white dark:bg-zinc-900">
