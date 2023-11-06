@@ -34,6 +34,9 @@ importers:
       '@plasmohq/storage':
         specifier: ^1.8.1
         version: 1.8.1
+      '@yd/client':
+        specifier: workspace:*
+        version: link:../../packages/client
       plasmo:
         specifier: ^0.83.0
         version: 0.83.0(postcss@8.4.31)

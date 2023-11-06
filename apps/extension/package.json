@@ -20,6 +20,7 @@
 	},
 	"dependencies": {
 		"@plasmohq/storage": "^1.8.1",
+		"@yd/client": "workspace:*",
 		"plasmo": "^0.83.0",
 		"svelte": "^4.2.2",
 		"svelte-preprocess": "^5.0.4"
