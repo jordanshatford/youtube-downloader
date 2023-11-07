@@ -16,7 +16,8 @@
 		"package:firefox": "wxt zip -b firefox",
 		"check": "svelte-check --tsconfig ./tsconfig.json",
 		"lint": "prettier --plugin prettier-plugin-svelte --plugin prettier-plugin-tailwindcss --check . && eslint .",
-		"format": "prettier --plugin prettier-plugin-svelte --plugin prettier-plugin-tailwindcss --write ."
+		"format": "prettier --plugin prettier-plugin-svelte --plugin prettier-plugin-tailwindcss --write .",
+		"postinstall": "wxt prepare"
 	},
 	"dependencies": {
 		"@yd/client": "workspace:*",
