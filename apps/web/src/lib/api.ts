@@ -22,8 +22,6 @@ const REATTEMPT_INTERVAL = 10000;
 // This will re-attempt to setup a session until successful.
 export async function setupSession(onSuccess?: () => Promise<void>): Promise<void> {
 	if (browser) {
-		// await session.setup();
-		console.log(SESSION_ID_KEY);
 		try {
 			// Attempt to use existing session if present.
 			const session = await SessionService.getSessionValidate();
