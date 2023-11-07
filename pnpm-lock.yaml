@@ -43,6 +43,9 @@ importers:
       '@tsconfig/svelte':
         specifier: ^5.0.2
         version: 5.0.2
+      '@types/webextension-polyfill':
+        specifier: ^0.10.5
+        version: 0.10.5
       '@yd/config':
         specifier: workspace:*
         version: link:../../packages/config
