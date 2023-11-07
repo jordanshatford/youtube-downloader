@@ -1,5 +1,4 @@
 <script lang="ts">
-	import './app.css';
 	import { initializeTheme } from '~/lib/theme';
 	initializeTheme();
 </script>
