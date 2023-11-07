@@ -6,7 +6,7 @@ export default defineConfig({
 	srcDir: 'src',
 	manifest: {
 		name: 'YouTube Downloader',
-		permissions: ['contextMenus', 'tabs'],
+		permissions: ['contextMenus', 'tabs']
 	},
 	vite: () => ({
 		plugins: [
