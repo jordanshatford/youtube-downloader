@@ -1,48 +1,38 @@
 {
 	"name": "@yd/extension",
-	"displayName": "YouTube Downloader",
+	"private": true,
 	"version": "0.1.0",
 	"description": "YouTube Downloader browser extension.",
 	"author": "Jordan Shatford <jordanshatford@live.com>",
 	"scripts": {
-		"dev": "plasmo dev",
-		"dev:chrome": "plasmo dev --target=chrome-mv3",
-		"dev:firefox": "plasmo dev --target=firefox-mv2",
-		"build": "plasmo build",
-		"build:chrome": "plasmo build --target=chrome-mv3",
-		"build:firefox": "plasmo build --target=firefox-mv2",
-		"package": "plasmo package",
-		"package:chrome": "plasmo package --target=chrome-mv3",
-		"package:firefox": "plasmo package --target=firefox-mv2",
+		"dev": "wxt",
+		"dev:chrome": "wxt -b chrome",
+		"dev:firefox": "wxt -b firefox",
+		"build": "wxt build",
+		"build:chrome": "wxt build -b chrome",
+		"build:firefox": "wxt build -b firefox",
+		"package": "wxt zip",
+		"package:chrome": "wxt zip -b chrome",
+		"package:firefox": "wxt zip -b firefox",
 		"check": "svelte-check --tsconfig ./tsconfig.json",
 		"lint": "prettier --plugin prettier-plugin-svelte --plugin prettier-plugin-tailwindcss --check . && eslint .",
 		"format": "prettier --plugin prettier-plugin-svelte --plugin prettier-plugin-tailwindcss --write ."
 	},
 	"dependencies": {
-		"@plasmohq/storage": "^1.8.1",
 		"@yd/client": "workspace:*",
-		"plasmo": "^0.83.0",
-		"svelte": "^4.2.2",
-		"svelte-preprocess": "^5.0.4"
+		"@yd/ui": "workspace:*"
 	},
 	"devDependencies": {
-		"@types/chrome": "^0.0.248",
-		"@types/node": "^20.8.10",
+		"@sveltejs/vite-plugin-svelte": "^2.4.6",
+		"@tsconfig/svelte": "^5.0.2",
 		"@yd/config": "workspace:*",
 		"autoprefixer": "^10.4.16",
 		"postcss": "^8.4.31",
+		"svelte": "^4.2.2",
 		"svelte-check": "^3.5.2",
 		"tailwindcss": "^3.3.5",
-		"typescript": "^5.2.2"
-	},
-	"manifest": {
-		"permissions": [
-			"contextMenus",
-			"tabs"
-		],
-		"host_permissions": [
-			"https://*/*",
-			"http://*/*"
-		]
+		"tslib": "^2.6.2",
+		"typescript": "^5.2.2",
+		"wxt": "^0.9.0"
 	}
 }

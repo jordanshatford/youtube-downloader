@@ -1,15 +1,6 @@
 {
-	"extends": "plasmo/templates/tsconfig.base",
-	"exclude": ["node_modules"],
-	"include": [".plasmo/index.d.ts", "./**/*.ts", "./**/*.svelte"],
+	"extends": "./.wxt/tsconfig.json",
 	"compilerOptions": {
-		"paths": {
-			"~assets": ["./assets"],
-			"~assets/*": ["./assets/*"],
-			"~lib": ["./src/lib"],
-			"~lib/*": ["./src/lib/*"]
-		},
-		"baseUrl": ".",
-		"types": ["svelte", "chrome"]
+		"useDefineForClassFields": true
 	}
 }
