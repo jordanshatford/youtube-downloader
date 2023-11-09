@@ -2,6 +2,7 @@ from fastapi import APIRouter
 from fastapi import HTTPException
 from fastapi import status
 from ydcore import Video
+from ydcore import YouTubeGetVideo
 from ydcore import YouTubeSearch
 
 from ..dependencies import depends_session_responses
@@ -40,3 +41,12 @@ def get_next_search(session: DependsSession) -> list[Video]:
                 raise HTTPException(status_code=status.HTTP_404_NOT_FOUND)
             else:
                 return videos
+
+
+@router.get('/video')
+def get_video(session: DependsSession, id: str) -> Video:
+    video = YouTubeGetVideo(id).result
+    if video is None:
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND)
+    else:
+        return video
