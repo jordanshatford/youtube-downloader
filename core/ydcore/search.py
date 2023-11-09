@@ -123,7 +123,11 @@ class YouTubeSearch:
         video_id = source['videoId']
         url = HttpUrl(f'{_YOUTUBE_BASE_URL}/watch?v={video_id}')
         title = _get(source, ['title', 'runs', 0, 'text'])
-        duration = _get(source, ['lengthText', 'simpleText'])
+        duration = '???'
+        try:
+            duration = _get(source, ['lengthText', 'simpleText'])
+        except KeyError:
+            pass
         if duration is None:
             duration = '--:--'
         thumbnails = _get(source, ['thumbnail', 'thumbnails'])
