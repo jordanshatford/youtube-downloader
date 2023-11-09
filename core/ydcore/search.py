@@ -177,3 +177,15 @@ class YouTubeSearch:
             url=url,
             thumbnail=thumbnail,
         )
+
+
+class YouTubeGetVideo:
+    def __init__(self, id: str) -> None:
+        url = f'{_YOUTUBE_BASE_URL}/watch?v={id}'
+        self._results = YouTubeSearch(url).results
+
+    @property
+    def result(self) -> Video | None:
+        if len(self._results) == 0:
+            return None
+        return self._results[0]
