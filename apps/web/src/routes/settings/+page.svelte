@@ -8,19 +8,11 @@
 		GearIcon,
 		DownloadIcon,
 		CodeBracketIcon,
-		Toggle
+		Toggle,
+		toSelectOptions
 	} from '@yd/ui';
 	import { settings, userSettings } from '$lib/stores/settings';
 	import config from '$lib/config';
-
-	function toSelectOptions<T extends object>(value: T) {
-		return Object.entries(value).map(([key, value]) => {
-			return {
-				value,
-				text: key
-			};
-		});
-	}
 
 	let tabs = [
 		{

@@ -24,3 +24,6 @@ export { default as Tabs } from './components/Tabs.svelte';
 
 // Icon exports
 export * from './icons';
+
+// Utility exports
+export { toSelectOptions } from './utilities';

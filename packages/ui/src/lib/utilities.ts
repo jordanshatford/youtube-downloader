@@ -37,3 +37,19 @@ export function toIcon(value: unknown, extras?: { loading?: boolean }): IconSour
  * @returns true when running in browser, false otherwise
  */
 export const browser = () => typeof window !== 'undefined';
+
+/**
+ * Helper type representing the values of an objects key.
+ */
+type ValueOf<T> = T[keyof T];
+
+/**
+ * Convert an object into an array of select options based on its entries.
+ * @param obj - the object to convert to select options.
+ * @returns array of objects containing value and text entries.
+ */
+export function toSelectOptions<T extends Record<string, ValueOf<T>>>(
+	obj: T
+): { value: ValueOf<T>; text: string }[] {
+	return Object.entries(obj).map(([key, value]) => ({ value, text: key }));
+}
