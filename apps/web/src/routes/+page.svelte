@@ -1,7 +1,6 @@
 <script lang="ts">
-	import { Title, Button, LoaderIcon, Icon } from '@yd/ui';
+	import { Title, Button, LoaderIcon, Icon, SearchBar } from '@yd/ui';
 	import { search } from '$lib/stores/search';
-	import SearchBar from '$lib/components/SearchBar.svelte';
 	import ResultCard from '$lib/components/ResultCard.svelte';
 	import config from '$lib/config';
 

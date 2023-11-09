@@ -17,6 +17,7 @@ export { default as IconButton } from './components/IconButton.svelte';
 export { default as Modal } from './components/Modal.svelte';
 export { default as Pagination } from './components/Pagination.svelte';
 export { default as ProgressBar, type ProgressBarVariants } from './components/ProgressBar.svelte';
+export { default as SearchBar } from './components/SearchBar.svelte';
 export { default as Select } from './components/Select.svelte';
 export { default as Table } from './components/Table.svelte';
 export { default as Tabs } from './components/Tabs.svelte';
