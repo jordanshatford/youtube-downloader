@@ -1,18 +1,17 @@
 import { writable } from 'svelte/store';
-import { AudioFormat, DownloadQuality, type DownloadOptions, VideoFormat } from '@yd/client';
+import {
+	AudioFormat,
+	DownloadQuality,
+	type DownloadOptions,
+	VideoFormat,
+	DEFAULT_DOWNLOAD_OPTIONS
+} from '@yd/client';
 import { browser } from '$app/environment';
 
-function createSettingsStore() {
-	const SETTINGS_KEY = 'settings';
-	const DEFAULT_SETTINGS: DownloadOptions = {
-		format: VideoFormat.MP4,
-		quality: DownloadQuality.BEST,
-		embed_metadata: false,
-		embed_thumbnail: false,
-		embed_subtitles: false
-	};
+const SETTINGS_KEY = 'settings';
 
-	const { subscribe, set, update } = writable(DEFAULT_SETTINGS);
+function createSettingsStore() {
+	const { subscribe, set, update } = writable(DEFAULT_DOWNLOAD_OPTIONS);
 
 	if (browser) {
 		const data = localStorage?.getItem(SETTINGS_KEY);
@@ -22,19 +21,19 @@ function createSettingsStore() {
 			const supportedFormats = [...Object.values(AudioFormat), ...Object.values(VideoFormat)];
 			// Make sure a value is set, if nothing is set use the default
 			if (!supportedFormats.includes(parsedData.format)) {
-				parsedData.format = DEFAULT_SETTINGS.format;
+				parsedData.format = DEFAULT_DOWNLOAD_OPTIONS.format;
 			}
 			if (!Object.values(DownloadQuality).includes(parsedData.quality)) {
-				parsedData.quality = DEFAULT_SETTINGS.quality;
+				parsedData.quality = DEFAULT_DOWNLOAD_OPTIONS.quality;
 			}
-			if (parsedData.embed_metadata == undefined) {
-				parsedData.embed_metadata = DEFAULT_SETTINGS.embed_metadata;
+			if (parsedData.embed_metadata === undefined) {
+				parsedData.embed_metadata = DEFAULT_DOWNLOAD_OPTIONS.embed_metadata;
 			}
-			if (parsedData.embed_thumbnail == undefined) {
-				parsedData.embed_thumbnail = DEFAULT_SETTINGS.embed_thumbnail;
+			if (parsedData.embed_thumbnail === undefined) {
+				parsedData.embed_thumbnail = DEFAULT_DOWNLOAD_OPTIONS.embed_thumbnail;
 			}
-			if (parsedData.embed_subtitles == undefined) {
-				parsedData.embed_subtitles = DEFAULT_SETTINGS.embed_subtitles;
+			if (parsedData.embed_subtitles === undefined) {
+				parsedData.embed_subtitles = DEFAULT_DOWNLOAD_OPTIONS.embed_subtitles;
 			}
 			set(parsedData);
 		}
@@ -51,7 +50,7 @@ function createSettingsStore() {
 		subscribe,
 		set,
 		update,
-		reset: () => set(DEFAULT_SETTINGS)
+		reset: () => set(DEFAULT_DOWNLOAD_OPTIONS)
 	};
 }
 
