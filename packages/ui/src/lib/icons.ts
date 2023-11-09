@@ -8,6 +8,7 @@ export {
 	ChevronRight as ChevronRightIcon,
 	CodeBracket as CodeBracketIcon,
 	ArrowDownTray as DownloadIcon,
+  ArrowTopRightOnSquare as ExternalLinkIcon,
 	ExclamationCircle as ExclamationCircleIcon,
 	ExclamationTriangle as ExclamationTriangleIcon,
 	Cog6Tooth as GearIcon,
