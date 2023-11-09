@@ -42,7 +42,7 @@
 
 	let activePage = tabs[0].key;
 
-	$: formatGroups = [
+	const formatGroups = [
 		{
 			text: 'Audio',
 			options: toSelectOptions(AudioFormat)
