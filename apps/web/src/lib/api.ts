@@ -2,6 +2,7 @@ import { OpenAPI, SessionService } from '@yd/client';
 import { toast } from '@yd/ui';
 import { env } from '$lib/config';
 import { browser } from '$app/environment';
+import { downloads } from '$lib/stores/downloads';
 
 // Set the base server address using the environment variable.
 OpenAPI.BASE = env.serverAddress;
@@ -19,8 +20,9 @@ const SESSION_ID_KEY = 'sessionId';
 const REATTEMPT_INTERVAL = 10000;
 
 // Function used to setup a users session with a callback when it is successful.
-// This will re-attempt to setup a session until successful.
-export async function setupSession(onSuccess?: () => Promise<void>): Promise<void> {
+// This will re-attempt to setup a session until successful. Once the session is ready
+// downloads will be fetched and status event source will be created.
+export async function setupSession(): Promise<void> {
 	if (browser) {
 		try {
 			// Attempt to use existing session if present.
@@ -42,7 +44,8 @@ export async function setupSession(onSuccess?: () => Promise<void>): Promise<voi
 				}
 			}
 		}
-		await onSuccess?.();
+		downloads.setupStatusListener();
+		await downloads.init();
 	}
 }
 

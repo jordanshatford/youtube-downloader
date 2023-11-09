@@ -3,18 +3,10 @@
 	import { Toasts, NavBar, Footer, ThemeToggle } from '@yd/ui';
 	import { page } from '$app/stores';
 	import Loading from '$lib/components/Loading.svelte';
-	import { downloads } from '$lib/stores/downloads';
 	import config from '$lib/config';
 	import { navbarLinks, footerLinks } from '$lib/routes';
 	import Logo from '$lib/components/Logo.svelte';
 	import { setupSession } from '$lib/api';
-
-	let loading = true;
-	setupSession(async () => {
-		await downloads.init();
-		downloads.setupStatusListener();
-		loading = false;
-	});
 </script>
 
 <svelte:head>
@@ -36,11 +28,11 @@
 			<ThemeToggle slot="right" />
 		</NavBar>
 		<main class="mx-auto h-full max-w-7xl px-4 pt-20 sm:px-6 lg:px-8">
-			{#if loading}
+			{#await setupSession()}
 				<Loading />
-			{:else}
+			{:then}
 				<slot />
-			{/if}
+			{/await}
 		</main>
 	</div>
 </div>
