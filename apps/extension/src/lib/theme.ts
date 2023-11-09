@@ -1,4 +1,4 @@
-export function initializeTheme(override?: 'dark' | 'light') {
+export function initializeTheme(override?: 'dark' | 'light'): void {
 	// Get preferred color scheme based on user.
 	let isDark = window?.matchMedia?.('(prefers-color-scheme: dark)')?.matches;
 	// Use override if provided to function.
