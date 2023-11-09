@@ -49,4 +49,27 @@ export class SearchService {
     });
   }
 
+  /**
+   * Get Video
+   * @param id
+   * @returns Video Successful Response
+   * @throws ApiError
+   */
+  public static getVideo(
+    id: string,
+  ): CancelablePromise<Video> {
+    return __request(OpenAPI, {
+      method: 'GET',
+      url: '/search/video',
+      query: {
+        'id': id,
+      },
+      errors: {
+        403: `Forbidden`,
+        404: `Not Found`,
+        422: `Validation Error`,
+      },
+    });
+  }
+
 }
