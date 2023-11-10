@@ -1,3 +1,4 @@
+import { get } from 'svelte/store';
 import { Tabs } from 'webextension-polyfill';
 import {
 	OpenAPI,
@@ -5,11 +6,11 @@ import {
 	SearchService,
 	type Video,
 	type Session,
-	type DownloadOptions,
-	DEFAULT_DOWNLOAD_OPTIONS
+	type DownloadOptions
 } from '@yd/client';
 import { isYouTubeVideo } from '~/lib/detect';
 import { env } from '~/lib/config';
+import { settings } from '~/lib/stores/settings';
 
 // Key used to store session ID value in session storage.
 const SESSION_ID_KEY = 'sessionId';
@@ -45,10 +46,9 @@ export async function setupSession(): Promise<Session> {
 			} catch (err) {
 				console.error('Connection failed, could not connect to internal server. ', err);
 				await sleep(REATTEMPT_INTERVAL);
-
 			}
 		}
-    throw Error('Could not setup session.');
+		throw Error('Could not setup session.');
 	}
 }
 
@@ -56,12 +56,11 @@ export async function setupSession(): Promise<Session> {
 // the users session.
 const sleep = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
 
-
 export type Ctx = {
-	tab: Tabs.Tab;             // The current tab.
-  video?: Video;             // YouTube video in current tab.
-	session?: Session;         // Current session.
-	options?: DownloadOptions; // Preferred download options.
+	tab: Tabs.Tab; // The current tab.
+	video?: Video; // YouTube video in current tab.
+	session?: Session; // Current session.
+	options: DownloadOptions; // Preferred download options.
 };
 
 // Function used to ensure current context for the extension (ie session setup, current tab, and video if possibe )
@@ -80,11 +79,11 @@ export async function setupContext(): Promise<Ctx> {
 	// Get the vidoe of the current tab.
 	const url = new URL(tab.url);
 	const id = url.searchParams.get('v')!;
-	console.log(id);
 	const video = await SearchService.getVideo(id);
 
-	// TODO: get prefered options based on user settings.
-	const options = DEFAULT_DOWNLOAD_OPTIONS;
+	// Get prefered options based on user settings.
+	await settings.initialize();
+	const options = get(settings);
 
 	// Return relevant context to be used in the extension.
 	return {
