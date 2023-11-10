@@ -31,7 +31,7 @@
 		<div class="flex h-full w-full justify-center pt-20 text-zinc-800 dark:text-zinc-100">
 			<Icon src={LoaderIcon} class="h-8 w-8 animate-spin" />
 		</div>
-	{:then _}
+	{:then}
 		<div class="mx-auto max-w-xl overflow-hidden md:max-w-xl">
 			<div class="flex items-center space-x-2 pb-2 text-2xl text-zinc-800 dark:text-zinc-100">
 				<Icon src={DownloadIcon} class="h-8 w-8" />

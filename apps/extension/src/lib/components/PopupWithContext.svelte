@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { IconButton, Icon, ExternalLinkIcon, /* GearIcon, */ LoaderIcon } from '@yd/ui';
+	import { IconButton, Icon, ExternalLinkIcon, GearIcon, LoaderIcon } from '@yd/ui';
 	import { setupContext } from '~/lib/context';
 	import { initializeTheme } from '~/lib/theme';
 	import config from '~/lib/config';
@@ -12,10 +12,10 @@
 		await browser.tabs.create({ url: config.website });
 	}
 
-	// TODO: Navigate user to options page.
-	// async function openOptionsPage() {
-	// 	await browser.runtime.openOptionsPage();
-	// }
+	// Navigate user to options page.
+	async function openOptionsPage() {
+		await browser.runtime.openOptionsPage();
+	}
 </script>
 
 <div class="max-h-[600px] min-h-[500px] w-[320px] bg-white dark:bg-zinc-900">
@@ -30,8 +30,7 @@
 					on:click={openWebpage}
 					class="h-5 w-5"
 				/>
-				<!-- TODO: add in options icon once options page is addeed. -->
-				<!-- <IconButton title="Options" src={GearIcon} on:click={openOptionsPage} class="h-5 w-5" /> -->
+				<IconButton title="Options" src={GearIcon} on:click={openOptionsPage} class="h-5 w-5" />
 			</div>
 		</div>
 		<!-- Remaining content -->
