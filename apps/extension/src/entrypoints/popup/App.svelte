@@ -1,17 +1,30 @@
 <script lang="ts">
-	import { initializeTheme } from '~/lib/theme';
-	initializeTheme();
+	import { Card, Button } from '@yd/ui';
+	import PopupWithContext from '@/lib/components/PopupWithContext.svelte';
 </script>
 
-<div class="min-h-[325px] w-[325px] bg-white dark:bg-zinc-900">
-	<div class="flex h-screen flex-col items-center justify-center space-y-4">
-		<img src="/icon/512.png" alt="Logo" class="h-20 w-20" />
-		<a
-			href="https://youtubedownloader.duckdns.org"
-			target="_blank"
-			class="text-zinc-800 underline dark:text-zinc-100"
-		>
-			Go to site
-		</a>
-	</div>
-</div>
+<PopupWithContext let:ctx>
+	{@const video = ctx.video}
+	<Card>
+		<img alt="Thumbnail" class="block h-auto w-full" src={video?.thumbnail} />
+		<header class="flex items-center justify-between p-2 leading-tight md:p-4">
+			<h1 class="line-clamp-2 text-lg text-zinc-900 dark:text-white">
+				{video?.title}
+			</h1>
+			<p class="text-sm text-zinc-700 dark:text-zinc-300">{video?.duration}</p>
+		</header>
+		<footer class="flex items-center justify-between p-2 leading-none md:p-4">
+			<div class="flex items-center text-zinc-800 dark:text-zinc-400">
+				<img
+					alt={video?.channel.name}
+					class="block h-10 w-10 rounded-lg"
+					src={video?.channel.thumbnail}
+				/>
+				<p class="ml-2 text-sm">
+					{video?.channel.name}
+				</p>
+			</div>
+		</footer>
+	</Card>
+	<Button disabled>Download</Button>
+</PopupWithContext>
