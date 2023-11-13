@@ -16,7 +16,7 @@ export class DownloadsStatusService {
 		onMessage?: EventSourceHandler<Download>,
 		onError?: EventSourceHandler<Event>,
 		onOpen?: EventSourceHandler<Event>
-	): Promise<void> {
+	): Promise<EventSource> {
 		// Get token from OpenAPI set by user previously. This works in the
 		// same way as the generated code. This token is passed as a session_id
 		// query parameter to the endpoint as it cannot be passed in the header.
@@ -31,5 +31,6 @@ export class DownloadsStatusService {
 		// Forward onerror and onopen messages incase user wants to use them.
 		source.onerror = (event) => onError?.(event);
 		source.onopen = (event) => onOpen?.(event);
+		return source;
 	}
 }
