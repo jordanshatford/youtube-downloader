@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { Card, Button } from '@yd/ui';
-	import PopupWithContext from '@/lib/components/PopupWithContext.svelte';
+	import PopupWithContext from '~/lib/components/PopupWithContext.svelte';
 </script>
 
 <PopupWithContext let:ctx>
