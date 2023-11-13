@@ -1,16 +1,12 @@
 <script lang="ts">
 	import { IconButton, Icon, ExternalLinkIcon, GearIcon, LoaderIcon } from '@yd/ui';
-	import { setupContext } from '~/lib/context';
 	import { initializeTheme } from '~/lib/theme';
-	import config from '~/lib/config';
+	import { setupContext } from '~/lib/context';
+	import { getContextService } from '~/lib/context-service';
+	import { openWebsite } from '~/lib/website';
 
 	// Ensure theme is set based on user preferences.
 	initializeTheme();
-
-	// Navigate user to webpage of YouTube Downloader.
-	async function openWebpage() {
-		await browser.tabs.create({ url: config.website });
-	}
 
 	// Navigate user to options page.
 	async function openOptionsPage() {
@@ -27,7 +23,7 @@
 				<IconButton
 					title="Go to site"
 					src={ExternalLinkIcon}
-					on:click={openWebpage}
+					on:click={openWebsite}
 					class="h-5 w-5"
 				/>
 				<IconButton title="Options" src={GearIcon} on:click={openOptionsPage} class="h-5 w-5" />

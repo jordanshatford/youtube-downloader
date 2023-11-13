@@ -1,15 +1,11 @@
 <script lang="ts">
 	import { IconButton, ExternalLinkIcon, Toasts, Footer } from '@yd/ui';
 	import { initializeTheme } from '~/lib/theme';
+	import { openWebsite } from '~/lib/website';
 	import config from '~/lib/config';
 
 	// Ensure theme is set based on user preferences.
 	initializeTheme();
-
-	// Navigate user to webpage of YouTube Downloader.
-	async function openWebpage() {
-		await browser.tabs.create({ url: config.website });
-	}
 </script>
 
 <Toasts position="bottom-right" />
@@ -22,7 +18,7 @@
 					<IconButton
 						title="Go to site"
 						src={ExternalLinkIcon}
-						on:click={openWebpage}
+						on:click={openWebsite}
 						class="h-6 w-6"
 					/>
 				</div>
