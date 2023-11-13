@@ -81,6 +81,12 @@ class SessionManager:
             )
             if session_not_used or force:
                 self.remove(session_id)
+        if force:
+            try:
+                if os.path.exists(self._session_dir):
+                    shutil.rmtree(self._session_dir)
+            except FileNotFoundError:
+                pass
 
 
 session_manager = SessionManager()
