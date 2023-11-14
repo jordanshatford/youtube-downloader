@@ -1,3 +1,4 @@
+import copy
 import logging
 import os
 from collections.abc import Callable
@@ -227,4 +228,4 @@ class DownloadConfig:
         self.download.status = update
         # Call each hook with the update
         for h in self._status_hooks:
-            h(self.download)
+            h(copy.deepcopy(self.download))
