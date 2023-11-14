@@ -2,7 +2,6 @@
 	import { IconButton, Icon, ExternalLinkIcon, GearIcon, LoaderIcon } from '@yd/ui';
 	import { initializeTheme } from '~/lib/theme';
 	import { setupContext } from '~/lib/context';
-	import { getContextService } from '~/lib/context-service';
 	import { openWebsite } from '~/lib/website';
 
 	// Ensure theme is set based on user preferences.
