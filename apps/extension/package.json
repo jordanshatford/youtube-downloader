@@ -15,8 +15,8 @@
 		"package:chrome": "wxt zip --browser chrome",
 		"package:firefox": "wxt zip --browser firefox",
 		"check": "svelte-check --tsconfig ./tsconfig.json",
-		"lint": "prettier --plugin prettier-plugin-svelte --plugin prettier-plugin-tailwindcss --check . && eslint .",
-		"format": "prettier --plugin prettier-plugin-svelte --plugin prettier-plugin-tailwindcss --write .",
+		"lint": "prettier --check . && eslint .",
+		"format": "prettier --write .",
 		"postinstall": "wxt prepare"
 	},
 	"dependencies": {
