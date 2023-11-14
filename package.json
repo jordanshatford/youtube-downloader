@@ -7,12 +7,12 @@
     "prepare": "husky install",
     "generate": "pnpm --filter @yd/api generate:openapi && pnpm --filter @yd/client generate",
     "dev:web": "pnpm --filter @yd/api --filter @yd/web dev",
-		"dev:extension": "pnpm --filter @yd/api --filter @yd/extension dev",
+    "dev:extension": "pnpm --filter @yd/api --filter @yd/extension dev",
     "api": "pnpm --filter @yd/api -- ",
-		"cli": "pnpm --filter @yd/cli -- ",
-		"extension": "pnpm --filter @yd/extension -- ",
+    "cli": "pnpm --filter @yd/cli -- ",
+    "extension": "pnpm --filter @yd/extension -- ",
     "web": "pnpm --filter @yd/web -- ",
-		"core": "pnpm --filter @yd/core --",
+    "core": "pnpm --filter @yd/core --",
     "client": "pnpm --filter @yd/client -- ",
     "cfg": "pnpm --filter @yd/config -- ",
     "ui": "pnpm --filter @yd/ui -- ",
@@ -21,7 +21,7 @@
     "format": "pnpm -r format",
     "check": "pnpm -r check",
     "commitlint": "commitlint --edit",
-		"pre-commit:autoupdate": "python3 scripts.py pre-commit autoupdate"
+    "pre-commit:autoupdate": "python3 scripts.py pre-commit autoupdate"
   },
   "devDependencies": {
     "@commitlint/cli": "^18.4.1",
@@ -34,7 +34,7 @@
       "json-schema-ref-parser": "npm:@apidevtools/json-schema-ref-parser@10.1.0"
     }
   },
-  "packageManager": "pnpm@8.10.3",
+  "packageManager": "pnpm@8.10.5+sha256.a4bd9bb7b48214bbfcd95f264bd75bb70d100e5d4b58808f5cd6ab40c6ac21c5",
   "engines": {
     "pnpm": ">=8",
     "node": ">=18"
