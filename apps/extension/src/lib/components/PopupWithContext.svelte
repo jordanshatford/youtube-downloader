@@ -1,11 +1,14 @@
 <script lang="ts">
 	import { IconButton, Icon, ExternalLinkIcon, GearIcon, LoaderIcon } from '@yd/ui';
 	import { initializeTheme } from '~/lib/theme';
-	import { setupContext } from '~/lib/context';
+	import { getContextService } from '~/lib/context-service';
 	import { openWebsite } from '~/lib/website';
 
 	// Ensure theme is set based on user preferences.
 	initializeTheme();
+
+	// Get context service.
+	const context = getContextService();
 
 	// Navigate user to options page.
 	async function openOptionsPage() {
@@ -30,7 +33,7 @@
 		</div>
 		<!-- Remaining content -->
 		<div class="flex h-full w-full flex-col items-center space-y-2 text-zinc-900 dark:text-white">
-			{#await setupContext()}
+			{#await context.get()}
 				<!-- Loader shown while awaiting context -->
 				<div class="flex h-full flex-col items-center justify-center space-y-2">
 					<Icon src={LoaderIcon} class="h-10 w-10 animate-spin" />
