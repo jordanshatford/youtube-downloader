@@ -35,7 +35,7 @@
 	},
 	"devDependencies": {
 		"@sveltejs/adapter-auto": "^2.1.1",
-		"@sveltejs/kit": "^1.27.5",
+		"@sveltejs/kit": "^1.27.6",
 		"@sveltejs/package": "^2.2.2",
 		"@yd/config": "workspace:*",
 		"autoprefixer": "^10.4.16",
