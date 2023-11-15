@@ -56,7 +56,7 @@ Please refer to the [contributing guide](CONTRIBUTING.md) for how to install the
 ### Apps:
 - `api`: An API developed in [Python](https://www.python.org/) using [FastAPI](https://fastapi.tiangolo.com/).
 - `cli`: A CLI tool developed in [Python](https://www.python.org/).
-- `extension`: A browser extension developed using [Plasmo](https://www.plasmo.com/) and [Svelte](https://svelte.dev/).
+- `extension`: A browser extension developed using [WXT](https://wxt.dev/) and [Svelte](https://svelte.dev/).
 - `web`: A web application developed in [SvelteKit](https://kit.svelte.dev/).
 
 ### Core:
