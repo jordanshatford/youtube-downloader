@@ -55,6 +55,8 @@ class ContextService {
 	#currentTab?: Tabs.Tab;
 	#currentTabVideo?: Video;
 
+	#loading: boolean = false;
+
 	// Video cache of previous search results.
 	#videoCache: Record<string, Video> = {};
 
@@ -66,11 +68,13 @@ class ContextService {
 	 * @param tab Tabs.Tab - the browser Tab
 	 */
 	public async setTab(tab: Tabs.Tab): Promise<void> {
+		this.#loading = true;
 		const currentTab = this.#currentTab;
 		this.#currentTab = tab;
 
 		// Ignore tab if it matches the current context. Keep video the same.
 		if (!tab.url || tab.url === currentTab?.url) {
+			this.#loading = false;
 			return;
 		}
 
@@ -81,6 +85,7 @@ class ContextService {
 				this.#currentTabVideo = undefined;
 				await sendMessageIgnoreReturn('VideoChanged', this.#currentTabVideo);
 			}
+			this.#loading = false;
 			return;
 		}
 
@@ -95,6 +100,7 @@ class ContextService {
 		if (this.#videoCache[id]) {
 			this.#currentTabVideo = this.#videoCache[id];
 			await sendMessageIgnoreReturn('VideoChanged', this.#currentTabVideo);
+			this.#loading = false;
 			return;
 		}
 
@@ -104,7 +110,10 @@ class ContextService {
 			this.#currentTabVideo = video;
 			this.#videoCache[id] = video;
 			await sendMessageIgnoreReturn('VideoChanged', this.#currentTabVideo);
+			this.#loading = false;
+			return;
 		} catch (e) {
+			this.#loading = false;
 			return;
 		}
 	}
@@ -114,6 +123,11 @@ class ContextService {
 	 * @returns Ctx - the context of the tab.
 	 */
 	public async get(): Promise<Ctx> {
+		// Ensure we arent waiting for a video
+		while (this.#loading) {
+			await sleep(100);
+		}
+
 		// If video is undefined we dont have valid context.
 		if (!this.#currentTabVideo) {
 			throw Error('Page does not contain a valid YouTube video.');
@@ -186,6 +200,7 @@ class ContextService {
 		// Create event source if one does not exist.
 		if (!this.#eventSource) {
 			this.#eventSource = await DownloadsStatusService.setup(async (value) => {
+				this.#downloads[value.video.id] = value;
 				await sendMessageIgnoreReturn('StatusUpdate', value);
 				// If download is DONE, get the file and save to users computer.
 				if (value.status.state === DownloadState.DONE) {
