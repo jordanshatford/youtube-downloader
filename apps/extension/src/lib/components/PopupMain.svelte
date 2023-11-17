@@ -5,6 +5,7 @@
 	import StatusBadge from '~/lib/components/StatusBadge.svelte';
 	import { createContextStore } from '~/lib/stores/context';
 	import PopupError from '~/lib/components/PopupError.svelte';
+	import DownloadOptions from '~/lib/components/DownloadOptions.svelte';
 
 	export let ctx: Ctx;
 
@@ -35,6 +36,7 @@
 			</div>
 		</footer>
 	</Card>
+	<DownloadOptions options={$store.options} />
 	{#if $store.currentDownload}
 		<StatusBadge status={$store.currentDownload.status} />
 	{:else}
