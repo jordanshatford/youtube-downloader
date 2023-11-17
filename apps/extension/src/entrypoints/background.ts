@@ -1,3 +1,4 @@
+import { handleContextMenuClick } from '~/lib/context-menu';
 import { registerContextService } from '~/lib/context-service';
 
 export default defineBackground(() => {
@@ -13,5 +14,9 @@ export default defineBackground(() => {
 	// Listen for tab updates.
 	browser.tabs.onUpdated.addListener((_tabId, _tabInfo, tab) => {
 		contextService.setTab(tab);
+	});
+	// Listen for context menu clicks.
+	browser.contextMenus.onClicked.addListener((info, tab) => {
+		handleContextMenuClick(info, tab);
 	});
 });

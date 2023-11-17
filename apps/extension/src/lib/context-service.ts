@@ -18,6 +18,7 @@ import { env } from '~/lib/config';
 import { isYouTubeVideo } from '~/lib/detect';
 import { sendMessageIgnoreReturn } from '~/lib/messaging';
 import { saveAs } from '~/lib/files';
+import { setContextMenus } from '~/lib/context-menu';
 
 export type Ctx = {
 	session?: Session; // Current session.
@@ -83,6 +84,7 @@ class ContextService {
 		if (!tab.url || !isYouTubeVideo(tab.url)) {
 			if (this.#tabVideos[tab.url] !== undefined) {
 				this.#tabVideos[tab.url] = undefined;
+				await setContextMenus(undefined);
 				await sendMessageIgnoreReturn('VideoChanged', { tab, video: undefined });
 			}
 			this.#loading = false;
@@ -99,6 +101,7 @@ class ContextService {
 		// Check if video is cached.
 		if (this.#videoCache[id]) {
 			this.#tabVideos[tab.url] = this.#videoCache[id];
+			await setContextMenus(this.#videoCache[id]);
 			await sendMessageIgnoreReturn('VideoChanged', { tab, video: this.#videoCache[id] });
 			this.#loading = false;
 			return;
@@ -109,6 +112,7 @@ class ContextService {
 			const video = await SearchService.getVideo(id);
 			this.#tabVideos[tab.url] = video;
 			this.#videoCache[id] = video;
+			await setContextMenus(video);
 			await sendMessageIgnoreReturn('VideoChanged', { tab, video });
 			this.#loading = false;
 			return;
@@ -162,6 +166,17 @@ class ContextService {
 		// Send the download to the API.
 		await DownloadsService.postDownloads(download);
 		await sendMessageIgnoreReturn('DownloadStart', download);
+	}
+
+	public async downloadURL(url: string): Promise<void> {
+		// Get video from URL.
+		const id = new URL(url).searchParams.get('v')!;
+		const video = this.#videoCache[id];
+		// If download already present ignore it.
+		if (video.id in this.#downloads) {
+			return;
+		}
+		await this.download(video);
 	}
 
 	/**
