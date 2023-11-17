@@ -53,7 +53,7 @@ class ContextService {
 
 	// Current tab and video context.
 	#currentTab?: Tabs.Tab;
-	#currentTabVideo?: Video;
+	#tabVideos: Record<string, Video | undefined> = {};
 
 	#loading: boolean = false;
 
@@ -81,9 +81,9 @@ class ContextService {
 		// Ignore the tab if it is not a YouTube video. We also set the current video
 		// to undefined so previous tab video isnt persisted.
 		if (!tab.url || !isYouTubeVideo(tab.url)) {
-			if (this.#currentTabVideo !== undefined) {
-				this.#currentTabVideo = undefined;
-				await sendMessageIgnoreReturn('VideoChanged', this.#currentTabVideo);
+			if (this.#tabVideos[tab.url] !== undefined) {
+				this.#tabVideos[tab.url] = undefined;
+				await sendMessageIgnoreReturn('VideoChanged', { tab, video: undefined });
 			}
 			this.#loading = false;
 			return;
@@ -98,8 +98,8 @@ class ContextService {
 
 		// Check if video is cached.
 		if (this.#videoCache[id]) {
-			this.#currentTabVideo = this.#videoCache[id];
-			await sendMessageIgnoreReturn('VideoChanged', this.#currentTabVideo);
+			this.#tabVideos[tab.url] = this.#videoCache[id];
+			await sendMessageIgnoreReturn('VideoChanged', { tab, video: this.#videoCache[id] });
 			this.#loading = false;
 			return;
 		}
@@ -107,9 +107,9 @@ class ContextService {
 		// Fetch the video from the API and cache it.
 		try {
 			const video = await SearchService.getVideo(id);
-			this.#currentTabVideo = video;
+			this.#tabVideos[tab.url] = video;
 			this.#videoCache[id] = video;
-			await sendMessageIgnoreReturn('VideoChanged', this.#currentTabVideo);
+			await sendMessageIgnoreReturn('VideoChanged', { tab, video });
 			this.#loading = false;
 			return;
 		} catch (e) {
@@ -127,15 +127,12 @@ class ContextService {
 		while (this.#loading) {
 			await sleep(100);
 		}
-
-		// If video is undefined we dont have valid context.
-		if (!this.#currentTabVideo) {
-			throw Error('Page does not contain a valid YouTube video.');
-		}
+		// Get current tab to ensure we are showing correct video.
+		const [tab] = await browser.tabs.query({ active: true, currentWindow: true });
 		// Ensure settings are initialized with browser storage settings.
 		await settings.initialize();
 		return {
-			video: this.#currentTabVideo,
+			video: tab.url ? this.#tabVideos[tab.url] : undefined,
 			session: this.#session,
 			options: get(settings),
 			downloads: this.#downloads
@@ -145,18 +142,13 @@ class ContextService {
 	/**
 	 * Download the video currently in context.
 	 */
-	public async download(): Promise<void> {
-		// If there is no video, ignore.
-		if (!this.#currentTabVideo) {
-			return;
-		}
-
+	public async download(video: Video): Promise<void> {
 		// Ensure we have a session.
 		await this.#ensureSession();
 
 		// Make download based on current video.
 		const download = {
-			video: this.#currentTabVideo,
+			video,
 			options: get(settings),
 			status: {
 				state: DownloadState.WAITING,
@@ -165,7 +157,7 @@ class ContextService {
 		};
 
 		// Store downloads in map.
-		this.#downloads[this.#currentTabVideo.id] = download;
+		this.#downloads[video.id] = download;
 
 		// Send the download to the API.
 		await DownloadsService.postDownloads(download);

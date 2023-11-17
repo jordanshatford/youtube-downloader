@@ -1,4 +1,5 @@
 import { defineExtensionMessaging, GetDataType } from '@webext-core/messaging';
+import { Tabs } from 'webextension-polyfill';
 import { Download, DownloadOptions, Session, Video } from '@yd/client';
 
 /**
@@ -9,8 +10,8 @@ import { Download, DownloadOptions, Session, Video } from '@yd/client';
 interface MessagingMap {
 	// Called when a new session is created.
 	NewSession: (session: Session) => void;
-	// Called when a new video is the most relevant one.
-	VideoChanged: (video?: Video) => void;
+	// Called when a new video is the most relevant one for a tab.
+	VideoChanged: (data: { tab: Tabs.Tab; video?: Video }) => void;
 	// Called when settings are changed.
 	SettingsChanged: (settings: DownloadOptions) => void;
 	// Called when a download is started for a given video.
