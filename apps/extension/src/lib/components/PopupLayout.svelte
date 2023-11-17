@@ -2,9 +2,15 @@
 	import { IconButton, ExternalLinkIcon, GearIcon } from '@yd/ui';
 	import { initializeTheme } from '~/lib/theme';
 	import { openWebsite } from '~/lib/website';
+	import { getContextService } from '~/lib/context-service';
+	import PopupError from '~/lib/components/PopupError.svelte';
+	import PopupLoader from '~/lib/components/PopupLoader.svelte';
 
 	// Ensure theme is set based on user preferences.
 	initializeTheme();
+
+	// Get context service. This is to ensure current context is set.
+	const context = getContextService();
 
 	// Navigate user to options page.
 	async function openOptionsPage() {
@@ -29,7 +35,13 @@
 		</div>
 		<!-- Remaining content -->
 		<div class="flex h-full w-full flex-col items-center space-y-2 text-zinc-900 dark:text-white">
-			<slot />
+			{#await context.get()}
+				<PopupLoader />
+			{:then ctx}
+				<slot {ctx} />
+			{:catch error}
+				<PopupError message={error.message} />
+			{/await}
 		</div>
 	</div>
 </div>
