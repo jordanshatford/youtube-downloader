@@ -21,56 +21,38 @@ export function createContextStore(initial: Ctx) {
 		return state;
 	});
 
+	// Ensure that tab is set to the tab where the popup was opened.
+	browser.tabs.query({ active: true, currentWindow: true }).then((t) => {
+		store.update((state) => {
+			state.tab = t[0];
+			return state;
+		});
+	});
+
 	/**
 	 * Setup all message listeners required by the store. It is important to call this in the components
 	 * onMount function like `onMount(store.onMount)` as it ensures that the listeners are removed when
 	 * the component is unmounted.
 	 */
 	function onMount(): () => void {
-		browser.tabs.query({ active: true, currentWindow: true }).then((t) => {
+		const cb1 = onMessage('VideoChanged', (message) => {
 			store.update((state) => {
-				state.tab = t[0];
-				return state;
-			});
-		});
-
-		const cb1 = onMessage('DownloadStart', (message) => {
-			store.update((state) => {
-				state.downloads[message.data.video.id] = message.data;
-				// If for current video update download
-				if (state.video?.id === message.data.video.id) {
-					state.currentDownload = message.data;
-				}
-				return state;
-			});
-		});
-		const cb2 = onMessage('DownloadDone', (message) => {
-			store.update((state) => {
-				if (state.currentDownload?.video.id === message.data.video.id) {
-					state.currentDownload = message.data;
-				}
-				state.downloads[message.data.video.id] = message.data;
-				return state;
-			});
-		});
-		const cb3 = onMessage('StatusUpdate', (message) => {
-			store.update((state) => {
-				state.downloads[message.data.video.id] = message.data;
-				if (state.currentDownload?.video.id === message.data.video.id) {
-					state.currentDownload = message.data;
-				}
-				return state;
-			});
-		});
-		const cb4 = onMessage('VideoChanged', (message) => {
-			store.update((state) => {
+				// Ignore any VideoChanges for tabs aside from this tab.
 				if (state.tab?.url === message.data.tab.url) {
 					state.video = message.data.video;
 				}
 				return state;
 			});
 		});
-
+		const cb2 = onMessage('DownloadStart', (message) => {
+			handleUpdate(message.data);
+		});
+		const cb3 = onMessage('StatusUpdate', (message) => {
+			handleUpdate(message.data);
+		});
+		const cb4 = onMessage('DownloadDone', (message) => {
+			handleUpdate(message.data);
+		});
 		return () => {
 			cb1();
 			cb2();
@@ -86,6 +68,18 @@ export function createContextStore(initial: Ctx) {
 		}
 		const service = getContextService();
 		await service.download(video);
+	}
+
+	async function handleUpdate(download: Download) {
+		store.update((state) => {
+			// Update the downloads map with new value.
+			state.downloads[download.video.id] = download;
+			// If the update is for this tabs video, update the current download.
+			if (state.video?.id === download.video.id) {
+				state.currentDownload = download;
+			}
+			return state;
+		});
 	}
 
 	return {
