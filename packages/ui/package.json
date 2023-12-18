@@ -35,7 +35,7 @@
 	},
 	"devDependencies": {
 		"@sveltejs/adapter-auto": "^3.0.0",
-		"@sveltejs/kit": "^2.0.0",
+		"@sveltejs/kit": "^2.0.1",
 		"@sveltejs/package": "^2.2.3",
 		"@sveltejs/vite-plugin-svelte": "^3.0.1",
 		"@yd/config": "workspace:*",
@@ -47,6 +47,6 @@
 		"tailwindcss": "^3.3.6",
 		"tslib": "^2.6.2",
 		"typescript": "^5.3.3",
-		"vite": "^5.0.9"
+		"vite": "^5.0.10"
 	}
 }
