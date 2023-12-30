@@ -1,4 +1,4 @@
 --editable ../../core
-fastapi==0.103.2
-sse-starlette==1.6.5
-uvicorn==0.23.2
+fastapi==0.108.0
+sse-starlette==1.8.2
+uvicorn==0.25.0
