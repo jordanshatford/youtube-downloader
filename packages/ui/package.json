@@ -36,7 +36,7 @@
 	"devDependencies": {
 		"@sveltejs/adapter-auto": "^3.0.1",
 		"@sveltejs/kit": "^2.0.6",
-		"@sveltejs/package": "^2.2.4",
+		"@sveltejs/package": "^2.2.5",
 		"@sveltejs/vite-plugin-svelte": "^3.0.1",
 		"@yd/config": "workspace:*",
 		"autoprefixer": "^10.4.16",
