@@ -12,7 +12,7 @@
 			<p class="text-zinc-400">© {copyright.year} {copyright.owner}</p>
 		{/if}
 		<span
-			class="mt-4 inline-flex justify-end space-x-5 text-zinc-500 dark:text-zinc-200 sm:ml-auto sm:mt-0 sm:justify-start"
+			class="mt-4 inline-flex justify-end space-x-5 text-zinc-500 sm:ml-auto sm:mt-0 sm:justify-start dark:text-zinc-200"
 		>
 			{#each links as link, index (link.href)}
 				{@const isLast = index === links.length - 1}
