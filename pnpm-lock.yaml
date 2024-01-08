@@ -185,8 +185,8 @@ importers:
         specifier: ^1.5.0
         version: 1.5.0(svelte@4.2.8)
       tailwind-variants:
-        specifier: ^0.1.19
-        version: 0.1.19(tailwindcss@3.4.1)
+        specifier: ^0.1.20
+        version: 0.1.20(tailwindcss@3.4.1)
     devDependencies:
       '@sveltejs/adapter-auto':
         specifier: ^3.1.0
@@ -4854,8 +4854,8 @@ packages:
     resolution: {integrity: sha512-3mFKyCo/MBcgyOTlrY8T7odzZFx+w+qKSMAmdFzRvqBfLlSigU6TZnlFHK0lkMwj9Bj8OYU+9yW9lmGuS0QEnQ==}
     dev: false
 
-  /tailwind-variants@0.1.19(tailwindcss@3.4.1):
-    resolution: {integrity: sha512-D9Yf5WqsxodnCtjZt6KifEoKwW8rTURXQV03KRKlojITQM5gV1vPVWufWNiIvd/ptC3QybYFpwmHK9cs4Ei08Q==}
+  /tailwind-variants@0.1.20(tailwindcss@3.4.1):
+    resolution: {integrity: sha512-AMh7x313t/V+eTySKB0Dal08RHY7ggYK0MSn/ad8wKWOrDUIzyiWNayRUm2PIJ4VRkvRnfNuyRuKbLV3EN+ewQ==}
     engines: {node: '>=16.x', pnpm: '>=7.x'}
     peerDependencies:
       tailwindcss: '*'
