@@ -28,7 +28,7 @@
 		"@steeze-ui/heroicons": "^2.2.3",
 		"@steeze-ui/simple-icons": "^1.6.0",
 		"@steeze-ui/svelte-icon": "^1.5.0",
-		"tailwind-variants": "^0.1.19"
+		"tailwind-variants": "^0.1.20"
 	},
 	"peerDependencies": {
 		"svelte": "^4.0.0"
