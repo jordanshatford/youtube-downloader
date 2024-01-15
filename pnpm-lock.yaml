@@ -13,7 +13,7 @@ importers:
     devDependencies:
       '@commitlint/cli':
         specifier: ^18.4.4
-        version: 18.4.4(@types/node@20.11.0)(typescript@5.3.3)
+        version: 18.4.4(@types/node@20.11.2)(typescript@5.3.3)
       '@commitlint/config-conventional':
         specifier: ^18.4.4
         version: 18.4.4
@@ -78,7 +78,7 @@ importers:
         version: 5.3.3
       wxt:
         specifier: ^0.14.1
-        version: 0.14.1(@types/node@20.11.0)
+        version: 0.14.1(@types/node@20.11.2)
 
   apps/web:
     dependencies:
@@ -124,7 +124,7 @@ importers:
         version: 5.3.3
       vite:
         specifier: ^5.0.11
-        version: 5.0.11(@types/node@20.11.0)
+        version: 5.0.11(@types/node@20.11.2)
 
   core: {}
 
@@ -176,11 +176,11 @@ importers:
   packages/ui:
     dependencies:
       '@steeze-ui/heroicons':
-        specifier: ^2.2.3
-        version: 2.2.3
+        specifier: ^2.3.0
+        version: 2.3.0
       '@steeze-ui/simple-icons':
-        specifier: ^1.6.0
-        version: 1.6.0
+        specifier: ^1.7.1
+        version: 1.7.1
       '@steeze-ui/svelte-icon':
         specifier: ^1.5.0
         version: 1.5.0(svelte@4.2.8)
@@ -229,7 +229,7 @@ importers:
         version: 5.3.3
       vite:
         specifier: ^5.0.11
-        version: 5.0.11(@types/node@20.11.0)
+        version: 5.0.11(@types/node@20.11.2)
 
 packages:
 
@@ -289,14 +289,14 @@ packages:
       regenerator-runtime: 0.14.1
     dev: true
 
-  /@commitlint/cli@18.4.4(@types/node@20.11.0)(typescript@5.3.3):
+  /@commitlint/cli@18.4.4(@types/node@20.11.2)(typescript@5.3.3):
     resolution: {integrity: sha512-Ro3wIo//fV3XiV1EkdpHog6huaEyNcUAVrSmtgKqYM5g982wOWmP4FXvEDFwRMVgz878CNBvvCc33dMZ5AQJ/g==}
     engines: {node: '>=v18'}
     hasBin: true
     dependencies:
       '@commitlint/format': 18.4.4
       '@commitlint/lint': 18.4.4
-      '@commitlint/load': 18.4.4(@types/node@20.11.0)(typescript@5.3.3)
+      '@commitlint/load': 18.4.4(@types/node@20.11.2)(typescript@5.3.3)
       '@commitlint/read': 18.4.4
       '@commitlint/types': 18.4.4
       execa: 5.1.1
@@ -367,7 +367,7 @@ packages:
       '@commitlint/types': 18.4.4
     dev: true
 
-  /@commitlint/load@18.4.4(@types/node@20.11.0)(typescript@5.3.3):
+  /@commitlint/load@18.4.4(@types/node@20.11.2)(typescript@5.3.3):
     resolution: {integrity: sha512-RaDIa9qwOw2xRJ3Jr2DBXd14rmnHJIX2XdZF4kmoF1rgsg/+7cvrExLSUNAkQUNimyjCn1b/bKX2Omm+GdY0XQ==}
     engines: {node: '>=v18'}
     dependencies:
@@ -377,7 +377,7 @@ packages:
       '@commitlint/types': 18.4.4
       chalk: 4.1.2
       cosmiconfig: 8.3.6(typescript@5.3.3)
-      cosmiconfig-typescript-loader: 5.0.0(@types/node@20.11.0)(cosmiconfig@8.3.6)(typescript@5.3.3)
+      cosmiconfig-typescript-loader: 5.0.0(@types/node@20.11.2)(cosmiconfig@8.3.6)(typescript@5.3.3)
       lodash.isplainobject: 4.0.6
       lodash.merge: 4.6.2
       lodash.uniq: 4.5.0
@@ -955,12 +955,12 @@ packages:
     engines: {node: '>=14.16'}
     dev: true
 
-  /@steeze-ui/heroicons@2.2.3:
-    resolution: {integrity: sha512-bv4YK375U9TDS50SmJ5VdFy2UmMhgKbJCCbo6IUU3qs2luEj2VX6sQoDy96j8AIKttxMd62ih1j0lZj7CTjIfA==}
+  /@steeze-ui/heroicons@2.3.0:
+    resolution: {integrity: sha512-tVOamjAd9ZzXgDwVKwbA3K+o86Z1ks/IMvqdgoCf9hKeGINVUIlAlGhM3wdpSmt7brIoBLgR70wlnsXGytZk9g==}
     dev: false
 
-  /@steeze-ui/simple-icons@1.6.0:
-    resolution: {integrity: sha512-Mi6J1Ydo7CFGTqDcXL2/nHqjE0gUON8ehv7ziyS/HJccNLI27if9FRa7oUqhE84RogcLxqftfD7MGxO6nFlNBA==}
+  /@steeze-ui/simple-icons@1.7.1:
+    resolution: {integrity: sha512-vIsurZBiP6ksg/6zvE6wQVKVludu3UFtePmIAWAbmfjlA6LcjGx+IpX0xNOhVfUs8dC8cMOVn2yLbDhQm5dLYA==}
     dev: false
 
   /@steeze-ui/svelte-icon@1.5.0(svelte@4.2.8):
@@ -1004,7 +1004,7 @@ packages:
       sirv: 2.0.4
       svelte: 4.2.8
       tiny-glob: 0.2.9
-      vite: 5.0.11(@types/node@20.11.0)
+      vite: 5.0.11(@types/node@20.11.2)
     dev: true
 
   /@sveltejs/package@2.2.5(svelte@4.2.8)(typescript@5.3.3):
@@ -1035,7 +1035,7 @@ packages:
       '@sveltejs/vite-plugin-svelte': 3.0.1(svelte@4.2.8)(vite@5.0.11)
       debug: 4.3.4
       svelte: 4.2.8
-      vite: 5.0.11(@types/node@20.11.0)
+      vite: 5.0.11(@types/node@20.11.2)
     transitivePeerDependencies:
       - supports-color
     dev: true
@@ -1054,7 +1054,7 @@ packages:
       magic-string: 0.30.5
       svelte: 4.2.8
       svelte-hmr: 0.15.3(svelte@4.2.8)
-      vite: 5.0.11(@types/node@20.11.0)
+      vite: 5.0.11(@types/node@20.11.2)
       vitefu: 0.2.5(vite@5.0.11)
     transitivePeerDependencies:
       - supports-color
@@ -1115,6 +1115,12 @@ packages:
 
   /@types/node@20.11.0:
     resolution: {integrity: sha512-o9bjXmDNcF7GbM4CNQpmi+TutCgap/K3w1JyKgxAjqx41zp9qlIAVFi0IhCNsJcXolEqLWhbFbEeL0PvYm4pcQ==}
+    dependencies:
+      undici-types: 5.26.5
+    dev: true
+
+  /@types/node@20.11.2:
+    resolution: {integrity: sha512-cZShBaVa+UO1LjWWBPmWRR4+/eY/JR/UIEcDlVsw3okjWEu+rB7/mH6X3B/L+qJVHDLjk9QW/y2upp9wp1yDXA==}
     dependencies:
       undici-types: 5.26.5
     dev: true
@@ -1850,7 +1856,7 @@ packages:
     resolution: {integrity: sha512-ZQBvi1DcpJ4GDqanjucZ2Hj3wEO5pZDS89BWbkcrvdxksJorwUDDZamX9ldFkp9aw2lmBDLgkObEA4DWNJ9FYQ==}
     dev: true
 
-  /cosmiconfig-typescript-loader@5.0.0(@types/node@20.11.0)(cosmiconfig@8.3.6)(typescript@5.3.3):
+  /cosmiconfig-typescript-loader@5.0.0(@types/node@20.11.2)(cosmiconfig@8.3.6)(typescript@5.3.3):
     resolution: {integrity: sha512-+8cK7jRAReYkMwMiG+bxhcNKiHJDM6bR9FD/nGBXOWdMLuYawjF5cGrtLilJ+LGd3ZjCXnJjR5DkfWPoIVlqJA==}
     engines: {node: '>=v16'}
     peerDependencies:
@@ -1858,7 +1864,7 @@ packages:
       cosmiconfig: '>=8.2'
       typescript: '>=4'
     dependencies:
-      '@types/node': 20.11.0
+      '@types/node': 20.11.2
       cosmiconfig: 8.3.6(typescript@5.3.3)
       jiti: 1.21.0
       typescript: 5.3.3
@@ -5158,7 +5164,7 @@ packages:
       spdx-expression-parse: 3.0.1
     dev: true
 
-  /vite@5.0.11(@types/node@20.11.0):
+  /vite@5.0.11(@types/node@20.11.2):
     resolution: {integrity: sha512-XBMnDjZcNAw/G1gEiskiM1v6yzM4GE5aMGvhWTlHAYYhxb7S3/V1s3m2LDHa8Vh6yIWYYB0iJwsEaS523c4oYA==}
     engines: {node: ^18.0.0 || >=20.0.0}
     hasBin: true
@@ -5186,7 +5192,7 @@ packages:
       terser:
         optional: true
     dependencies:
-      '@types/node': 20.11.0
+      '@types/node': 20.11.2
       esbuild: 0.19.11
       postcss: 8.4.33
       rollup: 4.9.4
@@ -5202,7 +5208,7 @@ packages:
       vite:
         optional: true
     dependencies:
-      vite: 5.0.11(@types/node@20.11.0)
+      vite: 5.0.11(@types/node@20.11.2)
     dev: true
 
   /watchpack@2.4.0:
@@ -5334,7 +5340,7 @@ packages:
         optional: true
     dev: true
 
-  /wxt@0.14.1(@types/node@20.11.0):
+  /wxt@0.14.1(@types/node@20.11.2):
     resolution: {integrity: sha512-2kmfa9YeiLi1X9GYvMjzvXPVF+sF1tbmMwCOAppv8L+1e1fZXcmTJCoeTwUTXxsZ3R5P10oaFujkOyYJnzpXdQ==}
     engines: {node: '>=18', pnpm: '>=8'}
     hasBin: true
@@ -5368,7 +5374,7 @@ packages:
       prompts: 2.4.2
       rollup-plugin-visualizer: 5.12.0
       unimport: 3.7.1
-      vite: 5.0.11(@types/node@20.11.0)
+      vite: 5.0.11(@types/node@20.11.2)
       web-ext-run: 0.1.1
       webextension-polyfill: 0.10.0
       zip-dir: 2.0.0
