@@ -13,7 +13,7 @@
 	},
 	"devDependencies": {
 		"@yd/config": "workspace:*",
-		"openapi-typescript-codegen": "^0.26.0",
+		"openapi-typescript-codegen": "^0.27.0",
 		"typescript": "^5.3.3"
 	}
 }
