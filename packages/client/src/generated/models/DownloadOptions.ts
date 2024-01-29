@@ -2,11 +2,9 @@
 /* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-
 import type { AudioFormat } from './AudioFormat';
 import type { DownloadQuality } from './DownloadQuality';
 import type { VideoFormat } from './VideoFormat';
-
 export type DownloadOptions = {
   format: (AudioFormat | VideoFormat);
   quality: DownloadQuality;

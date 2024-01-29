@@ -3,13 +3,10 @@
 /* tslint:disable */
 /* eslint-disable */
 import type { Video } from '../models/Video';
-
 import type { CancelablePromise } from '../core/CancelablePromise';
 import { OpenAPI } from '../core/OpenAPI';
 import { request as __request } from '../core/request';
-
 export class SearchService {
-
   /**
    * Get Search
    * @param query
@@ -32,7 +29,6 @@ export class SearchService {
       },
     });
   }
-
   /**
    * Get Next Search
    * @returns Video Successful Response
@@ -48,7 +44,6 @@ export class SearchService {
       },
     });
   }
-
   /**
    * Get Video
    * @param id
@@ -71,5 +66,4 @@ export class SearchService {
       },
     });
   }
-
 }
