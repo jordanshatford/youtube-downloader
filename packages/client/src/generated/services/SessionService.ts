@@ -3,13 +3,10 @@
 /* tslint:disable */
 /* eslint-disable */
 import type { Session } from '../models/Session';
-
 import type { CancelablePromise } from '../core/CancelablePromise';
 import { OpenAPI } from '../core/OpenAPI';
 import { request as __request } from '../core/request';
-
 export class SessionService {
-
   /**
    * Get Session
    * @returns Session Successful Response
@@ -21,7 +18,6 @@ export class SessionService {
       url: '/session',
     });
   }
-
   /**
    * Delete Session
    * @returns void
@@ -36,7 +32,6 @@ export class SessionService {
       },
     });
   }
-
   /**
    * Get Session Validate
    * @returns Session Successful Response
@@ -51,5 +46,4 @@ export class SessionService {
       },
     });
   }
-
 }

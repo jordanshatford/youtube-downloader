@@ -5,13 +5,10 @@
 import type { AvailableDownloadOptions } from '../models/AvailableDownloadOptions';
 import type { Download } from '../models/Download';
 import type { DownloadInput } from '../models/DownloadInput';
-
 import type { CancelablePromise } from '../core/CancelablePromise';
 import { OpenAPI } from '../core/OpenAPI';
 import { request as __request } from '../core/request';
-
 export class DownloadsService {
-
   /**
    * Get Downloads
    * @returns Download Successful Response
@@ -26,7 +23,6 @@ export class DownloadsService {
       },
     });
   }
-
   /**
    * Put Downloads
    * @param requestBody
@@ -47,7 +43,6 @@ export class DownloadsService {
       },
     });
   }
-
   /**
    * Post Downloads
    * @param requestBody
@@ -68,7 +63,6 @@ export class DownloadsService {
       },
     });
   }
-
   /**
    * Get Downloads Options
    * @returns AvailableDownloadOptions Successful Response
@@ -83,7 +77,6 @@ export class DownloadsService {
       },
     });
   }
-
   /**
    * Get Download
    * @param downloadId
@@ -106,7 +99,6 @@ export class DownloadsService {
       },
     });
   }
-
   /**
    * Delete Download
    * @param downloadId
@@ -129,7 +121,6 @@ export class DownloadsService {
       },
     });
   }
-
   /**
    * Get Download File
    * @param downloadId
@@ -152,5 +143,4 @@ export class DownloadsService {
       },
     });
   }
-
 }

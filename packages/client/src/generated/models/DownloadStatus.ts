@@ -2,9 +2,7 @@
 /* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-
 import type { DownloadState } from './DownloadState';
-
 export type DownloadStatus = {
   state: DownloadState;
   downloaded_bytes?: (number | null);

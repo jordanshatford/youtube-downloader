@@ -2,9 +2,7 @@
 /* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-
 import type { Channel } from './Channel';
-
 export type Video = {
   id: string;
   url: string;
