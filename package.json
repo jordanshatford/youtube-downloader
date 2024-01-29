@@ -34,7 +34,7 @@
       "json-schema-ref-parser": "npm:@apidevtools/json-schema-ref-parser@10.1.0"
     }
   },
-  "packageManager": "pnpm@8.14.0+sha256.9cebf61abd83f68177b29484da72da9751390eaad46dfc3072d266bfbb1ba7bf",
+  "packageManager": "pnpm@8.15.0+sha256.fd1eab68a6d403f35cf3259c53780d70b0f14bd74e39da2f917d201f554d8665",
   "engines": {
     "pnpm": ">=8",
     "node": ">=18"
