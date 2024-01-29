@@ -4,7 +4,7 @@
   "private": true,
   "license": "MIT",
   "scripts": {
-    "prepare": "husky install",
+    "prepare": "husky",
     "generate": "pnpm --filter @yd/api generate:openapi && pnpm --filter @yd/client generate",
     "dev:web": "pnpm --stream --filter @yd/api --filter @yd/web dev",
     "dev:extension": "pnpm --stream --filter @yd/api --filter @yd/extension dev",
