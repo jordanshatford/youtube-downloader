@@ -18,8 +18,7 @@
     "lint": "pnpm --recursive lint",
     "format": "pnpm --recursive format",
     "check": "pnpm --recursive check",
-    "commitlint": "commitlint --edit",
-    "pre-commit:autoupdate": "python3 scripts.py pre-commit autoupdate"
+    "commitlint": "commitlint --edit"
   },
   "devDependencies": {
     "@commitlint/cli": "^18.6.0",
