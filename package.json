@@ -9,7 +9,6 @@
     "dev:web": "pnpm --stream --filter @yd/api --filter @yd/web dev",
     "dev:extension": "pnpm --stream --filter @yd/api --filter @yd/extension dev",
     "api": "pnpm --filter @yd/api -- ",
-    "cli": "pnpm --filter @yd/cli -- ",
     "extension": "pnpm --filter @yd/extension -- ",
     "web": "pnpm --filter @yd/web -- ",
     "core": "pnpm --filter @yd/core --",
