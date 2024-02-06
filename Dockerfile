@@ -40,9 +40,6 @@ RUN apt-get install -y ffmpeg
 
 WORKDIR /workspace/apps/api
 
-# Copy core functionality
-COPY ./core /workspace/core/
-
 # Install required python packages
 COPY ./apps/api/requirements.txt /workspace/apps/api/requirements.txt
 RUN pip install --no-cache-dir -r requirements.txt

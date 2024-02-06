@@ -37,18 +37,6 @@ updates:
         patterns:
           - "*"
 
-  # Core dependencies
-  - package-ecosystem: "pip"
-    directory: "/core"
-    schedule:
-      interval: "weekly"
-    assignees:
-      - "jordanshatford"
-    groups:
-      core-python:
-        patterns:
-          - "*"
-
   # NPM dependabot checks
   - package-ecosystem: "npm"
     directory: "/"

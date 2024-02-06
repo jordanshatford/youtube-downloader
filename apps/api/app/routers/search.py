@@ -1,10 +1,10 @@
 from fastapi import APIRouter
 from fastapi import HTTPException
 from fastapi import status
-from ydcore import Video
-from ydcore import YouTubeGetVideo
-from ydcore import YouTubeSearch
 
+from ..core import Video
+from ..core import YouTubeGetVideo
+from ..core import YouTubeSearch
 from ..dependencies import depends_session_responses
 from ..dependencies import DependsSession
 

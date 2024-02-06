@@ -5,10 +5,9 @@ from datetime import datetime
 from datetime import timedelta
 from queue import Queue
 
-from ydcore import Download
-from ydcore import DownloadManager
-from ydcore import YouTubeSearch
-
+from .core import Download
+from .core import DownloadManager
+from .core import YouTubeSearch
 from .timer import RepeatedTimer
 
 

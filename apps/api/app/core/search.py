@@ -8,7 +8,7 @@ from .models import Channel
 from .models import Video
 
 
-logger = logging.getLogger('ydcore')
+logger = logging.getLogger('core')
 
 
 _YOUTUBE_BASE_URL = 'https://www.youtube.com'

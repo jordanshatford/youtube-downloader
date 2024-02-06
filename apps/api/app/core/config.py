@@ -15,7 +15,7 @@ from .ytdlp import ProgressHookInfo
 from .ytdlp import YoutubeDLParams
 
 
-logger = logging.getLogger('ydcore')
+logger = logging.getLogger('core')
 
 
 StatusHook: TypeAlias = Callable[[Download], None]

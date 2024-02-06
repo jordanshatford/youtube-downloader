@@ -7,8 +7,8 @@ from fastapi import HTTPException
 from fastapi import status
 from fastapi.security import HTTPAuthorizationCredentials
 from fastapi.security import HTTPBearer
-from ydcore import Download
 
+from .core import Download
 from .session import Session
 from .session import session_manager
 

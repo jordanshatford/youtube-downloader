@@ -124,8 +124,6 @@ importers:
         specifier: ^5.0.12
         version: 5.0.12(@types/node@20.11.16)
 
-  core: {}
-
   packages/client:
     devDependencies:
       '@yd/config':

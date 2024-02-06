@@ -1,9 +1,0 @@
-{
-	"name": "@yd/core",
-	"private": true,
-	"version": "1.0.0",
-	"license": "MIT",
-	"scripts": {
-		"format": "python3 ../scripts.py pre-commit run"
-	}
-}

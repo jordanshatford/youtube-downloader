@@ -7,7 +7,7 @@ from .models import DownloadState
 from .models import DownloadStatus
 
 
-logger = logging.getLogger('ydcore')
+logger = logging.getLogger('core')
 
 
 def run_downloader(config: DownloadConfig) -> None:

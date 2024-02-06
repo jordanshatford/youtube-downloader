@@ -10,7 +10,7 @@ from urllib.request import Request
 from urllib.request import urlopen
 
 
-logger = logging.getLogger('ydcore')
+logger = logging.getLogger('core')
 
 
 _INNERTUBE_BASE_URL = 'https://www.youtube.com/youtubei/v1'
