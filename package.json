@@ -26,11 +26,6 @@
     "@commitlint/types": "^18.6.0",
     "husky": "^9.0.10"
   },
-  "pnpm": {
-    "overrides": {
-      "json-schema-ref-parser": "npm:@apidevtools/json-schema-ref-parser@10.1.0"
-    }
-  },
   "packageManager": "pnpm@8.15.0+sha256.fd1eab68a6d403f35cf3259c53780d70b0f14bd74e39da2f917d201f554d8665",
   "engines": {
     "pnpm": ">=8",
