@@ -1,11 +1,11 @@
 {
 	"name": "@yd/api",
-  "private": true,
+	"private": true,
 	"version": "1.0.0",
-  "license": "MIT",
-  "exports": {
-    ".": "./openapi.json"
-  },
+	"license": "MIT",
+	"exports": {
+		".": "./openapi.json"
+	},
 	"scripts": {
 		"dev": "python3 scripts.py run uvicorn app.main:app --host=0.0.0.0 --port=8080 --reload --reload-dir=../../",
 		"format": "python3 scripts.py pre-commit run",
