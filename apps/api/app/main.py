@@ -1,6 +1,7 @@
 import logging
 import os
 import tomllib
+from contextlib import asynccontextmanager
 from logging.handlers import RotatingFileHandler
 from typing import Any
 
@@ -45,6 +46,14 @@ def generate_custom_unique_id(route: routing.APIRoute):
     return route.name
 
 
+@asynccontextmanager
+async def lifespan(app: FastAPI):
+    yield
+    # Clean up all sessions
+    print('Cleaning up all session for shutdown', flush=True)
+    session_manager.cleanup(force=True)
+
+
 app = FastAPI(
     title=pyproject_data['name'],
     summary=pyproject_data['description'],
@@ -63,6 +72,7 @@ app = FastAPI(
     ],
     version=pyproject_data['version'],
     generate_unique_id_function=generate_custom_unique_id,
+    lifespan=lifespan,
 )
 
 # Default localhost to be allowed.
@@ -89,9 +99,3 @@ app.add_middleware(
 app.include_router(search.router)
 app.include_router(session.router)
 app.include_router(downloads.router)
-
-
-@app.on_event('shutdown')
-def shutdown_cleanup() -> None:
-    print('Cleaning up all session for shutdown', flush=True)
-    session_manager.cleanup(force=True)
