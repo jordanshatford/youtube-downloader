@@ -14,13 +14,16 @@ import venv
 
 # Parse command line args
 parser = argparse.ArgumentParser(
-    'venv management scripts (internal use)', add_help=False
+    'venv management scripts (internal use)', add_help=False,
 )
 subparsers = parser.add_subparsers(dest='command', required=True)
 # Run command in generic and will allow runing anything from within the venv
 run = subparsers.add_parser('run', add_help=False)
-# Pre-commit currently has custom commands to allow use to specific git tracked files of CWD
-pre_commit = subparsers.add_parser('pre-commit', add_help=False)
+# Pre-commit currently has custom commands to allow use to specific git
+# tracked files of CWD
+pre_commit = subparsers.add_parser(
+    'pre-commit', add_help=False,
+)
 pre_commit.add_argument('script', choices=['run', 'autoupdate'])
 args, rest = parser.parse_known_args()
 
@@ -45,11 +48,12 @@ def run_subprocess(
 
 
 try:
-    # Get root directory of git repository. Create venv in root of git repository
+    # Get root directory of git repository. Create venv in root of git
+    # repository
     result = run_subprocess(
-        ['git', 'rev-parse', '--show-toplevel'], capture_output=True
+        ['git', 'rev-parse', '--show-toplevel'], capture_output=True,
     )
-    workspace_dir =result.stdout.splitlines()[0]
+    workspace_dir = result.stdout.splitlines()[0]
 
     # Create venv if not already there
     venv_dir_path = os.path.join(workspace_dir, 'venv')
@@ -58,36 +62,43 @@ try:
     # Get path to bins in the venv (different location on windows)
     venv_bin_path = os.path.join(
         venv_dir_path,
-        'Scripts' if platform.system() == 'Windows' else 'bin'
+        'Scripts' if platform.system() == 'Windows' else 'bin',
     )
 
     # Ensure pip is up to date and install any requirements
     run_subprocess(
-        ['pip', 'install', '--upgrade', 'pip'], bin_path=venv_bin_path
+        ['pip', 'install', '--upgrade', 'pip'], bin_path=venv_bin_path,
     )
     if os.path.exists('requirements.txt'):
         run_subprocess(
             ['pip', 'install', '-r', 'requirements.txt'],
-            bin_path=venv_bin_path
+            bin_path=venv_bin_path,
         )
 
     if args.command == 'pre-commit':
         # Ensure pre-commit is installed
-        run_subprocess(['pip', 'install', 'pre-commit'], bin_path=venv_bin_path)
+        run_subprocess(
+            ['pip', 'install', 'pre-commit'],
+            bin_path=venv_bin_path,
+        )
         if args.script == 'autoupdate':
-            run_subprocess(['pre-commit', 'autoupdate'], bin_path=venv_bin_path)
+            run_subprocess(
+                ['pre-commit', 'autoupdate'],
+                bin_path=venv_bin_path,
+            )
         elif args.script == 'run':
             # Get a git tracked files in CWD to run pre-commit on
             result = run_subprocess(
-                ['git', 'ls-files'], capture_output=True
+                ['git', 'ls-files'], capture_output=True,
             )
             files = result.stdout.splitlines()
             run_subprocess(
-                ['pre-commit', 'run', '--files'] + files, bin_path=venv_bin_path
+                ['pre-commit', 'run', '--files'] + files,
+                bin_path=venv_bin_path,
             )
     elif args.command == 'run':
         run_subprocess(rest, bin_path=venv_bin_path)
-except subprocess.CalledProcessError as e:
+except subprocess.CalledProcessError:
     raise SystemExit(1)
 except Exception as e:
     print(f'Failed with unexpected error {e}')
