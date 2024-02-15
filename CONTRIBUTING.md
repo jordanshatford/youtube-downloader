@@ -78,8 +78,12 @@ pnpm check
 
 If you plan to fix a bug with the project, please start by putting in a bug report issue in the GitHub repository.
 
+Please ensure that once you make a bug fix you run `pnpm changeset` to generate a changeset entry for the bug fix.
+
 ## Adding features
 
 If you plan to add a new feature to the project, please start by putting in a feature request issue in the GitHub repository. This will ensure tracking of the feature request, as well as provide information about what you are attempting to implement.
 
 After developing a new feature it is important that you test it thoroughly locally first before submitting a pull request.
+
+Please ensure that once you develop a feature you run `pnpm changeset` to generate a changeset entry for the feature.
