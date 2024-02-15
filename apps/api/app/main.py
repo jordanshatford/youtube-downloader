@@ -1,6 +1,6 @@
+import json
 import logging
 import os
-import tomllib
 from contextlib import asynccontextmanager
 from logging.handlers import RotatingFileHandler
 from typing import Any
@@ -30,13 +30,13 @@ logging.basicConfig(
 logging.getLogger('sse_starlette').setLevel(logging.ERROR)
 
 
-# Read data from pyproject.toml file
-pyproject_data: dict[str, Any] = {}
-pyproject_path = os.path.join(
-    os.path.dirname(__file__), '..', 'pyproject.toml',
+# Read data from package.json file
+project_data: dict[str, Any] = {}
+project_data_path = os.path.join(
+    os.path.dirname(__file__), '..', 'package.json',
 )
-with open(pyproject_path, 'rb') as f:
-    pyproject_data = tomllib.load(f)['project']
+with open(project_data_path, 'rb') as f:
+    project_data = json.load(f)
 
 
 # Note: this requires that function names for each route are unique. If not
@@ -55,22 +55,22 @@ async def lifespan(app: FastAPI):
 
 
 app = FastAPI(
-    title=pyproject_data['name'],
-    summary=pyproject_data['description'],
+    title=project_data['name'],
+    summary=project_data['description'],
     contact={
-        'name': pyproject_data['authors'][0]['name'],
-        'url': pyproject_data['urls']['Repository'],
+        'name': 'GitHub',
+        'url': project_data['repository']['url'],
     },
     license_info={
-        'name': pyproject_data['license']['text'],
-        'url': f'{pyproject_data["urls"]["Repository"]}/blob/main/LICENSE',
+        'name': project_data['license'],
+        'url': f'{project_data["repository"]["url"]}/blob/main/LICENSE',
     },
     openapi_tags=[
         {'name': 'session', 'description': 'Session management.'},
         {'name': 'search', 'description': 'Search YouTube.'},
         {'name': 'downloads', 'description': 'Download management.'},
     ],
-    version=pyproject_data['version'],
+    version=project_data['version'],
     generate_unique_id_function=generate_custom_unique_id,
     lifespan=lifespan,
 )

@@ -46,7 +46,7 @@ RUN pip install --no-cache-dir -r requirements.txt
 
 # Copy over source and config files
 COPY ./apps/api/app /workspace/apps/api/app
-COPY ./apps/api/pyproject.toml /workspace/apps/api/pyproject.toml
+COPY ./apps/api/package.json /workspace/apps/api/package.json
 
 # Expose port we are running the api on
 EXPOSE 8080

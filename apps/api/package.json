@@ -3,6 +3,11 @@
 	"private": true,
 	"version": "1.0.0",
 	"license": "MIT",
+	"description": "API to search and download YouTube videos in various formats.",
+	"repository": {
+    "type": "git",
+    "url": "https://github.com/jordanshatford/youtube-downloader"
+  },
 	"exports": {
 		".": "./openapi.json"
 	},
