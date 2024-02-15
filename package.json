@@ -18,12 +18,15 @@
     "lint": "pnpm --recursive lint",
     "format": "pnpm --recursive format",
     "check": "pnpm --recursive check",
-    "commitlint": "commitlint --edit"
+    "commitlint": "commitlint --edit",
+		"changeset": "changeset"
   },
   "devDependencies": {
+		"@changesets/cli": "^2.26.2",
     "@commitlint/cli": "^18.6.0",
     "@commitlint/config-conventional": "^18.6.0",
     "@commitlint/types": "^18.6.0",
+		"@svitejs/changesets-changelog-github-compact": "^1.1.0",
     "husky": "^9.0.10"
   },
   "packageManager": "pnpm@8.15.2+sha256.90bb5d6382cb2cb8b8d4959a076b3953d84d1d94121717097bcd41c71344fa14",
