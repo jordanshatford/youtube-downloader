@@ -29,7 +29,7 @@
     "@svitejs/changesets-changelog-github-compact": "^1.1.0",
     "husky": "^9.0.11"
   },
-  "packageManager": "pnpm@8.15.2+sha256.90bb5d6382cb2cb8b8d4959a076b3953d84d1d94121717097bcd41c71344fa14",
+  "packageManager": "pnpm@8.15.3+sha256.fc4a49bd609550a41e14d20efbce802a4b892aa4cac877322de2f0924f122991",
   "engines": {
     "pnpm": ">=8",
     "node": ">=18"
