@@ -102,7 +102,7 @@ export class DownloadsService {
   /**
    * Delete Download
    * @param downloadId
-   * @returns void
+   * @returns void Successful Response
    * @throws ApiError
    */
   public static deleteDownload(

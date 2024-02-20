@@ -129,12 +129,12 @@ importers:
 
   packages/client:
     devDependencies:
+      '@nicolas-chaulet/openapi-typescript-codegen':
+        specifier: ^0.27.9
+        version: 0.27.9
       '@yd/config':
         specifier: workspace:*
         version: link:../config
-      openapi-typescript-codegen:
-        specifier: ^0.27.0
-        version: 0.27.0
       typescript:
         specifier: ^5.3.3
         version: 5.3.3
@@ -992,6 +992,17 @@ packages:
       fs-extra: 8.1.0
       globby: 11.1.0
       read-yaml-file: 1.1.0
+    dev: true
+
+  /@nicolas-chaulet/openapi-typescript-codegen@0.27.9:
+    resolution: {integrity: sha512-uH9D0VVIgWK9d8EaVwoOqwdoqLX026oTwkqwNnITjpCj7rnCLlHQ3KOKpiDro12zzkp6KQG/DHNVhcJhi2qHiA==}
+    hasBin: true
+    dependencies:
+      '@apidevtools/json-schema-ref-parser': 10.1.0
+      camelcase: 6.3.0
+      commander: 11.1.0
+      fs-extra: 11.2.0
+      handlebars: 4.7.8
     dev: true
 
   /@nodelib/fs.scandir@2.1.5:
@@ -4762,17 +4773,6 @@ packages:
       define-lazy-prop: 3.0.0
       is-inside-container: 1.0.0
       is-wsl: 2.2.0
-    dev: true
-
-  /openapi-typescript-codegen@0.27.0:
-    resolution: {integrity: sha512-QyQEod/vuel3zfnTRC3GgmYsqLPSBzB2OL4ojMYjO9hJmfYW02T+7tbQWEnuqWdhh2KSOBf3L8h59vLStr6vwA==}
-    hasBin: true
-    dependencies:
-      '@apidevtools/json-schema-ref-parser': 10.1.0
-      camelcase: 6.3.0
-      commander: 11.1.0
-      fs-extra: 11.2.0
-      handlebars: 4.7.8
     dev: true
 
   /optionator@0.9.3:

@@ -12,8 +12,8 @@
 		"format": "prettier --write ."
 	},
 	"devDependencies": {
+		"@nicolas-chaulet/openapi-typescript-codegen": "^0.27.9",
 		"@yd/config": "workspace:*",
-		"openapi-typescript-codegen": "^0.27.0",
 		"typescript": "^5.3.3"
 	}
 }

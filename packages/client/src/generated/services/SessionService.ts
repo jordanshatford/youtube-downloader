@@ -20,7 +20,7 @@ export class SessionService {
   }
   /**
    * Delete Session
-   * @returns void
+   * @returns void Successful Response
    * @throws ApiError
    */
   public static deleteSession(): CancelablePromise<void> {

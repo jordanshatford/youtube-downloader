@@ -1,14 +1,14 @@
 {
   "openapi": "3.1.0",
   "info": {
-    "title": "youtube-downloader-api",
+    "title": "@yd/api",
     "summary": "API to search and download YouTube videos in various formats.",
     "contact": {
-      "name": "Jordan Shatford",
+      "name": "GitHub",
       "url": "https://github.com/jordanshatford/youtube-downloader"
     },
     "license": {
-      "name": "MIT License",
+      "name": "MIT",
       "url": "https://github.com/jordanshatford/youtube-downloader/blob/main/LICENSE"
     },
     "version": "1.0.0"
