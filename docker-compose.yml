@@ -3,8 +3,10 @@ version: '3'
 services:
   api:
     build:
-      context: .
-      target: api-production
+      context: ./apps/api
+      target: production
+      args:
+        DOCKER_BUILDKIT: 1
     image: yd/api:latest
     restart: always
     environment:
@@ -14,7 +16,9 @@ services:
   web:
     build:
       context: .
-      target: web-production
+      target: production
+      args:
+        DOCKER_BUILDKIT: 1
     image: yd/web:latest
     restart: always
     environment:
