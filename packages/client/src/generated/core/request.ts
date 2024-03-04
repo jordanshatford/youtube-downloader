@@ -1,4 +1,4 @@
-/* generated using openapi-typescript-codegen -- do no edit */
+/* generated using openapi-typescript-codegen -- do not edit */
 /* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
@@ -8,10 +8,6 @@ import type { ApiResult } from './ApiResult';
 import { CancelablePromise } from './CancelablePromise';
 import type { OnCancel } from './CancelablePromise';
 import type { OpenAPIConfig } from './OpenAPI';
-
-export const isDefined = <T>(value: T | null | undefined): value is Exclude<T, null | undefined> => {
-  return value !== undefined && value !== null;
-};
 
 export const isString = (value: any): value is string => {
   return typeof value === 'string';
@@ -55,7 +51,7 @@ export const getQueryString = (params: Record<string, any>): string => {
   };
 
   const process = (key: string, value: any) => {
-    if (isDefined(value)) {
+    if (value) {
       if (Array.isArray(value)) {
         value.forEach(v => {
           process(key, v);
@@ -113,7 +109,7 @@ export const getFormData = (options: ApiRequestOptions): FormData | undefined =>
     };
 
     Object.entries(options.formData)
-      .filter(([_, value]) => isDefined(value))
+      .filter(([_, value]) => value)
       .forEach(([key, value]) => {
         if (Array.isArray(value)) {
           value.forEach(v => process(key, v));
@@ -149,7 +145,7 @@ export const getHeaders = async (config: OpenAPIConfig, options: ApiRequestOptio
     ...additionalHeaders,
     ...options.headers,
   })
-    .filter(([_, value]) => isDefined(value))
+    .filter(([_, value]) => value)
     .reduce((headers, [key, value]) => ({
       ...headers,
       [key]: String(value),
