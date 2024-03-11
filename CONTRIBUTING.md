@@ -7,6 +7,7 @@ Setting up the project for local development will require all of the following t
 - [git](https://git-scm.com/) (version `2.39` or higher)
 - [ffmpeg](https://ffmpeg.org/) (version `6.0` or higher)
 - [python](https://www.python.org/) (version `3.11` or higher)
+- [Poetry](https://python-poetry.org/) (version `1.8` or higher)
 - [node](https://nodejs.org/en) (version `18.0` or higher)
 - *optionally* [docker](https://www.docker.com/) (version `24.0` or higher)
 

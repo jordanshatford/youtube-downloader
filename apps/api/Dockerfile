@@ -6,9 +6,15 @@ RUN apt-get install -y ffmpeg
 
 WORKDIR /workspace
 
-# Install required python packages
-COPY ./requirements.txt /workspace/requirements.txt
-RUN pip install --no-cache-dir -r requirements.txt
+# Install Poetry
+ENV POETRY_VERSION=1.8.2
+RUN apt-get install -y pipx && pipx ensurepath
+RUN pipx install "poetry==$POETRY_VERSION"
+ENV PATH=/root/.local/bin:$PATH
+
+# Install dependencies
+COPY pyproject.toml poetry.lock /workspace/
+RUN poetry install --without dev
 
 # Copy over source and config files
 COPY ./app /workspace/app
@@ -19,8 +25,8 @@ EXPOSE 8080
 
 # In development run the application with reload active
 FROM base AS development
-CMD [ "uvicorn", "app.main:app", "--host=0.0.0.0", "--port=8080", "--reload", "--reload-dir", "../../" ]
+CMD [ "poetry", "run", "uvicorn", "app.main:app", "--host=0.0.0.0", "--port=8080", "--reload", "--reload-dir", "../../" ]
 
 # In production run the application without reload
 FROM base AS production
-CMD [ "uvicorn", "app.main:app", "--host=0.0.0.0", "--port=8080" ]
+CMD [ "poetry", "run", "uvicorn", "app.main:app", "--host=0.0.0.0", "--port=8080" ]
