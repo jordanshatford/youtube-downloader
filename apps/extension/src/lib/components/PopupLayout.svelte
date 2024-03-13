@@ -18,8 +18,8 @@
 	}
 </script>
 
-<div class="max-h-[600px] min-h-[500px] w-[320px] bg-white dark:bg-zinc-900">
-	<div class="align-start flex h-screen flex-col items-start justify-start space-y-4 pt-5">
+<div class="max-h-[600px] min-h-[500px] w-[320px] overflow-scroll bg-white dark:bg-zinc-900">
+	<div class="align-start flex h-screen flex-col items-start justify-start space-y-2 pt-5">
 		<!-- Header of the popup -->
 		<div class="flex w-full items-center justify-between px-5">
 			<img src="/icon/512.png" alt="Logo" class="h-7 w-7" />
