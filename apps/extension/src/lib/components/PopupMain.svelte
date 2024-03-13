@@ -1,11 +1,10 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
-	import { Card, Button } from '@yd/ui';
+	import { Card, Button, Badge } from '@yd/ui';
 	import type { Ctx } from '~/lib/context-service';
 	import StatusBadge from '~/lib/components/StatusBadge.svelte';
 	import { createContextStore } from '~/lib/stores/context';
 	import PopupError from '~/lib/components/PopupError.svelte';
-	import DownloadOptions from '~/lib/components/DownloadOptions.svelte';
 
 	export let ctx: Ctx;
 
@@ -36,7 +35,19 @@
 			</div>
 		</footer>
 	</Card>
-	<DownloadOptions options={$store.options} />
+	<div class="flex max-w-full flex-wrap justify-center gap-2">
+		<Badge>{$store.options.format.toUpperCase()}</Badge>
+		<Badge>{$store.options.quality.toUpperCase()}</Badge>
+		{#if $store.options.embed_metadata}
+			<Badge>Metadata</Badge>
+		{/if}
+		{#if $store.options.embed_thumbnail}
+			<Badge>Thumbnail</Badge>
+		{/if}
+		{#if $store.options.embed_subtitles}
+			<Badge>Subtitles</Badge>
+		{/if}
+	</div>
 	{#if $store.currentDownload}
 		<StatusBadge status={$store.currentDownload.status} />
 	{:else}
