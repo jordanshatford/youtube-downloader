@@ -69,7 +69,13 @@
 	export let icon: boolean | IconSource = false;
 	export let loading: boolean = false;
 
-	const _icon = typeof icon === 'object' ? icon : toIcon(variant, { loading });
+	let _icon: IconSource | undefined = undefined;
+	// User specified icon
+	if (typeof icon === 'object') {
+		_icon = icon;
+	} else if (icon) {
+		_icon = toIcon(variant, { loading });
+	}
 
 	const { spanClass, iconWrapperClass, iconClass, textClass, buttonClass } = badgeClasses({
 		variant,

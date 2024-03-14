@@ -38,11 +38,11 @@
 	</Card>
 	<Card>
 		<div class="flex max-w-full flex-wrap justify-center gap-2 p-2">
-			<Badge variant="success">{options.format.toUpperCase()}</Badge>
-			<Badge variant="success">{options.quality.toUpperCase()}</Badge>
-			<Badge variant={options.embed_metadata ? 'success' : 'error'}>Metadata</Badge>
-			<Badge variant={options.embed_thumbnail ? 'success' : 'error'}>Thumbnail</Badge>
-			<Badge variant={options.embed_subtitles ? 'success' : 'error'}>Subtitles</Badge>
+			<Badge icon={false} variant="success">{options.format.toUpperCase()}</Badge>
+			<Badge icon={false} variant="success">{options.quality.toUpperCase()}</Badge>
+			<Badge icon={false} variant={options.embed_metadata ? 'success' : 'error'}>Metadata</Badge>
+			<Badge icon={false} variant={options.embed_thumbnail ? 'success' : 'error'}>Thumbnail</Badge>
+			<Badge icon={false} variant={options.embed_subtitles ? 'success' : 'error'}>Subtitles</Badge>
 		</div>
 	</Card>
 	{#if $store.currentDownload}
