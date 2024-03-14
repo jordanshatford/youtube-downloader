@@ -36,19 +36,15 @@
 			</div>
 		</footer>
 	</Card>
-	<div class="flex max-w-full flex-wrap justify-center gap-2">
-		<Badge>{options.format.toUpperCase()}</Badge>
-		<Badge>{options.quality.toUpperCase()}</Badge>
-		{#if options.embed_metadata}
-			<Badge>Metadata</Badge>
-		{/if}
-		{#if options.embed_thumbnail}
-			<Badge>Thumbnail</Badge>
-		{/if}
-		{#if options.embed_subtitles}
-			<Badge>Subtitles</Badge>
-		{/if}
-	</div>
+	<Card>
+		<div class="flex max-w-full flex-wrap justify-center gap-2 p-2">
+			<Badge variant="success">{options.format.toUpperCase()}</Badge>
+			<Badge variant="success">{options.quality.toUpperCase()}</Badge>
+			<Badge variant={options.embed_metadata ? 'success' : 'error'}>Metadata</Badge>
+			<Badge variant={options.embed_thumbnail ? 'success' : 'error'}>Thumbnail</Badge>
+			<Badge variant={options.embed_subtitles ? 'success' : 'error'}>Subtitles</Badge>
+		</div>
+	</Card>
 	{#if $store.currentDownload}
 		<StatusBadge status={$store.currentDownload.status} />
 	{:else}
