@@ -14,6 +14,7 @@
 </script>
 
 {#if $store.video}
+	{@const options = $store.currentDownload ? $store.currentDownload.options : $store.options}
 	<Card>
 		<img alt="Thumbnail" class="block h-auto w-full" src={$store.video?.thumbnail} />
 		<header class="flex items-center justify-between p-2 leading-tight md:p-4">
@@ -36,15 +37,15 @@
 		</footer>
 	</Card>
 	<div class="flex max-w-full flex-wrap justify-center gap-2">
-		<Badge>{$store.options.format.toUpperCase()}</Badge>
-		<Badge>{$store.options.quality.toUpperCase()}</Badge>
-		{#if $store.options.embed_metadata}
+		<Badge>{options.format.toUpperCase()}</Badge>
+		<Badge>{options.quality.toUpperCase()}</Badge>
+		{#if options.embed_metadata}
 			<Badge>Metadata</Badge>
 		{/if}
-		{#if $store.options.embed_thumbnail}
+		{#if options.embed_thumbnail}
 			<Badge>Thumbnail</Badge>
 		{/if}
-		{#if $store.options.embed_subtitles}
+		{#if options.embed_subtitles}
 			<Badge>Subtitles</Badge>
 		{/if}
 	</div>
