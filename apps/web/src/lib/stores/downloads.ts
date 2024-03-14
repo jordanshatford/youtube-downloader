@@ -10,11 +10,7 @@ import { toast } from '@yd/ui';
 import { settings, userSettings } from '$lib/stores/settings';
 import { saveAs } from '$lib/utils/files';
 
-export interface DownloadWithExtra extends Download {
-	awaitingFileBlob?: boolean;
-}
-
-const DOWNLOADS = writable<Record<string, DownloadWithExtra>>({});
+const DOWNLOADS = writable<Record<string, Download>>({});
 
 function createDownloadsStore() {
 	const { subscribe, set, update } = DOWNLOADS;
@@ -33,7 +29,7 @@ function createDownloadsStore() {
 	async function add(video: Video) {
 		if (video.id in get(DOWNLOADS)) return;
 
-		const download: DownloadWithExtra = {
+		const download: Download = {
 			video,
 			status: { state: DownloadState.WAITING, progress: null },
 			options: get(settings)
@@ -84,7 +80,6 @@ function createDownloadsStore() {
 	async function getFile(id: string) {
 		if (!(id in get(DOWNLOADS))) return;
 
-		updateDownload(id, { awaitingFileBlob: true });
 		try {
 			const blob = await DownloadsService.getDownloadFile(id);
 			const download = get(DOWNLOADS)[id];
@@ -92,8 +87,6 @@ function createDownloadsStore() {
 			saveAs(blob, filename);
 		} catch (err) {
 			handleError(id, 'Failed to get file for download.', err);
-		} finally {
-			updateDownload(id, { awaitingFileBlob: false });
 		}
 	}
 
@@ -103,12 +96,12 @@ function createDownloadsStore() {
 		updateDownload(downloadId, { status: { state: DownloadState.ERROR, progress: null } });
 	}
 
-	function updateDownload(id: string, updatedValue: Partial<DownloadWithExtra>) {
+	function updateDownload(id: string, updatedValue: Partial<Download>) {
 		update((state) => {
 			if (id in state) {
 				// Merge and update values.
 				const oldValue = state[id];
-				const value: DownloadWithExtra = { ...oldValue, ...updatedValue };
+				const value: Download = { ...oldValue, ...updatedValue };
 				state[id] = value;
 				// Automatically download file if enabled by the user.
 				if (get(userSettings).autoDownloadOnComplete) {

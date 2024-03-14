@@ -1,18 +1,26 @@
 <script lang="ts">
-	import { DownloadState } from '@yd/client';
+	import { type Download, DownloadState } from '@yd/client';
 	import { ActionIcon, ArrowPathIcon, ButtonGroup, Confirm, DownloadIcon, TrashIcon } from '@yd/ui';
-	import { downloads, type DownloadWithExtra } from '$lib/stores/downloads';
+	import { downloads } from '$lib/stores/downloads';
 
-	export let download: DownloadWithExtra;
+	export let download: Download;
+
+	let isWaitingForBlob = false;
+
+	async function getDownloadFile() {
+		isWaitingForBlob = true;
+		await downloads.getFile(download.video.id);
+		isWaitingForBlob = false;
+	}
 </script>
 
 <ButtonGroup>
 	<ActionIcon
 		title="Get Download File"
 		src={DownloadIcon}
-		loading={download.awaitingFileBlob}
+		loading={isWaitingForBlob}
 		disabled={download.status.state !== DownloadState.DONE}
-		on:click={async () => await downloads.getFile(download.video.id)}
+		on:click={async () => getDownloadFile()}
 	/>
 	<ActionIcon
 		title="Retry Download"
