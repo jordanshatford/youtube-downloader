@@ -16,7 +16,7 @@ inputs:
   poetry-version:
     description: Poetry version to use
     required: false
-    default: '1.8.2'
+    default: 1.8.2
 
 runs:
   using: 'composite'
@@ -35,6 +35,6 @@ runs:
       with:
         python-version: ${{ inputs.python-version }}
     - name: Setup Poetry
-      uses: abatilo/actions-poetry@v2
-        with:
-          poetry-version: ${{ matrix.poetry-version }}
+      uses: abatilo/actions-poetry@v3
+      with:
+        poetry-version: ${{ inputs.poetry-version }}
