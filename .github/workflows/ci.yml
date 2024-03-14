@@ -27,6 +27,8 @@ jobs:
         run: pnpm install
       - name: Lint
         run: pnpm lint
+      - name: Format (API)
+        run: pnpm api format
       - name: Check
         run: pnpm check
       - name: Build
