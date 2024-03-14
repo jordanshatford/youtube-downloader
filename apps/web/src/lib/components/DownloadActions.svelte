@@ -20,7 +20,7 @@
 		src={DownloadIcon}
 		loading={isWaitingForBlob}
 		disabled={download.status.state !== DownloadState.DONE}
-		on:click={async () => getDownloadFile()}
+		on:click={async () => await getDownloadFile()}
 	/>
 	<ActionIcon
 		title="Retry Download"

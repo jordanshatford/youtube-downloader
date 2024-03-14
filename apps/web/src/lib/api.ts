@@ -14,7 +14,7 @@ OpenAPI.TOKEN = async () => {
 };
 
 // Key used to store session ID value in session storage.
-const SESSION_ID_KEY = 'sessionId';
+const SESSION_ID_KEY = 'yd-sessionid';
 
 // Duration to wait (ms) before re-attempting to setup a session.
 const REATTEMPT_INTERVAL = 10000;

@@ -8,7 +8,7 @@ import {
 } from '@yd/client';
 import { browser } from '$app/environment';
 
-const SETTINGS_KEY = 'settings';
+const SETTINGS_KEY = 'yd-settings';
 
 function createSettingsStore() {
 	const { subscribe, set, update } = writable(DEFAULT_DOWNLOAD_OPTIONS);
@@ -57,7 +57,7 @@ function createSettingsStore() {
 export const settings = createSettingsStore();
 
 function createUserSettingsStore() {
-	const USER_SETTINGS_KEY = 'userSettings';
+	const USER_SETTINGS_KEY = 'yd-usersettings';
 	const DEFAULT_USER_SETTINGS = {
 		autoDownloadOnComplete: false,
 		downloadsPageSize: 10

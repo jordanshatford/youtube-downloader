@@ -35,7 +35,7 @@ const REATTEMPT_INTERVAL = 10000;
 const sleep = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
 
 // Key used to store session ID value in session storage.
-const SESSION_ID_KEY = 'sessionId';
+const SESSION_ID_KEY = 'yd-sessionid';
 
 // Set the base server address using the environment variable.
 OpenAPI.BASE = env.serverAddress;
