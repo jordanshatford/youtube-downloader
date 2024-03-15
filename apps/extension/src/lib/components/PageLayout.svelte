@@ -1,6 +1,5 @@
 <script lang="ts">
-	import { IconButton, ExternalLinkIcon, Toasts, Footer } from '@yd/ui';
-	import { initializeTheme } from '~/lib/theme';
+	import { IconButton, ExternalLinkIcon, Toasts, Footer, initializeTheme } from '@yd/ui';
 	import { openWebsite } from '~/lib/website';
 	import config from '~/lib/config';
 

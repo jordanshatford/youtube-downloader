@@ -1,6 +1,5 @@
 <script lang="ts">
-	import { IconButton, ExternalLinkIcon, GearIcon } from '@yd/ui';
-	import { initializeTheme } from '~/lib/theme';
+	import { IconButton, ExternalLinkIcon, GearIcon, initializeTheme } from '@yd/ui';
 	import { openWebsite } from '~/lib/website';
 	import { getContextService } from '~/lib/context-service';
 	import PopupError from '~/lib/components/PopupError.svelte';

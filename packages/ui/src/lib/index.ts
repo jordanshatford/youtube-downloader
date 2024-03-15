@@ -1,8 +1,8 @@
 // Component exports
 export { NavBar } from './components/nav';
-export { ThemeToggle, theme } from './components/theme';
-export { Toast, Toasts, toast } from './components/toast';
-export { Title } from './components/typography';
+export * from './components/theme';
+export * from './components/toast';
+export * from './components/typography';
 export { default as ActionIcon } from './components/ActionIcon.svelte';
 export { default as Alert, type AlertVariants } from './components/Alert.svelte';
 export { default as Badge, type BadgeVariants } from './components/Badge.svelte';
