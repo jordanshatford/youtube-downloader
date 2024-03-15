@@ -53,11 +53,23 @@ export function createContextStore(initial: Ctx) {
 		const cb4 = onMessage('DownloadDone', (message) => {
 			handleUpdate(message.data);
 		});
+		const cb5 = onMessage('DownloadRemove', (message) => {
+			store.update((state) => {
+				if (message.data in state.downloads) {
+					delete state.downloads[message.data];
+				}
+				if (state.currentDownload?.video.id === message.data) {
+					state.currentDownload = undefined;
+				}
+				return state;
+			});
+		});
 		return () => {
 			cb1();
 			cb2();
 			cb3();
 			cb4();
+			cb5();
 		};
 	}
 
@@ -68,6 +80,21 @@ export function createContextStore(initial: Ctx) {
 		}
 		const service = getContextService();
 		await service.download(video);
+	}
+
+	async function getFile(id: string): Promise<void> {
+		const service = getContextService();
+		await service.getFile(id);
+	}
+
+	async function remove(id: string): Promise<void> {
+		const service = getContextService();
+		await service.remove(id);
+	}
+
+	async function restart(id: string) {
+		const service = getContextService();
+		await service.restart(id);
 	}
 
 	async function handleUpdate(download: Download) {
@@ -86,6 +113,9 @@ export function createContextStore(initial: Ctx) {
 		subscribe: store.subscribe,
 		onMount,
 		download,
+		getFile,
+		remove,
+		restart,
 		reset: () => store.set(initial)
 	};
 }

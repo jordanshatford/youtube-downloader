@@ -18,7 +18,7 @@
 	}
 </script>
 
-<div class="max-h-[600px] min-h-[570px] w-[320px] overflow-scroll bg-white dark:bg-zinc-900">
+<div class="max-h-[600px] min-h-[540px] w-[320px] overflow-scroll bg-white dark:bg-zinc-900">
 	<div class="align-start flex h-screen flex-col items-start justify-start space-y-2 pt-5">
 		<!-- Header of the popup -->
 		<div class="flex w-full items-center justify-between px-5">

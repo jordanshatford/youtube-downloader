@@ -179,6 +179,35 @@ class ContextService {
 		await this.download(video);
 	}
 
+	public async getFile(id: string): Promise<void> {
+		if (!(id in this.#downloads)) return;
+
+		const blob = await DownloadsService.getDownloadFile(id);
+		const download = this.#downloads[id];
+		const filename = `${download.video.title} - ${download.video.channel.name}.${download.options.format}`;
+		try {
+			await saveAs(blob, filename);
+		} catch (e) {
+			console.error(`Failed to save download file for ${download.video.title}: `, e);
+		}
+	}
+
+	public async remove(id: string): Promise<void> {
+		if (!(id in this.#downloads)) return;
+		await this.#ensureSession();
+		await DownloadsService.deleteDownload(id);
+		delete this.#downloads[id];
+		sendMessageIgnoreReturn('DownloadRemove', id);
+	}
+
+	public async restart(id: string): Promise<void> {
+		if (!(id in this.#downloads)) return;
+		const download = this.#downloads[id];
+		const result = await DownloadsService.putDownloads(download);
+		this.#downloads[download.video.id] = result;
+		await sendMessageIgnoreReturn('StatusUpdate', result);
+	}
+
 	/**
 	 * Ensure that the user has a session that is valid. This updates the private session variable.
 	 */
@@ -211,14 +240,8 @@ class ContextService {
 				await sendMessageIgnoreReturn('StatusUpdate', value);
 				// If download is DONE, get the file and save to users computer.
 				if (value.status.state === DownloadState.DONE) {
-					const blob = await DownloadsService.getDownloadFile(value.video.id);
-					const filename = `${value.video.title} - ${value.video.channel.name}.${value.options.format}`;
-					try {
-						await saveAs(blob, filename);
-						await sendMessageIgnoreReturn('DownloadDone', value);
-					} catch (e) {
-						console.error(`Failed to save download file for ${value.video.title}: `, e);
-					}
+					await sendMessageIgnoreReturn('DownloadDone', value);
+					await this.getFile(value.video.id);
 				}
 			});
 		}

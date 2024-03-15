@@ -1,10 +1,13 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
-	import { Card, Button, Badge } from '@yd/ui';
+	import { Card, Button, Badge, IconButton, PlusIcon } from '@yd/ui';
 	import type { Ctx } from '~/lib/context-service';
+	import StateIcon from '~/lib/components/StateIcon.svelte';
 	import StatusBadge from '~/lib/components/StatusBadge.svelte';
 	import { createContextStore } from '~/lib/stores/context';
 	import PopupError from '~/lib/components/PopupError.svelte';
+	import DownloadActions from '~/lib/components/DownloadActions.svelte';
+	import { DownloadState } from '@yd/client';
 
 	export let ctx: Ctx;
 
@@ -34,6 +37,15 @@
 					{$store.video?.channel.name}
 				</p>
 			</div>
+			{#if !$store.currentDownload}
+				<IconButton
+					on:click={async () => await store.download()}
+					src={PlusIcon}
+					class="h-8 w-8 p-1 text-black hover:text-brand-600 dark:text-white dark:hover:text-brand-600"
+				/>
+			{:else}
+				<StateIcon state={$store.currentDownload.status.state} />
+			{/if}
 		</footer>
 	</Card>
 	<Card>
@@ -45,13 +57,19 @@
 			<Badge icon={false} variant={options.embed_subtitles ? 'success' : 'error'}>Subtitles</Badge>
 		</div>
 	</Card>
-	{#if $store.currentDownload}
-		<StatusBadge status={$store.currentDownload.status} />
-	{:else}
-		<Button disabled={$store.video === undefined} on:click={async () => await store.download()}>
-			Download
-		</Button>
-	{/if}
+	<div class="flex max-w-full flex-wrap justify-center gap-2 p-2">
+		{#if $store.currentDownload}
+			{#if [DownloadState.DONE, DownloadState.ERROR].includes($store.currentDownload.status.state)}
+				<DownloadActions download={$store.currentDownload} {store} />
+			{:else}
+				<StatusBadge status={$store.currentDownload.status} />
+			{/if}
+		{:else}
+			<Button disabled={$store.video === undefined} on:click={async () => await store.download()}>
+				Download
+			</Button>
+		{/if}
+	</div>
 {:else}
 	<PopupError message="Page does not contain a valid YouTube video." />
 {/if}

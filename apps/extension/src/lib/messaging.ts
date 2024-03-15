@@ -20,6 +20,8 @@ interface MessagingMap {
 	StatusUpdate: (update: Download) => void;
 	// Called when a download has been completed and file is on computer.
 	DownloadDone: (download: Download) => void;
+	// Called when a download was removed.
+	DownloadRemove: (id: string) => void;
 }
 
 export const { sendMessage, onMessage } = defineExtensionMessaging<MessagingMap>();
