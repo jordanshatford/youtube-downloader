@@ -1,5 +1,18 @@
 # @yd/extension
 
+## 0.3.0
+
+### Minor Changes
+
+- feat: move initialize theme function to ui package ([`22f2617dd69fb1514d2ceb64251261a2d7b4365b`](https://github.com/jordanshatford/youtube-downloader/commit/22f2617dd69fb1514d2ceb64251261a2d7b4365b))
+
+- feat: add ability to restart, delete, and get download in popup (closes: 198) ([`715dc85292f8fc9d4fb1ead3d398c0987b832da8`](https://github.com/jordanshatford/youtube-downloader/commit/715dc85292f8fc9d4fb1ead3d398c0987b832da8))
+
+### Patch Changes
+
+- Updated dependencies [[`22f2617dd69fb1514d2ceb64251261a2d7b4365b`](https://github.com/jordanshatford/youtube-downloader/commit/22f2617dd69fb1514d2ceb64251261a2d7b4365b)]:
+  - @yd/ui@1.1.0
+
 ## 0.2.0
 
 ### Minor Changes
