@@ -1,11 +1,5 @@
 import { writable, get } from 'svelte/store';
-import {
-	DownloadsService,
-	DownloadsStatusService,
-	DownloadState,
-	type Video,
-	type Download
-} from '@yd/client';
+import { DownloadsService, DownloadsStatusService, type Video, type Download } from '@yd/client';
 import { toast } from '@yd/ui';
 import { settings, userSettings } from '$lib/stores/settings';
 import { saveAs } from '$lib/utils/files';
@@ -31,7 +25,7 @@ function createDownloadsStore() {
 
 		const download: Download = {
 			video,
-			status: { state: DownloadState.WAITING, progress: null },
+			status: { state: 'WAITING', progress: null },
 			options: get(settings)
 		};
 
@@ -93,7 +87,7 @@ function createDownloadsStore() {
 	function handleError(downloadId: string, msg: string, error: unknown) {
 		toast.error('Error', msg);
 		console.error(msg, error);
-		updateDownload(downloadId, { status: { state: DownloadState.ERROR, progress: null } });
+		updateDownload(downloadId, { status: { state: 'ERROR', progress: null } });
 	}
 
 	function updateDownload(id: string, updatedValue: Partial<Download>) {
@@ -105,7 +99,7 @@ function createDownloadsStore() {
 				state[id] = value;
 				// Automatically download file if enabled by the user.
 				if (get(userSettings).autoDownloadOnComplete) {
-					if (updatedValue.status?.state === DownloadState.DONE) {
+					if (updatedValue.status?.state === 'DONE') {
 						getFile(value.video.id);
 					}
 				}

@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { DownloadState, type DownloadStatus } from '@yd/client';
+	import type { DownloadStatus, DownloadState } from '@yd/client';
 	import { Badge, type BadgeVariants, ProgressBar } from '@yd/ui';
 
 	export let status: DownloadStatus;
@@ -14,22 +14,22 @@
 	};
 
 	const lookup: Record<DownloadState, BadgeVariants> = {
-		[DownloadState.WAITING]: {
+		WAITING: {
 			variant: 'warning',
 			loading: true
 		},
-		[DownloadState.DOWNLOADING]: {
+		DOWNLOADING: {
 			variant: 'info',
 			loading: true
 		},
-		[DownloadState.PROCESSING]: {
+		PROCESSING: {
 			variant: 'info',
 			loading: true
 		},
-		[DownloadState.ERROR]: {
+		ERROR: {
 			variant: 'error'
 		},
-		[DownloadState.DONE]: {
+		DONE: {
 			variant: 'success'
 		}
 	};

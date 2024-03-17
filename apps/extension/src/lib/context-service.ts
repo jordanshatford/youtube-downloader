@@ -9,7 +9,6 @@ import {
 	DownloadOptions,
 	SessionService,
 	SearchService,
-	DownloadState,
 	DownloadsService,
 	DownloadsStatusService
 } from '@yd/client';
@@ -151,11 +150,11 @@ class ContextService {
 		await this.#ensureSession();
 
 		// Make download based on current video.
-		const download = {
+		const download: Download = {
 			video,
 			options: get(settings),
 			status: {
-				state: DownloadState.WAITING,
+				state: 'WAITING',
 				progress: null
 			}
 		};
@@ -239,7 +238,7 @@ class ContextService {
 				this.#downloads[value.video.id] = value;
 				await sendMessageIgnoreReturn('StatusUpdate', value);
 				// If download is DONE, get the file and save to users computer.
-				if (value.status.state === DownloadState.DONE) {
+				if (value.status.state === 'DONE') {
 					await sendMessageIgnoreReturn('DownloadDone', value);
 					await this.getFile(value.video.id);
 				}

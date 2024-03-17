@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { DownloadState } from '@yd/client';
+	import type { DownloadState } from '@yd/client';
 	import {
 		CheckCircleIcon,
 		LoaderIcon,
@@ -11,23 +11,23 @@
 	export let state: DownloadState;
 
 	const lookup: Record<DownloadState, { icon: IconSource; class: string }> = {
-		[DownloadState.WAITING]: {
+		WAITING: {
 			icon: LoaderIcon,
 			class: 'bg-yellow-100 text-yellow-700 dark:bg-yellow-700 dark:text-yellow-100 animate-spin'
 		},
-		[DownloadState.DOWNLOADING]: {
+		DOWNLOADING: {
 			icon: LoaderIcon,
 			class: 'bg-blue-100 text-blue-700 dark:bg-blue-700 dark:text-blue-100 animate-spin'
 		},
-		[DownloadState.PROCESSING]: {
+		PROCESSING: {
 			icon: LoaderIcon,
 			class: 'bg-blue-100 text-blue-700 dark:bg-blue-700 dark:text-blue-100 animate-spin'
 		},
-		[DownloadState.ERROR]: {
+		ERROR: {
 			icon: ExclamationCircleIcon,
 			class: 'bg-red-100 text-red-700 dark:bg-red-700 dark:text-red-100'
 		},
-		[DownloadState.DONE]: {
+		DONE: {
 			icon: CheckCircleIcon,
 			class: 'bg-emerald-100 text-emerald-700 dark:bg-emerald-700 dark:text-emerald-100'
 		}

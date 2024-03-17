@@ -1,9 +1,9 @@
 import { writable } from 'svelte/store';
 import {
-	AudioFormat,
-	DownloadQuality,
+	AudioFormatEnum,
+	DownloadQualityEnum,
+	VideoFormatEnum,
 	type DownloadOptions,
-	VideoFormat,
 	DEFAULT_DOWNLOAD_OPTIONS
 } from '@yd/client';
 import { browser } from '$app/environment';
@@ -18,12 +18,15 @@ function createSettingsStore() {
 
 		if (data !== null) {
 			const parsedData = JSON.parse(data) as DownloadOptions;
-			const supportedFormats = [...Object.values(AudioFormat), ...Object.values(VideoFormat)];
+			const supportedFormats = [
+				...Object.values(AudioFormatEnum),
+				...Object.values(VideoFormatEnum)
+			];
 			// Make sure a value is set, if nothing is set use the default
 			if (!supportedFormats.includes(parsedData.format)) {
 				parsedData.format = DEFAULT_DOWNLOAD_OPTIONS.format;
 			}
-			if (!Object.values(DownloadQuality).includes(parsedData.quality)) {
+			if (!Object.values(DownloadQualityEnum).includes(parsedData.quality)) {
 				parsedData.quality = DEFAULT_DOWNLOAD_OPTIONS.quality;
 			}
 			if (parsedData.embed_metadata === undefined) {

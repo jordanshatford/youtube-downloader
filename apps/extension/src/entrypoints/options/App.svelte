@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { AudioFormat, DownloadQuality, VideoFormat } from '@yd/client';
+	import { AudioFormatEnum, DownloadQualityEnum, VideoFormatEnum } from '@yd/client';
 	import {
 		Alert,
 		toast,
@@ -33,11 +33,11 @@
 	const formatGroups = [
 		{
 			text: 'Audio',
-			options: toSelectOptions(AudioFormat)
+			options: toSelectOptions(AudioFormatEnum)
 		},
 		{
 			text: 'Video',
-			options: toSelectOptions(VideoFormat)
+			options: toSelectOptions(VideoFormatEnum)
 		}
 	];
 </script>
@@ -66,7 +66,7 @@
 							label="Quality:"
 							helpText="The preferred quality for the download."
 							bind:value={$settings.quality}
-							options={toSelectOptions(DownloadQuality)}
+							options={toSelectOptions(DownloadQualityEnum)}
 							on:change={() => toast.success('Updated', 'Quality settings updated successfully.')}
 						/>
 					</div>

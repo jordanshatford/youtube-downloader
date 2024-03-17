@@ -59,7 +59,7 @@
 	</Card>
 	<div class="flex max-w-full flex-wrap justify-center gap-2 p-2">
 		{#if $store.currentDownload}
-			{#if [DownloadState.DONE, DownloadState.ERROR].includes($store.currentDownload.status.state)}
+			{#if ['DONE', 'ERROR'].includes($store.currentDownload.status.state)}
 				<DownloadActions download={$store.currentDownload} {store} />
 			{:else}
 				<StatusBadge status={$store.currentDownload.status} />
