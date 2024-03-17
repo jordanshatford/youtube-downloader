@@ -1,8 +1,6 @@
-/* generated using openapi-typescript-codegen -- do not edit */
-/* istanbul ignore file */
-/* tslint:disable */
-/* eslint-disable */
-export enum DownloadQuality {
-  BEST = 'best',
-  WORST = 'worst',
-}
+export type DownloadQuality = 'best' | 'worst';
+
+export const DownloadQualityEnum = {
+	BEST: 'best',
+	WORST: 'worst'
+} as const;

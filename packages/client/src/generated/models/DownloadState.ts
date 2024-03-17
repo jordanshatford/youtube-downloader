@@ -1,11 +1,9 @@
-/* generated using openapi-typescript-codegen -- do not edit */
-/* istanbul ignore file */
-/* tslint:disable */
-/* eslint-disable */
-export enum DownloadState {
-  WAITING = 'WAITING',
-  DOWNLOADING = 'DOWNLOADING',
-  PROCESSING = 'PROCESSING',
-  DONE = 'DONE',
-  ERROR = 'ERROR',
-}
+export type DownloadState = 'WAITING' | 'DOWNLOADING' | 'PROCESSING' | 'DONE' | 'ERROR';
+
+export const DownloadStateEnum = {
+	WAITING: 'WAITING',
+	DOWNLOADING: 'DOWNLOADING',
+	PROCESSING: 'PROCESSING',
+	DONE: 'DONE',
+	ERROR: 'ERROR'
+} as const;

@@ -1,12 +1,10 @@
-/* generated using openapi-typescript-codegen -- do not edit */
-/* istanbul ignore file */
-/* tslint:disable */
-/* eslint-disable */
-export enum VideoFormat {
-  AVI = 'avi',
-  FLV = 'flv',
-  MKV = 'mkv',
-  MOV = 'mov',
-  MP4 = 'mp4',
-  WEBM = 'webm',
-}
+export type VideoFormat = 'avi' | 'flv' | 'mkv' | 'mov' | 'mp4' | 'webm';
+
+export const VideoFormatEnum = {
+	AVI: 'avi',
+	FLV: 'flv',
+	MKV: 'mkv',
+	MOV: 'mov',
+	MP4: 'mp4',
+	WEBM: 'webm'
+} as const;
