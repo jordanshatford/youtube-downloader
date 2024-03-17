@@ -7,7 +7,6 @@
 	import { createContextStore } from '~/lib/stores/context';
 	import PopupError from '~/lib/components/PopupError.svelte';
 	import DownloadActions from '~/lib/components/DownloadActions.svelte';
-	import { DownloadState } from '@yd/client';
 
 	export let ctx: Ctx;
 
