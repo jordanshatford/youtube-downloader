@@ -7,13 +7,14 @@
 	"scripts": {
 		"build": "tsc --project tsconfig.json",
 		"check": "tsc --project tsconfig.json --noEmit",
-		"generate": "openapi --input ../../apps/api/openapi.json --output ./src/generated --client fetch --indent 2 && git apply ./patches/*.patch",
+		"generate": "openapi -i ../../apps/api/openapi.json -o ./src/generated --client fetch --enums && git apply ./patches/*.patch",
 		"lint": "prettier --check . && eslint .",
 		"format": "prettier --write ."
 	},
 	"devDependencies": {
-		"@nicolas-chaulet/openapi-typescript-codegen": "^0.27.21",
+		"@nicolas-chaulet/openapi-typescript-codegen": "^0.27.28",
 		"@yd/config": "workspace:*",
+		"prettier": "^3.2.5",
 		"typescript": "^5.4.2"
 	}
 }
