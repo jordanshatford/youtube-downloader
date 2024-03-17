@@ -1,31 +1,18 @@
-From f27b638d39a17de862f60d488f3b29407401dded Mon Sep 17 00:00:00 2001
-From: Jordan Shatford <jordanshatford@live.com>
-Date: Sun, 3 Sep 2023 16:53:36 +1000
-Subject: [PATCH] fix(client): blob return type support
-
-Signed-off-by: Jordan Shatford <jordanshatford@live.com>
----
- packages/client/src/generated/core/request.ts | 4 ++++
- 1 file changed, 4 insertions(+)
-
 diff --git a/packages/client/src/generated/core/request.ts b/packages/client/src/generated/core/request.ts
-index 115f664..0b7472f 100644
+index ee4aea4..f5aecff 100644
 --- a/packages/client/src/generated/core/request.ts
 +++ b/packages/client/src/generated/core/request.ts
-@@ -233,9 +233,13 @@ export const getResponseBody = async (response: Response): Promise<any> => {
-       const contentType = response.headers.get('Content-Type');
-       if (contentType) {
-         const jsonTypes = ['application/json', 'application/problem+json']
-+        const binaryTypes = ['audio/', 'video/']
-         const isJSON = jsonTypes.some(type => contentType.toLowerCase().startsWith(type));
-+        const isBinary = binaryTypes.some(type => contentType.toLowerCase().startsWith(type));
-         if (isJSON) {
-           return await response.json();
-+        } else if (isBinary) {
-+          return await response.blob();
-         } else {
-           return await response.text();
-         }
--- 
-2.39.2 (Apple Git-143)
-
+@@ -239,9 +239,13 @@ export const getResponseBody = async (response: Response): Promise<any> => {
+ 			const contentType = response.headers.get('Content-Type');
+ 			if (contentType) {
+ 				const jsonTypes = ['application/json', 'application/problem+json'];
++				const binaryTypes = ['audio/', 'image/', 'video/'];
+ 				const isJSON = jsonTypes.some((type) => contentType.toLowerCase().startsWith(type));
++				const isBinary = binaryTypes.some((type) => contentType.toLowerCase().startsWith(type));
+ 				if (isJSON) {
+ 					return await response.json();
++				} else if (isBinary) {
++					return await response.blob();
+ 				} else {
+ 					return await response.text();
+ 				}
