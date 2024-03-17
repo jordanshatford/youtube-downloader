@@ -130,8 +130,8 @@ importers:
   packages/client:
     devDependencies:
       '@nicolas-chaulet/openapi-typescript-codegen':
-        specifier: ^0.27.28
-        version: 0.27.28
+        specifier: ^0.27.29
+        version: 0.27.29
       '@yd/config':
         specifier: workspace:*
         version: link:../config
@@ -1016,8 +1016,8 @@ packages:
       read-yaml-file: 1.1.0
     dev: true
 
-  /@nicolas-chaulet/openapi-typescript-codegen@0.27.28:
-    resolution: {integrity: sha512-ZvlPIk47F5GyuYHWAg0tDOx/pVLqfUrVW/q34FALjYvMQ5PTShV2gWshV9VCrvA6VjcKGH84/hAPGyvW3yOekQ==}
+  /@nicolas-chaulet/openapi-typescript-codegen@0.27.29:
+    resolution: {integrity: sha512-v8bJN4EDlsDehCxYTwNsnLwcMKURDZVYMj0X0aDhpXK+DoLRdZVv/rlqLHSXaz44cbsEfKJiTAQJPq2QSziTKA==}
     hasBin: true
     dependencies:
       '@apidevtools/json-schema-ref-parser': 11.5.4
