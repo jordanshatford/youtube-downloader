@@ -1,5 +1,13 @@
 # @yd/client
 
+## 1.1.0
+
+### Minor Changes
+
+- feat: regenerate with version 0.27.29 of openapi-typescript-codegen ([`64d54a9b2416e07a9c9ed84b8feadec7d425f52e`](https://github.com/jordanshatford/youtube-downloader/commit/64d54a9b2416e07a9c9ed84b8feadec7d425f52e))
+
+- feat: remove blob support patch that was upstreamed ([`64d54a9b2416e07a9c9ed84b8feadec7d425f52e`](https://github.com/jordanshatford/youtube-downloader/commit/64d54a9b2416e07a9c9ed84b8feadec7d425f52e))
+
 ## 1.0.0
 
 ### Major Changes
