@@ -5,16 +5,17 @@ import { CancelablePromise } from './CancelablePromise';
 import type { OnCancel } from './CancelablePromise';
 import type { OpenAPIConfig } from './OpenAPI';
 
-export const isString = (value: any): value is string => {
+export const isString = (value: unknown): value is string => {
 	return typeof value === 'string';
 };
 
-export const isStringWithValue = (value: any): value is string => {
+export const isStringWithValue = (value: unknown): value is string => {
 	return isString(value) && value !== '';
 };
 
 export const isBlob = (value: any): value is Blob => {
 	return (
+		value !== null &&
 		typeof value === 'object' &&
 		typeof value.type === 'string' &&
 		typeof value.stream === 'function' &&
@@ -22,11 +23,12 @@ export const isBlob = (value: any): value is Blob => {
 		typeof value.constructor === 'function' &&
 		typeof value.constructor.name === 'string' &&
 		/^(Blob|File)$/.test(value.constructor.name) &&
+		// @ts-ignore
 		/^(Blob|File)$/.test(value[Symbol.toStringTag])
 	);
 };
 
-export const isFormData = (value: any): value is FormData => {
+export const isFormData = (value: unknown): value is FormData => {
 	return value instanceof FormData;
 };
 
@@ -39,14 +41,14 @@ export const base64 = (str: string): string => {
 	}
 };
 
-export const getQueryString = (params: Record<string, any>): string => {
+export const getQueryString = (params: Record<string, unknown>): string => {
 	const qs: string[] = [];
 
-	const append = (key: string, value: any) => {
+	const append = (key: string, value: unknown) => {
 		qs.push(`${encodeURIComponent(key)}=${encodeURIComponent(String(value))}`);
 	};
 
-	const process = (key: string, value: any) => {
+	const process = (key: string, value: unknown) => {
 		if (value) {
 			if (Array.isArray(value)) {
 				value.forEach((v) => {
@@ -180,7 +182,7 @@ export const getHeaders = async (
 	return new Headers(headers);
 };
 
-export const getRequestBody = (options: ApiRequestOptions): any => {
+export const getRequestBody = (options: ApiRequestOptions): unknown => {
 	if (options.body !== undefined) {
 		if (options.mediaType?.includes('/json')) {
 			return JSON.stringify(options.body);
@@ -233,7 +235,7 @@ export const getResponseHeader = (
 	return undefined;
 };
 
-export const getResponseBody = async (response: Response): Promise<any> => {
+export const getResponseBody = async (response: Response): Promise<unknown> => {
 	if (response.status !== 204) {
 		try {
 			const contentType = response.headers.get('Content-Type');
