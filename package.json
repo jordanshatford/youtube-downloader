@@ -18,12 +18,13 @@
     "lint": "pnpm --recursive lint",
     "format": "pnpm --recursive format",
     "check": "pnpm --recursive check",
+		"deps:update": "pnpm --recursive up --latest && pnpm --filter @yd/api pre-commit:autoupdate",
     "commitlint": "commitlint --edit",
     "changeset": "changeset"
   },
   "devDependencies": {
     "@changesets/cli": "^2.27.1",
-    "@commitlint/cli": "^19.2.0",
+    "@commitlint/cli": "^19.2.1",
     "@commitlint/config-conventional": "^19.1.0",
     "@commitlint/types": "^19.0.3",
     "@svitejs/changesets-changelog-github-compact": "^1.1.0",

@@ -1,4 +1,4 @@
-/** @type {import('@nicolas-chaulet/openapi-typescript-codegen').Config} */
+/** @type {import('@nicolas-chaulet/openapi-typescript-codegen').UserConfig} */
 module.exports = {
 	input: require('@yd/api'),
 	output: './src/generated',
