@@ -3,5 +3,6 @@ module.exports = {
 	input: require('@yd/api'),
 	output: './src/generated',
 	client: 'fetch',
-	enums: true
+	enums: true,
+	exportSchemas: false
 };

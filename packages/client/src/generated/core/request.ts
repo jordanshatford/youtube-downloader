@@ -48,31 +48,23 @@ export const getQueryString = (params: Record<string, unknown>): string => {
 		qs.push(`${encodeURIComponent(key)}=${encodeURIComponent(String(value))}`);
 	};
 
-	const process = (key: string, value: unknown) => {
-		if (value) {
-			if (Array.isArray(value)) {
-				value.forEach((v) => {
-					process(key, v);
-				});
-			} else if (typeof value === 'object') {
-				Object.entries(value).forEach(([k, v]) => {
-					process(`${key}[${k}]`, v);
-				});
-			} else {
-				append(key, value);
-			}
+	const encodePair = (key: string, value: unknown) => {
+		if (value === undefined || value === null) {
+			return;
+		}
+
+		if (Array.isArray(value)) {
+			value.forEach((v) => encodePair(key, v));
+		} else if (typeof value === 'object') {
+			Object.entries(value).forEach(([k, v]) => encodePair(`${key}[${k}]`, v));
+		} else {
+			append(key, value);
 		}
 	};
 
-	Object.entries(params).forEach(([key, value]) => {
-		process(key, value);
-	});
+	Object.entries(params).forEach(([key, value]) => encodePair(key, value));
 
-	if (qs.length > 0) {
-		return `?${qs.join('&')}`;
-	}
-
-	return '';
+	return qs.length ? `?${qs.join('&')}` : '';
 };
 
 const getUrl = (config: OpenAPIConfig, options: ApiRequestOptions): string => {
@@ -87,11 +79,8 @@ const getUrl = (config: OpenAPIConfig, options: ApiRequestOptions): string => {
 			return substring;
 		});
 
-	const url = `${config.BASE}${path}`;
-	if (options.query) {
-		return `${url}${getQueryString(options.query)}`;
-	}
-	return url;
+	const url = config.BASE + path;
+	return options.query ? url + getQueryString(options.query) : url;
 };
 
 export const getFormData = (options: ApiRequestOptions): FormData | undefined => {
@@ -107,7 +96,7 @@ export const getFormData = (options: ApiRequestOptions): FormData | undefined =>
 		};
 
 		Object.entries(options.formData)
-			.filter(([_, value]) => value)
+			.filter(([_, value]) => value !== undefined && value !== null)
 			.forEach(([key, value]) => {
 				if (Array.isArray(value)) {
 					value.forEach((v) => process(key, v));
@@ -149,7 +138,7 @@ export const getHeaders = async (
 		...additionalHeaders,
 		...options.headers
 	})
-		.filter(([_, value]) => value)
+		.filter(([_, value]) => value !== undefined && value !== null)
 		.reduce(
 			(headers, [key, value]) => ({
 				...headers,
