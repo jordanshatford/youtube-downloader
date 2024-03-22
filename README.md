@@ -59,6 +59,6 @@ Please refer to the [contributing guide](CONTRIBUTING.md) for how to install the
 - `web`: A web application developed in [SvelteKit](https://kit.svelte.dev/).
 
 ### Packages:
-- `client`: A TypeScript API client generated from the OpenAPI specification for the API using [OpenAPI TypeScript Codegen](https://github.com/nicolas-chaulet/openapi-typescript-codegen).
+- `client`: A TypeScript API client generated from the OpenAPI specification for the API using [openapi-ts](https://github.com/hey-api/openapi-ts).
 - `config`: Common configs shared between other packages and apps in the monorepo.
 - `ui`: A UI library used by the project developed in [Svelte](https://svelte.dev/).

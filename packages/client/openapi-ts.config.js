@@ -1,9 +1,8 @@
-/** @type {import('@nicolas-chaulet/openapi-typescript-codegen').UserConfig} */
+/** @type {import('@hey-api/openapi-ts').UserConfig} */
 module.exports = {
 	input: require('@yd/api'),
 	output: './src/generated',
 	client: 'fetch',
 	enums: true,
-	exportSchemas: false,
-	useOptions: true
+	exportSchemas: false
 };

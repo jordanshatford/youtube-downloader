@@ -129,9 +129,9 @@ importers:
 
   packages/client:
     devDependencies:
-      '@nicolas-chaulet/openapi-typescript-codegen':
-        specifier: ^0.27.36
-        version: 0.27.36
+      '@hey-api/openapi-ts':
+        specifier: ^0.27.38
+        version: 0.27.38
       '@yd/api':
         specifier: workspace:*
         version: link:../../apps/api
@@ -940,6 +940,17 @@ packages:
     engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
     dev: true
 
+  /@hey-api/openapi-ts@0.27.38:
+    resolution: {integrity: sha512-b3xO+SrJEQR9bP/ckvdWAlpvd+x8O1Y62zzBbYpchwYjIPgp2lLsZulLKOWE2EAIKFyI2JWIxiqS3RMsr78TdA==}
+    engines: {node: ^18.0.0 || >=20.0.0}
+    hasBin: true
+    dependencies:
+      '@apidevtools/json-schema-ref-parser': 11.5.4
+      camelcase: 8.0.0
+      commander: 12.0.0
+      handlebars: 4.7.8
+    dev: true
+
   /@humanwhocodes/config-array@0.11.14:
     resolution: {integrity: sha512-3T8LkOmg45BV5FICb15QQMsyUSWrQ8AygVfC7ZG32zOalnqrilm018ZVCw0eapXux8FtA33q8PSRSstjee3jSg==}
     engines: {node: '>=10.10.0'}
@@ -1018,17 +1029,6 @@ packages:
       fs-extra: 8.1.0
       globby: 11.1.0
       read-yaml-file: 1.1.0
-    dev: true
-
-  /@nicolas-chaulet/openapi-typescript-codegen@0.27.36:
-    resolution: {integrity: sha512-rX5o+NcI36ffqzBh+idBJsS7bFrEsX96EhOr4/U9I9JpDJa5xAHzrcV9YNJ9l+RsDa5u4SeppMrT5WrDIgy4jg==}
-    engines: {node: ^18.0.0 || >=20.0.0}
-    hasBin: true
-    dependencies:
-      '@apidevtools/json-schema-ref-parser': 11.5.4
-      camelcase: 8.0.0
-      commander: 12.0.0
-      handlebars: 4.7.8
     dev: true
 
   /@nodelib/fs.scandir@2.1.5:
