@@ -108,7 +108,7 @@ class ContextService {
 
 		// Fetch the video from the API and cache it.
 		try {
-			const video = await SearchService.getVideo(id);
+			const video = await SearchService.getVideo({ id });
 			this.#tabVideos[tab.url] = video;
 			this.#videoCache[id] = video;
 			await setContextMenus(video);
@@ -163,7 +163,7 @@ class ContextService {
 		this.#downloads[video.id] = download;
 
 		// Send the download to the API.
-		await DownloadsService.postDownloads(download);
+		await DownloadsService.postDownloads({ requestBody: download });
 		await sendMessageIgnoreReturn('DownloadStart', download);
 	}
 
@@ -181,7 +181,7 @@ class ContextService {
 	public async getFile(id: string): Promise<void> {
 		if (!(id in this.#downloads)) return;
 
-		const blob = await DownloadsService.getDownloadFile(id);
+		const blob = await DownloadsService.getDownloadFile({ downloadId: id });
 		const download = this.#downloads[id];
 		const filename = `${download.video.title} - ${download.video.channel.name}.${download.options.format}`;
 		try {
@@ -194,7 +194,7 @@ class ContextService {
 	public async remove(id: string): Promise<void> {
 		if (!(id in this.#downloads)) return;
 		await this.#ensureSession();
-		await DownloadsService.deleteDownload(id);
+		await DownloadsService.deleteDownload({ downloadId: id });
 		delete this.#downloads[id];
 		sendMessageIgnoreReturn('DownloadRemove', id);
 	}
@@ -202,7 +202,7 @@ class ContextService {
 	public async restart(id: string): Promise<void> {
 		if (!(id in this.#downloads)) return;
 		const download = this.#downloads[id];
-		const result = await DownloadsService.putDownloads(download);
+		const result = await DownloadsService.putDownloads({ requestBody: download });
 		this.#downloads[download.video.id] = result;
 		await sendMessageIgnoreReturn('StatusUpdate', result);
 	}
@@ -234,13 +234,15 @@ class ContextService {
 		}
 		// Create event source if one does not exist.
 		if (!this.#eventSource) {
-			this.#eventSource = await DownloadsStatusService.setup(async (value) => {
-				this.#downloads[value.video.id] = value;
-				await sendMessageIgnoreReturn('StatusUpdate', value);
-				// If download is DONE, get the file and save to users computer.
-				if (value.status.state === 'DONE') {
-					await sendMessageIgnoreReturn('DownloadDone', value);
-					await this.getFile(value.video.id);
+			this.#eventSource = await DownloadsStatusService.setup({
+				onMessage: async (value) => {
+					this.#downloads[value.video.id] = value;
+					await sendMessageIgnoreReturn('StatusUpdate', value);
+					// If download is DONE, get the file and save to users computer.
+					if (value.status.state === 'DONE') {
+						await sendMessageIgnoreReturn('DownloadDone', value);
+						await this.getFile(value.video.id);
+					}
 				}
 			});
 		}

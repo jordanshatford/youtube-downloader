@@ -10,8 +10,10 @@ function createDownloadsStore() {
 	const { subscribe, set, update } = DOWNLOADS;
 
 	function setupStatusListener() {
-		DownloadsStatusService.setup((download) => {
-			updateDownload(download.video.id, download);
+		DownloadsStatusService.setup({
+			onMessage: (download) => {
+				updateDownload(download.video.id, download);
+			}
 		});
 	}
 
@@ -36,7 +38,7 @@ function createDownloadsStore() {
 		});
 
 		try {
-			const result = await DownloadsService.postDownloads(download);
+			const result = await DownloadsService.postDownloads({ requestBody: download });
 			updateDownload(result.video.id, result);
 		} catch (err) {
 			handleError(download.video.id, `Failed to add '${video.title}' to downloads.`, err);
@@ -49,7 +51,7 @@ function createDownloadsStore() {
 		const download = get(DOWNLOADS)[id];
 
 		try {
-			const result = await DownloadsService.putDownloads(download);
+			const result = await DownloadsService.putDownloads({ requestBody: download });
 			updateDownload(result.video.id, result);
 		} catch (err) {
 			handleError(download.video.id, `Failed to restart '${download.video.title}' download.`, err);
@@ -60,7 +62,7 @@ function createDownloadsStore() {
 		if (!(id in get(DOWNLOADS))) return;
 
 		try {
-			await DownloadsService.deleteDownload(id);
+			await DownloadsService.deleteDownload({ downloadId: id });
 			toast.success('Deleted', 'Download removed successfully.');
 			update((state) => {
 				delete state[id];
@@ -75,7 +77,7 @@ function createDownloadsStore() {
 		if (!(id in get(DOWNLOADS))) return;
 
 		try {
-			const blob = await DownloadsService.getDownloadFile(id);
+			const blob = await DownloadsService.getDownloadFile({ downloadId: id });
 			const download = get(DOWNLOADS)[id];
 			const filename = `${download.video.title} - ${download.video.channel.name}.${download.options.format}`;
 			saveAs(blob, filename);

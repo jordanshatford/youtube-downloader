@@ -25,7 +25,7 @@ function createSearchStore() {
 		if (hasSearchChanged) {
 			let results: Video[] = [];
 			try {
-				results = await SearchService.getSearch(query);
+				results = await SearchService.getSearch({ query });
 				toast.success('Success', `Found ${results.length} search results.`);
 			} catch (err) {
 				toast.error('Error', 'Failed to get search results.');
