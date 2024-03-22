@@ -5,6 +5,22 @@ import type { CancelablePromise } from '../core/CancelablePromise';
 import { OpenAPI } from '../core/OpenAPI';
 import { request as __request } from '../core/request';
 
+export type TDataPutDownloads = {
+	requestBody: DownloadInput;
+};
+export type TDataPostDownloads = {
+	requestBody: DownloadInput;
+};
+export type TDataGetDownload = {
+	downloadId: string;
+};
+export type TDataDeleteDownload = {
+	downloadId: string;
+};
+export type TDataGetDownloadFile = {
+	downloadId: string;
+};
+
 export class DownloadsService {
 	/**
 	 * Get Downloads
@@ -23,11 +39,11 @@ export class DownloadsService {
 
 	/**
 	 * Put Downloads
-	 * @param requestBody
 	 * @returns Download Successful Response
 	 * @throws ApiError
 	 */
-	public static putDownloads(requestBody: DownloadInput): CancelablePromise<Download> {
+	public static putDownloads(data: TDataPutDownloads): CancelablePromise<Download> {
+		const { requestBody } = data;
 		return __request(OpenAPI, {
 			method: 'PUT',
 			url: '/downloads',
@@ -42,11 +58,11 @@ export class DownloadsService {
 
 	/**
 	 * Post Downloads
-	 * @param requestBody
 	 * @returns Download Successful Response
 	 * @throws ApiError
 	 */
-	public static postDownloads(requestBody: DownloadInput): CancelablePromise<Download> {
+	public static postDownloads(data: TDataPostDownloads): CancelablePromise<Download> {
+		const { requestBody } = data;
 		return __request(OpenAPI, {
 			method: 'POST',
 			url: '/downloads',
@@ -76,11 +92,11 @@ export class DownloadsService {
 
 	/**
 	 * Get Download
-	 * @param downloadId
 	 * @returns Download Successful Response
 	 * @throws ApiError
 	 */
-	public static getDownload(downloadId: string): CancelablePromise<Download> {
+	public static getDownload(data: TDataGetDownload): CancelablePromise<Download> {
+		const { downloadId } = data;
 		return __request(OpenAPI, {
 			method: 'GET',
 			url: '/downloads/{download_id}',
@@ -97,11 +113,11 @@ export class DownloadsService {
 
 	/**
 	 * Delete Download
-	 * @param downloadId
 	 * @returns void Successful Response
 	 * @throws ApiError
 	 */
-	public static deleteDownload(downloadId: string): CancelablePromise<void> {
+	public static deleteDownload(data: TDataDeleteDownload): CancelablePromise<void> {
+		const { downloadId } = data;
 		return __request(OpenAPI, {
 			method: 'DELETE',
 			url: '/downloads/{download_id}',
@@ -118,11 +134,11 @@ export class DownloadsService {
 
 	/**
 	 * Get Download File
-	 * @param downloadId
 	 * @returns binary Successful Response
 	 * @throws ApiError
 	 */
-	public static getDownloadFile(downloadId: string): CancelablePromise<Blob> {
+	public static getDownloadFile(data: TDataGetDownloadFile): CancelablePromise<Blob> {
+		const { downloadId } = data;
 		return __request(OpenAPI, {
 			method: 'GET',
 			url: '/downloads/{download_id}/file',

@@ -3,14 +3,21 @@ import type { CancelablePromise } from '../core/CancelablePromise';
 import { OpenAPI } from '../core/OpenAPI';
 import { request as __request } from '../core/request';
 
+export type TDataGetSearch = {
+	query: string;
+};
+export type TDataGetVideo = {
+	id: string;
+};
+
 export class SearchService {
 	/**
 	 * Get Search
-	 * @param query
 	 * @returns Video Successful Response
 	 * @throws ApiError
 	 */
-	public static getSearch(query: string): CancelablePromise<Array<Video>> {
+	public static getSearch(data: TDataGetSearch): CancelablePromise<Array<Video>> {
+		const { query } = data;
 		return __request(OpenAPI, {
 			method: 'GET',
 			url: '/search',
@@ -43,11 +50,11 @@ export class SearchService {
 
 	/**
 	 * Get Video
-	 * @param id
 	 * @returns Video Successful Response
 	 * @throws ApiError
 	 */
-	public static getVideo(id: string): CancelablePromise<Video> {
+	public static getVideo(data: TDataGetVideo): CancelablePromise<Video> {
+		const { id } = data;
 		return __request(OpenAPI, {
 			method: 'GET',
 			url: '/search/video',

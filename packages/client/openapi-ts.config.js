@@ -4,5 +4,6 @@ module.exports = {
 	output: './src/generated',
 	client: 'fetch',
 	enums: true,
-	exportSchemas: false
+	exportSchemas: false,
+	useOptions: true
 };
