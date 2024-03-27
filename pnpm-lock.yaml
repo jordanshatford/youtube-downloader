@@ -130,8 +130,8 @@ importers:
   packages/client:
     devDependencies:
       '@hey-api/openapi-ts':
-        specifier: ^0.28.0
-        version: 0.28.0
+        specifier: ^0.29.0
+        version: 0.29.0
       '@yd/api':
         specifier: workspace:*
         version: link:../../apps/api
@@ -1147,8 +1147,8 @@ packages:
     engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
     dev: true
 
-  /@hey-api/openapi-ts@0.28.0:
-    resolution: {integrity: sha512-x0+Fntm79U2fzxFelyb59zRZw/sleIEBX2V6h9g3idVp+Nqq5aOSQExnP7sWK7aKFc0uHqTejYrin3z86o8R2w==}
+  /@hey-api/openapi-ts@0.29.0:
+    resolution: {integrity: sha512-jIaVGaspEULrCZdQb+JfmAB4Bsopoi/8RySmC/dhgD59iEjZVIzuyGRlCJA6TWmIj+lRLmuTTn5wWQITn/TkDw==}
     engines: {node: ^18.0.0 || >=20.0.0}
     hasBin: true
     dependencies:
@@ -2078,7 +2078,7 @@ packages:
     hasBin: true
     dependencies:
       caniuse-lite: 1.0.30001600
-      electron-to-chromium: 1.4.716
+      electron-to-chromium: 1.4.717
       node-releases: 2.0.14
       update-browserslist-db: 1.0.13(browserslist@4.23.0)
     dev: true
@@ -2864,8 +2864,8 @@ packages:
   /eastasianwidth@0.2.0:
     resolution: {integrity: sha512-I88TYZWc9XiYHRQ4/3c5rjjfgkjhLyW2luGIheGERbNQ6OY7yTybanSpDXZa8y7VUP9YmDcYa+eyq4ca7iLqWA==}
 
-  /electron-to-chromium@1.4.716:
-    resolution: {integrity: sha512-t/MXMzFKQC3UfMDpw7V5wdB/UAB8dWx4hEsy+fpPYJWW3gqh3u5T1uXp6vR+H6dGCPBxkRo+YBcapBLvbGQHRw==}
+  /electron-to-chromium@1.4.717:
+    resolution: {integrity: sha512-6Fmg8QkkumNOwuZ/5mIbMU9WI3H2fmn5ajcVya64I5Yr5CcNmO7vcLt0Y7c96DCiMO5/9G+4sI2r6eEvdg1F7A==}
     dev: true
 
   /emoji-regex@10.3.0:
