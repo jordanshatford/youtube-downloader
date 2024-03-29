@@ -1,6 +1,4 @@
-import type { AvailableDownloadOptions } from '../models/AvailableDownloadOptions';
-import type { Download } from '../models/Download';
-import type { DownloadInput } from '../models/DownloadInput';
+import type { AvailableDownloadOptions, Download, DownloadInput } from '../models';
 import type { CancelablePromise } from '../core/CancelablePromise';
 import { OpenAPI } from '../core/OpenAPI';
 import { request as __request } from '../core/request';

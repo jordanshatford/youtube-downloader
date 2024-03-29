@@ -130,8 +130,8 @@ importers:
   packages/client:
     devDependencies:
       '@hey-api/openapi-ts':
-        specifier: ^0.30.0
-        version: 0.30.0
+        specifier: ^0.31.0
+        version: 0.31.0
       '@yd/api':
         specifier: workspace:*
         version: link:../../apps/api
@@ -1147,8 +1147,8 @@ packages:
     engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
     dev: true
 
-  /@hey-api/openapi-ts@0.30.0:
-    resolution: {integrity: sha512-zkY0MAQrNC7g7QttBCq5bkd0upxRdq0PVBgZjCp4LGbOZVVe7efddrh+lnyvX0NSkCbCMXNRreKSv2ZmyXI3qA==}
+  /@hey-api/openapi-ts@0.31.0:
+    resolution: {integrity: sha512-krKs7ypagEd7B4d+YJ+g/yd3acTGzUf/xtcRSFGlZq3lXcBdNPb48RqKANe0/oogxfmB4QDymokN2mdLZfmXyQ==}
     engines: {node: ^18.0.0 || >=20.0.0}
     hasBin: true
     dependencies:
