@@ -135,7 +135,7 @@ export class DownloadsService {
 	 * @returns binary Successful Response
 	 * @throws ApiError
 	 */
-	public static getDownloadFile(data: TDataGetDownloadFile): CancelablePromise<Blob> {
+	public static getDownloadFile(data: TDataGetDownloadFile): CancelablePromise<Blob | File> {
 		const { downloadId } = data;
 		return __request(OpenAPI, {
 			method: 'GET',
