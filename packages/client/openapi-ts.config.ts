@@ -1,5 +1,4 @@
-import { defineConfig } from "@hey-api/openapi-ts";
-// @ts-ignore
+import { defineConfig } from '@hey-api/openapi-ts';
 import input from '@yd/api';
 
 export default defineConfig({
