@@ -38,7 +38,9 @@ function createDownloadsStore() {
 		});
 
 		try {
-			const result = await DownloadsService.postDownloads({ requestBody: download });
+			const result = await DownloadsService.postDownloads({
+				requestBody: download
+			});
 			updateDownload(result.video.id, result);
 		} catch (err) {
 			handleError(download.video.id, `Failed to add '${video.title}' to downloads.`, err);
@@ -51,7 +53,9 @@ function createDownloadsStore() {
 		const download = get(DOWNLOADS)[id];
 
 		try {
-			const result = await DownloadsService.putDownloads({ requestBody: download });
+			const result = await DownloadsService.putDownloads({
+				requestBody: download
+			});
 			updateDownload(result.video.id, result);
 		} catch (err) {
 			handleError(download.video.id, `Failed to restart '${download.video.title}' download.`, err);

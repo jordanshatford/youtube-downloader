@@ -3,6 +3,7 @@
 	"private": true,
 	"version": "1.0.0",
 	"license": "MIT",
+	"type": "module",
 	"exports": {
 		"./eslint/typescript": "./eslint/typescript.js",
 		"./eslint/svelte": "./eslint/svelte.js",
@@ -11,21 +12,21 @@
 		"./tailwind": "./tailwind/base.js",
 		"./tsconfig": "./tsconfig/base.json"
 	},
-	"prettier": "./prettier/base",
 	"scripts": {
 		"lint": "prettier --check . && eslint .",
 		"format": "prettier --write ."
 	},
 	"devDependencies": {
 		"@tailwindcss/forms": "^0.5.7",
-		"@typescript-eslint/eslint-plugin": "^7.5.0",
-		"@typescript-eslint/parser": "^7.5.0",
 		"eslint": "^9.0.0",
 		"eslint-config-prettier": "^9.1.0",
 		"eslint-plugin-svelte": "^2.36.0",
+		"globals": "^15.0.0",
 		"prettier": "^3.2.5",
 		"prettier-plugin-svelte": "^3.2.2",
 		"prettier-plugin-tailwindcss": "^0.5.13",
-		"tailwindcss": "^3.4.3"
+		"svelte-eslint-parser": "^0.34.0",
+		"tailwindcss": "^3.4.3",
+		"typescript-eslint": "^7.5.0"
 	}
 }

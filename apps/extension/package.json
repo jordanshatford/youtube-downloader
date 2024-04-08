@@ -2,6 +2,8 @@
 	"name": "@yd/extension",
 	"private": true,
 	"version": "0.3.2",
+	"license": "MIT",
+	"type": "module",
 	"description": "YouTube Downloader browser extension.",
 	"author": "Jordan Shatford <jordanshatford@live.com>",
 	"scripts": {
@@ -15,7 +17,7 @@
 		"package:chrome": "wxt zip --browser chrome",
 		"package:firefox": "wxt zip --browser firefox",
 		"check": "svelte-check --tsconfig ./tsconfig.json",
-		"lint": "prettier --check . && eslint .",
+		"lint": "prettier --check . && eslint . --ignore-pattern '.{wxt,output}/*'",
 		"format": "prettier --write .",
 		"postinstall": "wxt prepare"
 	},
