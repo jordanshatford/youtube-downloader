@@ -1,4 +1,5 @@
 import colors from 'tailwindcss/colors';
+import forms from '@tailwindcss/forms';
 
 /** @type {import('tailwindcss').Config} */
 export default {
@@ -38,5 +39,5 @@ export default {
 			textColor: ['responsive', 'dark', 'group-hover', 'focus-within', 'hover', 'focus', 'disabled']
 		}
 	},
-	plugins: [require('@tailwindcss/forms')]
+	plugins: [forms]
 };

@@ -1,16 +1,29 @@
-/** @type {import('eslint').Linter.Config} */
-module.exports = {
-	extends: [require.resolve('./typescript.js'), 'plugin:svelte/recommended'],
-	parserOptions: {
-		extraFileExtensions: ['.svelte']
-	},
-	overrides: [
-		{
-			files: ['*.svelte'],
-			parser: 'svelte-eslint-parser',
+import globals from 'globals';
+import tseslint from 'typescript-eslint';
+import eslintPluginSvelte from 'eslint-plugin-svelte';
+import eslintTypeScript from './typescript.js';
+import svelte from 'svelte-eslint-parser';
+
+/** @type {import('eslint').Linter.FlatConfig[]} */
+export default tseslint.config(
+	...eslintTypeScript,
+	...eslintPluginSvelte.configs['flat/recommended'],
+	{
+		languageOptions: {
 			parserOptions: {
-				parser: '@typescript-eslint/parser'
+				extraFileExtensions: ['**/*.svelte']
 			}
 		}
-	]
-};
+	},
+	{
+		files: ['**/*.svelte'],
+		languageOptions: {
+			parser: svelte,
+			parserOptions: {
+				parser: tseslint.parser
+			}
+		}
+	}
+);
+
+export const webextensions = globals.webextensions;

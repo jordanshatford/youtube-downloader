@@ -1,4 +1,6 @@
+import preset from '@yd/config/tailwind';
+
 /** @type {import('tailwindcss').Config} */
 export default {
-	presets: [require('@yd/config/tailwind')]
+	presets: [preset]
 };
