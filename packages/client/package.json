@@ -12,10 +12,10 @@
 		"format": "prettier --write ."
 	},
 	"devDependencies": {
-		"@hey-api/openapi-ts": "^0.34.2",
+		"@hey-api/openapi-ts": "^0.35.0",
 		"@yd/api": "workspace:*",
 		"@yd/config": "workspace:*",
 		"prettier": "^3.2.5",
-		"typescript": "^5.4.3"
+		"typescript": "^5.4.4"
 	}
 }
