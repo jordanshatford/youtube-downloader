@@ -17,7 +17,7 @@
 		"package:chrome": "wxt zip --browser chrome",
 		"package:firefox": "wxt zip --browser firefox",
 		"check": "svelte-check --tsconfig ./tsconfig.json",
-		"lint": "prettier --check . && eslint . --ignore-pattern '.{wxt,output}/*'",
+		"lint": "prettier --check . && eslint .",
 		"format": "prettier --write .",
 		"postinstall": "wxt prepare"
 	},

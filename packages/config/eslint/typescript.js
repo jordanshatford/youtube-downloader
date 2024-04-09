@@ -5,6 +5,18 @@ import prettier from 'eslint-config-prettier';
 
 /** @type {import('eslint').Linter.FlatConfig[]} */
 export default tseslint.config(
+	{
+		ignores: [
+			'.DS_Store',
+			'node_modules/*',
+			'.env',
+			'.env.*',
+			'!.env.sample',
+			'pnpm-lock.yaml',
+			'package-lock.json',
+			'yarn.lock'
+		]
+	},
 	eslint.configs.recommended,
 	...tseslint.configs.recommended,
 	prettier,
@@ -19,16 +31,6 @@ export default tseslint.config(
 				sourceType: 'module',
 				ecmaVersion: 2020
 			}
-		},
-		ignores: [
-			'.DS_Store',
-			'node_modules/*',
-			'.env',
-			'.env.*',
-			'!.env.sample',
-			'pnpm-lock.yaml',
-			'package-lock.json',
-			'yarn.lock'
-		]
+		}
 	}
 );
