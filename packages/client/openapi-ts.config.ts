@@ -6,5 +6,5 @@ export default defineConfig({
 	output: './src/generated',
 	client: 'fetch',
 	enums: 'javascript',
-	exportSchemas: false
+	schemas: false
 });

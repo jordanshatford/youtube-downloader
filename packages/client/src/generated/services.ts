@@ -1,34 +1,7 @@
 import type { CancelablePromise } from './core/CancelablePromise';
 import { OpenAPI } from './core/OpenAPI';
 import { request as __request } from './core/request';
-import type { Video, Session, AvailableDownloadOptions, Download, DownloadInput } from './models';
-
-export type SearchData = {
-	GetSearch: {
-		query: string;
-	};
-	GetVideo: {
-		id: string;
-	};
-};
-
-export type DownloadsData = {
-	PutDownloads: {
-		requestBody: DownloadInput;
-	};
-	PostDownloads: {
-		requestBody: DownloadInput;
-	};
-	GetDownload: {
-		downloadId: string;
-	};
-	DeleteDownload: {
-		downloadId: string;
-	};
-	GetDownloadFile: {
-		downloadId: string;
-	};
-};
+import type { SearchData, SessionData, DownloadsData } from './models';
 
 export class SearchService {
 	/**
@@ -36,7 +9,9 @@ export class SearchService {
 	 * @returns Video Successful Response
 	 * @throws ApiError
 	 */
-	public static getSearch(data: SearchData['GetSearch']): CancelablePromise<Array<Video>> {
+	public static getSearch(
+		data: SearchData['payloads']['GetSearch']
+	): CancelablePromise<SearchData['responses']['GetSearch']> {
 		const { query } = data;
 		return __request(OpenAPI, {
 			method: 'GET',
@@ -57,7 +32,7 @@ export class SearchService {
 	 * @returns Video Successful Response
 	 * @throws ApiError
 	 */
-	public static getNextSearch(): CancelablePromise<Array<Video>> {
+	public static getNextSearch(): CancelablePromise<SearchData['responses']['GetNextSearch']> {
 		return __request(OpenAPI, {
 			method: 'GET',
 			url: '/search/next',
@@ -73,7 +48,9 @@ export class SearchService {
 	 * @returns Video Successful Response
 	 * @throws ApiError
 	 */
-	public static getVideo(data: SearchData['GetVideo']): CancelablePromise<Video> {
+	public static getVideo(
+		data: SearchData['payloads']['GetVideo']
+	): CancelablePromise<SearchData['responses']['GetVideo']> {
 		const { id } = data;
 		return __request(OpenAPI, {
 			method: 'GET',
@@ -96,7 +73,7 @@ export class SessionService {
 	 * @returns Session Successful Response
 	 * @throws ApiError
 	 */
-	public static getSession(): CancelablePromise<Session> {
+	public static getSession(): CancelablePromise<SessionData['responses']['GetSession']> {
 		return __request(OpenAPI, {
 			method: 'GET',
 			url: '/session'
@@ -108,7 +85,7 @@ export class SessionService {
 	 * @returns void Successful Response
 	 * @throws ApiError
 	 */
-	public static deleteSession(): CancelablePromise<void> {
+	public static deleteSession(): CancelablePromise<SessionData['responses']['DeleteSession']> {
 		return __request(OpenAPI, {
 			method: 'DELETE',
 			url: '/session',
@@ -123,7 +100,9 @@ export class SessionService {
 	 * @returns Session Successful Response
 	 * @throws ApiError
 	 */
-	public static getSessionValidate(): CancelablePromise<Session> {
+	public static getSessionValidate(): CancelablePromise<
+		SessionData['responses']['GetSessionValidate']
+	> {
 		return __request(OpenAPI, {
 			method: 'GET',
 			url: '/session/validate',
@@ -140,7 +119,7 @@ export class DownloadsService {
 	 * @returns Download Successful Response
 	 * @throws ApiError
 	 */
-	public static getDownloads(): CancelablePromise<Array<Download>> {
+	public static getDownloads(): CancelablePromise<DownloadsData['responses']['GetDownloads']> {
 		return __request(OpenAPI, {
 			method: 'GET',
 			url: '/downloads',
@@ -155,7 +134,9 @@ export class DownloadsService {
 	 * @returns Download Successful Response
 	 * @throws ApiError
 	 */
-	public static putDownloads(data: DownloadsData['PutDownloads']): CancelablePromise<Download> {
+	public static putDownloads(
+		data: DownloadsData['payloads']['PutDownloads']
+	): CancelablePromise<DownloadsData['responses']['PutDownloads']> {
 		const { requestBody } = data;
 		return __request(OpenAPI, {
 			method: 'PUT',
@@ -174,7 +155,9 @@ export class DownloadsService {
 	 * @returns Download Successful Response
 	 * @throws ApiError
 	 */
-	public static postDownloads(data: DownloadsData['PostDownloads']): CancelablePromise<Download> {
+	public static postDownloads(
+		data: DownloadsData['payloads']['PostDownloads']
+	): CancelablePromise<DownloadsData['responses']['PostDownloads']> {
 		const { requestBody } = data;
 		return __request(OpenAPI, {
 			method: 'POST',
@@ -193,7 +176,9 @@ export class DownloadsService {
 	 * @returns AvailableDownloadOptions Successful Response
 	 * @throws ApiError
 	 */
-	public static getDownloadsOptions(): CancelablePromise<AvailableDownloadOptions> {
+	public static getDownloadsOptions(): CancelablePromise<
+		DownloadsData['responses']['GetDownloadsOptions']
+	> {
 		return __request(OpenAPI, {
 			method: 'GET',
 			url: '/downloads/options',
@@ -208,7 +193,9 @@ export class DownloadsService {
 	 * @returns Download Successful Response
 	 * @throws ApiError
 	 */
-	public static getDownload(data: DownloadsData['GetDownload']): CancelablePromise<Download> {
+	public static getDownload(
+		data: DownloadsData['payloads']['GetDownload']
+	): CancelablePromise<DownloadsData['responses']['GetDownload']> {
 		const { downloadId } = data;
 		return __request(OpenAPI, {
 			method: 'GET',
@@ -229,7 +216,9 @@ export class DownloadsService {
 	 * @returns void Successful Response
 	 * @throws ApiError
 	 */
-	public static deleteDownload(data: DownloadsData['DeleteDownload']): CancelablePromise<void> {
+	public static deleteDownload(
+		data: DownloadsData['payloads']['DeleteDownload']
+	): CancelablePromise<DownloadsData['responses']['DeleteDownload']> {
 		const { downloadId } = data;
 		return __request(OpenAPI, {
 			method: 'DELETE',
@@ -251,8 +240,8 @@ export class DownloadsService {
 	 * @throws ApiError
 	 */
 	public static getDownloadFile(
-		data: DownloadsData['GetDownloadFile']
-	): CancelablePromise<Blob | File> {
+		data: DownloadsData['payloads']['GetDownloadFile']
+	): CancelablePromise<DownloadsData['responses']['GetDownloadFile']> {
 		const { downloadId } = data;
 		return __request(OpenAPI, {
 			method: 'GET',

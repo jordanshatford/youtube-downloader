@@ -103,3 +103,58 @@ export const VideoFormatEnum = {
 	MP4: 'mp4',
 	WEBM: 'webm'
 } as const;
+
+export type SearchData = {
+	payloads: {
+		GetSearch: {
+			query: string;
+		};
+		GetVideo: {
+			id: string;
+		};
+	};
+
+	responses: {
+		GetSearch: Array<Video>;
+		GetNextSearch: Array<Video>;
+		GetVideo: Video;
+	};
+};
+
+export type SessionData = {
+	responses: {
+		GetSession: Session;
+		DeleteSession: void;
+		GetSessionValidate: Session;
+	};
+};
+
+export type DownloadsData = {
+	payloads: {
+		PutDownloads: {
+			requestBody: DownloadInput;
+		};
+		PostDownloads: {
+			requestBody: DownloadInput;
+		};
+		GetDownload: {
+			downloadId: string;
+		};
+		DeleteDownload: {
+			downloadId: string;
+		};
+		GetDownloadFile: {
+			downloadId: string;
+		};
+	};
+
+	responses: {
+		GetDownloads: Array<Download>;
+		PutDownloads: Download;
+		PostDownloads: Download;
+		GetDownloadsOptions: AvailableDownloadOptions;
+		GetDownload: Download;
+		DeleteDownload: void;
+		GetDownloadFile: Blob | File;
+	};
+};
