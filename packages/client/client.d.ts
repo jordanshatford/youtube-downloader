@@ -1,4 +1,4 @@
 declare module '@yd/api' {
-	const json: any;
+	const json: string;
 	export default json;
 }
