@@ -8,7 +8,6 @@ inputs:
   pnpm-version:
     description: PNPM version to use
     required: false
-    default: 8
   python-version:
     description: Python version to use
     required: false
