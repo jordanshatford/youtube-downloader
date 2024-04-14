@@ -29,7 +29,7 @@
     </a>
   </div>
   <p align="center">
-    Fast, high quality YouTube downloads
+    Fast, high quality YouTube downloads.
     <br />
     <a href="https://youtubedownloader.duckdns.org"><strong>youtubedownloader.duckdns.org »</strong></a>
     <br />
