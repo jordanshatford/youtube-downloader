@@ -113,6 +113,9 @@ export type $OpenApiTs = {
 				query: string;
 			};
 			res: {
+				/**
+				 * Successful Response
+				 */
 				200: Array<Video>;
 			};
 		};
@@ -120,6 +123,9 @@ export type $OpenApiTs = {
 	'/search/next': {
 		get: {
 			res: {
+				/**
+				 * Successful Response
+				 */
 				200: Array<Video>;
 			};
 		};
@@ -130,6 +136,9 @@ export type $OpenApiTs = {
 				id: string;
 			};
 			res: {
+				/**
+				 * Successful Response
+				 */
 				200: Video;
 			};
 		};
@@ -137,11 +146,17 @@ export type $OpenApiTs = {
 	'/session': {
 		get: {
 			res: {
+				/**
+				 * Successful Response
+				 */
 				200: Session;
 			};
 		};
 		delete: {
 			res: {
+				/**
+				 * Successful Response
+				 */
 				204: void;
 			};
 		};
@@ -149,6 +164,9 @@ export type $OpenApiTs = {
 	'/session/validate': {
 		get: {
 			res: {
+				/**
+				 * Successful Response
+				 */
 				200: Session;
 			};
 		};
@@ -156,6 +174,9 @@ export type $OpenApiTs = {
 	'/downloads': {
 		get: {
 			res: {
+				/**
+				 * Successful Response
+				 */
 				200: Array<Download>;
 			};
 		};
@@ -164,6 +185,9 @@ export type $OpenApiTs = {
 				requestBody: DownloadInput;
 			};
 			res: {
+				/**
+				 * Successful Response
+				 */
 				200: Download;
 			};
 		};
@@ -172,6 +196,9 @@ export type $OpenApiTs = {
 				requestBody: DownloadInput;
 			};
 			res: {
+				/**
+				 * Successful Response
+				 */
 				201: Download;
 			};
 		};
@@ -179,6 +206,9 @@ export type $OpenApiTs = {
 	'/downloads/options': {
 		get: {
 			res: {
+				/**
+				 * Successful Response
+				 */
 				200: AvailableDownloadOptions;
 			};
 		};
@@ -189,6 +219,9 @@ export type $OpenApiTs = {
 				downloadId: string;
 			};
 			res: {
+				/**
+				 * Successful Response
+				 */
 				200: Download;
 			};
 		};
@@ -197,6 +230,9 @@ export type $OpenApiTs = {
 				downloadId: string;
 			};
 			res: {
+				/**
+				 * Successful Response
+				 */
 				204: void;
 			};
 		};
@@ -207,6 +243,9 @@ export type $OpenApiTs = {
 				downloadId: string;
 			};
 			res: {
+				/**
+				 * Successful Response
+				 */
 				200: Blob | File;
 			};
 		};
