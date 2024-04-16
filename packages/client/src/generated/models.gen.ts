@@ -2,15 +2,6 @@
 
 export type AudioFormat = 'aac' | 'flac' | 'm4a' | 'mp3' | 'opus' | 'wav';
 
-export const AudioFormatEnum = {
-	AAC: 'aac',
-	FLAC: 'flac',
-	M4A: 'm4a',
-	MP3: 'mp3',
-	OPUS: 'opus',
-	WAV: 'wav'
-} as const;
-
 export type AvailableDownloadOptions = {
 	format: Array<AudioFormat | VideoFormat>;
 	quality: Array<DownloadQuality>;
@@ -46,20 +37,7 @@ export type DownloadOptions = {
 
 export type DownloadQuality = 'best' | 'worst';
 
-export const DownloadQualityEnum = {
-	BEST: 'best',
-	WORST: 'worst'
-} as const;
-
 export type DownloadState = 'WAITING' | 'DOWNLOADING' | 'PROCESSING' | 'DONE' | 'ERROR';
-
-export const DownloadStateEnum = {
-	WAITING: 'WAITING',
-	DOWNLOADING: 'DOWNLOADING',
-	PROCESSING: 'PROCESSING',
-	DONE: 'DONE',
-	ERROR: 'ERROR'
-} as const;
 
 export type DownloadStatus = {
 	state: DownloadState;
@@ -96,15 +74,6 @@ export type Video = {
 };
 
 export type VideoFormat = 'avi' | 'flv' | 'mkv' | 'mov' | 'mp4' | 'webm';
-
-export const VideoFormatEnum = {
-	AVI: 'avi',
-	FLV: 'flv',
-	MKV: 'mkv',
-	MOV: 'mov',
-	MP4: 'mp4',
-	WEBM: 'webm'
-} as const;
 
 export type $OpenApiTs = {
 	'/search': {

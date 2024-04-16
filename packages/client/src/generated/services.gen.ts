@@ -3,7 +3,7 @@
 import type { CancelablePromise } from './core/CancelablePromise';
 import { OpenAPI } from './core/OpenAPI';
 import { request as __request } from './core/request';
-import type { $OpenApiTs } from './models';
+import type { $OpenApiTs } from './models.gen';
 
 export class SearchService {
 	/**
@@ -22,9 +22,9 @@ export class SearchService {
 				query
 			},
 			errors: {
-				403: `Forbidden`,
-				404: `Not Found`,
-				422: `Validation Error`
+				403: 'Forbidden',
+				404: 'Not Found',
+				422: 'Validation Error'
 			}
 		});
 	}
@@ -39,8 +39,8 @@ export class SearchService {
 			method: 'GET',
 			url: '/search/next',
 			errors: {
-				403: `Forbidden`,
-				404: `Not Found`
+				403: 'Forbidden',
+				404: 'Not Found'
 			}
 		});
 	}
@@ -61,9 +61,9 @@ export class SearchService {
 				id
 			},
 			errors: {
-				403: `Forbidden`,
-				404: `Not Found`,
-				422: `Validation Error`
+				403: 'Forbidden',
+				404: 'Not Found',
+				422: 'Validation Error'
 			}
 		});
 	}
@@ -92,7 +92,7 @@ export class SessionService {
 			method: 'DELETE',
 			url: '/session',
 			errors: {
-				403: `Forbidden`
+				403: 'Forbidden'
 			}
 		});
 	}
@@ -109,7 +109,7 @@ export class SessionService {
 			method: 'GET',
 			url: '/session/validate',
 			errors: {
-				403: `Forbidden`
+				403: 'Forbidden'
 			}
 		});
 	}
@@ -126,7 +126,7 @@ export class DownloadsService {
 			method: 'GET',
 			url: '/downloads',
 			errors: {
-				403: `Forbidden`
+				403: 'Forbidden'
 			}
 		});
 	}
@@ -146,8 +146,8 @@ export class DownloadsService {
 			body: requestBody,
 			mediaType: 'application/json',
 			errors: {
-				403: `Forbidden`,
-				422: `Validation Error`
+				403: 'Forbidden',
+				422: 'Validation Error'
 			}
 		});
 	}
@@ -167,8 +167,8 @@ export class DownloadsService {
 			body: requestBody,
 			mediaType: 'application/json',
 			errors: {
-				403: `Forbidden`,
-				422: `Validation Error`
+				403: 'Forbidden',
+				422: 'Validation Error'
 			}
 		});
 	}
@@ -185,7 +185,7 @@ export class DownloadsService {
 			method: 'GET',
 			url: '/downloads/options',
 			errors: {
-				403: `Forbidden`
+				403: 'Forbidden'
 			}
 		});
 	}
@@ -206,9 +206,9 @@ export class DownloadsService {
 				download_id: downloadId
 			},
 			errors: {
-				403: `Forbidden`,
-				404: `Not Found`,
-				422: `Validation Error`
+				403: 'Forbidden',
+				404: 'Not Found',
+				422: 'Validation Error'
 			}
 		});
 	}
@@ -229,9 +229,9 @@ export class DownloadsService {
 				download_id: downloadId
 			},
 			errors: {
-				403: `Forbidden`,
-				404: `Not Found`,
-				422: `Validation Error`
+				403: 'Forbidden',
+				404: 'Not Found',
+				422: 'Validation Error'
 			}
 		});
 	}
@@ -252,9 +252,9 @@ export class DownloadsService {
 				download_id: downloadId
 			},
 			errors: {
-				403: `Forbidden`,
-				404: `Not Found`,
-				422: `Validation Error`
+				403: 'Forbidden',
+				404: 'Not Found',
+				422: 'Validation Error'
 			}
 		});
 	}

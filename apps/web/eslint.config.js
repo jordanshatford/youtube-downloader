@@ -5,5 +5,5 @@ export default [
 	{
 		ignores: ['build/', '.svelte-kit/']
 	},
-	...svelte,
+	...svelte
 ];
