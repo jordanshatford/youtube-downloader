@@ -50,7 +50,7 @@ export type DownloadStatus = {
 	readonly progress: number | null;
 };
 
-export type HttpValidationError = {
+export type HTTPValidationError = {
 	detail?: Array<ValidationError>;
 };
 

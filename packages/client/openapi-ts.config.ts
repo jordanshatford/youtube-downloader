@@ -6,6 +6,5 @@ export default defineConfig({
 	output: './src/generated',
 	client: 'fetch',
 	enums: 'javascript',
-	types: { name: 'PascalCase' },
 	schemas: false
 });
