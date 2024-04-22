@@ -6,14 +6,14 @@
 	"type": "module",
 	"main": "./src/index.ts",
 	"scripts": {
-		"build": "tsc --project tsconfig.json",
+		"build": "pnpm generate && tsc --project tsconfig.json",
 		"check": "tsc --project tsconfig.json --noEmit",
 		"generate": "openapi-ts",
 		"lint": "prettier --check . && eslint .",
 		"format": "prettier --write ."
 	},
 	"devDependencies": {
-		"@hey-api/openapi-ts": "^0.41.0",
+		"@hey-api/openapi-ts": "^0.42.1",
 		"@yd/api": "workspace:*",
 		"@yd/config": "workspace:*",
 		"prettier": "^3.2.5",

@@ -8,18 +8,19 @@ import type { $OpenApiTs } from './types.gen';
 export class SearchService {
 	/**
 	 * Get Search
+	 * @param data The data for the request.
+	 * @param data.query
 	 * @returns Video Successful Response
 	 * @throws ApiError
 	 */
 	public static getSearch(
 		data: $OpenApiTs['/search']['get']['req']
 	): CancelablePromise<$OpenApiTs['/search']['get']['res'][200]> {
-		const { query } = data;
 		return __request(OpenAPI, {
 			method: 'GET',
 			url: '/search',
 			query: {
-				query
+				query: data.query
 			},
 			errors: {
 				403: 'Forbidden',
@@ -47,18 +48,19 @@ export class SearchService {
 
 	/**
 	 * Get Video
+	 * @param data The data for the request.
+	 * @param data.id
 	 * @returns Video Successful Response
 	 * @throws ApiError
 	 */
 	public static getVideo(
 		data: $OpenApiTs['/search/video']['get']['req']
 	): CancelablePromise<$OpenApiTs['/search/video']['get']['res'][200]> {
-		const { id } = data;
 		return __request(OpenAPI, {
 			method: 'GET',
 			url: '/search/video',
 			query: {
-				id
+				id: data.id
 			},
 			errors: {
 				403: 'Forbidden',
@@ -133,17 +135,18 @@ export class DownloadsService {
 
 	/**
 	 * Put Downloads
+	 * @param data The data for the request.
+	 * @param data.requestBody
 	 * @returns Download Successful Response
 	 * @throws ApiError
 	 */
 	public static putDownloads(
 		data: $OpenApiTs['/downloads']['put']['req']
 	): CancelablePromise<$OpenApiTs['/downloads']['put']['res'][200]> {
-		const { requestBody } = data;
 		return __request(OpenAPI, {
 			method: 'PUT',
 			url: '/downloads',
-			body: requestBody,
+			body: data.requestBody,
 			mediaType: 'application/json',
 			errors: {
 				403: 'Forbidden',
@@ -154,17 +157,18 @@ export class DownloadsService {
 
 	/**
 	 * Post Downloads
+	 * @param data The data for the request.
+	 * @param data.requestBody
 	 * @returns Download Successful Response
 	 * @throws ApiError
 	 */
 	public static postDownloads(
 		data: $OpenApiTs['/downloads']['post']['req']
 	): CancelablePromise<$OpenApiTs['/downloads']['post']['res'][201]> {
-		const { requestBody } = data;
 		return __request(OpenAPI, {
 			method: 'POST',
 			url: '/downloads',
-			body: requestBody,
+			body: data.requestBody,
 			mediaType: 'application/json',
 			errors: {
 				403: 'Forbidden',
@@ -192,18 +196,19 @@ export class DownloadsService {
 
 	/**
 	 * Get Download
+	 * @param data The data for the request.
+	 * @param data.downloadId
 	 * @returns Download Successful Response
 	 * @throws ApiError
 	 */
 	public static getDownload(
 		data: $OpenApiTs['/downloads/{download_id}']['get']['req']
 	): CancelablePromise<$OpenApiTs['/downloads/{download_id}']['get']['res'][200]> {
-		const { downloadId } = data;
 		return __request(OpenAPI, {
 			method: 'GET',
 			url: '/downloads/{download_id}',
 			path: {
-				download_id: downloadId
+				download_id: data.downloadId
 			},
 			errors: {
 				403: 'Forbidden',
@@ -215,18 +220,19 @@ export class DownloadsService {
 
 	/**
 	 * Delete Download
+	 * @param data The data for the request.
+	 * @param data.downloadId
 	 * @returns void Successful Response
 	 * @throws ApiError
 	 */
 	public static deleteDownload(
 		data: $OpenApiTs['/downloads/{download_id}']['delete']['req']
 	): CancelablePromise<$OpenApiTs['/downloads/{download_id}']['delete']['res'][204]> {
-		const { downloadId } = data;
 		return __request(OpenAPI, {
 			method: 'DELETE',
 			url: '/downloads/{download_id}',
 			path: {
-				download_id: downloadId
+				download_id: data.downloadId
 			},
 			errors: {
 				403: 'Forbidden',
@@ -238,18 +244,19 @@ export class DownloadsService {
 
 	/**
 	 * Get Download File
+	 * @param data The data for the request.
+	 * @param data.downloadId
 	 * @returns binary Successful Response
 	 * @throws ApiError
 	 */
 	public static getDownloadFile(
 		data: $OpenApiTs['/downloads/{download_id}/file']['get']['req']
 	): CancelablePromise<$OpenApiTs['/downloads/{download_id}/file']['get']['res'][200]> {
-		const { downloadId } = data;
 		return __request(OpenAPI, {
 			method: 'GET',
 			url: '/downloads/{download_id}/file',
 			path: {
-				download_id: downloadId
+				download_id: data.downloadId
 			},
 			errors: {
 				403: 'Forbidden',

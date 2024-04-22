@@ -86,6 +86,18 @@ export type $OpenApiTs = {
 				 * Successful Response
 				 */
 				200: Array<Video>;
+				/**
+				 * Forbidden
+				 */
+				403: unknown;
+				/**
+				 * Not Found
+				 */
+				404: unknown;
+				/**
+				 * Validation Error
+				 */
+				422: HTTPValidationError;
 			};
 		};
 	};
@@ -96,6 +108,14 @@ export type $OpenApiTs = {
 				 * Successful Response
 				 */
 				200: Array<Video>;
+				/**
+				 * Forbidden
+				 */
+				403: unknown;
+				/**
+				 * Not Found
+				 */
+				404: unknown;
 			};
 		};
 	};
@@ -109,6 +129,18 @@ export type $OpenApiTs = {
 				 * Successful Response
 				 */
 				200: Video;
+				/**
+				 * Forbidden
+				 */
+				403: unknown;
+				/**
+				 * Not Found
+				 */
+				404: unknown;
+				/**
+				 * Validation Error
+				 */
+				422: HTTPValidationError;
 			};
 		};
 	};
@@ -127,6 +159,10 @@ export type $OpenApiTs = {
 				 * Successful Response
 				 */
 				204: void;
+				/**
+				 * Forbidden
+				 */
+				403: unknown;
 			};
 		};
 	};
@@ -137,6 +173,10 @@ export type $OpenApiTs = {
 				 * Successful Response
 				 */
 				200: Session;
+				/**
+				 * Forbidden
+				 */
+				403: unknown;
 			};
 		};
 	};
@@ -147,6 +187,10 @@ export type $OpenApiTs = {
 				 * Successful Response
 				 */
 				200: Array<Download>;
+				/**
+				 * Forbidden
+				 */
+				403: unknown;
 			};
 		};
 		put: {
@@ -158,6 +202,14 @@ export type $OpenApiTs = {
 				 * Successful Response
 				 */
 				200: Download;
+				/**
+				 * Forbidden
+				 */
+				403: unknown;
+				/**
+				 * Validation Error
+				 */
+				422: HTTPValidationError;
 			};
 		};
 		post: {
@@ -169,6 +221,14 @@ export type $OpenApiTs = {
 				 * Successful Response
 				 */
 				201: Download;
+				/**
+				 * Forbidden
+				 */
+				403: unknown;
+				/**
+				 * Validation Error
+				 */
+				422: HTTPValidationError;
 			};
 		};
 	};
@@ -179,6 +239,10 @@ export type $OpenApiTs = {
 				 * Successful Response
 				 */
 				200: AvailableDownloadOptions;
+				/**
+				 * Forbidden
+				 */
+				403: unknown;
 			};
 		};
 	};
@@ -192,6 +256,18 @@ export type $OpenApiTs = {
 				 * Successful Response
 				 */
 				200: Download;
+				/**
+				 * Forbidden
+				 */
+				403: unknown;
+				/**
+				 * Not Found
+				 */
+				404: unknown;
+				/**
+				 * Validation Error
+				 */
+				422: HTTPValidationError;
 			};
 		};
 		delete: {
@@ -203,6 +279,18 @@ export type $OpenApiTs = {
 				 * Successful Response
 				 */
 				204: void;
+				/**
+				 * Forbidden
+				 */
+				403: unknown;
+				/**
+				 * Not Found
+				 */
+				404: unknown;
+				/**
+				 * Validation Error
+				 */
+				422: HTTPValidationError;
 			};
 		};
 	};
@@ -216,6 +304,18 @@ export type $OpenApiTs = {
 				 * Successful Response
 				 */
 				200: Blob | File;
+				/**
+				 * Forbidden
+				 */
+				403: unknown;
+				/**
+				 * Not Found
+				 */
+				404: unknown;
+				/**
+				 * Validation Error
+				 */
+				422: HTTPValidationError;
 			};
 		};
 	};
