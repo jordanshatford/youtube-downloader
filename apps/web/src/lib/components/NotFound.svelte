@@ -1,6 +1,7 @@
 <script lang="ts">
-	import { Button } from '@yd/ui';
 	import { RoutePathConstants } from '$lib/routes';
+
+	import { Button } from '@yd/ui';
 
 	export let title: string = '404';
 	export let subtitle: string = '';

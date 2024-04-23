@@ -1,5 +1,7 @@
 import { writable } from 'svelte/store';
-import { SearchService, type Video } from '@yd/client';
+
+import type { Video } from '@yd/client';
+import { SearchService } from '@yd/client';
 import { toast } from '@yd/ui';
 
 function createSearchStore() {

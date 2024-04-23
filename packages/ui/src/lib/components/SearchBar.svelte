@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { createEventDispatcher } from 'svelte';
-	import { MagnifyingGlassIcon, LoaderIcon, Icon } from '../icons';
+
+	import { Icon, LoaderIcon, MagnifyingGlassIcon } from '../icons';
 
 	const dispatch = createEventDispatcher();
 

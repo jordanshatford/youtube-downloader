@@ -1,6 +1,6 @@
 <script lang="ts">
+	import { fade, fly } from 'svelte/transition';
 	import { tv } from 'tailwind-variants';
-	import { fly, fade } from 'svelte/transition';
 
 	const modalClasses = tv({
 		slots: {

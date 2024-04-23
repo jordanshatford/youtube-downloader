@@ -1,6 +1,8 @@
 <script lang="ts">
 	import type { HTMLButtonAttributes } from 'svelte/elements';
-	import { Icon, type IconSource } from '../icons';
+
+	import type { IconSource } from '../icons';
+	import { Icon } from '../icons';
 
 	interface $$Props extends HTMLButtonAttributes {
 		src: IconSource;

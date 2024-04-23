@@ -1,4 +1,5 @@
-import { DownloadIcon, GearIcon, MagnifyingGlassIcon, type IconSource } from '@yd/ui';
+import type { IconSource } from '@yd/ui';
+import { DownloadIcon, GearIcon, MagnifyingGlassIcon } from '@yd/ui';
 
 export class RoutePathConstants {
 	public static SEARCH = '/';

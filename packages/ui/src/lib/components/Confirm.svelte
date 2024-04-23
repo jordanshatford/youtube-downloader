@@ -1,5 +1,6 @@
 <script lang="ts" context="module">
-	import { tv, type VariantProps } from 'tailwind-variants';
+	import type { VariantProps } from 'tailwind-variants';
+	import { tv } from 'tailwind-variants';
 
 	const confirmClasses = tv({
 		slots: {
@@ -41,10 +42,9 @@
 </script>
 
 <script lang="ts">
-	import { Button } from '../index';
 	import { Icon } from '../icons';
+	import { Button, Modal } from '../index';
 	import { toIcon } from '../utilities';
-	import { Modal } from '../index';
 
 	export let variant: ConfirmVariants['variant'] = 'info';
 	export let title: string = 'Confirm?';

@@ -1,5 +1,6 @@
 <script lang="ts">
-	import { MenuIcon, XMarkIcon, type IconSource } from '../../icons';
+	import type { IconSource } from '../../icons';
+	import { MenuIcon, XMarkIcon } from '../../icons';
 	import IconButton from '../IconButton.svelte';
 	import NavBarItem from './NavBarItem.svelte';
 

@@ -1,15 +1,15 @@
-import { writable, get } from 'svelte/store';
-import { DEFAULT_OPTIONS, DEFAULT_POSITION } from './utils';
-import { browser } from '../../utilities';
+import { get, writable } from 'svelte/store';
 
 import type {
-	ToastVariant,
-	ToastPosition,
 	ToastComponent,
 	ToastComponentOptions,
 	ToastFunctionOptions,
-	ToastPromiseOptions
+	ToastPosition,
+	ToastPromiseOptions,
+	ToastVariant
 } from './types';
+import { browser } from '../../utilities';
+import { DEFAULT_OPTIONS, DEFAULT_POSITION } from './utils';
 
 const TOASTS = writable<ToastComponent[]>([]);
 

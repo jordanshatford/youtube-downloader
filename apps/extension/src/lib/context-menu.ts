@@ -1,5 +1,7 @@
-import type { Tabs, Menus } from 'webextension-polyfill';
+import type { Menus, Tabs } from 'webextension-polyfill';
+
 import type { Video } from '@yd/client';
+
 import { getContextService } from './context-service';
 
 export function handleContextMenuClick(info: Menus.OnClickData, tab?: Tabs.Tab): void {

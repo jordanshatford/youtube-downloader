@@ -1,5 +1,6 @@
 <script lang="ts" context="module">
-	import { tv, type VariantProps } from 'tailwind-variants';
+	import type { VariantProps } from 'tailwind-variants';
+	import { tv } from 'tailwind-variants';
 
 	const toastClasses = tv({
 		slots: {
@@ -50,11 +51,11 @@
 </script>
 
 <script lang="ts">
-	import { toast as _toast } from './stores';
 	import type { ToastComponent } from './types';
-	import { XMarkIcon, Icon } from '../../icons';
+	import { Icon, XMarkIcon } from '../../icons';
 	import { toIcon } from '../../utilities';
 	import IconButton from '../IconButton.svelte';
+	import { toast as _toast } from './stores';
 
 	export let toast: ToastComponent;
 

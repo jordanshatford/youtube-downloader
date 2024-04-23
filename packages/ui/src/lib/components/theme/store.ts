@@ -1,4 +1,5 @@
 import { writable } from 'svelte/store';
+
 import { browser } from '../../utilities';
 
 type Theme = 'dark' | 'light';

@@ -1,4 +1,5 @@
-import { writable, get, type Updater, type Writable } from 'svelte/store';
+import type { Updater, Writable } from 'svelte/store';
+import { get, writable } from 'svelte/store';
 import { Storage } from 'webextension-polyfill';
 
 export interface WriteableStorage<T> extends Writable<T> {

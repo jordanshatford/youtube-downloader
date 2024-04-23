@@ -1,12 +1,13 @@
+import { browser } from '$app/environment';
 import { writable } from 'svelte/store';
+
+import type { DownloadOptions } from '@yd/client';
 import {
 	AudioFormatEnum,
+	DEFAULT_DOWNLOAD_OPTIONS,
 	DownloadQualityEnum,
-	VideoFormatEnum,
-	type DownloadOptions,
-	DEFAULT_DOWNLOAD_OPTIONS
+	VideoFormatEnum
 } from '@yd/client';
-import { browser } from '$app/environment';
 
 const SETTINGS_KEY = 'yd-settings';
 

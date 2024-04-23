@@ -1,9 +1,11 @@
-import { writable, get } from 'svelte/store';
+import { get, writable } from 'svelte/store';
 import { Tabs } from 'webextension-polyfill';
+
 import type { Download } from '@yd/client';
+
 import type { Ctx } from '~/lib/context-service';
-import { onMessage } from '~/lib/messaging';
 import { getContextService } from '~/lib/context-service';
+import { onMessage } from '~/lib/messaging';
 
 /**
  * Create a store used to manage context in a popup or other location. This store is initialized

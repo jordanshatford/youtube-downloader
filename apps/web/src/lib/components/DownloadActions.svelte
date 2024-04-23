@@ -1,7 +1,8 @@
 <script lang="ts">
+	import { downloads } from '$lib/stores/downloads';
+
 	import type { Download } from '@yd/client';
 	import { ActionIcon, ArrowPathIcon, ButtonGroup, Confirm, DownloadIcon, TrashIcon } from '@yd/ui';
-	import { downloads } from '$lib/stores/downloads';
 
 	export let download: Download;
 

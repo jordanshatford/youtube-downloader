@@ -1,5 +1,6 @@
 <script lang="ts" context="module">
-	import { tv, type VariantProps } from 'tailwind-variants';
+	import type { VariantProps } from 'tailwind-variants';
+	import { tv } from 'tailwind-variants';
 
 	const buttonClasses = tv({
 		base: 'rounded-lg border border-transparent px-4 py-2 text-center text-base font-medium text-white shadow-sm focus:outline-none disabled:cursor-not-allowed disabled:opacity-75',

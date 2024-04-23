@@ -1,3 +1,6 @@
+// Custom icons exported for use
+import type { IconSource } from '@steeze-ui/svelte-icon';
+
 // Base icon component and typings
 export { Icon, type IconSource } from '@steeze-ui/svelte-icon';
 
@@ -26,9 +29,6 @@ export {
 } from '@steeze-ui/heroicons';
 
 export { Github as GithubIcon } from '@steeze-ui/simple-icons';
-
-// Custom icons exported for use
-import type { IconSource } from '@steeze-ui/svelte-icon';
 
 const LoaderIcon: IconSource = {
 	default: {

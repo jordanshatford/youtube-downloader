@@ -1,5 +1,6 @@
 <script lang="ts" context="module">
-	import { tv, type VariantProps } from 'tailwind-variants';
+	import type { VariantProps } from 'tailwind-variants';
+	import { tv } from 'tailwind-variants';
 
 	const badgeClasses = tv({
 		slots: {
@@ -54,7 +55,9 @@
 
 <script lang="ts">
 	import { createEventDispatcher } from 'svelte';
-	import { Icon, XMarkIcon, type IconSource } from '../icons';
+
+	import type { IconSource } from '../icons';
+	import { Icon, XMarkIcon } from '../icons';
 	import { toIcon } from '../utilities';
 
 	const dispatch = createEventDispatcher<{

@@ -1,10 +1,11 @@
 <script lang="ts">
-	import { scale } from 'svelte/transition';
 	import { flip } from 'svelte/animate';
+	import { scale } from 'svelte/transition';
+
+	import type { ToastAnimation, ToastComponentOptions, ToastPosition } from './types';
+	import { options as _options, position as _position, toast as toasts } from './stores';
 	import Toast from './Toast.svelte';
-	import { toast as toasts, position as _position, options as _options } from './stores';
 	import { DEFAULT_ANIMATION, DEFAULT_POSITION } from './utils';
-	import type { ToastPosition, ToastAnimation, ToastComponentOptions } from './types';
 
 	export let position: ToastPosition = DEFAULT_POSITION;
 

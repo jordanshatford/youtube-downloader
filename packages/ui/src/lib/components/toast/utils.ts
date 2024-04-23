@@ -1,4 +1,4 @@
-import type { ToastComponentOptions, ToastAnimation, ToastPosition } from './types';
+import type { ToastAnimation, ToastComponentOptions, ToastPosition } from './types';
 
 /**
  * The default position for all toasts

@@ -1,23 +1,25 @@
-import { get } from 'svelte/store';
 import { defineProxyService } from '@webext-core/proxy-service';
+import { get } from 'svelte/store';
 import { Tabs } from 'webextension-polyfill';
+
 import {
-	OpenAPI,
-	Video,
 	Download,
-	Session,
 	DownloadOptions,
-	SessionService,
-	SearchService,
 	DownloadsService,
-	DownloadsStatusService
+	DownloadsStatusService,
+	OpenAPI,
+	SearchService,
+	Session,
+	SessionService,
+	Video
 } from '@yd/client';
-import { settings } from '~/lib/stores/settings';
+
 import { env } from '~/lib/config';
-import { isYouTubeVideo } from '~/lib/detect';
-import { sendMessageIgnoreReturn } from '~/lib/messaging';
-import { saveAs } from '~/lib/files';
 import { setContextMenus } from '~/lib/context-menu';
+import { isYouTubeVideo } from '~/lib/detect';
+import { saveAs } from '~/lib/files';
+import { sendMessageIgnoreReturn } from '~/lib/messaging';
+import { settings } from '~/lib/stores/settings';
 
 export type Ctx = {
 	session?: Session; // Current session.

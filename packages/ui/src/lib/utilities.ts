@@ -1,8 +1,8 @@
+import type { IconSource } from './icons';
 import {
-	type IconSource,
+	CheckCircleIcon,
 	ExclamationCircleIcon,
 	ExclamationTriangleIcon,
-	CheckCircleIcon,
 	InformationCircleIcon,
 	LoaderIcon
 } from './icons';

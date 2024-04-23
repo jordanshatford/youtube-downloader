@@ -1,7 +1,8 @@
 <script lang="ts">
-	import { IconButton, ExternalLinkIcon, Toasts, Footer, initializeTheme } from '@yd/ui';
-	import { openWebsite } from '~/lib/website';
+	import { ExternalLinkIcon, Footer, IconButton, initializeTheme, Toasts } from '@yd/ui';
+
 	import config from '~/lib/config';
+	import { openWebsite } from '~/lib/website';
 
 	// Ensure theme is set based on user preferences.
 	initializeTheme();

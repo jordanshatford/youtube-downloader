@@ -1,12 +1,14 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
-	import { Card, Button, Badge, IconButton, PlusIcon } from '@yd/ui';
+
+	import { Badge, Button, Card, IconButton, PlusIcon } from '@yd/ui';
+
 	import type { Ctx } from '~/lib/context-service';
+	import DownloadActions from '~/lib/components/DownloadActions.svelte';
+	import PopupError from '~/lib/components/PopupError.svelte';
 	import StateIcon from '~/lib/components/StateIcon.svelte';
 	import StatusBadge from '~/lib/components/StatusBadge.svelte';
 	import { createContextStore } from '~/lib/stores/context';
-	import PopupError from '~/lib/components/PopupError.svelte';
-	import DownloadActions from '~/lib/components/DownloadActions.svelte';
 
 	export let ctx: Ctx;
 

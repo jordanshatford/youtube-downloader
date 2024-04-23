@@ -2,18 +2,19 @@
 	import { AudioFormatEnum, DownloadQualityEnum, VideoFormatEnum } from '@yd/client';
 	import {
 		Alert,
-		toast,
+		CodeBracketIcon,
+		DownloadIcon,
+		Icon,
+		LoaderIcon,
 		Select,
 		Tabs,
-		DownloadIcon,
-		CodeBracketIcon,
-		LoaderIcon,
-		Icon,
+		toast,
 		Toggle,
 		toSelectOptions
 	} from '@yd/ui';
-	import { settings } from '~/lib/stores/settings';
+
 	import PageLayout from '~/lib/components/PageLayout.svelte';
+	import { settings } from '~/lib/stores/settings';
 
 	let tabs = [
 		{

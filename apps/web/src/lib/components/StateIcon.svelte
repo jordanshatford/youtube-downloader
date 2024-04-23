@@ -1,12 +1,7 @@
 <script lang="ts">
 	import type { DownloadState } from '@yd/client';
-	import {
-		CheckCircleIcon,
-		LoaderIcon,
-		ExclamationCircleIcon,
-		Icon,
-		type IconSource
-	} from '@yd/ui';
+	import type { IconSource } from '@yd/ui';
+	import { CheckCircleIcon, ExclamationCircleIcon, Icon, LoaderIcon } from '@yd/ui';
 
 	export let state: DownloadState;
 

@@ -1,8 +1,9 @@
-import globals from 'globals';
-import tseslint from 'typescript-eslint';
 import eslintPluginSvelte from 'eslint-plugin-svelte';
-import eslintTypeScript from './typescript.js';
+import globals from 'globals';
 import svelte from 'svelte-eslint-parser';
+import tseslint from 'typescript-eslint';
+
+import eslintTypeScript from './typescript.js';
 
 /** @type {import('eslint').Linter.FlatConfig[]} */
 export default tseslint.config(

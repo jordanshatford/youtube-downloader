@@ -1,7 +1,8 @@
 <script lang="ts">
-	import { Title } from '@yd/ui';
-	import { termsOfUse, websiteName } from '$lib/utils/terms-of-use';
 	import config from '$lib/config';
+	import { termsOfUse, websiteName } from '$lib/utils/terms-of-use';
+
+	import { Title } from '@yd/ui';
 </script>
 
 <svelte:head>

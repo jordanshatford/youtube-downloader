@@ -1,6 +1,7 @@
 <script lang="ts">
 	import type { DownloadState, DownloadStatus } from '@yd/client';
-	import { Badge, type BadgeVariants, ProgressBar } from '@yd/ui';
+	import type { BadgeVariants } from '@yd/ui';
+	import { Badge, ProgressBar } from '@yd/ui';
 
 	export let status: DownloadStatus;
 

@@ -1,6 +1,7 @@
+import type { Download } from './generated';
 import type { ApiRequestOptions } from './generated/core/ApiRequestOptions';
+import { OpenAPI } from './generated';
 import { resolve } from './generated/core/request';
-import { type Download, OpenAPI } from './generated';
 
 type EventSourceHandler<T> = (event: T) => void;
 

@@ -1,4 +1,5 @@
 import { defineConfig } from '@hey-api/openapi-ts';
+
 import input from '@yd/api';
 
 export default defineConfig({

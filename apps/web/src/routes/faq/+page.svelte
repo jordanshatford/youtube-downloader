@@ -1,7 +1,8 @@
 <script lang="ts">
-	import { Title, CollapsibleSection } from '@yd/ui';
-	import { faqs } from '$lib/utils/faq';
 	import config from '$lib/config';
+	import { faqs } from '$lib/utils/faq';
+
+	import { CollapsibleSection, Title } from '@yd/ui';
 </script>
 
 <svelte:head>

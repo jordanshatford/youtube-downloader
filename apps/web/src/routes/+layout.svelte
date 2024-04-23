@@ -1,12 +1,14 @@
 <script lang="ts">
 	import '../app.css';
-	import { Toasts, NavBar, Footer, ThemeToggle } from '@yd/ui';
+
 	import { page } from '$app/stores';
-	import Loading from '$lib/components/Loading.svelte';
-	import config from '$lib/config';
-	import { navbarLinks, footerLinks } from '$lib/routes';
-	import Logo from '$lib/components/Logo.svelte';
 	import { setupSession } from '$lib/api';
+	import Loading from '$lib/components/Loading.svelte';
+	import Logo from '$lib/components/Logo.svelte';
+	import config from '$lib/config';
+	import { footerLinks, navbarLinks } from '$lib/routes';
+
+	import { Footer, NavBar, ThemeToggle, Toasts } from '@yd/ui';
 </script>
 
 <svelte:head>

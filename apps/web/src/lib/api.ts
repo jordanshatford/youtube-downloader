@@ -1,8 +1,9 @@
+import { browser } from '$app/environment';
+import { env } from '$lib/config';
+import { downloads } from '$lib/stores/downloads';
+
 import { OpenAPI, SessionService } from '@yd/client';
 import { toast } from '@yd/ui';
-import { env } from '$lib/config';
-import { browser } from '$app/environment';
-import { downloads } from '$lib/stores/downloads';
 
 // Set the base server address using the environment variable.
 OpenAPI.BASE = env.serverAddress;

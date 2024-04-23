@@ -1,18 +1,19 @@
 <script lang="ts">
+	import config from '$lib/config';
+	import { settings, userSettings } from '$lib/stores/settings';
+
 	import { AudioFormatEnum, DownloadQualityEnum, VideoFormatEnum } from '@yd/client';
 	import {
 		Alert,
-		toast,
+		CodeBracketIcon,
+		DownloadIcon,
+		GearIcon,
 		Select,
 		Tabs,
-		GearIcon,
-		DownloadIcon,
-		CodeBracketIcon,
+		toast,
 		Toggle,
 		toSelectOptions
 	} from '@yd/ui';
-	import { settings, userSettings } from '$lib/stores/settings';
-	import config from '$lib/config';
 
 	let tabs = [
 		{

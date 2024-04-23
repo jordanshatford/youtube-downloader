@@ -1,9 +1,10 @@
 <script lang="ts">
-	import { IconButton, ExternalLinkIcon, GearIcon, initializeTheme } from '@yd/ui';
-	import { openWebsite } from '~/lib/website';
-	import { getContextService } from '~/lib/context-service';
+	import { ExternalLinkIcon, GearIcon, IconButton, initializeTheme } from '@yd/ui';
+
 	import PopupError from '~/lib/components/PopupError.svelte';
 	import PopupLoader from '~/lib/components/PopupLoader.svelte';
+	import { getContextService } from '~/lib/context-service';
+	import { openWebsite } from '~/lib/website';
 
 	// Ensure theme is set based on user preferences.
 	initializeTheme();

@@ -1,5 +1,6 @@
 <script lang="ts">
-	import { Icon, LoaderIcon, type IconSource } from '../icons';
+	import type { IconSource } from '../icons';
+	import { Icon, LoaderIcon } from '../icons';
 
 	export let src: IconSource;
 	export let disabled: boolean = false;

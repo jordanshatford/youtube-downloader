@@ -1,6 +1,6 @@
 <script lang="ts">
-	import IconButton from '../IconButton.svelte';
 	import { MoonIcon, SunIcon } from '../../icons';
+	import IconButton from '../IconButton.svelte';
 	import { theme } from './store';
 </script>
 

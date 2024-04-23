@@ -1,5 +1,6 @@
 <script lang="ts">
-	import { type IconSource, Icon } from '../../icons';
+	import type { IconSource } from '../../icons';
+	import { Icon } from '../../icons';
 
 	export let link: { href: string; text: string; icon?: IconSource };
 	export let activeLink: string;

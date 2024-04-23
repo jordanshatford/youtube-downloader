@@ -1,6 +1,8 @@
 <script lang="ts">
 	import { tv } from 'tailwind-variants';
-	import { Icon, type IconSource } from '../icons';
+
+	import type { IconSource } from '../icons';
+	import { Icon } from '../icons';
 
 	const tabsClasses = tv({
 		slots: {

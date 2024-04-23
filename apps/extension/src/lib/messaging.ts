@@ -1,5 +1,6 @@
 import { defineExtensionMessaging, GetDataType } from '@webext-core/messaging';
 import { Tabs } from 'webextension-polyfill';
+
 import { Download, DownloadOptions, Session, Video } from '@yd/client';
 
 /**

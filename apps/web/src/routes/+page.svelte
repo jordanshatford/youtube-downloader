@@ -1,8 +1,9 @@
 <script lang="ts">
-	import { Title, Button, LoaderIcon, Icon, SearchBar } from '@yd/ui';
-	import { search } from '$lib/stores/search';
 	import ResultCard from '$lib/components/ResultCard.svelte';
 	import config from '$lib/config';
+	import { search } from '$lib/stores/search';
+
+	import { Button, Icon, LoaderIcon, SearchBar, Title } from '@yd/ui';
 
 	async function searchVideos(event: CustomEvent<{ query: string }>) {
 		await search.get(event.detail.query);

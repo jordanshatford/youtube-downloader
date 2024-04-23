@@ -1,8 +1,10 @@
-import { writable, get } from 'svelte/store';
-import { DownloadsService, DownloadsStatusService, type Video, type Download } from '@yd/client';
-import { toast } from '@yd/ui';
 import { settings, userSettings } from '$lib/stores/settings';
 import { saveAs } from '$lib/utils/files';
+import { get, writable } from 'svelte/store';
+
+import type { Download, Video } from '@yd/client';
+import { DownloadsService, DownloadsStatusService } from '@yd/client';
+import { toast } from '@yd/ui';
 
 const DOWNLOADS = writable<Record<string, Download>>({});
 

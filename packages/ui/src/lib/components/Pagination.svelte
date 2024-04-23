@@ -25,7 +25,7 @@
 </script>
 
 <script lang="ts">
-	import { Icon, ChevronLeftIcon, ChevronRightIcon } from '../icons';
+	import { ChevronLeftIcon, ChevronRightIcon, Icon } from '../icons';
 
 	let className: string = '';
 	export { className as class };
