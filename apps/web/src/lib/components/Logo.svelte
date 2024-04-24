@@ -3,5 +3,5 @@
 </script>
 
 <a class="focus:outline-none" href={RoutePathConstants.SEARCH}>
-	<img class="block h-8 w-auto" src="images/logo.png" alt="Logo" />
+	<img class="block h-10 w-auto" src="icon.png" alt="Logo" />
 </a>

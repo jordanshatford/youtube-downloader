@@ -22,7 +22,7 @@
 	<div class="align-start flex h-screen flex-col items-start justify-start space-y-2 pt-5">
 		<!-- Header of the popup -->
 		<div class="flex w-full items-center justify-between px-5">
-			<img src="/icon/512.png" alt="Logo" class="h-7 w-7" />
+			<img src="/icon-128.png" alt="Logo" class="h-7 w-7" />
 			<div class="flex space-x-2 text-zinc-500 dark:text-zinc-400">
 				<IconButton
 					title="Go to site"
