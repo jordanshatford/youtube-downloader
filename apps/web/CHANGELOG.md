@@ -1,5 +1,11 @@
 # @yd/web
 
+## 1.1.0
+
+### Minor Changes
+
+- feat: add new redesigned icon for application ([`86afc62de9bfcc047504755bd102d26e5a0913b5`](https://github.com/jordanshatford/youtube-downloader/commit/86afc62de9bfcc047504755bd102d26e5a0913b5))
+
 ## 1.0.4
 
 ### Patch Changes
