@@ -2,6 +2,15 @@
 
 export type AudioFormat = 'aac' | 'flac' | 'm4a' | 'mp3' | 'opus' | 'wav';
 
+export const AudioFormat = {
+	AAC: 'aac',
+	FLAC: 'flac',
+	M4A: 'm4a',
+	MP3: 'mp3',
+	OPUS: 'opus',
+	WAV: 'wav'
+} as const;
+
 export type AvailableDownloadOptions = {
 	format: Array<AudioFormat | VideoFormat>;
 	quality: Array<DownloadQuality>;
@@ -37,7 +46,20 @@ export type DownloadOptions = {
 
 export type DownloadQuality = 'best' | 'worst';
 
+export const DownloadQuality = {
+	BEST: 'best',
+	WORST: 'worst'
+} as const;
+
 export type DownloadState = 'WAITING' | 'DOWNLOADING' | 'PROCESSING' | 'DONE' | 'ERROR';
+
+export const DownloadState = {
+	WAITING: 'WAITING',
+	DOWNLOADING: 'DOWNLOADING',
+	PROCESSING: 'PROCESSING',
+	DONE: 'DONE',
+	ERROR: 'ERROR'
+} as const;
 
 export type DownloadStatus = {
 	state: DownloadState;
@@ -74,6 +96,69 @@ export type Video = {
 };
 
 export type VideoFormat = 'avi' | 'flv' | 'mkv' | 'mov' | 'mp4' | 'webm';
+
+export const VideoFormat = {
+	AVI: 'avi',
+	FLV: 'flv',
+	MKV: 'mkv',
+	MOV: 'mov',
+	MP4: 'mp4',
+	WEBM: 'webm'
+} as const;
+
+export type GetSearchData = {
+	query: string;
+};
+
+export type GetSearchResponse = Array<Video>;
+
+export type GetNextSearchResponse = Array<Video>;
+
+export type GetVideoData = {
+	id: string;
+};
+
+export type GetVideoResponse = Video;
+
+export type GetSessionResponse = Session;
+
+export type DeleteSessionResponse = void;
+
+export type GetSessionValidateResponse = Session;
+
+export type GetDownloadsResponse = Array<Download>;
+
+export type PutDownloadsData = {
+	requestBody: DownloadInput;
+};
+
+export type PutDownloadsResponse = Download;
+
+export type PostDownloadsData = {
+	requestBody: DownloadInput;
+};
+
+export type PostDownloadsResponse = Download;
+
+export type GetDownloadsOptionsResponse = AvailableDownloadOptions;
+
+export type GetDownloadData = {
+	downloadId: string;
+};
+
+export type GetDownloadResponse = Download;
+
+export type DeleteDownloadData = {
+	downloadId: string;
+};
+
+export type DeleteDownloadResponse = void;
+
+export type GetDownloadFileData = {
+	downloadId: string;
+};
+
+export type GetDownloadFileResponse = Blob | File;
 
 export type $OpenApiTs = {
 	'/search': {
