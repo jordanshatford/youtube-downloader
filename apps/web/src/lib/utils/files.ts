@@ -14,4 +14,5 @@ export function saveAs(blob: Blob, name: string) {
 	a.click();
 	// Cleanup
 	a.remove();
+	window.URL.revokeObjectURL(url);
 }

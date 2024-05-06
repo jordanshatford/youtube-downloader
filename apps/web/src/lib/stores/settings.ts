@@ -2,12 +2,7 @@ import { browser } from '$app/environment';
 import { writable } from 'svelte/store';
 
 import type { DownloadOptions } from '@yd/client';
-import {
-	AudioFormat,
-	DEFAULT_DOWNLOAD_OPTIONS,
-	DownloadQuality,
-	VideoFormat
-} from '@yd/client';
+import { AudioFormat, DEFAULT_DOWNLOAD_OPTIONS, DownloadQuality, VideoFormat } from '@yd/client';
 
 const SETTINGS_KEY = 'yd-settings';
 
@@ -19,10 +14,7 @@ function createSettingsStore() {
 
 		if (data !== null) {
 			const parsedData = JSON.parse(data) as DownloadOptions;
-			const supportedFormats = [
-				...Object.values(AudioFormat),
-				...Object.values(VideoFormat)
-			];
+			const supportedFormats = [...Object.values(AudioFormat), ...Object.values(VideoFormat)];
 			// Make sure a value is set, if nothing is set use the default
 			if (!supportedFormats.includes(parsedData.format)) {
 				parsedData.format = DEFAULT_DOWNLOAD_OPTIONS.format;
