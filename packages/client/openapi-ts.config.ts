@@ -3,12 +3,14 @@ import { defineConfig } from '@hey-api/openapi-ts';
 import input from '@yd/api';
 
 export default defineConfig({
-	input,
-	output: './src/generated',
 	client: 'fetch',
-	format: 'prettier',
+	input,
+	output: {
+		format: 'prettier',
+		path: './src/generated'
+	},
+	schemas: false,
 	types: {
 		enums: 'javascript'
-	},
-	schemas: false
+	}
 });
