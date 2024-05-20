@@ -163,9 +163,7 @@ export type GetDownloadFileResponse = Blob | File;
 export type $OpenApiTs = {
 	'/search': {
 		get: {
-			req: {
-				query: string;
-			};
+			req: GetSearchData;
 			res: {
 				/**
 				 * Successful Response
@@ -206,9 +204,7 @@ export type $OpenApiTs = {
 	};
 	'/search/video': {
 		get: {
-			req: {
-				id: string;
-			};
+			req: GetVideoData;
 			res: {
 				/**
 				 * Successful Response
@@ -279,9 +275,7 @@ export type $OpenApiTs = {
 			};
 		};
 		put: {
-			req: {
-				requestBody: DownloadInput;
-			};
+			req: PutDownloadsData;
 			res: {
 				/**
 				 * Successful Response
@@ -298,9 +292,7 @@ export type $OpenApiTs = {
 			};
 		};
 		post: {
-			req: {
-				requestBody: DownloadInput;
-			};
+			req: PostDownloadsData;
 			res: {
 				/**
 				 * Successful Response
@@ -333,9 +325,7 @@ export type $OpenApiTs = {
 	};
 	'/downloads/{download_id}': {
 		get: {
-			req: {
-				downloadId: string;
-			};
+			req: GetDownloadData;
 			res: {
 				/**
 				 * Successful Response
@@ -356,9 +346,7 @@ export type $OpenApiTs = {
 			};
 		};
 		delete: {
-			req: {
-				downloadId: string;
-			};
+			req: DeleteDownloadData;
 			res: {
 				/**
 				 * Successful Response
@@ -381,9 +369,7 @@ export type $OpenApiTs = {
 	};
 	'/downloads/{download_id}/file': {
 		get: {
-			req: {
-				downloadId: string;
-			};
+			req: GetDownloadFileData;
 			res: {
 				/**
 				 * Successful Response
