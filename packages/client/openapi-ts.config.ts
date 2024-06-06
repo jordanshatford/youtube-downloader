@@ -10,6 +10,9 @@ export default defineConfig({
 		path: './src/generated'
 	},
 	schemas: false,
+	services: {
+		asClass: true
+	},
 	types: {
 		enums: 'javascript'
 	}
