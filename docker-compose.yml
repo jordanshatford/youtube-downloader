@@ -19,10 +19,9 @@ services:
       target: production
       args:
         DOCKER_BUILDKIT: 1
+        VITE_SERVER_ADDR: http://localhost:8080
     image: yd/web:latest
     restart: always
-    environment:
-      VITE_SERVER_ADDR: http://localhost:8080
     ports:
       - 5173:5173
     depends_on:

@@ -1,4 +1,6 @@
 FROM node:lts-alpine AS base
+ARG VITE_SERVER_ADD
+ENV VITE_SERVER_ADDR $VITE_SERVER_ADDR
 
 WORKDIR /workspace
 
