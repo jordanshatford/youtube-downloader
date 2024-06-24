@@ -35,10 +35,10 @@
 		"autoprefixer": "^10.4.19",
 		"postcss": "^8.4.38",
 		"svelte": "^4.2.18",
-		"svelte-check": "^3.8.0",
+		"svelte-check": "^3.8.1",
 		"tailwindcss": "^3.4.4",
 		"tslib": "^2.6.3",
-		"typescript": "^5.4.5",
-		"wxt": "^0.18.4"
+		"typescript": "^5.5.2",
+		"wxt": "^0.18.9"
 	}
 }
