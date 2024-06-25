@@ -7,7 +7,7 @@ type EventSourceHandler<T> = (event: T) => void;
 
 // Options used when getting information to setup the EventSource. This
 // is not actually a GET request.
-const options: ApiRequestOptions = {
+const options: ApiRequestOptions<string> = {
 	method: 'GET',
 	url: '/downloads/status'
 };
