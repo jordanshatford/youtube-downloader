@@ -8,7 +8,7 @@ export async function saveAs(blob: Blob, name: string): Promise<number> {
 	return await browser.downloads.download({
 		// Blob type and base64 data for download.
 		url: `data:${blob.type};base64,${base64}`,
-		filename: cleanFilename(name),
+		filename: name,
 		saveAs: false,
 		conflictAction: 'uniquify'
 	});
@@ -32,13 +32,4 @@ async function blobToBase64(blob: Blob): Promise<string> {
 		};
 		reader.readAsDataURL(blob);
 	});
-}
-
-/**
- * Clean a string to prevent browser download throwing invalid naming.
- * @param name - name to clean
- * @returns string - cleaned filename
- */
-function cleanFilename(name: string): string {
-	return name.replace(/[^a-z0-9]/gi, '_');
 }

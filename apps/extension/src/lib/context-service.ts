@@ -185,7 +185,7 @@ class ContextService {
 
 		const blob = await DownloadsService.getDownloadFile({ downloadId: id });
 		const download = this.#downloads[id];
-		const filename = `${download.video.title} - ${download.video.channel.name}.${download.options.format}`;
+		const filename = `${download.video.title}.${download.options.format}`;
 		try {
 			await saveAs(blob, filename);
 		} catch (e) {
