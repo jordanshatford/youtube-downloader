@@ -1,5 +1,11 @@
 # @yd/extension
 
+## 0.5.0
+
+### Minor Changes
+
+- feat: save files in <title>.<extension> format ([`529c8919b635f28c53dfb36b2e6bda3df5904b08`](https://github.com/jordanshatford/youtube-downloader/commit/529c8919b635f28c53dfb36b2e6bda3df5904b08))
+
 ## 0.4.0
 
 ### Minor Changes
