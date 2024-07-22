@@ -187,11 +187,11 @@ importers:
   packages/ui:
     dependencies:
       '@steeze-ui/heroicons':
-        specifier: ^2.3.0
-        version: 2.3.0
+        specifier: ^2.4.0
+        version: 2.4.0
       '@steeze-ui/simple-icons':
-        specifier: ^1.7.1
-        version: 1.7.1
+        specifier: ^1.8.0
+        version: 1.8.0
       '@steeze-ui/svelte-icon':
         specifier: ^1.5.0
         version: 1.5.0(svelte@4.2.18)
@@ -981,11 +981,11 @@ packages:
     resolution: {integrity: sha512-TV7t8GKYaJWsn00tFDqBw8+Uqmr8A0fRU1tvTQhyZzGv0sJCGRQL3JGMI3ucuKo3XIZdUP+Lx7/gh2t3lewy7g==}
     engines: {node: '>=14.16'}
 
-  '@steeze-ui/heroicons@2.3.0':
-    resolution: {integrity: sha512-tVOamjAd9ZzXgDwVKwbA3K+o86Z1ks/IMvqdgoCf9hKeGINVUIlAlGhM3wdpSmt7brIoBLgR70wlnsXGytZk9g==}
+  '@steeze-ui/heroicons@2.4.0':
+    resolution: {integrity: sha512-gxOytXYV/lQiGxkZQC+CP5IWCa+d/vscRKn4JfZXgF8MZEzg9wfl1tTi/GOr3Eg93YkhlhNDwTIGWjhMaEwmvw==}
 
-  '@steeze-ui/simple-icons@1.7.1':
-    resolution: {integrity: sha512-vIsurZBiP6ksg/6zvE6wQVKVludu3UFtePmIAWAbmfjlA6LcjGx+IpX0xNOhVfUs8dC8cMOVn2yLbDhQm5dLYA==}
+  '@steeze-ui/simple-icons@1.8.0':
+    resolution: {integrity: sha512-Th/iGG9ZEmg5AJzVEg6rgMwQZJL47b7IdbCWNqmZNT+ZK3wjBgcOWb8uEK4E77OWYu5K2UuqkqZeE3i2pYOCxQ==}
 
   '@steeze-ui/svelte-icon@1.5.0':
     resolution: {integrity: sha512-Y0S7Qk2kO6byzOlD5SQGbOF2ZaKXJgfTkH78QUPcq579wiWMQJ5H14zL4XwtsPJ0DfkoL5qa3WaIdYkWb9A6AA==}
@@ -4745,9 +4745,9 @@ snapshots:
 
   '@sindresorhus/is@5.6.0': {}
 
-  '@steeze-ui/heroicons@2.3.0': {}
+  '@steeze-ui/heroicons@2.4.0': {}
 
-  '@steeze-ui/simple-icons@1.7.1': {}
+  '@steeze-ui/simple-icons@1.8.0': {}
 
   '@steeze-ui/svelte-icon@1.5.0(svelte@4.2.18)':
     dependencies:
