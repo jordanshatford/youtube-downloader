@@ -7,7 +7,7 @@ export const config = {
 	github: 'https://github.com/jordanshatford/youtube-downloader',
 	copyright: {
 		owner: 'Jordan Shatford',
-		year: 2022
+		year: new Date().getFullYear()
 	}
 };
 
