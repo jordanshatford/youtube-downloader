@@ -39,7 +39,7 @@ export async function sendMessageIgnoreReturn<TType extends keyof MessagingMap>(
 ): Promise<void> {
 	try {
 		await sendMessage(type, data, tabId);
-	} catch (e) {
+	} catch {
 		// Ignore possible error when attempting to send the message.
 	}
 }

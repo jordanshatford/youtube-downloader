@@ -29,7 +29,7 @@ export async function setupSession(): Promise<void> {
 			// Attempt to use existing session if present.
 			const session = await SessionService.getSessionValidate();
 			sessionStorage.setItem(SESSION_ID_KEY, session.id);
-		} catch (err) {
+		} catch {
 			// Attempt to setup a new session until successful
 			let success = false;
 			while (!success) {

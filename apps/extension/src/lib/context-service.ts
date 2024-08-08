@@ -117,7 +117,7 @@ class ContextService {
 			await sendMessageIgnoreReturn('VideoChanged', { tab, video });
 			this.#loading = false;
 			return;
-		} catch (e) {
+		} catch {
 			this.#loading = false;
 			return;
 		}
@@ -218,7 +218,7 @@ class ContextService {
 			const session = await SessionService.getSessionValidate();
 			await browser.storage.sync.set({ [SESSION_ID_KEY]: session?.id });
 			this.#session = session;
-		} catch (err) {
+		} catch {
 			// Attempt to setup a new session until successful
 			let session: Session | undefined;
 			while (session === undefined) {

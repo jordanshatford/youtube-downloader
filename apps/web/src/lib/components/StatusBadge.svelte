@@ -36,7 +36,7 @@
 	};
 
 	$: text = status.postprocessor
-		? postProcessorLookup[status.postprocessor?.toLowerCase()] ?? status.state
+		? (postProcessorLookup[status.postprocessor?.toLowerCase()] ?? status.state)
 		: status.state;
 </script>
 
