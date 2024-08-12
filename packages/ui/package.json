@@ -34,9 +34,9 @@
 		"svelte": "^4.0.0"
 	},
 	"devDependencies": {
-		"@sveltejs/adapter-auto": "^3.2.2",
-		"@sveltejs/kit": "^2.5.20",
-		"@sveltejs/package": "^2.3.2",
+		"@sveltejs/adapter-auto": "^3.2.3",
+		"@sveltejs/kit": "^2.5.21",
+		"@sveltejs/package": "^2.3.3",
 		"@sveltejs/vite-plugin-svelte": "^3.1.1",
 		"@yd/config": "workspace:*",
 		"autoprefixer": "^10.4.20",
@@ -44,7 +44,7 @@
 		"publint": "^0.2.9",
 		"svelte": "^4.2.18",
 		"svelte-check": "^3.8.5",
-		"tailwindcss": "^3.4.8",
+		"tailwindcss": "^3.4.9",
 		"tslib": "^2.6.3",
 		"typescript": "^5.5.4",
 		"vite": "^5.4.0"
