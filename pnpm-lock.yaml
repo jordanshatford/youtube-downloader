@@ -190,8 +190,8 @@ importers:
         specifier: ^2.4.0
         version: 2.4.0
       '@steeze-ui/simple-icons':
-        specifier: ^1.8.0
-        version: 1.8.0
+        specifier: ^1.9.0
+        version: 1.9.0
       '@steeze-ui/svelte-icon':
         specifier: ^1.5.0
         version: 1.5.0(svelte@4.2.18)
@@ -985,8 +985,8 @@ packages:
   '@steeze-ui/heroicons@2.4.0':
     resolution: {integrity: sha512-gxOytXYV/lQiGxkZQC+CP5IWCa+d/vscRKn4JfZXgF8MZEzg9wfl1tTi/GOr3Eg93YkhlhNDwTIGWjhMaEwmvw==}
 
-  '@steeze-ui/simple-icons@1.8.0':
-    resolution: {integrity: sha512-Th/iGG9ZEmg5AJzVEg6rgMwQZJL47b7IdbCWNqmZNT+ZK3wjBgcOWb8uEK4E77OWYu5K2UuqkqZeE3i2pYOCxQ==}
+  '@steeze-ui/simple-icons@1.9.0':
+    resolution: {integrity: sha512-E0Yy9AOMqrt0GSJCetk2a+1GavpLfM3xZkHjWXH+cCTV4Pl6rIy+5XcdbHqD4x1P2KuaHPcX1X7k3RtgOl7Sgg==}
 
   '@steeze-ui/svelte-icon@1.5.0':
     resolution: {integrity: sha512-Y0S7Qk2kO6byzOlD5SQGbOF2ZaKXJgfTkH78QUPcq579wiWMQJ5H14zL4XwtsPJ0DfkoL5qa3WaIdYkWb9A6AA==}
@@ -4850,7 +4850,7 @@ snapshots:
 
   '@steeze-ui/heroicons@2.4.0': {}
 
-  '@steeze-ui/simple-icons@1.8.0': {}
+  '@steeze-ui/simple-icons@1.9.0': {}
 
   '@steeze-ui/svelte-icon@1.5.0(svelte@4.2.18)':
     dependencies:
