@@ -23,12 +23,12 @@
     "changeset": "changeset"
   },
   "devDependencies": {
-    "@changesets/cli": "^2.27.7",
-    "@commitlint/cli": "^19.4.0",
-    "@commitlint/config-conventional": "^19.2.2",
+    "@changesets/cli": "^2.27.8",
+    "@commitlint/cli": "^19.4.1",
+    "@commitlint/config-conventional": "^19.4.1",
     "@commitlint/types": "^19.0.3",
     "@svitejs/changesets-changelog-github-compact": "^1.1.0",
-    "husky": "^9.1.4"
+    "husky": "^9.1.5"
   },
   "packageManager": "pnpm@9.1.1+sha512.14e915759c11f77eac07faba4d019c193ec8637229e62ec99eefb7cf3c3b75c64447882b7c485142451ee3a6b408059cdfb7b7fa0341b975f12d0f7629c71195",
   "engines": {
