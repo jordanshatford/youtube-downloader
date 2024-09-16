@@ -3,7 +3,7 @@ import { defineConfig } from '@hey-api/openapi-ts';
 import input from '@yd/api';
 
 export default defineConfig({
-	client: 'fetch',
+	client: 'legacy/fetch',
 	input,
 	output: {
 		format: 'prettier',
