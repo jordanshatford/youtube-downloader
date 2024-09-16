@@ -33,7 +33,7 @@ export function writeableStorage<T>(
 	// Initialize the store with values from storage.
 	async function initialize() {
 		const result = await storage.get(key);
-		const value: T = result?.[key] || initial;
+		const value = (result?.[key] || initial) as T;
 		await set(value);
 	}
 
