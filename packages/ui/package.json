@@ -34,19 +34,19 @@
 		"svelte": "^4.0.0"
 	},
 	"devDependencies": {
-		"@sveltejs/adapter-auto": "^3.2.4",
-		"@sveltejs/kit": "^2.5.27",
+		"@sveltejs/adapter-auto": "^3.2.5",
+		"@sveltejs/kit": "^2.5.28",
 		"@sveltejs/package": "^2.3.5",
 		"@sveltejs/vite-plugin-svelte": "^3.1.2",
 		"@yd/config": "workspace:*",
 		"autoprefixer": "^10.4.20",
 		"postcss": "^8.4.47",
-		"publint": "^0.2.10",
+		"publint": "^0.2.11",
 		"svelte": "^4.2.19",
 		"svelte-check": "^4.0.2",
-		"tailwindcss": "^3.4.11",
+		"tailwindcss": "^3.4.12",
 		"tslib": "^2.7.0",
 		"typescript": "^5.6.2",
-		"vite": "^5.4.5"
+		"vite": "^5.4.7"
 	}
 }
