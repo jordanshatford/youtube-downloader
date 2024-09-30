@@ -9,12 +9,12 @@ license = "MIT"
 
 [tool.poetry.dependencies]
 python = "^3.11"
-fastapi = "0.114.2"
+fastapi = "0.115.0"
 mutagen = "1.47.0"
 pydantic = ">=2.1.1,<3.0.0"
 sse-starlette = "2.1.3"
-uvicorn = "0.30.6"
-yt-dlp = "2024.8.6"
+uvicorn = "0.31.0"
+yt-dlp = "2024.9.27"
 
 [tool.poetry.group.dev.dependencies]
 pre-commit = "3.8.0"
