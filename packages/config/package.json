@@ -28,6 +28,6 @@
 		"prettier-plugin-tailwindcss": "^0.6.8",
 		"svelte-eslint-parser": "^0.41.1",
 		"tailwindcss": "^3.4.13",
-		"typescript-eslint": "^8.7.0"
+		"typescript-eslint": "^8.8.0"
 	}
 }
