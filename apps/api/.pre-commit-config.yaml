@@ -1,7 +1,7 @@
 files: ^(apps/api/)
 repos:
 -   repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: v4.6.0
+    rev: v5.0.0
     hooks:
     -   id: trailing-whitespace
     -   id: end-of-file-fixer
@@ -10,7 +10,7 @@ repos:
     -   id: double-quote-string-fixer
     -   id: requirements-txt-fixer
 -   repo: https://github.com/asottile/reorder_python_imports
-    rev: v3.13.0
+    rev: v3.14.0
     hooks:
     -   id: reorder-python-imports
         args: [--py311-plus]
@@ -19,7 +19,7 @@ repos:
     hooks:
     -   id: add-trailing-comma
 -   repo: https://github.com/asottile/pyupgrade
-    rev: v3.17.0
+    rev: v3.18.0
     hooks:
     -   id: pyupgrade
         args: [--py311-plus]
