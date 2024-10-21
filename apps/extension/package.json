@@ -22,7 +22,7 @@
 		"postinstall": "wxt prepare"
 	},
 	"dependencies": {
-		"@webext-core/messaging": "^1.4.0",
+		"@webext-core/messaging": "^2.0.2",
 		"@webext-core/proxy-service": "^1.2.0",
 		"@yd/client": "workspace:*",
 		"@yd/ui": "workspace:*"
