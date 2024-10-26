@@ -35,7 +35,7 @@
 				on:click={() => (show = false)}
 				in:fade={{ duration: 300 }}
 				out:fade={{ delay: 200, duration: 200 }}
-			/>
+			></div>
 			<!-- This element is to trick the browser into centering the modal contents. -->
 			<span class={trickCenteringSpanClass()} aria-hidden="true">&#8203;</span>
 			<div
