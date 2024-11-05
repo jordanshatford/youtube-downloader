@@ -22,12 +22,12 @@
 		"eslint": "^9.14.0",
 		"eslint-config-prettier": "^9.1.0",
 		"eslint-plugin-svelte": "^2.46.0",
-		"globals": "^15.11.0",
+		"globals": "^15.12.0",
 		"prettier": "^3.3.3",
 		"prettier-plugin-svelte": "^3.2.7",
 		"prettier-plugin-tailwindcss": "^0.6.8",
 		"svelte-eslint-parser": "^0.43.0",
 		"tailwindcss": "^3.4.14",
-		"typescript-eslint": "^8.12.2"
+		"typescript-eslint": "^8.13.0"
 	}
 }

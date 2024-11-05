@@ -15,7 +15,7 @@ inputs:
   poetry-version:
     description: Poetry version to use
     required: false
-    default: 1.8.2
+    default: 1.8.4
 
 runs:
   using: 'composite'
