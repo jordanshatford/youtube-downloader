@@ -1,4 +1,4 @@
-import type { DownloadOptions } from './generated';
+import type { DownloadOptions } from './generated/index';
 
 // Default download options to use on various platforms.
 export const DEFAULT_DOWNLOAD_OPTIONS: DownloadOptions = {

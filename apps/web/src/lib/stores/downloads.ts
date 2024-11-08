@@ -1,9 +1,17 @@
+import { SESSION_ID_KEY } from '$lib/api';
 import { settings, userSettings } from '$lib/stores/settings';
 import { saveAs } from '$lib/utils/files';
 import { get, writable } from 'svelte/store';
 
 import type { Download, Video } from '@yd/client';
-import { DownloadsService, DownloadsStatusService } from '@yd/client';
+import {
+	deleteDownload,
+	getDownloadFile,
+	getDownloads,
+	getDownloadsStatus,
+	postDownloads,
+	putDownloads
+} from '@yd/client';
 import { toast } from '@yd/ui';
 
 const DOWNLOADS = writable<Record<string, Download>>({});
@@ -12,7 +20,7 @@ function createDownloadsStore() {
 	const { subscribe, set, update } = DOWNLOADS;
 
 	function setupStatusListener() {
-		DownloadsStatusService.setup({
+		getDownloadsStatus(() => sessionStorage.getItem(SESSION_ID_KEY) ?? '', {
 			onMessage: (download) => {
 				updateDownload(download.video.id, download);
 			}
@@ -20,7 +28,7 @@ function createDownloadsStore() {
 	}
 
 	async function init() {
-		const downloads = await DownloadsService.getDownloads();
+		const downloads = (await getDownloads()).data ?? [];
 		set(downloads.reduce((prev, curr) => ({ ...prev, [curr.video.id]: curr }), {}));
 	}
 
@@ -40,10 +48,12 @@ function createDownloadsStore() {
 		});
 
 		try {
-			const result = await DownloadsService.postDownloads({
-				requestBody: download
+			const result = await postDownloads({
+				body: download
 			});
-			updateDownload(result.video.id, result);
+			if (result.data) {
+				updateDownload(result.data.video.id, result.data);
+			}
 		} catch (err) {
 			handleError(download.video.id, `Failed to add '${video.title}' to downloads.`, err);
 		}
@@ -55,10 +65,12 @@ function createDownloadsStore() {
 		const download = get(DOWNLOADS)[id];
 
 		try {
-			const result = await DownloadsService.putDownloads({
-				requestBody: download
+			const result = await putDownloads({
+				body: download
 			});
-			updateDownload(result.video.id, result);
+			if (result.data) {
+				updateDownload(result.data.video.id, result.data);
+			}
 		} catch (err) {
 			handleError(download.video.id, `Failed to restart '${download.video.title}' download.`, err);
 		}
@@ -68,7 +80,7 @@ function createDownloadsStore() {
 		if (!(id in get(DOWNLOADS))) return;
 
 		try {
-			await DownloadsService.deleteDownload({ downloadId: id });
+			await deleteDownload({ path: { download_id: id } });
 			toast.success('Deleted', 'Download removed successfully.');
 			update((state) => {
 				delete state[id];
@@ -83,10 +95,12 @@ function createDownloadsStore() {
 		if (!(id in get(DOWNLOADS))) return;
 
 		try {
-			const blob = await DownloadsService.getDownloadFile({ downloadId: id });
-			const download = get(DOWNLOADS)[id];
-			const filename = `${download.video.title}.${download.options.format}`;
-			saveAs(blob, filename);
+			const response = await getDownloadFile({ path: { download_id: id } });
+			if (response.data) {
+				const download = get(DOWNLOADS)[id];
+				const filename = `${download.video.title}.${download.options.format}`;
+				saveAs(response.data, filename);
+			}
 		} catch (err) {
 			handleError(id, 'Failed to get file for download.', err);
 		}

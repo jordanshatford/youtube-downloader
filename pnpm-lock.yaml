@@ -128,6 +128,10 @@ importers:
         version: 5.4.10(@types/node@22.9.0)(terser@5.34.1)
 
   packages/client:
+    dependencies:
+      '@hey-api/client-fetch':
+        specifier: ^0.4.2
+        version: 0.4.2
     devDependencies:
       '@hey-api/openapi-ts':
         specifier: ^0.54.2
@@ -648,6 +652,9 @@ packages:
   '@eslint/plugin-kit@0.2.2':
     resolution: {integrity: sha512-CXtq5nR4Su+2I47WPOlWud98Y5Lv8Kyxp2ukhgFx/eW6Blm18VXJO5WuQylPugRo8nbluoi6GvvxBLqHcvqUUw==}
     engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
+
+  '@hey-api/client-fetch@0.4.2':
+    resolution: {integrity: sha512-9BqcLTjsM3rWbads3afJkELS86vK7EqJvYgT429EVS9IO/kN75HEka3Ay/k142xCHSfXOuOShMdDam3nbG8wVA==}
 
   '@hey-api/openapi-ts@0.54.2':
     resolution: {integrity: sha512-hU/Xf8D5yOSA5JsOkM0x4Sz9jChI0v4JMkkk3sy1Tc3DXbbr+s3uyJngvYoimXOq6ljF/9QSCtrk7z5LXxd64g==}
@@ -4310,6 +4317,8 @@ snapshots:
   '@eslint/plugin-kit@0.2.2':
     dependencies:
       levn: 0.4.1
+
+  '@hey-api/client-fetch@0.4.2': {}
 
   '@hey-api/openapi-ts@0.54.2(magicast@0.3.5)(typescript@5.6.3)':
     dependencies:

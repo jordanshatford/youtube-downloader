@@ -3,17 +3,19 @@ import { defineConfig } from '@hey-api/openapi-ts';
 import input from '@yd/api';
 
 export default defineConfig({
-	client: 'legacy/fetch',
+	client: '@hey-api/client-fetch',
 	input,
 	output: {
 		format: 'prettier',
 		path: './src/generated'
 	},
-	schemas: false,
-	services: {
-		asClass: true
-	},
-	types: {
-		enums: 'javascript'
-	}
+	plugins: [
+		{
+			name: '@hey-api/types',
+			enums: 'javascript'
+		},
+		{
+			name: '@hey-api/services'
+		}
+	]
 });

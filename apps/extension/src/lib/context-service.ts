@@ -3,14 +3,18 @@ import { get } from 'svelte/store';
 import { Tabs } from 'webextension-polyfill';
 
 import {
+	client,
+	deleteDownload,
 	Download,
 	DownloadOptions,
-	DownloadsService,
-	DownloadsStatusService,
-	OpenAPI,
-	SearchService,
+	getDownloadFile,
+	getDownloadsStatus,
+	getSession,
+	getSessionValidate,
+	getVideo,
+	postDownloads,
+	putDownloads,
 	Session,
-	SessionService,
 	Video
 } from '@yd/client';
 
@@ -39,14 +43,24 @@ const sleep = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
 const SESSION_ID_KEY = 'yd-sessionid';
 
 // Set the base server address using the environment variable.
-OpenAPI.BASE = env.serverAddress;
+client.setConfig({
+	baseUrl: env.serverAddress,
+	throwOnError: true
+});
+
+async function getSessionIdFromStorage() {
+	const result = await browser.storage.sync.get(SESSION_ID_KEY);
+	const token = result?.[SESSION_ID_KEY] ?? '';
+	return token;
+}
 
 // Use session as token when making requests with client. Take this
 // token from the session storage, as it is set there on session setup.
-OpenAPI.TOKEN = async () => {
-	const result = await browser.storage.sync.get(SESSION_ID_KEY);
-	return result?.[SESSION_ID_KEY] ?? '';
-};
+client.interceptors.request.use(async (request) => {
+	const token = await getSessionIdFromStorage();
+	request.headers.set('Authorization', `Bearer ${token}`);
+	return request;
+});
 
 class ContextService {
 	// Current session and eventsource being used.
@@ -110,11 +124,14 @@ class ContextService {
 
 		// Fetch the video from the API and cache it.
 		try {
-			const video = await SearchService.getVideo({ id });
-			this.#tabVideos[tab.url] = video;
-			this.#videoCache[id] = video;
-			await setContextMenus(video);
-			await sendMessageIgnoreReturn('VideoChanged', { tab, video });
+			const response = await getVideo({ query: { id } });
+			if (response.data) {
+				const video = response.data;
+				this.#tabVideos[tab.url] = video;
+				this.#videoCache[id] = video;
+				await setContextMenus(video);
+				await sendMessageIgnoreReturn('VideoChanged', { tab, video });
+			}
 			this.#loading = false;
 			return;
 		} catch {
@@ -165,7 +182,7 @@ class ContextService {
 		this.#downloads[video.id] = download;
 
 		// Send the download to the API.
-		await DownloadsService.postDownloads({ requestBody: download });
+		await postDownloads({ body: download });
 		await sendMessageIgnoreReturn('DownloadStart', download);
 	}
 
@@ -183,20 +200,23 @@ class ContextService {
 	public async getFile(id: string): Promise<void> {
 		if (!(id in this.#downloads)) return;
 
-		const blob = await DownloadsService.getDownloadFile({ downloadId: id });
-		const download = this.#downloads[id];
-		const filename = `${download.video.title}.${download.options.format}`;
-		try {
-			await saveAs(blob, filename);
-		} catch (e) {
-			console.error(`Failed to save download file for ${download.video.title}: `, e);
+		const response = await getDownloadFile({ path: { download_id: id } });
+		if (response.data) {
+			const download = this.#downloads[id];
+			const filename = `${download.video.title}.${download.options.format}`;
+
+			try {
+				await saveAs(response.data, filename);
+			} catch (e) {
+				console.error(`Failed to save download file for ${download.video.title}: `, e);
+			}
 		}
 	}
 
 	public async remove(id: string): Promise<void> {
 		if (!(id in this.#downloads)) return;
 		await this.#ensureSession();
-		await DownloadsService.deleteDownload({ downloadId: id });
+		await deleteDownload({ path: { download_id: id } });
 		delete this.#downloads[id];
 		sendMessageIgnoreReturn('DownloadRemove', id);
 	}
@@ -204,9 +224,11 @@ class ContextService {
 	public async restart(id: string): Promise<void> {
 		if (!(id in this.#downloads)) return;
 		const download = this.#downloads[id];
-		const result = await DownloadsService.putDownloads({ requestBody: download });
-		this.#downloads[download.video.id] = result;
-		await sendMessageIgnoreReturn('StatusUpdate', result);
+		const result = await putDownloads({ body: download });
+		if (result.data) {
+			this.#downloads[download.video.id] = result.data;
+			await sendMessageIgnoreReturn('StatusUpdate', result.data);
+		}
 	}
 
 	/**
@@ -215,19 +237,23 @@ class ContextService {
 	async #ensureSession(): Promise<void> {
 		try {
 			// Attempt to use existing session if present.
-			const session = await SessionService.getSessionValidate();
-			await browser.storage.sync.set({ [SESSION_ID_KEY]: session?.id });
-			this.#session = session;
+			const response = await getSessionValidate();
+			if (response.data) {
+				await browser.storage.sync.set({ [SESSION_ID_KEY]: response.data?.id });
+				this.#session = response.data;
+			}
 		} catch {
 			// Attempt to setup a new session until successful
 			let session: Session | undefined;
 			while (session === undefined) {
 				try {
 					// Attempt to setup new session.
-					session = await SessionService.getSession();
-					await browser.storage.sync.set({ [SESSION_ID_KEY]: session?.id });
-					this.#session = session;
-					await sendMessageIgnoreReturn('NewSession', this.#session);
+					session = (await getSession()).data;
+					if (session) {
+						await browser.storage.sync.set({ [SESSION_ID_KEY]: session?.id });
+						this.#session = session;
+						await sendMessageIgnoreReturn('NewSession', this.#session);
+					}
 				} catch (err) {
 					console.error('Connection failed, could not connect to internal server. ', err);
 					await sleep(REATTEMPT_INTERVAL);
@@ -236,7 +262,7 @@ class ContextService {
 		}
 		// Create event source if one does not exist.
 		if (!this.#eventSource) {
-			this.#eventSource = await DownloadsStatusService.setup({
+			this.#eventSource = await getDownloadsStatus(getSessionIdFromStorage, {
 				onMessage: async (value) => {
 					this.#downloads[value.video.id] = value;
 					await sendMessageIgnoreReturn('StatusUpdate', value);

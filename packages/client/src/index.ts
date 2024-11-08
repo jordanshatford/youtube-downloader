@@ -1,3 +1,3 @@
-export * from './generated';
+export * from './generated/index';
 export * from './defaults';
-export * from './DownloadsStatusService';
+export * from './status';

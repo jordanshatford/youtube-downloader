@@ -107,55 +107,91 @@ export const VideoFormat = {
 } as const;
 
 export type GetSearchData = {
-	query: string;
+	query: {
+		query: string;
+	};
 };
 
 export type GetSearchResponse = Array<Video>;
 
+export type GetSearchError = unknown | HTTPValidationError;
+
 export type GetNextSearchResponse = Array<Video>;
 
+export type GetNextSearchError = unknown;
+
 export type GetVideoData = {
-	id: string;
+	query: {
+		id: string;
+	};
 };
 
 export type GetVideoResponse = Video;
 
+export type GetVideoError = unknown | HTTPValidationError;
+
 export type GetSessionResponse = Session;
+
+export type GetSessionError = unknown;
 
 export type DeleteSessionResponse = void;
 
+export type DeleteSessionError = unknown;
+
 export type GetSessionValidateResponse = Session;
+
+export type GetSessionValidateError = unknown;
 
 export type GetDownloadsResponse = Array<Download>;
 
+export type GetDownloadsError = unknown;
+
 export type PutDownloadsData = {
-	requestBody: DownloadInput;
+	body: DownloadInput;
 };
 
 export type PutDownloadsResponse = Download;
 
+export type PutDownloadsError = unknown | HTTPValidationError;
+
 export type PostDownloadsData = {
-	requestBody: DownloadInput;
+	body: DownloadInput;
 };
 
 export type PostDownloadsResponse = Download;
 
+export type PostDownloadsError = unknown | HTTPValidationError;
+
 export type GetDownloadsOptionsResponse = AvailableDownloadOptions;
 
+export type GetDownloadsOptionsError = unknown;
+
 export type GetDownloadData = {
-	downloadId: string;
+	path: {
+		download_id: string;
+	};
 };
 
 export type GetDownloadResponse = Download;
 
+export type GetDownloadError = unknown | HTTPValidationError;
+
 export type DeleteDownloadData = {
-	downloadId: string;
+	path: {
+		download_id: string;
+	};
 };
 
 export type DeleteDownloadResponse = void;
 
+export type DeleteDownloadError = unknown | HTTPValidationError;
+
 export type GetDownloadFileData = {
-	downloadId: string;
+	path: {
+		download_id: string;
+	};
 };
 
 export type GetDownloadFileResponse = Blob | File;
+
+export type GetDownloadFileError = unknown | HTTPValidationError;
