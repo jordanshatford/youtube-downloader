@@ -5,7 +5,7 @@ import tseslint from 'typescript-eslint';
 
 import eslintTypeScript from './typescript.js';
 
-/** @type {import('eslint').Linter.FlatConfig[]} */
+/** @type {import('eslint').Linter.Config[]} */
 export default tseslint.config(
 	...eslintTypeScript,
 	...eslintPluginSvelte.configs['flat/recommended'],
