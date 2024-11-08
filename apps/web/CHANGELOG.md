@@ -1,5 +1,16 @@
 # @yd/web
 
+## 1.3.0
+
+### Minor Changes
+
+- feat: update to svelte 5 ([`624641e`](https://github.com/jordanshatford/youtube-downloader/commit/624641e5699d36be76a293cf285fde612484d95f))
+
+### Patch Changes
+
+- Updated dependencies [[`624641e`](https://github.com/jordanshatford/youtube-downloader/commit/624641e5699d36be76a293cf285fde612484d95f)]:
+  - @yd/ui@1.2.0
+
 ## 1.2.0
 
 ### Minor Changes
