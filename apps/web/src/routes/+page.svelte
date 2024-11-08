@@ -5,8 +5,8 @@
 
 	import { Button, Icon, LoaderIcon, SearchBar, Title } from '@yd/ui';
 
-	async function searchVideos(event: CustomEvent<{ query: string }>) {
-		await search.get(event.detail.query);
+	async function searchVideos(query: string) {
+		await search.get(query);
 	}
 </script>
 
@@ -19,7 +19,7 @@
 	<div class="mx-auto max-w-xl overflow-hidden md:max-w-xl">
 		<div class="md:flex">
 			<div class="mt-4 w-full">
-				<SearchBar on:search={searchVideos} loading={$search.loading} query={$search.query} />
+				<SearchBar onsearch={searchVideos} loading={$search.loading} query={$search.query} />
 			</div>
 		</div>
 	</div>
@@ -33,7 +33,7 @@
 			<div class="flex w-full justify-center pt-4">
 				<Button
 					class="inline-flex items-center gap-2"
-					on:click={() => search.getMore()}
+					onclick={() => search.getMore()}
 					disabled={$search.loading}
 				>
 					{#if $search.loading}

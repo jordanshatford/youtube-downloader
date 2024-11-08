@@ -1,4 +1,4 @@
-<script lang="ts" context="module">
+<script lang="ts" module>
 	import { tv } from 'tailwind-variants';
 
 	const paginationClasses = tv({
@@ -27,43 +27,50 @@
 <script lang="ts">
 	import { ChevronLeftIcon, ChevronRightIcon, Icon } from '../icons';
 
-	let className: string = '';
-	export { className as class };
+	interface Props {
+		class?: string;
+		page: number;
+		totalPages?: number;
+		clickableNumbersAroundPage?: number;
+	}
 
-	export let page: number;
-	export let totalPages: number = 1;
-	export let clickableNumbersAroundPage: number = 3;
+	let {
+		class: className = '',
+		page = $bindable(),
+		totalPages = 1,
+		clickableNumbersAroundPage = 3
+	}: Props = $props();
 
 	// Get start and end values of clickable numbers
-	$: clickableFirstNumber = Math.max(page - clickableNumbersAroundPage, 1);
-	$: clickableLastNumber = Math.min(page + clickableNumbersAroundPage, totalPages);
+	let clickableFirstNumber = $derived(Math.max(page - clickableNumbersAroundPage, 1));
+	let clickableLastNumber = $derived(Math.min(page + clickableNumbersAroundPage, totalPages));
 
 	// Create array of values between clickableFirstNumber and clickableLastNumber
 	function toRangeArray(start: number, end: number): number[] {
 		return Array.from({ length: end - start + 1 }, (_v, index) => index + start);
 	}
-	$: clickableNumbers = toRangeArray(clickableFirstNumber, clickableLastNumber);
+	let clickableNumbers = $derived(toRangeArray(clickableFirstNumber, clickableLastNumber));
 
 	const { containerClass, outerButtonClass, outerButtonIconClass, numberButtonClass } =
 		paginationClasses();
 </script>
 
-<ol {...$$restProps} class={containerClass({ class: className })}>
+<ol class={containerClass({ class: className })}>
 	<li>
-		<button on:click={() => (page = Math.max(page - 1, 1))} class={outerButtonClass()}>
+		<button onclick={() => (page = Math.max(page - 1, 1))} class={outerButtonClass()}>
 			<span class="sr-only">Prev Page</span>
 			<Icon src={ChevronLeftIcon} theme="solid" class={outerButtonIconClass()} />
 		</button>
 	</li>
 	{#each clickableNumbers as n}
 		<li>
-			<button on:click={() => (page = n)} class={numberButtonClass({ active: page == n })}>
+			<button onclick={() => (page = n)} class={numberButtonClass({ active: page == n })}>
 				{n}
 			</button>
 		</li>
 	{/each}
 	<li>
-		<button on:click={() => (page = Math.min(page + 1, totalPages))} class={outerButtonClass()}>
+		<button onclick={() => (page = Math.min(page + 1, totalPages))} class={outerButtonClass()}>
 			<span class="sr-only">Next Page</span>
 			<Icon src={ChevronRightIcon} theme="solid" class={outerButtonIconClass()} />
 		</button>

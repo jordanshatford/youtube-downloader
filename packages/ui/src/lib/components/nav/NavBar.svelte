@@ -1,13 +1,21 @@
 <script lang="ts">
+	import type { Snippet } from 'svelte';
+
 	import type { IconSource } from '../../icons';
 	import { MenuIcon, XMarkIcon } from '../../icons';
 	import IconButton from '../IconButton.svelte';
 	import NavBarItem from './NavBarItem.svelte';
 
-	let showMobileMenu = false;
+	let showMobileMenu = $state(false);
 
-	export let links: { href: string; text: string; icon?: IconSource }[];
-	export let activeLink: string;
+	interface Props {
+		links: { href: string; text: string; icon?: IconSource }[];
+		activeLink: string;
+		logo?: Snippet;
+		right?: Snippet;
+	}
+
+	let { links, activeLink, logo, right }: Props = $props();
 </script>
 
 <nav class="fixed top-0 z-40 w-full bg-white shadow dark:bg-zinc-800 dark:shadow-dark">
@@ -15,7 +23,7 @@
 		<div class="relative flex h-16 items-center justify-between">
 			<div class="absolute inset-y-0 left-0 flex items-center sm:hidden">
 				<IconButton
-					on:click={() => (showMobileMenu = !showMobileMenu)}
+					onclick={() => (showMobileMenu = !showMobileMenu)}
 					class="{showMobileMenu
 						? 'hover:text-red-600 dark:hover:text-red-600'
 						: 'hover:text-brand-600 dark:hover:text-brand-600'} h-7 w-7 dark:text-zinc-200"
@@ -24,7 +32,7 @@
 			</div>
 			<div class="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
 				<div class="flex flex-shrink-0 items-center">
-					<slot name="logo" />
+					{@render logo?.()}
 				</div>
 				<div class="hidden sm:ml-6 sm:block">
 					<div class="flex space-x-4">
@@ -37,7 +45,7 @@
 			<div
 				class="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0"
 			>
-				<slot name="right" />
+				{@render right?.()}
 			</div>
 		</div>
 	</div>
@@ -45,7 +53,7 @@
 		<div>
 			<div class="space-y-1 px-2 pb-3 pt-2">
 				{#each links as link (link.href)}
-					<NavBarItem on:click={() => (showMobileMenu = false)} {link} {activeLink} isMobileMenu />
+					<NavBarItem onclick={() => (showMobileMenu = false)} {link} {activeLink} isMobileMenu />
 				{/each}
 			</div>
 		</div>

@@ -2,10 +2,14 @@
 	import { MinusCircleIcon, PlusCircleIcon } from '../icons';
 	import IconButton from './IconButton.svelte';
 
-	export let title: string;
-	export let description: string;
+	interface Props {
+		title: string;
+		description: string;
+	}
 
-	let open: boolean = false;
+	let { title, description }: Props = $props();
+
+	let open: boolean = $state(false);
 </script>
 
 <details
@@ -20,7 +24,7 @@
 		</h2>
 		<IconButton
 			src={open ? MinusCircleIcon : PlusCircleIcon}
-			on:click={() => (open = !open)}
+			onclick={() => (open = !open)}
 			class="h-6 w-6"
 		/>
 	</summary>

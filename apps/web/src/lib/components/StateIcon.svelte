@@ -3,7 +3,11 @@
 	import type { IconSource } from '@yd/ui';
 	import { CheckCircleIcon, ExclamationCircleIcon, Icon, LoaderIcon } from '@yd/ui';
 
-	export let state: DownloadState;
+	interface Props {
+		state: DownloadState;
+	}
+
+	let { state }: Props = $props();
 
 	const lookup: Record<DownloadState, { icon: IconSource; class: string }> = {
 		WAITING: {

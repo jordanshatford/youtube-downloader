@@ -5,7 +5,11 @@
 	import type { Video } from '@yd/client';
 	import { Card, IconButton, PlusIcon } from '@yd/ui';
 
-	export let result: Video;
+	interface Props {
+		result: Video;
+	}
+
+	let { result }: Props = $props();
 </script>
 
 <Card>
@@ -43,7 +47,7 @@
 		</a>
 		{#if !(result.id in $downloads)}
 			<IconButton
-				on:click={() => downloads.add(result)}
+				onclick={() => downloads.add(result)}
 				src={PlusIcon}
 				class="h-8 w-8 p-1 text-black hover:text-brand-600 dark:text-white dark:hover:text-brand-600"
 			/>

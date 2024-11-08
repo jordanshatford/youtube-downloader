@@ -1,4 +1,4 @@
-<script lang="ts" context="module">
+<script lang="ts" module>
 	import type { VariantProps } from 'tailwind-variants';
 	import { tv } from 'tailwind-variants';
 
@@ -54,25 +54,33 @@
 </script>
 
 <script lang="ts">
-	import { createEventDispatcher } from 'svelte';
+	import type { Snippet } from 'svelte';
 
 	import type { IconSource } from '../icons';
 	import { Icon, XMarkIcon } from '../icons';
 	import { toIcon } from '../utilities';
 
-	const dispatch = createEventDispatcher<{
-		close: undefined;
-	}>();
+	interface Props {
+		class?: string;
+		variant?: BadgeVariants['variant'];
+		closable?: boolean;
+		onclose?: () => void;
+		icon?: boolean | IconSource;
+		loading?: boolean;
+		children?: Snippet;
+	}
 
-	let className: string = '';
-	export { className as class };
+	let {
+		class: className = '',
+		variant = 'default',
+		closable = false,
+		onclose = undefined,
+		icon = false,
+		loading = false,
+		children
+	}: Props = $props();
 
-	export let variant: BadgeVariants['variant'] = 'default';
-	export let closable: boolean = false;
-	export let icon: boolean | IconSource = false;
-	export let loading: boolean = false;
-
-	let _icon: IconSource | undefined = undefined;
+	let _icon: IconSource | undefined = $state(undefined);
 	// User specified icon
 	if (typeof icon === 'object') {
 		_icon = icon;
@@ -86,15 +94,15 @@
 	});
 </script>
 
-<span {...$$restProps} class={spanClass({ class: className })}>
+<span class={spanClass({ class: className })}>
 	<span class={iconWrapperClass()}>
 		{#if _icon}
 			<Icon src={_icon} theme="solid" class={iconClass()} />
 		{/if}
 	</span>
-	<p class={textClass()}><slot /></p>
+	<p class={textClass()}>{@render children?.()}</p>
 	{#if closable}
-		<button class={buttonClass()} on:click={() => dispatch('close')}>
+		<button class={buttonClass()} onclick={() => onclose?.()}>
 			<span class="sr-only">Remove badge</span>
 			<Icon src={XMarkIcon} theme="solid" />
 		</button>

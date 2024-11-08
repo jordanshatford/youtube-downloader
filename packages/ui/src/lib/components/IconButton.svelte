@@ -4,15 +4,14 @@
 	import type { IconSource } from '../icons';
 	import { Icon } from '../icons';
 
-	interface $$Props extends HTMLButtonAttributes {
+	interface Props extends HTMLButtonAttributes {
 		src: IconSource;
 		theme?: string;
 	}
 
-	export let src: $$Props['src'];
-	export let theme: $$Props['theme'] = undefined;
+	let { src, theme = undefined, ...rest }: Props = $props();
 </script>
 
-<button on:click {...$$restProps} type="button" class={$$props.class}>
+<button {...rest} type="button">
 	<Icon {src} {theme} />
 </button>

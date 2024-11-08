@@ -3,6 +3,8 @@
 	import PopupMain from '~/lib/components/PopupMain.svelte';
 </script>
 
-<PopupLayout let:ctx>
-	<PopupMain {ctx} />
+<PopupLayout>
+	{#snippet children({ ctx })}
+		<PopupMain {ctx} />
+	{/snippet}
 </PopupLayout>

@@ -3,9 +3,13 @@
 
 	import { Button } from '@yd/ui';
 
-	export let title: string = '404';
-	export let subtitle: string = '';
-	export let description: string = "We can't find that page.";
+	interface Props {
+		title?: string;
+		subtitle?: string;
+		description?: string;
+	}
+
+	let { title = '404', subtitle = '', description = "We can't find that page." }: Props = $props();
 </script>
 
 <div class="-mt-16 grid h-screen place-content-center px-4">

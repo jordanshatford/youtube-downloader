@@ -1,9 +1,13 @@
 <script lang="ts">
-	export let id: string;
-	export let label: string;
-	export let helpText: string = '';
-	export let checked: boolean | undefined;
-	export let disabled = false;
+	import type { HTMLInputAttributes } from 'svelte/elements';
+
+	interface Props extends HTMLInputAttributes {
+		label: string;
+		helpText?: string;
+		checked: boolean | undefined;
+	}
+
+	let { id, label, helpText = '', checked = $bindable(), ...rest }: Props = $props();
 </script>
 
 <div class="flex justify-between space-x-2 py-3">
@@ -13,15 +17,7 @@
 	</label>
 	<div class="flex h-8 items-center">
 		<label for={id} class="relative h-6 w-10 cursor-pointer">
-			<input
-				{...$$restProps}
-				type="checkbox"
-				{id}
-				{disabled}
-				bind:checked
-				on:change
-				class="peer sr-only"
-			/>
+			<input {...rest} type="checkbox" {id} bind:checked class="peer sr-only" />
 			<span
 				class="absolute inset-0 rounded-full bg-zinc-300 transition peer-checked:bg-blue-500 peer-disabled:cursor-not-allowed peer-disabled:opacity-50 dark:bg-zinc-600"
 			></span>

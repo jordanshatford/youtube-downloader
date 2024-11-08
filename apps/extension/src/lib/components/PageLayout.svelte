@@ -1,8 +1,16 @@
 <script lang="ts">
+	import type { Snippet } from 'svelte';
+
 	import { ExternalLinkIcon, Footer, IconButton, initializeTheme, Toasts } from '@yd/ui';
 
 	import config from '~/lib/config';
 	import { openWebsite } from '~/lib/website';
+
+	interface Props {
+		children?: Snippet;
+	}
+
+	let { children }: Props = $props();
 
 	// Ensure theme is set based on user preferences.
 	initializeTheme();
@@ -18,12 +26,12 @@
 					<IconButton
 						title="Go to site"
 						src={ExternalLinkIcon}
-						on:click={openWebsite}
+						onclick={openWebsite}
 						class="h-6 w-6"
 					/>
 				</div>
 			</div>
-			<slot />
+			{@render children?.()}
 		</div>
 	</main>
 </div>

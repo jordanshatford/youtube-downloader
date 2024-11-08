@@ -1,7 +1,11 @@
 <script lang="ts">
 	import { Icon, LoaderIcon } from '@yd/ui';
 
-	export let message: string = 'Loading...';
+	interface Props {
+		message?: string;
+	}
+
+	let { message = 'Loading...' }: Props = $props();
 </script>
 
 <div class="flex h-full flex-col items-center justify-center space-y-2">

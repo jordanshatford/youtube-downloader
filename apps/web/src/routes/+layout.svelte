@@ -1,6 +1,7 @@
 <script lang="ts">
 	import '../app.css';
 
+	import type { Snippet } from 'svelte';
 	import { page } from '$app/stores';
 	import { setupSession } from '$lib/api';
 	import Loading from '$lib/components/Loading.svelte';
@@ -9,6 +10,12 @@
 	import { footerLinks, navbarLinks } from '$lib/routes';
 
 	import { Footer, NavBar, ThemeToggle, Toasts } from '@yd/ui';
+
+	interface Props {
+		children?: Snippet;
+	}
+
+	let { children }: Props = $props();
 </script>
 
 <svelte:head>
@@ -26,14 +33,18 @@
 <div class="h-full min-h-screen dark:bg-zinc-900">
 	<div class="h-full">
 		<NavBar links={navbarLinks} activeLink={$page.url.pathname}>
-			<Logo slot="logo" />
-			<ThemeToggle slot="right" />
+			{#snippet logo()}
+				<Logo />
+			{/snippet}
+			{#snippet right()}
+				<ThemeToggle />
+			{/snippet}
 		</NavBar>
 		<main class="mx-auto h-full max-w-7xl px-4 pt-20 sm:px-6 lg:px-8">
 			{#await setupSession()}
 				<Loading />
 			{:then}
-				<slot />
+				{@render children?.()}
 			{/await}
 		</main>
 	</div>

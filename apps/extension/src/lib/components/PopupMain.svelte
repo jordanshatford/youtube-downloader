@@ -10,7 +10,11 @@
 	import StatusBadge from '~/lib/components/StatusBadge.svelte';
 	import { createContextStore } from '~/lib/stores/context';
 
-	export let ctx: Ctx;
+	interface Props {
+		ctx: Ctx;
+	}
+
+	let { ctx }: Props = $props();
 
 	const store = createContextStore(ctx);
 
@@ -40,7 +44,7 @@
 			</div>
 			{#if !$store.currentDownload}
 				<IconButton
-					on:click={async () => await store.download()}
+					onclick={async () => await store.download()}
 					src={PlusIcon}
 					class="h-8 w-8 p-1 text-black hover:text-brand-600 dark:text-white dark:hover:text-brand-600"
 				/>
@@ -66,7 +70,7 @@
 				<StatusBadge status={$store.currentDownload.status} />
 			{/if}
 		{:else}
-			<Button disabled={$store.video === undefined} on:click={async () => await store.download()}>
+			<Button disabled={$store.video === undefined} onclick={async () => await store.download()}>
 				Download
 			</Button>
 		{/if}

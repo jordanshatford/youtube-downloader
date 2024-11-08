@@ -1,9 +1,13 @@
 <script lang="ts">
 	import { GithubIcon, Icon } from '../icons';
 
-	export let githubLink: string | undefined = undefined;
-	export let copyright: { owner: string; year: number } | undefined = undefined;
-	export let links: { href: string; text: string }[] = [];
+	interface Props {
+		githubLink?: string | undefined;
+		copyright?: { owner: string; year: number } | undefined;
+		links?: { href: string; text: string }[];
+	}
+
+	let { githubLink = undefined, copyright = undefined, links = [] }: Props = $props();
 </script>
 
 <footer class="border-t border-zinc-200 bg-white dark:border-zinc-900 dark:bg-zinc-800">

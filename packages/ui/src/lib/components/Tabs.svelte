@@ -27,13 +27,17 @@
 		}
 	});
 
-	export let active: string;
-	export let tabs: { key: string; title: string; icon?: IconSource }[] = [];
+	interface Props {
+		active: string;
+		tabs?: { key: string; title: string; icon?: IconSource }[];
+	}
+
+	let { active = $bindable(), tabs = [] }: Props = $props();
 
 	const { selectClass, tabsWrapperDivClass, tabsNavClass, buttonClass, iconClass } = tabsClasses();
 </script>
 
-<div {...$$restProps}>
+<div>
 	<!-- On small devices show a select -->
 	<div class="sm:hidden">
 		<label for="Tab" class="sr-only">Tab</label>
@@ -49,7 +53,7 @@
 			<nav class={tabsNavClass()} aria-label="Tabs">
 				{#each tabs as tab (tab.key)}
 					<button
-						on:click={() => (active = tab.key)}
+						onclick={() => (active = tab.key)}
 						class={buttonClass({ active: tab.key === active })}
 					>
 						{#if tab.icon}

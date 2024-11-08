@@ -1,8 +1,11 @@
-<script lang="ts" generics="T extends object">
-	export let columns: { key: string; title: string }[] = [];
-	export let rows: T[] = []; // eslint-disable-line no-undef
+<script lang="ts" module>
+	type T = object;
+</script>
 
-	const defaultClasses = {
+<script lang="ts" generics="T extends object">
+	import type { Snippet } from 'svelte';
+
+	const classes = {
 		table: 'min-w-full divide-y divide-zinc-200 dark:divide-zinc-800 table-auto',
 		headtr: '',
 		thead: 'bg-zinc-50 dark:bg-zinc-800',
@@ -11,23 +14,30 @@
 		th: 'px-6 py-3 text-left text-xs font-medium text-zinc-500 dark:text-white uppercase',
 		td: 'px-6 py-4 whitespace-nowrap text-zinc-500 dark:text-zinc-300'
 	};
-	export let classes = defaultClasses;
 
-	$: assignedClasses = { ...defaultClasses, ...classes };
+	interface Props<TCol = { key: string; title: string }, TRow = T> {
+		columns?: TCol[];
+		rows?: TRow[];
+		head?: Snippet<[{ column: TCol }]>;
+		cell?: Snippet<[{ column: TCol; row: TRow }]>;
+		empty?: Snippet;
+	}
+
+	let { columns = [], rows = [], head, cell, empty }: Props = $props();
 
 	function isLastColumn(index: number) {
 		return index === columns.length - 1;
 	}
 </script>
 
-<table class={assignedClasses.table} cellspacing="0">
-	<thead class={assignedClasses.thead}>
-		<tr class={assignedClasses.headtr}>
+<table class={classes.table} cellspacing="0">
+	<thead class={classes.thead}>
+		<tr class={classes.headtr}>
 			{#each columns as column, index}
 				{@const isLastCol = isLastColumn(index) ? 'text-right' : ''}
-				<th scope="col" class={`${assignedClasses.th} ${isLastCol}`}>
-					{#if $$slots.head}
-						<slot name="head" {column} />
+				<th scope="col" class={`${classes.th} ${isLastCol}`}>
+					{#if head}
+						{@render head?.({ column })}
 					{:else}
 						<span>{column.title}</span>
 					{/if}
@@ -35,14 +45,14 @@
 			{/each}
 		</tr>
 	</thead>
-	<tbody class={assignedClasses.tbody}>
+	<tbody class={classes.tbody}>
 		{#each rows as row}
-			<tr class={assignedClasses.tr}>
+			<tr class={classes.tr}>
 				{#each columns as column, index}
 					{@const isLastCol = isLastColumn(index) ? 'text-right' : ''}
-					<td class={`${assignedClasses.td} ${isLastCol}`}>
-						{#if $$slots.cell}
-							<slot name="cell" {row} {column} />
+					<td class={`${classes.td} ${isLastCol}`}>
+						{#if cell}
+							{@render cell?.({ row, column })}
 						{:else}
 							<span></span>
 						{/if}
@@ -50,7 +60,7 @@
 				{/each}
 			</tr>
 		{:else}
-			<slot name="empty" />
+			{@render empty?.()}
 		{/each}
 	</tbody>
 </table>

@@ -1,5 +1,9 @@
 <script lang="ts">
-	export let message: string = 'Unexpected error!';
+	interface Props {
+		message?: string;
+	}
+
+	let { message = 'Unexpected error!' }: Props = $props();
 </script>
 
 <div class="flex h-full flex-col items-center justify-center space-y-2 text-center">

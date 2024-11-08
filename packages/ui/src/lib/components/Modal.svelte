@@ -1,4 +1,6 @@
 <script lang="ts">
+	import type { Snippet } from 'svelte';
+	import type { HTMLHtmlAttributes } from 'svelte/elements';
 	import { fade, fly } from 'svelte/transition';
 	import { tv } from 'tailwind-variants';
 
@@ -15,7 +17,12 @@
 		}
 	});
 
-	export let show: boolean = false;
+	interface Props extends HTMLHtmlAttributes {
+		show?: boolean;
+		children?: Snippet;
+	}
+
+	let { show = $bindable(false), class: className, children }: Props = $props();
 
 	const {
 		outerDivClass,
@@ -32,19 +39,18 @@
 			<div
 				class={backgroundTransitionDivClass()}
 				aria-hidden="true"
-				on:click={() => (show = false)}
+				onclick={() => (show = false)}
 				in:fade={{ duration: 300 }}
 				out:fade={{ delay: 200, duration: 200 }}
 			></div>
 			<!-- This element is to trick the browser into centering the modal contents. -->
 			<span class={trickCenteringSpanClass()} aria-hidden="true">&#8203;</span>
 			<div
-				{...$$restProps}
-				class={contentDivClass({ class: $$props.class })}
+				class={contentDivClass({ class: className })}
 				in:fly={{ y: -10, delay: 200, duration: 200 }}
 				out:fly={{ y: -10, duration: 200 }}
 			>
-				<slot />
+				{@render children?.()}
 			</div>
 		</div>
 	</div>

@@ -1,4 +1,4 @@
-<script lang="ts" context="module">
+<script lang="ts" module>
 	import type { VariantProps } from 'tailwind-variants';
 	import { tv } from 'tailwind-variants';
 
@@ -57,9 +57,13 @@
 	import IconButton from '../IconButton.svelte';
 	import { toast as _toast } from './stores';
 
-	export let toast: ToastComponent;
+	interface Props {
+		toast: ToastComponent;
+	}
 
-	$: icon = toIcon(toast.variant);
+	let { toast }: Props = $props();
+
+	let icon = $derived(toIcon(toast.variant));
 
 	const {
 		outerDivClass,
@@ -82,7 +86,7 @@
 			<IconButton
 				src={XMarkIcon}
 				class={closeIconClass()}
-				on:click={() => _toast.remove(toast.id)}
+				onclick={() => _toast.remove(toast.id)}
 			/>
 		{/if}
 		<div class={contentDivClass()}>

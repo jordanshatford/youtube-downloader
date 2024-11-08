@@ -7,12 +7,14 @@
 	import Toast from './Toast.svelte';
 	import { DEFAULT_ANIMATION, DEFAULT_POSITION } from './utils';
 
-	export let position: ToastPosition = DEFAULT_POSITION;
+	interface Props {
+		position?: ToastPosition;
+		options?: Partial<ToastComponentOptions> | undefined;
+		/** The animation properties. */
+		animation?: Partial<ToastAnimation> | undefined;
+	}
 
-	export let options: Partial<ToastComponentOptions> | undefined = undefined;
-
-	/** The animation properties. */
-	export let animation: Partial<ToastAnimation> | undefined = undefined;
+	let { position = DEFAULT_POSITION, options = undefined, animation = undefined }: Props = $props();
 
 	$_position = position;
 	const OPTIONS = { ...$_options, ...options };

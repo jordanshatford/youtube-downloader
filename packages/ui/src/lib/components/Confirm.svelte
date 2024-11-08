@@ -1,4 +1,4 @@
-<script lang="ts" context="module">
+<script lang="ts" module>
 	import type { VariantProps } from 'tailwind-variants';
 	import { tv } from 'tailwind-variants';
 
@@ -42,15 +42,29 @@
 </script>
 
 <script lang="ts">
+	import type { Snippet } from 'svelte';
+
 	import { Icon } from '../icons';
 	import { Button, Modal } from '../index';
 	import { toIcon } from '../utilities';
 
-	export let variant: ConfirmVariants['variant'] = 'info';
-	export let title: string = 'Confirm?';
-	export let description: string = '';
-	export let confirmText: string = 'Confirm';
-	export let cancelText: string = 'Cancel';
+	interface Props {
+		variant?: ConfirmVariants['variant'];
+		title?: string;
+		description?: string;
+		confirmText?: string;
+		cancelText?: string;
+		children?: Snippet<[{ confirm: (f: () => void) => void }]>;
+	}
+
+	let {
+		variant = 'info',
+		title = 'Confirm?',
+		description = '',
+		confirmText = 'Confirm',
+		cancelText = 'Cancel',
+		children
+	}: Props = $props();
 
 	const icon = toIcon(variant);
 
@@ -69,7 +83,7 @@
 		variant
 	});
 
-	let showDialog = false;
+	let showDialog = $state(false);
 
 	let onConfirmFunction: (() => void) | undefined = undefined;
 
@@ -85,9 +99,9 @@
 	}
 </script>
 
-<slot {confirm} />
+{@render children?.({ confirm })}
 
-<Modal {...$$restProps} bind:show={showDialog}>
+<Modal bind:show={showDialog}>
 	<div class={mainDivClass()}>
 		<div class={mainDivInnerClass()}>
 			{#if icon}
@@ -104,8 +118,8 @@
 		</div>
 	</div>
 	<div class={footerDivClass()}>
-		<Button {variant} class={confirmButtonClass()} on:click={callFunction}>{confirmText}</Button>
-		<Button variant="secondary" class={cancelButtonClass()} on:click={() => (showDialog = false)}
+		<Button {variant} class={confirmButtonClass()} onclick={callFunction}>{confirmText}</Button>
+		<Button variant="secondary" class={cancelButtonClass()} onclick={() => (showDialog = false)}
 			>{cancelText}</Button
 		>
 	</div>

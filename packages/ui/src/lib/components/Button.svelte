@@ -1,4 +1,4 @@
-<script lang="ts" context="module">
+<script lang="ts" module>
 	import type { VariantProps } from 'tailwind-variants';
 	import { tv } from 'tailwind-variants';
 
@@ -23,18 +23,26 @@
 </script>
 
 <script lang="ts">
-	export let variant: ButtonVariants['variant'] = 'info';
-	export let href: string | undefined = undefined;
+	import type { Snippet } from 'svelte';
+	import type { HTMLButtonAttributes } from 'svelte/elements';
 
-	const buttonClass = buttonClasses({ variant, class: $$props.class });
+	interface Props extends HTMLButtonAttributes {
+		variant?: ButtonVariants['variant'];
+		href?: string | undefined;
+		children?: Snippet;
+	}
+
+	let { variant = 'info', href = undefined, children, class: className, ...rest }: Props = $props();
+
+	const buttonClass = buttonClasses({ variant, class: className });
 </script>
 
 {#if href}
-	<a {...$$restProps} {href} class={buttonClass}>
-		<slot />
+	<a {href} class={buttonClass}>
+		{@render children?.()}
 	</a>
 {:else}
-	<button type="button" {...$$restProps} on:click class={buttonClass}>
-		<slot />
+	<button {...rest} type="button" class={buttonClass}>
+		{@render children?.()}
 	</button>
 {/if}

@@ -1,10 +1,19 @@
 <script lang="ts">
+	import type { Snippet } from 'svelte';
+
 	import { ExternalLinkIcon, GearIcon, IconButton, initializeTheme } from '@yd/ui';
 
+	import type { Ctx } from '~/lib/context-service';
 	import PopupError from '~/lib/components/PopupError.svelte';
 	import PopupLoader from '~/lib/components/PopupLoader.svelte';
 	import { getContextService } from '~/lib/context-service';
 	import { openWebsite } from '~/lib/website';
+
+	interface Props {
+		children?: Snippet<[{ ctx: Ctx }]>;
+	}
+
+	let { children }: Props = $props();
 
 	// Ensure theme is set based on user preferences.
 	initializeTheme();
@@ -27,10 +36,10 @@
 				<IconButton
 					title="Go to site"
 					src={ExternalLinkIcon}
-					on:click={openWebsite}
+					onclick={openWebsite}
 					class="h-5 w-5"
 				/>
-				<IconButton title="Options" src={GearIcon} on:click={openOptionsPage} class="h-5 w-5" />
+				<IconButton title="Options" src={GearIcon} onclick={openOptionsPage} class="h-5 w-5" />
 			</div>
 		</div>
 		<!-- Remaining content -->
@@ -40,7 +49,7 @@
 			{#await context.get()}
 				<PopupLoader />
 			{:then ctx}
-				<slot {ctx} />
+				{@render children?.({ ctx })}
 			{:catch error}
 				<PopupError message={error.message} />
 			{/await}

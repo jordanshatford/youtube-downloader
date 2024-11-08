@@ -3,7 +3,11 @@
 	import type { BadgeVariants } from '@yd/ui';
 	import { Badge, ProgressBar } from '@yd/ui';
 
-	export let status: DownloadStatus;
+	interface Props {
+		status: DownloadStatus;
+	}
+
+	let { status }: Props = $props();
 
 	const postProcessorLookup: Record<string, string> = {
 		extractaudio: 'EXTRACTING AUDIO',
@@ -35,9 +39,11 @@
 		}
 	};
 
-	$: text = status.postprocessor
-		? (postProcessorLookup[status.postprocessor?.toLowerCase()] ?? status.state)
-		: status.state;
+	let text = $derived(
+		status.postprocessor
+			? (postProcessorLookup[status.postprocessor?.toLowerCase()] ?? status.state)
+			: status.state
+	);
 </script>
 
 {#key status.state}

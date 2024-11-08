@@ -4,10 +4,14 @@
 
 	import { createContextStore } from '~/lib/stores/context';
 
-	export let store: ReturnType<typeof createContextStore>;
-	export let download: Download;
+	interface Props {
+		store: ReturnType<typeof createContextStore>;
+		download: Download;
+	}
 
-	let isWaitingForBlob = false;
+	let { store, download }: Props = $props();
+
+	let isWaitingForBlob = $state(false);
 
 	async function getDownloadFile() {
 		isWaitingForBlob = true;
@@ -22,13 +26,13 @@
 		src={DownloadIcon}
 		loading={isWaitingForBlob}
 		disabled={download.status.state !== 'DONE'}
-		on:click={async () => await getDownloadFile()}
+		onclick={async () => await getDownloadFile()}
 	/>
 	<ActionIcon
 		title="Retry Download"
 		src={ArrowPathIcon}
 		disabled={download.status.state !== 'ERROR'}
-		on:click={async () => await store.restart(download.video.id)}
+		onclick={async () => await store.restart(download.video.id)}
 	/>
 	<Confirm
 		variant="error"
@@ -36,13 +40,14 @@
 		description="Are you sure you want to delete this download? Deleting is permanent."
 		cancelText="Cancel"
 		confirmText="Delete"
-		let:confirm={onConfirm}
 	>
-		<ActionIcon
-			title="Delete Download"
-			src={TrashIcon}
-			disabled={!['DONE', 'ERROR'].includes(download.status.state)}
-			on:click={() => onConfirm(() => store.remove(download.video.id))}
-		/>
+		{#snippet children({ confirm: onConfirm })}
+			<ActionIcon
+				title="Delete Download"
+				src={TrashIcon}
+				disabled={!['DONE', 'ERROR'].includes(download.status.state)}
+				onclick={() => onConfirm(() => store.remove(download.video.id))}
+			/>
+		{/snippet}
 	</Confirm>
 </ButtonGroup>

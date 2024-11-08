@@ -33,7 +33,7 @@
 		}
 	];
 
-	let activePage = tabs[0].key;
+	let activePage = $state(tabs[0].key);
 
 	const formatGroups = [
 		{
@@ -62,7 +62,7 @@
 					helpText="The format of file you want for the download."
 					bind:value={$settings.format}
 					groups={formatGroups}
-					on:change={() => toast.success('Updated', 'Format settings updated successfully.')}
+					onchange={() => toast.success('Updated', 'Format settings updated successfully.')}
 				/>
 				<Select
 					id="quality"
@@ -70,7 +70,7 @@
 					helpText="The preferred quality for the download."
 					bind:value={$settings.quality}
 					options={toSelectOptions(DownloadQuality)}
-					on:change={() => toast.success('Updated', 'Quality settings updated successfully.')}
+					onchange={() => toast.success('Updated', 'Quality settings updated successfully.')}
 				/>
 			</div>
 		{:else if activePage === 'embed'}
@@ -85,7 +85,7 @@
 					label="Metadata:"
 					helpText="Embed extracted information from the video into the download."
 					bind:checked={$settings.embed_metadata}
-					on:change={() =>
+					onchange={() =>
 						toast.success('Updated', 'Metadata embedding settings updated successfully.')}
 				/>
 				<Toggle
@@ -93,7 +93,7 @@
 					label="Thumbnail:"
 					helpText="Attempt to embed thumbnail. Depending on other settings, this may not always work."
 					bind:checked={$settings.embed_thumbnail}
-					on:change={() =>
+					onchange={() =>
 						toast.success('Updated', 'Thumbnail embedding settings updated successfully.')}
 				/>
 				<Toggle
@@ -101,7 +101,7 @@
 					label="Subtitles:"
 					helpText="Attempt to embed subtitles. Depending on other settings, this may not always work."
 					bind:checked={$settings.embed_subtitles}
-					on:change={() =>
+					onchange={() =>
 						toast.success('Updated', 'Subtitle embedding settings updated successfully.')}
 				/>
 			</div>
@@ -113,7 +113,7 @@
 					helpText="Size of each page on the downloads tab."
 					bind:value={$userSettings.downloadsPageSize}
 					options={[...Array(11 + 5).keys()].slice(5).map((v) => ({ value: v, text: `${v}` }))}
-					on:change={() =>
+					onchange={() =>
 						toast.success('Updated', 'Downloads page size setting updated successfully.')}
 				/>
 				<Toggle
@@ -121,7 +121,7 @@
 					label="Automatically download when complete:"
 					helpText="Once a download is complete it will automatically be downloaded to your device."
 					bind:checked={$userSettings.autoDownloadOnComplete}
-					on:change={() =>
+					onchange={() =>
 						toast.success('Updated', 'Automatic download settings updated successfully.')}
 				/>
 			</div>
