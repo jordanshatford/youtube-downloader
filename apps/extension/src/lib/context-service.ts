@@ -50,7 +50,7 @@ client.setConfig({
 
 async function getSessionIdFromStorage() {
 	const result = await browser.storage.sync.get(SESSION_ID_KEY);
-	const token = result?.[SESSION_ID_KEY] ?? '';
+	const token = (result?.[SESSION_ID_KEY] as string) ?? '';
 	return token;
 }
 

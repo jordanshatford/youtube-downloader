@@ -1,7 +1,3 @@
-<script lang="ts" module>
-	type T = object;
-</script>
-
 <script lang="ts" generics="T extends object">
 	import type { Snippet } from 'svelte';
 
@@ -15,7 +11,9 @@
 		td: 'px-6 py-4 whitespace-nowrap text-zinc-500 dark:text-zinc-300'
 	};
 
-	interface Props<TCol = { key: string; title: string }, TRow = T> {
+	type TCol = { key: string; title: string };
+	type TRow = T;
+	interface Props {
 		columns?: TCol[];
 		rows?: TRow[];
 		head?: Snippet<[{ column: TCol }]>;

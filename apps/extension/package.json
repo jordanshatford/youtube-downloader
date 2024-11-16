@@ -22,23 +22,23 @@
 		"postinstall": "wxt prepare"
 	},
 	"dependencies": {
-		"@webext-core/messaging": "^2.0.2",
+		"@webext-core/messaging": "^2.1.0",
 		"@webext-core/proxy-service": "^1.2.0",
 		"@yd/client": "workspace:*",
 		"@yd/ui": "workspace:*"
 	},
 	"devDependencies": {
-		"@sveltejs/vite-plugin-svelte": "^4.0.0",
+		"@sveltejs/vite-plugin-svelte": "^4.0.1",
 		"@tsconfig/svelte": "^5.0.4",
 		"@types/webextension-polyfill": "^0.12.1",
 		"@yd/config": "workspace:*",
 		"autoprefixer": "^10.4.20",
-		"postcss": "^8.4.48",
-		"svelte": "^5.1.14",
-		"svelte-check": "^4.0.6",
-		"tailwindcss": "^3.4.14",
+		"postcss": "^8.4.49",
+		"svelte": "^5.2.2",
+		"svelte-check": "^4.0.8",
+		"tailwindcss": "^3.4.15",
 		"tslib": "^2.8.1",
 		"typescript": "^5.6.3",
-		"wxt": "^0.19.13"
+		"wxt": "^0.19.16"
 	}
 }
