@@ -12,6 +12,7 @@
 	};
 
 	type TCol = { key: string; title: string };
+	// eslint-disable-next-line no-undef
 	type TRow = T;
 	interface Props {
 		columns?: TCol[];
