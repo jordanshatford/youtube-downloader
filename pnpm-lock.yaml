@@ -35,8 +35,8 @@ importers:
         specifier: ^2.1.0
         version: 2.1.0
       '@webext-core/proxy-service':
-        specifier: ^1.2.0
-        version: 1.2.0(@webext-core/messaging@2.1.0)(webextension-polyfill@0.12.0)
+        specifier: ^1.2.1
+        version: 1.2.1(@webext-core/messaging@2.1.0)(webextension-polyfill@0.12.0)
       '@yd/client':
         specifier: workspace:*
         version: link:../../packages/client
@@ -1013,11 +1013,11 @@ packages:
   '@webext-core/messaging@2.1.0':
     resolution: {integrity: sha512-1Bwr97HDMRQJ+XFwvhAvE4fdHK7Ge1o3NHxr/Cyv5yYCDAfz6cSzQaopeGZkkW/kN5eBRb1g3yonVwXC5ZXt8w==}
 
-  '@webext-core/proxy-service@1.2.0':
-    resolution: {integrity: sha512-MCUadVakeb7L47AvdtlbJfBUDjFdejr5t4E2WrwZagnev3a5I/xh2wHCkE+G0ihO/VUt/m0R1MPX+y4YVFRyPA==}
+  '@webext-core/proxy-service@1.2.1':
+    resolution: {integrity: sha512-MTs/7o8dZ8q7ySO0Kkkz9DYKPdTvMZqCYi7VVj1onzIHVy7m9b/OesQ8c3rrPzu8ZaljuZQJKfO3GITI6tSj6A==}
     peerDependencies:
       '@webext-core/messaging': '>=1.3.1'
-      webextension-polyfill: ^0.10.0
+      webextension-polyfill: '>=0.10.0'
 
   '@wxt-dev/storage@1.0.0':
     resolution: {integrity: sha512-Pr0nZUnA6ElAIq5yl+GdZfvhAI3/wXf7ZdwOHShI2VtDirfgo+tBFQZ123f86l5i81v7FfvrQi3WFSzojcRsJw==}
@@ -4592,7 +4592,7 @@ snapshots:
       uid: 2.0.2
       webextension-polyfill: 0.10.0
 
-  '@webext-core/proxy-service@1.2.0(@webext-core/messaging@2.1.0)(webextension-polyfill@0.12.0)':
+  '@webext-core/proxy-service@1.2.1(@webext-core/messaging@2.1.0)(webextension-polyfill@0.12.0)':
     dependencies:
       '@webext-core/messaging': 2.1.0
       get-value: 3.0.1
