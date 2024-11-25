@@ -20,6 +20,6 @@
 		"@yd/api": "workspace:*",
 		"@yd/config": "workspace:*",
 		"prettier": "^3.3.3",
-		"typescript": "^5.6.3"
+		"typescript": "^5.7.2"
 	}
 }
