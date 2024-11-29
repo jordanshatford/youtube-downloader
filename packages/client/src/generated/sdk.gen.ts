@@ -1,4 +1,4 @@
-import type { Options } from '@hey-api/client-fetch';
+import type { OptionsLegacyParser } from '@hey-api/client-fetch';
 import { createClient, createConfig } from '@hey-api/client-fetch';
 
 import type {
@@ -45,7 +45,7 @@ export const client = createClient(createConfig());
  * Get Search
  */
 export const getSearch = <ThrowOnError extends boolean = false>(
-	options: Options<GetSearchData, ThrowOnError>
+	options: OptionsLegacyParser<GetSearchData, ThrowOnError>
 ) => {
 	return (options?.client ?? client).get<GetSearchResponse, GetSearchError, ThrowOnError>({
 		...options,
@@ -57,7 +57,7 @@ export const getSearch = <ThrowOnError extends boolean = false>(
  * Get Next Search
  */
 export const getNextSearch = <ThrowOnError extends boolean = false>(
-	options?: Options<unknown, ThrowOnError>
+	options?: OptionsLegacyParser<unknown, ThrowOnError>
 ) => {
 	return (options?.client ?? client).get<GetNextSearchResponse, GetNextSearchError, ThrowOnError>({
 		...options,
@@ -69,7 +69,7 @@ export const getNextSearch = <ThrowOnError extends boolean = false>(
  * Get Video
  */
 export const getVideo = <ThrowOnError extends boolean = false>(
-	options: Options<GetVideoData, ThrowOnError>
+	options: OptionsLegacyParser<GetVideoData, ThrowOnError>
 ) => {
 	return (options?.client ?? client).get<GetVideoResponse, GetVideoError, ThrowOnError>({
 		...options,
@@ -81,7 +81,7 @@ export const getVideo = <ThrowOnError extends boolean = false>(
  * Get Session
  */
 export const getSession = <ThrowOnError extends boolean = false>(
-	options?: Options<unknown, ThrowOnError>
+	options?: OptionsLegacyParser<unknown, ThrowOnError>
 ) => {
 	return (options?.client ?? client).get<GetSessionResponse, GetSessionError, ThrowOnError>({
 		...options,
@@ -93,7 +93,7 @@ export const getSession = <ThrowOnError extends boolean = false>(
  * Delete Session
  */
 export const deleteSession = <ThrowOnError extends boolean = false>(
-	options?: Options<unknown, ThrowOnError>
+	options?: OptionsLegacyParser<unknown, ThrowOnError>
 ) => {
 	return (options?.client ?? client).delete<
 		DeleteSessionResponse,
@@ -109,7 +109,7 @@ export const deleteSession = <ThrowOnError extends boolean = false>(
  * Get Session Validate
  */
 export const getSessionValidate = <ThrowOnError extends boolean = false>(
-	options?: Options<unknown, ThrowOnError>
+	options?: OptionsLegacyParser<unknown, ThrowOnError>
 ) => {
 	return (options?.client ?? client).get<
 		GetSessionValidateResponse,
@@ -125,7 +125,7 @@ export const getSessionValidate = <ThrowOnError extends boolean = false>(
  * Get Downloads
  */
 export const getDownloads = <ThrowOnError extends boolean = false>(
-	options?: Options<unknown, ThrowOnError>
+	options?: OptionsLegacyParser<unknown, ThrowOnError>
 ) => {
 	return (options?.client ?? client).get<GetDownloadsResponse, GetDownloadsError, ThrowOnError>({
 		...options,
@@ -137,7 +137,7 @@ export const getDownloads = <ThrowOnError extends boolean = false>(
  * Put Downloads
  */
 export const putDownloads = <ThrowOnError extends boolean = false>(
-	options: Options<PutDownloadsData, ThrowOnError>
+	options: OptionsLegacyParser<PutDownloadsData, ThrowOnError>
 ) => {
 	return (options?.client ?? client).put<PutDownloadsResponse, PutDownloadsError, ThrowOnError>({
 		...options,
@@ -149,7 +149,7 @@ export const putDownloads = <ThrowOnError extends boolean = false>(
  * Post Downloads
  */
 export const postDownloads = <ThrowOnError extends boolean = false>(
-	options: Options<PostDownloadsData, ThrowOnError>
+	options: OptionsLegacyParser<PostDownloadsData, ThrowOnError>
 ) => {
 	return (options?.client ?? client).post<PostDownloadsResponse, PostDownloadsError, ThrowOnError>({
 		...options,
@@ -161,7 +161,7 @@ export const postDownloads = <ThrowOnError extends boolean = false>(
  * Get Downloads Options
  */
 export const getDownloadsOptions = <ThrowOnError extends boolean = false>(
-	options?: Options<unknown, ThrowOnError>
+	options?: OptionsLegacyParser<unknown, ThrowOnError>
 ) => {
 	return (options?.client ?? client).get<
 		GetDownloadsOptionsResponse,
@@ -177,7 +177,7 @@ export const getDownloadsOptions = <ThrowOnError extends boolean = false>(
  * Get Download
  */
 export const getDownload = <ThrowOnError extends boolean = false>(
-	options: Options<GetDownloadData, ThrowOnError>
+	options: OptionsLegacyParser<GetDownloadData, ThrowOnError>
 ) => {
 	return (options?.client ?? client).get<GetDownloadResponse, GetDownloadError, ThrowOnError>({
 		...options,
@@ -189,7 +189,7 @@ export const getDownload = <ThrowOnError extends boolean = false>(
  * Delete Download
  */
 export const deleteDownload = <ThrowOnError extends boolean = false>(
-	options: Options<DeleteDownloadData, ThrowOnError>
+	options: OptionsLegacyParser<DeleteDownloadData, ThrowOnError>
 ) => {
 	return (options?.client ?? client).delete<
 		DeleteDownloadResponse,
@@ -205,7 +205,7 @@ export const deleteDownload = <ThrowOnError extends boolean = false>(
  * Get Download File
  */
 export const getDownloadFile = <ThrowOnError extends boolean = false>(
-	options: Options<GetDownloadFileData, ThrowOnError>
+	options: OptionsLegacyParser<GetDownloadFileData, ThrowOnError>
 ) => {
 	return (options?.client ?? client).get<
 		GetDownloadFileResponse,
