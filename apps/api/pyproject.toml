@@ -12,8 +12,8 @@ python = "^3.11"
 fastapi = "0.115.6"
 pydantic = ">=2.1.1,<3.0.0"
 sse-starlette = "2.1.3"
-uvicorn = "0.32.1"
-yt-dlp = {extras = ["default"], version = "^2024.12.6"}
+uvicorn = "0.34.0"
+yt-dlp = {extras = ["default"], version = "^2024.12.13"}
 
 [tool.poetry.group.dev.dependencies]
 pre-commit = "4.0.1"
