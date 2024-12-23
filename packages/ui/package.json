@@ -35,18 +35,18 @@
 	},
 	"devDependencies": {
 		"@sveltejs/adapter-auto": "^3.3.1",
-		"@sveltejs/kit": "^2.11.1",
+		"@sveltejs/kit": "^2.15.0",
 		"@sveltejs/package": "^2.3.7",
-		"@sveltejs/vite-plugin-svelte": "^5.0.2",
+		"@sveltejs/vite-plugin-svelte": "^5.0.3",
 		"@yd/config": "workspace:*",
 		"autoprefixer": "^10.4.20",
 		"postcss": "^8.4.49",
 		"publint": "^0.2.12",
-		"svelte": "^5.14.0",
+		"svelte": "^5.15.0",
 		"svelte-check": "^4.1.1",
-		"tailwindcss": "^3.4.16",
+		"tailwindcss": "^3.4.17",
 		"tslib": "^2.8.1",
 		"typescript": "^5.7.2",
-		"vite": "^6.0.3"
+		"vite": "^6.0.5"
 	}
 }
