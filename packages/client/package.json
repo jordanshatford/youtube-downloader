@@ -13,7 +13,7 @@
 		"format": "prettier --write ."
 	},
 	"dependencies": {
-		"@hey-api/client-fetch": "^0.5.4"
+		"@hey-api/client-fetch": "^0.5.7"
 	},
 	"devDependencies": {
 		"@hey-api/openapi-ts": "^0.59.2",

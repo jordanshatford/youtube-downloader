@@ -130,8 +130,8 @@ importers:
   packages/client:
     dependencies:
       '@hey-api/client-fetch':
-        specifier: ^0.5.4
-        version: 0.5.4
+        specifier: ^0.5.7
+        version: 0.5.7
     devDependencies:
       '@hey-api/openapi-ts':
         specifier: ^0.59.2
@@ -770,8 +770,8 @@ packages:
     resolution: {integrity: sha512-2b/g5hRmpbb1o4GnTZax9N9m0FXzz9OV42ZzI4rDDMDuHUqigAiQCEWChBWCY4ztAGVRjoWT19v0yMmc5/L5kA==}
     engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
 
-  '@hey-api/client-fetch@0.5.4':
-    resolution: {integrity: sha512-e3Vbodpl6yUee+y6HlDgexMIMtm4UqI8V9GyoCMVgmkZz6bAqZn4nkQfcnIUb44L+vKt3nyQWnsZ7PtSv2bkHw==}
+  '@hey-api/client-fetch@0.5.7':
+    resolution: {integrity: sha512-hLpID6NCs8+stbz935UyvyGOXY44oLBSOy7ZEpwXxj977A/0U41iihDQllDoCJrxtbe06DnDgwPOn6/xnRJ71w==}
 
   '@hey-api/openapi-ts@0.59.2':
     resolution: {integrity: sha512-knb7KL+qb6vFVf/LlP8DcrRQW39VZlW2LcJDZan5RrnJkeZ00ZK6sE3WAC3pI6TaI3TYHmS6yJMWaLL08L2iVQ==}
@@ -4430,7 +4430,7 @@ snapshots:
     dependencies:
       levn: 0.4.1
 
-  '@hey-api/client-fetch@0.5.4': {}
+  '@hey-api/client-fetch@0.5.7': {}
 
   '@hey-api/openapi-ts@0.59.2(magicast@0.3.5)(typescript@5.7.2)':
     dependencies:
