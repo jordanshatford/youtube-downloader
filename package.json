@@ -7,9 +7,7 @@
     "prepare": "husky",
     "generate": "pnpm --filter @yd/api generate:openapi && pnpm --filter @yd/client generate",
     "dev:web": "pnpm --stream --filter @yd/api --filter @yd/web dev",
-    "dev:extension": "pnpm --stream --filter @yd/api --filter @yd/extension dev",
     "api": "pnpm --filter @yd/api -- ",
-    "extension": "pnpm --filter @yd/extension -- ",
     "web": "pnpm --filter @yd/web -- ",
     "client": "pnpm --filter @yd/client -- ",
     "cfg": "pnpm --filter @yd/config -- ",
@@ -30,7 +28,7 @@
     "@svitejs/changesets-changelog-github-compact": "^1.2.0",
     "husky": "^9.1.7"
   },
-  "packageManager": "pnpm@9.13.2+sha512.88c9c3864450350e65a33587ab801acf946d7c814ed1134da4a924f6df5a2120fd36b46aab68f7cd1d413149112d53c7db3a4136624cfd00ff1846a0c6cef48a",
+  "packageManager": "pnpm@9.15.2+sha512.93e57b0126f0df74ce6bff29680394c0ba54ec47246b9cf321f0121d8d9bb03f750a705f24edc3c1180853afd7c2c3b94196d0a3d53d3e069d9e2793ef11f321",
   "engines": {
     "pnpm": ">=8",
     "node": ">=20"

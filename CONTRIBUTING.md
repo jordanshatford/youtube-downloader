@@ -39,8 +39,6 @@ corepack prepare
 pnpm install
 # Run the projects API and web app in development mode
 pnpm dev:web
-# Run the projects API and extension in development mode
-pnpm dev:extension
 ```
 
 #### Generating the client package
