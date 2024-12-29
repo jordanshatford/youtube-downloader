@@ -34,7 +34,7 @@
 
 	let { variant = 'info', href = undefined, children, class: className, ...rest }: Props = $props();
 
-	const buttonClass = buttonClasses({ variant, class: className });
+	const buttonClass = buttonClasses({ variant, class: String(className) });
 </script>
 
 {#if href}
