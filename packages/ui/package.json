@@ -31,7 +31,7 @@
 		"tailwind-variants": "^0.3.0"
 	},
 	"peerDependencies": {
-		"svelte": "^4.0.0"
+		"svelte": "^5.0.0"
 	},
 	"devDependencies": {
 		"@sveltejs/adapter-auto": "^3.3.1",
