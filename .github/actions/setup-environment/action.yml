@@ -34,6 +34,6 @@ runs:
       with:
         python-version: ${{ inputs.python-version }}
     - name: Setup Poetry
-      uses: abatilo/actions-poetry@v3
+      uses: abatilo/actions-poetry@v4
       with:
         poetry-version: ${{ inputs.poetry-version }}
