@@ -78,8 +78,8 @@ importers:
   packages/client:
     dependencies:
       '@hey-api/client-fetch':
-        specifier: ^0.5.7
-        version: 0.5.7
+        specifier: ^0.6.0
+        version: 0.6.0
     devDependencies:
       '@hey-api/openapi-ts':
         specifier: ^0.61.2
@@ -561,8 +561,8 @@ packages:
     resolution: {integrity: sha512-lB05FkqEdUg2AA0xEbUz0SnkXT1LcCTa438W4IWTUh4hdOnVbQyOJ81OrDXsJk/LSiJHubgGEFoR5EHq1NsH1A==}
     engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
 
-  '@hey-api/client-fetch@0.5.7':
-    resolution: {integrity: sha512-hLpID6NCs8+stbz935UyvyGOXY44oLBSOy7ZEpwXxj977A/0U41iihDQllDoCJrxtbe06DnDgwPOn6/xnRJ71w==}
+  '@hey-api/client-fetch@0.6.0':
+    resolution: {integrity: sha512-FlhFsVeH8RxJe/nq8xUzxNbiOpe+GadxlD2pfvDyOyLdCTU4o/LRv46ZVWstaW7DgF4nxhI328chy3+AulwVXw==}
 
   '@hey-api/json-schema-ref-parser@1.0.1':
     resolution: {integrity: sha512-dBt0A7op9kf4BcK++x6HBYDmvCvnJUZEGe5QytghPFHnMXPyKwDKomwL/v5e9ERk6E0e1GzL/e/y6pWUso9zrQ==}
@@ -2938,7 +2938,7 @@ snapshots:
       '@eslint/core': 0.10.0
       levn: 0.4.1
 
-  '@hey-api/client-fetch@0.5.7': {}
+  '@hey-api/client-fetch@0.6.0': {}
 
   '@hey-api/json-schema-ref-parser@1.0.1':
     dependencies:
