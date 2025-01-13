@@ -1,12 +1,17 @@
 <script lang="ts">
 	import type { HTMLSelectAttributes } from 'svelte/elements';
 
+	interface SelectOption {
+		value: number | string | boolean;
+		text: string;
+	}
+
 	interface Props extends HTMLSelectAttributes {
 		label: string;
 		helpText?: string | undefined;
 		value: number | string | boolean | undefined;
-		options?: { value: number | string | boolean; text: string }[];
-		groups?: { text: string; disabled?: boolean; options: typeof options }[];
+		options?: SelectOption[];
+		groups?: { text: string; disabled?: boolean; options: SelectOption[] }[];
 	}
 
 	let {
