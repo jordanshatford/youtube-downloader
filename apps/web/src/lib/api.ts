@@ -3,7 +3,7 @@ import { env } from '$lib/config';
 import { downloads } from '$lib/stores/downloads';
 
 import { client, getSession, getSessionValidate } from '@yd/client';
-import { toast } from '@yd/ui';
+import { toasts } from '@yd/ui';
 
 // Set the base server address using the environment variable.
 client.setConfig({
@@ -39,7 +39,7 @@ export async function setupSession(): Promise<void> {
 					sessionStorage.setItem(SESSION_ID_KEY, session.data?.id ?? '');
 					success = true;
 				} catch (err) {
-					toast.error('Error', 'Failed to setup session. Re-attempting shortly.');
+					toasts.error('Error', 'Failed to setup session. Re-attempting shortly.');
 					console.error('Connection failed, could not connect to internal server. ', err);
 					await sleep(REATTEMPT_INTERVAL);
 				}

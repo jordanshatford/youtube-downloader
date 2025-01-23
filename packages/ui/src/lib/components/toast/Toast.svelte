@@ -55,7 +55,7 @@
 	import { Icon, XMarkIcon } from '../../icons';
 	import { toIcon } from '../../utilities';
 	import IconButton from '../IconButton.svelte';
-	import { toast as _toast } from './stores';
+	import { toasts } from './stores.svelte';
 
 	interface Props {
 		toast: ToastComponent;
@@ -86,7 +86,7 @@
 			<IconButton
 				src={XMarkIcon}
 				class={closeIconClass()}
-				onclick={() => _toast.remove(toast.id)}
+				onclick={() => toasts.remove(toast.id)}
 			/>
 		{/if}
 		<div class={contentDivClass()}>

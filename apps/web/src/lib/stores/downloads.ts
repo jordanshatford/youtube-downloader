@@ -12,7 +12,7 @@ import {
 	postDownloads,
 	putDownloads
 } from '@yd/client';
-import { toast } from '@yd/ui';
+import { toasts } from '@yd/ui';
 
 const DOWNLOADS = writable<Record<string, Download>>({});
 
@@ -81,7 +81,7 @@ function createDownloadsStore() {
 
 		try {
 			await deleteDownload({ path: { download_id: id } });
-			toast.success('Deleted', 'Download removed successfully.');
+			toasts.success('Deleted', 'Download removed successfully.');
 			update((state) => {
 				delete state[id];
 				return state;
@@ -107,7 +107,7 @@ function createDownloadsStore() {
 	}
 
 	function handleError(downloadId: string, msg: string, error: unknown) {
-		toast.error('Error', msg);
+		toasts.error('Error', msg);
 		console.error(msg, error);
 		updateDownload(downloadId, { status: { state: 'ERROR', progress: null } });
 	}

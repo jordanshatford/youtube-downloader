@@ -2,7 +2,7 @@ import { writable } from 'svelte/store';
 
 import type { Video } from '@yd/client';
 import { getNextSearch, getSearch } from '@yd/client';
-import { toast } from '@yd/ui';
+import { toasts } from '@yd/ui';
 
 function createSearchStore() {
 	const results: Video[] = [];
@@ -31,9 +31,9 @@ function createSearchStore() {
 				if (response.data) {
 					results = response.data;
 				}
-				toast.success('Success', `Found ${results.length} search results.`);
+				toasts.success('Success', `Found ${results.length} search results.`);
 			} catch (err) {
-				toast.error('Error', 'Failed to get search results.');
+				toasts.error('Error', 'Failed to get search results.');
 				console.error('Failed to search for videos ', err);
 			}
 			update((state) => {
@@ -55,9 +55,9 @@ function createSearchStore() {
 			if (response.data) {
 				results = response.data;
 			}
-			toast.success('Success', `Found ${results.length} more search results.`);
+			toasts.success('Success', `Found ${results.length} more search results.`);
 		} catch (err) {
-			toast.error('Error', 'Failed to get more search results.');
+			toasts.error('Error', 'Failed to get more search results.');
 			console.error('Failed to get more search videos ', err);
 		}
 		update((state) => {
