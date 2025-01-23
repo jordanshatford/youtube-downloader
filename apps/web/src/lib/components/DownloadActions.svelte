@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { downloads } from '$lib/stores/downloads';
+	import { downloads } from '$lib/stores/downloads.svelte';
 
 	import type { Download } from '@yd/client';
 	import { ActionIcon, ArrowPathIcon, ButtonGroup, Confirm, DownloadIcon, TrashIcon } from '@yd/ui';

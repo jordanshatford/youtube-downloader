@@ -1,6 +1,6 @@
 <script lang="ts">
 	import StateIcon from '$lib/components/StateIcon.svelte';
-	import { downloads } from '$lib/stores/downloads';
+	import { downloads } from '$lib/stores/downloads.svelte';
 
 	import type { Video } from '@yd/client';
 	import { Card, IconButton, PlusIcon } from '@yd/ui';
@@ -45,14 +45,14 @@
 				{result.channel.name}
 			</p>
 		</a>
-		{#if !(result.id in $downloads)}
+		{#if !(result.id in downloads.downloads)}
 			<IconButton
 				onclick={() => downloads.add(result)}
 				src={PlusIcon}
 				class="hover:text-brand-600 dark:hover:text-brand-600 h-8 w-8 p-1 text-black hover:cursor-pointer dark:text-white"
 			/>
 		{:else}
-			<StateIcon state={$downloads[result.id].status.state} />
+			<StateIcon state={downloads.downloads[result.id].status.state} />
 		{/if}
 	</footer>
 </Card>

@@ -1,6 +1,6 @@
 import { browser } from '$app/environment';
 import { env } from '$lib/config';
-import { downloads } from '$lib/stores/downloads';
+import { downloads } from '$lib/stores/downloads.svelte';
 
 import { client, getSession, getSessionValidate } from '@yd/client';
 import { toasts } from '@yd/ui';
@@ -45,7 +45,6 @@ export async function setupSession(): Promise<void> {
 				}
 			}
 		}
-		downloads.setupStatusListener();
 		await downloads.init();
 	}
 }

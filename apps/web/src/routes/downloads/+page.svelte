@@ -3,18 +3,20 @@
 	import NotFound from '$lib/components/NotFound.svelte';
 	import StatusBadge from '$lib/components/StatusBadge.svelte';
 	import config from '$lib/config';
-	import { downloads } from '$lib/stores/downloads';
-	import { userSettings } from '$lib/stores/settings';
+	import { downloads } from '$lib/stores/downloads.svelte';
+	import { userSettings } from '$lib/stores/settings.svelte';
 
 	import { Badge, Pagination, Table, Title } from '@yd/ui';
 
 	let page = $state(1);
 
-	let pageSize = $derived($userSettings.downloadsPageSize);
-	let totalDownloads = $derived(Object.keys($downloads).length);
+	let pageSize = $derived(userSettings.settings.downloadsPageSize);
+	let totalDownloads = $derived(Object.keys(downloads.downloads).length);
 	let totalPages = $derived(Math.ceil(totalDownloads / pageSize));
 	let start = $derived((page - 1) * pageSize);
-	let currentPageDownloads = $derived(Object.values($downloads).slice(start, start + pageSize));
+	let currentPageDownloads = $derived(
+		Object.values(downloads.downloads).slice(start, start + pageSize)
+	);
 
 	const columns = [
 		{
