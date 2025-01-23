@@ -5,9 +5,9 @@
 		slots: {
 			containerClass: 'flex justify-center gap-1 text-xs font-medium',
 			outerButtonClass:
-				'inline-flex h-8 w-8 items-center justify-center rounded border border-zinc-200 bg-white hover:bg-zinc-50 text-zinc-900 dark:border-zinc-800 dark:bg-zinc-900 hover:dark:bg-zinc-800 dark:text-white',
+				'inline-flex h-8 w-8 items-center justify-center rounded-sm border border-zinc-200 bg-white hover:bg-zinc-50 text-zinc-900 dark:border-zinc-800 dark:bg-zinc-900 dark:hover:bg-zinc-800 dark:text-white',
 			outerButtonIconClass: 'h-3 w-3',
-			numberButtonClass: 'block h-8 w-8 rounded border text-center leading-8'
+			numberButtonClass: 'block h-8 w-8 rounded-sm border text-center leading-8'
 		},
 		variants: {
 			active: {
@@ -17,7 +17,7 @@
 				},
 				false: {
 					numberButtonClass:
-						'border-zinc-100 bg-white text-zinc-900 dark:border-zinc-800 dark:bg-zinc-900 dark:text-white hover:bg-zinc-50 hover:dark:bg-zinc-800'
+						'border-zinc-100 bg-white text-zinc-900 dark:border-zinc-800 dark:bg-zinc-900 dark:text-white hover:bg-zinc-50 dark:hover:bg-zinc-800'
 				}
 			}
 		}

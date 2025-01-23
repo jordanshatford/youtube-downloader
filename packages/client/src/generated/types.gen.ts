@@ -69,10 +69,10 @@ export type DownloadStatus = {
 	eta?: number | null;
 	speed?: number | null;
 	postprocessor?: string | null;
-	readonly progress: number | null;
+	progress: number | null;
 };
 
-export type HTTPValidationError = {
+export type HttpValidationError = {
 	detail?: Array<ValidationError>;
 };
 
@@ -107,91 +107,369 @@ export const VideoFormat = {
 } as const;
 
 export type GetSearchData = {
+	body?: never;
+	path?: never;
 	query: {
 		query: string;
 	};
+	url: '/search';
 };
 
-export type GetSearchResponse = Array<Video>;
+export type GetSearchErrors = {
+	/**
+	 * Forbidden
+	 */
+	403: unknown;
+	/**
+	 * Not Found
+	 */
+	404: unknown;
+	/**
+	 * Validation Error
+	 */
+	422: HttpValidationError;
+};
 
-export type GetSearchError = unknown | HTTPValidationError;
+export type GetSearchError = GetSearchErrors[keyof GetSearchErrors];
 
-export type GetNextSearchResponse = Array<Video>;
+export type GetSearchResponses = {
+	/**
+	 * Successful Response
+	 */
+	200: Array<Video>;
+};
 
-export type GetNextSearchError = unknown;
+export type GetSearchResponse = GetSearchResponses[keyof GetSearchResponses];
+
+export type GetNextSearchData = {
+	body?: never;
+	path?: never;
+	query?: never;
+	url: '/search/next';
+};
+
+export type GetNextSearchErrors = {
+	/**
+	 * Forbidden
+	 */
+	403: unknown;
+	/**
+	 * Not Found
+	 */
+	404: unknown;
+};
+
+export type GetNextSearchResponses = {
+	/**
+	 * Successful Response
+	 */
+	200: Array<Video>;
+};
+
+export type GetNextSearchResponse = GetNextSearchResponses[keyof GetNextSearchResponses];
 
 export type GetVideoData = {
+	body?: never;
+	path?: never;
 	query: {
 		id: string;
 	};
+	url: '/search/video';
 };
 
-export type GetVideoResponse = Video;
-
-export type GetVideoError = unknown | HTTPValidationError;
-
-export type GetSessionResponse = Session;
-
-export type GetSessionError = unknown;
-
-export type DeleteSessionResponse = void;
-
-export type DeleteSessionError = unknown;
-
-export type GetSessionValidateResponse = Session;
-
-export type GetSessionValidateError = unknown;
-
-export type GetDownloadsResponse = Array<Download>;
-
-export type GetDownloadsError = unknown;
-
-export type PutDownloadsData = {
-	body: DownloadInput;
+export type GetVideoErrors = {
+	/**
+	 * Forbidden
+	 */
+	403: unknown;
+	/**
+	 * Not Found
+	 */
+	404: unknown;
+	/**
+	 * Validation Error
+	 */
+	422: HttpValidationError;
 };
 
-export type PutDownloadsResponse = Download;
+export type GetVideoError = GetVideoErrors[keyof GetVideoErrors];
 
-export type PutDownloadsError = unknown | HTTPValidationError;
+export type GetVideoResponses = {
+	/**
+	 * Successful Response
+	 */
+	200: Video;
+};
+
+export type GetVideoResponse = GetVideoResponses[keyof GetVideoResponses];
+
+export type DeleteSessionData = {
+	body?: never;
+	path?: never;
+	query?: never;
+	url: '/session';
+};
+
+export type DeleteSessionErrors = {
+	/**
+	 * Forbidden
+	 */
+	403: unknown;
+};
+
+export type DeleteSessionResponses = {
+	/**
+	 * Successful Response
+	 */
+	204: void;
+};
+
+export type DeleteSessionResponse = DeleteSessionResponses[keyof DeleteSessionResponses];
+
+export type GetSessionData = {
+	body?: never;
+	path?: never;
+	query?: never;
+	url: '/session';
+};
+
+export type GetSessionResponses = {
+	/**
+	 * Successful Response
+	 */
+	200: Session;
+};
+
+export type GetSessionResponse = GetSessionResponses[keyof GetSessionResponses];
+
+export type GetSessionValidateData = {
+	body?: never;
+	path?: never;
+	query?: never;
+	url: '/session/validate';
+};
+
+export type GetSessionValidateErrors = {
+	/**
+	 * Forbidden
+	 */
+	403: unknown;
+};
+
+export type GetSessionValidateResponses = {
+	/**
+	 * Successful Response
+	 */
+	200: Session;
+};
+
+export type GetSessionValidateResponse =
+	GetSessionValidateResponses[keyof GetSessionValidateResponses];
+
+export type GetDownloadsData = {
+	body?: never;
+	path?: never;
+	query?: never;
+	url: '/downloads';
+};
+
+export type GetDownloadsErrors = {
+	/**
+	 * Forbidden
+	 */
+	403: unknown;
+};
+
+export type GetDownloadsResponses = {
+	/**
+	 * Successful Response
+	 */
+	200: Array<Download>;
+};
+
+export type GetDownloadsResponse = GetDownloadsResponses[keyof GetDownloadsResponses];
 
 export type PostDownloadsData = {
 	body: DownloadInput;
+	path?: never;
+	query?: never;
+	url: '/downloads';
 };
 
-export type PostDownloadsResponse = Download;
-
-export type PostDownloadsError = unknown | HTTPValidationError;
-
-export type GetDownloadsOptionsResponse = AvailableDownloadOptions;
-
-export type GetDownloadsOptionsError = unknown;
-
-export type GetDownloadData = {
-	path: {
-		download_id: string;
-	};
+export type PostDownloadsErrors = {
+	/**
+	 * Forbidden
+	 */
+	403: unknown;
+	/**
+	 * Validation Error
+	 */
+	422: HttpValidationError;
 };
 
-export type GetDownloadResponse = Download;
+export type PostDownloadsError = PostDownloadsErrors[keyof PostDownloadsErrors];
 
-export type GetDownloadError = unknown | HTTPValidationError;
+export type PostDownloadsResponses = {
+	/**
+	 * Successful Response
+	 */
+	201: Download;
+};
+
+export type PostDownloadsResponse = PostDownloadsResponses[keyof PostDownloadsResponses];
+
+export type PutDownloadsData = {
+	body: DownloadInput;
+	path?: never;
+	query?: never;
+	url: '/downloads';
+};
+
+export type PutDownloadsErrors = {
+	/**
+	 * Forbidden
+	 */
+	403: unknown;
+	/**
+	 * Validation Error
+	 */
+	422: HttpValidationError;
+};
+
+export type PutDownloadsError = PutDownloadsErrors[keyof PutDownloadsErrors];
+
+export type PutDownloadsResponses = {
+	/**
+	 * Successful Response
+	 */
+	200: Download;
+};
+
+export type PutDownloadsResponse = PutDownloadsResponses[keyof PutDownloadsResponses];
+
+export type GetDownloadsOptionsData = {
+	body?: never;
+	path?: never;
+	query?: never;
+	url: '/downloads/options';
+};
+
+export type GetDownloadsOptionsErrors = {
+	/**
+	 * Forbidden
+	 */
+	403: unknown;
+};
+
+export type GetDownloadsOptionsResponses = {
+	/**
+	 * Successful Response
+	 */
+	200: AvailableDownloadOptions;
+};
+
+export type GetDownloadsOptionsResponse =
+	GetDownloadsOptionsResponses[keyof GetDownloadsOptionsResponses];
 
 export type DeleteDownloadData = {
+	body?: never;
 	path: {
 		download_id: string;
 	};
+	query?: never;
+	url: '/downloads/{download_id}';
 };
 
-export type DeleteDownloadResponse = void;
+export type DeleteDownloadErrors = {
+	/**
+	 * Forbidden
+	 */
+	403: unknown;
+	/**
+	 * Not Found
+	 */
+	404: unknown;
+	/**
+	 * Validation Error
+	 */
+	422: HttpValidationError;
+};
 
-export type DeleteDownloadError = unknown | HTTPValidationError;
+export type DeleteDownloadError = DeleteDownloadErrors[keyof DeleteDownloadErrors];
+
+export type DeleteDownloadResponses = {
+	/**
+	 * Successful Response
+	 */
+	204: void;
+};
+
+export type DeleteDownloadResponse = DeleteDownloadResponses[keyof DeleteDownloadResponses];
+
+export type GetDownloadData = {
+	body?: never;
+	path: {
+		download_id: string;
+	};
+	query?: never;
+	url: '/downloads/{download_id}';
+};
+
+export type GetDownloadErrors = {
+	/**
+	 * Forbidden
+	 */
+	403: unknown;
+	/**
+	 * Not Found
+	 */
+	404: unknown;
+	/**
+	 * Validation Error
+	 */
+	422: HttpValidationError;
+};
+
+export type GetDownloadError = GetDownloadErrors[keyof GetDownloadErrors];
+
+export type GetDownloadResponses = {
+	/**
+	 * Successful Response
+	 */
+	200: Download;
+};
+
+export type GetDownloadResponse = GetDownloadResponses[keyof GetDownloadResponses];
 
 export type GetDownloadFileData = {
+	body?: never;
 	path: {
 		download_id: string;
 	};
+	query?: never;
+	url: '/downloads/{download_id}/file';
 };
 
-export type GetDownloadFileResponse = Blob | File;
+export type GetDownloadFileErrors = {
+	/**
+	 * Forbidden
+	 */
+	403: unknown;
+	/**
+	 * Not Found
+	 */
+	404: unknown;
+	/**
+	 * Validation Error
+	 */
+	422: HttpValidationError;
+};
 
-export type GetDownloadFileError = unknown | HTTPValidationError;
+export type GetDownloadFileError = GetDownloadFileErrors[keyof GetDownloadFileErrors];
+
+export type GetDownloadFileResponses = {
+	/**
+	 * Successful Response
+	 */
+	200: unknown;
+};

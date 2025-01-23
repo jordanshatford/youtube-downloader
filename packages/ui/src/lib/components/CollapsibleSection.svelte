@@ -25,7 +25,7 @@
 		<IconButton
 			src={open ? MinusCircleIcon : PlusCircleIcon}
 			onclick={() => (open = !open)}
-			class="h-6 w-6"
+			class="h-6 w-6 hover:cursor-pointer"
 		/>
 	</summary>
 	{#if open}

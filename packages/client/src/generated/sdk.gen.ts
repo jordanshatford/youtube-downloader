@@ -1,30 +1,29 @@
-import type { OptionsLegacyParser } from '@hey-api/client-fetch';
+import type { Options } from '@hey-api/client-fetch';
 import { createClient, createConfig } from '@hey-api/client-fetch';
 
 import type {
 	DeleteDownloadData,
 	DeleteDownloadError,
 	DeleteDownloadResponse,
-	DeleteSessionError,
+	DeleteSessionData,
 	DeleteSessionResponse,
 	GetDownloadData,
 	GetDownloadError,
 	GetDownloadFileData,
 	GetDownloadFileError,
-	GetDownloadFileResponse,
 	GetDownloadResponse,
-	GetDownloadsError,
-	GetDownloadsOptionsError,
+	GetDownloadsData,
+	GetDownloadsOptionsData,
 	GetDownloadsOptionsResponse,
 	GetDownloadsResponse,
-	GetNextSearchError,
+	GetNextSearchData,
 	GetNextSearchResponse,
 	GetSearchData,
 	GetSearchError,
 	GetSearchResponse,
-	GetSessionError,
+	GetSessionData,
 	GetSessionResponse,
-	GetSessionValidateError,
+	GetSessionValidateData,
 	GetSessionValidateResponse,
 	GetVideoData,
 	GetVideoError,
@@ -45,11 +44,17 @@ export const client = createClient(createConfig());
  * Get Search
  */
 export const getSearch = <ThrowOnError extends boolean = false>(
-	options: OptionsLegacyParser<GetSearchData, ThrowOnError>
+	options: Options<GetSearchData, ThrowOnError>
 ) => {
 	return (options?.client ?? client).get<GetSearchResponse, GetSearchError, ThrowOnError>({
-		...options,
-		url: '/search'
+		security: [
+			{
+				scheme: 'bearer',
+				type: 'http'
+			}
+		],
+		url: '/search',
+		...options
 	});
 };
 
@@ -57,11 +62,17 @@ export const getSearch = <ThrowOnError extends boolean = false>(
  * Get Next Search
  */
 export const getNextSearch = <ThrowOnError extends boolean = false>(
-	options?: OptionsLegacyParser<unknown, ThrowOnError>
+	options?: Options<GetNextSearchData, ThrowOnError>
 ) => {
-	return (options?.client ?? client).get<GetNextSearchResponse, GetNextSearchError, ThrowOnError>({
-		...options,
-		url: '/search/next'
+	return (options?.client ?? client).get<GetNextSearchResponse, unknown, ThrowOnError>({
+		security: [
+			{
+				scheme: 'bearer',
+				type: 'http'
+			}
+		],
+		url: '/search/next',
+		...options
 	});
 };
 
@@ -69,23 +80,17 @@ export const getNextSearch = <ThrowOnError extends boolean = false>(
  * Get Video
  */
 export const getVideo = <ThrowOnError extends boolean = false>(
-	options: OptionsLegacyParser<GetVideoData, ThrowOnError>
+	options: Options<GetVideoData, ThrowOnError>
 ) => {
 	return (options?.client ?? client).get<GetVideoResponse, GetVideoError, ThrowOnError>({
-		...options,
-		url: '/search/video'
-	});
-};
-
-/**
- * Get Session
- */
-export const getSession = <ThrowOnError extends boolean = false>(
-	options?: OptionsLegacyParser<unknown, ThrowOnError>
-) => {
-	return (options?.client ?? client).get<GetSessionResponse, GetSessionError, ThrowOnError>({
-		...options,
-		url: '/session'
+		security: [
+			{
+				scheme: 'bearer',
+				type: 'http'
+			}
+		],
+		url: '/search/video',
+		...options
 	});
 };
 
@@ -93,15 +98,29 @@ export const getSession = <ThrowOnError extends boolean = false>(
  * Delete Session
  */
 export const deleteSession = <ThrowOnError extends boolean = false>(
-	options?: OptionsLegacyParser<unknown, ThrowOnError>
+	options?: Options<DeleteSessionData, ThrowOnError>
 ) => {
-	return (options?.client ?? client).delete<
-		DeleteSessionResponse,
-		DeleteSessionError,
-		ThrowOnError
-	>({
-		...options,
-		url: '/session'
+	return (options?.client ?? client).delete<DeleteSessionResponse, unknown, ThrowOnError>({
+		security: [
+			{
+				scheme: 'bearer',
+				type: 'http'
+			}
+		],
+		url: '/session',
+		...options
+	});
+};
+
+/**
+ * Get Session
+ */
+export const getSession = <ThrowOnError extends boolean = false>(
+	options?: Options<GetSessionData, ThrowOnError>
+) => {
+	return (options?.client ?? client).get<GetSessionResponse, unknown, ThrowOnError>({
+		url: '/session',
+		...options
 	});
 };
 
@@ -109,15 +128,17 @@ export const deleteSession = <ThrowOnError extends boolean = false>(
  * Get Session Validate
  */
 export const getSessionValidate = <ThrowOnError extends boolean = false>(
-	options?: OptionsLegacyParser<unknown, ThrowOnError>
+	options?: Options<GetSessionValidateData, ThrowOnError>
 ) => {
-	return (options?.client ?? client).get<
-		GetSessionValidateResponse,
-		GetSessionValidateError,
-		ThrowOnError
-	>({
-		...options,
-		url: '/session/validate'
+	return (options?.client ?? client).get<GetSessionValidateResponse, unknown, ThrowOnError>({
+		security: [
+			{
+				scheme: 'bearer',
+				type: 'http'
+			}
+		],
+		url: '/session/validate',
+		...options
 	});
 };
 
@@ -125,23 +146,17 @@ export const getSessionValidate = <ThrowOnError extends boolean = false>(
  * Get Downloads
  */
 export const getDownloads = <ThrowOnError extends boolean = false>(
-	options?: OptionsLegacyParser<unknown, ThrowOnError>
+	options?: Options<GetDownloadsData, ThrowOnError>
 ) => {
-	return (options?.client ?? client).get<GetDownloadsResponse, GetDownloadsError, ThrowOnError>({
-		...options,
-		url: '/downloads'
-	});
-};
-
-/**
- * Put Downloads
- */
-export const putDownloads = <ThrowOnError extends boolean = false>(
-	options: OptionsLegacyParser<PutDownloadsData, ThrowOnError>
-) => {
-	return (options?.client ?? client).put<PutDownloadsResponse, PutDownloadsError, ThrowOnError>({
-		...options,
-		url: '/downloads'
+	return (options?.client ?? client).get<GetDownloadsResponse, unknown, ThrowOnError>({
+		security: [
+			{
+				scheme: 'bearer',
+				type: 'http'
+			}
+		],
+		url: '/downloads',
+		...options
 	});
 };
 
@@ -149,11 +164,43 @@ export const putDownloads = <ThrowOnError extends boolean = false>(
  * Post Downloads
  */
 export const postDownloads = <ThrowOnError extends boolean = false>(
-	options: OptionsLegacyParser<PostDownloadsData, ThrowOnError>
+	options: Options<PostDownloadsData, ThrowOnError>
 ) => {
 	return (options?.client ?? client).post<PostDownloadsResponse, PostDownloadsError, ThrowOnError>({
+		security: [
+			{
+				scheme: 'bearer',
+				type: 'http'
+			}
+		],
+		url: '/downloads',
 		...options,
-		url: '/downloads'
+		headers: {
+			'Content-Type': 'application/json',
+			...options?.headers
+		}
+	});
+};
+
+/**
+ * Put Downloads
+ */
+export const putDownloads = <ThrowOnError extends boolean = false>(
+	options: Options<PutDownloadsData, ThrowOnError>
+) => {
+	return (options?.client ?? client).put<PutDownloadsResponse, PutDownloadsError, ThrowOnError>({
+		security: [
+			{
+				scheme: 'bearer',
+				type: 'http'
+			}
+		],
+		url: '/downloads',
+		...options,
+		headers: {
+			'Content-Type': 'application/json',
+			...options?.headers
+		}
 	});
 };
 
@@ -161,27 +208,17 @@ export const postDownloads = <ThrowOnError extends boolean = false>(
  * Get Downloads Options
  */
 export const getDownloadsOptions = <ThrowOnError extends boolean = false>(
-	options?: OptionsLegacyParser<unknown, ThrowOnError>
+	options?: Options<GetDownloadsOptionsData, ThrowOnError>
 ) => {
-	return (options?.client ?? client).get<
-		GetDownloadsOptionsResponse,
-		GetDownloadsOptionsError,
-		ThrowOnError
-	>({
-		...options,
-		url: '/downloads/options'
-	});
-};
-
-/**
- * Get Download
- */
-export const getDownload = <ThrowOnError extends boolean = false>(
-	options: OptionsLegacyParser<GetDownloadData, ThrowOnError>
-) => {
-	return (options?.client ?? client).get<GetDownloadResponse, GetDownloadError, ThrowOnError>({
-		...options,
-		url: '/downloads/{download_id}'
+	return (options?.client ?? client).get<GetDownloadsOptionsResponse, unknown, ThrowOnError>({
+		security: [
+			{
+				scheme: 'bearer',
+				type: 'http'
+			}
+		],
+		url: '/downloads/options',
+		...options
 	});
 };
 
@@ -189,15 +226,39 @@ export const getDownload = <ThrowOnError extends boolean = false>(
  * Delete Download
  */
 export const deleteDownload = <ThrowOnError extends boolean = false>(
-	options: OptionsLegacyParser<DeleteDownloadData, ThrowOnError>
+	options: Options<DeleteDownloadData, ThrowOnError>
 ) => {
 	return (options?.client ?? client).delete<
 		DeleteDownloadResponse,
 		DeleteDownloadError,
 		ThrowOnError
 	>({
-		...options,
-		url: '/downloads/{download_id}'
+		security: [
+			{
+				scheme: 'bearer',
+				type: 'http'
+			}
+		],
+		url: '/downloads/{download_id}',
+		...options
+	});
+};
+
+/**
+ * Get Download
+ */
+export const getDownload = <ThrowOnError extends boolean = false>(
+	options: Options<GetDownloadData, ThrowOnError>
+) => {
+	return (options?.client ?? client).get<GetDownloadResponse, GetDownloadError, ThrowOnError>({
+		security: [
+			{
+				scheme: 'bearer',
+				type: 'http'
+			}
+		],
+		url: '/downloads/{download_id}',
+		...options
 	});
 };
 
@@ -205,14 +266,16 @@ export const deleteDownload = <ThrowOnError extends boolean = false>(
  * Get Download File
  */
 export const getDownloadFile = <ThrowOnError extends boolean = false>(
-	options: OptionsLegacyParser<GetDownloadFileData, ThrowOnError>
+	options: Options<GetDownloadFileData, ThrowOnError>
 ) => {
-	return (options?.client ?? client).get<
-		GetDownloadFileResponse,
-		GetDownloadFileError,
-		ThrowOnError
-	>({
-		...options,
-		url: '/downloads/{download_id}/file'
+	return (options?.client ?? client).get<unknown, GetDownloadFileError, ThrowOnError>({
+		security: [
+			{
+				scheme: 'bearer',
+				type: 'http'
+			}
+		],
+		url: '/downloads/{download_id}/file',
+		...options
 	});
 };

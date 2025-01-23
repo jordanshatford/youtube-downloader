@@ -7,7 +7,7 @@
 	const tabsClasses = tv({
 		slots: {
 			selectClass:
-				'w-full rounded-lg border-2 border-zinc-200 p-2 text-zinc-600 outline-none focus:ring-transparent focus:border-blue-600 dark:focus:border-blue-600 dark:border-zinc-600 dark:bg-zinc-800 dark:text-zinc-200 dark:disabled:bg-zinc-600',
+				'w-full rounded-lg border-2 border-zinc-200 p-2 text-zinc-600 outline-hidden focus:ring-transparent focus:border-blue-600 dark:focus:border-blue-600 dark:border-zinc-600 dark:bg-zinc-800 dark:text-zinc-200 dark:disabled:bg-zinc-600',
 			tabsWrapperDivClass: 'border-b border-gray-200 dark:border-gray-700',
 			tabsNavClass: '-mb-px flex gap-2',
 			buttonClass:

@@ -6,7 +6,7 @@
 		slots: {
 			wrapperDivClass: 'relative',
 			labelSpanClass:
-				'absolute bottom-full mb-2 -translate-x-1/2 rounded-md border border-zinc-50 dark:border-zinc-600 bg-white dark:bg-zinc-800 px-2 py-1 text-sm text-zinc-600 dark:text-zinc-300 shadow',
+				'absolute bottom-full mb-2 -translate-x-1/2 rounded-md border border-zinc-50 dark:border-zinc-600 bg-white dark:bg-zinc-800 px-2 py-1 text-sm text-zinc-600 dark:text-zinc-300 shadow-sm',
 			barDivClass:
 				'relative flex h-2 w-full overflow-hidden rounded-full bg-zinc-200 dark:bg-zinc-700',
 			progressDivClass: 'flex h-full items-center justify-center text-xs text-white'

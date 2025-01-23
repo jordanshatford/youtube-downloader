@@ -21,7 +21,10 @@ function addToast(
 ) {
 	const uuid = id ?? crypto.randomUUID();
 
-	const { closable, duration, infinite, onMount, onRemove } = { ...get(options), ...opts };
+	const { closable, duration, infinite, onMount, onRemove } = {
+		...get(options),
+		...opts
+	};
 
 	const props: ToastComponent = {
 		id: uuid,
@@ -91,13 +94,18 @@ function error(title: string, description: string, opts: ToastFunctionOptions = 
 function promise<T>(promise: Promise<T>, opts: ToastPromiseOptions) {
 	if (promise instanceof Promise === false) throw Error('`promise` is not a valid Promise.');
 
-	const id = addToast('promise', opts.loading.title, opts.loading.description, { opts });
+	const id = addToast('promise', opts.loading.title, opts.loading.description, {
+		opts
+	});
 
 	opts?.onStart?.();
 
 	promise
 		.then((data) => {
-			addToast('success', opts.success.title, opts.success.description, { opts, id });
+			addToast('success', opts.success.title, opts.success.description, {
+				opts,
+				id
+			});
 			opts?.onSuccess?.(data);
 		})
 		.catch((err) => {

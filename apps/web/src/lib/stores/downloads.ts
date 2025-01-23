@@ -99,7 +99,7 @@ function createDownloadsStore() {
 			if (response.data) {
 				const download = get(DOWNLOADS)[id];
 				const filename = `${download.video.title}.${download.options.format}`;
-				saveAs(response.data, filename);
+				saveAs(response.data as Blob, filename);
 			}
 		} catch (err) {
 			handleError(id, 'Failed to get file for download.', err);

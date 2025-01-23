@@ -4,7 +4,7 @@
 
 	const alertClasses = tv({
 		slots: {
-			divClass: 'rounded border-s-4 p-4',
+			divClass: 'rounded-sm border-s-4 p-4',
 			iconDivClass: 'flex items-center gap-2',
 			iconClass: 'h-5 w-5',
 			titleClass: 'block font-medium',

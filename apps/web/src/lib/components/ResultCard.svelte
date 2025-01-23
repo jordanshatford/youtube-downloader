@@ -49,7 +49,7 @@
 			<IconButton
 				onclick={() => downloads.add(result)}
 				src={PlusIcon}
-				class="h-8 w-8 p-1 text-black hover:text-brand-600 dark:text-white dark:hover:text-brand-600"
+				class="hover:text-brand-600 dark:hover:text-brand-600 h-8 w-8 p-1 text-black hover:cursor-pointer dark:text-white"
 			/>
 		{:else}
 			<StateIcon state={$downloads[result.id].status.state} />

@@ -16,7 +16,7 @@
 			<p class="text-zinc-400">© {copyright.year} {copyright.owner}</p>
 		{/if}
 		<span
-			class="mt-4 inline-flex justify-end space-x-5 text-zinc-500 dark:text-zinc-200 sm:ml-auto sm:mt-0 sm:justify-start"
+			class="mt-4 inline-flex justify-end space-x-5 text-zinc-500 sm:mt-0 sm:ml-auto sm:justify-start dark:text-zinc-200"
 		>
 			{#each links as link, index (link.href)}
 				{@const isLast = index === links.length - 1}
@@ -28,11 +28,11 @@
 				{/if}
 			{/each}
 		</span>
-		<span class="mt-4 inline-flex justify-center space-x-5 sm:ml-auto sm:mt-0 sm:justify-start">
+		<span class="mt-4 inline-flex justify-center space-x-5 sm:mt-0 sm:ml-auto sm:justify-start">
 			{#if githubLink}
 				<a
 					href={githubLink}
-					class="text-2xl text-zinc-500 hover:text-brand-600 dark:text-zinc-200 dark:hover:text-brand-600"
+					class="hover:text-brand-600 dark:hover:text-brand-600 text-2xl text-zinc-500 dark:text-zinc-200"
 					target="_blank"
 					rel="noreferrer"
 					aria-label="See source code on GitHub"

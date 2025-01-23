@@ -7,7 +7,7 @@
 			mainDivClass: 'px-4 pb-4 pt-5 sm:p-6 sm:pb-4',
 			mainDivInnerClass: 'sm:flex sm:items-start',
 			iconDivClass:
-				'mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full sm:mx-0 sm:h-10 sm:w-10',
+				'mx-auto flex h-12 w-12 shrink-0 items-center justify-center rounded-full sm:mx-0 sm:h-10 sm:w-10',
 			iconClass: 'h-8 w-8',
 			textDivClass: 'mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left',
 			titleClass: 'whitespace-pre-wrap text-lg font-medium leading-6 text-zinc-900 dark:text-white',

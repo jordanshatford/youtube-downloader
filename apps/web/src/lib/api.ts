@@ -8,13 +8,8 @@ import { toast } from '@yd/ui';
 // Set the base server address using the environment variable.
 client.setConfig({
 	baseUrl: env.serverAddress,
-	throwOnError: true
-});
-
-client.interceptors.request.use((request) => {
-	const token = sessionStorage.getItem(SESSION_ID_KEY) ?? '';
-	request.headers.set('Authorization', `Bearer ${token}`);
-	return request;
+	throwOnError: true,
+	auth: () => sessionStorage.getItem(SESSION_ID_KEY) ?? ''
 });
 
 // Key used to store session ID value in session storage.

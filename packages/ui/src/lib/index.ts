@@ -1,3 +1,5 @@
+import '../app.css';
+
 // Component exports
 export { NavBar } from './components/nav';
 export * from './components/theme';

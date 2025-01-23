@@ -50,7 +50,7 @@
 	<Badge icon {...lookup[status.state]}>
 		{text}
 		{#if status.progress}
-			<ProgressBar class="-ml-7 -mr-2 mt-2" value={status.progress} />
+			<ProgressBar class="mt-2 -mr-2 -ml-7" value={status.progress} />
 		{/if}
 	</Badge>
 {/key}

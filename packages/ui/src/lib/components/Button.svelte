@@ -3,7 +3,7 @@
 	import { tv } from 'tailwind-variants';
 
 	const buttonClasses = tv({
-		base: 'rounded-lg border border-transparent px-4 py-2 text-center text-base font-medium text-white shadow-sm focus:outline-none disabled:cursor-not-allowed disabled:opacity-75',
+		base: 'rounded-lg border border-transparent px-4 py-2 text-center text-base font-medium text-white shadow-xs focus:outline-hidden disabled:cursor-not-allowed disabled:opacity-75',
 		variants: {
 			variant: {
 				error: 'bg-red-700 hover:bg-red-600 disabled:hover:bg-red-700',

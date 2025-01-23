@@ -53,16 +53,16 @@
 			<div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
 				<div class="inline-block min-w-full py-2 align-middle sm:px-6 lg:px-8">
 					<div
-						class="overflow-hidden rounded-lg border border-zinc-200 shadow dark:border-zinc-800 dark:shadow-dark"
+						class="dark:shadow-dark overflow-hidden rounded-lg border border-zinc-200 shadow-sm dark:border-zinc-800"
 					>
 						<Table {columns} rows={currentPageDownloads}>
 							{#snippet cell({ column, row })}
 								<span>
 									{#if column.key === 'info'}
 										<a href={row.video.url} target="_blank" class="flex items-center">
-											<div class="w-18 hidden h-10 flex-shrink-0 md:block">
+											<div class="hidden h-10 w-18 shrink-0 md:block">
 												<img
-													class="w-18 h-10 rounded-lg"
+													class="h-10 w-18 rounded-lg"
 													src={row.video.thumbnail}
 													alt="Thumbnail"
 												/>

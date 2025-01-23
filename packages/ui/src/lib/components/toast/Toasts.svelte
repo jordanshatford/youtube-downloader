@@ -23,7 +23,7 @@
 </script>
 
 <div
-	class="pointer-events-none fixed top-0 z-[999] flex h-full w-full flex-col gap-y-1 overflow-hidden p-[16px] data-[position*=center]:left-2/4 data-[position*=left]:left-0 data-[position*=right]:right-0 data-[position*=center]:-translate-x-2/4 data-[position*=left]:items-start data-[position*=right]:items-end data-[position*=center]:items-center data-[position*=bottom]:justify-end"
+	class="pointer-events-none fixed top-0 z-999 flex h-full w-full flex-col gap-y-1 overflow-hidden p-[16px] data-[position*=bottom]:justify-end data-[position*=center]:left-2/4 data-[position*=center]:-translate-x-2/4 data-[position*=center]:items-center data-[position*=left]:left-0 data-[position*=left]:items-start data-[position*=right]:right-0 data-[position*=right]:items-end"
 	data-position={$_position}
 >
 	{#each $toasts as toast (toast.id)}
