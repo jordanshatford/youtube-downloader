@@ -15,7 +15,6 @@
 		"format": "prettier --write ."
 	},
 	"dependencies": {
-		"@tailwindcss/vite": "^4.0.0",
 		"@yd/client": "workspace:*",
 		"@yd/ui": "workspace:*"
 	},
@@ -23,6 +22,7 @@
 		"@sveltejs/adapter-auto": "^4.0.0",
 		"@sveltejs/kit": "^2.16.1",
 		"@sveltejs/vite-plugin-svelte": "^5.0.3",
+		"@tailwindcss/vite": "^4.0.0",
 		"@yd/config": "workspace:*",
 		"svelte": "^5.19.2",
 		"svelte-check": "^4.1.4",
