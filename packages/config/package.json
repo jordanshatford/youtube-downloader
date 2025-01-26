@@ -9,7 +9,7 @@
 		"./eslint/svelte": "./eslint/svelte.js",
 		"./prettier/base": "./prettier/base.js",
 		"./prettier/svelte": "./prettier/svelte.js",
-		"./tsconfig": "./tsconfig/base.json"
+		"./tsconfig": "./tsconfig/tsconfig.json"
 	},
 	"scripts": {
 		"lint": "prettier --check . && eslint .",
