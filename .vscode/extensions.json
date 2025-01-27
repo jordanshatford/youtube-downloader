@@ -6,6 +6,7 @@
     "ms-python.vscode-pylance",
     "svelte.svelte-vscode",
     "dbaeumer.vscode-eslint",
-    "esbenp.prettier-vscode"
+    "esbenp.prettier-vscode",
+    "bradlc.vscode-tailwindcss"
   ]
 }
