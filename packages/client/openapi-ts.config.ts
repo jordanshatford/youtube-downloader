@@ -11,9 +11,9 @@ export default defineConfig({
 			name: '@hey-api/typescript',
 			enums: 'javascript'
 		},
-    {
-      name: '@hey-api/client-fetch',
-    },
+		{
+			name: '@hey-api/client-fetch'
+		},
 		{
 			name: '@hey-api/sdk'
 		}
