@@ -1,5 +1,5 @@
 import type { Download } from './generated/index';
-import { client } from './generated/index';
+import { client } from './generated/client.gen';
 
 type EventSourceHandler<T> = (event: T) => void;
 

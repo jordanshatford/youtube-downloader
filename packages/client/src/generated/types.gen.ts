@@ -473,3 +473,7 @@ export type GetDownloadFileResponses = {
 	 */
 	200: unknown;
 };
+
+export type ClientOptions = {
+	baseUrl: `${string}://${string}` | (string & {});
+};

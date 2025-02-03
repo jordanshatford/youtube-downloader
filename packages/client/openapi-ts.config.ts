@@ -1,7 +1,6 @@
 import { defineConfig } from '@hey-api/openapi-ts';
 
 export default defineConfig({
-	client: '@hey-api/client-fetch',
 	input: '../../apps/api/openapi.json',
 	output: {
 		format: 'prettier',
@@ -12,6 +11,9 @@ export default defineConfig({
 			name: '@hey-api/typescript',
 			enums: 'javascript'
 		},
+    {
+      name: '@hey-api/client-fetch',
+    },
 		{
 			name: '@hey-api/sdk'
 		}
