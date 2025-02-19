@@ -15,6 +15,6 @@
 		"dev": "poetry install && poetry run uvicorn app.main:app --host=0.0.0.0 --port=8080 --reload --reload-dir=../../",
 		"format": "poetry install && poetry run pre-commit run --all-files",
 		"generate:openapi": "poetry install && poetry run python generate_openapi.py",
-		"pre-commit:autoupdate": "poetry install && poetry run pre-commit autoupdate"
+		"deps:update": "poetry update && poetry run pre-commit autoupdate"
 	}
 }

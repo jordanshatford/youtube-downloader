@@ -16,7 +16,7 @@
     "lint": "pnpm --recursive lint",
     "format": "pnpm --recursive format",
     "check": "pnpm --recursive check",
-    "deps:update": "pnpm --recursive up --latest && pnpm --filter @yd/api pre-commit:autoupdate",
+    "deps:update": "pnpm --recursive up --latest && pnpm --filter @yd/api deps:update",
     "commitlint": "commitlint --edit",
     "changeset": "changeset"
   },
