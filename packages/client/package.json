@@ -16,7 +16,7 @@
 		"@hey-api/client-fetch": "^0.8.1"
 	},
 	"devDependencies": {
-		"@hey-api/openapi-ts": "^0.64.4",
+		"@hey-api/openapi-ts": "^0.64.5",
 		"@yd/api": "workspace:*",
 		"@yd/config": "workspace:*",
 		"prettier": "^3.5.1",
