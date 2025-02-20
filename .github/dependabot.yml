@@ -5,17 +5,9 @@ version: 2
 updates:
   # Github Actions dependabot checks
   - package-ecosystem: "github-actions"
-    directory: "/.github/actions/setup-environment"
-    schedule:
-      interval: "weekly"
-    assignees:
-      - "jordanshatford"
-    groups:
-      github-actions:
-        patterns:
-          - "*"
-  - package-ecosystem: "github-actions"
-    directory: "/"
+    directories:
+      - "/.github/actions/setup-environment"
+      - "/"
     schedule:
       interval: "weekly"
     assignees:
