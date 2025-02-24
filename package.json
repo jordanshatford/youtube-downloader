@@ -21,7 +21,7 @@
     "changeset": "changeset"
   },
   "devDependencies": {
-    "@changesets/cli": "^2.28.0",
+    "@changesets/cli": "^2.28.1",
     "@commitlint/cli": "^19.7.1",
     "@commitlint/config-conventional": "^19.7.1",
     "@commitlint/types": "^19.5.0",
