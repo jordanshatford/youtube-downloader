@@ -62,7 +62,7 @@
 			<Icon src={ChevronLeftIcon} theme="solid" class={outerButtonIconClass()} />
 		</button>
 	</li>
-	{#each clickableNumbers as n}
+	{#each clickableNumbers as n (n)}
 		<li>
 			<button onclick={() => (page = n)} class={numberButtonClass({ active: page == n })}>
 				{n}

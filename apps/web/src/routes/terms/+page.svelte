@@ -15,7 +15,7 @@
 		By using {websiteName}, you agree to be bound by the following terms of use:
 	</p>
 	<ol class="mx-6 list-decimal py-6 text-left md:mx-32">
-		{#each termsOfUse as termOfUse}
+		{#each termsOfUse as termOfUse (termOfUse.title)}
 			<li class="mt-3 text-zinc-700 dark:text-zinc-300">{termOfUse.title}</li>
 			{#if termOfUse.description}
 				<p class="mt-1 text-zinc-500">{termOfUse.description}</p>

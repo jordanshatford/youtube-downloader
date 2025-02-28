@@ -12,7 +12,6 @@
 	};
 
 	type TCol = { key: string; title: string };
-	// eslint-disable-next-line no-undef
 	type TRow = T;
 	interface Props {
 		columns?: TCol[];
@@ -32,7 +31,7 @@
 <table class={classes.table} cellspacing="0">
 	<thead class={classes.thead}>
 		<tr class={classes.headtr}>
-			{#each columns as column, index}
+			{#each columns as column, index (column.key)}
 				{@const isLastCol = isLastColumn(index) ? 'text-right' : ''}
 				<th scope="col" class={`${classes.th} ${isLastCol}`}>
 					{#if head}
@@ -45,9 +44,9 @@
 		</tr>
 	</thead>
 	<tbody class={classes.tbody}>
-		{#each rows as row}
+		{#each rows as row, index (index)}
 			<tr class={classes.tr}>
-				{#each columns as column, index}
+				{#each columns as column, index (column.key)}
 					{@const isLastCol = isLastColumn(index) ? 'text-right' : ''}
 					<td class={`${classes.td} ${isLastCol}`}>
 						{#if cell}

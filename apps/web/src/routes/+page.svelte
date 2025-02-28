@@ -25,7 +25,7 @@
 	</div>
 	<div class="container mx-auto mt-8 px-4 pb-8 md:px-12">
 		<div class="-mx-1 flex flex-wrap lg:-mx-4">
-			{#each search.results as result}
+			{#each search.results as result (result.id)}
 				<ResultCard {result} />
 			{/each}
 		</div>

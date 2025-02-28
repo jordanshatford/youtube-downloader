@@ -42,7 +42,7 @@
 	<div class="sm:hidden">
 		<label for="Tab" class="sr-only">Tab</label>
 		<select id="Tab" class={selectClass()} bind:value={active}>
-			{#each tabs as tab}
+			{#each tabs as tab (tab.key)}
 				<option value={tab.key}>{tab.title}</option>
 			{/each}
 		</select>
