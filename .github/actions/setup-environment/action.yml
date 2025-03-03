@@ -25,10 +25,11 @@ runs:
       with:
         node-version: ${{ inputs.node-version }}
         cache: 'pnpm'
+    - name: Setup Poetry
+      run: pipx install "poetry>=2.0,<3.0"
+      shell: bash
     - name: Setup Python
       uses: actions/setup-python@v5
       with:
         python-version: ${{ inputs.python-version }}
-    - name: Setup Poetry
-      run: pipx install "poetry>=2.0,<3.0"
-      shell: bash
+        cache: 'poetry'
