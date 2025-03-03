@@ -5,9 +5,6 @@ inputs:
     description: Node version to use
     required: false
     default: '22'
-  pnpm-version:
-    description: PNPM version to use
-    required: false
   python-version:
     description: Python version to use
     required: false
@@ -18,8 +15,6 @@ runs:
   steps:
     - name: Setup PNPM
       uses: pnpm/action-setup@v4
-      with:
-        version: ${{ inputs.pnpm-version }}
     - name: Setup Node
       uses: actions/setup-node@v4
       with:
