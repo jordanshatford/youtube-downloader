@@ -19,7 +19,6 @@
 		"@hey-api/openapi-ts": "^0.64.8",
 		"@yd/api": "workspace:*",
 		"@yd/config": "workspace:*",
-		"prettier": "^3.5.3",
-		"typescript": "^5.8.2"
+		"typescript": "catalog:"
 	}
 }

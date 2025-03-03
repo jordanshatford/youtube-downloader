@@ -4,6 +4,39 @@ settings:
   autoInstallPeers: true
   excludeLinksFromLockfile: false
 
+catalogs:
+  default:
+    '@sveltejs/adapter-auto':
+      specifier: ^4.0.0
+      version: 4.0.0
+    '@sveltejs/kit':
+      specifier: ^2.17.3
+      version: 2.17.3
+    '@sveltejs/vite-plugin-svelte':
+      specifier: ^5.0.3
+      version: 5.0.3
+    '@tailwindcss/vite':
+      specifier: ^4.0.9
+      version: 4.0.9
+    svelte:
+      specifier: ^5.20.5
+      version: 5.20.5
+    svelte-check:
+      specifier: ^4.1.4
+      version: 4.1.4
+    tailwindcss:
+      specifier: ^4.0.9
+      version: 4.0.9
+    tslib:
+      specifier: ^2.8.1
+      version: 2.8.1
+    typescript:
+      specifier: ^5.8.2
+      version: 5.8.2
+    vite:
+      specifier: ^6.2.0
+      version: 6.2.0
+
 importers:
 
   .:
@@ -39,37 +72,37 @@ importers:
         version: link:../../packages/ui
     devDependencies:
       '@sveltejs/adapter-auto':
-        specifier: ^4.0.0
+        specifier: 'catalog:'
         version: 4.0.0(@sveltejs/kit@2.17.3(@sveltejs/vite-plugin-svelte@5.0.3(svelte@5.20.5)(vite@6.2.0(@types/node@22.13.8)(jiti@2.4.2)(lightningcss@1.29.1)(terser@5.34.1)(yaml@2.6.1)))(svelte@5.20.5)(vite@6.2.0(@types/node@22.13.8)(jiti@2.4.2)(lightningcss@1.29.1)(terser@5.34.1)(yaml@2.6.1)))
       '@sveltejs/kit':
-        specifier: ^2.17.3
+        specifier: 'catalog:'
         version: 2.17.3(@sveltejs/vite-plugin-svelte@5.0.3(svelte@5.20.5)(vite@6.2.0(@types/node@22.13.8)(jiti@2.4.2)(lightningcss@1.29.1)(terser@5.34.1)(yaml@2.6.1)))(svelte@5.20.5)(vite@6.2.0(@types/node@22.13.8)(jiti@2.4.2)(lightningcss@1.29.1)(terser@5.34.1)(yaml@2.6.1))
       '@sveltejs/vite-plugin-svelte':
-        specifier: ^5.0.3
+        specifier: 'catalog:'
         version: 5.0.3(svelte@5.20.5)(vite@6.2.0(@types/node@22.13.8)(jiti@2.4.2)(lightningcss@1.29.1)(terser@5.34.1)(yaml@2.6.1))
       '@tailwindcss/vite':
-        specifier: ^4.0.9
+        specifier: 'catalog:'
         version: 4.0.9(vite@6.2.0(@types/node@22.13.8)(jiti@2.4.2)(lightningcss@1.29.1)(terser@5.34.1)(yaml@2.6.1))
       '@yd/config':
         specifier: workspace:*
         version: link:../../packages/config
       svelte:
-        specifier: ^5.20.5
+        specifier: 'catalog:'
         version: 5.20.5
       svelte-check:
-        specifier: ^4.1.4
+        specifier: 'catalog:'
         version: 4.1.4(picomatch@4.0.2)(svelte@5.20.5)(typescript@5.8.2)
       tailwindcss:
-        specifier: ^4.0.9
+        specifier: 'catalog:'
         version: 4.0.9
       tslib:
-        specifier: ^2.8.1
+        specifier: 'catalog:'
         version: 2.8.1
       typescript:
-        specifier: ^5.8.2
+        specifier: 'catalog:'
         version: 5.8.2
       vite:
-        specifier: ^6.2.0
+        specifier: 'catalog:'
         version: 6.2.0(@types/node@22.13.8)(jiti@2.4.2)(lightningcss@1.29.1)(terser@5.34.1)(yaml@2.6.1)
 
   packages/client:
@@ -87,11 +120,8 @@ importers:
       '@yd/config':
         specifier: workspace:*
         version: link:../config
-      prettier:
-        specifier: ^3.5.3
-        version: 3.5.3
       typescript:
-        specifier: ^5.8.2
+        specifier: 'catalog:'
         version: 5.8.2
 
   packages/config:
@@ -143,19 +173,19 @@ importers:
         version: 0.3.1(tailwindcss@4.0.9)
     devDependencies:
       '@sveltejs/adapter-auto':
-        specifier: ^4.0.0
+        specifier: 'catalog:'
         version: 4.0.0(@sveltejs/kit@2.17.3(@sveltejs/vite-plugin-svelte@5.0.3(svelte@5.20.5)(vite@6.2.0(@types/node@22.13.8)(jiti@2.4.2)(lightningcss@1.29.1)(terser@5.34.1)(yaml@2.6.1)))(svelte@5.20.5)(vite@6.2.0(@types/node@22.13.8)(jiti@2.4.2)(lightningcss@1.29.1)(terser@5.34.1)(yaml@2.6.1)))
       '@sveltejs/kit':
-        specifier: ^2.17.3
+        specifier: 'catalog:'
         version: 2.17.3(@sveltejs/vite-plugin-svelte@5.0.3(svelte@5.20.5)(vite@6.2.0(@types/node@22.13.8)(jiti@2.4.2)(lightningcss@1.29.1)(terser@5.34.1)(yaml@2.6.1)))(svelte@5.20.5)(vite@6.2.0(@types/node@22.13.8)(jiti@2.4.2)(lightningcss@1.29.1)(terser@5.34.1)(yaml@2.6.1))
       '@sveltejs/package':
         specifier: ^2.3.10
         version: 2.3.10(svelte@5.20.5)(typescript@5.8.2)
       '@sveltejs/vite-plugin-svelte':
-        specifier: ^5.0.3
+        specifier: 'catalog:'
         version: 5.0.3(svelte@5.20.5)(vite@6.2.0(@types/node@22.13.8)(jiti@2.4.2)(lightningcss@1.29.1)(terser@5.34.1)(yaml@2.6.1))
       '@tailwindcss/vite':
-        specifier: ^4.0.9
+        specifier: 'catalog:'
         version: 4.0.9(vite@6.2.0(@types/node@22.13.8)(jiti@2.4.2)(lightningcss@1.29.1)(terser@5.34.1)(yaml@2.6.1))
       '@yd/config':
         specifier: workspace:*
@@ -164,22 +194,22 @@ importers:
         specifier: ^0.3.7
         version: 0.3.7
       svelte:
-        specifier: ^5.20.5
+        specifier: 'catalog:'
         version: 5.20.5
       svelte-check:
-        specifier: ^4.1.4
+        specifier: 'catalog:'
         version: 4.1.4(picomatch@4.0.2)(svelte@5.20.5)(typescript@5.8.2)
       tailwindcss:
-        specifier: ^4.0.9
+        specifier: 'catalog:'
         version: 4.0.9
       tslib:
-        specifier: ^2.8.1
+        specifier: 'catalog:'
         version: 2.8.1
       typescript:
-        specifier: ^5.8.2
+        specifier: 'catalog:'
         version: 5.8.2
       vite:
-        specifier: ^6.2.0
+        specifier: 'catalog:'
         version: 6.2.0(@types/node@22.13.8)(jiti@2.4.2)(lightningcss@1.29.1)(terser@5.34.1)(yaml@2.6.1)
 
 packages:
