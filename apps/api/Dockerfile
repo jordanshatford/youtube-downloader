@@ -7,9 +7,8 @@ RUN apt-get install -y ffmpeg
 WORKDIR /workspace
 
 # Install Poetry
-ENV POETRY_VERSION=2.1.1
 RUN apt-get install -y pipx && pipx ensurepath
-RUN pipx install "poetry==$POETRY_VERSION"
+RUN pipx install "poetry>=2.0,<3.0"
 ENV PATH=/root/.local/bin:$PATH
 
 # Install dependencies

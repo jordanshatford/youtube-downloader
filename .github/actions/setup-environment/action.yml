@@ -12,10 +12,6 @@ inputs:
     description: Python version to use
     required: false
     default: '3.13'
-  poetry-version:
-    description: Poetry version to use
-    required: false
-    default: 2.1.1
 
 runs:
   using: 'composite'
@@ -34,6 +30,5 @@ runs:
       with:
         python-version: ${{ inputs.python-version }}
     - name: Setup Poetry
-      uses: abatilo/actions-poetry@v4
-      with:
-        poetry-version: ${{ inputs.poetry-version }}
+      run: pipx install "poetry>=2.0,<3.0"
+      shell: bash
