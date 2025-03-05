@@ -1,0 +1,35 @@
+{
+  "name": "Development Dev Container",
+  "image": "mcr.microsoft.com/devcontainers/typescript-node:1-22-bookworm",
+  "features": {
+		"ghcr.io/devcontainers-extra/features/ffmpeg-apt-get:1": {}
+	},
+  "forwardPorts": [5173, 24678],
+  "portsAttributes": {
+    "5173": {
+      "label": "Application",
+      "onAutoForward": "notify"
+    },
+    "24678": {
+      "label": "HMR Server"
+    }
+  },
+  "postCreateCommand": "sudo corepack enable && corepack install && pnpm install",
+  "customizations": {
+    "codespaces": {
+      "openFiles": ["CONTRIBUTING.md", "README.md"]
+    },
+    "vscode": {
+      "extensions": [
+        "ms-azuretools.vscode-docker",
+				"EditorConfig.EditorConfig",
+				"ms-python.python",
+				"ms-python.vscode-pylance",
+				"svelte.svelte-vscode",
+				"dbaeumer.vscode-eslint",
+				"esbenp.prettier-vscode",
+				"bradlc.vscode-tailwindcss"
+      ]
+    }
+  }
+}

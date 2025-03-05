@@ -3,7 +3,17 @@
 
 version: 2
 updates:
-  # Github Actions dependabot checks
+  - package-ecosystem: "devcontainers"
+    directory: "/"
+    schedule:
+      interval: weekly
+    assignees:
+      - "jordanshatford"
+    groups:
+      devcontainers:
+        patterns:
+          - "*"
+
   - package-ecosystem: "github-actions"
     directories:
       - "/.github/actions/setup-environment"
@@ -17,7 +27,6 @@ updates:
         patterns:
           - "*"
 
-  # API dependabot checks
   - package-ecosystem: "pip"
     directory: "/apps/api"
     schedule:
@@ -29,7 +38,6 @@ updates:
         patterns:
           - "*"
 
-  # NPM dependabot checks
   - package-ecosystem: "npm"
     directory: "/"
     schedule:
@@ -42,7 +50,6 @@ updates:
       dev-npm:
         dependency-type: "development"
 
-  # Docker dependabot checks
   - package-ecosystem: "docker"
     directory: "/"
     schedule:
