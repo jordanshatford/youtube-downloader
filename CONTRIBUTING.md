@@ -33,8 +33,8 @@ Setting up the project without docker will require that the above dependencies a
 ```sh
 # Enable corepack, it is disabled by default in the supported versions of NodeJS
 corepack enable
-# Prepare corepack based on the packageManager specified in the projects package.json
-corepack prepare
+# Install corepack based on the packageManager specified in the projects package.json
+corepack install
 # Install all dependencies
 pnpm install
 # Run the projects API and web app in development mode
