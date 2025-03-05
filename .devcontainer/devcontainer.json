@@ -2,7 +2,8 @@
 	"name": "Development Dev Container",
 	"image": "mcr.microsoft.com/devcontainers/typescript-node:1-22-bookworm",
 	"features": {
-		"ghcr.io/devcontainers-extra/features/ffmpeg-apt-get:1": {}
+		"ghcr.io/devcontainers-extra/features/ffmpeg-apt-get:1": {},
+		"ghcr.io/devcontainers-extra/features/poetry:2": {}
 	},
 	"forwardPorts": [5173, 24678],
 	"portsAttributes": {
