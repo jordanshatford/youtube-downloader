@@ -17,7 +17,7 @@
 		}
 	});
 
-	interface Props extends HTMLHtmlAttributes {
+	interface Props extends Pick<HTMLHtmlAttributes, 'class'> {
 		show?: boolean;
 		children?: Snippet;
 	}
