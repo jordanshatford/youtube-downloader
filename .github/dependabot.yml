@@ -34,7 +34,7 @@ updates:
     assignees:
       - "jordanshatford"
     groups:
-      api-python:
+      python:
         patterns:
           - "*"
 
@@ -45,10 +45,9 @@ updates:
     assignees:
       - "jordanshatford"
     groups:
-      prod-npm:
-        dependency-type: "production"
-      dev-npm:
-        dependency-type: "development"
+      npm:
+        patterns:
+          - "*"
 
   - package-ecosystem: "docker"
     directory: "/"
