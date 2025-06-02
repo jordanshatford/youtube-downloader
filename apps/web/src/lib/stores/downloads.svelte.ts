@@ -18,7 +18,7 @@ class DownloadsStore {
 
 	public async init() {
 		// Setup listener for status updates of any downloads.
-		getDownloadsStatus(() => sessionStorage.getItem(SESSION_ID_KEY) ?? '', {
+		getDownloadsStatus(() => localStorage.getItem(SESSION_ID_KEY) ?? '', {
 			onMessage: (download) => {
 				this.updateDownload(download.video.id, download);
 			}

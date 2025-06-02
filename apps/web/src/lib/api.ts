@@ -9,7 +9,7 @@ import { toasts } from '@yd/ui';
 client.setConfig({
 	baseUrl: env.serverAddress,
 	throwOnError: true,
-	auth: () => sessionStorage.getItem(SESSION_ID_KEY) ?? ''
+	auth: () => localStorage.getItem(SESSION_ID_KEY)?.toString()
 });
 
 // Key used to store session ID value in session storage.
@@ -27,7 +27,7 @@ export async function setupSession(): Promise<void> {
 			// Attempt to use existing session if present.
 			const { data: session } = await getSessionValidate();
 			if (session) {
-				sessionStorage.setItem(SESSION_ID_KEY, session.id);
+				localStorage.setItem(SESSION_ID_KEY, session.id);
 			}
 		} catch {
 			// Attempt to setup a new session until successful
@@ -37,7 +37,7 @@ export async function setupSession(): Promise<void> {
 					// Attempt to setup new session.
 					const { data: session } = await getSession();
 					if (session) {
-						sessionStorage.setItem(SESSION_ID_KEY, session.id);
+						localStorage.setItem(SESSION_ID_KEY, session.id);
 						success = true;
 					}
 				} catch (err) {
