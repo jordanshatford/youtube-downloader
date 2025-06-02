@@ -14,9 +14,9 @@ class SearchStore {
 		this.query = q;
 		this.loading = true;
 		try {
-			const response = await getSearch({ query: { query: q } });
-			if (response.data) {
-				this.results = response.data;
+			const { data: results } = await getSearch({ query: { query: q } });
+			if (results) {
+				this.results = results;
 			}
 			toasts.success('Success', `Found ${this.results.length} search results.`);
 		} catch (err) {
@@ -29,11 +29,11 @@ class SearchStore {
 	public async getMore() {
 		this.loading = true;
 		try {
-			const response = await getNextSearch();
-			if (response.data) {
-				this.results = [...this.results, ...response.data];
+			const { data: results } = await getNextSearch();
+			if (results) {
+				this.results = [...this.results, ...results];
+				toasts.success('Success', `Found ${results?.length} more search results.`);
 			}
-			toasts.success('Success', `Found ${this.results.length} more search results.`);
 		} catch (err) {
 			toasts.error('Error', 'Failed to get more search results.');
 			console.error('Failed to get more search videos ', err);

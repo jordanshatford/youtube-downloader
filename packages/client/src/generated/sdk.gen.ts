@@ -4,37 +4,43 @@ import type { Client, Options as ClientOptions, TDataShape } from '@hey-api/clie
 
 import type {
 	DeleteDownloadData,
-	DeleteDownloadError,
-	DeleteDownloadResponse,
+	DeleteDownloadErrors,
+	DeleteDownloadResponses,
 	DeleteSessionData,
-	DeleteSessionResponse,
+	DeleteSessionErrors,
+	DeleteSessionResponses,
 	GetDownloadData,
-	GetDownloadError,
+	GetDownloadErrors,
 	GetDownloadFileData,
-	GetDownloadFileError,
-	GetDownloadResponse,
+	GetDownloadFileErrors,
+	GetDownloadFileResponses,
+	GetDownloadResponses,
 	GetDownloadsData,
+	GetDownloadsErrors,
 	GetDownloadsOptionsData,
-	GetDownloadsOptionsResponse,
-	GetDownloadsResponse,
+	GetDownloadsOptionsErrors,
+	GetDownloadsOptionsResponses,
+	GetDownloadsResponses,
 	GetNextSearchData,
-	GetNextSearchResponse,
+	GetNextSearchErrors,
+	GetNextSearchResponses,
 	GetSearchData,
-	GetSearchError,
-	GetSearchResponse,
+	GetSearchErrors,
+	GetSearchResponses,
 	GetSessionData,
-	GetSessionResponse,
+	GetSessionResponses,
 	GetSessionValidateData,
-	GetSessionValidateResponse,
+	GetSessionValidateErrors,
+	GetSessionValidateResponses,
 	GetVideoData,
-	GetVideoError,
-	GetVideoResponse,
+	GetVideoErrors,
+	GetVideoResponses,
 	PostDownloadsData,
-	PostDownloadsError,
-	PostDownloadsResponse,
+	PostDownloadsErrors,
+	PostDownloadsResponses,
 	PutDownloadsData,
-	PutDownloadsError,
-	PutDownloadsResponse
+	PutDownloadsErrors,
+	PutDownloadsResponses
 } from './types.gen';
 import { client as _heyApiClient } from './client.gen';
 
@@ -61,7 +67,7 @@ export type Options<
 export const getSearch = <ThrowOnError extends boolean = false>(
 	options: Options<GetSearchData, ThrowOnError>
 ) => {
-	return (options.client ?? _heyApiClient).get<GetSearchResponse, GetSearchError, ThrowOnError>({
+	return (options.client ?? _heyApiClient).get<GetSearchResponses, GetSearchErrors, ThrowOnError>({
 		security: [
 			{
 				scheme: 'bearer',
@@ -79,7 +85,11 @@ export const getSearch = <ThrowOnError extends boolean = false>(
 export const getNextSearch = <ThrowOnError extends boolean = false>(
 	options?: Options<GetNextSearchData, ThrowOnError>
 ) => {
-	return (options?.client ?? _heyApiClient).get<GetNextSearchResponse, unknown, ThrowOnError>({
+	return (options?.client ?? _heyApiClient).get<
+		GetNextSearchResponses,
+		GetNextSearchErrors,
+		ThrowOnError
+	>({
 		security: [
 			{
 				scheme: 'bearer',
@@ -97,7 +107,7 @@ export const getNextSearch = <ThrowOnError extends boolean = false>(
 export const getVideo = <ThrowOnError extends boolean = false>(
 	options: Options<GetVideoData, ThrowOnError>
 ) => {
-	return (options.client ?? _heyApiClient).get<GetVideoResponse, GetVideoError, ThrowOnError>({
+	return (options.client ?? _heyApiClient).get<GetVideoResponses, GetVideoErrors, ThrowOnError>({
 		security: [
 			{
 				scheme: 'bearer',
@@ -115,7 +125,11 @@ export const getVideo = <ThrowOnError extends boolean = false>(
 export const deleteSession = <ThrowOnError extends boolean = false>(
 	options?: Options<DeleteSessionData, ThrowOnError>
 ) => {
-	return (options?.client ?? _heyApiClient).delete<DeleteSessionResponse, unknown, ThrowOnError>({
+	return (options?.client ?? _heyApiClient).delete<
+		DeleteSessionResponses,
+		DeleteSessionErrors,
+		ThrowOnError
+	>({
 		security: [
 			{
 				scheme: 'bearer',
@@ -133,7 +147,7 @@ export const deleteSession = <ThrowOnError extends boolean = false>(
 export const getSession = <ThrowOnError extends boolean = false>(
 	options?: Options<GetSessionData, ThrowOnError>
 ) => {
-	return (options?.client ?? _heyApiClient).get<GetSessionResponse, unknown, ThrowOnError>({
+	return (options?.client ?? _heyApiClient).get<GetSessionResponses, unknown, ThrowOnError>({
 		url: '/session',
 		...options
 	});
@@ -145,7 +159,11 @@ export const getSession = <ThrowOnError extends boolean = false>(
 export const getSessionValidate = <ThrowOnError extends boolean = false>(
 	options?: Options<GetSessionValidateData, ThrowOnError>
 ) => {
-	return (options?.client ?? _heyApiClient).get<GetSessionValidateResponse, unknown, ThrowOnError>({
+	return (options?.client ?? _heyApiClient).get<
+		GetSessionValidateResponses,
+		GetSessionValidateErrors,
+		ThrowOnError
+	>({
 		security: [
 			{
 				scheme: 'bearer',
@@ -163,7 +181,11 @@ export const getSessionValidate = <ThrowOnError extends boolean = false>(
 export const getDownloads = <ThrowOnError extends boolean = false>(
 	options?: Options<GetDownloadsData, ThrowOnError>
 ) => {
-	return (options?.client ?? _heyApiClient).get<GetDownloadsResponse, unknown, ThrowOnError>({
+	return (options?.client ?? _heyApiClient).get<
+		GetDownloadsResponses,
+		GetDownloadsErrors,
+		ThrowOnError
+	>({
 		security: [
 			{
 				scheme: 'bearer',
@@ -182,8 +204,8 @@ export const postDownloads = <ThrowOnError extends boolean = false>(
 	options: Options<PostDownloadsData, ThrowOnError>
 ) => {
 	return (options.client ?? _heyApiClient).post<
-		PostDownloadsResponse,
-		PostDownloadsError,
+		PostDownloadsResponses,
+		PostDownloadsErrors,
 		ThrowOnError
 	>({
 		security: [
@@ -196,7 +218,7 @@ export const postDownloads = <ThrowOnError extends boolean = false>(
 		...options,
 		headers: {
 			'Content-Type': 'application/json',
-			...options?.headers
+			...options.headers
 		}
 	});
 };
@@ -208,8 +230,8 @@ export const putDownloads = <ThrowOnError extends boolean = false>(
 	options: Options<PutDownloadsData, ThrowOnError>
 ) => {
 	return (options.client ?? _heyApiClient).put<
-		PutDownloadsResponse,
-		PutDownloadsError,
+		PutDownloadsResponses,
+		PutDownloadsErrors,
 		ThrowOnError
 	>({
 		security: [
@@ -222,7 +244,7 @@ export const putDownloads = <ThrowOnError extends boolean = false>(
 		...options,
 		headers: {
 			'Content-Type': 'application/json',
-			...options?.headers
+			...options.headers
 		}
 	});
 };
@@ -233,18 +255,20 @@ export const putDownloads = <ThrowOnError extends boolean = false>(
 export const getDownloadsOptions = <ThrowOnError extends boolean = false>(
 	options?: Options<GetDownloadsOptionsData, ThrowOnError>
 ) => {
-	return (options?.client ?? _heyApiClient).get<GetDownloadsOptionsResponse, unknown, ThrowOnError>(
-		{
-			security: [
-				{
-					scheme: 'bearer',
-					type: 'http'
-				}
-			],
-			url: '/downloads/options',
-			...options
-		}
-	);
+	return (options?.client ?? _heyApiClient).get<
+		GetDownloadsOptionsResponses,
+		GetDownloadsOptionsErrors,
+		ThrowOnError
+	>({
+		security: [
+			{
+				scheme: 'bearer',
+				type: 'http'
+			}
+		],
+		url: '/downloads/options',
+		...options
+	});
 };
 
 /**
@@ -254,8 +278,8 @@ export const deleteDownload = <ThrowOnError extends boolean = false>(
 	options: Options<DeleteDownloadData, ThrowOnError>
 ) => {
 	return (options.client ?? _heyApiClient).delete<
-		DeleteDownloadResponse,
-		DeleteDownloadError,
+		DeleteDownloadResponses,
+		DeleteDownloadErrors,
 		ThrowOnError
 	>({
 		security: [
@@ -275,18 +299,20 @@ export const deleteDownload = <ThrowOnError extends boolean = false>(
 export const getDownload = <ThrowOnError extends boolean = false>(
 	options: Options<GetDownloadData, ThrowOnError>
 ) => {
-	return (options.client ?? _heyApiClient).get<GetDownloadResponse, GetDownloadError, ThrowOnError>(
-		{
-			security: [
-				{
-					scheme: 'bearer',
-					type: 'http'
-				}
-			],
-			url: '/downloads/{download_id}',
-			...options
-		}
-	);
+	return (options.client ?? _heyApiClient).get<
+		GetDownloadResponses,
+		GetDownloadErrors,
+		ThrowOnError
+	>({
+		security: [
+			{
+				scheme: 'bearer',
+				type: 'http'
+			}
+		],
+		url: '/downloads/{download_id}',
+		...options
+	});
 };
 
 /**
@@ -295,7 +321,11 @@ export const getDownload = <ThrowOnError extends boolean = false>(
 export const getDownloadFile = <ThrowOnError extends boolean = false>(
 	options: Options<GetDownloadFileData, ThrowOnError>
 ) => {
-	return (options.client ?? _heyApiClient).get<unknown, GetDownloadFileError, ThrowOnError>({
+	return (options.client ?? _heyApiClient).get<
+		GetDownloadFileResponses,
+		GetDownloadFileErrors,
+		ThrowOnError
+	>({
 		security: [
 			{
 				scheme: 'bearer',

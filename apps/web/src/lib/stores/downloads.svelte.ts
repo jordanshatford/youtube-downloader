@@ -24,8 +24,12 @@ class DownloadsStore {
 			}
 		});
 		// Get all previous downloads still available.
-		const downloads = (await getDownloads()).data ?? [];
-		this.downloads = downloads.reduce((prev, curr) => ({ ...prev, [curr.video.id]: curr }), {});
+		const { data: downloads } = await getDownloads();
+		if (downloads) {
+			this.downloads = downloads.reduce((prev, curr) => ({ ...prev, [curr.video.id]: curr }), {});
+		} else {
+			this.downloads = {};
+		}
 	}
 
 	public async add(video: Video) {
@@ -41,11 +45,11 @@ class DownloadsStore {
 		this.downloads[download.video.id] = download;
 
 		try {
-			const result = await postDownloads({
+			const { data: result } = await postDownloads({
 				body: download
 			});
-			if (result.data) {
-				this.updateDownload(result.data.video.id, result.data);
+			if (result) {
+				this.updateDownload(result.video.id, result);
 			}
 		} catch (err) {
 			this.handleError(download.video.id, `Failed to add '${video.title}' to downloads.`, err);
@@ -58,11 +62,11 @@ class DownloadsStore {
 		const download = this.downloads[id];
 
 		try {
-			const result = await putDownloads({
+			const { data: result } = await putDownloads({
 				body: download
 			});
-			if (result.data) {
-				this.updateDownload(result.data.video.id, result.data);
+			if (result) {
+				this.updateDownload(result.video.id, result);
 			}
 		} catch (err) {
 			this.handleError(
@@ -89,11 +93,11 @@ class DownloadsStore {
 		if (!(id in this.downloads)) return;
 
 		try {
-			const response = await getDownloadFile({ path: { download_id: id } });
-			if (response.data) {
+			const { data: file } = await getDownloadFile({ path: { download_id: id } });
+			if (file) {
 				const download = this.downloads[id];
 				const filename = `${download.video.title}.${download.options.format}`;
-				saveAs(response.data as Blob, filename);
+				saveAs(file as Blob, filename);
 			}
 		} catch (err) {
 			this.handleError(id, 'Failed to get file for download.', err);
@@ -120,7 +124,9 @@ class DownloadsStore {
 	private handleError(downloadId: string, msg: string, error: unknown) {
 		toasts.error('Error', msg);
 		console.error(msg, error);
-		this.updateDownload(downloadId, { status: { state: 'ERROR', progress: null } });
+		this.updateDownload(downloadId, {
+			status: { state: 'ERROR', progress: null }
+		});
 	}
 }
 

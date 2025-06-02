@@ -48,7 +48,10 @@ class ToastStore {
 				opts?.onSuccess?.(data);
 			})
 			.catch((err) => {
-				this.addToast('error', opts.error.title, opts.error.description, { opts, id });
+				this.addToast('error', opts.error.title, opts.error.description, {
+					opts,
+					id
+				});
 				opts?.onError?.(err);
 			})
 			.finally(() => {

@@ -2,7 +2,7 @@
 	import '../app.css';
 
 	import type { Snippet } from 'svelte';
-	import { page } from '$app/stores';
+	import { page } from '$app/state';
 	import { setupSession } from '$lib/api';
 	import Loading from '$lib/components/Loading.svelte';
 	import Logo from '$lib/components/Logo.svelte';
@@ -32,7 +32,7 @@
 <Toasts position="bottom-right" />
 <div class="h-full min-h-screen dark:bg-zinc-900">
 	<div class="h-full">
-		<NavBar links={navbarLinks} activeLink={$page.url.pathname}>
+		<NavBar links={navbarLinks} activeLink={page.url.pathname}>
 			{#snippet logo()}
 				<Logo />
 			{/snippet}

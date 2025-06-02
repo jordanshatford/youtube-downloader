@@ -25,9 +25,9 @@ export async function setupSession(): Promise<void> {
 	if (browser) {
 		try {
 			// Attempt to use existing session if present.
-			const session = await getSessionValidate();
-			if (session.data) {
-				sessionStorage.setItem(SESSION_ID_KEY, session.data.id);
+			const { data: session } = await getSessionValidate();
+			if (session) {
+				sessionStorage.setItem(SESSION_ID_KEY, session.id);
 			}
 		} catch {
 			// Attempt to setup a new session until successful
@@ -35,9 +35,11 @@ export async function setupSession(): Promise<void> {
 			while (!success) {
 				try {
 					// Attempt to setup new session.
-					const session = await getSession();
-					sessionStorage.setItem(SESSION_ID_KEY, session.data?.id ?? '');
-					success = true;
+					const { data: session } = await getSession();
+					if (session) {
+						sessionStorage.setItem(SESSION_ID_KEY, session.id);
+						success = true;
+					}
 				} catch (err) {
 					toasts.error('Error', 'Failed to setup session. Re-attempting shortly.');
 					console.error('Connection failed, could not connect to internal server. ', err);
