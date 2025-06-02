@@ -1,5 +1,11 @@
 # @yd/web
 
+## 1.3.1
+
+### Patch Changes
+
+- fix: issue properly recreating session when it has expired ([`e4ad8b7`](https://github.com/jordanshatford/youtube-downloader/commit/e4ad8b72b46d58fba8ee7da8860d322e9d5f2d3b))
+
 ## 1.3.0
 
 ### Minor Changes
