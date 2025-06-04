@@ -72,7 +72,6 @@ app = FastAPI(
     ],
     version=project_data['version'],
     generate_unique_id_function=generate_custom_unique_id,
-    separate_input_output_schemas=False,
     lifespan=lifespan,
 )
 
