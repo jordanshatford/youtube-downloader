@@ -12,11 +12,8 @@
 		"lint": "prettier --check . && eslint .",
 		"format": "prettier --write ."
 	},
-	"dependencies": {
-		"@hey-api/client-fetch": "^0.13.1"
-	},
 	"devDependencies": {
-		"@hey-api/openapi-ts": "^0.73.0",
+		"@hey-api/openapi-ts": "^0.74.0",
 		"@yd/api": "workspace:*",
 		"@yd/config": "workspace:*",
 		"typescript": "catalog:"

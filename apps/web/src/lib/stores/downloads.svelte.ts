@@ -93,7 +93,9 @@ class DownloadsStore {
 		if (!(id in this.downloads)) return;
 
 		try {
-			const { data: file } = await getDownloadFile({ path: { download_id: id } });
+			const { data: file } = await getDownloadFile({
+				path: { download_id: id }
+			});
 			if (file) {
 				const download = this.downloads[id];
 				const filename = `${download.video.title}.${download.options.format}`;
