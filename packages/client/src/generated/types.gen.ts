@@ -3,11 +3,6 @@
 /**
  * AudioFormat
  */
-export type AudioFormat = 'aac' | 'flac' | 'm4a' | 'mp3' | 'opus' | 'wav';
-
-/**
- * AudioFormat
- */
 export const AudioFormat = {
 	AAC: 'aac',
 	FLAC: 'flac',
@@ -16,6 +11,11 @@ export const AudioFormat = {
 	OPUS: 'opus',
 	WAV: 'wav'
 } as const;
+
+/**
+ * AudioFormat
+ */
+export type AudioFormat = (typeof AudioFormat)[keyof typeof AudioFormat];
 
 /**
  * AvailableDownloadOptions
@@ -104,20 +104,15 @@ export type DownloadOptions = {
 /**
  * DownloadQuality
  */
-export type DownloadQuality = 'best' | 'worst';
-
-/**
- * DownloadQuality
- */
 export const DownloadQuality = {
 	BEST: 'best',
 	WORST: 'worst'
 } as const;
 
 /**
- * DownloadState
+ * DownloadQuality
  */
-export type DownloadState = 'WAITING' | 'DOWNLOADING' | 'PROCESSING' | 'DONE' | 'ERROR';
+export type DownloadQuality = (typeof DownloadQuality)[keyof typeof DownloadQuality];
 
 /**
  * DownloadState
@@ -129,6 +124,11 @@ export const DownloadState = {
 	DONE: 'DONE',
 	ERROR: 'ERROR'
 } as const;
+
+/**
+ * DownloadState
+ */
+export type DownloadState = (typeof DownloadState)[keyof typeof DownloadState];
 
 /**
  * DownloadStatus
@@ -233,11 +233,6 @@ export type Video = {
 /**
  * VideoFormat
  */
-export type VideoFormat = 'avi' | 'flv' | 'mkv' | 'mov' | 'mp4' | 'webm';
-
-/**
- * VideoFormat
- */
 export const VideoFormat = {
 	AVI: 'avi',
 	FLV: 'flv',
@@ -246,6 +241,11 @@ export const VideoFormat = {
 	MP4: 'mp4',
 	WEBM: 'webm'
 } as const;
+
+/**
+ * VideoFormat
+ */
+export type VideoFormat = (typeof VideoFormat)[keyof typeof VideoFormat];
 
 export type GetSearchData = {
 	body?: never;
