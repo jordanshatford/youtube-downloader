@@ -1,5 +1,11 @@
 # @yd/client
 
+## 1.2.0
+
+### Minor Changes
+
+- feat: generate client using latest openapi-ts version ([`753107e`](https://github.com/jordanshatford/youtube-downloader/commit/753107ee69a76b1ffbfba604a2583632615bae35))
+
 ## 1.1.1
 
 ### Patch Changes

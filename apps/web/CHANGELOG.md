@@ -1,5 +1,12 @@
 # @yd/web
 
+## 1.3.2
+
+### Patch Changes
+
+- Updated dependencies [[`753107e`](https://github.com/jordanshatford/youtube-downloader/commit/753107ee69a76b1ffbfba604a2583632615bae35)]:
+  - @yd/client@1.2.0
+
 ## 1.3.1
 
 ### Patch Changes
