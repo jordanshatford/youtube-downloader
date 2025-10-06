@@ -33,6 +33,7 @@
 		</span>
 		<span class="mt-4 inline-flex justify-center space-x-5 sm:mt-0 sm:ml-auto sm:justify-start">
 			{#if githubLink}
+				<!-- eslint-disable svelte/no-navigation-without-resolve -->
 				<a
 					href={githubLink}
 					class="hover:text-brand-600 dark:hover:text-brand-600 text-2xl text-zinc-500 dark:text-zinc-200"
@@ -42,6 +43,7 @@
 				>
 					<Icon src={GithubIcon} class="h-6 w-6" />
 				</a>
+				<!-- eslint-enable svelte/no-navigation-without-resolve -->
 			{/if}
 		</span>
 	</div>

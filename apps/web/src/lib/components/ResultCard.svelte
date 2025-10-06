@@ -13,6 +13,7 @@
 </script>
 
 <Card>
+	<!-- eslint-disable svelte/no-navigation-without-resolve -->
 	<a href={result.url} target="_blank" rel="noreferrer">
 		<img alt="Thumbnail" class="block h-auto w-full" src={result.thumbnail} />
 	</a>
@@ -55,4 +56,5 @@
 			<StateIcon state={downloads.downloads[result.id].status.state} />
 		{/if}
 	</footer>
+	<!-- eslint-enable svelte/no-navigation-without-resolve -->
 </Card>

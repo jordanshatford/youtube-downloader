@@ -61,6 +61,7 @@
 							{#snippet cell({ column, row })}
 								<span>
 									{#if column.key === 'info'}
+										<!-- eslint-disable svelte/no-navigation-without-resolve -->
 										<a href={row.video.url} target="_blank" class="flex items-center">
 											<div class="hidden h-10 w-18 shrink-0 md:block">
 												<img
@@ -78,6 +79,7 @@
 												</div>
 											</div>
 										</a>
+										<!-- eslint-enable svelte/no-navigation-without-resolve -->
 									{:else if column.key === 'format'}
 										<Badge>{row.options.format.toUpperCase()}</Badge>
 									{:else if column.key === 'state'}
