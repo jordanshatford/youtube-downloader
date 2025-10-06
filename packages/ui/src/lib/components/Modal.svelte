@@ -42,15 +42,16 @@
 				onclick={() => (show = false)}
 				in:fade={{ duration: 300 }}
 				out:fade={{ delay: 200, duration: 200 }}
-			></div>
-			<!-- This element is to trick the browser into centering the modal contents. -->
-			<span class={trickCenteringSpanClass()} aria-hidden="true">&#8203;</span>
-			<div
-				class={contentDivClass({ class: String(className) })}
-				in:fly={{ y: -10, delay: 200, duration: 200 }}
-				out:fly={{ y: -10, duration: 200 }}
 			>
-				{@render children?.()}
+				<!-- This element is to trick the browser into centering the modal contents. -->
+				<span class={trickCenteringSpanClass()} aria-hidden="true">&#8203;</span>
+				<div
+					class={contentDivClass({ class: String(className) })}
+					in:fly={{ y: -10, delay: 200, duration: 200 }}
+					out:fly={{ y: -10, duration: 200 }}
+				>
+					{@render children?.()}
+				</div>
 			</div>
 		</div>
 	</div>

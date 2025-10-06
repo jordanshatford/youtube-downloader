@@ -1,4 +1,5 @@
 <script lang="ts">
+	import type { RouteId } from '$app/types';
 	import type { Snippet } from 'svelte';
 
 	import type { IconSource } from '../../icons';
@@ -9,7 +10,7 @@
 	let showMobileMenu = $state(false);
 
 	interface Props {
-		links: { href: string; text: string; icon?: IconSource }[];
+		links: { href: RouteId; text: string; icon?: IconSource }[];
 		activeLink: string;
 		logo?: Snippet;
 		right?: Snippet;

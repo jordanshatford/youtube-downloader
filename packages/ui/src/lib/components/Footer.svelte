@@ -1,10 +1,13 @@
 <script lang="ts">
+	import type { RouteId } from '$app/types';
+	import { resolve } from '$app/paths';
+
 	import { GithubIcon, Icon } from '../icons';
 
 	interface Props {
 		githubLink?: string | undefined;
 		copyright?: { owner: string; year: number } | undefined;
-		links?: { href: string; text: string }[];
+		links?: { href: RouteId; text: string }[];
 	}
 
 	let { githubLink = undefined, copyright = undefined, links = [] }: Props = $props();
@@ -20,7 +23,7 @@
 		>
 			{#each links as link, index (link.href)}
 				{@const isLast = index === links.length - 1}
-				<a href={link.href} class="hover:text-brand-600">
+				<a href={resolve(link.href)} class="hover:text-brand-600">
 					{link.text}
 				</a>
 				{#if !isLast}

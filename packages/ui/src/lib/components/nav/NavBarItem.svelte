@@ -1,11 +1,13 @@
 <script lang="ts">
+	import type { RouteId } from '$app/types';
 	import type { HTMLAnchorAttributes } from 'svelte/elements';
+	import { resolve } from '$app/paths';
 
 	import type { IconSource } from '../../icons';
 	import { Icon } from '../../icons';
 
 	interface Props extends HTMLAnchorAttributes {
-		link: { href: string; text: string; icon?: IconSource };
+		link: { href: RouteId; text: string; icon?: IconSource };
 		activeLink: string;
 		isMobileMenu?: boolean;
 	}
@@ -21,7 +23,7 @@
 
 <a
 	{...rest}
-	href={link.href}
+	href={resolve(link.href)}
 	class:block={isMobileMenu}
 	class="{classNames} flex flex-row items-center rounded-lg px-3 py-2"
 >
