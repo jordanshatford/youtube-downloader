@@ -4,10 +4,10 @@ packages:
 
 catalog:
   '@sveltejs/adapter-auto': ^6.1.1
-  '@sveltejs/kit': ^2.44.0
+  '@sveltejs/kit': ^2.46.3
   '@sveltejs/vite-plugin-svelte': ^6.2.1
   '@tailwindcss/vite': ^4.1.14
-  svelte: ^5.39.9
+  svelte: ^5.39.11
   svelte-check: ^4.3.2
   tailwindcss: ^4.1.14
   tslib: ^2.8.1

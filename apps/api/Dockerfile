@@ -1,4 +1,4 @@
-FROM python:3.13 AS base
+FROM python:3.14 AS base
 
 # Ensure FFMPEG is available
 RUN apt-get update -y
