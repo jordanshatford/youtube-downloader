@@ -314,6 +314,7 @@ export type GetSearchError = GetSearchErrors[keyof GetSearchErrors];
 export type GetSearchResponses = {
 	/**
 	 * Response Get Search
+	 *
 	 * Successful Response
 	 */
 	200: Array<Video>;
@@ -342,6 +343,7 @@ export type GetNextSearchErrors = {
 export type GetNextSearchResponses = {
 	/**
 	 * Response Get Next Search
+	 *
 	 * Successful Response
 	 */
 	200: Array<Video>;
@@ -467,6 +469,7 @@ export type GetDownloadsErrors = {
 export type GetDownloadsResponses = {
 	/**
 	 * Response Get Downloads
+	 *
 	 * Successful Response
 	 */
 	200: Array<Download>;

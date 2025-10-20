@@ -34,6 +34,5 @@
 	max-width: 10rem;
 }
 
-@source "../**/*.{svelte,js,ts,jsx,tsx}"
-@source "../../../apps/*/src/**/*.{svelte,js,ts,jsx,tsx}";
-@source "../../../packages/*/src/**/*.{svelte,js,ts,jsx,tsx}";
+@source '../**/*.{svelte,js,ts,jsx,tsx}' @source '../../../apps/*/src/**/*.{svelte,js,ts,jsx,tsx}';
+@source '../../../packages/*/src/**/*.{svelte,js,ts,jsx,tsx}';
