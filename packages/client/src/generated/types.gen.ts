@@ -166,7 +166,7 @@ export type DownloadStatus = {
 	/**
 	 * Progress
 	 */
-	progress: number | null;
+	readonly progress: number | null;
 };
 
 /**
@@ -250,6 +250,15 @@ export const VideoFormat = {
  * VideoFormat
  */
 export type VideoFormat = (typeof VideoFormat)[keyof typeof VideoFormat];
+
+/**
+ * Download
+ */
+export type DownloadWritable = {
+	video: Video;
+	options: DownloadOptions;
+	status: DownloadStatusWritable;
+};
 
 /**
  * DownloadStatus
