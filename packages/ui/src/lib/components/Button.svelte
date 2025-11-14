@@ -38,6 +38,7 @@
 </script>
 
 {#if href}
+	<!-- eslint-disable svelte/no-navigation-without-resolve -->
 	<a {href} class={buttonClass}>
 		{@render children?.()}
 	</a>
