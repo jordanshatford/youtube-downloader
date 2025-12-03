@@ -108,10 +108,7 @@ export type DownloadOptions = {
 /**
  * DownloadQuality
  */
-export const DownloadQuality = {
-	BEST: 'best',
-	WORST: 'worst'
-} as const;
+export const DownloadQuality = { BEST: 'best', WORST: 'worst' } as const;
 
 /**
  * DownloadQuality

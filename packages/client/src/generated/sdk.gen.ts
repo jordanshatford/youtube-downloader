@@ -65,168 +65,96 @@ export type Options<
  */
 export const getSearch = <ThrowOnError extends boolean = false>(
 	options: Options<GetSearchData, ThrowOnError>
-) => {
-	return (options.client ?? client).get<GetSearchResponses, GetSearchErrors, ThrowOnError>({
-		security: [
-			{
-				scheme: 'bearer',
-				type: 'http'
-			}
-		],
+) =>
+	(options.client ?? client).get<GetSearchResponses, GetSearchErrors, ThrowOnError>({
+		security: [{ scheme: 'bearer', type: 'http' }],
 		url: '/search',
 		...options
 	});
-};
 
 /**
  * Get Next Search
  */
 export const getNextSearch = <ThrowOnError extends boolean = false>(
 	options?: Options<GetNextSearchData, ThrowOnError>
-) => {
-	return (options?.client ?? client).get<GetNextSearchResponses, GetNextSearchErrors, ThrowOnError>(
-		{
-			security: [
-				{
-					scheme: 'bearer',
-					type: 'http'
-				}
-			],
-			url: '/search/next',
-			...options
-		}
-	);
-};
+) =>
+	(options?.client ?? client).get<GetNextSearchResponses, GetNextSearchErrors, ThrowOnError>({
+		security: [{ scheme: 'bearer', type: 'http' }],
+		url: '/search/next',
+		...options
+	});
 
 /**
  * Get Video
  */
 export const getVideo = <ThrowOnError extends boolean = false>(
 	options: Options<GetVideoData, ThrowOnError>
-) => {
-	return (options.client ?? client).get<GetVideoResponses, GetVideoErrors, ThrowOnError>({
-		security: [
-			{
-				scheme: 'bearer',
-				type: 'http'
-			}
-		],
+) =>
+	(options.client ?? client).get<GetVideoResponses, GetVideoErrors, ThrowOnError>({
+		security: [{ scheme: 'bearer', type: 'http' }],
 		url: '/search/video',
 		...options
 	});
-};
 
 /**
  * Delete Session
  */
 export const deleteSession = <ThrowOnError extends boolean = false>(
 	options?: Options<DeleteSessionData, ThrowOnError>
-) => {
-	return (options?.client ?? client).delete<
-		DeleteSessionResponses,
-		DeleteSessionErrors,
-		ThrowOnError
-	>({
-		security: [
-			{
-				scheme: 'bearer',
-				type: 'http'
-			}
-		],
+) =>
+	(options?.client ?? client).delete<DeleteSessionResponses, DeleteSessionErrors, ThrowOnError>({
+		security: [{ scheme: 'bearer', type: 'http' }],
 		url: '/session',
 		...options
 	});
-};
 
 /**
  * Get Session
  */
 export const getSession = <ThrowOnError extends boolean = false>(
 	options?: Options<GetSessionData, ThrowOnError>
-) => {
-	return (options?.client ?? client).get<GetSessionResponses, unknown, ThrowOnError>({
+) =>
+	(options?.client ?? client).get<GetSessionResponses, unknown, ThrowOnError>({
 		url: '/session',
 		...options
 	});
-};
 
 /**
  * Get Session Validate
  */
 export const getSessionValidate = <ThrowOnError extends boolean = false>(
 	options?: Options<GetSessionValidateData, ThrowOnError>
-) => {
-	return (options?.client ?? client).get<
+) =>
+	(options?.client ?? client).get<
 		GetSessionValidateResponses,
 		GetSessionValidateErrors,
 		ThrowOnError
 	>({
-		security: [
-			{
-				scheme: 'bearer',
-				type: 'http'
-			}
-		],
+		security: [{ scheme: 'bearer', type: 'http' }],
 		url: '/session/validate',
 		...options
 	});
-};
 
 /**
  * Get Downloads
  */
 export const getDownloads = <ThrowOnError extends boolean = false>(
 	options?: Options<GetDownloadsData, ThrowOnError>
-) => {
-	return (options?.client ?? client).get<GetDownloadsResponses, GetDownloadsErrors, ThrowOnError>({
-		security: [
-			{
-				scheme: 'bearer',
-				type: 'http'
-			}
-		],
+) =>
+	(options?.client ?? client).get<GetDownloadsResponses, GetDownloadsErrors, ThrowOnError>({
+		security: [{ scheme: 'bearer', type: 'http' }],
 		url: '/downloads',
 		...options
 	});
-};
 
 /**
  * Post Downloads
  */
 export const postDownloads = <ThrowOnError extends boolean = false>(
 	options: Options<PostDownloadsData, ThrowOnError>
-) => {
-	return (options.client ?? client).post<PostDownloadsResponses, PostDownloadsErrors, ThrowOnError>(
-		{
-			security: [
-				{
-					scheme: 'bearer',
-					type: 'http'
-				}
-			],
-			url: '/downloads',
-			...options,
-			headers: {
-				'Content-Type': 'application/json',
-				...options.headers
-			}
-		}
-	);
-};
-
-/**
- * Put Downloads
- */
-export const putDownloads = <ThrowOnError extends boolean = false>(
-	options: Options<PutDownloadsData, ThrowOnError>
-) => {
-	return (options.client ?? client).put<PutDownloadsResponses, PutDownloadsErrors, ThrowOnError>({
-		security: [
-			{
-				scheme: 'bearer',
-				type: 'http'
-			}
-		],
+) =>
+	(options.client ?? client).post<PostDownloadsResponses, PostDownloadsErrors, ThrowOnError>({
+		security: [{ scheme: 'bearer', type: 'http' }],
 		url: '/downloads',
 		...options,
 		headers: {
@@ -234,88 +162,71 @@ export const putDownloads = <ThrowOnError extends boolean = false>(
 			...options.headers
 		}
 	});
-};
+
+/**
+ * Put Downloads
+ */
+export const putDownloads = <ThrowOnError extends boolean = false>(
+	options: Options<PutDownloadsData, ThrowOnError>
+) =>
+	(options.client ?? client).put<PutDownloadsResponses, PutDownloadsErrors, ThrowOnError>({
+		security: [{ scheme: 'bearer', type: 'http' }],
+		url: '/downloads',
+		...options,
+		headers: {
+			'Content-Type': 'application/json',
+			...options.headers
+		}
+	});
 
 /**
  * Get Downloads Options
  */
 export const getDownloadsOptions = <ThrowOnError extends boolean = false>(
 	options?: Options<GetDownloadsOptionsData, ThrowOnError>
-) => {
-	return (options?.client ?? client).get<
+) =>
+	(options?.client ?? client).get<
 		GetDownloadsOptionsResponses,
 		GetDownloadsOptionsErrors,
 		ThrowOnError
 	>({
-		security: [
-			{
-				scheme: 'bearer',
-				type: 'http'
-			}
-		],
+		security: [{ scheme: 'bearer', type: 'http' }],
 		url: '/downloads/options',
 		...options
 	});
-};
 
 /**
  * Delete Download
  */
 export const deleteDownload = <ThrowOnError extends boolean = false>(
 	options: Options<DeleteDownloadData, ThrowOnError>
-) => {
-	return (options.client ?? client).delete<
-		DeleteDownloadResponses,
-		DeleteDownloadErrors,
-		ThrowOnError
-	>({
-		security: [
-			{
-				scheme: 'bearer',
-				type: 'http'
-			}
-		],
+) =>
+	(options.client ?? client).delete<DeleteDownloadResponses, DeleteDownloadErrors, ThrowOnError>({
+		security: [{ scheme: 'bearer', type: 'http' }],
 		url: '/downloads/{download_id}',
 		...options
 	});
-};
 
 /**
  * Get Download
  */
 export const getDownload = <ThrowOnError extends boolean = false>(
 	options: Options<GetDownloadData, ThrowOnError>
-) => {
-	return (options.client ?? client).get<GetDownloadResponses, GetDownloadErrors, ThrowOnError>({
-		security: [
-			{
-				scheme: 'bearer',
-				type: 'http'
-			}
-		],
+) =>
+	(options.client ?? client).get<GetDownloadResponses, GetDownloadErrors, ThrowOnError>({
+		security: [{ scheme: 'bearer', type: 'http' }],
 		url: '/downloads/{download_id}',
 		...options
 	});
-};
 
 /**
  * Get Download File
  */
 export const getDownloadFile = <ThrowOnError extends boolean = false>(
 	options: Options<GetDownloadFileData, ThrowOnError>
-) => {
-	return (options.client ?? client).get<
-		GetDownloadFileResponses,
-		GetDownloadFileErrors,
-		ThrowOnError
-	>({
-		security: [
-			{
-				scheme: 'bearer',
-				type: 'http'
-			}
-		],
+) =>
+	(options.client ?? client).get<GetDownloadFileResponses, GetDownloadFileErrors, ThrowOnError>({
+		security: [{ scheme: 'bearer', type: 'http' }],
 		url: '/downloads/{download_id}/file',
 		...options
 	});
-};
