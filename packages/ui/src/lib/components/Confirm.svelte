@@ -66,7 +66,7 @@
 		children
 	}: Props = $props();
 
-	const icon = toIcon(variant);
+	const icon = $derived(toIcon(variant));
 
 	const {
 		mainDivClass,
@@ -79,9 +79,11 @@
 		footerDivClass,
 		confirmButtonClass,
 		cancelButtonClass
-	} = confirmClasses({
-		variant
-	});
+	} = $derived(
+		confirmClasses({
+			variant
+		})
+	);
 
 	let showDialog = $state(false);
 

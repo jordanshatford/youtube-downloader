@@ -80,18 +80,23 @@
 		children
 	}: Props = $props();
 
-	let _icon: IconSource | undefined = $state(undefined);
-	// User specified icon
-	if (typeof icon === 'object') {
-		_icon = icon;
-	} else if (icon) {
-		_icon = toIcon(variant, { loading });
-	}
-
-	const { spanClass, iconWrapperClass, iconClass, textClass, buttonClass } = badgeClasses({
-		variant,
-		loading
+	let _icon: IconSource | undefined = $derived.by(() => {
+		// User specified icon
+		if (typeof icon === 'object') {
+			return icon;
+		} else if (icon) {
+			return toIcon(variant, { loading });
+		} else {
+			return undefined;
+		}
 	});
+
+	const { spanClass, iconWrapperClass, iconClass, textClass, buttonClass } = $derived(
+		badgeClasses({
+			variant,
+			loading
+		})
+	);
 </script>
 
 <span class={spanClass({ class: className })}>

@@ -75,9 +75,11 @@
 		textDivClass,
 		titleClass,
 		descriptionClass
-	} = toastClasses({
-		variant: toast.variant
-	});
+	} = $derived(
+		toastClasses({
+			variant: toast.variant
+		})
+	);
 </script>
 
 <div id="yd-toast-{toast.id}" aria-live="polite" role="status" class={outerDivClass()}>
