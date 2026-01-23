@@ -57,12 +57,7 @@ class InnerTubeClient:
         self._headers = client['headers']
         self._language = language
         self._region = region
-        logger.debug(
-            'Initialize InnerTubeClient with: ' +
-            f'api_key={self._api_key}, context={self._client_context}, ' +
-            f'headers={self._headers}, lang={self._language}, ' +
-            f'region={self._region}.',
-        )
+        logger.debug('Initialized InnerTubeClient')
 
     @property
     def _base_params(self) -> dict[str, Any]:
