@@ -1,10 +1,10 @@
 import eslint from '@eslint/js';
 import prettier from 'eslint-config-prettier';
+import { defineConfig } from 'eslint/config';
 import globals from 'globals';
 import tseslint from 'typescript-eslint';
 
-/** @type {import('eslint').Linter.Config[]} */
-export default tseslint.config(
+export default defineConfig([
 	{
 		ignores: [
 			'.DS_Store',
@@ -33,4 +33,4 @@ export default tseslint.config(
 			}
 		}
 	}
-);
+]);
