@@ -575,6 +575,38 @@ export type GetDownloadsOptionsResponses = {
 export type GetDownloadsOptionsResponse =
 	GetDownloadsOptionsResponses[keyof GetDownloadsOptionsResponses];
 
+export type GetDownloadsStatusData = {
+	body?: never;
+	path?: never;
+	query: {
+		/**
+		 * Session Id
+		 */
+		session_id: string;
+	};
+	url: '/downloads/status';
+};
+
+export type GetDownloadsStatusErrors = {
+	/**
+	 * Forbidden
+	 */
+	403: unknown;
+	/**
+	 * Validation Error
+	 */
+	422: HttpValidationError;
+};
+
+export type GetDownloadsStatusError = GetDownloadsStatusErrors[keyof GetDownloadsStatusErrors];
+
+export type GetDownloadsStatusResponses = {
+	/**
+	 * Successful Response
+	 */
+	200: unknown;
+};
+
 export type DeleteDownloadData = {
 	body?: never;
 	path: {

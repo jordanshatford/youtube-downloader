@@ -20,6 +20,9 @@ import type {
 	GetDownloadsOptionsErrors,
 	GetDownloadsOptionsResponses,
 	GetDownloadsResponses,
+	GetDownloadsStatusData,
+	GetDownloadsStatusErrors,
+	GetDownloadsStatusResponses,
 	GetNextSearchData,
 	GetNextSearchErrors,
 	GetNextSearchResponses,
@@ -194,6 +197,18 @@ export const getDownloadsOptions = <ThrowOnError extends boolean = false>(
 		url: '/downloads/options',
 		...options
 	});
+
+/**
+ * Get Downloads Status
+ */
+export const getDownloadsStatus = <ThrowOnError extends boolean = false>(
+	options: Options<GetDownloadsStatusData, ThrowOnError>
+) =>
+	(options.client ?? client).sse.get<
+		GetDownloadsStatusResponses,
+		GetDownloadsStatusErrors,
+		ThrowOnError
+	>({ url: '/downloads/status', ...options });
 
 /**
  * Delete Download
