@@ -16,13 +16,20 @@ import { toasts } from '@yd/ui';
 class DownloadsStore {
 	public downloads = $state<Record<string, Download>>({});
 
+	private async setupStatusMonitoring() {
+		const { stream } = await getDownloadsStatus({
+			query: { session_id: localStorage.getItem(SESSION_ID_KEY) ?? '' }
+		});
+		for await (const event of stream) {
+			// https://github.com/hey-api/openapi-ts/issues/2921
+			const download = event as Download;
+			this.updateDownload(download.video.id, download);
+		}
+	}
+
 	public async init() {
 		// Setup listener for status updates of any downloads.
-		getDownloadsStatus(() => localStorage.getItem(SESSION_ID_KEY) ?? '', {
-			onMessage: (download) => {
-				this.updateDownload(download.video.id, download);
-			}
-		});
+		this.setupStatusMonitoring();
 		// Get all previous downloads still available.
 		const { data: downloads } = await getDownloads();
 		if (downloads) {
