@@ -1,12 +1,13 @@
 import asyncio
 import queue
+from collections.abc import AsyncIterable
 
 from fastapi import APIRouter
 from fastapi import HTTPException
 from fastapi import Request
 from fastapi import status
 from fastapi.responses import FileResponse
-from sse_starlette.sse import EventSourceResponse
+from fastapi.sse import EventSourceResponse
 
 from ..core import AudioFormat
 from ..core import AvailableDownloadOptions
@@ -18,7 +19,6 @@ from ..dependencies import depends_download_responses
 from ..dependencies import depends_session_responses
 from ..dependencies import DependsDownload
 from ..dependencies import DependsSession
-from ..session import Session
 from ..session import session_manager
 
 router = APIRouter(
@@ -59,29 +59,27 @@ def get_downloads_options(session: DependsSession) -> AvailableDownloadOptions:
     )
 
 
-async def status_stream(request: Request, session: Session):
+# Exclude from OpenAPI schema as there is no support for Server Sent Events.
+@router.get(
+    '/status', response_class=EventSourceResponse,
+    include_in_schema=False,
+)
+async def get_downloads_status(
+    request: Request, session_id: str,
+) -> AsyncIterable[Download]:
+    session = session_manager.get(session_id)
+    if session is None:
+        return
     try:
         while True:
             if await request.is_disconnected():
                 break
             try:
-                update = session.status_queue.get_nowait()
-                yield dict(data=update.model_dump_json())
+                yield session.status_queue.get_nowait()
             except queue.Empty:
                 await asyncio.sleep(1)
     except (asyncio.CancelledError, asyncio.exceptions.InvalidStateError):
         pass
-
-
-# Exclude from OpenAPI schema as there is no support for Server Sent Events.
-@router.get('/status', include_in_schema=False)
-def get_downloads_status(
-    request: Request, session_id: str,
-) -> EventSourceResponse:
-    session = session_manager.get(session_id)
-    if session is None:
-        raise HTTPException(status_code=status.HTTP_403_FORBIDDEN)
-    return EventSourceResponse(status_stream(request, session))
 
 
 @router.get('/{download_id}', responses=depends_download_responses)

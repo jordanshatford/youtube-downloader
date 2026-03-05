@@ -27,7 +27,6 @@ logging.basicConfig(
     level=logging.WARNING,
     handlers=[handler],
 )
-logging.getLogger('sse_starlette').setLevel(logging.ERROR)
 
 
 # Read data from package.json file
