@@ -1,5 +1,13 @@
 # @yd/api
 
+## 1.1.0
+
+### Minor Changes
+
+- feat: expose download status endpoint in openapi spec ([`3cfd8c5`](https://github.com/jordanshatford/youtube-downloader/commit/3cfd8c546aefe51857b2b0cf6e2e011df4d51706))
+
+- feat: replace sse-starlette with built in fastapi sse ([`9db9d7e`](https://github.com/jordanshatford/youtube-downloader/commit/9db9d7ea7ae89752557321d2a97c779310f9cdaf))
+
 ## 1.0.0
 
 ### Major Changes
