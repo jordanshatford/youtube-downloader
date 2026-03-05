@@ -59,11 +59,7 @@ def get_downloads_options(session: DependsSession) -> AvailableDownloadOptions:
     )
 
 
-# Exclude from OpenAPI schema as there is no support for Server Sent Events.
-@router.get(
-    '/status', response_class=EventSourceResponse,
-    include_in_schema=False,
-)
+@router.get('/status', response_class=EventSourceResponse)
 async def get_downloads_status(
     request: Request, session_id: str,
 ) -> AsyncIterable[Download]:
