@@ -1,5 +1,16 @@
 # @yd/web
 
+## 1.4.0
+
+### Minor Changes
+
+- feat: use latest client handling of status updates ([`924ca13`](https://github.com/jordanshatford/youtube-downloader/commit/924ca139bdd3881b2befc4623a024e9c20802fde))
+
+### Patch Changes
+
+- Updated dependencies [[`e5d2a47`](https://github.com/jordanshatford/youtube-downloader/commit/e5d2a4771c2e28b6b1ff9ec0959817b18ab17edc)]:
+  - @yd/client@1.3.0
+
 ## 1.3.2
 
 ### Patch Changes

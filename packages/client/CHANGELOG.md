@@ -1,5 +1,11 @@
 # @yd/client
 
+## 1.3.0
+
+### Minor Changes
+
+- feat: handle download status sse using openapi-ts ([`e5d2a47`](https://github.com/jordanshatford/youtube-downloader/commit/e5d2a4771c2e28b6b1ff9ec0959817b18ab17edc))
+
 ## 1.2.0
 
 ### Minor Changes
