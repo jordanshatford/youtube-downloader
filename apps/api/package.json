@@ -12,7 +12,8 @@
 		".": "./openapi.json"
 	},
 	"scripts": {
-		"dev": "poetry install && poetry run uvicorn app.main:app --host=0.0.0.0 --port=8080 --reload --reload-dir=../../",
+		"dev": "poetry install && poetry run fastapi dev app/main.py --host=0.0.0.0 --port=8080 --reload --reload-dir=../../",
+		"prod": "poetry install && poetry run fastapi run app/main.py --host=0.0.0.0 --port=8080",
 		"format": "poetry install && poetry run pre-commit run --all-files",
 		"generate:openapi": "poetry install && poetry run python generate_openapi.py",
 		"deps:update": "poetry update && poetry run pre-commit autoupdate"
