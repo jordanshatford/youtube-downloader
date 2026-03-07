@@ -8,7 +8,7 @@ WORKDIR /workspace
 
 # Install Poetry
 RUN apt-get install -y pipx && pipx ensurepath
-RUN pipx install "poetry>=2.0,<3.0"
+RUN pipx install "poetry>=2.3,<3.0"
 ENV PATH=/root/.local/bin:$PATH
 
 # Install dependencies
