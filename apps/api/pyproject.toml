@@ -10,8 +10,10 @@ dependencies = [
   "yt-dlp[default]==2026.3.3"
 ]
 
-[tool.poetry.group.dev.dependencies]
-pre-commit = "4.5.1"
+[dependency-groups]
+dev = [
+  "pre-commit>=4.5.1,<5.0.0"
+]
 
 [tool.poetry]
 package-mode = false
