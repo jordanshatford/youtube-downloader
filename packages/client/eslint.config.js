@@ -1,9 +1,10 @@
+import { defineConfig } from 'eslint/config';
+
 import typescript from '@yd/config/eslint/typescript';
 
-/** @type {import('eslint').Linter.Config} */
-export default [
+export default defineConfig([
 	{
 		ignores: ['dist/**/*', 'src/generated/**/*']
 	},
 	...typescript
-];
+]);

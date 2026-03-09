@@ -1,9 +1,10 @@
+import { defineConfig } from 'eslint/config';
+
 import svelte from '@yd/config/eslint/svelte';
 
-/** @type {import('eslint').Linter.Config[]} */
-export default [
+export default defineConfig([
 	{
 		ignores: ['dist/', '.svelte-kit/']
 	},
 	...svelte
-];
+]);
