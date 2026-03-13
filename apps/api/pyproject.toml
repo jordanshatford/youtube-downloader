@@ -10,6 +10,9 @@ dependencies = [
   "yt-dlp[default]==2026.3.3"
 ]
 
+[tool.fastapi]
+entrypoint = "app.main:app"
+
 [dependency-groups]
 dev = [
   "pre-commit>=4.5.1,<5.0.0"

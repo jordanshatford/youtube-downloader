@@ -10,7 +10,7 @@ services:
     environment:
       ALLOWED_ORIGIN: http://localhost:5173
     ports:
-      - 8080:8080
+      - 8000:8000
   web:
     build:
       context: .
@@ -20,7 +20,7 @@ services:
     image: yd/web:latest
     restart: always
     environment:
-      VITE_SERVER_ADDR: http://localhost:8080
+      VITE_SERVER_ADDR: http://localhost:8000
     ports:
       - 5173:5173
     depends_on:

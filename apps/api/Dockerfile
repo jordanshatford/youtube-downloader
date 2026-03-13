@@ -20,12 +20,12 @@ COPY ./app /workspace/app
 COPY ./package.json /workspace/package.json
 
 # Expose port we are running the api on
-EXPOSE 8080
+EXPOSE 8000
 
 # In development run the application with reload active
 FROM base AS development
-CMD [ "poetry", "run", "fastapi", "dev", "app/main.py", "--host=0.0.0.0", "--port=8080", "--reload", "--reload-dir", "../../" ]
+CMD [ "poetry", "run", "fastapi", "dev" ]
 
 # In production run the application without reload
 FROM base AS production
-CMD [ "poetry", "run", "fastapi", "run", "app/main.py", "--host=0.0.0.0", "--port=8080" ]
+CMD [ "poetry", "run", "fastapi", "run" ]

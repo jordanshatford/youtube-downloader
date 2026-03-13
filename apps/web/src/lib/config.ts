@@ -1,5 +1,5 @@
 export const env = {
-	serverAddress: (import.meta.env.VITE_SERVER_ADDR ?? 'http://localhost:8080') as string
+	serverAddress: (import.meta.env.VITE_SERVER_ADDR ?? 'http://localhost:8000') as string
 };
 
 const config = {
