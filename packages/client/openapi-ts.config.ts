@@ -5,7 +5,7 @@ import input from '@yd/api';
 export default defineConfig({
 	input,
 	output: {
-		format: 'prettier',
+		postProcess: ['prettier', 'eslint'],
 		path: './src/generated'
 	},
 	plugins: [
