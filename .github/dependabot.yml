@@ -27,6 +27,17 @@ updates:
         patterns:
           - "*"
 
+  - package-ecosystem: "pre-commit"
+    directory: "/apps/api"
+    schedule:
+      interval: "weekly"
+    assignees:
+      - "jordanshatford"
+    groups:
+      pre-commit:
+        patterns:
+          - "*"
+
   - package-ecosystem: "npm"
     directory: "/"
     schedule:
@@ -39,7 +50,9 @@ updates:
           - "*"
 
   - package-ecosystem: "docker"
-    directory: "/"
+    directories:
+      - "/apps/api"
+      - "/"
     schedule:
       interval: "weekly"
     assignees:
