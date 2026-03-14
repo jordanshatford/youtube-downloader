@@ -3,17 +3,6 @@
 
 version: 2
 updates:
-  - package-ecosystem: "devcontainers"
-    directory: "/"
-    schedule:
-      interval: weekly
-    assignees:
-      - "jordanshatford"
-    groups:
-      devcontainers:
-        patterns:
-          - "*"
-
   - package-ecosystem: "github-actions"
     directories:
       - "/.github/actions/setup-environment"
