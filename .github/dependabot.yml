@@ -61,3 +61,14 @@ updates:
       docker:
         patterns:
           - "*"
+
+  - package-ecosystem: "docker-compose"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+    assignees:
+      - "jordanshatford"
+    groups:
+      docker:
+        patterns:
+          - "*"
