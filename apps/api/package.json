@@ -12,10 +12,10 @@
 		".": "./openapi.json"
 	},
 	"scripts": {
-		"dev": "poetry install && poetry run fastapi dev",
-		"prod": "poetry install && poetry run fastapi run",
-		"format": "poetry install && poetry run pre-commit run --all-files",
-		"generate:openapi": "poetry install && poetry run python generate_openapi.py",
-		"deps:update": "poetry update && poetry run pre-commit autoupdate"
+		"dev": "uv run fastapi dev",
+		"prod": "uv run fastapi run",
+		"format": "uv run pre-commit run --all-files",
+		"generate:openapi": "uv run python generate_openapi.py",
+		"deps:update": "uv sync --upgrade && uv run pre-commit autoupdate"
 	}
 }

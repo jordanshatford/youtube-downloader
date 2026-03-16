@@ -20,11 +20,12 @@ runs:
       with:
         node-version: ${{ inputs.node-version }}
         cache: 'pnpm'
-    - name: Setup Poetry
-      run: pipx install "poetry>=2.3,<3.0"
-      shell: bash
     - name: Setup Python
       uses: actions/setup-python@v6
       with:
         python-version: ${{ inputs.python-version }}
-        cache: 'poetry'
+    - name: Setup uv
+      uses: astral-sh/setup-uv@v7
+      with:
+        enable-cache: true
+        version: '0.10.10'
