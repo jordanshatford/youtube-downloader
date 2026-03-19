@@ -1,7 +1,7 @@
 {
 	"name": "@yd/api",
 	"private": true,
-	"version": "1.1.0",
+	"version": "1.2.0",
 	"license": "MIT",
 	"description": "API to search and download YouTube videos in various formats.",
 	"repository": {
