@@ -1,4 +1,4 @@
+pnpm generate
 pnpm check
 pnpm format
 pnpm lint
-pnpm generate
