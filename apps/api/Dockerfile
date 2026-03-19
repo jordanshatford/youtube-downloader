@@ -8,7 +8,7 @@ WORKDIR /workspace
 
 # Install uv
 RUN apt-get install -y pipx && pipx ensurepath
-RUN pipx install "uv>=0.10.10,<0.11.0"
+RUN pipx install "uv>=0.10.11,<0.11.0"
 ENV PATH=/root/.local/bin:$PATH
 
 # Install dependencies
