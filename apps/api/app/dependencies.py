@@ -12,10 +12,10 @@ from .core import Download
 from .session import Session
 from .session import session_manager
 
-AdditionResponses: TypeAlias = dict[int | str, dict[str, Any]]
+AdditionalResponses: TypeAlias = dict[int | str, dict[str, Any]]
 
 # Responses which should be included in all routes that depend on a session
-depends_session_responses: AdditionResponses = {
+depends_session_responses: AdditionalResponses = {
     status.HTTP_403_FORBIDDEN: {},
 }
 
@@ -23,7 +23,8 @@ depends_session_responses: AdditionResponses = {
 security = HTTPBearer()
 
 HTTPBearerCredentials: TypeAlias = Annotated[
-    HTTPAuthorizationCredentials, Depends(
+    HTTPAuthorizationCredentials,
+    Depends(
         security,
     ),
 ]
@@ -41,13 +42,14 @@ DependsSession: TypeAlias = Annotated[Session, Depends(get_request_session)]
 
 
 # Responses which should be included in all routes that depend on a download
-depends_download_responses: AdditionResponses = depends_session_responses | {
+depends_download_responses: AdditionalResponses = depends_session_responses | {
     status.HTTP_404_NOT_FOUND: {},
 }
 
 
 def get_request_download(
-    download_id: str, session: DependsSession,
+    download_id: str,
+    session: DependsSession,
 ) -> Download:
     download = session.download_manager.get(download_id)
     if download is None:
@@ -57,7 +59,8 @@ def get_request_download(
 
 # Dependency that the request has a current related download available
 DependsDownload: TypeAlias = Annotated[
-    Download, Depends(
+    Download,
+    Depends(
         get_request_download,
     ),
 ]

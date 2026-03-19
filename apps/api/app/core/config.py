@@ -1,7 +1,7 @@
 import copy
 import logging
-import os
 from collections.abc import Callable
+from pathlib import Path
 from typing import TypeAlias
 
 from .models import AudioFormat
@@ -14,8 +14,7 @@ from .ytdlp import PostprocessorHookInfo
 from .ytdlp import ProgressHookInfo
 from .ytdlp import YoutubeDLParams
 
-
-logger = logging.getLogger('core')
+logger = logging.getLogger("core")
 
 
 StatusHook: TypeAlias = Callable[[Download], None]
@@ -24,10 +23,10 @@ StatusHook: TypeAlias = Callable[[Download], None]
 # options.
 # Note: if a default isnt provided then the yt-dlp default will be used.
 DEFAULT_YTDLP_PARAMS: YoutubeDLParams = {
-    'quiet': True,
-    'retries': 5,
-    'verbose': False,
-    'noprogress': True,
+    "quiet": True,
+    "retries": 5,
+    "verbose": False,
+    "noprogress": True,
 }
 
 
@@ -35,7 +34,7 @@ class DownloadConfig:
     def __init__(
         self,
         download: DownloadInput,
-        output_directory: str,
+        output_directory: Path,
         *,
         output_file_readable_name: bool = False,
     ) -> None:
@@ -61,11 +60,11 @@ class DownloadConfig:
 
     @property
     def filename(self) -> str:
-        return f'{self.download.video.id}.{self.download.options.format.value}'
+        return f"{self.download.video.id}.{self.download.options.format.value}"
 
     @property
-    def path(self) -> str:
-        return os.path.join(self._output_directory, self.filename)
+    def path(self) -> Path:
+        return self._output_directory / self.filename
 
     @property
     def _is_audio_download(self) -> bool:
@@ -80,36 +79,42 @@ class DownloadConfig:
         postprocessors: list[dict[str, str | bool | int]] = []
         # Only append audio postprocessor if we are downloading audio format.
         if self._is_audio_download:
-            postprocessors.append({
-                'key': 'FFmpegExtractAudio',
-                'preferredcodec': self.download.options.format.value,
-                'preferredquality': '192',
-            })
+            postprocessors.append(
+                {
+                    "key": "FFmpegExtractAudio",
+                    "preferredcodec": self.download.options.format.value,
+                    "preferredquality": "192",
+                },
+            )
         # Only append video postprocessor if we are downloading video format.
         if self._is_video_download:
             postprocessors.append(
                 {
-                    'key': 'FFmpegVideoConvertor',
-                    'preferedformat': self.download.options.format.value,
+                    "key": "FFmpegVideoConvertor",
+                    "preferedformat": self.download.options.format.value,
                 },
             )
         # Only append metadata to the video if enabled by user
         if self.download.options.embed_metadata:
-            postprocessors.append({'key': 'FFmpegMetadata'})
+            postprocessors.append({"key": "FFmpegMetadata"})
         # Only append thumbnail embedding if enabled by user
         if self.download.options.embed_thumbnail:
-            postprocessors.append({
-                'key': 'EmbedThumbnail',
-                'already_have_thumbnail': False,
-            })
-            self._overrides['writethumbnail'] = True
+            postprocessors.append(
+                {
+                    "key": "EmbedThumbnail",
+                    "already_have_thumbnail": False,
+                },
+            )
+            self._overrides["writethumbnail"] = True
         if self.download.options.embed_subtitles:
-            postprocessors.append({
-                'key': 'FFmpegEmbedSubtitle',
-                'already_have_subtitle': False,
-            })
-            self._overrides['writesubtitles'] = True
-            self._overrides['subtitlesformat'] = 'best'
+            postprocessors.append(
+                {
+                    "key": "FFmpegEmbedSubtitle",
+                    "already_have_subtitle": False,
+                },
+            )
+            self._overrides["writesubtitles"] = True
+            self._overrides["subtitlesformat"] = "best"
 
         filename = self.download.video.id
         if self._output_file_readable_name:
@@ -118,16 +123,18 @@ class DownloadConfig:
         params: YoutubeDLParams = {
             **DEFAULT_YTDLP_PARAMS,
             **self._overrides,
-            'format': self._ytdlp_format,
-            'progress_hooks': [self._progress_hook],
-            'postprocessor_hooks': [self._postprocessor_hook],
-            'post_hooks': [self._post_hook],
-            'outtmpl': f'{self._output_directory}/{filename}.%(ext)s',
-            'postprocessors': postprocessors,
+            "format": self._ytdlp_format,
+            "progress_hooks": [self._progress_hook],
+            "postprocessor_hooks": [self._postprocessor_hook],
+            "post_hooks": [self._post_hook],
+            "outtmpl": f"{self._output_directory}/{filename}.%(ext)s",
+            "postprocessors": postprocessors,
         }
 
         logger.debug(
-            f'Downloading {self.download.video.url} with params: {params}.',
+            "Download parameters for %s are %s.",
+            self.download.video.url,
+            params,
         )
 
         return params
@@ -140,69 +147,71 @@ class DownloadConfig:
         # bestvideo*[ext=X]+bestaudio/bestvideo*+bestaudio/best or
         # worstvideo*[ext=X]+worstaudio/worstvideo*+worstaudio/worst
         if self._is_video_download:
-            proper_ext = f'{quality}video*[ext={extension}]+{quality}audio'
-            return f'{proper_ext}/{quality}video*+{quality}audio/{quality}'
+            proper_ext = f"{quality}video*[ext={extension}]+{quality}audio"
+            return f"{proper_ext}/{quality}video*+{quality}audio/{quality}"
         # bestaudio[ext=X]/bestaudio/best or worstaudio[ext=X]/worstaudio/worst
-        elif self._is_audio_download:
-            return f'{quality}audio[ext={extension}]/{quality}audio/{quality}'
+        if self._is_audio_download:
+            return f"{quality}audio[ext={extension}]/{quality}audio/{quality}"
         # Default to returning the quality (ie 'best' or 'worst')
         return quality
 
     def _progress_hook(self, info: ProgressHookInfo) -> None:
         url = self.download.video.url
-        status = info.get('status')
-        if status == 'downloading':
-            logger.debug(f'Download status update DOWNLOADING for: {url}.')
-            downloaded_bytes = info.get('downloaded_bytes')
+        status = info.get("status")
+        if status == "downloading":
+            logger.debug("Download %s status DOWNLOADING.", url)
+            downloaded_bytes = info.get("downloaded_bytes")
             total_bytes = info.get(
-                'total_bytes', info.get('total_bytes_estimate'),
+                "total_bytes",
+                info.get("total_bytes_estimate"),
             )
-            elapsed = info.get('elapsed')
-            eta = info.get('eta')
-            speed = info.get('speed')
-            logger.debug(
-                f'Downloading ({url}): ' +
-                f'downloaded_bytes={downloaded_bytes}, ' +
-                f'total_bytes={total_bytes}, ' +
-                f'elapsed={elapsed}, eta={eta}, ' +
-                f'speed={speed}.',
+            elapsed = info.get("elapsed")
+            eta = info.get("eta")
+            speed = info.get("speed")
+            status = DownloadStatus(
+                state=DownloadState.DOWNLOADING,
+                downloaded_bytes=downloaded_bytes,
+                total_bytes=total_bytes,
+                elapsed=elapsed,
+                eta=eta,
+                speed=speed,
             )
-            self._handle_status_update(
-                DownloadStatus(
-                    state=DownloadState.DOWNLOADING,
-                    downloaded_bytes=downloaded_bytes,
-                    total_bytes=total_bytes,
-                    elapsed=elapsed,
-                    eta=eta,
-                    speed=speed,
-                ),
-            )
-        elif status == 'error':
-            logger.error(f'Download status update ERROR for: {url}.')
+            logger.debug("Download %s progress %f.", url, status.progress)
+            self._handle_status_update(status)
+        elif status == "error":
+            logger.error("Download %s status ERROR.", url)
             self._handle_status_update(
                 DownloadStatus(state=DownloadState.ERROR),
             )
-        elif status == 'finished':
-            logger.debug(f'Download status update FINISHED for: {url}.')
+        elif status == "finished":
+            logger.debug("Download %s status FINISHED.", url)
             self._handle_status_update(
                 DownloadStatus(state=DownloadState.PROCESSING),
             )
 
     def _postprocessor_hook(self, info: PostprocessorHookInfo) -> None:
         url = self.download.video.url
-        status = info.get('status')
+        status = info.get("status")
         logger.debug(
-            f'Postprocessor status update {str(status).upper()} for: {url}.',
+            "Download %s postprocessing status update %s.",
+            url,
+            status.upper(),
         )
+
         postprocessor: str | None = None
-        if status == 'started' or status == 'processing':
-            postprocessor = info.get('postprocessor')
-            logger.debug(
-                f'Postprocessor {postprocessor} is {status.upper()}.',
-            )
-        elif status == 'finished':
+        if status in {"started", "processing"}:
+            postprocessor = info.get("postprocessor")
+        elif status == "finished":
             postprocessor = None
-            logger.debug('Postprocessor is None.')
+        else:
+            postprocessor = None
+
+        logger.debug(
+            "Download %s postprocessing %s is %s.",
+            url,
+            postprocessor,
+            status.upper(),
+        )
         self._handle_status_update(
             DownloadStatus(
                 state=DownloadState.PROCESSING,
@@ -211,12 +220,14 @@ class DownloadConfig:
         )
 
     def _post_hook(self, filepath: str) -> None:
-        logger.debug(
-            f'Post status update for: {self.download.video.url}.',
-        )
+        logger.debug("Download %s has completed.", self.download.video.url)
         state = DownloadState.DONE
-        if not os.path.exists(filepath):
-            logger.error(f'File does not exist: {filepath}.')
+        if not Path(filepath).exists():
+            logger.error(
+                "Download %s does not have file at %s.",
+                self.download.video.url,
+                filepath,
+            )
             state = DownloadState.ERROR
         self._handle_status_update(
             DownloadStatus(

@@ -1,13 +1,12 @@
 import logging
 
-from yt_dlp import YoutubeDL  # type: ignore
+from yt_dlp import YoutubeDL
 
 from .config import DownloadConfig
 from .models import DownloadState
 from .models import DownloadStatus
 
-
-logger = logging.getLogger('core')
+logger = logging.getLogger("core")
 
 
 def run_downloader(config: DownloadConfig) -> None:
@@ -16,13 +15,13 @@ def run_downloader(config: DownloadConfig) -> None:
         DownloadStatus(state=DownloadState.DOWNLOADING),
     )
     try:
-        logger.debug(msg=f'Download started: {config.download.video.url}.')
-        downloader.download(  # type: ignore
+        logger.debug("Download started: %s.", config.download.video.url)
+        downloader.download(
             [str(config.download.video.url)],
         )
-        logger.debug(msg=f'Download completed: {config.download.video.url}.')
-    except Exception as e:
-        logger.error(f'Failed to download: {config.download.video.url} {e}.')
+        logger.debug("Download completed: %s.", config.download.video.url)
+    except Exception:
+        logger.exception("Failed to download: %s.", config.download.video.url)
         config.on_status_update(
             DownloadStatus(state=DownloadState.ERROR),
         )

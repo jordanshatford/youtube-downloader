@@ -14,7 +14,8 @@
 	"scripts": {
 		"dev": "uv run fastapi dev",
 		"prod": "uv run fastapi run",
-		"format": "uv run pre-commit run --all-files",
+		"lint": "uv run ruff format --check . && uv run ruff check .",
+		"format": "uv run ruff format . && uv run pre-commit run --all-files",
 		"generate:openapi": "uv run python generate_openapi.py",
 		"deps:update": "uv sync --upgrade && uv run pre-commit autoupdate"
 	}

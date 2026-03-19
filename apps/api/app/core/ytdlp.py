@@ -15,7 +15,7 @@ class InfoDict(TypedDict):
 
 # Represents progress information provided to progress_hooks in yt-dlp
 class ProgressHookInfo(TypedDict):
-    status: Literal['downloading', 'finished', 'error']
+    status: Literal["downloading", "finished", "error"]
     info_dict: InfoDict
     filename: NotRequired[str]
     tmpfilename: NotRequired[str]
@@ -31,23 +31,23 @@ class ProgressHookInfo(TypedDict):
 
 # Represents progress information provided to postprocessor_hooks in yt-dlp
 class PostprocessorHookInfo(TypedDict):
-    status: Literal['started', 'processing', 'finished']
+    status: Literal["started", "processing", "finished"]
     postprocessor: str
     info_dict: InfoDict
 
 
 OutTmplTypesKeys: TypeAlias = Literal[
-    'chapter',
-    'subtitle',
-    'thumbnail',
-    'description',
-    'annotation',
-    'infojson',
-    'link',
-    'pl_video',
-    'pl_thumbnail',
-    'pl_description',
-    'pl_infojson',
+    "chapter",
+    "subtitle",
+    "thumbnail",
+    "description",
+    "annotation",
+    "infojson",
+    "link",
+    "pl_video",
+    "pl_thumbnail",
+    "pl_description",
+    "pl_infojson",
 ]
 
 
@@ -119,23 +119,26 @@ class YoutubeDLParams(TypedDict):
     # Whether to test if the formats are downloadable. Can be True
     # (check all), False (check none), 'selected' (check selected formats),
     # or None (check only if requested by extractor)
-    check_formats: NotRequired[bool | Literal['selected'] | None]
+    check_formats: NotRequired[bool | Literal["selected"] | None]
     # Dictionary of output paths. The allowed keys are 'home', 'temp' and
     # the keys of OUTTMPL_TYPES (in utils/_utils.py)
-    paths:  NotRequired[
+    paths: NotRequired[
         Mapping[
-            Literal['home', 'temp']
-            | OutTmplTypesKeys, str,
-        ] | None
+            Literal["home", "temp"] | OutTmplTypesKeys,
+            str,
+        ]
+        | None
     ]
     # Dictionary of templates for output names. Allowed keys are 'default'
     # and the keys of OUTTMPL_TYPES (in utils/_utils.py). For compatibility
     # with youtube-dl, a single string can also be used
     outtmpl: NotRequired[
-        str | Mapping[
-            Literal['default']
-            | OutTmplTypesKeys, str,
-        ] | None
+        str
+        | Mapping[
+            Literal["default"] | OutTmplTypesKeys,
+            str,
+        ]
+        | None
     ]
     # Placeholder for unavailable meta fields.
     outtmpl_na_placeholder: NotRequired[str | None]
@@ -148,7 +151,7 @@ class YoutubeDLParams(TypedDict):
     # Do not stop on download/postprocessing errors. Can be 'only_download'
     # to ignore only download errors. Default is 'only_download' for CLI, but
     # False for API.
-    ignoreerrors: NotRequired[bool | Literal['only_download'] | None]
+    ignoreerrors: NotRequired[bool | Literal["only_download"] | None]
     # Number of allowed failures until the rest of the playlist is skipped
     skip_playlist_after_errors: NotRequired[int | None]
     # List of regexes to match against extractor names that are allowed
@@ -296,10 +299,13 @@ class YoutubeDLParams(TypedDict):
     #   * 'discard_in_playlist': Same as "discard", but only for playlists
     #                            (not multi_video). Default for CLI
     extract_flat: NotRequired[
-        bool | Literal[
-            'in_playlist',
-            'discard', 'discard_in_playlist',
-        ] | None
+        bool
+        | Literal[
+            "in_playlist",
+            "discard",
+            "discard_in_playlist",
+        ]
+        | None
     ]
     # If given, wait for scheduled streams to become available. The value
     # should be a tuple containing the range (min_secs, max_secs) to wait
@@ -339,9 +345,11 @@ class YoutubeDLParams(TypedDict):
             Callable[
                 [
                     ProgressHookInfo,
-                ], None,
+                ],
+                None,
             ]
-        ] | None
+        ]
+        | None
     ]
     # A list of functions that get called on postprocessing progress, with a
     # dictionary with the entries
@@ -356,9 +364,11 @@ class YoutubeDLParams(TypedDict):
             Callable[
                 [
                     PostprocessorHookInfo,
-                ], None,
+                ],
+                None,
             ]
-        ] | None
+        ]
+        | None
     ]
     # "/" separated list of extensions to use when merging formats.
     merge_output_format: NotRequired[str | None]
@@ -371,7 +381,7 @@ class YoutubeDLParams(TypedDict):
     #   - "warn": only emit a warning
     #   - "detect_or_warn": check whether we can do anything about it,
     #                       warn otherwise (default)
-    fixup: NotRequired[Literal['never', 'warn', 'detect_or_warn'] | None]
+    fixup: NotRequired[Literal["never", "warn", "detect_or_warn"] | None]
     # Client-side IP address to bind to.
     source_address: NotRequired[str | None]
     # Number of seconds to sleep between requests .during extraction
@@ -407,7 +417,9 @@ class YoutubeDLParams(TypedDict):
         Callable[
             [InfoDict, bool],
             str | None,
-        ] | Callable[[InfoDict], str | None] | None
+        ]
+        | Callable[[InfoDict], str | None]
+        | None
     ]
     # A Dictionary with output stream names as keys and their respective color
     # policy as values. Can also just be a single color policy, in which case
@@ -483,7 +495,7 @@ class YoutubeDLParams(TypedDict):
     noresizebuffer: NotRequired[bool | None]
     # Number of times to retry for expected network errors. Default is 0
     # for API, but 10 for CLI.
-    retries: NotRequired[int | Literal['infinite'] | None]
+    retries: NotRequired[int | Literal["infinite"] | None]
     # Number of times to retry on file access error (default: 3)
     file_access_retries: NotRequired[int | None]
     # Try to continue downloads if possible.
@@ -500,8 +512,7 @@ class YoutubeDLParams(TypedDict):
     # arguments to be passed to all downloaders. For compatibility with
     # youtube-dl, a single list of args can also be used.
     external_downloader_args: NotRequired[
-        Literal['default']
-        | Mapping[str, Sequence[str]] | Sequence[str] | None
+        Literal["default"] | Mapping[str, Sequence[str]] | Sequence[str] | None
     ]
     # Number of fragments of a dash/hlsnative video that should be downloaded
     # concurrently.
@@ -522,7 +533,9 @@ class YoutubeDLParams(TypedDict):
         Mapping[
             str,
             Sequence[str],
-        ] | Sequence[str] | None
+        ]
+        | Sequence[str]
+        | None
     ]
     """
     The following options are used by the extractors:

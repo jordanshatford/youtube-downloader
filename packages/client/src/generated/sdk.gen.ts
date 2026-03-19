@@ -34,9 +34,6 @@ import type {
 	GetSessionValidateData,
 	GetSessionValidateErrors,
 	GetSessionValidateResponses,
-	GetVideoData,
-	GetVideoErrors,
-	GetVideoResponses,
 	PostDownloadsData,
 	PostDownloadsErrors,
 	PostDownloadsResponses,
@@ -84,18 +81,6 @@ export const getNextSearch = <ThrowOnError extends boolean = false>(
 	(options?.client ?? client).get<GetNextSearchResponses, GetNextSearchErrors, ThrowOnError>({
 		security: [{ scheme: 'bearer', type: 'http' }],
 		url: '/search/next',
-		...options
-	});
-
-/**
- * Get Video
- */
-export const getVideo = <ThrowOnError extends boolean = false>(
-	options: Options<GetVideoData, ThrowOnError>
-) =>
-	(options.client ?? client).get<GetVideoResponses, GetVideoErrors, ThrowOnError>({
-		security: [{ scheme: 'bearer', type: 'http' }],
-		url: '/search/video',
 		...options
 	});
 

@@ -10,22 +10,20 @@ from .models import DownloadState
 from .models import DownloadStatus
 from .models import Video
 from .models import VideoFormat
-from .search import YouTubeGetVideo
 from .search import YouTubeSearch
 
 __all__ = [
-    'AudioFormat',
-    'AvailableDownloadOptions',
-    'Channel',
-    'Download',
-    'DownloadInput',
-    'DownloadManager',
-    'DownloadOptions',
-    'DownloadState',
-    'DownloadStatus',
-    'DownloadQuality',
-    'Video',
-    'VideoFormat',
-    'YouTubeGetVideo',
-    'YouTubeSearch',
+    "AudioFormat",
+    "AvailableDownloadOptions",
+    "Channel",
+    "Download",
+    "DownloadInput",
+    "DownloadManager",
+    "DownloadOptions",
+    "DownloadQuality",
+    "DownloadState",
+    "DownloadStatus",
+    "Video",
+    "VideoFormat",
+    "YouTubeSearch",
 ]

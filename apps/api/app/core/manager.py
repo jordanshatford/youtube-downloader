@@ -1,7 +1,7 @@
 import logging
-import os
 import time
 from multiprocessing.pool import ThreadPool
+from pathlib import Path
 
 from .config import DownloadConfig
 from .config import StatusHook
@@ -10,28 +10,27 @@ from .models import Download
 from .models import DownloadFile
 from .models import DownloadInput
 
-
-logger = logging.getLogger('core')
+logger = logging.getLogger("core")
 
 
 class DownloadManager:
     def __init__(
         self,
-        output_dir: str,
+        output_dir: Path,
         status_hook: StatusHook | None = None,
         *,
         num_threads: int | None = None,
         output_file_readable_name: bool = False,
-    ):
+    ) -> None:
         self._output_dir = output_dir
         self._status_hook = status_hook
         self._downloads: dict[str, DownloadConfig] = {}
         self._pool = ThreadPool(num_threads)
         self._output_file_readable_name = output_file_readable_name
         logger.debug(
-            'Initialized DownloadManager with: ' +
-            f'output_dir: {self._output_dir}, ' +
-            f'threads: {num_threads}.',
+            "Initializing download manager with output at %s and %d threads.",
+            self._output_dir,
+            num_threads,
         )
 
     def __contains__(self, download_id: str) -> bool:
@@ -45,8 +44,9 @@ class DownloadManager:
                 output_file_readable_name=self._output_file_readable_name,
             )
             logger.debug(
-                f'Added download: {download.video.url}, ' +
-                f'options: {download.options}.',
+                "Added download %s with options %s ",
+                download.video.url,
+                download.options,
             )
             if self._status_hook:
                 config.add_status_hook(self._status_hook)
@@ -56,11 +56,11 @@ class DownloadManager:
 
     def remove(self, download_id: str) -> None:
         if download_id in self._downloads:
-            logger.debug(f'Removing download {download_id}.')
+            logger.debug("Removing download %s.", download_id)
             path = self._downloads[download_id].path
-            if os.path.exists(path):
-                logger.debug(f'Removing download file: {path}.')
-                os.remove(path)
+            if path.exists():
+                logger.debug("Removing download file %s.", path)
+                path.unlink()
             self._downloads.pop(download_id, None)
 
     def get(self, download_id: str) -> Download | None:
@@ -72,15 +72,13 @@ class DownloadManager:
 
     def get_file(self, download_id: str) -> DownloadFile | None:
         config = self._downloads.get(download_id, None)
-        if config is None or not os.path.exists(config.path):
-            logger.debug(
-                f'Could not get download: {download_id}, file does not exist.',
-            )
+        if config is None or not config.path.exists():
+            logger.debug("Download file does not exist for %s.", download_id)
             return None
-        return DownloadFile(name=config.filename, path=config.path)
+        return DownloadFile(name=config.filename, path=str(config.path))
 
     def wait(self) -> None:
-        logger.debug('Waiting for all downloads to complete.')
+        logger.debug("Waiting for all downloads to complete.")
         self._pool.close()
         self._pool.join()
         self._downloads = {}

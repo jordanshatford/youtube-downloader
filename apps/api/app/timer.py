@@ -1,17 +1,19 @@
 import threading
 import time
 from collections.abc import Callable
-from typing import Any
+from typing import ParamSpec
+
+P = ParamSpec("P")
 
 
 class RepeatedTimer:
     def __init__(
         self,
         interval: int,
-        function: Callable[..., None],
-        *args: Any,
-        **kwargs: Any,
-    ):
+        function: Callable[P, None],
+        *args: P.args,
+        **kwargs: P.kwargs,
+    ) -> None:
         self._timer: threading.Timer | None = None
         self.interval = interval
         self.function = function
@@ -21,22 +23,23 @@ class RepeatedTimer:
         self.next_call = time.time()
         self.start()
 
-    def _run(self):
+    def _run(self) -> None:
         self.is_running = False
         self.start()
         self.function(*self.args, **self.kwargs)
 
-    def start(self):
+    def start(self) -> None:
         if not self.is_running:
             self.next_call += self.interval
             self._timer = threading.Timer(
-                self.next_call - time.time(), self._run,
+                self.next_call - time.time(),
+                self._run,
             )
             self._timer.daemon = True
             self._timer.start()
             self.is_running = True
 
-    def stop(self):
+    def stop(self) -> None:
         if self._timer is not None:
             self._timer.cancel()
         self.is_running = False

@@ -1,13 +1,18 @@
 import json
+import logging
+import pathlib
 
 from app.main import app
 
-OUTPUT_FILENAME = 'openapi.json'
+logger = logging.getLogger("generate")
+
+OUTPUT_FILENAME = "openapi.json"
 
 try:
-    print(f'Dumping OpenAPI specification to {OUTPUT_FILENAME}')
-    with open(OUTPUT_FILENAME, 'w') as file:
+    logger.info("Dumping OpenAPI specification to %s", OUTPUT_FILENAME)
+    with pathlib.Path(OUTPUT_FILENAME).open("w") as file:
         json.dump(app.openapi(), file, indent=2)
-        file.write('\n')
+        file.write("\n")
 except Exception as e:
-    raise SystemExit(e)
+    logger.exception("Error dumping OpenAPI specification to %s", OUTPUT_FILENAME)
+    raise SystemExit(e) from e

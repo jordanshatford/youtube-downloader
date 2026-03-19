@@ -1,3 +1,4 @@
+import contextlib
 import logging
 from typing import Any
 
@@ -7,15 +8,14 @@ from .innertube import InnerTubeClient
 from .models import Channel
 from .models import Video
 
+logger = logging.getLogger("core")
 
-logger = logging.getLogger('core')
 
-
-_YOUTUBE_BASE_URL = 'https://www.youtube.com'
+_YOUTUBE_BASE_URL = "https://www.youtube.com"
 
 
 # Get entry from nested dict based on key path
-def _get(source: dict[Any, Any], path: list[Any]) -> Any:
+def _get(source: dict[Any, Any], path: list[Any]) -> Any:  # noqa: ANN401
     value = source
     for key in path:
         # If the key is for a dict
@@ -49,22 +49,21 @@ class YouTubeSearch:
         return self._results
 
     def next(self) -> bool:
-        # If continuation exists, fetch new results to replace existing ones.
-        if self._continuation:
-            results, continuation = self._fetch_and_parse()
-            self._results = results
-            self._continuation = continuation
-            logger.debug(
-                f'Found {len(results)} results for search: {self._query}.',
-            )
-            return True
-        else:
-            logger.debug(f'No more results for search: {self._query}.')
+        if not self._continuation:
+            logger.debug("No more results for search: %s.", self._query)
             return False
+
+        # If continuation exists, fetch new results to replace existing ones.
+        results, continuation = self._fetch_and_parse()
+        self._results = results
+        self._continuation = continuation
+        logger.debug("Found %d result(s) for search: %s.", (results), self._query)
+        return True
 
     def _fetch_and_parse(self) -> tuple[list[Video], str | None]:
         response = self._innertube_client.search(
-            self._query, self._continuation,
+            self._query,
+            self._continuation,
         )
 
         sections: dict[Any, Any] = {}
@@ -72,16 +71,23 @@ class YouTubeSearch:
         # by except block.
         try:
             sections = _get(
-                response, [
-                    'contents', 'twoColumnSearchResultsRenderer',
-                    'primaryContents', 'sectionListRenderer', 'contents',
+                response,
+                [
+                    "contents",
+                    "twoColumnSearchResultsRenderer",
+                    "primaryContents",
+                    "sectionListRenderer",
+                    "contents",
                 ],
             )
         except KeyError:
             sections = _get(
-                response, [
-                    'onResponseReceivedCommands', 0,
-                    'appendContinuationItemsAction', 'continuationItems',
+                response,
+                [
+                    "onResponseReceivedCommands",
+                    0,
+                    "appendContinuationItemsAction",
+                    "continuationItems",
                 ],
             )
 
@@ -89,18 +95,21 @@ class YouTubeSearch:
         continuation_renderer: dict[str, Any] | None = None
 
         for section in sections:
-            if 'itemSectionRenderer' in section:
-                item_renderer = section['itemSectionRenderer']
-            if 'continuationItemRenderer' in section:
-                continuation_renderer = section['continuationItemRenderer']
+            if "itemSectionRenderer" in section:
+                item_renderer = section["itemSectionRenderer"]
+            if "continuationItemRenderer" in section:
+                continuation_renderer = section["continuationItemRenderer"]
 
         # If the continuationItemRenderer doesn't exist,
         # assume no further results
         continuation: str | None = None
         if continuation_renderer:
             continuation = _get(
-                continuation_renderer, [
-                    'continuationEndpoint', 'continuationCommand', 'token',
+                continuation_renderer,
+                [
+                    "continuationEndpoint",
+                    "continuationCommand",
+                    "token",
                 ],
             )
 
@@ -108,30 +117,28 @@ class YouTubeSearch:
 
         # If the itemSectionRenderer doesn't exist, assume no results.
         if item_renderer:
-            raw_videos = item_renderer['contents']
+            raw_videos = item_renderer["contents"]
             for raw_content in raw_videos:
                 # Skip over anything that is not a video.
-                if 'videoRenderer' not in raw_content:
+                if "videoRenderer" not in raw_content:
                     continue
-                raw_video = raw_content['videoRenderer']
+                raw_video = raw_content["videoRenderer"]
                 v = self._parse_video(raw_video)
                 videos.append(v)
 
         return videos, continuation
 
     def _parse_video(self, source: dict[Any, Any]) -> Video:
-        video_id = source['videoId']
-        url = HttpUrl(f'{_YOUTUBE_BASE_URL}/watch?v={video_id}')
-        title = _get(source, ['title', 'runs', 0, 'text'])
-        duration = '???'
-        try:
-            duration = _get(source, ['lengthText', 'simpleText'])
-        except KeyError:
-            pass
+        video_id = source["videoId"]
+        url = HttpUrl(f"{_YOUTUBE_BASE_URL}/watch?v={video_id}")
+        title = _get(source, ["title", "runs", 0, "text"])
+        duration = "???"
+        with contextlib.suppress(KeyError):
+            duration = _get(source, ["lengthText", "simpleText"])
         if duration is None:
-            duration = '--:--'
-        thumbnails = _get(source, ['thumbnail', 'thumbnails'])
-        thumbnail = HttpUrl(thumbnails[0]['url'])
+            duration = "--:--"
+        thumbnails = _get(source, ["thumbnail", "thumbnails"])
+        thumbnail = HttpUrl(thumbnails[0]["url"])
         channel = self._parse_channel(source)
         return Video(
             id=video_id,
@@ -143,49 +150,49 @@ class YouTubeSearch:
         )
 
     def _parse_channel(self, source: dict[Any, Any]) -> Channel:
-        name = _get(source, ['ownerText', 'runs', 0, 'text'])
+        name = _get(source, ["ownerText", "runs", 0, "text"])
         # First attempt to get channel url in format youtube.com/@channel
         # If that fails, instead get the url in format youtube.com/channel/id
         try:
             uri = _get(
-                source, [
-                    'ownerText', 'runs', 0, 'navigationEndpoint',
-                    'commandMetadata', 'webCommandMetadata', 'url',
+                source,
+                [
+                    "ownerText",
+                    "runs",
+                    0,
+                    "navigationEndpoint",
+                    "commandMetadata",
+                    "webCommandMetadata",
+                    "url",
                 ],
             )
-            url = HttpUrl(f'{_YOUTUBE_BASE_URL}{uri}')
+            url = HttpUrl(f"{_YOUTUBE_BASE_URL}{uri}")
         except KeyError:
             uri = _get(
-                source, [
-                    'ownerText', 'runs', 0, 'navigationEndpoint',
-                    'browseEndpoint', 'browseId',
+                source,
+                [
+                    "ownerText",
+                    "runs",
+                    0,
+                    "navigationEndpoint",
+                    "browseEndpoint",
+                    "browseId",
                 ],
             )
-            url = HttpUrl(f'{_YOUTUBE_BASE_URL}/channel/{uri}')
+            url = HttpUrl(f"{_YOUTUBE_BASE_URL}/channel/{uri}")
 
         thumbnails = _get(
-            source, [
-                'channelThumbnailSupportedRenderers',
-                'channelThumbnailWithLinkRenderer',
-                'thumbnail',
-                'thumbnails',
+            source,
+            [
+                "channelThumbnailSupportedRenderers",
+                "channelThumbnailWithLinkRenderer",
+                "thumbnail",
+                "thumbnails",
             ],
         )
-        thumbnail = HttpUrl(thumbnails[0]['url'])
+        thumbnail = HttpUrl(thumbnails[0]["url"])
         return Channel(
             name=name,
             url=url,
             thumbnail=thumbnail,
         )
-
-
-class YouTubeGetVideo:
-    def __init__(self, id: str) -> None:
-        url = f'{_YOUTUBE_BASE_URL}/watch?v={id}'
-        self._results = YouTubeSearch(url).results
-
-    @property
-    def result(self) -> Video | None:
-        if len(self._results) == 0:
-            return None
-        return self._results[0]

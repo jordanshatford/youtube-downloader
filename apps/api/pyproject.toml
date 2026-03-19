@@ -13,7 +13,52 @@ dependencies = [
 [dependency-groups]
 dev = [
   "pre-commit>=4.5.1,<5.0.0",
+  "ruff>=0.15.6",
 ]
 
 [tool.fastapi]
 entrypoint = "app.main:app"
+
+[tool.ruff.lint]
+extend-select = [
+  "A",      # flake8-builtins
+  "ANN",    # flake8-annotations
+  "ARG",    # flake8-unused-arguments
+  "ASYNC",  # flake8-async
+  "B",      # flake8-bugbear
+  "BLE",    # flake8-blind-except
+  "C4",     # flake8-comprehensions
+  "COM",    # flake8-commas
+  "DTZ",    # flake8-datetimez
+  "E",      # pycodestyle errors
+  "F",      # Pyflakes
+  "FAST",   # fastapi
+  "FBT",    # flake8-boolean-trap
+  "FURB",   # refurb
+  "G",      # flake8-logging-format
+  "I",      # isort
+  "ICN",    # flake8-import-conventions
+  "ISC",    # flake8-implicit-str-concat
+  "LOG",    # flake8-logging
+  "N",      # pep8-naming
+  "PERF",   # perflint
+  "PL",     # pylint
+  "PTH",    # flake8-use-pathlib
+  "Q",      # flake8-quotes
+  "RET",    # flake8-return
+  "RSE",    # flake8-raise
+  "RUF",    # ruff-specific rules
+  "SIM",    # flake8-simplify
+  "T20",    # flake8-print
+  "TC",     # flake8-type-checking
+  "TID",    # flake8-tidy-imports
+  "UP",     # pyupgrade
+  "W",      # pycodestyle warnings
+]
+
+ignore = [
+  "COM812", # flake8-commas: Missing trailing comma
+]
+
+[tool.ruff.lint.isort]
+force-single-line = true

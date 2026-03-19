@@ -367,44 +367,6 @@ export type GetNextSearchResponses = {
 
 export type GetNextSearchResponse = GetNextSearchResponses[keyof GetNextSearchResponses];
 
-export type GetVideoData = {
-	body?: never;
-	path?: never;
-	query: {
-		/**
-		 * Id
-		 */
-		id: string;
-	};
-	url: '/search/video';
-};
-
-export type GetVideoErrors = {
-	/**
-	 * Forbidden
-	 */
-	403: unknown;
-	/**
-	 * Not Found
-	 */
-	404: unknown;
-	/**
-	 * Validation Error
-	 */
-	422: HttpValidationError;
-};
-
-export type GetVideoError = GetVideoErrors[keyof GetVideoErrors];
-
-export type GetVideoResponses = {
-	/**
-	 * Successful Response
-	 */
-	200: Video;
-};
-
-export type GetVideoResponse = GetVideoResponses[keyof GetVideoResponses];
-
 export type DeleteSessionData = {
 	body?: never;
 	path?: never;
