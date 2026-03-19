@@ -3,7 +3,7 @@ name = "yd-api"
 version = "1.0.0"
 description = "API to search and download YouTube videos in various formats."
 license = "MIT"
-requires-python = ">=3.11,<3.15"
+requires-python = ">=3.13,<3.15"
 dependencies = [
   "fastapi[standard]>=0.135.0,<0.136.0",
   "pydantic>=2.7.0,<3.0.0",

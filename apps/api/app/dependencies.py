@@ -1,6 +1,5 @@
 from typing import Annotated
 from typing import Any
-from typing import TypeAlias
 
 from fastapi import Depends
 from fastapi import HTTPException
@@ -12,7 +11,7 @@ from .core import Download
 from .session import Session
 from .session import session_manager
 
-AdditionalResponses: TypeAlias = dict[int | str, dict[str, Any]]
+type AdditionalResponses = dict[int | str, dict[str, Any]]
 
 # Responses which should be included in all routes that depend on a session
 depends_session_responses: AdditionalResponses = {
@@ -22,7 +21,7 @@ depends_session_responses: AdditionalResponses = {
 # Request will include header with session ID as the bearer token
 security = HTTPBearer()
 
-HTTPBearerCredentials: TypeAlias = Annotated[
+type HTTPBearerCredentials = Annotated[
     HTTPAuthorizationCredentials,
     Depends(
         security,
@@ -38,7 +37,7 @@ def get_request_session(credentials: HTTPBearerCredentials) -> Session:
 
 
 # Dependency that the request has a current session available
-DependsSession: TypeAlias = Annotated[Session, Depends(get_request_session)]
+type DependsSession = Annotated[Session, Depends(get_request_session)]
 
 
 # Responses which should be included in all routes that depend on a download
@@ -58,7 +57,7 @@ def get_request_download(
 
 
 # Dependency that the request has a current related download available
-DependsDownload: TypeAlias = Annotated[
+type DependsDownload = Annotated[
     Download,
     Depends(
         get_request_download,

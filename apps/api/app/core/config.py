@@ -2,7 +2,6 @@ import copy
 import logging
 from collections.abc import Callable
 from pathlib import Path
-from typing import TypeAlias
 
 from .models import AudioFormat
 from .models import Download
@@ -17,7 +16,7 @@ from .ytdlp import YoutubeDLParams
 logger = logging.getLogger("core")
 
 
-StatusHook: TypeAlias = Callable[[Download], None]
+type StatusHook = Callable[[Download], None]
 
 # Default params used with yt-dlp. These may be overriden by our download
 # options.

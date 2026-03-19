@@ -5,7 +5,6 @@ from collections.abc import Sequence
 from typing import Any
 from typing import Literal
 from typing import NotRequired
-from typing import TypeAlias
 from typing import TypedDict
 
 
@@ -36,7 +35,7 @@ class PostprocessorHookInfo(TypedDict):
     info_dict: InfoDict
 
 
-OutTmplTypesKeys: TypeAlias = Literal[
+type OutTmplTypesKeys = Literal[
     "chapter",
     "subtitle",
     "thumbnail",

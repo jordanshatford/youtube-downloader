@@ -44,7 +44,7 @@ def generate_custom_unique_id(route: routing.APIRoute) -> str:
 
 
 @asynccontextmanager
-async def lifespan(_: FastAPI) -> AsyncGenerator[None, None]:
+async def lifespan(_: FastAPI) -> AsyncGenerator:
     yield
     session_manager.cleanup(force=True)
 
