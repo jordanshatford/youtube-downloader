@@ -1,5 +1,11 @@
 # @yd/api
 
+## 1.2.0
+
+### Minor Changes
+
+- feat: make minimum supported python version to 3.13 ([`c250236`](https://github.com/jordanshatford/youtube-downloader/commit/c250236590a6d2090c04d8b369372b556ad064d0))
+
 ## 1.1.0
 
 ### Minor Changes
