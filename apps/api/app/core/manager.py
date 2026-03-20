@@ -1,10 +1,10 @@
 import logging
+import pathlib
 import time
 from multiprocessing.pool import ThreadPool
-from pathlib import Path
 
 from .config import DownloadConfig
-from .config import StatusHook
+from .config import DownloadStatusHook
 from .downloader import run_downloader
 from .models import Download
 from .models import DownloadFile
@@ -16,8 +16,8 @@ logger = logging.getLogger("core")
 class DownloadManager:
     def __init__(
         self,
-        output_dir: Path,
-        status_hook: StatusHook | None = None,
+        output_dir: pathlib.Path,
+        status_hook: DownloadStatusHook | None = None,
         *,
         num_threads: int | None = None,
         output_file_readable_name: bool = False,

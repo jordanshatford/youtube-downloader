@@ -1,7 +1,7 @@
 import copy
 import logging
+import pathlib
 from collections.abc import Callable
-from pathlib import Path
 
 from .models import AudioFormat
 from .models import Download
@@ -9,6 +9,7 @@ from .models import DownloadInput
 from .models import DownloadState
 from .models import DownloadStatus
 from .models import VideoFormat
+from .ytdlp import DEFAULT_YOUTUBE_DL_PARAMS
 from .ytdlp import PostprocessorHookInfo
 from .ytdlp import ProgressHookInfo
 from .ytdlp import YoutubeDLParams
@@ -16,24 +17,16 @@ from .ytdlp import YoutubeDLParams
 logger = logging.getLogger("core")
 
 
-type StatusHook = Callable[[Download], None]
-
-# Default params used with yt-dlp. These may be overriden by our download
-# options.
-# Note: if a default isnt provided then the yt-dlp default will be used.
-DEFAULT_YTDLP_PARAMS: YoutubeDLParams = {
-    "quiet": True,
-    "retries": 5,
-    "verbose": False,
-    "noprogress": True,
-}
+# Callable hook for any download status updates.
+type DownloadStatusHook = Callable[[Download], None]
 
 
+# Config used when downloading videos using yt-dlp.
 class DownloadConfig:
     def __init__(
         self,
         download: DownloadInput,
-        output_directory: Path,
+        output_directory: pathlib.Path,
         *,
         output_file_readable_name: bool = False,
     ) -> None:
@@ -45,24 +38,21 @@ class DownloadConfig:
         )
         self._output_directory = output_directory
         self._output_file_readable_name = output_file_readable_name
-        self._status_hooks: list[StatusHook] = []
+        self._status_hooks: list[DownloadStatusHook] = []
         self._overrides: YoutubeDLParams = {}
 
-    def add_status_hook(self, hook: StatusHook) -> None:
+    def add_status_hook(self, hook: DownloadStatusHook) -> None:
         self._status_hooks.append(hook)
 
     def on_status_update(self, status: DownloadStatus) -> None:
         self._handle_status_update(status)
-
-    def add_ytdlp_params_overrides(self, params: YoutubeDLParams) -> None:
-        self._overrides = params
 
     @property
     def filename(self) -> str:
         return f"{self.download.video.id}.{self.download.options.format.value}"
 
     @property
-    def path(self) -> Path:
+    def path(self) -> pathlib.Path:
         return self._output_directory / self.filename
 
     @property
@@ -120,7 +110,7 @@ class DownloadConfig:
             filename = str(self.download.video)
 
         params: YoutubeDLParams = {
-            **DEFAULT_YTDLP_PARAMS,
+            **DEFAULT_YOUTUBE_DL_PARAMS,
             **self._overrides,
             "format": self._ytdlp_format,
             "progress_hooks": [self._progress_hook],
@@ -159,21 +149,16 @@ class DownloadConfig:
         status = info.get("status")
         if status == "downloading":
             logger.debug("Download %s status DOWNLOADING.", url)
-            downloaded_bytes = info.get("downloaded_bytes")
-            total_bytes = info.get(
-                "total_bytes",
-                info.get("total_bytes_estimate"),
-            )
-            elapsed = info.get("elapsed")
-            eta = info.get("eta")
-            speed = info.get("speed")
             status = DownloadStatus(
                 state=DownloadState.DOWNLOADING,
-                downloaded_bytes=downloaded_bytes,
-                total_bytes=total_bytes,
-                elapsed=elapsed,
-                eta=eta,
-                speed=speed,
+                downloaded_bytes=info.get("downloaded_bytes"),
+                total_bytes=info.get(
+                    "total_bytes",
+                    info.get("total_bytes_estimate"),
+                ),
+                elapsed=info.get("elapsed"),
+                eta=info.get("eta"),
+                speed=info.get("speed"),
             )
             logger.debug("Download %s progress %f.", url, status.progress)
             self._handle_status_update(status)
@@ -221,7 +206,7 @@ class DownloadConfig:
     def _post_hook(self, filepath: str) -> None:
         logger.debug("Download %s has completed.", self.download.video.url)
         state = DownloadState.DONE
-        if not Path(filepath).exists():
+        if not pathlib.Path(filepath).exists():
             logger.error(
                 "Download %s does not have file at %s.",
                 self.download.video.url,
@@ -237,5 +222,5 @@ class DownloadConfig:
     def _handle_status_update(self, update: DownloadStatus) -> None:
         self.download.status = update
         # Call each hook with the update
-        for h in self._status_hooks:
-            h(copy.deepcopy(self.download))
+        for hook in self._status_hooks:
+            hook(copy.deepcopy(self.download))

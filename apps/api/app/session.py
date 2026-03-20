@@ -1,7 +1,7 @@
 import datetime
+import pathlib
 import shutil
 import uuid
-from pathlib import Path
 from queue import Queue
 
 from .core import Download
@@ -15,7 +15,7 @@ def now() -> datetime.datetime:
 
 
 class Session:
-    def __init__(self, session_id: str, sessions_dir: Path) -> None:
+    def __init__(self, session_id: str, sessions_dir: pathlib.Path) -> None:
         self.id = session_id
         self._output_dir = sessions_dir / session_id
         self._last_use = now()
@@ -46,12 +46,12 @@ class Session:
 class SessionsManager:
     def __init__(
         self,
-        session_dir: Path | None = None,
+        session_dir: pathlib.Path | None = None,
         session_to_old_duration: int = 60 * 60 * 2,  # 2 hours
         cleanup_interval: int = 60 * 60 * 3,  # 3 hours
     ) -> None:
         self._session_dir = (
-            session_dir if session_dir is not None else Path.cwd()
+            session_dir if session_dir is not None else pathlib.Path.cwd()
         ) / "sessions"
         self._session_too_old_duration = session_to_old_duration
         self._cleanup_timer = RepeatedTimer(

@@ -43,8 +43,7 @@ class DownloadStatus(BaseModel):
     downloaded_bytes: float | None = None  # Bytes downloaded
     total_bytes: float | None = None  # Bytes total (or estimate)
 
-    @computed_field  # type: ignore[prop-decorator]
-    @property
+    @computed_field
     def progress(self) -> float | None:  # Progress in percent
         if self.downloaded_bytes is None or self.total_bytes is None:
             logger.debug(

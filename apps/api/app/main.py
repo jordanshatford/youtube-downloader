@@ -1,10 +1,10 @@
 import json
 import logging
 import os
+import pathlib
 from collections.abc import AsyncGenerator
 from contextlib import asynccontextmanager
 from logging.handlers import RotatingFileHandler
-from pathlib import Path
 from typing import Any
 
 from fastapi import FastAPI
@@ -31,7 +31,7 @@ logging.basicConfig(
 
 # Read data from package.json file
 project_data: dict[str, Any] = {}
-project_data_path = Path(__file__).parent.parent / "package.json"
+project_data_path = pathlib.Path(__file__).parent.parent / "package.json"
 with project_data_path.open("rb") as f:
     project_data = json.load(f)
 

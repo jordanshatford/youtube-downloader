@@ -1,10 +1,9 @@
 import logging
 
-from yt_dlp import YoutubeDL
-
 from .config import DownloadConfig
 from .models import DownloadState
 from .models import DownloadStatus
+from .ytdlp import YoutubeDL
 
 logger = logging.getLogger("core")
 
