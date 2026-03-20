@@ -8,7 +8,7 @@ Setting up the project for local development will require all of the following t
 - [ffmpeg](https://ffmpeg.org/) (version `6.0` or higher)
 - [uv](https://docs.astral.sh/uv/) (version `0.10` or higher)
   > NOTE: `uv` will ensure that the required [python](https://www.python.org/) version is available.
-- [node](https://nodejs.org/en) (version `20.0` or higher)
+- [node](https://nodejs.org/en) (version `22.0` or higher)
 - _optionally_ [docker](https://www.docker.com/) (version `24.0` or higher)
 
 > NOTE: docker is an optional but preferred way to develop. If you are using docker, all other dependencies above will not be required except for git.

@@ -4,7 +4,7 @@
 
 ### Minor Changes
 
-- feat: make minimum supported python version to 3.13 ([`c250236`](https://github.com/jordanshatford/youtube-downloader/commit/c250236590a6d2090c04d8b369372b556ad064d0))
+- feat: make python 3.13 the minimum supported version ([`c250236`](https://github.com/jordanshatford/youtube-downloader/commit/c250236590a6d2090c04d8b369372b556ad064d0))
 
 ## 1.1.0
 
