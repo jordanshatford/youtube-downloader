@@ -1,11 +1,11 @@
 files: ^(apps/api/)
 repos:
   - repo: https://github.com/astral-sh/uv-pre-commit
-    rev: 0.10.11
+    rev: 0.10.12
     hooks:
       - id: uv-lock
   - repo: https://github.com/astral-sh/ruff-pre-commit
-    rev: v0.15.6
+    rev: v0.15.7
     hooks:
       - id: ruff-check
       - id: ruff-format
