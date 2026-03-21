@@ -11,17 +11,16 @@
   </p>
 </p>
 
-YouTube Downloader is a full stack application created to allow users to download [YouTube](https://www.youtube.com/) videos. The user is able to select from a variety of audio and video formats and other configuration options.
+YouTube Downloader is an application created for downloading [YouTube](https://www.youtube.com/) videos with a variety of formats and configurable options available.
 
 ## Features
 
-- Directly search YouTube for videos.
-- Download and convert multiple videos concurrently.
-- Download quality options (best, worst).
-- Option to automatically embed video metadata, thumbnail, and subtitles.
-- Variety of audio formats supported (AAC, FLAC, M4A, MP3, OPUS, WAV).
-- Variety of video formats supported (AVI, FLV, MKV, MOV, MP4, WEBM).
-- Web UI with support for dark and light themes.
+- Search YouTube directly using search terms or input direct video URL.
+- Concurrently download and process many videos at once.
+- Configurable audio download formats (AAC, FLAC, M4A, MP3, OPUS, WAV).
+- Configurable video download formats (AVI, FLV, MKV, MOV, MP4, WEBM).
+- Configurable quality options (best, worst).
+- Configurable options to automatically embed video metadata, thumbnails, and subtitles.
 
 # Developer Guide
 
@@ -31,11 +30,11 @@ Please refer to the [contributing guide](CONTRIBUTING.md) for how to install the
 
 ### Apps:
 
-- `api`: An API developed in [Python](https://www.python.org/) using [FastAPI](https://fastapi.tiangolo.com/).
-- `web`: A web application developed in [SvelteKit](https://kit.svelte.dev/).
+- `api`: An API developed using [Python](https://www.python.org/) with [FastAPI](https://fastapi.tiangolo.com/) and [yt-dlp](https://github.com/yt-dlp/yt-dlp).
+- `web`: A web application developed using [SvelteKit](https://kit.svelte.dev/).
 
 ### Packages:
 
-- `client`: A TypeScript API client generated from the OpenAPI specification for the API using [openapi-ts](https://github.com/hey-api/openapi-ts).
-- `config`: Common configs shared between other packages and apps in the monorepo.
-- `ui`: A UI library used by the project developed in [Svelte](https://svelte.dev/).
+- `client`: An API client generated using [TypeScript](https://www.typescriptlang.org/) with [openapi-ts](https://github.com/hey-api/openapi-ts).
+- `config`: Common configurations shared between the apps and packages in this monorepo.
+- `ui`: A UI library developed using [Svelte](https://svelte.dev/).
