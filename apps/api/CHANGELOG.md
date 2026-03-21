@@ -1,5 +1,11 @@
 # @yd/api
 
+## 1.3.0
+
+### Minor Changes
+
+- feat: remove channel thumbnail and make channel url optional ([`3b546b0`](https://github.com/jordanshatford/youtube-downloader/commit/3b546b0e236b908c527e5585f5d9f28e1242821a))
+
 ## 1.2.0
 
 ### Minor Changes
