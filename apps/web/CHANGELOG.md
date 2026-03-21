@@ -1,5 +1,17 @@
 # @yd/web
 
+## 1.5.0
+
+### Minor Changes
+
+- feat: make node js 22 the minimum supported version ([`060e759`](https://github.com/jordanshatford/youtube-downloader/commit/060e759afe115433a652f574d44500968c128b2e))
+
+### Patch Changes
+
+- Updated dependencies [[`3b546b0`](https://github.com/jordanshatford/youtube-downloader/commit/3b546b0e236b908c527e5585f5d9f28e1242821a), [`060e759`](https://github.com/jordanshatford/youtube-downloader/commit/060e759afe115433a652f574d44500968c128b2e)]:
+  - @yd/client@1.4.0
+  - @yd/ui@1.3.0
+
 ## 1.4.0
 
 ### Minor Changes
