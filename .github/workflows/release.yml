@@ -17,20 +17,15 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v6
-      - name: Setup Environment
-        uses: ./.github/actions/setup-environment
-        with:
-          node-version: '24'
-          python-version: '3.14'
+      - uses: ./.github/actions/setup-environment
       - name: Install dependencies
         run: pnpm install
       - name: Build
         run: pnpm build
-      - name: Create Release Pull Request
-        uses: changesets/action@v1
+      - uses: changesets/action@v1
         with:
           title: 'Changesets Release'
-          commit: 'chore: release'
+          commit: 'release: latest changes'
           version: pnpm changeset version
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
