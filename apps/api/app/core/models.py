@@ -10,8 +10,7 @@ logger = logging.getLogger("core")
 
 class Channel(BaseModel):
     name: str
-    url: HttpUrl
-    thumbnail: HttpUrl
+    url: HttpUrl | None
 
     def __str__(self) -> str:
         return self.name

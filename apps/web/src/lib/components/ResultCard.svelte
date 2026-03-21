@@ -17,10 +17,10 @@
 	<a href={result.url} target="_blank" rel="noreferrer">
 		<img alt="Thumbnail" class="block h-auto w-full" src={result.thumbnail} />
 	</a>
-	<header class="flex items-center justify-between p-2 leading-tight md:p-4">
+	<header class="flex items-center justify-between p-2 leading-tight md:pl-4">
 		<h1 class="text-lg">
 			<a
-				class="line-clamp-2 text-zinc-900 no-underline hover:underline dark:text-white"
+				class="line-clamp-2 text-zinc-900 no-underline dark:text-white"
 				href={result.url}
 				target="_blank"
 				rel="noreferrer"
@@ -32,17 +32,12 @@
 	</header>
 	<footer class="flex items-center justify-between p-2 leading-none md:p-4">
 		<a
-			class="flex items-center text-zinc-800 no-underline hover:underline dark:text-zinc-400"
+			class="flex items-center text-zinc-800 no-underline dark:text-zinc-400"
 			href={result.channel.url}
 			target="_blank"
 			rel="noreferrer"
 		>
-			<img
-				alt={result.channel.name}
-				class="block h-10 w-10 rounded-lg"
-				src={result.channel.thumbnail}
-			/>
-			<p class="ml-2 text-sm">
+			<p class="text-md">
 				{result.channel.name}
 			</p>
 		</a>

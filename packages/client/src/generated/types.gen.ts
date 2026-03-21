@@ -58,11 +58,7 @@ export type Channel = {
 	/**
 	 * Url
 	 */
-	url: string;
-	/**
-	 * Thumbnail
-	 */
-	thumbnail: string;
+	url: string | null;
 };
 
 /**

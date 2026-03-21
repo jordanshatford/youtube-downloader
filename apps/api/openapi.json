@@ -625,25 +625,24 @@
             "title": "Name"
           },
           "url": {
-            "type": "string",
-            "maxLength": 2083,
-            "minLength": 1,
-            "format": "uri",
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 2083,
+                "minLength": 1,
+                "format": "uri"
+              },
+              {
+                "type": "null"
+              }
+            ],
             "title": "Url"
-          },
-          "thumbnail": {
-            "type": "string",
-            "maxLength": 2083,
-            "minLength": 1,
-            "format": "uri",
-            "title": "Thumbnail"
           }
         },
         "type": "object",
         "required": [
           "name",
-          "url",
-          "thumbnail"
+          "url"
         ],
         "title": "Channel"
       },
