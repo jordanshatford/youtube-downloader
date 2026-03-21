@@ -80,6 +80,8 @@ class DownloadConfig:
             postprocessors.append(
                 {
                     "key": "FFmpegVideoConvertor",
+                    # This is deliberately spelled incorrectly as that is how
+                    # the option is named in yt-dlp.
                     "preferedformat": self.download.options.format.value,
                 },
             )

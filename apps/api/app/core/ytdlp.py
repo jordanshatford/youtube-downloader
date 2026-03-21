@@ -20,13 +20,6 @@ class Thumbnail(TypedDict, total=False):
     width: int | None
 
 
-# Get the best thumbnail out of available options. This returns the last
-# thumbnail in the list as they are sorted as such. As an improvement we
-# should check for the thumbnail with the best resolution.
-def get_best_thumbnail(thumbnails: Sequence[Thumbnail]) -> Thumbnail:
-    return thumbnails[-1]
-
-
 # Represents the video information returned by yt-dlp.
 # This only represents the fields that we use and may be missing some fields
 # that yt-dlp provides.
