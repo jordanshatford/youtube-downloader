@@ -56,6 +56,8 @@ class DownloadStatus(BaseModel):
 
     @computed_field
     def progress(self) -> float | None:
+        if self.state is not DownloadState.DOWNLOADING:
+            return None
         if self.downloaded_bytes is None or self.total_bytes is None:
             logger.debug(
                 "Could not calculate progress, downloaded_bytes or total_bytes is None."
