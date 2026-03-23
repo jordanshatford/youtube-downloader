@@ -1,12 +1,9 @@
 import threading
 import time
 from collections.abc import Callable
-from typing import ParamSpec
-
-P = ParamSpec("P")
 
 
-class RepeatedTimer:
+class RepeatedTimer[**P]:
     def __init__(
         self,
         interval: int,

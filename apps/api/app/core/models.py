@@ -37,13 +37,25 @@ class DownloadState(enum.StrEnum):
 
 
 class DownloadStatus(BaseModel):
+    # Current state of the download. This should always be checked to determine
+    # if other fields in this status are relevant.
     state: DownloadState
-    # The following are only valid when the state is DOWNLOADING
-    downloaded_bytes: float | None = None  # Bytes downloaded
-    total_bytes: float | None = None  # Bytes total (or estimate)
+
+    # The following fields are only valid when the state is downloading.
+    #   downloaded_bytes: the amount of bytes downloaded.
+    #   total_bytes: the amount of total bytes (potentially estimated).
+    #   elapsed: time elapsed in seconds.
+    #   eta: time to complete in seconds.
+    #   speed: speed of the download in bytes per second.
+    #   progress: computed progress of the download as a percentage.
+    downloaded_bytes: float | None = None
+    total_bytes: float | None = None
+    elapsed: float | None = None
+    eta: float | None = None
+    speed: float | None = None
 
     @computed_field
-    def progress(self) -> float | None:  # Progress in percent
+    def progress(self) -> float | None:
         if self.downloaded_bytes is None or self.total_bytes is None:
             logger.debug(
                 "Could not calculate progress, downloaded_bytes or total_bytes is None."
@@ -54,11 +66,9 @@ class DownloadStatus(BaseModel):
             return None
         return (self.downloaded_bytes / self.total_bytes) * 100
 
-    elapsed: float | None = None  # Time elapsed in seconds
-    eta: float | None = None  # ETA in seconds
-    speed: float | None = None  # Speed of download (bytes/second)
-    # The following are only valid when the state is PROCESSING
-    postprocessor: str | None = None  # Postprocessor currently running
+    # The following field is only valid when the state is processing.
+    #   postprocessor: the name of the post processor currently running.
+    postprocessor: str | None = None
 
 
 class AudioFormat(enum.StrEnum):
