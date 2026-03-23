@@ -17,7 +17,7 @@ class DownloadManager:
     def __init__(
         self,
         output_dir: pathlib.Path,
-        status_hook: DownloadStatusHook | None = None,
+        status_hook: DownloadStatusHook,
         *,
         num_threads: int | None = None,
         output_file_readable_name: bool = False,
@@ -41,6 +41,7 @@ class DownloadManager:
             config = DownloadConfig(
                 download,
                 self._output_dir,
+                self._status_hook,
                 output_file_readable_name=self._output_file_readable_name,
             )
             logger.debug(
@@ -48,8 +49,6 @@ class DownloadManager:
                 download.video.url,
                 download.options,
             )
-            if self._status_hook:
-                config.add_status_hook(self._status_hook)
             self._downloads[download.video.id] = config
             self._pool.apply_async(run_downloader, (config,))
         return self._downloads[download.video.id].download

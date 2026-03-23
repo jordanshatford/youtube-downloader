@@ -27,6 +27,7 @@ class DownloadConfig:
         self,
         download: DownloadInput,
         output_directory: pathlib.Path,
+        status_hook: DownloadStatusHook,
         *,
         output_file_readable_name: bool = False,
     ) -> None:
@@ -38,11 +39,8 @@ class DownloadConfig:
         )
         self._output_directory = output_directory
         self._output_file_readable_name = output_file_readable_name
-        self._status_hooks: list[DownloadStatusHook] = []
+        self._status_hook = status_hook
         self._overrides: YoutubeDLParams = {}
-
-    def add_status_hook(self, hook: DownloadStatusHook) -> None:
-        self._status_hooks.append(hook)
 
     def on_status_update(self, status: DownloadStatus) -> None:
         self._handle_status_update(status)
@@ -223,6 +221,4 @@ class DownloadConfig:
 
     def _handle_status_update(self, update: DownloadStatus) -> None:
         self.download.status = update
-        # Call each hook with the update
-        for hook in self._status_hooks:
-            hook(copy.deepcopy(self.download))
+        self._status_hook(copy.deepcopy(self.download))
