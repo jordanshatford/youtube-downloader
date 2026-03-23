@@ -1,5 +1,19 @@
 # @yd/api
 
+## 1.4.0
+
+### Minor Changes
+
+- feat: use yt-dlp to handle searching for youtube videos ([`cf98a97`](https://github.com/jordanshatford/youtube-downloader/commit/cf98a97fd83924e2d53331d41cd569ca591f9b5e))
+
+- feat: update yt-dlp parameters to use node runtime ([`3a134ac`](https://github.com/jordanshatford/youtube-downloader/commit/3a134ac3626a867e09f26162a0b0774527113aad))
+
+- feat: only allow one status hook per download ([`1963709`](https://github.com/jordanshatford/youtube-downloader/commit/1963709556ccc01bfa3cb661ab265943d7f3a8b4))
+
+### Patch Changes
+
+- fix: ensure progress is always none when status is not downloading ([`6498e12`](https://github.com/jordanshatford/youtube-downloader/commit/6498e12453950839ebda44bdf8023025bda45fd8))
+
 ## 1.3.0
 
 ### Minor Changes
