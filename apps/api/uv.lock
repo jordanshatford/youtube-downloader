@@ -1185,7 +1185,7 @@ dev = [
 [package.metadata]
 requires-dist = [
     { name = "fastapi", extras = ["standard"], specifier = ">=0.135.0,<0.136.0" },
-    { name = "pydantic", specifier = ">=2.7.0,<3.0.0" },
+    { name = "pydantic", specifier = ">=2.9.0,<3.0.0" },
     { name = "yt-dlp", extras = ["default"], specifier = "==2026.3.17" },
 ]
 
