@@ -246,6 +246,17 @@ class YoutubeDLParams(TypedDict, total=False):
         | None
     )
     """
+    The following options are used by the extractors:
+    """
+    # A dictionary of JavaScript runtime keys (in lower case) to enable and
+    # a dictionary of additional configuration for the runtime. Currently
+    # supported runtimes are 'deno', 'node', 'bun', and 'quickjs'. If None, the
+    # default runtime of "deno" will be enabled. The runtime configuration
+    # dictionary can have the following keys:
+    #   - path: Path to the executable (optional)
+    #     E.g. {'deno': {'path': '/path/to/deno'}
+    js_runtimes: dict[str, dict[str, str] | None]
+    """
     The following options are deprecated and may be removed in the future:
     """
     # Register a custom postprocessor, A list of functions that get called
@@ -263,6 +274,7 @@ DEFAULT_YOUTUBE_DL_PARAMS: YoutubeDLParams = {
     "quiet": True,
     "retries": 5,
     "verbose": False,
+    "js_runtimes": {"node": {}},
 }
 
 

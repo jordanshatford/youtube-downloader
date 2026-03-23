@@ -1,8 +1,11 @@
 FROM python:3.14 AS base
 
-# Ensure FFMPEG is available
+# Ensure FFMPEG is available for yt-dlp
 RUN apt-get update -y
 RUN apt-get install -y ffmpeg
+# Ensure NodeJS is available for yt-dlp
+RUN curl -fsSL https://deb.nodesource.com/setup_24.x | bash -
+RUN apt-get install -y nodejs
 
 WORKDIR /workspace
 
