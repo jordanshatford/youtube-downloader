@@ -1,198 +1,119 @@
-import contextlib
+import datetime
 import logging
-from typing import Any
+from collections.abc import Sequence
+from typing import cast
 
 from pydantic import HttpUrl
 
-from .innertube import InnerTubeClient
 from .models import Channel
 from .models import Video
+from .ytdlp import DEFAULT_YOUTUBE_DL_PARAMS
+from .ytdlp import Thumbnail
+from .ytdlp import VideoInfo
+from .ytdlp import YoutubeDL
+from .ytdlp import YoutubeDLParams
 
 logger = logging.getLogger("core")
 
 
-_YOUTUBE_BASE_URL = "https://www.youtube.com"
-
-
-# Get entry from nested dict based on key path
-def _get(source: dict[Any, Any], path: list[Any]) -> Any:  # noqa: ANN401
-    value = source
-    for key in path:
-        # If the key is for a dict
-        if type(key) is str:
-            if key in value:
-                value = value[key]
-            else:
-                raise KeyError(key)
-        # If the key is for a list
-        elif type(key) is int:
-            if len(value) != 0:
-                value = value[key]
-            else:
-                raise KeyError(key)
-    return value
-
-
 class YouTubeSearch:
-    def __init__(self, query: str) -> None:
+    def __init__(self, query: str, page_size: int = 20) -> None:
         self._query = query
-        self._innertube_client = InnerTubeClient()
-        self._results: list[Video] = []
-        self._continuation: str | None = None
-        # Get initial results.
-        results, continuation = self._fetch_and_parse()
-        self._results = results
-        self._continuation = continuation
+        self._page_size = page_size
+        self._page = 1
+        self._results = self._fetch_current_page()
 
     @property
     def results(self) -> list[Video]:
         return self._results
 
+    @property
+    def _has_more(self) -> bool:
+        return len(self._results) != 0
+
     def next(self) -> bool:
-        if not self._continuation:
-            logger.debug("No more results for search: %s.", self._query)
+        if not self._has_more:
+            logger.debug("No more search results for '%s'.", self._query)
             return False
 
-        # If continuation exists, fetch new results to replace existing ones.
-        results, continuation = self._fetch_and_parse()
-        self._results = results
-        self._continuation = continuation
-        logger.debug("Found %d result(s) for search: %s.", (results), self._query)
-        return True
+        self._page += 1
+        self._results = self._fetch_current_page()
+        return self._has_more
 
-    def _fetch_and_parse(self) -> tuple[list[Video], str | None]:
-        response = self._innertube_client.search(
-            self._query,
-            self._continuation,
+    @property
+    def _playlist_items(self) -> str:
+        # Get the lower and upper bounds to search yt-dlp with based on the
+        # page we are currently on and our page size. yt-dlp expects it in
+        # the format 1:20 which would return the first to twentieth videos.
+        base = (self._page - 1) * self._page_size
+        lower = base + 1
+        upper = base + self._page_size
+        return f"{lower}:{upper}"
+
+    def _fetch_current_page(self) -> list[Video]:
+        params: YoutubeDLParams = {
+            **DEFAULT_YOUTUBE_DL_PARAMS,
+            "playlist_items": self._playlist_items,
+        }
+        with YoutubeDL(params) as ydl:
+            result = cast(
+                "VideoInfo",
+                ydl.extract_info(f"ytsearchall:{self._query}", download=False),
+            )
+            entries = result.get("entries")
+
+            if entries is None:
+                logger.debug(
+                    "No entries returned from search '%s' page %d.",
+                    self._query,
+                    self._page,
+                )
+                return []
+
+            return [self._parse_entry_to_video(entry) for entry in entries]
+
+    def _parse_entry_to_video(self, entry: VideoInfo) -> Video:
+        title = entry["title"]
+        url = entry["url"]
+        duration = entry["duration"]
+        duration_str = (
+            f"{datetime.timedelta(seconds=duration)}" if duration is not None else "???"
         )
-
-        sections: dict[Any, Any] = {}
-        # Initial result is handled by try block, continuations handled
-        # by except block.
-        try:
-            sections = _get(
-                response,
-                [
-                    "contents",
-                    "twoColumnSearchResultsRenderer",
-                    "primaryContents",
-                    "sectionListRenderer",
-                    "contents",
-                ],
-            )
-        except KeyError:
-            sections = _get(
-                response,
-                [
-                    "onResponseReceivedCommands",
-                    0,
-                    "appendContinuationItemsAction",
-                    "continuationItems",
-                ],
-            )
-
-        item_renderer: dict[str, Any] | None = None
-        continuation_renderer: dict[str, Any] | None = None
-
-        for section in sections:
-            if "itemSectionRenderer" in section:
-                item_renderer = section["itemSectionRenderer"]
-            if "continuationItemRenderer" in section:
-                continuation_renderer = section["continuationItemRenderer"]
-
-        # If the continuationItemRenderer doesn't exist,
-        # assume no further results
-        continuation: str | None = None
-        if continuation_renderer:
-            continuation = _get(
-                continuation_renderer,
-                [
-                    "continuationEndpoint",
-                    "continuationCommand",
-                    "token",
-                ],
-            )
-
-        videos: list[Video] = []
-
-        # If the itemSectionRenderer doesn't exist, assume no results.
-        if item_renderer:
-            raw_videos = item_renderer["contents"]
-            for raw_content in raw_videos:
-                # Skip over anything that is not a video.
-                if "videoRenderer" not in raw_content:
-                    continue
-                raw_video = raw_content["videoRenderer"]
-                v = self._parse_video(raw_video)
-                videos.append(v)
-
-        return videos, continuation
-
-    def _parse_video(self, source: dict[Any, Any]) -> Video:
-        video_id = source["videoId"]
-        url = HttpUrl(f"{_YOUTUBE_BASE_URL}/watch?v={video_id}")
-        title = _get(source, ["title", "runs", 0, "text"])
-        duration = "???"
-        with contextlib.suppress(KeyError):
-            duration = _get(source, ["lengthText", "simpleText"])
-        if duration is None:
-            duration = "--:--"
-        thumbnails = _get(source, ["thumbnail", "thumbnails"])
-        thumbnail = HttpUrl(thumbnails[0]["url"])
-        channel = self._parse_channel(source)
         return Video(
-            id=video_id,
-            url=url,
-            title=title,
-            duration=duration,
-            thumbnail=thumbnail,
-            channel=channel,
+            id=entry["id"],
+            title=title if title is not None else "Unknown",
+            url=HttpUrl(url)
+            if url is not None
+            else HttpUrl("https://www.youtube.com/"),
+            duration=duration_str,
+            thumbnail=self._parse_entry_to_thumbnail(entry["thumbnails"]),
+            channel=self._parse_entry_to_channel(entry),
         )
 
-    def _parse_channel(self, source: dict[Any, Any]) -> Channel:
-        name = _get(source, ["ownerText", "runs", 0, "text"])
-        # First attempt to get channel url in format youtube.com/@channel
-        # If that fails, instead get the url in format youtube.com/channel/id
-        try:
-            uri = _get(
-                source,
-                [
-                    "ownerText",
-                    "runs",
-                    0,
-                    "navigationEndpoint",
-                    "commandMetadata",
-                    "webCommandMetadata",
-                    "url",
-                ],
-            )
-            url = HttpUrl(f"{_YOUTUBE_BASE_URL}{uri}")
-        except KeyError:
-            uri = _get(
-                source,
-                [
-                    "ownerText",
-                    "runs",
-                    0,
-                    "navigationEndpoint",
-                    "browseEndpoint",
-                    "browseId",
-                ],
-            )
-            url = HttpUrl(f"{_YOUTUBE_BASE_URL}/channel/{uri}")
-
-        thumbnails = _get(
-            source,
-            [
-                "channelThumbnailSupportedRenderers",
-                "channelThumbnailWithLinkRenderer",
-                "thumbnail",
-                "thumbnails",
-            ],
-        )
-        thumbnail = HttpUrl(thumbnails[0]["url"])
+    def _parse_entry_to_channel(self, entry: VideoInfo) -> Channel:
+        # Attempt to read the channel name and url using the channel entries.
+        # If for some reason that failed, use the uploader entries. Either way
+        # fallback to unknown values as channel information is not as important.
+        name = entry["channel"] or entry["uploader"]
+        url = entry["channel_url"] or entry["uploader_url"]
         return Channel(
-            name=name,
-            url=url,
-            thumbnail=thumbnail,
+            name=name if name is not None else "Unknown",
+            url=HttpUrl(url) if url is not None else url,
         )
+
+    def _parse_entry_to_thumbnail(
+        self, thumbnails: Sequence[Thumbnail] | None
+    ) -> HttpUrl:
+        fallback = HttpUrl("https://www.youtube.com/")
+        if thumbnails is None:
+            return fallback
+
+        # Get the best thumbnail out of available options. This returns the last
+        # thumbnail in the list as they are sorted as such. As an improvement we
+        # should check for the thumbnail with the best resolution.
+        thumbnail = thumbnails[-1]
+        if thumbnail is None:
+            return fallback
+
+        url = thumbnail["url"]
+        return HttpUrl(url) if url is not None else fallback
