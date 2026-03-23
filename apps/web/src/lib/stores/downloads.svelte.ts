@@ -33,7 +33,13 @@ class DownloadsStore {
 		// Get all previous downloads still available.
 		const { data: downloads } = await getDownloads();
 		if (downloads) {
-			this.downloads = downloads.reduce((prev, curr) => ({ ...prev, [curr.video.id]: curr }), {});
+			this.downloads = downloads.reduce(
+				(acc, curr) => {
+					acc[curr.video.id] = curr;
+					return acc;
+				},
+				{} as Record<string, Download>
+			);
 		} else {
 			this.downloads = {};
 		}
