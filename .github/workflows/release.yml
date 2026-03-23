@@ -24,7 +24,7 @@ jobs:
         run: pnpm build
       - uses: changesets/action@v1
         with:
-          title: 'Changesets Release'
+          title: 'ci: release latest changes'
           commit: 'ci: release latest changes'
           version: pnpm changeset version
         env:
