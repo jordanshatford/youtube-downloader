@@ -5,7 +5,7 @@
 Setting up the project for local development will require all of the following the be installed:
 
 - [git](https://git-scm.com/) (version `2.39` or higher)
-- [ffmpeg](https://ffmpeg.org/) (version `6.0` or higher)
+- [ffmpeg](https://ffmpeg.org/) (version `7.0` or higher)
 - [uv](https://docs.astral.sh/uv/) (version `0.10` or higher)
   > NOTE: `uv` will ensure that the required [python](https://www.python.org/) version is available.
 - [node](https://nodejs.org/en) (version `22.0` or higher)
