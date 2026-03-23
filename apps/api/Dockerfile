@@ -7,9 +7,7 @@ RUN apt-get install -y ffmpeg
 WORKDIR /workspace
 
 # Install uv
-RUN apt-get install -y pipx && pipx ensurepath
-RUN pipx install "uv>=0.10.11,<0.11.0"
-ENV PATH=/root/.local/bin:$PATH
+COPY --from=ghcr.io/astral-sh/uv:0.10 /uv /uvx /bin/
 
 # Install dependencies
 COPY pyproject.toml uv.lock /workspace/
