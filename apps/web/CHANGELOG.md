@@ -1,5 +1,22 @@
 # @yd/web
 
+## 1.6.0
+
+### Minor Changes
+
+- feat: remove download page size setting (always use 10) ([`0c2b4f8`](https://github.com/jordanshatford/youtube-downloader/commit/0c2b4f8326719f0e4cafe983e202789972c30e56))
+
+- feat: get default download options from api ([`43e603f`](https://github.com/jordanshatford/youtube-downloader/commit/43e603f24e8c09281b5024a54856b9c24d2befe0))
+
+- feat: remove auto download on complete setting ([`0c2b4f8`](https://github.com/jordanshatford/youtube-downloader/commit/0c2b4f8326719f0e4cafe983e202789972c30e56))
+
+- feat: add support for preferred subtitle language ([`286fbd7`](https://github.com/jordanshatford/youtube-downloader/commit/286fbd737f176e357d0b93a496d7bc1e2967260b))
+
+### Patch Changes
+
+- Updated dependencies [[`3014516`](https://github.com/jordanshatford/youtube-downloader/commit/30145163454a9bc183f4126bbc89f0bab5522ac4), [`43e603f`](https://github.com/jordanshatford/youtube-downloader/commit/43e603f24e8c09281b5024a54856b9c24d2befe0), [`286fbd7`](https://github.com/jordanshatford/youtube-downloader/commit/286fbd737f176e357d0b93a496d7bc1e2967260b)]:
+  - @yd/client@1.5.0
+
 ## 1.5.0
 
 ### Minor Changes
