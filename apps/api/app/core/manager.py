@@ -5,7 +5,6 @@ from multiprocessing.pool import ThreadPool
 
 from .config import DownloadConfig
 from .config import DownloadStatusHook
-from .downloader import run_downloader
 from .models import Download
 from .models import DownloadInput
 
@@ -46,7 +45,7 @@ class DownloadManager:
                 download.options,
             )
             self._downloads[download.video.id] = config
-            self._pool.apply_async(run_downloader, (config,))
+            self._pool.apply_async(config.run)
         return self._downloads[download.video.id].download
 
     def remove(self, download_id: str) -> None:

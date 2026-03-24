@@ -12,6 +12,7 @@ from .models import VideoFormat
 from .ytdlp import DEFAULT_YOUTUBE_DL_PARAMS
 from .ytdlp import PostprocessorHookInfo
 from .ytdlp import ProgressHookInfo
+from .ytdlp import YoutubeDL
 from .ytdlp import YoutubeDLParams
 
 logger = logging.getLogger("core")
@@ -39,8 +40,22 @@ class DownloadConfig:
         self._status_hook = status_hook
         self._overrides: YoutubeDLParams = {}
 
-    def on_status_update(self, status: DownloadStatus) -> None:
-        self._handle_status_update(status)
+    def run(self) -> None:
+        downloader = YoutubeDL(self._as_ytdlp_params)
+        self._handle_status_update(
+            DownloadStatus(state=DownloadState.DOWNLOADING),
+        )
+        try:
+            logger.debug("Download started: %s.", self.download.video.url)
+            downloader.download(
+                [str(self.download.video.url)],
+            )
+            logger.debug("Download completed: %s.", self.download.video.url)
+        except Exception:
+            logger.exception("Failed to download: %s.", self.download.video.url)
+            self._handle_status_update(
+                DownloadStatus(state=DownloadState.ERROR),
+            )
 
     @property
     def path(self) -> pathlib.Path:
@@ -58,7 +73,7 @@ class DownloadConfig:
         return self.download.options.format in VideoFormat
 
     @property
-    def as_ytdlp_params(self) -> YoutubeDLParams:
+    def _as_ytdlp_params(self) -> YoutubeDLParams:
         postprocessors: list[dict[str, str | bool | int]] = []
         # Only append audio postprocessor if we are downloading audio format.
         if self._is_audio_download:
