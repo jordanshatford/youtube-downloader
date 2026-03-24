@@ -3,6 +3,7 @@
     "ms-azuretools.vscode-docker",
     "EditorConfig.EditorConfig",
     "ms-python.python",
+		"FastAPILabs.fastapi-vscode",
 		"charliermarsh.ruff",
     "svelte.svelte-vscode",
     "dbaeumer.vscode-eslint",
