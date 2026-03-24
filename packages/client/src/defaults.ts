@@ -1,9 +1,9 @@
-import type { DownloadOptions } from './generated/index';
+import { DownloadOptions, DownloadQuality, VideoFormat } from './generated/index';
 
 // Default download options to use on various platforms.
 export const DEFAULT_DOWNLOAD_OPTIONS: DownloadOptions = {
-	format: 'mp4',
-	quality: 'best',
+	format: VideoFormat.MP4,
+	quality: DownloadQuality.BEST,
 	embed_metadata: true,
 	embed_thumbnail: false,
 	embed_subtitles: false
