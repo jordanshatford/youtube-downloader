@@ -103,13 +103,13 @@ def get_download_file(
     download: DependsDownload,
     session: DependsSession,
 ) -> FileResponse:
-    file = session.download_manager.get_file(download.video.id)
-    if file is None:
+    path = session.download_manager.get_file_path(download.video.id)
+    if path is None:
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND)
 
     return FileResponse(
-        file.path,
-        filename=file.name,
+        path,
+        filename=path.name,
     )
 
 

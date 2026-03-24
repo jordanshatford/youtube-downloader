@@ -119,8 +119,3 @@ class DownloadInput(BaseModel):
 
 class Download(DownloadInput):
     status: DownloadStatus
-
-
-class DownloadFile(BaseModel):
-    name: str
-    path: str

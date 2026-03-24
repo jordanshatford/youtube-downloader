@@ -7,7 +7,6 @@ from .config import DownloadConfig
 from .config import DownloadStatusHook
 from .downloader import run_downloader
 from .models import Download
-from .models import DownloadFile
 from .models import DownloadInput
 
 logger = logging.getLogger("core")
@@ -69,12 +68,12 @@ class DownloadManager:
     def get_all(self) -> list[Download]:
         return [config.download for config in self._downloads.values()]
 
-    def get_file(self, download_id: str) -> DownloadFile | None:
+    def get_file_path(self, download_id: str) -> pathlib.Path | None:
         config = self._downloads.get(download_id, None)
         if config is None or not config.path.exists():
             logger.debug("Download file does not exist for %s.", download_id)
             return None
-        return DownloadFile(name=config.filename, path=str(config.path))
+        return config.path
 
     def wait(self) -> None:
         logger.debug("Waiting for all downloads to complete.")

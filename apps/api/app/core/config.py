@@ -46,12 +46,11 @@ class DownloadConfig:
         self._handle_status_update(status)
 
     @property
-    def filename(self) -> str:
-        return f"{self.download.video.id}.{self.download.options.format.value}"
-
-    @property
     def path(self) -> pathlib.Path:
-        return self._output_directory / self.filename
+        return (
+            self._output_directory
+            / f"{self.download.video.id}.{self.download.options.format.value}"
+        )
 
     @property
     def _is_audio_download(self) -> bool:
