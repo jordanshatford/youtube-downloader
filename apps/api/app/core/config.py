@@ -159,7 +159,11 @@ class DownloadConfig:
                 eta=info.get("eta"),
                 speed=info.get("speed"),
             )
-            logger.debug("Download %s progress %f.", url, status.progress)
+            logger.debug(
+                "Download %s progress %s.",
+                url,
+                status.progress,
+            )
             self._handle_status_update(status)
         elif status == "error":
             logger.error("Download %s status ERROR.", url)
@@ -175,12 +179,6 @@ class DownloadConfig:
     def _postprocessor_hook(self, info: PostprocessorHookInfo) -> None:
         url = self.download.video.url
         status = info.get("status")
-        logger.debug(
-            "Download %s postprocessing status update %s.",
-            url,
-            status.upper(),
-        )
-
         postprocessor: str | None = None
         if status in {"started", "processing"}:
             postprocessor = info.get("postprocessor")

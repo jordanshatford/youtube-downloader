@@ -27,7 +27,7 @@ class DownloadManager:
         self._pool = ThreadPool(num_threads)
         self._output_file_readable_name = output_file_readable_name
         logger.debug(
-            "Initializing download manager with output at %s and %d threads.",
+            "Initializing download manager with output at %s and %s threads.",
             self._output_dir,
             num_threads,
         )
