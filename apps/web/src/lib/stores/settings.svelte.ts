@@ -36,13 +36,13 @@ class SettingsStore {
 				if (parsed.quality && Object.values(DownloadQuality).includes(parsed.quality)) {
 					this.settings.quality = parsed.quality;
 				}
-				if (parsed.embed_metadata !== undefined) {
+				if (parsed.embed_metadata !== undefined && typeof parsed.embed_metadata === "boolean") {
 					this.settings.embed_metadata = parsed.embed_metadata;
 				}
-				if (parsed.embed_thumbnail !== undefined) {
+				if (parsed.embed_thumbnail !== undefined && typeof parsed.embed_thumbnail === "boolean") {
 					this.settings.embed_thumbnail = parsed.embed_thumbnail;
 				}
-				if (parsed.embed_subtitles !== undefined) {
+				if (parsed.embed_subtitles !== undefined && typeof parsed.embed_subtitles === "boolean") {
 					this.settings.embed_subtitles = parsed.embed_subtitles;
 				}
 				if (

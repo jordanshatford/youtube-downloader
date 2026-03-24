@@ -38,7 +38,6 @@ class DownloadConfig:
         )
         self._output_directory = output_directory
         self._status_hook = status_hook
-        self._overrides: YoutubeDLParams = {}
 
     def run(self) -> None:
         downloader = YoutubeDL(self._as_ytdlp_params)
@@ -74,6 +73,7 @@ class DownloadConfig:
 
     @property
     def _as_ytdlp_params(self) -> YoutubeDLParams:
+        modifications: YoutubeDLParams = {}
         postprocessors: list[dict[str, str | bool | int]] = []
         # Only append audio postprocessor if we are downloading audio format.
         if self._is_audio_download:
@@ -105,7 +105,7 @@ class DownloadConfig:
                     "already_have_thumbnail": False,
                 },
             )
-            self._overrides["writethumbnail"] = True
+            modifications["writethumbnail"] = True
         if self.download.options.embed_subtitles:
             postprocessors.append(
                 {
@@ -113,17 +113,17 @@ class DownloadConfig:
                     "already_have_subtitle": False,
                 },
             )
-            self._overrides["writesubtitles"] = True
-            self._overrides["subtitleslangs"] = [
+            modifications["writesubtitles"] = True
+            modifications["subtitleslangs"] = [
                 f"{self.download.options.preferred_subtitles_language}.*"
             ]
-            self._overrides["subtitlesformat"] = "best"
+            modifications["subtitlesformat"] = "best"
 
         filename = self.download.video.id
 
         params: YoutubeDLParams = {
             **DEFAULT_YOUTUBE_DL_PARAMS,
-            **self._overrides,
+            **modifications,
             "format": self._ytdlp_format,
             "progress_hooks": [self._progress_hook],
             "postprocessor_hooks": [self._postprocessor_hook],
