@@ -1,13 +1,13 @@
+import collections
 import threading
 import time
-from collections.abc import Callable
 
 
 class RepeatedTimer[**P]:
     def __init__(
         self,
         interval: int,
-        function: Callable[P, None],
+        function: collections.abc.Callable[P, None],
         *args: P.args,
         **kwargs: P.kwargs,
     ) -> None:

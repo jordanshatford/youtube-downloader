@@ -28,7 +28,7 @@ router = APIRouter(
 
 @router.get("")
 def get_downloads(session: DependsSession) -> list[Download]:
-    return session.download_manager.get_list()
+    return session.downloads.get_list()
 
 
 @router.post("", status_code=status.HTTP_201_CREATED)
@@ -36,7 +36,7 @@ def post_downloads(
     download: DownloadInput,
     session: DependsSession,
 ) -> Download:
-    return session.download_manager.add(download)
+    return session.downloads.add(download)
 
 
 @router.put("")
@@ -44,8 +44,8 @@ def put_downloads(
     download: DownloadInput,
     session: DependsSession,
 ) -> Download:
-    session.download_manager.remove(download.video.id)
-    return session.download_manager.add(download)
+    session.downloads.remove(download.video.id)
+    return session.downloads.add(download)
 
 
 @router.get("/options/available")
@@ -71,7 +71,7 @@ async def get_downloads_status(
             if await request.is_disconnected():
                 break
             try:
-                yield session.status_queue.get_nowait()
+                yield session.downloads_statuses.get_nowait()
             except queue.Empty:
                 await asyncio.sleep(1)
     except (asyncio.CancelledError, asyncio.exceptions.InvalidStateError):
@@ -100,7 +100,7 @@ def get_download_file(
     download: DependsDownload,
     session: DependsSession,
 ) -> FileResponse:
-    path = session.download_manager.get_file_path(download.video.id)
+    path = session.downloads.get_file_path(download.video.id)
     if path is None:
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND)
 
@@ -119,4 +119,4 @@ def delete_download(
     download: DependsDownload,
     session: DependsSession,
 ) -> None:
-    session.download_manager.remove(download.video.id)
+    session.downloads.remove(download.video.id)

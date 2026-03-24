@@ -50,7 +50,7 @@ def get_request_download(
     download_id: str,
     session: DependsSession,
 ) -> Download:
-    download = session.download_manager.get(download_id)
+    download = session.downloads.get(download_id)
     if download is None:
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND)
     return download

@@ -1,6 +1,5 @@
 import logging
 import pathlib
-import time
 from multiprocessing.pool import ThreadPool
 
 from .config import DownloadConfig
@@ -70,10 +69,3 @@ class DownloadManager:
             logger.debug("Download file does not exist for %s.", download_id)
             return None
         return config.path
-
-    def wait(self) -> None:
-        logger.debug("Waiting for all downloads to complete.")
-        self._pool.close()
-        self._pool.join()
-        self._downloads = {}
-        time.sleep(1)

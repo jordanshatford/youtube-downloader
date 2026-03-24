@@ -1,95 +1,120 @@
 import datetime
+import logging
 import pathlib
+import queue
 import shutil
 import uuid
-from queue import Queue
 
 from .core import Download
 from .core import DownloadManager
 from .core import YouTubeSearch
 from .timer import RepeatedTimer
 
-
-def now() -> datetime.datetime:
-    return datetime.datetime.now(tz=datetime.UTC)
+logger = logging.getLogger("api")
 
 
 class Session:
     def __init__(self, session_id: str, sessions_dir: pathlib.Path) -> None:
         self.id = session_id
-        self._output_dir = sessions_dir / session_id
-        self._last_use = now()
+        self._directory = sessions_dir / session_id
+        self._last_use = datetime.datetime.now(tz=datetime.UTC)
+        # Track current search for each session so that we can more easily get
+        # next page when requested.
         self.search: YouTubeSearch | None = None
-        self.download_manager = DownloadManager(
-            self._output_dir,
+        # Queue of status updates coming from the download manager
+        self.downloads_statuses: queue.Queue[Download] = queue.Queue()
+        # Each session has there own download manager that handles downloading
+        # all requested files to its own location.
+        self.downloads = DownloadManager(
+            self._directory,
             self._status_hook,
         )
-        self.status_queue: Queue[Download] = Queue()
 
+    # Update the use time of the session to now. To prevent it from being
+    # cleaned up as it is currently being used.
     def update_use_time(self) -> None:
-        self._last_use = now()
+        self._last_use = datetime.datetime.now(tz=datetime.UTC)
 
-    def session_older_than(self, seconds: int) -> bool:
-        return self._last_use < now() - datetime.timedelta(seconds=seconds)
+    # Check if a session is older than some delta. Used to determin if it
+    # should be cleaned up next cleanup cycle.
+    def is_older_than(self, delta: datetime.timedelta) -> bool:
+        return self._last_use < datetime.datetime.now(tz=datetime.UTC) - delta
 
+    # Cleanup all files related to the session.
     def cleanup(self) -> None:
+        logger.debug("Cleaning up session with id %s", self.id)
         try:
-            if self._output_dir.exists():
-                shutil.rmtree(self._output_dir)
+            if self._directory.exists():
+                shutil.rmtree(self._directory)
         except FileNotFoundError:
             pass
 
     def _status_hook(self, update: Download) -> None:
-        self.status_queue.put(update)
+        self.downloads_statuses.put(update)
 
 
 class SessionsManager:
     def __init__(
         self,
-        session_dir: pathlib.Path | None = None,
-        session_to_old_duration: int = 60 * 60 * 2,  # 2 hours
-        cleanup_interval: int = 60 * 60 * 3,  # 3 hours
+        *,
+        sessions_dir: pathlib.Path | None = None,
+        session_too_old_delta: datetime.timedelta | None = None,
     ) -> None:
-        self._session_dir = (
-            session_dir if session_dir is not None else pathlib.Path.cwd()
-        ) / "sessions"
-        self._session_too_old_duration = session_to_old_duration
+        self._sessions: dict[str, Session] = {}
+        # Location where all session related files will be downloaded. Default to the
+        # current working directory where the API is being run.
+        if sessions_dir is not None:
+            self._sessions_dir = sessions_dir / "sessions"
+        else:
+            self._sessions_dir = pathlib.Path.cwd() / "sessions"
+        # Time delta used to determine if a session has been inactive for too long,
+        # after which case it will be cleaned up next cleanup check.
+        if session_too_old_delta is not None:
+            self._session_too_old_delta = session_too_old_delta
+        else:
+            self._session_too_old_delta = datetime.timedelta(hours=2)
+        # Create a repeated task to attempt to cleanup any sessions that are too old.
+        # This checks at a rate 1.5 times the session too old delta.
         self._cleanup_timer = RepeatedTimer(
-            cleanup_interval,
+            round(self._session_too_old_delta.total_seconds() * 1.5),
             self.cleanup,
         )
-        self._sessions: dict[str, Session] = {}
 
+    # Check if the session manager contains a session with a given ID.
     def __contains__(self, session_id: str) -> bool:
         return session_id in self._sessions
 
+    # Create a new session with a generated UUID for the session ID.
     def create(self) -> str:
         session_id = str(uuid.uuid4())
-        self._sessions[session_id] = Session(session_id, self._session_dir)
+        self._sessions[session_id] = Session(session_id, self._sessions_dir)
         return session_id
 
+    # Get the session. If it exists also update its latest use time to ensure that
+    # it does not get cleaned up next time we do a cleanup check.
     def get(self, session_id: str) -> Session | None:
-        # Update use time of session
-        if session_id in self._sessions:
-            self._sessions[session_id].update_use_time()
-        return self._sessions.get(session_id, None)
+        session = self._sessions.get(session_id, None)
+        if session is not None:
+            session.update_use_time()
+        return session
 
+    # Remove a session from the manager, cleaning up anything it has created.
     def remove(self, session_id: str) -> None:
-        if session_id in self._sessions:
-            self._sessions[session_id].cleanup()
-            self._sessions.pop(session_id, None)
+        session = self._sessions.pop(session_id, None)
+        if session is not None:
+            session.cleanup()
 
+    # Attempt to cleanup all sessions. If it should be done with force, all
+    # sessions will be force removed, and the session directory will be removed.
     def cleanup(self, *, force: bool = False) -> None:
-        for session_id in self._sessions.copy():
-            session_not_used = self._sessions[session_id].session_older_than(
-                self._session_too_old_duration,
-            )
-            if session_not_used or force:
+        logger.debug("Attempting to cleanup all sessions (force=%s)", force)
+        for session_id, session in self._sessions.copy().items():
+            if session.is_older_than(self._session_too_old_delta) or force:
                 self.remove(session_id)
         if force:
             try:
-                if self._session_dir.exists():
-                    shutil.rmtree(self._session_dir)
+                if self._sessions_dir.exists():
+                    shutil.rmtree(self._sessions_dir)
             except FileNotFoundError:
                 pass
 

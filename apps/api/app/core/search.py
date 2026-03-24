@@ -17,7 +17,7 @@ logger = logging.getLogger("core")
 
 
 class YouTubeSearch:
-    def __init__(self, query: str, page_size: int = 20) -> None:
+    def __init__(self, query: str, *, page_size: int = 20) -> None:
         self._query = query
         self._page_size = page_size
         self._page = 1
