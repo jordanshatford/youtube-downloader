@@ -19,13 +19,11 @@ class DownloadManager:
         status_hook: DownloadStatusHook,
         *,
         num_threads: int | None = None,
-        output_file_readable_name: bool = False,
     ) -> None:
         self._output_dir = output_dir
         self._status_hook = status_hook
         self._downloads: dict[str, DownloadConfig] = {}
         self._pool = ThreadPool(num_threads)
-        self._output_file_readable_name = output_file_readable_name
         logger.debug(
             "Initializing download manager with output at %s and %s threads.",
             self._output_dir,
@@ -41,7 +39,6 @@ class DownloadManager:
                 download,
                 self._output_dir,
                 self._status_hook,
-                output_file_readable_name=self._output_file_readable_name,
             )
             logger.debug(
                 "Added download %s with options %s ",
@@ -65,7 +62,7 @@ class DownloadManager:
         config = self._downloads.get(download_id, None)
         return None if config is None else config.download
 
-    def get_all(self) -> list[Download]:
+    def get_list(self) -> list[Download]:
         return [config.download for config in self._downloads.values()]
 
     def get_file_path(self, download_id: str) -> pathlib.Path | None:

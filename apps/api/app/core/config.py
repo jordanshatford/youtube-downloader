@@ -28,8 +28,6 @@ class DownloadConfig:
         download: DownloadInput,
         output_directory: pathlib.Path,
         status_hook: DownloadStatusHook,
-        *,
-        output_file_readable_name: bool = False,
     ) -> None:
         self.download = Download(
             **download.model_dump(),
@@ -38,7 +36,6 @@ class DownloadConfig:
             ),
         )
         self._output_directory = output_directory
-        self._output_file_readable_name = output_file_readable_name
         self._status_hook = status_hook
         self._overrides: YoutubeDLParams = {}
 
@@ -105,8 +102,6 @@ class DownloadConfig:
             self._overrides["subtitlesformat"] = "best"
 
         filename = self.download.video.id
-        if self._output_file_readable_name:
-            filename = str(self.download.video)
 
         params: YoutubeDLParams = {
             **DEFAULT_YOUTUBE_DL_PARAMS,

@@ -30,7 +30,7 @@ router = APIRouter(
 
 @router.get("")
 def get_downloads(session: DependsSession) -> list[Download]:
-    return session.download_manager.get_all()
+    return session.download_manager.get_list()
 
 
 @router.post("", status_code=status.HTTP_201_CREATED)
