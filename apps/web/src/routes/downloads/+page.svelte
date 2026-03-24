@@ -4,18 +4,17 @@
 	import StatusBadge from '$lib/components/StatusBadge.svelte';
 	import config from '$lib/config';
 	import { downloads } from '$lib/stores/downloads.svelte';
-	import { userSettings } from '$lib/stores/settings.svelte';
 
 	import { Badge, Pagination, Table, Title } from '@yd/ui';
 
 	let page = $state(1);
 
-	let pageSize = $derived(userSettings.settings.downloadsPageSize);
+	const PAGE_SIZE = 10;
 	let totalDownloads = $derived(Object.keys(downloads.downloads).length);
-	let totalPages = $derived(Math.ceil(totalDownloads / pageSize));
-	let start = $derived((page - 1) * pageSize);
+	let totalPages = $derived(Math.ceil(totalDownloads / PAGE_SIZE));
+	let start = $derived((page - 1) * PAGE_SIZE);
 	let currentPageDownloads = $derived(
-		Object.values(downloads.downloads).slice(start, start + pageSize)
+		Object.values(downloads.downloads).slice(start, start + PAGE_SIZE)
 	);
 
 	const columns = [

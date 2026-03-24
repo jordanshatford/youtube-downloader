@@ -1,5 +1,5 @@
 import { SESSION_ID_KEY } from '$lib/api';
-import { settings, userSettings } from '$lib/stores/settings.svelte';
+import { settings } from '$lib/stores/settings.svelte';
 import { saveAs } from '$lib/utils/files';
 
 import type { Download, Video } from '@yd/client';
@@ -125,12 +125,6 @@ class DownloadsStore {
 			const oldValue = this.downloads[id];
 			const value: Download = { ...oldValue, ...updatedValue };
 			this.downloads[id] = value;
-			// Automatically download file if enabled by the user.
-			if (userSettings.settings.autoDownloadOnComplete) {
-				if (updatedValue.status?.state === 'DONE') {
-					this.getFile(value.video.id);
-				}
-			}
 		} else {
 			console.error('Attempted to update download that does not exist.');
 		}

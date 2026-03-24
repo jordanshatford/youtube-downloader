@@ -1,13 +1,12 @@
 <script lang="ts">
 	import config from '$lib/config';
-	import { settings, userSettings } from '$lib/stores/settings.svelte';
+	import { settings } from '$lib/stores/settings.svelte';
 
 	import { AudioFormat, DownloadQuality, LanguageCode, VideoFormat } from '@yd/client';
 	import {
 		Alert,
 		CodeBracketIcon,
 		DownloadIcon,
-		GearIcon,
 		Select,
 		Tabs,
 		toasts,
@@ -25,11 +24,6 @@
 			key: 'embed',
 			title: 'Embed Options',
 			icon: CodeBracketIcon
-		},
-		{
-			key: 'other',
-			title: 'Other',
-			icon: GearIcon
 		}
 	];
 
@@ -118,26 +112,6 @@
 							)}
 					/>
 				{/if}
-			</div>
-		{:else if activePage === 'other'}
-			<div class="mt-2">
-				<Select
-					id="downloadPageSize"
-					label="Downloads page size:"
-					helpText="Size of each page on the downloads tab."
-					bind:value={userSettings.settings.downloadsPageSize}
-					options={[...Array(11 + 5).keys()].slice(5).map((v) => ({ value: v, text: `${v}` }))}
-					onchange={() =>
-						toasts.success('Updated', 'Downloads page size setting updated successfully.')}
-				/>
-				<Toggle
-					id="autoDownload"
-					label="Automatically download when complete:"
-					helpText="Once a download is complete it will automatically be downloaded to your device."
-					bind:checked={userSettings.settings.autoDownloadOnComplete}
-					onchange={() =>
-						toasts.success('Updated', 'Automatic download settings updated successfully.')}
-				/>
 			</div>
 		{/if}
 	</div>
