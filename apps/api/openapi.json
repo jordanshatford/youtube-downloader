@@ -577,45 +577,68 @@
               ]
             },
             "type": "array",
-            "title": "Format"
+            "title": "Format",
+            "default": [
+              "aac",
+              "flac",
+              "m4a",
+              "mp3",
+              "opus",
+              "wav",
+              "avi",
+              "flv",
+              "mkv",
+              "mov",
+              "mp4",
+              "webm"
+            ]
           },
           "quality": {
             "items": {
               "$ref": "#/components/schemas/DownloadQuality"
             },
             "type": "array",
-            "title": "Quality"
+            "title": "Quality",
+            "default": [
+              "best",
+              "worst"
+            ]
           },
           "embed_metadata": {
             "items": {
               "type": "boolean"
             },
             "type": "array",
-            "title": "Embed Metadata"
+            "title": "Embed Metadata",
+            "default": [
+              true,
+              false
+            ]
           },
           "embed_thumbnail": {
             "items": {
               "type": "boolean"
             },
             "type": "array",
-            "title": "Embed Thumbnail"
+            "title": "Embed Thumbnail",
+            "default": [
+              true,
+              false
+            ]
           },
           "embed_subtitles": {
             "items": {
               "type": "boolean"
             },
             "type": "array",
-            "title": "Embed Subtitles"
+            "title": "Embed Subtitles",
+            "default": [
+              true,
+              false
+            ]
           }
         },
         "type": "object",
-        "required": [
-          "format",
-          "quality",
-          "embed_metadata",
-          "embed_thumbnail",
-          "embed_subtitles"
-        ],
         "title": "AvailableDownloadOptions"
       },
       "Channel": {

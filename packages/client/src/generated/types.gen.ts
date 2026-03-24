@@ -28,23 +28,23 @@ export type AvailableDownloadOptions = {
 	/**
 	 * Format
 	 */
-	format: Array<AudioFormat | VideoFormat>;
+	format?: Array<AudioFormat | VideoFormat>;
 	/**
 	 * Quality
 	 */
-	quality: Array<DownloadQuality>;
+	quality?: Array<DownloadQuality>;
 	/**
 	 * Embed Metadata
 	 */
-	embed_metadata: Array<boolean>;
+	embed_metadata?: Array<boolean>;
 	/**
 	 * Embed Thumbnail
 	 */
-	embed_thumbnail: Array<boolean>;
+	embed_thumbnail?: Array<boolean>;
 	/**
 	 * Embed Subtitles
 	 */
-	embed_subtitles: Array<boolean>;
+	embed_subtitles?: Array<boolean>;
 };
 
 /**

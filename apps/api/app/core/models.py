@@ -97,11 +97,11 @@ class DownloadQuality(enum.StrEnum):
 
 
 class AvailableDownloadOptions(BaseModel):
-    format: list[AudioFormat | VideoFormat]
-    quality: list[DownloadQuality]
-    embed_metadata: list[bool]
-    embed_thumbnail: list[bool]
-    embed_subtitles: list[bool]
+    format: list[AudioFormat | VideoFormat] = list(AudioFormat) + list(VideoFormat)
+    quality: list[DownloadQuality] = list(DownloadQuality)
+    embed_metadata: list[bool] = [True, False]
+    embed_thumbnail: list[bool] = [True, False]
+    embed_subtitles: list[bool] = [True, False]
 
 
 class DownloadOptions(BaseModel):

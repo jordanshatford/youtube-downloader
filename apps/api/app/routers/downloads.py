@@ -9,12 +9,9 @@ from fastapi import status
 from fastapi.responses import FileResponse
 from fastapi.sse import EventSourceResponse
 
-from app.core import AudioFormat
 from app.core import AvailableDownloadOptions
 from app.core import Download
 from app.core import DownloadInput
-from app.core import DownloadQuality
-from app.core import VideoFormat
 from app.dependencies import DependsDownload
 from app.dependencies import DependsSession
 from app.dependencies import depends_download_responses
@@ -52,13 +49,7 @@ def put_downloads(
 
 @router.get("/options")
 def get_downloads_options(_: DependsSession) -> AvailableDownloadOptions:
-    return AvailableDownloadOptions(
-        format=list(AudioFormat) + list(VideoFormat),
-        quality=list(DownloadQuality),
-        embed_metadata=[True, False],
-        embed_thumbnail=[True, False],
-        embed_subtitles=[True, False],
-    )
+    return AvailableDownloadOptions()
 
 
 @router.get("/status", response_class=EventSourceResponse)
