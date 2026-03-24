@@ -114,6 +114,9 @@ class DownloadConfig:
                 },
             )
             self._overrides["writesubtitles"] = True
+            self._overrides["subtitleslangs"] = [
+                f"{self.download.options.preferred_subtitles_language}.*"
+            ]
             self._overrides["subtitlesformat"] = "best"
 
         filename = self.download.video.id

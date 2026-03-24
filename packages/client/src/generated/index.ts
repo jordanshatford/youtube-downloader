@@ -81,6 +81,7 @@ export {
 	type GetSessionValidateResponse,
 	type GetSessionValidateResponses,
 	type HttpValidationError,
+	LanguageCode,
 	type PostDownloadsData,
 	type PostDownloadsError,
 	type PostDownloadsErrors,

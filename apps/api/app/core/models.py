@@ -96,12 +96,29 @@ class DownloadQuality(enum.StrEnum):
     WORST = "worst"
 
 
+class LanguageCode(enum.StrEnum):
+    AR = "ar"
+    DE = "de"
+    EN = "en"
+    ES = "es"
+    FR = "fr"
+    HI = "hi"
+    IT = "it"
+    JA = "ja"
+    KO = "ko"
+    PT = "pt"
+    RU = "ru"
+    TR = "tr"
+    ZH = "zh"
+
+
 class AvailableDownloadOptions(BaseModel):
     format: list[AudioFormat | VideoFormat] = list(AudioFormat) + list(VideoFormat)
     quality: list[DownloadQuality] = list(DownloadQuality)
     embed_metadata: list[bool] = [True, False]
     embed_thumbnail: list[bool] = [True, False]
     embed_subtitles: list[bool] = [True, False]
+    preferred_subtitles_language: list[LanguageCode] = list(LanguageCode)
 
 
 class DownloadOptions(BaseModel):
@@ -110,6 +127,7 @@ class DownloadOptions(BaseModel):
     embed_metadata: bool = True
     embed_thumbnail: bool = False
     embed_subtitles: bool = False
+    preferred_subtitles_language: LanguageCode = LanguageCode.EN
 
 
 class DownloadInput(BaseModel):

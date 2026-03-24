@@ -665,6 +665,28 @@
               true,
               false
             ]
+          },
+          "preferred_subtitles_language": {
+            "items": {
+              "$ref": "#/components/schemas/LanguageCode"
+            },
+            "type": "array",
+            "title": "Preferred Subtitles Language",
+            "default": [
+              "ar",
+              "de",
+              "en",
+              "es",
+              "fr",
+              "hi",
+              "it",
+              "ja",
+              "ko",
+              "pt",
+              "ru",
+              "tr",
+              "zh"
+            ]
           }
         },
         "type": "object",
@@ -766,6 +788,10 @@
             "type": "boolean",
             "title": "Embed Subtitles",
             "default": false
+          },
+          "preferred_subtitles_language": {
+            "$ref": "#/components/schemas/LanguageCode",
+            "default": "en"
           }
         },
         "type": "object",
@@ -893,6 +919,25 @@
         },
         "type": "object",
         "title": "HTTPValidationError"
+      },
+      "LanguageCode": {
+        "type": "string",
+        "enum": [
+          "ar",
+          "de",
+          "en",
+          "es",
+          "fr",
+          "hi",
+          "it",
+          "ja",
+          "ko",
+          "pt",
+          "ru",
+          "tr",
+          "zh"
+        ],
+        "title": "LanguageCode"
       },
       "Session": {
         "properties": {

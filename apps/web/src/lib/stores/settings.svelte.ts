@@ -1,7 +1,13 @@
 import { browser } from '$app/environment';
 
 import type { DownloadOptions } from '@yd/client';
-import { AudioFormat, DownloadQuality, getDownloadsOptionsDefaults, VideoFormat } from '@yd/client';
+import {
+	AudioFormat,
+	DownloadQuality,
+	getDownloadsOptionsDefaults,
+	LanguageCode,
+	VideoFormat
+} from '@yd/client';
 
 const SETTINGS_KEY = 'yd-settings';
 
@@ -38,6 +44,12 @@ class SettingsStore {
 				}
 				if (parsed.embed_subtitles !== undefined) {
 					this.settings.embed_subtitles = parsed.embed_subtitles;
+				}
+				if (
+					parsed.preferred_subtitles_language &&
+					Object.values(LanguageCode).includes(parsed.preferred_subtitles_language)
+				) {
+					this.settings.preferred_subtitles_language = parsed.preferred_subtitles_language;
 				}
 			}
 			// Watch changes and sync in local storage.

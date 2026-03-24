@@ -2,7 +2,7 @@
 	import config from '$lib/config';
 	import { settings, userSettings } from '$lib/stores/settings.svelte';
 
-	import { AudioFormat, DownloadQuality, VideoFormat } from '@yd/client';
+	import { AudioFormat, DownloadQuality, LanguageCode, VideoFormat } from '@yd/client';
 	import {
 		Alert,
 		CodeBracketIcon,
@@ -104,6 +104,20 @@
 					onchange={() =>
 						toasts.success('Updated', 'Subtitle embedding settings updated successfully.')}
 				/>
+				{#if settings.settings.embed_subtitles}
+					<Select
+						id="subtitleslanguage"
+						label="Preferred Subtitles Language:"
+						helpText="The preferred subtitle language for the download."
+						bind:value={settings.settings.preferred_subtitles_language}
+						options={toSelectOptions(LanguageCode)}
+						onchange={() =>
+							toasts.success(
+								'Updated',
+								'Preferred subtitles language setting updated successfully.'
+							)}
+					/>
+				{/if}
 			</div>
 		{:else if activePage === 'other'}
 			<div class="mt-2">

@@ -45,6 +45,10 @@ export type AvailableDownloadOptions = {
 	 * Embed Subtitles
 	 */
 	embed_subtitles?: Array<boolean>;
+	/**
+	 * Preferred Subtitles Language
+	 */
+	preferred_subtitles_language?: Array<LanguageCode>;
 };
 
 /**
@@ -99,6 +103,7 @@ export type DownloadOptions = {
 	 * Embed Subtitles
 	 */
 	embed_subtitles?: boolean;
+	preferred_subtitles_language?: LanguageCode;
 };
 
 /**
@@ -171,6 +176,30 @@ export type HttpValidationError = {
 	 */
 	detail?: Array<ValidationError>;
 };
+
+/**
+ * LanguageCode
+ */
+export const LanguageCode = {
+	AR: 'ar',
+	DE: 'de',
+	EN: 'en',
+	ES: 'es',
+	FR: 'fr',
+	HI: 'hi',
+	IT: 'it',
+	JA: 'ja',
+	KO: 'ko',
+	PT: 'pt',
+	RU: 'ru',
+	TR: 'tr',
+	ZH: 'zh'
+} as const;
+
+/**
+ * LanguageCode
+ */
+export type LanguageCode = (typeof LanguageCode)[keyof typeof LanguageCode];
 
 /**
  * Session
