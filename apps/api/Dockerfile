@@ -10,7 +10,7 @@ RUN apt-get install -y nodejs
 WORKDIR /workspace
 
 # Install uv
-COPY --from=ghcr.io/astral-sh/uv:0.10 /uv /uvx /bin/
+COPY --from=ghcr.io/astral-sh/uv:0.11 /uv /uvx /bin/
 
 # Install dependencies
 COPY pyproject.toml uv.lock /workspace/
