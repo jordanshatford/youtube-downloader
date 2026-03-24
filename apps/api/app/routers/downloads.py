@@ -12,6 +12,7 @@ from fastapi.sse import EventSourceResponse
 from app.core import AvailableDownloadOptions
 from app.core import Download
 from app.core import DownloadInput
+from app.core import DownloadOptions
 from app.dependencies import DependsDownload
 from app.dependencies import DependsSession
 from app.dependencies import depends_download_responses
@@ -47,9 +48,14 @@ def put_downloads(
     return session.download_manager.add(download)
 
 
-@router.get("/options")
-def get_downloads_options(_: DependsSession) -> AvailableDownloadOptions:
+@router.get("/options/available")
+def get_downloads_options_available(_: DependsSession) -> AvailableDownloadOptions:
     return AvailableDownloadOptions()
+
+
+@router.get("/options/defaults")
+def get_downloads_options_defaults(_: DependsSession) -> DownloadOptions:
+    return DownloadOptions()
 
 
 @router.get("/status", response_class=EventSourceResponse)

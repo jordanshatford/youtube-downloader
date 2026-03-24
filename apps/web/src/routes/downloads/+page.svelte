@@ -81,7 +81,7 @@
 										</a>
 										<!-- eslint-enable svelte/no-navigation-without-resolve -->
 									{:else if column.key === 'format'}
-										<Badge>{row.options.format.toUpperCase()}</Badge>
+										<Badge>{row.options.format?.toUpperCase()}</Badge>
 									{:else if column.key === 'state'}
 										<StatusBadge status={row.status} />
 									{:else if column.key === 'actions'}

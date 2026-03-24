@@ -85,20 +85,20 @@ export type DownloadOptions = {
 	/**
 	 * Format
 	 */
-	format: AudioFormat | VideoFormat;
-	quality: DownloadQuality;
+	format?: AudioFormat | VideoFormat;
+	quality?: DownloadQuality;
 	/**
 	 * Embed Metadata
 	 */
-	embed_metadata: boolean;
+	embed_metadata?: boolean;
 	/**
 	 * Embed Thumbnail
 	 */
-	embed_thumbnail: boolean;
+	embed_thumbnail?: boolean;
 	/**
 	 * Embed Subtitles
 	 */
-	embed_subtitles: boolean;
+	embed_subtitles?: boolean;
 };
 
 /**
@@ -509,29 +509,53 @@ export type PutDownloadsResponses = {
 
 export type PutDownloadsResponse = PutDownloadsResponses[keyof PutDownloadsResponses];
 
-export type GetDownloadsOptionsData = {
+export type GetDownloadsOptionsAvailableData = {
 	body?: never;
 	path?: never;
 	query?: never;
-	url: '/downloads/options';
+	url: '/downloads/options/available';
 };
 
-export type GetDownloadsOptionsErrors = {
+export type GetDownloadsOptionsAvailableErrors = {
 	/**
 	 * Forbidden
 	 */
 	403: unknown;
 };
 
-export type GetDownloadsOptionsResponses = {
+export type GetDownloadsOptionsAvailableResponses = {
 	/**
 	 * Successful Response
 	 */
 	200: AvailableDownloadOptions;
 };
 
-export type GetDownloadsOptionsResponse =
-	GetDownloadsOptionsResponses[keyof GetDownloadsOptionsResponses];
+export type GetDownloadsOptionsAvailableResponse =
+	GetDownloadsOptionsAvailableResponses[keyof GetDownloadsOptionsAvailableResponses];
+
+export type GetDownloadsOptionsDefaultsData = {
+	body?: never;
+	path?: never;
+	query?: never;
+	url: '/downloads/options/defaults';
+};
+
+export type GetDownloadsOptionsDefaultsErrors = {
+	/**
+	 * Forbidden
+	 */
+	403: unknown;
+};
+
+export type GetDownloadsOptionsDefaultsResponses = {
+	/**
+	 * Successful Response
+	 */
+	200: DownloadOptions;
+};
+
+export type GetDownloadsOptionsDefaultsResponse =
+	GetDownloadsOptionsDefaultsResponses[keyof GetDownloadsOptionsDefaultsResponses];
 
 export type GetDownloadsStatusData = {
 	body?: never;

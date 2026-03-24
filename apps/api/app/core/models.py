@@ -105,11 +105,11 @@ class AvailableDownloadOptions(BaseModel):
 
 
 class DownloadOptions(BaseModel):
-    format: AudioFormat | VideoFormat
-    quality: DownloadQuality
-    embed_metadata: bool
-    embed_thumbnail: bool
-    embed_subtitles: bool
+    format: AudioFormat | VideoFormat = VideoFormat.MP4
+    quality: DownloadQuality = DownloadQuality.BEST
+    embed_metadata: bool = True
+    embed_thumbnail: bool = False
+    embed_subtitles: bool = False
 
 
 class DownloadInput(BaseModel):

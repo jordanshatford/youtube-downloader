@@ -16,9 +16,12 @@ import type {
 	GetDownloadResponses,
 	GetDownloadsData,
 	GetDownloadsErrors,
-	GetDownloadsOptionsData,
-	GetDownloadsOptionsErrors,
-	GetDownloadsOptionsResponses,
+	GetDownloadsOptionsAvailableData,
+	GetDownloadsOptionsAvailableErrors,
+	GetDownloadsOptionsAvailableResponses,
+	GetDownloadsOptionsDefaultsData,
+	GetDownloadsOptionsDefaultsErrors,
+	GetDownloadsOptionsDefaultsResponses,
 	GetDownloadsResponses,
 	GetDownloadsStatusData,
 	GetDownloadsStatusErrors,
@@ -168,18 +171,34 @@ export const putDownloads = <ThrowOnError extends boolean = false>(
 	});
 
 /**
- * Get Downloads Options
+ * Get Downloads Options Available
  */
-export const getDownloadsOptions = <ThrowOnError extends boolean = false>(
-	options?: Options<GetDownloadsOptionsData, ThrowOnError>
+export const getDownloadsOptionsAvailable = <ThrowOnError extends boolean = false>(
+	options?: Options<GetDownloadsOptionsAvailableData, ThrowOnError>
 ) =>
 	(options?.client ?? client).get<
-		GetDownloadsOptionsResponses,
-		GetDownloadsOptionsErrors,
+		GetDownloadsOptionsAvailableResponses,
+		GetDownloadsOptionsAvailableErrors,
 		ThrowOnError
 	>({
 		security: [{ scheme: 'bearer', type: 'http' }],
-		url: '/downloads/options',
+		url: '/downloads/options/available',
+		...options
+	});
+
+/**
+ * Get Downloads Options Defaults
+ */
+export const getDownloadsOptionsDefaults = <ThrowOnError extends boolean = false>(
+	options?: Options<GetDownloadsOptionsDefaultsData, ThrowOnError>
+) =>
+	(options?.client ?? client).get<
+		GetDownloadsOptionsDefaultsResponses,
+		GetDownloadsOptionsDefaultsErrors,
+		ThrowOnError
+	>({
+		security: [{ scheme: 'bearer', type: 'http' }],
+		url: '/downloads/options/defaults',
 		...options
 	});
 

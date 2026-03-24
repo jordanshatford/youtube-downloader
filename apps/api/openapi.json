@@ -304,13 +304,13 @@
         ]
       }
     },
-    "/downloads/options": {
+    "/downloads/options/available": {
       "get": {
         "tags": [
           "downloads"
         ],
-        "summary": "Get Downloads Options",
-        "operationId": "get_downloads_options",
+        "summary": "Get Downloads Options Available",
+        "operationId": "get_downloads_options_available",
         "responses": {
           "200": {
             "description": "Successful Response",
@@ -318,6 +318,35 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/AvailableDownloadOptions"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ]
+      }
+    },
+    "/downloads/options/defaults": {
+      "get": {
+        "tags": [
+          "downloads"
+        ],
+        "summary": "Get Downloads Options Defaults",
+        "operationId": "get_downloads_options_defaults",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DownloadOptions"
                 }
               }
             }
@@ -716,32 +745,30 @@
                 "$ref": "#/components/schemas/VideoFormat"
               }
             ],
-            "title": "Format"
+            "title": "Format",
+            "default": "mp4"
           },
           "quality": {
-            "$ref": "#/components/schemas/DownloadQuality"
+            "$ref": "#/components/schemas/DownloadQuality",
+            "default": "best"
           },
           "embed_metadata": {
             "type": "boolean",
-            "title": "Embed Metadata"
+            "title": "Embed Metadata",
+            "default": true
           },
           "embed_thumbnail": {
             "type": "boolean",
-            "title": "Embed Thumbnail"
+            "title": "Embed Thumbnail",
+            "default": false
           },
           "embed_subtitles": {
             "type": "boolean",
-            "title": "Embed Subtitles"
+            "title": "Embed Subtitles",
+            "default": false
           }
         },
         "type": "object",
-        "required": [
-          "format",
-          "quality",
-          "embed_metadata",
-          "embed_thumbnail",
-          "embed_subtitles"
-        ],
         "title": "DownloadOptions"
       },
       "DownloadQuality": {
