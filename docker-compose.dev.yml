@@ -22,4 +22,3 @@ services:
       - /workspace/packages/client/node_modules
       - /workspace/packages/config/node_modules
       - /workspace/packages/ui/node_modules
-
