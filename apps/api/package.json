@@ -14,6 +14,7 @@
 	"scripts": {
 		"dev": "uv run fastapi dev",
 		"prod": "uv run fastapi run",
+		"check": "uv run mypy --ignore-missing-imports . && uv run ty check .",
 		"lint": "uv run ruff check . && uv run ruff format --check . ",
 		"format": "uv run ruff check --fix . && uv run ruff format .",
 		"generate:openapi": "uv run python generate_openapi.py",

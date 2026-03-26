@@ -5,6 +5,7 @@
     "ms-python.python",
 		"FastAPILabs.fastapi-vscode",
 		"charliermarsh.ruff",
+		"astral-sh.ty",
     "svelte.svelte-vscode",
     "dbaeumer.vscode-eslint",
     "esbenp.prettier-vscode",

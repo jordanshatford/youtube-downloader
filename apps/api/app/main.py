@@ -87,7 +87,7 @@ if additional_origin is not None:
     allow_origins.append(additional_origin)
 
 app.add_middleware(
-    CORSMiddleware,  # type: ignore[arg-type]
+    CORSMiddleware,
     allow_origins=allow_origins,
     allow_credentials=True,
     allow_methods=["POST", "PUT", "GET", "DELETE"],

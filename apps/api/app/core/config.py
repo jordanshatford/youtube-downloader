@@ -161,7 +161,7 @@ class DownloadConfig:
         status = info.get("status")
         if status == "downloading":
             logger.debug("Download %s status DOWNLOADING.", url)
-            status = DownloadStatus(
+            update = DownloadStatus(
                 state=DownloadState.DOWNLOADING,
                 downloaded_bytes=info.get("downloaded_bytes"),
                 total_bytes=info.get(
@@ -175,9 +175,9 @@ class DownloadConfig:
             logger.debug(
                 "Download %s progress %s.",
                 url,
-                status.progress,
+                update.progress,
             )
-            self._handle_status_update(status)
+            self._handle_status_update(update)
         elif status == "error":
             logger.error("Download %s status ERROR.", url)
             self._handle_status_update(

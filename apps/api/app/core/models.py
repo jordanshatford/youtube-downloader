@@ -1,5 +1,6 @@
 import enum
 import logging
+from collections.abc import Sequence
 
 from pydantic import BaseModel
 from pydantic import HttpUrl
@@ -113,12 +114,12 @@ class LanguageCode(enum.StrEnum):
 
 
 class AvailableDownloadOptions(BaseModel):
-    format: list[AudioFormat | VideoFormat] = list(AudioFormat) + list(VideoFormat)
-    quality: list[DownloadQuality] = list(DownloadQuality)
-    embed_metadata: list[bool] = [True, False]
-    embed_thumbnail: list[bool] = [True, False]
-    embed_subtitles: list[bool] = [True, False]
-    preferred_subtitles_language: list[LanguageCode] = list(LanguageCode)
+    format: Sequence[AudioFormat | VideoFormat] = list(AudioFormat) + list(VideoFormat)
+    quality: Sequence[DownloadQuality] = list(DownloadQuality)
+    embed_metadata: Sequence[bool] = [True, False]
+    embed_thumbnail: Sequence[bool] = [True, False]
+    embed_subtitles: Sequence[bool] = [True, False]
+    preferred_subtitles_language: Sequence[LanguageCode] = list(LanguageCode)
 
 
 class DownloadOptions(BaseModel):
