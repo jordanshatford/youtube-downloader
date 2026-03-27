@@ -1,0 +1,31 @@
+# Build files
+**/.mypy_cache
+**/__pycache__
+**/node_modules
+**/dist
+**/build
+**/.venv
+**/.svelte-kit
+
+**/.DS_Store
+**/node_modules
+**/dist
+**/build
+**/.svelte-kit
+**/package
+**/.mypy_cache
+
+# Package Managers
+package-lock.json
+pnpm-lock.yaml
+yarn.lock
+bun.lock
+bun.lockb
+
+# Env files
+.env
+.env.*
+!.env.example
+
+# Ignore API files formatted using Ruff
+apps/api

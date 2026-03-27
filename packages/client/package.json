@@ -9,8 +9,7 @@
 		"build": "pnpm generate && tsc --project tsconfig.json",
 		"check": "tsc --project tsconfig.json --noEmit",
 		"generate": "openapi-ts",
-		"lint": "prettier --check . && eslint .",
-		"format": "prettier --write ."
+		"lint": "eslint ."
 	},
 	"devDependencies": {
 		"@hey-api/openapi-ts": "^0.94.5",
