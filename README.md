@@ -36,5 +36,4 @@ Please refer to the [contributing guide](CONTRIBUTING.md) for how to install the
 ### Packages:
 
 - `client`: An API client generated using [TypeScript](https://www.typescriptlang.org/) with [openapi-ts](https://github.com/hey-api/openapi-ts).
-- `config`: Common configurations shared between the apps and packages in this monorepo.
 - `ui`: A UI library developed using [Svelte](https://svelte.dev/).

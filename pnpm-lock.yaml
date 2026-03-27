@@ -119,9 +119,6 @@ importers:
       '@tailwindcss/vite':
         specifier: 'catalog:'
         version: 4.2.2(vite@8.0.3(@types/node@12.20.55)(jiti@2.6.1))
-      '@yd/config':
-        specifier: workspace:*
-        version: link:../../packages/config
       svelte:
         specifier: 'catalog:'
         version: 5.55.0
@@ -149,14 +146,9 @@ importers:
       '@yd/api':
         specifier: workspace:*
         version: link:../../apps/api
-      '@yd/config':
-        specifier: workspace:*
-        version: link:../config
       typescript:
         specifier: 'catalog:'
         version: 6.0.2
-
-  packages/config: {}
 
   packages/ui:
     dependencies:
@@ -188,9 +180,6 @@ importers:
       '@tailwindcss/vite':
         specifier: 'catalog:'
         version: 4.2.2(vite@8.0.3(@types/node@12.20.55)(jiti@2.6.1))
-      '@yd/config':
-        specifier: workspace:*
-        version: link:../config
       svelte:
         specifier: 'catalog:'
         version: 5.55.0

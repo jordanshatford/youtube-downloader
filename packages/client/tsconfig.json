@@ -1,11 +1,31 @@
 {
 	"$schema": "https://json.schemastore.org/tsconfig",
-	"extends": "@yd/config/tsconfig",
 	"compilerOptions": {
-		"lib": ["ESNext", "DOM", "DOM.Iterable"],
 		"target": "es2020",
-		"moduleResolution": "Node",
-		"outDir": "dist"
+		"lib": ["ESNext", "DOM", "DOM.Iterable"],
+		"module": "esnext",
+		"esModuleInterop": true,
+		"forceConsistentCasingInFileNames": true,
+		"strict": true,
+		"noImplicitAny": true,
+		"strictNullChecks": true,
+		"strictFunctionTypes": true,
+		"strictBindCallApply": true,
+		"strictPropertyInitialization": true,
+		"strictBuiltinIteratorReturn": true,
+		"noImplicitThis": true,
+		"useUnknownInCatchVariables": true,
+		"alwaysStrict": true,
+		"noUnusedLocals": true,
+		"noUnusedParameters": true,
+		"noImplicitReturns": true,
+		"noFallthroughCasesInSwitch": true,
+		"noUncheckedIndexedAccess": true,
+		"noImplicitOverride": true,
+		"noPropertyAccessFromIndexSignature": true,
+		"outDir": "dist",
+		"rootDir": "./",
+		"skipLibCheck": true
 	},
 	"include": ["src/**/*"]
 }
