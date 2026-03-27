@@ -1,6 +1,6 @@
 name: Bug report
 description: Report an issue with the project.
-labels: ["bug"]
+labels: ['bug']
 assignees:
   - jordanshatford
 body:

@@ -3,72 +3,72 @@
 
 version: 2
 updates:
-  - package-ecosystem: "github-actions"
+  - package-ecosystem: 'github-actions'
     directories:
-      - "/.github/actions/setup-environment"
-      - "/"
+      - '/.github/actions/setup-environment'
+      - '/'
     schedule:
-      interval: "weekly"
+      interval: 'weekly'
     assignees:
-      - "jordanshatford"
+      - 'jordanshatford'
     groups:
       github-actions:
         patterns:
-          - "*"
+          - '*'
 
-  - package-ecosystem: "uv"
-    directory: "/apps/api"
+  - package-ecosystem: 'uv'
+    directory: '/apps/api'
     schedule:
-      interval: "weekly"
+      interval: 'weekly'
     assignees:
-      - "jordanshatford"
+      - 'jordanshatford'
     groups:
       python:
         patterns:
-          - "*"
+          - '*'
 
-  - package-ecosystem: "pre-commit"
-    directory: "/apps/api"
+  - package-ecosystem: 'pre-commit'
+    directory: '/apps/api'
     schedule:
-      interval: "weekly"
+      interval: 'weekly'
     assignees:
-      - "jordanshatford"
+      - 'jordanshatford'
     groups:
       pre-commit:
         patterns:
-          - "*"
+          - '*'
 
-  - package-ecosystem: "npm"
-    directory: "/"
+  - package-ecosystem: 'npm'
+    directory: '/'
     schedule:
-      interval: "weekly"
+      interval: 'weekly'
     assignees:
-      - "jordanshatford"
+      - 'jordanshatford'
     groups:
       npm:
         patterns:
-          - "*"
+          - '*'
 
-  - package-ecosystem: "docker"
+  - package-ecosystem: 'docker'
     directories:
-      - "/apps/api"
-      - "/"
+      - '/apps/api'
+      - '/'
     schedule:
-      interval: "weekly"
+      interval: 'weekly'
     assignees:
-      - "jordanshatford"
+      - 'jordanshatford'
     groups:
       docker:
         patterns:
-          - "*"
+          - '*'
 
-  - package-ecosystem: "docker-compose"
-    directory: "/"
+  - package-ecosystem: 'docker-compose'
+    directory: '/'
     schedule:
-      interval: "weekly"
+      interval: 'weekly'
     assignees:
-      - "jordanshatford"
+      - 'jordanshatford'
     groups:
       docker:
         patterns:
-          - "*"
+          - '*'
