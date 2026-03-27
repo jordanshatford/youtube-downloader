@@ -8,8 +8,7 @@
 	"scripts": {
 		"build": "pnpm generate && tsc --project tsconfig.json",
 		"check": "tsc --project tsconfig.json --noEmit",
-		"generate": "openapi-ts",
-		"lint": "eslint ."
+		"generate": "openapi-ts"
 	},
 	"devDependencies": {
 		"@hey-api/openapi-ts": "^0.94.5",

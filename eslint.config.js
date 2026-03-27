@@ -6,6 +6,9 @@ import globals from 'globals';
 import ts from 'typescript-eslint';
 
 export default defineConfig([
+	{
+		ignores: ['**/dist', '**/build', '**/.svelte-kit', 'apps/api', 'packages/client/src/generated']
+	},
 	js.configs.recommended,
 	...ts.configs.recommended,
 	...svelte.configs.recommended,
@@ -28,8 +31,5 @@ export default defineConfig([
 				parser: ts.parser
 			}
 		}
-	},
-	{
-		ignores: ['build/', '.svelte-kit/', 'dist/']
 	}
 ]);

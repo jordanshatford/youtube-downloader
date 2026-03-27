@@ -7,35 +7,43 @@
 	"scripts": {
 		"prepare": "husky",
 		"generate": "pnpm --filter @yd/api generate:openapi && pnpm --filter @yd/client generate",
-		"dev:web": "pnpm --stream --filter @yd/api --filter @yd/web dev",
-		"api": "pnpm --filter @yd/api -- ",
 		"web": "pnpm --filter @yd/web -- ",
+		"api": "pnpm --filter @yd/api -- ",
 		"client": "pnpm --filter @yd/client -- ",
 		"ui": "pnpm --filter @yd/ui -- ",
+		"dev:web": "pnpm --stream --filter @yd/api --filter @yd/web dev",
 		"build": "pnpm --recursive build",
-		"lint": "prettier --experimental-cli --check . && pnpm --recursive lint",
 		"format": "prettier --experimental-cli --write . && pnpm --filter @yd/api format",
 		"check": "pnpm --recursive check",
+		"lint": "prettier --experimental-cli --check . && eslint . && pnpm --filter @yd/api lint",
+		"lint:fix": "eslint --fix .",
 		"deps:update": "corepack use pnpm@latest && pnpm up --latest && pnpm --recursive up --latest && pnpm --filter @yd/api deps:update",
-		"commitlint": "commitlint --edit",
-		"changeset": "changeset"
+		"changeset": "changeset",
+		"commitlint": "commitlint --edit"
 	},
 	"devDependencies": {
 		"@changesets/cli": "^2.30.0",
 		"@commitlint/cli": "^20.5.0",
 		"@commitlint/config-conventional": "^20.5.0",
 		"@commitlint/types": "^20.5.0",
+		"@eslint/js": "^10.0.1",
 		"@ianvs/prettier-plugin-sort-imports": "^4.7.1",
 		"@prettier/plugin-oxc": "^0.1.3",
 		"@svitejs/changesets-changelog-github-compact": "^1.2.0",
+		"eslint": "^10.1.0",
+		"eslint-config-prettier": "^10.1.8",
+		"eslint-plugin-svelte": "^3.16.0",
+		"globals": "^17.4.0",
 		"husky": "^9.1.7",
 		"prettier": "^3.8.1",
 		"prettier-plugin-svelte": "^3.5.1",
-		"prettier-plugin-tailwindcss": "^0.7.2"
+		"prettier-plugin-tailwindcss": "^0.7.2",
+		"svelte-eslint-parser": "^1.6.0",
+		"typescript-eslint": "^8.57.2"
 	},
 	"packageManager": "pnpm@10.33.0+sha512.10568bb4a6afb58c9eb3630da90cc9516417abebd3fabbe6739f0ae795728da1491e9db5a544c76ad8eb7570f5c4bb3d6c637b2cb41bfdcdb47fa823c8649319",
 	"engines": {
-		"pnpm": ">=10",
-		"node": ">=22"
+		"node": ">=22",
+		"pnpm": ">=10"
 	}
 }
