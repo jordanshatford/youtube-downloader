@@ -6,7 +6,7 @@
 	"type": "module",
 	"scripts": {
 		"prepare": "husky",
-		"generate": "pnpm --filter @yd/api generate:openapi && pnpm --filter @yd/client generate",
+		"generate": "pnpm --recursive --sequential generate",
 		"web": "pnpm --filter @yd/web -- ",
 		"api": "pnpm --filter @yd/api -- ",
 		"client": "pnpm --filter @yd/client -- ",

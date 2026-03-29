@@ -12,12 +12,12 @@
 		".": "./openapi.json"
 	},
 	"scripts": {
+		"generate": "uv run python generate.py",
 		"dev": "uv run fastapi dev",
 		"prod": "uv run fastapi run",
 		"format": "uv run ruff check --fix . && uv run ruff format .",
 		"check": "uv run mypy --ignore-missing-imports . && uv run ty check .",
 		"lint": "uv run ruff check . && uv run ruff format --check . ",
-		"generate:openapi": "uv run python generate_openapi.py",
 		"deps:update": "uv sync --upgrade && uv run pre-commit autoupdate"
 	}
 }

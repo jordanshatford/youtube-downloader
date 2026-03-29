@@ -6,9 +6,9 @@
 	"type": "module",
 	"main": "./src/index.ts",
 	"scripts": {
+		"generate": "openapi-ts",
 		"build": "pnpm generate && tsc --project tsconfig.json",
-		"check": "tsc --project tsconfig.json --noEmit",
-		"generate": "openapi-ts"
+		"check": "tsc --project tsconfig.json --noEmit"
 	},
 	"devDependencies": {
 		"@hey-api/openapi-ts": "^0.94.5",
