@@ -43,16 +43,16 @@ class DownloadConfig:
         )
 
     def run(self) -> None:
-        downloader = YoutubeDL(self._as_ytdlp_params)
-        self._handle_status_update(
-            DownloadStatus(state=DownloadState.DOWNLOADING),
-        )
         try:
-            logger.debug("Download started: %s.", self.download.video.url)
-            downloader.download(
-                [str(self.download.video.url)],
-            )
-            logger.debug("Download completed: %s.", self.download.video.url)
+            with YoutubeDL(self._as_ytdlp_params) as downloader:
+                self._handle_status_update(
+                    DownloadStatus(state=DownloadState.DOWNLOADING),
+                )
+                logger.debug("Download started: %s.", self.download.video.url)
+                downloader.download(
+                    [str(self.download.video.url)],
+                )
+                logger.debug("Download completed: %s.", self.download.video.url)
         except Exception:
             logger.exception("Failed to download: %s.", self.download.video.url)
             self._handle_status_update(
