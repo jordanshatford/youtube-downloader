@@ -32,7 +32,7 @@ class SearchStore {
 			const { data: results } = await getNextSearch();
 			if (results) {
 				this.results = [...this.results, ...results];
-				toasts.success('Success', `Found ${results?.length} more search results.`);
+				toasts.success('Success', `Found ${results.length} more search results.`);
 			}
 		} catch (err) {
 			toasts.error('Error', 'Failed to get more search results.');
