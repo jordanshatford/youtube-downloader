@@ -1,9 +1,9 @@
 import logging
 import pathlib
+from collections.abc import Callable
 from multiprocessing.pool import ThreadPool
 
 from .config import DownloadConfig
-from .config import DownloadStatusHook
 from .models import Download
 from .models import DownloadInput
 
@@ -14,7 +14,7 @@ class DownloadManager:
     def __init__(
         self,
         output_dir: pathlib.Path,
-        status_hook: DownloadStatusHook,
+        status_hook: Callable[[Download], None],
         *,
         num_threads: int | None = None,
     ) -> None:

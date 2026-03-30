@@ -18,17 +18,13 @@ from .ytdlp import YoutubeDLParams
 logger = logging.getLogger("core")
 
 
-# Callable hook for any download status updates.
-type DownloadStatusHook = Callable[[Download], None]
-
-
 # Config used when downloading videos using yt-dlp.
 class DownloadConfig:
     def __init__(
         self,
         download: DownloadInput,
         output_directory: pathlib.Path,
-        status_hook: DownloadStatusHook,
+        status_hook: Callable[[Download], None],
     ) -> None:
         self.download = Download(
             **download.model_dump(),
@@ -122,8 +118,6 @@ class DownloadConfig:
             ]
             modifications["subtitlesformat"] = "best"
 
-        filename = self.download.video.id
-
         params: YoutubeDLParams = {
             **DEFAULT_YOUTUBE_DL_PARAMS,
             **modifications,
@@ -131,7 +125,7 @@ class DownloadConfig:
             "progress_hooks": [self._progress_hook],
             "postprocessor_hooks": [self._postprocessor_hook],
             "post_hooks": [self._post_hook],
-            "outtmpl": f"{self._output_directory}/{filename}.%(ext)s",
+            "outtmpl": f"{self._output_directory}/{self.path.stem}.%(ext)s",
             "postprocessors": postprocessors,
         }
 
