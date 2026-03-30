@@ -38,6 +38,9 @@ class DownloadConfig:
         )
         self._output_directory = output_directory
         self._status_hook = status_hook
+        self._handle_status_update(
+            DownloadStatus(state=DownloadState.WAITING),
+        )
 
     def run(self) -> None:
         downloader = YoutubeDL(self._as_ytdlp_params)
