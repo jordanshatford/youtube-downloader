@@ -1,7 +1,7 @@
 files: ^(apps/api/)
 repos:
   - repo: https://github.com/astral-sh/uv-pre-commit
-    rev: 0.11.2
+    rev: 0.11.3
     hooks:
       - id: uv-lock
   - repo: https://github.com/astral-sh/ruff-pre-commit
