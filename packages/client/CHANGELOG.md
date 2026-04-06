@@ -1,5 +1,11 @@
 # @yd/client
 
+## 2.0.0
+
+### Major Changes
+
+- feat: generate latest client with breaking api changes ([`59f03af`](https://github.com/jordanshatford/youtube-downloader/commit/59f03afd9d1a488cf13abfb81aa25aa171b6fee9))
+
 ## 1.5.0
 
 ### Minor Changes

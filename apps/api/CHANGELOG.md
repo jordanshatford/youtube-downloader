@@ -1,5 +1,21 @@
 # @yd/api
 
+## 2.0.0
+
+### Major Changes
+
+- feat: update path for next search result endpoint ([`59f03af`](https://github.com/jordanshatford/youtube-downloader/commit/59f03afd9d1a488cf13abfb81aa25aa171b6fee9))
+
+### Minor Changes
+
+- feat: exclude active live streams from search and downloads ([`e28cc38`](https://github.com/jordanshatford/youtube-downloader/commit/e28cc380d51db142c0cd741fec52f2a472ec0fde))
+
+- feat: add endpoints to get current search state ([`59f03af`](https://github.com/jordanshatford/youtube-downloader/commit/59f03afd9d1a488cf13abfb81aa25aa171b6fee9))
+
+### Patch Changes
+
+- fix: raise http exception in sse endpoints ([`cd29934`](https://github.com/jordanshatford/youtube-downloader/commit/cd299342ce21442bf78c6024642435c5ed884da9))
+
 ## 1.5.0
 
 ### Minor Changes
