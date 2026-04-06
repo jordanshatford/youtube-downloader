@@ -37,6 +37,11 @@ class VideoInfo(TypedDict, total=False):
     channel_url: str | None
     duration: int | None
     view_count: int | None
+    is_live: bool | None
+    was_live: bool | None
+    live_status: (
+        Literal["is_live", "is_upcoming", "was_live", "not_live", "post_live"] | None
+    )
     entries: Iterable["VideoInfo"]
 
 
@@ -219,6 +224,19 @@ class YoutubeDLParams(TypedDict, total=False):
         ]
         | None
     )
+    # A function that gets called for every video with the signature
+    # (info_dict, *, incomplete: bool) -> str | None. For backwards
+    # compatibility with youtube-dl, the signature (info_dict) -> str | None
+    # is also allowed. If it returns a message, the video is ignored.
+    # If it returns None, the video is downloaded. If it returns utils.NO_DEFAULT,
+    # the user is interactively asked whether to download the video. Raise
+    # utils.DownloadCancelled(msg) to abort remaining downloads when a video
+    # is rejected. match_filter_func in utils/_utils.py is one example for this.
+    match_filter: (
+        Callable[[VideoInfo, bool], str | None]
+        | Callable[[VideoInfo], str | None]
+        | None
+    )
     # Do not print the progress bar.
     noprogress: bool | None
     """
@@ -265,6 +283,19 @@ class YoutubeDLParams(TypedDict, total=False):
     post_hooks: Sequence[Callable[[str], None] | None]
 
 
+# Match function used to filter out any active livestreams. This is used as
+# the default match_filter for our yt-dlp interactions, since we don't want
+# any attempts to download livestreams.
+def no_active_livestreams(info: VideoInfo, incomplete: bool) -> str | None:  # noqa: ARG001, FBT001
+    if info.get("is_live") is True:
+        return "ignore"
+
+    if info.get("live_status") in ("is_live", "is_upcoming"):
+        return "ignore"
+
+    return None
+
+
 # Default parameters we use when interacting with the yt-dlp python api.
 DEFAULT_YOUTUBE_DL_PARAMS: YoutubeDLParams = {
     "extract_flat": True,
@@ -275,6 +306,7 @@ DEFAULT_YOUTUBE_DL_PARAMS: YoutubeDLParams = {
     "retries": 5,
     "verbose": False,
     "js_runtimes": {"node": {}},
+    "match_filter": no_active_livestreams,
 }
 
 
