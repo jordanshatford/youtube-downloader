@@ -1,47 +1,54 @@
 <script lang="ts">
-	import ResultCard from '$lib/components/ResultCard.svelte';
+	import AppResultItem from '$lib/components/app-result-item.svelte';
+	import AppSearchBar from '$lib/components/app-search-bar.svelte';
 	import config from '$lib/config';
 	import { search } from '$lib/stores/search.svelte';
 
-	import { Button, Icon, LoaderIcon, SearchBar, Title } from '@yd/ui';
-
-	async function searchVideos(query: string) {
-		await search.get(query);
-	}
+	import { Button, Empty, Item, SearchIcon, SpinnerIcon } from '@yd/ui';
 </script>
 
 <svelte:head>
 	<title>Search - {config.head.title}</title>
 </svelte:head>
 
-<div>
-	<Title>Search</Title>
-	<div class="mx-auto max-w-xl overflow-hidden md:max-w-xl">
-		<div class="md:flex">
-			<div class="mt-4 w-full">
-				<SearchBar onsearch={searchVideos} loading={search.loading} query={search.query} />
-			</div>
-		</div>
-	</div>
-	<div class="container mx-auto mt-8 px-4 pb-8 md:px-12">
-		<div class="-mx-1 flex flex-wrap lg:-mx-4">
+<AppSearchBar
+	query={search.query}
+	loading={search.loading}
+	onsearch={(query) => search.get(query)}
+	results={search.results.length}
+/>
+{#if search.results.length > 0}
+	<div class="mt-4">
+		<Item.Group>
 			{#each search.results as result, i (i)}
-				<ResultCard {result} />
+				<AppResultItem {result} />
 			{/each}
+		</Item.Group>
+		<div class="flex w-full justify-center pt-4">
+			<Button.Root
+				variant="outline"
+				class="inline-flex items-center gap-2"
+				onclick={() => search.getMore()}
+				disabled={search.loading}
+			>
+				{#if search.loading}
+					<SpinnerIcon class="size-5" />
+				{/if}
+				<span>{search.loading ? 'Searching' : 'Get more'}</span></Button.Root
+			>
 		</div>
-		{#if search.results.length > 0}
-			<div class="flex w-full justify-center pt-4">
-				<Button
-					class="inline-flex items-center gap-2"
-					onclick={() => search.getMore()}
-					disabled={search.loading}
-				>
-					{#if search.loading}
-						<Icon src={LoaderIcon} class="h-5 w-5 animate-spin" />
-					{/if}
-					<span>{search.loading ? 'Loading' : 'Get more'}</span></Button
-				>
-			</div>
-		{/if}
 	</div>
-</div>
+{:else}
+	<Empty.Root>
+		<Empty.Header>
+			<Empty.Media variant="icon">
+				<SearchIcon />
+			</Empty.Media>
+			<Empty.Title>No results yet.</Empty.Title>
+			<Empty.Description>
+				Search using the above search bar to find videos to download. You can search by video title,
+				channel name, or URL.
+			</Empty.Description>
+		</Empty.Header>
+	</Empty.Root>
+{/if}

@@ -1,6 +1,6 @@
 import type { Video } from '@yd/client';
 import { getNextSearch, getSearch } from '@yd/client';
-import { toasts } from '@yd/ui';
+import { toast } from '@yd/ui';
 
 class SearchStore {
 	public query = $state<string>('');
@@ -13,32 +13,42 @@ class SearchStore {
 		}
 		this.query = q;
 		this.loading = true;
-		try {
-			const { data: results } = await getSearch({ query: { query: q } });
-			if (results) {
-				this.results = results;
+		toast.promise(getSearch({ query: { query: q } }), {
+			loading: 'Searching...',
+			success: ({ data: results }) => {
+				if (results) {
+					this.results = results;
+				}
+				return `Found ${this.results.length} search results.`;
+			},
+			error: (err) => {
+				console.error('Failed to search for videos ', err);
+				return 'Failed to get search results.';
+			},
+			finally: () => {
+				this.loading = false;
 			}
-			toasts.success('Success', `Found ${this.results.length} search results.`);
-		} catch (err) {
-			toasts.error('Error', 'Failed to get search results.');
-			console.error('Failed to search for videos ', err);
-		}
-		this.loading = false;
+		});
 	}
 
 	public async getMore() {
 		this.loading = true;
-		try {
-			const { data: results } = await getNextSearch();
-			if (results) {
-				this.results = [...this.results, ...results];
-				toasts.success('Success', `Found ${results.length} more search results.`);
+		toast.promise(getNextSearch(), {
+			loading: 'Searching...',
+			success: ({ data: results }) => {
+				if (results) {
+					this.results = [...this.results, ...results];
+				}
+				return `Found ${results?.length} more search results.`;
+			},
+			error: (err) => {
+				console.error('Failed to get more search videos ', err);
+				return 'Failed to get more search results.';
+			},
+			finally: () => {
+				this.loading = false;
 			}
-		} catch (err) {
-			toasts.error('Error', 'Failed to get more search results.');
-			console.error('Failed to get more search videos ', err);
-		}
-		this.loading = false;
+		});
 	}
 
 	public reset() {

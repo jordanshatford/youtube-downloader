@@ -4,7 +4,7 @@ import { downloads } from '$lib/stores/downloads.svelte';
 import { settings } from '$lib/stores/settings.svelte';
 
 import { client, getSession, getSessionValidate } from '@yd/client';
-import { toasts } from '@yd/ui';
+import { toast } from '@yd/ui';
 
 // Set the base server address using the environment variable.
 client.setConfig({
@@ -42,7 +42,7 @@ export async function setupSession(): Promise<void> {
 						success = true;
 					}
 				} catch (err) {
-					toasts.error('Error', 'Failed to setup session. Re-attempting shortly.');
+					toast.error('Failed to setup session. Re-attempting shortly.');
 					console.error('Connection failed, could not connect to internal server. ', err);
 					await sleep(REATTEMPT_INTERVAL);
 				}

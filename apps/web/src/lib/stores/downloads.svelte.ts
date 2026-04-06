@@ -11,7 +11,7 @@ import {
 	postDownloads,
 	putDownloads
 } from '@yd/client';
-import { toasts } from '@yd/ui';
+import { toast } from '@yd/ui';
 
 class DownloadsStore {
 	public downloads = $state<Record<string, Download>>({});
@@ -95,7 +95,7 @@ class DownloadsStore {
 
 		try {
 			await deleteDownload({ path: { download_id: id } });
-			toasts.success('Deleted', 'Download removed successfully.');
+			toast.success('Download removed successfully.');
 			delete this.downloads[id];
 		} catch (err) {
 			this.handleError(id, 'Failed to remove download.', err);
@@ -131,7 +131,7 @@ class DownloadsStore {
 	}
 
 	private handleError(downloadId: string, msg: string, error: unknown) {
-		toasts.error('Error', msg);
+		toast.error(msg);
 		console.error(msg, error);
 		this.updateDownload(downloadId, {
 			status: { state: 'ERROR', progress: null }

@@ -1,41 +1,105 @@
 import type { RouteId } from '$app/types';
+import type { Component } from 'svelte';
+import config, { env } from '$lib/config';
 
-import type { IconSource } from '@yd/ui';
-import { DownloadIcon, GearIcon, MagnifyingGlassIcon } from '@yd/ui';
+import {
+	BracesIcon,
+	BugIcon,
+	CircleQuestionMarkIcon,
+	CopyrightIcon,
+	DownloadIcon,
+	GitPullRequestIcon,
+	HandshakeIcon,
+	SearchIcon,
+	SettingsIcon
+} from '@yd/ui';
 
-export class RoutePathConstants {
-	public static SEARCH: RouteId = '/';
-	public static DOWNLOADS: RouteId = '/downloads';
-	public static SETTINGS: RouteId = '/settings';
-	public static FAQ: RouteId = '/faq';
-	public static TERMS_OF_USE: RouteId = '/terms';
-}
+export const routeNamesLong: Record<RouteId, string> = {
+	'/': 'Search',
+	'/downloads': 'Downloads',
+	'/settings': 'Settings',
+	'/faq': 'Frequently Asked Questions',
+	'/terms': 'Terms of Use'
+};
 
-export const navbarLinks: { href: RouteId; text: string; icon?: IconSource }[] = [
-	{
-		text: 'Search',
-		href: RoutePathConstants.SEARCH,
-		icon: MagnifyingGlassIcon
-	},
-	{
-		text: 'Downloads',
-		href: RoutePathConstants.DOWNLOADS,
-		icon: DownloadIcon
-	},
-	{
-		text: 'Settings',
-		href: RoutePathConstants.SETTINGS,
-		icon: GearIcon
-	}
-];
+export const routeNames: Record<RouteId, string> = {
+	...routeNamesLong,
+	'/faq': 'FAQ'
+};
 
-export const footerLinks: { href: RouteId; text: string }[] = [
-	{
-		href: RoutePathConstants.FAQ,
-		text: 'faq'
-	},
-	{
-		href: RoutePathConstants.TERMS_OF_USE,
-		text: 'terms of use'
-	}
-];
+export type RouteItem = {
+	title: string;
+	url: RouteId | string;
+	isActive?: boolean;
+	icon?: Component;
+	external?: boolean;
+	items?: RouteItem[];
+};
+
+export const routes: { main: RouteItem[]; footer: RouteItem[] } = {
+	main: [
+		{
+			title: routeNames['/'],
+			url: '/',
+			icon: SearchIcon,
+			isActive: true
+		},
+		{
+			title: routeNames['/downloads'],
+			url: '/downloads',
+			icon: DownloadIcon
+		},
+		{
+			title: routeNames['/settings'],
+			url: '/settings',
+			icon: SettingsIcon,
+			items: []
+			// items: [
+			// 	{
+			// 		title: 'Download',
+			// 		url: '/settings/downloads'
+			// 	},
+			// 	{
+			// 		title: 'Embed',
+			// 		url: '/settings/embed'
+			// 	}
+			// ]
+		}
+	],
+	footer: [
+		{
+			title: 'API Documentation',
+			url: `${env.serverAddress}/redoc`,
+			icon: BracesIcon,
+			external: true
+		},
+		{
+			title: routeNames['/faq'],
+			url: '/faq',
+			icon: CircleQuestionMarkIcon
+		},
+		{
+			title: routeNames['/terms'],
+			url: '/terms',
+			icon: HandshakeIcon
+		},
+		{
+			title: 'Report an Issue',
+			url: `${config.github}/issues/new?template=bug_report.yml`,
+			icon: BugIcon,
+			external: true
+		},
+		{
+			title: 'GitHub',
+			url: config.github,
+			icon: GitPullRequestIcon,
+			external: true
+		},
+		{
+			title: '2021-present',
+			url: `${config.github}/blob/main/LICENSE`,
+			icon: CopyrightIcon,
+			external: true
+		}
+	]
+};

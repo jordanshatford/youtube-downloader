@@ -2,14 +2,13 @@
 	import '../app.css';
 
 	import type { Snippet } from 'svelte';
-	import { page } from '$app/state';
 	import { setupSession } from '$lib/api';
-	import Loading from '$lib/components/Loading.svelte';
-	import Logo from '$lib/components/Logo.svelte';
+	import AppBreadcrumbs from '$lib/components/app-breadcrumbs.svelte';
+	import AppSidebar from '$lib/components/app-sidebar.svelte';
+	import AppThemeToggle from '$lib/components/app-theme-toggle.svelte';
 	import config from '$lib/config';
-	import { footerLinks, navbarLinks } from '$lib/routes';
 
-	import { Footer, NavBar, ThemeToggle, Toasts } from '@yd/ui';
+	import { Empty, ModeWatcher, Separator, Sidebar, SpinnerIcon, Toaster } from '@yd/ui';
 
 	interface Props {
 		children?: Snippet;
@@ -29,24 +28,45 @@
 	<meta property="og:type" content="website" />
 </svelte:head>
 
-<Toasts position="bottom-right" />
-<div class="h-full min-h-screen dark:bg-zinc-900">
-	<div class="h-full">
-		<NavBar links={navbarLinks} activeLink={page.url.pathname}>
-			{#snippet logo()}
-				<Logo />
-			{/snippet}
-			{#snippet right()}
-				<ThemeToggle />
-			{/snippet}
-		</NavBar>
-		<main class="mx-auto h-full max-w-7xl px-4 pt-20 sm:px-6 lg:px-8">
-			{#await setupSession()}
-				<Loading />
-			{:then}
-				{@render children?.()}
-			{/await}
-		</main>
-	</div>
-</div>
-<Footer copyright={config.copyright} links={footerLinks} githubLink={config.github} />
+<ModeWatcher />
+<Toaster richColors closeButton position="bottom-right" />
+
+<Sidebar.Provider open={false}>
+	<AppSidebar collapsible="icon" />
+	<Sidebar.Inset>
+		<header
+			class="bg-background sticky top-0 z-50 flex h-16 shrink-0 items-center gap-2 border-b px-0 transition-[width,height] ease-linear group-has-data-[collapsible=icon]/sidebar-wrapper:h-12"
+		>
+			<div class="flex items-center gap-2 px-4">
+				<Sidebar.Trigger class="-ms-1" />
+				<Separator.Root orientation="vertical" class="me-2 data-[orientation=vertical]:h-4" />
+				<AppBreadcrumbs />
+			</div>
+			<div class="mr-5 ml-auto">
+				<AppThemeToggle />
+			</div>
+		</header>
+		<div class="flex flex-1 flex-col gap-4 p-4">
+			<div class="flex justify-center">
+				<div class="w-full px-4">
+					{#await setupSession()}
+						<Empty.Root>
+							<Empty.Header>
+								<Empty.Media variant="icon">
+									<SpinnerIcon />
+								</Empty.Media>
+								<Empty.Title>Setting up session</Empty.Title>
+								<Empty.Description>
+									Setting up session, this may take some time on the first load as the backend
+									starts up and initializes.
+								</Empty.Description>
+							</Empty.Header>
+						</Empty.Root>
+					{:then}
+						{@render children?.()}
+					{/await}
+				</div>
+			</div>
+		</div>
+	</Sidebar.Inset>
+</Sidebar.Provider>
