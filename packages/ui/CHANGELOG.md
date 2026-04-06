@@ -1,5 +1,13 @@
 # @yd/ui
 
+## 2.0.0
+
+### Major Changes
+
+- feat: replace icon library with lucide icons ([`280b31f`](https://github.com/jordanshatford/youtube-downloader/commit/280b31f23ebc329650d98bac9431c5ee57129ba9))
+
+- feat: replace ui component with shadcn-svelte ui library ([`280b31f`](https://github.com/jordanshatford/youtube-downloader/commit/280b31f23ebc329650d98bac9431c5ee57129ba9))
+
 ## 1.3.0
 
 ### Minor Changes

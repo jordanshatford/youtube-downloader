@@ -1,5 +1,16 @@
 # @yd/web
 
+## 2.0.0
+
+### Major Changes
+
+- feat: redesign web interface using shadcn-svelte ([`280b31f`](https://github.com/jordanshatford/youtube-downloader/commit/280b31f23ebc329650d98bac9431c5ee57129ba9))
+
+### Patch Changes
+
+- Updated dependencies [[`280b31f`](https://github.com/jordanshatford/youtube-downloader/commit/280b31f23ebc329650d98bac9431c5ee57129ba9), [`280b31f`](https://github.com/jordanshatford/youtube-downloader/commit/280b31f23ebc329650d98bac9431c5ee57129ba9)]:
+  - @yd/ui@2.0.0
+
 ## 1.6.0
 
 ### Minor Changes
