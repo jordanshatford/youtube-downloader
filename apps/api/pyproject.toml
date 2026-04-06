@@ -14,8 +14,8 @@ dependencies = [
 dev = [
   "mypy>=1.20.0",
   "pre-commit>=4.5.1",
-  "ruff>=0.15.8",
-  "ty>=0.0.27",
+  "ruff>=0.15.9",
+  "ty>=0.0.29",
 ]
 
 [tool.fastapi]
