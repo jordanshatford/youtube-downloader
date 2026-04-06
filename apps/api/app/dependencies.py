@@ -40,6 +40,17 @@ def get_request_session(credentials: HTTPBearerCredentials) -> Session:
 type DependsSession = Annotated[Session, Depends(get_request_session)]
 
 
+def get_request_query_session(session_id: str) -> Session:
+    session = session_manager.get(session_id)
+    if session is None:
+        raise HTTPException(status_code=status.HTTP_403_FORBIDDEN)
+    return session
+
+
+# Dependency that the request has a current session available via query parameters
+type DependsSessionInQuery = Annotated[Session, Depends(get_request_query_session)]
+
+
 # Responses which should be included in all routes that depend on a download
 depends_download_responses: AdditionalResponses = depends_session_responses | {
     status.HTTP_404_NOT_FOUND: {},

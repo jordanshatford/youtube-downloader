@@ -4,7 +4,6 @@ from collections.abc import AsyncIterable
 
 from fastapi import APIRouter
 from fastapi import HTTPException
-from fastapi import Request
 from fastapi import status
 from fastapi.responses import FileResponse
 from fastapi.sse import EventSourceResponse
@@ -15,9 +14,9 @@ from app.core import DownloadInput
 from app.core import DownloadOptions
 from app.dependencies import DependsDownload
 from app.dependencies import DependsSession
+from app.dependencies import DependsSessionInQuery
 from app.dependencies import depends_download_responses
 from app.dependencies import depends_session_responses
-from app.session import session_manager
 
 router = APIRouter(
     prefix="/downloads",
@@ -60,16 +59,10 @@ def get_downloads_options_defaults(_: DependsSession) -> DownloadOptions:
 
 @router.get("/status", response_class=EventSourceResponse)
 async def get_downloads_status(
-    request: Request,
-    session_id: str,
+    session: DependsSessionInQuery,
 ) -> AsyncIterable[Download]:
-    session = session_manager.get(session_id)
-    if session is None:
-        return
     try:
         while True:
-            if await request.is_disconnected():
-                break
             try:
                 yield session.downloads_statuses.get_nowait()
             except queue.Empty:
