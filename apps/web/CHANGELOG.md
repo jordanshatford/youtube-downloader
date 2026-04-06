@@ -1,5 +1,18 @@
 # @yd/web
 
+## 2.1.0
+
+### Minor Changes
+
+- feat: badge downloads tab with how many downloads are present ([`d564a01`](https://github.com/jordanshatford/youtube-downloader/commit/d564a01ba23d6980ef9c75c44ba07b08d6670155))
+
+- feat: persist search state on page reloads ([`59f03af`](https://github.com/jordanshatford/youtube-downloader/commit/59f03afd9d1a488cf13abfb81aa25aa171b6fee9))
+
+### Patch Changes
+
+- Updated dependencies [[`59f03af`](https://github.com/jordanshatford/youtube-downloader/commit/59f03afd9d1a488cf13abfb81aa25aa171b6fee9)]:
+  - @yd/client@2.0.0
+
 ## 2.0.0
 
 ### Major Changes
