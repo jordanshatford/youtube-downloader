@@ -48,8 +48,9 @@ import { client } from './client.gen';
 
 export type Options<
 	TData extends TDataShape = TDataShape,
-	ThrowOnError extends boolean = boolean
-> = Options2<TData, ThrowOnError> & {
+	ThrowOnError extends boolean = boolean,
+	TResponse = unknown
+> = Options2<TData, ThrowOnError, TResponse> & {
 	/**
 	 * You can provide a client instance returned by `createClient()` instead of
 	 * individual options. This might be also useful if you want to implement a
@@ -206,7 +207,7 @@ export const getDownloadsOptionsDefaults = <ThrowOnError extends boolean = false
  * Get Downloads Status
  */
 export const getDownloadsStatus = <ThrowOnError extends boolean = false>(
-	options: Options<GetDownloadsStatusData, ThrowOnError>
+	options: Options<GetDownloadsStatusData, ThrowOnError, unknown>
 ) =>
 	(options.client ?? client).sse.get<
 		GetDownloadsStatusResponses,
