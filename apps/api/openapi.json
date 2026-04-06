@@ -71,13 +71,45 @@
         }
       }
     },
+    "/search/state": {
+      "get": {
+        "tags": [
+          "search"
+        ],
+        "summary": "Get Search State",
+        "operationId": "get_search_state",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SearchState"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ]
+      }
+    },
     "/search/next": {
       "get": {
         "tags": [
           "search"
         ],
-        "summary": "Get Next Search",
-        "operationId": "get_next_search",
+        "summary": "Get Search Next",
+        "operationId": "get_search_next",
         "responses": {
           "200": {
             "description": "Successful Response",
@@ -88,7 +120,7 @@
                     "$ref": "#/components/schemas/Video"
                   },
                   "type": "array",
-                  "title": "Response Get Next Search"
+                  "title": "Response Get Search Next"
                 }
               }
             }
@@ -938,6 +970,25 @@
           "zh"
         ],
         "title": "LanguageCode"
+      },
+      "SearchState": {
+        "properties": {
+          "query": {
+            "type": "string",
+            "title": "Query",
+            "default": ""
+          },
+          "results": {
+            "items": {
+              "$ref": "#/components/schemas/Video"
+            },
+            "type": "array",
+            "title": "Results",
+            "default": []
+          }
+        },
+        "type": "object",
+        "title": "SearchState"
       },
       "Session": {
         "properties": {

@@ -4,14 +4,14 @@
 	interface Props {
 		results?: number;
 		loading?: boolean;
-		query: string;
+		query?: string;
 		onsearch: (query: string) => void | Promise<void>;
 	}
 
 	let { results, loading = false, query = $bindable(), onsearch }: Props = $props();
 
 	function search(event: KeyboardEvent) {
-		if (event.key === 'Enter' && query.length > 0) {
+		if (event.key === 'Enter' && query && query.length > 0) {
 			onsearch(query);
 		}
 	}

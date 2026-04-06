@@ -8,6 +8,7 @@ from .models import DownloadOptions
 from .models import DownloadQuality
 from .models import DownloadState
 from .models import DownloadStatus
+from .models import SearchState
 from .models import Video
 from .models import VideoFormat
 from .search import YouTubeSearch
@@ -23,6 +24,7 @@ __all__ = [
     "DownloadQuality",
     "DownloadState",
     "DownloadStatus",
+    "SearchState",
     "Video",
     "VideoFormat",
     "YouTubeSearch",

@@ -1,25 +1,37 @@
-import type { Video } from '@yd/client';
-import { getNextSearch, getSearch } from '@yd/client';
+import type { SearchState } from '@yd/client';
+import { getSearch, getSearchNext, getSearchState } from '@yd/client';
 import { toast } from '@yd/ui';
 
 class SearchStore {
-	public query = $state<string>('');
+	public state = $state<SearchState>({ query: '', results: [] });
 	public loading = $state<boolean>(false);
-	public results = $state<Video[]>([]);
 
-	public async get(q: string) {
-		if (this.query === q) {
+	public async init() {
+		// Get existing search state to prevent search page from clearing on page reload.
+		try {
+			const { data: state } = await getSearchState();
+			if (state) {
+				this.state = state;
+			}
+		} catch (e) {
+			console.error('Failed to get initial search state ', e);
 			return;
 		}
-		this.query = q;
+	}
+
+	public async get(q: string) {
+		if (this.state.query === q) {
+			return;
+		}
+		this.state = { query: q, results: [] };
 		this.loading = true;
 		toast.promise(getSearch({ query: { query: q } }), {
 			loading: 'Searching...',
 			success: ({ data: results }) => {
 				if (results) {
-					this.results = results;
+					this.state.results = results;
 				}
-				return `Found ${this.results.length} search results.`;
+				return `Found ${results?.length} search results.`;
 			},
 			error: (err) => {
 				console.error('Failed to search for videos ', err);
@@ -33,11 +45,11 @@ class SearchStore {
 
 	public async getMore() {
 		this.loading = true;
-		toast.promise(getNextSearch(), {
+		toast.promise(getSearchNext(), {
 			loading: 'Searching...',
 			success: ({ data: results }) => {
 				if (results) {
-					this.results = [...this.results, ...results];
+					this.state.results = [...(this.state?.results ?? []), ...results];
 				}
 				return `Found ${results?.length} more search results.`;
 			},
@@ -52,9 +64,8 @@ class SearchStore {
 	}
 
 	public reset() {
-		this.query = '';
+		this.state = { query: '', results: [] };
 		this.loading = false;
-		this.results = [];
 	}
 }
 

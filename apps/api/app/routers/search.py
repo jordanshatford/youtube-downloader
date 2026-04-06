@@ -2,6 +2,7 @@ from fastapi import APIRouter
 from fastapi import HTTPException
 from fastapi import status
 
+from app.core import SearchState
 from app.core import Video
 from app.core import YouTubeSearch
 from app.dependencies import DependsSession
@@ -27,16 +28,24 @@ def get_search(session: DependsSession, query: str) -> list[Video]:
     return videos
 
 
+@router.get("/state")
+def get_search_state(session: DependsSession) -> SearchState:
+    search = session.search
+    if search is None:
+        return SearchState()
+
+    return SearchState(query=search.query, results=search.results)
+
+
 @router.get("/next")
-def get_next_search(session: DependsSession) -> list[Video]:
+def get_search_next(session: DependsSession) -> list[Video]:
     if session.search is None:
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND)
 
-    has_more = session.search.next()
-    if not has_more:
+    if not session.search.has_more:
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND)
 
-    videos = session.search.results
+    videos = session.search.next()
     if len(videos) == 0:
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND)
 

@@ -5,6 +5,8 @@
 	import { search } from '$lib/stores/search.svelte';
 
 	import { Button, Empty, Item, SearchIcon, SpinnerIcon } from '@yd/ui';
+
+	let results = $derived(search.state.results ?? []);
 </script>
 
 <svelte:head>
@@ -12,15 +14,15 @@
 </svelte:head>
 
 <AppSearchBar
-	query={search.query}
+	query={search.state.query}
 	loading={search.loading}
 	onsearch={(query) => search.get(query)}
-	results={search.results.length}
+	results={results.length}
 />
-{#if search.results.length > 0}
+{#if results.length > 0}
 	<div class="mt-4">
 		<Item.Group>
-			{#each search.results as result, i (i)}
+			{#each results as result (result.id)}
 				<AppResultItem {result} />
 			{/each}
 		</Item.Group>

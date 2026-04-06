@@ -202,6 +202,20 @@ export const LanguageCode = {
 export type LanguageCode = (typeof LanguageCode)[keyof typeof LanguageCode];
 
 /**
+ * SearchState
+ */
+export type SearchState = {
+	/**
+	 * Query
+	 */
+	query?: string;
+	/**
+	 * Results
+	 */
+	results?: Array<Video>;
+};
+
+/**
  * Session
  */
 export type Session = {
@@ -363,14 +377,14 @@ export type GetSearchResponses = {
 
 export type GetSearchResponse = GetSearchResponses[keyof GetSearchResponses];
 
-export type GetNextSearchData = {
+export type GetSearchStateData = {
 	body?: never;
 	path?: never;
 	query?: never;
-	url: '/search/next';
+	url: '/search/state';
 };
 
-export type GetNextSearchErrors = {
+export type GetSearchStateErrors = {
 	/**
 	 * Forbidden
 	 */
@@ -381,16 +395,43 @@ export type GetNextSearchErrors = {
 	404: unknown;
 };
 
-export type GetNextSearchResponses = {
+export type GetSearchStateResponses = {
 	/**
-	 * Response Get Next Search
+	 * Successful Response
+	 */
+	200: SearchState;
+};
+
+export type GetSearchStateResponse = GetSearchStateResponses[keyof GetSearchStateResponses];
+
+export type GetSearchNextData = {
+	body?: never;
+	path?: never;
+	query?: never;
+	url: '/search/next';
+};
+
+export type GetSearchNextErrors = {
+	/**
+	 * Forbidden
+	 */
+	403: unknown;
+	/**
+	 * Not Found
+	 */
+	404: unknown;
+};
+
+export type GetSearchNextResponses = {
+	/**
+	 * Response Get Search Next
 	 *
 	 * Successful Response
 	 */
 	200: Array<Video>;
 };
 
-export type GetNextSearchResponse = GetNextSearchResponses[keyof GetNextSearchResponses];
+export type GetSearchNextResponse = GetSearchNextResponses[keyof GetSearchNextResponses];
 
 export type DeleteSessionData = {
 	body?: never;

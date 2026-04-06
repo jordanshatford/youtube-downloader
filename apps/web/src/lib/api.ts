@@ -1,6 +1,7 @@
 import { browser } from '$app/environment';
 import { env } from '$lib/config';
 import { downloads } from '$lib/stores/downloads.svelte';
+import { search } from '$lib/stores/search.svelte';
 import { settings } from '$lib/stores/settings.svelte';
 
 import { client, getSession, getSessionValidate } from '@yd/client';
@@ -49,6 +50,7 @@ export async function setupSession(): Promise<void> {
 			}
 		}
 		await settings.init();
+		await search.init();
 		await downloads.init();
 	}
 }

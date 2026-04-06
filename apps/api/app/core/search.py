@@ -18,36 +18,44 @@ logger = logging.getLogger("core")
 
 class YouTubeSearch:
     def __init__(self, query: str, *, page_size: int = 20) -> None:
-        self._query = query
-        self._page_size = page_size
-        self._page = 1
+        self._query: str = query
+        self._page_size: int = page_size
+        self._page: int = 1
+        self._results: list[Video] = []
         self._results = self._fetch_current_page()
+        self._has_more: bool = len(self._results) != 0
+
+    @property
+    def query(self) -> str:
+        return self._query
 
     @property
     def results(self) -> list[Video]:
         return self._results
 
     @property
-    def _has_more(self) -> bool:
-        return len(self._results) != 0
+    def has_more(self) -> bool:
+        return self._has_more
 
-    def next(self) -> bool:
+    def next(self) -> list[Video]:
         if not self._has_more:
             logger.debug("No more search results for '%s'.", self._query)
-            return False
+            return []
 
         self._page += 1
-        self._results = self._fetch_current_page()
-        return self._has_more
+        results = self._fetch_current_page()
+        self._has_more = len(results) != 0
+        self._results = [*self.results, *results]
+        return results
 
     @property
     def _playlist_items(self) -> str:
         # Get the lower and upper bounds to search yt-dlp with based on the
         # page we are currently on and our page size. yt-dlp expects it in
         # the format 1:20 which would return the first to twentieth videos.
-        base = (self._page - 1) * self._page_size
-        lower = base + 1
-        upper = base + self._page_size
+        base: int = (self._page - 1) * self._page_size
+        lower: int = base + 1
+        upper: int = base + self._page_size
         return f"{lower}:{upper}"
 
     def _fetch_current_page(self) -> list[Video]:
@@ -70,7 +78,10 @@ class YouTubeSearch:
                 )
                 return []
 
-            return [self._parse_entry_to_video(entry) for entry in entries]
+            # Only parse and include entries that are not already present in the list.
+            parsed = [self._parse_entry_to_video(entry) for entry in entries]
+            existing = {v.id for v in self._results}
+            return [video for video in parsed if video.id not in existing]
 
     def _parse_entry_to_video(self, entry: VideoInfo) -> Video:
         title = entry["title"]

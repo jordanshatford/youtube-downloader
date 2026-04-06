@@ -29,6 +29,11 @@ class Video(BaseModel):
         return f"{self.title} - {self.channel}"
 
 
+class SearchState(BaseModel):
+    query: str = ""
+    results: Sequence[Video] = []
+
+
 class DownloadState(enum.StrEnum):
     WAITING = "WAITING"
     DOWNLOADING = "DOWNLOADING"

@@ -26,12 +26,15 @@ import type {
 	GetDownloadsStatusData,
 	GetDownloadsStatusErrors,
 	GetDownloadsStatusResponses,
-	GetNextSearchData,
-	GetNextSearchErrors,
-	GetNextSearchResponses,
 	GetSearchData,
 	GetSearchErrors,
+	GetSearchNextData,
+	GetSearchNextErrors,
+	GetSearchNextResponses,
 	GetSearchResponses,
+	GetSearchStateData,
+	GetSearchStateErrors,
+	GetSearchStateResponses,
 	GetSessionData,
 	GetSessionResponses,
 	GetSessionValidateData,
@@ -77,12 +80,24 @@ export const getSearch = <ThrowOnError extends boolean = false>(
 	});
 
 /**
- * Get Next Search
+ * Get Search State
  */
-export const getNextSearch = <ThrowOnError extends boolean = false>(
-	options?: Options<GetNextSearchData, ThrowOnError>
+export const getSearchState = <ThrowOnError extends boolean = false>(
+	options?: Options<GetSearchStateData, ThrowOnError>
 ) =>
-	(options?.client ?? client).get<GetNextSearchResponses, GetNextSearchErrors, ThrowOnError>({
+	(options?.client ?? client).get<GetSearchStateResponses, GetSearchStateErrors, ThrowOnError>({
+		security: [{ scheme: 'bearer', type: 'http' }],
+		url: '/search/state',
+		...options
+	});
+
+/**
+ * Get Search Next
+ */
+export const getSearchNext = <ThrowOnError extends boolean = false>(
+	options?: Options<GetSearchNextData, ThrowOnError>
+) =>
+	(options?.client ?? client).get<GetSearchNextResponses, GetSearchNextErrors, ThrowOnError>({
 		security: [{ scheme: 'bearer', type: 'http' }],
 		url: '/search/next',
 		...options
