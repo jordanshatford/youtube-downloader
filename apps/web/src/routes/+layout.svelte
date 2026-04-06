@@ -4,8 +4,8 @@
 	import type { Snippet } from 'svelte';
 	import { setupSession } from '$lib/api';
 	import AppBreadcrumbs from '$lib/components/app-breadcrumbs.svelte';
-	import AppSidebar from '$lib/components/app-sidebar.svelte';
 	import AppThemeToggle from '$lib/components/app-theme-toggle.svelte';
+	import AppSidebar from '$lib/components/sidebar/sidebar.svelte';
 	import config from '$lib/config';
 
 	import { Empty, ModeWatcher, Separator, Sidebar, SpinnerIcon, Toaster } from '@yd/ui';
