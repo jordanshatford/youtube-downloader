@@ -10,44 +10,60 @@
 
 	const faqs: Question[] = [
 		{
-			question: 'Is this site free to use?',
+			question: 'Is this website free to use?',
 			answer:
-				'Yes, it is completely free to use as long as you have permissions for any copyright material.'
+				'Yes, it is completely free to use as long as you have permissions to download any copyright material.'
 		},
 		{
-			question: 'Is there a limit to the number of videos I can download and convert?',
-			answer: 'No, there is no limit, so you can convert as many videos as you want.'
-		},
-		{
-			question: 'How do I download and convert videos?',
+			question: 'Is there a limit to the number of videos I can download?',
 			answer:
-				'To download and convert a video, you should first make sure that you have configured the settings to your preferred ' +
-				'options. Then you can search for a video by term or with a link to get any relevant videos. Click the plus icon ' +
-				'to queue the video to download. To see information on the status of the download, navigate to the downloads ' +
-				'page. Once it has completely a clickable download button will appear in the table allowing you to download that video ' +
-				'directly to your device.'
+				'No, there is no strict limit. You may see that some video remain in a waiting state until others have completed.'
 		},
 		{
-			question: 'How long does it take to download and convert a video?',
+			question: 'How do I use this website?',
 			answer:
-				'The time to download and convert a video will vary drastically based on the length of the video, and the settings you ' +
-				' have configured. You will be provided with progress information for progress of the download in the downloads page.'
+				'First take a look through the various settings pages to ensure that you have configured our available options as you ' +
+				'desire. Then you can search for a video using a search term, link, channel name, etc. Add the relevant video to the ' +
+				'queue. Status information of the download can be found on the downloads page. Finally, once it has completely you can ' +
+				'download the file directly to your device.'
 		},
 		{
-			question: 'Can I convert videos on my mobile device?',
-			answer: 'Yes, this site supports converting and downloading files on mobile devices.'
-		},
-		{
-			question: 'My download appears to be stuck, what should I do?',
+			question: 'How long does it take to download a video?',
 			answer:
-				'If your download has been stuck for awhile, you may need to refresh the page and try to download again. If the video is ' +
-				'long then then the download and processing portions of the process may take awhile so please be patient.'
+				'The time it takes to download can vary drastically based on the length of the video and the settings you ' +
+				'have configured. You will be provided with progress information for the download on the downloads page.'
 		},
 		{
-			question: 'There was an error while trying to download, what should I do?',
+			question: 'Can I use this website on a mobile device?',
+			answer: 'Yes, this site is mobile device friendly.'
+		},
+		{
+			question: 'My download appears to be stalled, what should I do?',
 			answer:
-				'If an error has occured it is likely that you will not be able to download that video for one of many reasons. You can ' +
-				'attempt the download process again, but if an error occurs multiple times, the video may be unavailable to download.'
+				'If your download has been stalled for some time, you may need to reload and try again. If the video itself ' +
+				'is long, then the download may take awhile, so please be patient.'
+		},
+		{
+			question: 'There was an error trying to download, what should I do?',
+			answer:
+				'If an error has occured you can attempt to retry the download from the downloads page. If the error occurs ' +
+				'multiple times, the video may be unavailable to download. This may be due to YouTube blocking the download.'
+		},
+		{
+			question:
+				'The subtitles embedded in the download are not in the subtitle language I configured, what should I do?',
+			answer:
+				'It may not be possible to download the subtitle language you have requested for a given video. This is a ' +
+				'preferred value that we will attempt to use when possible. If you believe the correct subtitles do exist for the ' +
+				'video you are requesting, please report an issue via GitHub.'
+		},
+		{
+			question:
+				'The sutitles embedded in the download are not in the subtitle language I configured, what should I do?',
+			answer:
+				'It may not be possible to download the subtitle language you have requested for a given video. This is a ' +
+				'preferred value that we will attempt to use when possible. If you believe the correct subtitles do exist for the ' +
+				'video you are requesting, please report an issue via GitHub.'
 		}
 	];
 </script>
@@ -60,7 +76,7 @@
 	{#each faqs as faq (faq.question)}
 		<Accordion.Item value={faq.question}>
 			<Accordion.Trigger>{faq.question}</Accordion.Trigger>
-			<Accordion.Content class="flex flex-col gap-4 text-balance">
+			<Accordion.Content>
 				{faq.answer}
 			</Accordion.Content>
 		</Accordion.Item>
