@@ -1,5 +1,15 @@
 # @yd/web
 
+## 2.2.0
+
+### Minor Changes
+
+- feat: allow selecting multiple downloads to download file, retry, and delete ([`75813a5`](https://github.com/jordanshatford/youtube-downloader/commit/75813a5c4771aead5241fdca1db4d2c74a509400))
+
+### Patch Changes
+
+- fix: two badge icons appearing on downloads tab on mobile ([`3e8e8fa`](https://github.com/jordanshatford/youtube-downloader/commit/3e8e8facca3d7b14af1475d85e04a9f52494e518))
+
 ## 2.1.0
 
 ### Minor Changes
