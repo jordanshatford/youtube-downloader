@@ -17,7 +17,7 @@
 		"check": "pnpm --recursive check",
 		"lint": "prettier --check . && eslint . && pnpm --filter @yd/api lint",
 		"lint:fix": "eslint --fix .",
-		"deps:update": "corepack use pnpm@latest && pnpm up --latest && pnpm --recursive up --latest && pnpm --recursive deps:update",
+		"deps:update": "pnpm self-update && pnpm up --latest && pnpm --recursive up --latest && pnpm --recursive deps:update",
 		"changeset": "changeset",
 		"commitlint": "commitlint --edit"
 	},
@@ -42,7 +42,7 @@
 		"svelte-eslint-parser": "^1.6.0",
 		"typescript-eslint": "^8.58.0"
 	},
-	"packageManager": "pnpm@10.33.0+sha512.10568bb4a6afb58c9eb3630da90cc9516417abebd3fabbe6739f0ae795728da1491e9db5a544c76ad8eb7570f5c4bb3d6c637b2cb41bfdcdb47fa823c8649319",
+	"packageManager": "pnpm@10.33.0",
 	"engines": {
 		"node": ">=22",
 		"pnpm": ">=10"

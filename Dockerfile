@@ -2,10 +2,9 @@ FROM node:lts-alpine AS base
 
 WORKDIR /workspace
 
-# Setup corepack with version of pnpm specified in package.json
+# Setup with version of pnpm specified in package.json
 COPY package.json pnpm-lock.yaml pnpm-workspace.yaml /workspace/
-RUN corepack enable && \
-    corepack install
+RUN npm install -g pnpm
 
 # Install required dependencies
 COPY . /workspace/

@@ -20,7 +20,7 @@
 							<div
 								class="bg-sidebar-primary text-sidebar-primary-foreground flex aspect-square size-8 items-center justify-center rounded-md"
 							>
-								<img class="size=8 block w-auto" src="icon.png" alt="Logo" />
+								<img class="block size-8 w-auto" src="/icon.png" alt="Logo" />
 							</div>
 							<div class="grid flex-1 text-start text-sm leading-tight">
 								<span class="truncate font-medium">YouTube Downloader</span>

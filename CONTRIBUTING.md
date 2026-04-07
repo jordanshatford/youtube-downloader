@@ -9,6 +9,8 @@ Setting up the project for local development will require all of the following t
 - [uv](https://docs.astral.sh/uv/) (version `0.11` or higher)
   > NOTE: `uv` will ensure that the required [python](https://www.python.org/) version is available.
 - [node](https://nodejs.org/en) (version `22.0` or higher)
+- [pnpm](https://pnpm.io/) (version `10.0` or higher)
+  > NOTE: `pnpm` will use the version specified in the root `package.json` file.
 - _optionally_ [docker](https://www.docker.com/) (version `24.0` or higher)
 
 > NOTE: docker is an optional but preferred way to develop. If you are using docker, all other dependencies above will not be required except for git.
@@ -31,10 +33,6 @@ docker compose -f docker-compose.dev.yml up --build
 Setting up the project without docker will require that the above dependencies are all installed. After which you can run the following commands:
 
 ```sh
-# Enable corepack, it is disabled by default in the supported versions of NodeJS
-corepack enable
-# Install corepack based on the packageManager specified in the projects package.json
-corepack install
 # Install all dependencies
 pnpm install
 # Run the projects API and web app in development mode
