@@ -56,7 +56,7 @@
 	<title>FAQ - {config.head.title}</title>
 </svelte:head>
 
-<Accordion.Root type="multiple">
+<Accordion.Root type="multiple" class="mx-auto max-w-4xl">
 	{#each faqs as faq (faq.question)}
 		<Accordion.Item value={faq.question}>
 			<Accordion.Trigger>{faq.question}</Accordion.Trigger>

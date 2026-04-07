@@ -133,17 +133,19 @@
 	<title>Terms of Use - {config.head.title}</title>
 </svelte:head>
 
-<p class="mt-4 text-center text-lg text-zinc-700 dark:text-zinc-400">
-	By using {websiteName}, you agree to be bound by the following terms of use:
-</p>
-<ol class="mx-6 list-decimal py-6 text-left">
-	{#each termsOfUse as termOfUse (termOfUse.title)}
-		<li class="mt-3 text-zinc-700 dark:text-zinc-300">{termOfUse.title}</li>
-		{#if termOfUse.description}
-			<p class="mt-1 text-zinc-500">{termOfUse.description}</p>
-		{/if}
-	{/each}
-</ol>
-<p class="mx-auto my-4 max-w-2xl text-center text-lg text-zinc-700 dark:text-zinc-400">
-	{websiteName} serves you on a legal basis. Do not download any copyrighted materials without permission.
-</p>
+<div class="mx-auto max-w-4xl">
+	<p class="mt-4 text-center text-lg text-zinc-700 dark:text-zinc-400">
+		By using {websiteName}, you agree to be bound by the following terms of use:
+	</p>
+	<ol class="mx-6 list-decimal py-6 text-left">
+		{#each termsOfUse as termOfUse (termOfUse.title)}
+			<li class="mt-3 text-zinc-700 dark:text-zinc-300">{termOfUse.title}</li>
+			{#if termOfUse.description}
+				<p class="mt-1 text-zinc-500">{termOfUse.description}</p>
+			{/if}
+		{/each}
+	</ol>
+	<p class="mx-auto my-4 max-w-2xl text-center text-lg text-zinc-700 dark:text-zinc-400">
+		{websiteName} serves you on a legal basis. Do not download any copyrighted materials without permission.
+	</p>
+</div>

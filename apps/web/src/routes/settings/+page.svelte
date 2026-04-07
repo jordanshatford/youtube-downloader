@@ -76,7 +76,7 @@
 	<title>Settings - {config.head.title}</title>
 </svelte:head>
 
-<Tabs.Root value="download">
+<Tabs.Root value="download" class="mx-auto max-w-2xl">
 	<Tabs.List>
 		<Tabs.Trigger value="download"><DownloadIcon />Download Options</Tabs.Trigger>
 		<Tabs.Trigger value="embed"><CodeIcon />Embed Options</Tabs.Trigger>
