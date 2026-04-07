@@ -14,26 +14,49 @@
 		TrashIcon
 	} from '@yd/ui';
 
-	let { row, ...restProps }: { row: Row<Download> } & ComponentProps<typeof DropdownMenu.Trigger> =
-		$props();
+	let {
+		rows,
+		...restProps
+	}: { rows: Row<Download>[] } & ComponentProps<typeof DropdownMenu.Trigger> = $props();
 
-	let isWaitingBlob = $state(false);
-	let open = $state(false);
+	let downloadableRows = $derived(rows.filter((r) => r.original.status.state === 'DONE'));
+	let isDownloadDisabled = $derived(downloadableRows.length === 0);
+	let retryableRows = $derived(rows.filter((r) => r.original.status.state === 'ERROR'));
+	let isRetryDisabled = $derived(retryableRows.length === 0);
+	let deletableRows = $derived(
+		rows.filter((r) => ['DONE', 'ERROR'].includes(r.original.status.state))
+	);
+	let isDeleteDisabled = $derived(deletableRows.length === 0);
 
-	async function getDownloadFile() {
-		isWaitingBlob = true;
-		await downloads.getFile(row.original.video.id);
-		isWaitingBlob = false;
+	let isWaitingForFileDownload = $state(false);
+	let isDeleteAlertDialogOpen = $state(false);
+
+	async function handleDownloadFile() {
+		isWaitingForFileDownload = true;
+		const promises = downloadableRows.map((r) => downloads.getFile(r.original.video.id));
+		await Promise.all(promises);
+		isWaitingForFileDownload = false;
 	}
 
-	function handleDeleteClick(e: Event) {
+	async function handleRetry() {
+		const promises = retryableRows.map((r) => downloads.restart(r.original.video.id));
+		await Promise.all(promises);
+	}
+
+	function handleDeleteAlertDialog(e: Event) {
 		e.preventDefault();
-		open = true;
+		isDeleteAlertDialogOpen = true;
+	}
+
+	async function handleDelete() {
+		const promises = deletableRows.map((r) => downloads.remove(r.original.video.id));
+		await Promise.all(promises);
+		isDeleteAlertDialogOpen = false;
 	}
 </script>
 
 <DropdownMenu.Root>
-	<DropdownMenu.Trigger {...restProps} disabled={isWaitingBlob}>
+	<DropdownMenu.Trigger {...restProps} disabled={isWaitingForFileDownload}>
 		{#snippet child({ props })}
 			<Button.Root {...props} variant="ghost" class="data-[state=open]:bg-muted flex h-8 w-8 p-0">
 				<EllipsisIcon />
@@ -41,28 +64,25 @@
 			</Button.Root>
 		{/snippet}
 	</DropdownMenu.Trigger>
-	<DropdownMenu.Content class="w-40" align="end">
-		<DropdownMenu.Item
-			disabled={row.original.status.state !== 'DONE'}
-			onclick={async () => await getDownloadFile()}
-			><FileDownloadIcon />Download File</DropdownMenu.Item
-		>
-		<DropdownMenu.Item
-			disabled={row.original.status.state !== 'ERROR'}
-			onclick={async () => await downloads.restart(row.original.video.id)}
-			><RotateIcon />Retry</DropdownMenu.Item
-		>
+	<DropdownMenu.Content class="w-44" align="end">
+		<DropdownMenu.Label>Download Actions</DropdownMenu.Label>
 		<DropdownMenu.Separator />
-		<DropdownMenu.Item
-			disabled={!['DONE', 'ERROR'].includes(row.original.status.state)}
-			onclick={handleDeleteClick}
-		>
-			<TrashIcon />Delete
+		<DropdownMenu.Item disabled={isDownloadDisabled} onclick={handleDownloadFile}>
+			<FileDownloadIcon />{downloadableRows.length > 1
+				? `Download Files (${downloadableRows.length})`
+				: 'Download File'}
+		</DropdownMenu.Item>
+		<DropdownMenu.Item disabled={isRetryDisabled} onclick={handleRetry}>
+			<RotateIcon />{retryableRows.length > 1 ? `Retry (${retryableRows.length})` : 'Retry'}
+		</DropdownMenu.Item>
+		<DropdownMenu.Separator />
+		<DropdownMenu.Item disabled={isDeleteDisabled} onclick={handleDeleteAlertDialog}>
+			<TrashIcon />{deletableRows.length > 1 ? `Delete (${deletableRows.length})` : 'Delete'}
 		</DropdownMenu.Item>
 	</DropdownMenu.Content>
 </DropdownMenu.Root>
 
-<AlertDialog.Root bind:open>
+<AlertDialog.Root bind:open={isDeleteAlertDialogOpen}>
 	<AlertDialog.Content>
 		<AlertDialog.Header>
 			<AlertDialog.Title>Delete download?</AlertDialog.Title>
@@ -72,12 +92,7 @@
 		</AlertDialog.Header>
 		<AlertDialog.Footer>
 			<AlertDialog.Cancel>Cancel</AlertDialog.Cancel>
-			<AlertDialog.Action
-				onclick={async () => {
-					await downloads.remove(row.original.video.id);
-					open = false;
-				}}>Delete</AlertDialog.Action
-			>
+			<AlertDialog.Action onclick={handleDelete}>Delete</AlertDialog.Action>
 		</AlertDialog.Footer>
 	</AlertDialog.Content>
 </AlertDialog.Root>

@@ -9,7 +9,7 @@
 		VisibilityState
 	} from '@yd/ui';
 	import {
-		// Checkbox,
+		Checkbox,
 		createSvelteTable,
 		FlexRender,
 		getCoreRowModel,
@@ -42,24 +42,24 @@
 	let pagination = $state<PaginationState>({ pageIndex: 0, pageSize: 10 });
 
 	const columns: ColumnDef<Download>[] = [
-		// {
-		// 	id: 'select',
-		// 	header: ({ table }) =>
-		// 		renderComponent(Checkbox.Root, {
-		// 			checked: table.getIsAllPageRowsSelected(),
-		// 			onCheckedChange: (value) => table.toggleAllPageRowsSelected(value),
-		// 			indeterminate: table.getIsSomePageRowsSelected() && !table.getIsAllPageRowsSelected(),
-		// 			'aria-label': 'Select all'
-		// 		}),
-		// 	cell: ({ row }) =>
-		// 		renderComponent(Checkbox.Root, {
-		// 			checked: row.getIsSelected(),
-		// 			onCheckedChange: (value) => row.toggleSelected(value),
-		// 			'aria-label': 'Select row'
-		// 		}),
-		// 	enableSorting: false,
-		// 	enableHiding: false
-		// },
+		{
+			id: 'select',
+			header: ({ table }) =>
+				renderComponent(Checkbox.Root, {
+					checked: table.getIsAllPageRowsSelected(),
+					onCheckedChange: (value) => table.toggleAllPageRowsSelected(value),
+					indeterminate: table.getIsSomePageRowsSelected() && !table.getIsAllPageRowsSelected(),
+					'aria-label': 'Select all'
+				}),
+			cell: ({ row }) =>
+				renderComponent(Checkbox.Root, {
+					checked: row.getIsSelected(),
+					onCheckedChange: (value) => row.toggleSelected(value),
+					'aria-label': 'Select row'
+				}),
+			enableSorting: false,
+			enableHiding: false
+		},
 		{
 			id: 'video',
 			accessorFn: (row) => row.video.title,
@@ -162,12 +162,14 @@
 		},
 		{
 			id: 'actions',
-			// header: ({ table }) => {
-			// 	const rows = table.getSelectedRowModel().rows
-			// 	return renderComponent(ActionsCell, { rows, disabled: rows.length === 0 });
-			// },
+			header: ({ table }) => {
+				const rows = table.getSelectedRowModel().rows;
+				if (rows.length > 0) {
+					return renderComponent(ActionsCell, { rows, disabled: rows.length === 0 });
+				}
+			},
 			cell: ({ row }) => {
-				return renderComponent(ActionsCell, { row });
+				return renderComponent(ActionsCell, { rows: [row] });
 			},
 			enableSorting: false,
 			enableHiding: false
