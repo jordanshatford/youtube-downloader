@@ -3,8 +3,8 @@
 
 	import type { Snippet } from 'svelte';
 	import { setupSession } from '$lib/api';
-	import AppBreadcrumbs from '$lib/components/app-breadcrumbs.svelte';
 	import AppThemeToggle from '$lib/components/app-theme-toggle.svelte';
+	import AppBreadcrumbs from '$lib/components/breadcrumbs.svelte';
 	import AppSidebar from '$lib/components/sidebar/sidebar.svelte';
 	import config from '$lib/config';
 

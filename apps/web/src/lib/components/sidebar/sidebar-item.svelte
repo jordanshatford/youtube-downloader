@@ -19,12 +19,20 @@
 		}
 		return len >= 99 ? '99+' : `${len}`;
 	});
+
+	let isActive = $derived.by(() => {
+		// On browser when sidebar is closed, sub items are not show, so highlight main item.
+		if (!sidebar.isMobile && !sidebar.open && item.url.includes('/settings')) {
+			return page.route.id?.includes(item.url);
+		}
+		return page.route.id === item.url;
+	});
 </script>
 
 <Collapsible.Root open={true}>
 	{#snippet child({ props })}
 		<Sidebar.MenuItem {...props}>
-			<Sidebar.MenuButton tooltipContent={item.title} isActive={page.route.id === item.url}>
+			<Sidebar.MenuButton tooltipContent={item.title} {isActive}>
 				{#snippet child({ props })}
 					<!-- eslint-disable svelte/no-navigation-without-resolve -->
 					<a

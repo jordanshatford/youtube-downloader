@@ -6,6 +6,7 @@ import {
 	BracesIcon,
 	BugIcon,
 	CircleQuestionMarkIcon,
+	CodeIcon,
 	CopyrightIcon,
 	DownloadIcon,
 	GitPullRequestIcon,
@@ -14,21 +15,9 @@ import {
 	SettingsIcon
 } from '@yd/ui';
 
-export const routeNamesLong: Record<RouteId, string> = {
-	'/': 'Search',
-	'/downloads': 'Downloads',
-	'/settings': 'Settings',
-	'/faq': 'Frequently Asked Questions',
-	'/terms': 'Terms of Use'
-};
-
-export const routeNames: Record<RouteId, string> = {
-	...routeNamesLong,
-	'/faq': 'FAQ'
-};
-
 export type RouteItem = {
 	title: string;
+	titleLong?: string;
 	url: RouteId | string;
 	isActive?: boolean;
 	icon?: Component;
@@ -36,34 +25,37 @@ export type RouteItem = {
 	items?: RouteItem[];
 };
 
+export const settingsRoutes: RouteItem[] = [
+	{
+		title: 'Download',
+		url: '/settings/download',
+		icon: DownloadIcon
+	},
+	{
+		title: 'Embed',
+		url: '/settings/embed',
+		icon: CodeIcon
+	}
+];
+
 export const routes: { main: RouteItem[]; footer: RouteItem[] } = {
 	main: [
 		{
-			title: routeNames['/'],
+			title: 'Search',
 			url: '/',
 			icon: SearchIcon,
 			isActive: true
 		},
 		{
-			title: routeNames['/downloads'],
+			title: 'Downloads',
 			url: '/downloads',
 			icon: DownloadIcon
 		},
 		{
-			title: routeNames['/settings'],
+			title: 'Settings',
 			url: '/settings',
 			icon: SettingsIcon,
-			items: []
-			// items: [
-			// 	{
-			// 		title: 'Download',
-			// 		url: '/settings/downloads'
-			// 	},
-			// 	{
-			// 		title: 'Embed',
-			// 		url: '/settings/embed'
-			// 	}
-			// ]
+			items: settingsRoutes
 		}
 	],
 	footer: [
@@ -74,12 +66,13 @@ export const routes: { main: RouteItem[]; footer: RouteItem[] } = {
 			external: true
 		},
 		{
-			title: routeNames['/faq'],
+			title: 'FAQ',
+			titleLong: 'Frequently Asked Questions',
 			url: '/faq',
 			icon: CircleQuestionMarkIcon
 		},
 		{
-			title: routeNames['/terms'],
+			title: 'Terms of Use',
 			url: '/terms',
 			icon: HandshakeIcon
 		},
