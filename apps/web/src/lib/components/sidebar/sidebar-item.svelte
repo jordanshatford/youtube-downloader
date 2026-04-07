@@ -35,7 +35,7 @@
 					>
 						<item.icon />
 						<span>{item.title}</span>
-						{#if !sidebar.open && count}
+						{#if !sidebar.open && !sidebar.openMobile && count}
 							<span class="absolute -top-1 -right-1">
 								<Badge variant="outline" class="h-4 min-w-4 px-1 text-[10px]">
 									{count}
