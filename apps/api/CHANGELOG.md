@@ -1,5 +1,11 @@
 # @yd/api
 
+## 2.0.1
+
+### Patch Changes
+
+- fix: typing for download get file endpoint ([`577e43c`](https://github.com/jordanshatford/youtube-downloader/commit/577e43c87902989545361203b2d022a697f95b4f))
+
 ## 2.0.0
 
 ### Major Changes
