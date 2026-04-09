@@ -12,7 +12,7 @@ inputs:
   uv-version:
     description: Uv version to use
     required: false
-    default: '0.11.3'
+    default: '0.11.6'
 
 runs:
   using: 'composite'
