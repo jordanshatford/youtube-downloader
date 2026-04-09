@@ -61,6 +61,20 @@ class SettingsStore {
 			});
 		}
 	}
+
+	public isDifferentThan(that: Partial<DownloadOptions>): boolean {
+		return (
+			(that.format !== undefined && this.settings.format !== that.format) ||
+			(that.quality !== undefined && this.settings.quality !== that.quality) ||
+			(that.embed_metadata !== undefined && this.settings.embed_metadata !== that.embed_metadata) ||
+			(that.embed_thumbnail !== undefined &&
+				this.settings.embed_thumbnail !== that.embed_thumbnail) ||
+			(that.embed_subtitles !== undefined &&
+				this.settings.embed_subtitles !== that.embed_subtitles) ||
+			(that.preferred_subtitles_language !== undefined &&
+				this.settings.preferred_subtitles_language !== that.preferred_subtitles_language)
+		);
+	}
 }
 
 export const settings = new SettingsStore();

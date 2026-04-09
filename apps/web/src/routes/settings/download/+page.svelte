@@ -1,101 +1,94 @@
 <script lang="ts">
-	import config from '$lib/config';
 	import { settings } from '$lib/stores/settings.svelte';
-	import { toSelectOptions } from '$lib/utils/select';
+	import {
+		toSelectedTextFromGroup,
+		toSelectedTextFromOptions,
+		toSelectGroups,
+		toSelectOptions
+	} from '$lib/utils/select';
 
 	import { AudioFormat, DownloadQuality, VideoFormat } from '@yd/client';
-	import { Field, Select, Tabs, toast } from '@yd/ui';
+	import { Button, Field, Select, Tabs, toast } from '@yd/ui';
 
-	const formatGroups = [
-		{
-			label: 'Audio',
-			options: toSelectOptions(AudioFormat)
-		},
-		{
-			label: 'Video',
-			options: toSelectOptions(VideoFormat)
-		}
-	];
+	let form = $state($state.snapshot(settings.settings));
 
-	const formatTriggerContent = $derived.by(() => {
-		// REturn the lable of the current format or fallback
-		return (
-			formatGroups
-				.find((g) => g.options.find((o) => o.value === settings.settings.format))
-				?.options.find((o) => o.value === settings.settings.format)?.label || 'Select format'
-		);
+	let isFormDirty = $derived(settings.isDifferentThan(form));
+
+	const formatGroups = toSelectGroups({
+		Audio: AudioFormat,
+		Video: VideoFormat
 	});
+	const formatText = $derived(toSelectedTextFromGroup(formatGroups, form.format));
 
-	const qualityGroups = [
-		{
-			label: 'Quality',
-			options: toSelectOptions(DownloadQuality)
-		}
-	];
+	const qualityOptions = toSelectOptions(DownloadQuality);
+	const qualityText = $derived(toSelectedTextFromOptions(qualityOptions, form.quality));
 
-	const qualityTriggerContent = $derived.by(() => {
-		// REturn the lable of the current quality or fallback
-		return (
-			qualityGroups
-				.find((g) => g.options.find((o) => o.value === settings.settings.quality))
-				?.options.find((o) => o.value === settings.settings.quality)?.label || 'Select quality'
-		);
-	});
+	function onCancel() {
+		form = $state.snapshot(settings.settings);
+	}
+
+	function onSave(event: Event) {
+		event.preventDefault();
+		settings.settings = form;
+		toast.success('Download settings saved successfully.');
+		form = $state.snapshot(settings.settings);
+	}
 </script>
 
-<svelte:head>
-	<title>Settings - {config.head.title}</title>
-</svelte:head>
-
 <Tabs.Content value="/settings/download">
-	<Field.Group>
-		<Field.Separator />
-		<Field.Field>
-			<Field.Label for="format">Format:</Field.Label>
-			<Select.Root
-				type="single"
-				bind:value={settings.settings.format}
-				onValueChange={() => toast.success('Format settings updated successfully.')}
-			>
-				<Select.Trigger id="format" class="w-full">{formatTriggerContent}</Select.Trigger>
-				<Select.Content>
-					{#each formatGroups as group (group.label)}
-						<Select.Group>
-							<Select.Label>{group.label}</Select.Label>
-							{#each group.options as option (option.value)}
-								<Select.Item value={option.value} label={option.label}>
-									{option.label}
-								</Select.Item>
-							{/each}
-						</Select.Group>
-					{/each}
-				</Select.Content>
-			</Select.Root>
-			<Field.Description>The format of file you want for the download.</Field.Description>
-		</Field.Field>
-		<Field.Field>
-			<Field.Label for="quality">Quality:</Field.Label>
-			<Select.Root
-				type="single"
-				bind:value={settings.settings.quality}
-				onValueChange={() => toast.success('Quality settings updated successfully.')}
-			>
-				<Select.Trigger id="quality" class="w-full">{qualityTriggerContent}</Select.Trigger>
-				<Select.Content>
-					{#each qualityGroups as group (group.label)}
-						<Select.Group>
-							<Select.Label>{group.label}</Select.Label>
-							{#each group.options as option (option.value)}
-								<Select.Item value={option.value} label={option.label}>
-									{option.label}
-								</Select.Item>
-							{/each}
-						</Select.Group>
-					{/each}
-				</Select.Content>
-			</Select.Root>
-			<Field.Description>The preferred quality for the download.</Field.Description>
-		</Field.Field>
-		<Field.Separator />
-	</Field.Group>
+	<form onsubmit={onSave}>
+		<Field.Group>
+			<Field.Separator />
+			<Field.Field>
+				<Field.Label for="format">Format:</Field.Label>
+				<Select.Root
+					type="single"
+					required
+					bind:value={form.format}
+					onValueChange={() => toast.success('Format settings updated successfully.')}
+				>
+					<Select.Trigger id="format" class="w-full">{formatText}</Select.Trigger>
+					<Select.Content>
+						{#each formatGroups as group (group.label)}
+							<Select.Group>
+								<Select.Label>{group.label}</Select.Label>
+								{#each group.options as option (option.value)}
+									<Select.Item value={option.value} label={option.label}>
+										{option.label}
+									</Select.Item>
+								{/each}
+							</Select.Group>
+						{/each}
+					</Select.Content>
+				</Select.Root>
+				<Field.Description>The format of file you want for the download.</Field.Description>
+			</Field.Field>
+			<Field.Field>
+				<Field.Label for="quality">Quality:</Field.Label>
+				<Select.Root
+					type="single"
+					required
+					bind:value={form.quality}
+					onValueChange={() => toast.success('Quality settings updated successfully.')}
+				>
+					<Select.Trigger id="quality" class="w-full">{qualityText}</Select.Trigger>
+					<Select.Content>
+						{#each qualityOptions as option (option.value)}
+							<Select.Item value={option.value} label={option.label}>
+								{option.label}
+							</Select.Item>
+						{/each}
+					</Select.Content>
+				</Select.Root>
+				<Field.Description>The preferred quality for the download.</Field.Description>
+			</Field.Field>
+			<Field.Separator />
+			<Field.Field orientation="horizontal">
+				<Button.Root type="submit" disabled={!isFormDirty}>Save</Button.Root>
+				<Button.Root variant="outline" type="button" disabled={!isFormDirty} onclick={onCancel}
+					>Cancel</Button.Root
+				>
+			</Field.Field>
+		</Field.Group>
+	</form>
 </Tabs.Content>
