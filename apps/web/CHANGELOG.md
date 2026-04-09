@@ -1,5 +1,13 @@
 # @yd/web
 
+## 2.3.0
+
+### Minor Changes
+
+- feat: update frequently asked questions ([`8f899bb`](https://github.com/jordanshatford/youtube-downloader/commit/8f899bb32436fda2c5b237e9c5a9ca12b328c3b7))
+
+- feat: make settings pages each there own route ([`c67df1f`](https://github.com/jordanshatford/youtube-downloader/commit/c67df1f1e8e368474c74bc5f8d69e478c8fdf566))
+
 ## 2.2.0
 
 ### Minor Changes
