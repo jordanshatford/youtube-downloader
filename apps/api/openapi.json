@@ -580,12 +580,14 @@
             "content": {
               "audio/*": {
                 "schema": {
-                  "type": "file"
+                  "type": "string",
+                  "format": "binary"
                 }
               },
               "video/*": {
                 "schema": {
-                  "type": "file"
+                  "type": "string",
+                  "format": "binary"
                 }
               }
             }

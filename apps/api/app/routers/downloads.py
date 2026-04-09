@@ -83,8 +83,8 @@ def get_download(download: DependsDownload) -> Download:
     | {
         status.HTTP_200_OK: {
             "content": {
-                "audio/*": {"schema": {"type": "file"}},
-                "video/*": {"schema": {"type": "file"}},
+                "audio/*": {"schema": {"type": "string", "format": "binary"}},
+                "video/*": {"schema": {"type": "string", "format": "binary"}},
             },
         },
     },

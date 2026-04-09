@@ -112,7 +112,7 @@ class DownloadsStore {
 			if (file) {
 				const download = this.downloads[id];
 				const filename = `${download.video.title}.${download.options.format}`;
-				saveAs(file as Blob, filename);
+				saveAs(file, filename);
 			}
 		} catch (err) {
 			this.handleError(id, 'Failed to get file for download.', err);

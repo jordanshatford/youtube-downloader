@@ -46,6 +46,7 @@ export {
 	type GetDownloadFileData,
 	type GetDownloadFileError,
 	type GetDownloadFileErrors,
+	type GetDownloadFileResponse,
 	type GetDownloadFileResponses,
 	type GetDownloadResponse,
 	type GetDownloadResponses,

@@ -768,5 +768,7 @@ export type GetDownloadFileResponses = {
 	/**
 	 * Successful Response
 	 */
-	200: unknown;
+	200: Blob | File;
 };
+
+export type GetDownloadFileResponse = GetDownloadFileResponses[keyof GetDownloadFileResponses];
