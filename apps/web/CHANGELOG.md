@@ -1,5 +1,18 @@
 # @yd/web
 
+## 2.4.0
+
+### Minor Changes
+
+- feat: settings pages now save per page rather than element ([`0a228b9`](https://github.com/jordanshatford/youtube-downloader/commit/0a228b965a9ade71e20554253162cf29712afad6))
+
+- feat: persist download table modifications in store ([`b00e9ed`](https://github.com/jordanshatford/youtube-downloader/commit/b00e9eda1f2689c963b6dbdb30265ecf00137274))
+
+### Patch Changes
+
+- Updated dependencies [[`577e43c`](https://github.com/jordanshatford/youtube-downloader/commit/577e43c87902989545361203b2d022a697f95b4f)]:
+  - @yd/client@2.0.1
+
 ## 2.3.0
 
 ### Minor Changes
