@@ -76,6 +76,7 @@ export type {
 	Column,
 	ColumnDef,
 	ColumnFiltersState,
+	OnChangeFn,
 	PaginationState,
 	Row,
 	RowSelectionState,

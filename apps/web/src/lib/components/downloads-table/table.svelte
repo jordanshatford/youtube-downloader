@@ -1,13 +1,6 @@
 <script lang="ts">
 	import type { Download } from '@yd/client';
-	import type {
-		ColumnDef,
-		ColumnFiltersState,
-		PaginationState,
-		RowSelectionState,
-		SortingState,
-		VisibilityState
-	} from '@yd/ui';
+	import type { ColumnDef } from '@yd/ui';
 	import {
 		Checkbox,
 		createSvelteTable,
@@ -28,18 +21,10 @@
 	import BadgesCell from './badges-cell.svelte';
 	import ColumnHeader from './column-header.svelte';
 	import Pagination from './pagination.svelte';
+	import { tableStore } from './table.svelte.ts';
 	import Toolbar from './toolbar.svelte';
 
 	let { data }: { data: Download[] } = $props();
-
-	let rowSelection = $state<RowSelectionState>({});
-	let columnVisibility = $state<VisibilityState>({
-		embed: false,
-		quality: false
-	});
-	let columnFilters = $state<ColumnFiltersState>([]);
-	let sorting = $state<SortingState>([]);
-	let pagination = $state<PaginationState>({ pageIndex: 0, pageSize: 10 });
 
 	const columns: ColumnDef<Download>[] = [
 		{
@@ -76,6 +61,21 @@
 				});
 			},
 			enableHiding: false
+		},
+		{
+			id: 'duration',
+			accessorFn: (row) => row.video.duration,
+			header: ({ column }) =>
+				renderComponent(ColumnHeader, {
+					column,
+					title: 'Duration'
+				}),
+			cell: ({ row }) => {
+				return renderComponent(BadgesCell, {
+					items: [row.original.video.duration]
+				});
+			},
+			enableSorting: false
 		},
 		{
 			id: 'format',
@@ -182,58 +182,28 @@
 		},
 		state: {
 			get sorting() {
-				return sorting;
+				return tableStore.sorting;
 			},
 			get columnVisibility() {
-				return columnVisibility;
+				return tableStore.columnVisibility;
 			},
 			get rowSelection() {
-				return rowSelection;
+				return tableStore.selection;
 			},
 			get columnFilters() {
-				return columnFilters;
+				return tableStore.columnFilters;
 			},
 			get pagination() {
-				return pagination;
+				return tableStore.pagination;
 			}
 		},
 		columns,
 		enableRowSelection: true,
-		onRowSelectionChange: (updater) => {
-			if (typeof updater === 'function') {
-				rowSelection = updater(rowSelection);
-			} else {
-				rowSelection = updater;
-			}
-		},
-		onSortingChange: (updater) => {
-			if (typeof updater === 'function') {
-				sorting = updater(sorting);
-			} else {
-				sorting = updater;
-			}
-		},
-		onColumnFiltersChange: (updater) => {
-			if (typeof updater === 'function') {
-				columnFilters = updater(columnFilters);
-			} else {
-				columnFilters = updater;
-			}
-		},
-		onColumnVisibilityChange: (updater) => {
-			if (typeof updater === 'function') {
-				columnVisibility = updater(columnVisibility);
-			} else {
-				columnVisibility = updater;
-			}
-		},
-		onPaginationChange: (updater) => {
-			if (typeof updater === 'function') {
-				pagination = updater(pagination);
-			} else {
-				pagination = updater;
-			}
-		},
+		onRowSelectionChange: (u) => tableStore.onRowSelectionChange(u),
+		onSortingChange: (u) => tableStore.onSortingChange(u),
+		onColumnFiltersChange: (u) => tableStore.onColumnFiltersChange(u),
+		onColumnVisibilityChange: (u) => tableStore.onColumnVisibilityChange(u),
+		onPaginationChange: (u) => tableStore.onPaginationChange(u),
 		getCoreRowModel: getCoreRowModel(),
 		getFilteredRowModel: getFilteredRowModel(),
 		getPaginationRowModel: getPaginationRowModel(),
