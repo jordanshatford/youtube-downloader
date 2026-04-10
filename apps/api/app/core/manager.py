@@ -3,7 +3,7 @@ import pathlib
 from collections.abc import Callable
 from multiprocessing.pool import ThreadPool
 
-from .config import DownloadConfig
+from .download import VideoDownloadConfig
 from .models import Download
 from .models import DownloadInput
 
@@ -20,7 +20,7 @@ class DownloadManager:
     ) -> None:
         self._output_dir = output_dir
         self._status_hook = status_hook
-        self._downloads: dict[str, DownloadConfig] = {}
+        self._downloads: dict[str, VideoDownloadConfig] = {}
         self._pool = ThreadPool(num_threads)
         logger.debug(
             "Initializing download manager with output at %s and %s threads.",
@@ -33,7 +33,7 @@ class DownloadManager:
 
     def add(self, download: DownloadInput) -> Download:
         if download.video.id not in self._downloads:
-            config = DownloadConfig(
+            config = VideoDownloadConfig(
                 download,
                 self._output_dir,
                 self._status_hook,

@@ -13,6 +13,7 @@ FALLBACK = HttpUrl("https://www.youtube.com/")
 
 # Parse yt-dlp VideoInfo dict into our pydantic Video.
 def parse_video_info_to_video(entry: VideoInfo) -> Video:
+    title = entry.get("title")
     url = entry.get("url")
     duration = entry.get("duration")
     duration_str = (
@@ -21,7 +22,7 @@ def parse_video_info_to_video(entry: VideoInfo) -> Video:
     thumbnails = entry.get("thumbnails")
     return Video(
         id=entry.get("id", "Unknown"),
-        title=entry.get("title", "Unknown"),
+        title=title if title is not None else "Unknown",
         url=HttpUrl(url) if url is not None else FALLBACK,
         duration=duration_str,
         thumbnail=parse_best_thumbnail_url(thumbnails),
@@ -34,10 +35,10 @@ def parse_video_info_to_channel(entry: VideoInfo) -> Channel:
     # Attempt to read the channel name and url using the channel entries.
     # If for some reason that failed, use the uploader entries. Either way
     # fallback to unknown values as channel information is not as important.
-    name = entry.get("channel", entry.get("uploader", "Unknown"))
+    name = entry.get("channel", entry.get("uploader"))
     url = entry.get("channel_url", entry.get("uploader_url"))
     return Channel(
-        name=name,
+        name=name if name is not None else "Unknown",
         url=HttpUrl(url) if url is not None else url,
     )
 

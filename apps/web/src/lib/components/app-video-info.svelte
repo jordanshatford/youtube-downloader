@@ -17,8 +17,8 @@
 
 <Item.Root {...restProps} class={cn('p-1', className)}>
 	<Item.Media variant="default" class="hidden aspect-video h-10 md:flex">
-		<a href={video.url} target="_blank" rel="noreferrer external">
-			<img alt="Thumbnail" class="" src={video.thumbnail} />
+		<a href={video.url} class="rounded-md" target="_blank" rel="noreferrer external">
+			<img alt="Thumbnail" class="rounded-md" src={video.thumbnail} />
 		</a>
 	</Item.Media>
 	<Item.Content>
