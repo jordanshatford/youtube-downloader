@@ -41,12 +41,7 @@
 			<Field.Separator />
 			<Field.Field>
 				<Field.Label for="format">Format:</Field.Label>
-				<Select.Root
-					type="single"
-					required
-					bind:value={form.format}
-					onValueChange={() => toast.success('Format settings updated successfully.')}
-				>
+				<Select.Root type="single" required bind:value={form.format}>
 					<Select.Trigger id="format" class="w-full">{formatText}</Select.Trigger>
 					<Select.Content>
 						{#each formatGroups as group (group.label)}
@@ -65,12 +60,7 @@
 			</Field.Field>
 			<Field.Field>
 				<Field.Label for="quality">Quality:</Field.Label>
-				<Select.Root
-					type="single"
-					required
-					bind:value={form.quality}
-					onValueChange={() => toast.success('Quality settings updated successfully.')}
-				>
+				<Select.Root type="single" required bind:value={form.quality}>
 					<Select.Trigger id="quality" class="w-full">{qualityText}</Select.Trigger>
 					<Select.Content>
 						{#each qualityOptions as option (option.value)}
