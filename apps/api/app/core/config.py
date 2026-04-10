@@ -125,7 +125,7 @@ class DownloadConfig:
             "progress_hooks": [self._progress_hook],
             "postprocessor_hooks": [self._postprocessor_hook],
             "post_hooks": [self._post_hook],
-            "outtmpl": f"{self._output_directory}/{self.path.stem}.%(ext)s",
+            "outtmpl": f"{self._output_directory}/%(id)s.%(ext)s",
             "postprocessors": postprocessors,
         }
 
