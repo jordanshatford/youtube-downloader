@@ -11,7 +11,7 @@
       "name": "MIT",
       "url": "https://github.com/jordanshatford/youtube-downloader/blob/main/LICENSE"
     },
-    "version": "2.0.0"
+    "version": "2.0.1"
   },
   "paths": {
     "/search": {

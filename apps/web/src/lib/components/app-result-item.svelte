@@ -12,21 +12,20 @@
 	let { result }: Props = $props();
 </script>
 
-<!-- eslint-disable svelte/no-navigation-without-resolve -->
 <Item.Root variant="outline">
 	<Item.Media variant="image" class="w-20">
-		<a href={result.url} target="_blank" rel="noreferrer">
+		<a href={result.url} target="_blank" rel="noreferrer external">
 			<img alt="Thumbnail" class="aspect-video" src={result.thumbnail} />
 		</a>
 	</Item.Media>
 	<Item.Content>
 		<Item.Title>
-			<a class="line-clamp-2" href={result.url} target="_blank" rel="noreferrer">
+			<a class="line-clamp-2" href={result.url} target="_blank" rel="noreferrer external">
 				{result.title}
 			</a></Item.Title
 		>
 		<Item.Description>
-			<a class="no-underline!" href={result.channel.url} target="_blank" rel="noreferrer">
+			<a class="no-underline!" href={result.channel.url} target="_blank" rel="noreferrer external">
 				{result.channel.name}
 			</a></Item.Description
 		>
@@ -44,4 +43,3 @@
 		{/if}
 	</Item.Actions>
 </Item.Root>
-<!-- eslint-enable svelte/no-navigation-without-resolve -->

@@ -38,7 +38,7 @@
 					<a
 						href={item.url}
 						target={item.external ? '_blank' : undefined}
-						rel={item.external ? 'noreferrer' : undefined}
+						rel={item.external ? 'noreferrer external' : undefined}
 						{...props}
 					>
 						<item.icon />
