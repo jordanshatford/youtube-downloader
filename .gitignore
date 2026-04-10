@@ -1,2 +1,5 @@
 **/node_modules
 **/.venv
+
+# OS
+.DS_Store
