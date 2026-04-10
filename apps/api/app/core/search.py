@@ -1,14 +1,9 @@
-import datetime
 import logging
-from collections.abc import Sequence
 from typing import cast
 
-from pydantic import HttpUrl
-
-from .models import Channel
 from .models import Video
+from .parse import parse_video_info_to_video
 from .ytdlp import DEFAULT_YOUTUBE_DL_PARAMS
-from .ytdlp import Thumbnail
 from .ytdlp import VideoInfo
 from .ytdlp import YoutubeDL
 from .ytdlp import YoutubeDLParams
@@ -79,52 +74,6 @@ class YouTubeSearch:
                 return []
 
             # Only parse and include entries that are not already present in the list.
-            parsed = [self._parse_entry_to_video(entry) for entry in entries]
+            parsed = [parse_video_info_to_video(entry) for entry in entries]
             existing = {v.id for v in self._results}
             return [video for video in parsed if video.id not in existing]
-
-    def _parse_entry_to_video(self, entry: VideoInfo) -> Video:
-        title = entry["title"]
-        url = entry["url"]
-        duration = entry["duration"]
-        duration_str = (
-            f"{datetime.timedelta(seconds=duration)}" if duration is not None else "???"
-        )
-        return Video(
-            id=entry["id"],
-            title=title if title is not None else "Unknown",
-            url=HttpUrl(url)
-            if url is not None
-            else HttpUrl("https://www.youtube.com/"),
-            duration=duration_str,
-            thumbnail=self._parse_entry_to_thumbnail(entry["thumbnails"]),
-            channel=self._parse_entry_to_channel(entry),
-        )
-
-    def _parse_entry_to_channel(self, entry: VideoInfo) -> Channel:
-        # Attempt to read the channel name and url using the channel entries.
-        # If for some reason that failed, use the uploader entries. Either way
-        # fallback to unknown values as channel information is not as important.
-        name = entry["channel"] or entry["uploader"]
-        url = entry["channel_url"] or entry["uploader_url"]
-        return Channel(
-            name=name if name is not None else "Unknown",
-            url=HttpUrl(url) if url is not None else url,
-        )
-
-    def _parse_entry_to_thumbnail(
-        self, thumbnails: Sequence[Thumbnail] | None
-    ) -> HttpUrl:
-        fallback = HttpUrl("https://www.youtube.com/")
-        if thumbnails is None:
-            return fallback
-
-        # Get the best thumbnail out of available options. This returns the last
-        # thumbnail in the list as they are sorted as such. As an improvement we
-        # should check for the thumbnail with the best resolution.
-        thumbnail = thumbnails[-1]
-        if thumbnail is None:
-            return fallback
-
-        url = thumbnail["url"]
-        return HttpUrl(url) if url is not None else fallback
