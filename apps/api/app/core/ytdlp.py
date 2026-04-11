@@ -83,6 +83,29 @@ class YoutubeDLParams(TypedDict, total=False):
     # returns the formats to download. See "build_format_selector" for an
     # implementation.
     format: str | Callable[[Any], Mapping[str, Any]] | None
+    # Dictionary of output paths. The allowed keys are 'home'
+    # 'temp' and the keys of OUTTMPL_TYPES (in utils/_utils.py)
+    paths: (
+        Mapping[
+            Literal[
+                "home",
+                "temp",
+                "chapter",
+                "subtitle",
+                "thumbnail",
+                "description",
+                "annotation",
+                "infojson",
+                "link",
+                "pl_video",
+                "pl_thumbnail",
+                "pl_description",
+                "pl_infojson",
+            ],
+            str,
+        ]
+        | None
+    )
     # Dictionary of templates for output names. Allowed keys are 'default'
     # and the keys of OUTTMPL_TYPES (in utils/_utils.py). For compatibility
     # with youtube-dl, a single string can also be used

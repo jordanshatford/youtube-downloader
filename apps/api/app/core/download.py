@@ -42,7 +42,11 @@ class VideoDownloadConfig(DownloadConfig):
     def run(self) -> None:
         params: YoutubeDLParams = {
             **super()._as_ytdlp_params,
-            "outtmpl": f"{self._output_directory}/%(id)s.%(ext)s",
+            "paths": {
+                "home": str(self._output_directory),
+                "temp": str(self._output_directory / "temp"),
+            },
+            "outtmpl": "%(id)s.%(ext)s",
         }
 
         logger.debug(
