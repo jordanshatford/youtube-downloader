@@ -132,6 +132,8 @@ class YoutubeDLParams(TypedDict, total=False):
     )
     # Specific indices of playlist to download.
     playlist_items: str | None
+    # Process playlist entries as they are received.
+    lazy_playlist: bool | None
     # Log messages to a logging.Logger instance.
     logger: Any | None
     #: Write the thumbnail image to a file.
@@ -297,13 +299,6 @@ class YoutubeDLParams(TypedDict, total=False):
     #   - path: Path to the executable (optional)
     #     E.g. {'deno': {'path': '/path/to/deno'}
     js_runtimes: dict[str, dict[str, str] | None]
-    """
-    The following options are deprecated and may be removed in the future:
-    """
-    # Register a custom postprocessor, A list of functions that get called
-    # as the final step for each video file, after all postprocessors have
-    # been called. The filename will be passed as the only argument
-    post_hooks: Sequence[Callable[[str], None] | None]
 
 
 # Match function used to filter out any active livestreams. This is used as
@@ -330,6 +325,7 @@ DEFAULT_YOUTUBE_DL_PARAMS: YoutubeDLParams = {
     "verbose": False,
     "js_runtimes": {"node": {}},
     "match_filter": no_active_livestreams,
+    "lazy_playlist": True,
 }
 
 
