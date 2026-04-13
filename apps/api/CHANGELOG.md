@@ -1,5 +1,23 @@
 # @yd/api
 
+## 2.1.0
+
+### Minor Changes
+
+- feat: use movefiles postprocessor to detect completed ([`0accf9d`](https://github.com/jordanshatford/youtube-downloader/commit/0accf9da30d237453440858dbaa78e2a777fe556))
+
+- feat: make yt-dlp handling generic for reuse with batch downloads ([`0accf9d`](https://github.com/jordanshatford/youtube-downloader/commit/0accf9da30d237453440858dbaa78e2a777fe556))
+
+- feat: add ability to see component versions in application ([`dc842b0`](https://github.com/jordanshatford/youtube-downloader/commit/dc842b06651f1b581d7c50898c833a9b1e788a3d))
+
+- feat: use lazy playlist with yt-dlp ([`4c8d8ab`](https://github.com/jordanshatford/youtube-downloader/commit/4c8d8abda24d8e1032afe7fc19a955947b55c42a))
+
+### Patch Changes
+
+- fix: use paths and outtmpl together ([`52337ee`](https://github.com/jordanshatford/youtube-downloader/commit/52337ee5f5027e07c5ead6d72c2e4cb93fa85981))
+
+- fix: improve information parsing from yt-dlp ([`70e951a`](https://github.com/jordanshatford/youtube-downloader/commit/70e951abb5b8aba79efdd5ac04c2dac7de6b1166))
+
 ## 2.0.1
 
 ### Patch Changes

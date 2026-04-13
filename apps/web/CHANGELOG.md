@@ -1,5 +1,18 @@
 # @yd/web
 
+## 2.5.0
+
+### Minor Changes
+
+- feat: add ability to see component versions in application ([`dc842b0`](https://github.com/jordanshatford/youtube-downloader/commit/dc842b06651f1b581d7c50898c833a9b1e788a3d))
+
+- feat: improve search handling and result display ([`c3f3323`](https://github.com/jordanshatford/youtube-downloader/commit/c3f33234a03538f65f77556d2315f9fa646748cb))
+
+### Patch Changes
+
+- Updated dependencies [[`dc842b0`](https://github.com/jordanshatford/youtube-downloader/commit/dc842b06651f1b581d7c50898c833a9b1e788a3d)]:
+  - @yd/client@2.1.0
+
 ## 2.4.0
 
 ### Minor Changes
