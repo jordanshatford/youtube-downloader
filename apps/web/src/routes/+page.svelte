@@ -19,7 +19,7 @@
 		loading={search.loading}
 		onsearch={(query) => search.get(query)}
 	/>
-	{#if results.length > 0 || search.loading}
+	{#if results.length > 0}
 		<div class="mt-4">
 			<Item.Group>
 				{#each results as result (result.id)}
