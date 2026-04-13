@@ -1,5 +1,11 @@
 # @yd/client
 
+## 2.1.0
+
+### Minor Changes
+
+- feat: add ability to see component versions in application ([`dc842b0`](https://github.com/jordanshatford/youtube-downloader/commit/dc842b06651f1b581d7c50898c833a9b1e788a3d))
+
 ## 2.0.1
 
 ### Patch Changes
