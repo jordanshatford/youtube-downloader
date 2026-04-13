@@ -3,7 +3,7 @@ import pathlib
 from collections.abc import Callable
 from multiprocessing.pool import ThreadPool
 
-from .download import VideoDownloadConfig
+from .downloadable import VideoDownloadable
 from .models import Download
 from .models import DownloadInput
 
@@ -20,7 +20,7 @@ class DownloadManager:
     ) -> None:
         self._output_dir = output_dir
         self._status_hook = status_hook
-        self._downloads: dict[str, VideoDownloadConfig] = {}
+        self._downloads: dict[str, VideoDownloadable] = {}
         self._pool = ThreadPool(num_threads)
         logger.debug(
             "Initializing download manager with output at %s and %s threads.",
@@ -33,7 +33,7 @@ class DownloadManager:
 
     def add(self, download: DownloadInput) -> Download:
         if download.video.id not in self._downloads:
-            config = VideoDownloadConfig(
+            config = VideoDownloadable(
                 download,
                 self._output_dir,
                 self._status_hook,
@@ -48,13 +48,9 @@ class DownloadManager:
         return self._downloads[download.video.id].download
 
     def remove(self, download_id: str) -> None:
-        if download_id in self._downloads:
-            logger.debug("Removing download %s.", download_id)
-            path = self._downloads[download_id].path
-            if path.exists():
-                logger.debug("Removing download file %s.", path)
-                path.unlink()
-            self._downloads.pop(download_id, None)
+        download = self._downloads.pop(download_id, None)
+        if download is not None:
+            download.remove()
 
     def get(self, download_id: str) -> Download | None:
         config = self._downloads.get(download_id, None)

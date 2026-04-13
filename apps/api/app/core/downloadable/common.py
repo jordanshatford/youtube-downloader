@@ -1,49 +1,60 @@
+import abc
 import logging
+import pathlib
 from collections.abc import Callable
 
-from .models import AudioFormat
-from .models import DownloadOptions
-from .models import DownloadState
-from .models import DownloadStatus
-from .models import Video
-from .models import VideoFormat
-from .parse import parse_video_info_to_video
-from .ytdlp import DEFAULT_YOUTUBE_DL_PARAMS
-from .ytdlp import PostprocessorHookInfo
-from .ytdlp import ProgressHookInfo
-from .ytdlp import YoutubeDLParams
+from app.core.models import AudioFormat
+from app.core.models import DownloadOptions
+from app.core.models import DownloadState
+from app.core.models import DownloadStatus
+from app.core.models import Video
+from app.core.models import VideoFormat
+from app.core.parse import parse_video_info_to_video
+from app.core.ytdlp import DEFAULT_YOUTUBE_DL_PARAMS
+from app.core.ytdlp import PostprocessorHookInfo
+from app.core.ytdlp import ProgressHookInfo
+from app.core.ytdlp import YoutubeDLParams
 
 logger = logging.getLogger("core")
 
 
-# Generic config used to take our options (in a format we like) and put them
-# into what yt-dlp is expecting. This is generic to allow use with different
-# types of downloads we support.
-class DownloadConfig:
+# Generic downloadable that we use to convert out options into the format
+# that yt-dlp is expecting. This is generic to allow use with different
+# types of downloads we support (i.e batch and video).
+class Downloadable(abc.ABC):
+    _name: str = "Downloadable"
+
     def __init__(
         self,
         identifier: str,
         options: DownloadOptions,
+        output_directory: pathlib.Path,
         hook: Callable[[Video | None, DownloadStatus], None],
     ) -> None:
-        self._identifier = f"{self.__class__.__name__}+{identifier}"
-        self._options = options
-        self._hook = hook
+        self._identifier: str = f"{self._name}+{identifier}"
+        self._options: DownloadOptions = options
+        self._output_directory: pathlib.Path = output_directory
+        self._hook: Callable[[Video | None, DownloadStatus], None] = hook
+
+    @abc.abstractmethod
+    def run(self) -> None:
+        raise NotImplementedError
 
     @property
-    def _is_audio_download(self) -> bool:
-        return self._options.format in AudioFormat
+    @abc.abstractmethod
+    def path(self) -> pathlib.Path:
+        raise NotImplementedError
+
+    @abc.abstractmethod
+    def remove(self) -> None:
+        raise NotImplementedError
 
     @property
-    def _is_video_download(self) -> bool:
-        return self._options.format in VideoFormat
-
-    @property
-    def _as_ytdlp_params(self) -> YoutubeDLParams:
+    def as_ytdlp_params(self) -> YoutubeDLParams:
         modifications: YoutubeDLParams = {}
         postprocessors: list[dict[str, str | bool | int]] = []
         # Only append audio postprocessor if we are downloading audio format.
-        if self._is_audio_download:
+        if self.__is_audio_download:
             postprocessors.append(
                 {
                     "key": "FFmpegExtractAudio",
@@ -52,7 +63,7 @@ class DownloadConfig:
                 },
             )
         # Only append video postprocessor if we are downloading video format.
-        if self._is_video_download:
+        if self.__is_video_download:
             postprocessors.append(
                 {
                     "key": "FFmpegVideoConvertor",
@@ -89,30 +100,42 @@ class DownloadConfig:
         params: YoutubeDLParams = {
             **DEFAULT_YOUTUBE_DL_PARAMS,
             **modifications,
-            "format": self._ytdlp_format,
+            "format": self.__ytdlp_format,
             "postprocessors": postprocessors,
-            "progress_hooks": [self._progress_hook],
-            "postprocessor_hooks": [self._postprocessor_hook],
+            "progress_hooks": [self.__progress_hook],
+            "postprocessor_hooks": [self.__postprocessor_hook],
+            "paths": {
+                "home": str(self._output_directory),
+                "temp": str(self._output_directory / "temp"),
+            },
         }
 
         return params
 
     @property
-    def _ytdlp_format(self) -> str:
+    def __is_audio_download(self) -> bool:
+        return self._options.format in AudioFormat
+
+    @property
+    def __is_video_download(self) -> bool:
+        return self._options.format in VideoFormat
+
+    @property
+    def __ytdlp_format(self) -> str:
         quality = self._options.quality.value
         extension = self._options.format.value
         # bestvideo*[ext=X]+bestaudio/bestvideo*+bestaudio/best or
         # worstvideo*[ext=X]+worstaudio/worstvideo*+worstaudio/worst
-        if self._is_video_download:
+        if self.__is_video_download:
             proper_ext = f"{quality}video*[ext={extension}]+{quality}audio"
             return f"{proper_ext}/{quality}video*+{quality}audio/{quality}"
         # bestaudio[ext=X]/bestaudio/best or worstaudio[ext=X]/worstaudio/worst
-        if self._is_audio_download:
+        if self.__is_audio_download:
             return f"{quality}audio[ext={extension}]/{quality}audio/{quality}"
         # Default to returning the quality (ie 'best' or 'worst')
         return quality
 
-    def _progress_hook(self, info: ProgressHookInfo) -> None:
+    def __progress_hook(self, info: ProgressHookInfo) -> None:
         # Attempt to parse video information from the progress hook.
         info_dict = info.get("info_dict")
         video = None if info_dict is None else parse_video_info_to_video(info_dict)
@@ -146,7 +169,7 @@ class DownloadConfig:
 
         self._hook(video, update)
 
-    def _postprocessor_hook(self, info: PostprocessorHookInfo) -> None:
+    def __postprocessor_hook(self, info: PostprocessorHookInfo) -> None:
         # Attempt to parse video information from the progress or postprocessor hook.
         info_dict = info.get("info_dict")
         video = None if info_dict is None else parse_video_info_to_video(info_dict)
