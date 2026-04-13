@@ -23,7 +23,7 @@ class SearchStore {
 		if (this.state.query === q) {
 			return;
 		}
-		this.state = { query: q, results: [] };
+		this.state = { ...this.state, query: q };
 		this.loading = true;
 		toast.promise(getSearch({ query: { query: q } }), {
 			loading: 'Searching...',

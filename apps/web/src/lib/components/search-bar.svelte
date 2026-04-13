@@ -2,16 +2,21 @@
 	import { InputGroup, SearchIcon, SpinnerIcon } from '@yd/ui';
 
 	interface Props {
-		results?: number;
 		loading?: boolean;
 		query?: string;
 		onsearch: (query: string) => void | Promise<void>;
 	}
 
-	let { results, loading = false, query = $bindable(), onsearch }: Props = $props();
+	let { loading = false, query = $bindable(), onsearch }: Props = $props();
 
-	function search(event: KeyboardEvent) {
+	function onKeypressSearch(event: KeyboardEvent) {
 		if (event.key === 'Enter' && query && query.length > 0) {
+			onSearch();
+		}
+	}
+
+	function onSearch() {
+		if (query && query.length > 0) {
 			onsearch(query);
 		}
 	}
@@ -22,7 +27,7 @@
 		placeholder="Search..."
 		bind:value={query}
 		disabled={loading}
-		onkeypress={search}
+		onkeypress={onKeypressSearch}
 		type="search"
 	/>
 	<InputGroup.Addon>
@@ -32,7 +37,7 @@
 			<SearchIcon />
 		{/if}
 	</InputGroup.Addon>
-	{#if results && results > 0}
-		<InputGroup.Addon align="inline-end">{results} result(s)</InputGroup.Addon>
-	{/if}
+	<InputGroup.Addon align="inline-end">
+		<InputGroup.Button variant="secondary" onclick={onSearch}>Search</InputGroup.Button>
+	</InputGroup.Addon>
 </InputGroup.Root>

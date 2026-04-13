@@ -1,6 +1,6 @@
 <script lang="ts">
 	import AppResultItem from '$lib/components/app-result-item.svelte';
-	import AppSearchBar from '$lib/components/app-search-bar.svelte';
+	import AppSearchBar from '$lib/components/search-bar.svelte';
 	import config from '$lib/config';
 	import { search } from '$lib/stores/search.svelte';
 
@@ -18,9 +18,8 @@
 		query={search.state.query}
 		loading={search.loading}
 		onsearch={(query) => search.get(query)}
-		results={results.length}
 	/>
-	{#if results.length > 0}
+	{#if results.length > 0 || search.loading}
 		<div class="mt-4">
 			<Item.Group>
 				{#each results as result (result.id)}
