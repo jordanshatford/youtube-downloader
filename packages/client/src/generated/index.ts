@@ -14,6 +14,7 @@ export {
 	getSearchState,
 	getSession,
 	getSessionValidate,
+	getVersions,
 	type Options,
 	postDownloads,
 	putDownloads
@@ -86,6 +87,10 @@ export {
 	type GetSessionValidateErrors,
 	type GetSessionValidateResponse,
 	type GetSessionValidateResponses,
+	type GetVersionsData,
+	type GetVersionsErrors,
+	type GetVersionsResponse,
+	type GetVersionsResponses,
 	type HttpValidationError,
 	LanguageCode,
 	type PostDownloadsData,
@@ -101,6 +106,7 @@ export {
 	type SearchState,
 	type Session,
 	type ValidationError,
+	type Version,
 	type Video,
 	VideoFormat
 } from './types.gen';

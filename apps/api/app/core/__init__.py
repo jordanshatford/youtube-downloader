@@ -9,11 +9,14 @@ from .models import DownloadQuality
 from .models import DownloadState
 from .models import DownloadStatus
 from .models import SearchState
+from .models import Version
 from .models import Video
 from .models import VideoFormat
 from .search import YouTubeSearch
+from .versions import CORE_VERSIONS
 
 __all__ = [
+    "CORE_VERSIONS",
     "AudioFormat",
     "AvailableDownloadOptions",
     "Channel",
@@ -25,6 +28,7 @@ __all__ = [
     "DownloadState",
     "DownloadStatus",
     "SearchState",
+    "Version",
     "Video",
     "VideoFormat",
     "YouTubeSearch",

@@ -9,6 +9,7 @@ import {
 	CodeIcon,
 	CopyrightIcon,
 	DownloadIcon,
+	GalleryVerticalEndIcon,
 	GitPullRequestIcon,
 	HandshakeIcon,
 	SearchIcon,
@@ -35,6 +36,11 @@ export const settingsRoutes: RouteItem[] = [
 		title: 'Embed',
 		url: '/settings/embed',
 		icon: CodeIcon
+	},
+	{
+		title: 'Versions',
+		url: '/settings/versions',
+		icon: GalleryVerticalEndIcon
 	}
 ];
 

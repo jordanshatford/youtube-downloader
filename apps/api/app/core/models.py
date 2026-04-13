@@ -143,3 +143,8 @@ class DownloadInput(BaseModel):
 
 class Download(DownloadInput):
     status: DownloadStatus
+
+
+class Version(BaseModel):
+    component: str
+    version: str | None

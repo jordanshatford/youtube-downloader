@@ -254,6 +254,20 @@ export type ValidationError = {
 };
 
 /**
+ * Version
+ */
+export type Version = {
+	/**
+	 * Component
+	 */
+	component: string;
+	/**
+	 * Version
+	 */
+	version: string | null;
+};
+
+/**
  * Video
  */
 export type Video = {
@@ -772,3 +786,32 @@ export type GetDownloadFileResponses = {
 };
 
 export type GetDownloadFileResponse = GetDownloadFileResponses[keyof GetDownloadFileResponses];
+
+export type GetVersionsData = {
+	body?: never;
+	path?: never;
+	query?: never;
+	url: '/versions';
+};
+
+export type GetVersionsErrors = {
+	/**
+	 * Forbidden
+	 */
+	403: unknown;
+	/**
+	 * Not Found
+	 */
+	404: unknown;
+};
+
+export type GetVersionsResponses = {
+	/**
+	 * Response Get Versions
+	 *
+	 * Successful Response
+	 */
+	200: Array<Version>;
+};
+
+export type GetVersionsResponse = GetVersionsResponses[keyof GetVersionsResponses];

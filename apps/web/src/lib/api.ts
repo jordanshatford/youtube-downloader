@@ -3,6 +3,7 @@ import { env } from '$lib/config';
 import { downloads } from '$lib/stores/downloads.svelte';
 import { search } from '$lib/stores/search.svelte';
 import { settings } from '$lib/stores/settings.svelte';
+import { versions } from '$lib/stores/versions.svelte';
 
 import { client, getSession, getSessionValidate } from '@yd/client';
 import { toast } from '@yd/ui';
@@ -49,9 +50,7 @@ export async function setupSession(): Promise<void> {
 				}
 			}
 		}
-		await settings.init();
-		await search.init();
-		await downloads.init();
+		await Promise.all([settings.init(), search.init(), downloads.init(), versions.init()]);
 	}
 }
 

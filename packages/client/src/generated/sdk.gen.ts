@@ -40,6 +40,9 @@ import type {
 	GetSessionValidateData,
 	GetSessionValidateErrors,
 	GetSessionValidateResponses,
+	GetVersionsData,
+	GetVersionsErrors,
+	GetVersionsResponses,
 	PostDownloadsData,
 	PostDownloadsErrors,
 	PostDownloadsResponses,
@@ -263,5 +266,17 @@ export const getDownloadFile = <ThrowOnError extends boolean = false>(
 	(options.client ?? client).get<GetDownloadFileResponses, GetDownloadFileErrors, ThrowOnError>({
 		security: [{ scheme: 'bearer', type: 'http' }],
 		url: '/downloads/{download_id}/file',
+		...options
+	});
+
+/**
+ * Get Versions
+ */
+export const getVersions = <ThrowOnError extends boolean = false>(
+	options?: Options<GetVersionsData, ThrowOnError>
+) =>
+	(options?.client ?? client).get<GetVersionsResponses, GetVersionsErrors, ThrowOnError>({
+		security: [{ scheme: 'bearer', type: 'http' }],
+		url: '/versions',
 		...options
 	});

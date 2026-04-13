@@ -610,6 +610,42 @@
           }
         }
       }
+    },
+    "/versions": {
+      "get": {
+        "tags": [
+          "versions"
+        ],
+        "summary": "Get Versions",
+        "operationId": "get_versions",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "items": {
+                    "$ref": "#/components/schemas/Version"
+                  },
+                  "type": "array",
+                  "title": "Response Get Versions"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ]
+      }
     }
   },
   "components": {
@@ -1045,6 +1081,31 @@
         ],
         "title": "ValidationError"
       },
+      "Version": {
+        "properties": {
+          "component": {
+            "type": "string",
+            "title": "Component"
+          },
+          "version": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Version"
+          }
+        },
+        "type": "object",
+        "required": [
+          "component",
+          "version"
+        ],
+        "title": "Version"
+      },
       "Video": {
         "properties": {
           "id": {
@@ -1110,16 +1171,20 @@
   },
   "tags": [
     {
-      "name": "session",
-      "description": "Session management."
+      "name": "downloads",
+      "description": "Downloading handling and management."
     },
     {
       "name": "search",
-      "description": "Search YouTube."
+      "description": "YouTube search handling."
     },
     {
-      "name": "downloads",
-      "description": "Download management."
+      "name": "session",
+      "description": "User session handling."
+    },
+    {
+      "name": "versions",
+      "description": "Version details for the application."
     }
   ]
 }
