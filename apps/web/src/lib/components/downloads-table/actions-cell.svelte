@@ -65,7 +65,7 @@
 		{/snippet}
 	</DropdownMenu.Trigger>
 	<DropdownMenu.Content class="w-44" align="end">
-		<DropdownMenu.Label>Download Actions</DropdownMenu.Label>
+		<DropdownMenu.Label>Actions</DropdownMenu.Label>
 		<DropdownMenu.Separator />
 		<DropdownMenu.Item disabled={isDownloadDisabled} onclick={handleDownloadFile}>
 			<FileDownloadIcon />{downloadableRows.length > 1

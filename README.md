@@ -22,18 +22,18 @@ YouTube Downloader is an application created for downloading [YouTube](https://w
 - Configurable quality options (best, worst).
 - Configurable options to automatically embed video metadata, thumbnails, and subtitles.
 
-# Developer Guide
+## Developer Guide
 
 Please refer to the [contributing guide](CONTRIBUTING.md) for how to install the project for development purposes.
 
-## Monorepo structure:
+### Monorepo structure
 
-### Apps:
+#### Apps
 
 - `api`: An API developed using [Python](https://www.python.org/) with [FastAPI](https://fastapi.tiangolo.com/) and [yt-dlp](https://github.com/yt-dlp/yt-dlp).
 - `web`: A web application developed using [SvelteKit](https://kit.svelte.dev/).
 
-### Packages:
+#### Packages
 
 - `client`: An API client generated using [TypeScript](https://www.typescriptlang.org/) with [openapi-ts](https://github.com/hey-api/openapi-ts).
 - `ui`: A UI library developed using [Svelte](https://svelte.dev/) and [shadcn-svelte](https://www.shadcn-svelte.com/).
