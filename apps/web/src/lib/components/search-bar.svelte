@@ -38,6 +38,8 @@
 		{/if}
 	</InputGroup.Addon>
 	<InputGroup.Addon align="inline-end">
-		<InputGroup.Button variant="secondary" onclick={onSearch}>Search</InputGroup.Button>
+		<InputGroup.Button variant="secondary" disabled={loading} onclick={onSearch}
+			>Search</InputGroup.Button
+		>
 	</InputGroup.Addon>
 </InputGroup.Root>
