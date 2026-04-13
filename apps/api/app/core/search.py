@@ -76,4 +76,8 @@ class YouTubeSearch:
             # Only parse and include entries that are not already present in the list.
             parsed = [parse_video_info_to_video(entry) for entry in entries]
             existing = {v.id for v in self._results}
-            return [video for video in parsed if video.id not in existing]
+            return [
+                video
+                for video in parsed
+                if video is not None and video.id not in existing
+            ]

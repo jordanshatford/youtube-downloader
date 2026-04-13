@@ -12,22 +12,28 @@ FALLBACK = HttpUrl("https://www.youtube.com/")
 
 
 # Parse yt-dlp VideoInfo dict into our pydantic Video.
-def parse_video_info_to_video(entry: VideoInfo) -> Video:
-    title = entry.get("title")
-    url = entry.get("url")
-    duration = entry.get("duration")
-    duration_str = (
-        f"{datetime.timedelta(seconds=duration)}" if duration is not None else "???"
-    )
-    thumbnails = entry.get("thumbnails")
-    return Video(
-        id=entry.get("id", "Unknown"),
-        title=title if title is not None else "Unknown",
-        url=HttpUrl(url) if url is not None else FALLBACK,
-        duration=duration_str,
-        thumbnail=parse_best_thumbnail_url(thumbnails),
-        channel=parse_video_info_to_channel(entry),
-    )
+def parse_video_info_to_video(entry: VideoInfo | None) -> Video | None:
+    try:
+        if entry is None:
+            return None
+
+        title = entry.get("title")
+        url = entry.get("url")
+        duration = entry.get("duration")
+        duration_str = (
+            f"{datetime.timedelta(seconds=duration)}" if duration is not None else "???"
+        )
+        thumbnails = entry.get("thumbnails")
+        return Video(
+            id=entry["id"],
+            title=title if title is not None else "Unknown",
+            url=HttpUrl(url) if url is not None else FALLBACK,
+            duration=duration_str,
+            thumbnail=parse_best_thumbnail_url(thumbnails),
+            channel=parse_video_info_to_channel(entry),
+        )
+    except KeyError:
+        return None
 
 
 # Parse yt-dlp VideoInfo dict into our pydantic Channel.

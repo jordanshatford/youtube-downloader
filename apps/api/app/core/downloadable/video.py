@@ -19,6 +19,7 @@ logger = logging.getLogger("core")
 # Config used when downloading single videos using yt-dlp.
 class VideoDownloadable(Downloadable):
     _name: str = "VideoDownloadable"
+    _outtmpl: str = "%(id)s.%(ext)s"
 
     def __init__(
         self,
@@ -45,30 +46,19 @@ class VideoDownloadable(Downloadable):
         )
 
     def run(self) -> None:
-        params: YoutubeDLParams = {
-            **super().as_ytdlp_params,
-            "outtmpl": "%(id)s.%(ext)s",
-        }
-
-        logger.debug(
-            "Download parameters for %s are %s.",
-            self.download.video.url,
-            params,
-        )
-
         try:
-            with YoutubeDL(params) as downloader:
+            with YoutubeDL(super().as_ytdlp_params) as ytdlp:
                 self.__downloadable_hook(
                     self.download.video,
                     DownloadStatus(state=DownloadState.DOWNLOADING),
                 )
-                logger.debug("Download started: %s.", self.download.video.url)
-                downloader.download(
+                logger.debug("[%s]: %s is 'starting'.", self._name, self._identifier)
+                ytdlp.download(
                     [str(self.download.video.url)],
                 )
-                logger.debug("Download completed: %s.", self.download.video.url)
+                logger.debug("[%s]: %s is 'completed'.", self._name, self._identifier)
         except Exception:
-            logger.exception("Failed to download: %s.", self.download.video.url)
+            logger.exception("[%s]: %s is 'failed'.", self._name, self._identifier)
             self.__downloadable_hook(
                 self.download.video,
                 DownloadStatus(state=DownloadState.ERROR),
@@ -82,9 +72,11 @@ class VideoDownloadable(Downloadable):
         )
 
     def remove(self) -> None:
-        logger.debug("Removing download %s.", self._identifier)
+        logger.debug("[%s]: %s is being removed.", self._name, self._identifier)
         if self.path.exists():
-            logger.debug("Removing download file %s.", self._identifier)
+            logger.debug(
+                "[%s]: %s file is being removed.", self._name, self._identifier
+            )
             self.path.unlink()
 
     def __downloadable_hook(self, _: Video | None, status: DownloadStatus) -> None:

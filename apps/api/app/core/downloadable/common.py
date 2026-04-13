@@ -23,6 +23,8 @@ logger = logging.getLogger("core")
 # types of downloads we support (i.e batch and video).
 class Downloadable(abc.ABC):
     _name: str = "Downloadable"
+    _outtmpl: str = "%(id)s.%(ext)s"
+
 
     def __init__(
         self,
@@ -34,7 +36,7 @@ class Downloadable(abc.ABC):
         self._identifier: str = f"{self._name}+{identifier}"
         self._options: DownloadOptions = options
         self._output_directory: pathlib.Path = output_directory
-        self._hook: Callable[[Video | None, DownloadStatus], None] = hook
+        self.__hook: Callable[[Video | None, DownloadStatus], None] = hook
 
     @abc.abstractmethod
     def run(self) -> None:
@@ -108,7 +110,12 @@ class Downloadable(abc.ABC):
                 "home": str(self._output_directory),
                 "temp": str(self._output_directory / "temp"),
             },
+            "outtmpl": self._outtmpl,
         }
+
+        logger.debug(
+            "[%s]: %s download parameters are %s.", self._name, self._identifier, params
+        )
 
         return params
 
@@ -138,11 +145,15 @@ class Downloadable(abc.ABC):
     def __progress_hook(self, info: ProgressHookInfo) -> None:
         # Attempt to parse video information from the progress hook.
         info_dict = info.get("info_dict")
-        video = None if info_dict is None else parse_video_info_to_video(info_dict)
+        video = parse_video_info_to_video(info_dict)
+
         status = info.get("status")
+
+        logger.debug("[%s]: %s is '%s'.", self._name, self._identifier, status)
+
         update = DownloadStatus(state=DownloadState.DOWNLOADING)
+
         if status == "downloading":
-            logger.debug("Download %s status DOWNLOADING.", self._identifier)
             # Get all relevant download details to provide feedback to the user.
             update = DownloadStatus(
                 state=DownloadState.DOWNLOADING,
@@ -156,32 +167,32 @@ class Downloadable(abc.ABC):
                 speed=info.get("speed"),
             )
             logger.debug(
-                "Download %s progress %s.",
+                "[%s]: %s download progress %s%.",
+                self._name,
                 self._identifier,
                 update.progress,
             )
         elif status == "finished":
-            logger.debug("Download %s status FINISHED.", self._identifier)
             update = DownloadStatus(state=DownloadState.PROCESSING)
         elif status == "error":
-            logger.error("Download %s status ERROR.", self._identifier)
             update = DownloadStatus(state=DownloadState.ERROR)
 
-        self._hook(video, update)
+        self.__hook(video, update)
 
     def __postprocessor_hook(self, info: PostprocessorHookInfo) -> None:
         # Attempt to parse video information from the progress or postprocessor hook.
         info_dict = info.get("info_dict")
-        video = None if info_dict is None else parse_video_info_to_video(info_dict)
+        video = parse_video_info_to_video(info_dict)
 
         status = info.get("status")
         postprocessor = info.get("postprocessor")
 
         logger.debug(
-            "Download %s postprocessing %s is %s.",
+            "[%s]: %s postprocessor '%s' is '%s'.",
+            self._name,
             self._identifier,
             postprocessor,
-            status.upper(),
+            status,
         )
 
         update = DownloadStatus(
@@ -194,4 +205,4 @@ class Downloadable(abc.ABC):
         if postprocessor == "MoveFiles" and status == "finished":
             update = DownloadStatus(state=DownloadState.DONE)
 
-        self._hook(video, update)
+        self.__hook(video, update)
