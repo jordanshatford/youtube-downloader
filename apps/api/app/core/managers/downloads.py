@@ -29,7 +29,7 @@ class DownloadsManager:
             config = SingleDownloadable(
                 download,
                 self._directory,
-                self.__hook,
+                self.queue.put,
             )
             logger.debug(
                 "Added download %s with options %s ",
@@ -58,6 +58,3 @@ class DownloadsManager:
             logger.debug("Download file does not exist for %s.", download_id)
             return None
         return config.path
-
-    def __hook(self, download: Download) -> None:
-        self.queue.put(download)
