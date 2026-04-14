@@ -15,13 +15,12 @@ logger = logging.getLogger("api")
 class Session:
     def __init__(
         self,
-        session_id: str,
         directory: pathlib.Path,
         *,
         processes: int | None = None,
     ) -> None:
-        self.id = session_id
-        self._directory = directory / session_id
+        self.id = str(uuid.uuid4())
+        self._directory = directory / self.id
         self._last_use = datetime.datetime.now(tz=datetime.UTC)
         # Thread pool for this users session, shared accross the various features.
         self._pool = ThreadPool(processes)
@@ -62,16 +61,16 @@ class SessionsManager:
     def __init__(
         self,
         *,
-        sessions_dir: pathlib.Path | None = None,
+        directory: pathlib.Path | None = None,
         session_too_old_delta: datetime.timedelta | None = None,
     ) -> None:
         self._sessions: dict[str, Session] = {}
         # Location where all session related files will be downloaded. Default to the
         # current working directory where the API is being run.
-        if sessions_dir is not None:
-            self._sessions_dir = sessions_dir / "sessions"
+        if directory is not None:
+            self._directory = directory / "sessions"
         else:
-            self._sessions_dir = pathlib.Path.cwd() / "sessions"
+            self._directory = pathlib.Path.cwd() / "sessions"
         # Time delta used to determine if a session has been inactive for too long,
         # after which case it will be cleaned up next cleanup check.
         if session_too_old_delta is not None:
@@ -91,9 +90,9 @@ class SessionsManager:
 
     # Create a new session with a generated UUID for the session ID.
     def create(self) -> str:
-        session_id = str(uuid.uuid4())
-        self._sessions[session_id] = Session(session_id, self._sessions_dir)
-        return session_id
+        session = Session(self._directory)
+        self._sessions[session.id] = session
+        return session.id
 
     # Get the session. If it exists also update its latest use time to ensure that
     # it does not get cleaned up next time we do a cleanup check.
@@ -120,8 +119,8 @@ class SessionsManager:
                 self.remove(session_id)
         if force:
             try:
-                if self._sessions_dir.exists():
-                    shutil.rmtree(self._sessions_dir)
+                if self._directory.exists():
+                    shutil.rmtree(self._directory)
             except FileNotFoundError:
                 pass
 
