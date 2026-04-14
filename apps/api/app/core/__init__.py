@@ -1,4 +1,5 @@
 from .managers import DownloadsManager
+from .managers import YouTubeSearchManager
 from .models import AudioFormat
 from .models import AvailableDownloadOptions
 from .models import Channel
@@ -12,7 +13,6 @@ from .models import SearchState
 from .models import Version
 from .models import Video
 from .models import VideoFormat
-from .search import YouTubeSearch
 from .versions import CORE_VERSIONS
 
 __all__ = [
@@ -31,5 +31,5 @@ __all__ = [
     "Version",
     "Video",
     "VideoFormat",
-    "YouTubeSearch",
+    "YouTubeSearchManager",
 ]

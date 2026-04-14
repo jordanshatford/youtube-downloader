@@ -1,28 +1,27 @@
 import logging
 from typing import cast
 
-from .models import Video
-from .parse import parse_video_info_to_video
-from .ytdlp import DEFAULT_YOUTUBE_DL_PARAMS
-from .ytdlp import VideoInfo
-from .ytdlp import YoutubeDL
-from .ytdlp import YoutubeDLParams
+from app.core.models import Video
+from app.core.parse import parse_video_info_to_video
+from app.core.ytdlp import DEFAULT_YOUTUBE_DL_PARAMS
+from app.core.ytdlp import VideoInfo
+from app.core.ytdlp import YoutubeDL
+from app.core.ytdlp import YoutubeDLParams
 
 logger = logging.getLogger("core")
 
 
-class YouTubeSearch:
-    def __init__(self, query: str, *, page_size: int = 20) -> None:
-        self._query: str = query
+class YouTubeSearchManager:
+    def __init__(self, *, page_size: int = 20) -> None:
+        self._query: str | None = None
         self._page_size: int = page_size
         self._page: int = 1
         self._results: list[Video] = []
-        self._results = self._fetch_current_page()
-        self._has_more: bool = len(self._results) != 0
+        self._has_more = False
 
     @property
     def query(self) -> str:
-        return self._query
+        return "" if self._query is None else self._query
 
     @property
     def results(self) -> list[Video]:
@@ -32,7 +31,15 @@ class YouTubeSearch:
     def has_more(self) -> bool:
         return self._has_more
 
-    def next(self) -> list[Video]:
+    def get(self, query: str) -> list[Video]:
+        self._query = query
+        self._page = 1
+        results = self._fetch_current_page()
+        self._results = results
+        self._has_more: bool = len(results) != 0
+        return results
+
+    def get_next(self) -> list[Video]:
         if not self._has_more:
             logger.debug("No more search results for '%s'.", self._query)
             return []

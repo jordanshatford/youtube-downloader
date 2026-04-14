@@ -4,13 +4,10 @@ import pathlib
 import shutil
 import uuid
 from multiprocessing.pool import ThreadPool
-from typing import TYPE_CHECKING
 
 from .core import DownloadsManager
+from .core import YouTubeSearchManager
 from .timer import RepeatedTimer
-
-if TYPE_CHECKING:
-    from .core import YouTubeSearch
 
 logger = logging.getLogger("api")
 
@@ -30,7 +27,7 @@ class Session:
         self._pool = ThreadPool(processes)
         # Track current search for each session so that we can more easily get
         # next page when requested.
-        self.search: YouTubeSearch | None = None
+        self.search = YouTubeSearchManager()
         # Each session has there own download manager that handles downloading
         # all requested files to its own location.
         self.downloads = DownloadsManager(self._directory, self._pool)
