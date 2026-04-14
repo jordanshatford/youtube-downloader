@@ -4,20 +4,29 @@ import pathlib
 import queue
 import shutil
 import uuid
+from multiprocessing.pool import ThreadPool
 
 from .core import Download
-from .core import DownloadManager
 from .core import YouTubeSearch
+from .core.managers import DownloadsManager
 from .timer import RepeatedTimer
 
 logger = logging.getLogger("api")
 
 
 class Session:
-    def __init__(self, session_id: str, sessions_dir: pathlib.Path) -> None:
+    def __init__(
+        self,
+        session_id: str,
+        directory: pathlib.Path,
+        *,
+        processes: int | None = None,
+    ) -> None:
         self.id = session_id
-        self._directory = sessions_dir / session_id
+        self._directory = directory / session_id
         self._last_use = datetime.datetime.now(tz=datetime.UTC)
+        # Thread pool for this users session, shared accross the various features.
+        self._pool = ThreadPool(processes)
         # Track current search for each session so that we can more easily get
         # next page when requested.
         self.search: YouTubeSearch | None = None
@@ -25,9 +34,14 @@ class Session:
         self.downloads_statuses: queue.Queue[Download] = queue.Queue()
         # Each session has there own download manager that handles downloading
         # all requested files to its own location.
-        self.downloads = DownloadManager(
+        self.downloads = DownloadsManager(
+            self._directory, self._status_hook, self._pool
+        )
+
+        logger.debug(
+            "[Session]: initializing with output at %s and %s thread processes.",
             self._directory,
-            self._status_hook,
+            processes,
         )
 
     # Update the use time of the session to now. To prevent it from being
@@ -42,7 +56,7 @@ class Session:
 
     # Cleanup all files related to the session.
     def cleanup(self) -> None:
-        logger.debug("Cleaning up session with id %s", self.id)
+        logger.debug("[Session]: cleaning up %s.", self.id)
         try:
             if self._directory.exists():
                 shutil.rmtree(self._directory)
@@ -107,7 +121,9 @@ class SessionsManager:
     # Attempt to cleanup all sessions. If it should be done with force, all
     # sessions will be force removed, and the session directory will be removed.
     def cleanup(self, *, force: bool = False) -> None:
-        logger.debug("Attempting to cleanup all sessions (force=%s)", force)
+        logger.debug(
+            "[Sessions]: attempting to cleanup all sessions (force=%s).", force
+        )
         for session_id, session in self._sessions.copy().items():
             if session.is_older_than(self._session_too_old_delta) or force:
                 self.remove(session_id)

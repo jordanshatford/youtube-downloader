@@ -3,30 +3,24 @@ import pathlib
 from collections.abc import Callable
 from multiprocessing.pool import ThreadPool
 
-from .downloadable import SingleDownloadable
-from .models import Download
-from .models import DownloadInput
+from app.core.downloadable import SingleDownloadable
+from app.core.models import Download
+from app.core.models import DownloadInput
 
 logger = logging.getLogger("core")
 
 
-class DownloadManager:
+class DownloadsManager:
     def __init__(
         self,
-        output_dir: pathlib.Path,
-        status_hook: Callable[[Download], None],
-        *,
-        num_threads: int | None = None,
+        directory: pathlib.Path,
+        hook: Callable[[Download], None],
+        pool: ThreadPool,
     ) -> None:
-        self._output_dir = output_dir
-        self._status_hook = status_hook
+        self._directory: pathlib.Path = directory
+        self._hook: Callable[[Download], None] = hook
+        self._pool: ThreadPool = pool
         self._downloads: dict[str, SingleDownloadable] = {}
-        self._pool = ThreadPool(num_threads)
-        logger.debug(
-            "Initializing download manager with output at %s and %s threads.",
-            self._output_dir,
-            num_threads,
-        )
 
     def __contains__(self, download_id: str) -> bool:
         return download_id in self._downloads
@@ -35,8 +29,8 @@ class DownloadManager:
         if download.video.id not in self._downloads:
             config = SingleDownloadable(
                 download,
-                self._output_dir,
-                self._status_hook,
+                self._directory,
+                self._hook,
             )
             logger.debug(
                 "Added download %s with options %s ",
