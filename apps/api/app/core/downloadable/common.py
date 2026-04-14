@@ -1,6 +1,7 @@
 import abc
 import logging
 import pathlib
+import tempfile
 from collections.abc import Callable
 
 from app.core.models import AudioFormat
@@ -30,11 +31,13 @@ class Downloadable(abc.ABC):
         identifier: str,
         options: DownloadOptions,
         directory: pathlib.Path,
+        tmp: tempfile.TemporaryDirectory,
         hook: Callable[[Video | None, DownloadStatus], None],
     ) -> None:
         self._identifier: str = f"{self._name}+{identifier}"
         self._options: DownloadOptions = options
         self._directory: pathlib.Path = directory
+        self._tmp: tempfile.TemporaryDirectory = tmp
         self.__hook: Callable[[Video | None, DownloadStatus], None] = hook
 
     @abc.abstractmethod
@@ -107,7 +110,7 @@ class Downloadable(abc.ABC):
             "postprocessor_hooks": [self.__postprocessor_hook],
             "paths": {
                 "home": str(self._directory),
-                "temp": str(self._directory / "temp"),
+                "temp": str(self._tmp.name),
             },
             "outtmpl": self._outtmpl,
         }

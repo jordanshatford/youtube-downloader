@@ -2,6 +2,7 @@ import datetime
 import logging
 import pathlib
 import shutil
+import tempfile
 import uuid
 from multiprocessing.pool import ThreadPool
 
@@ -22,6 +23,8 @@ class Session:
         self.id = str(uuid.uuid4())
         self._directory = directory / self.id
         self._last_use = datetime.datetime.now(tz=datetime.UTC)
+        # Temporary directory used for the session.
+        self._tmp: tempfile.TemporaryDirectory = tempfile.TemporaryDirectory()
         # Thread pool for this users session, shared accross the various features.
         self._pool = ThreadPool(processes)
         # Track current search for each session so that we can more easily get
@@ -29,7 +32,7 @@ class Session:
         self.search = YouTubeSearchManager()
         # Each session has there own download manager that handles downloading
         # all requested files to its own location.
-        self.downloads = DownloadsManager(self._directory, self._pool)
+        self.downloads = DownloadsManager(self._directory, self._tmp, self._pool)
 
         logger.debug(
             "[Session]: initializing with output at %s and %s thread processes.",
@@ -50,6 +53,7 @@ class Session:
     # Cleanup all files related to the session.
     def cleanup(self) -> None:
         logger.debug("[Session]: cleaning up %s.", self.id)
+        self._tmp.cleanup()
         try:
             if self._directory.exists():
                 shutil.rmtree(self._directory)

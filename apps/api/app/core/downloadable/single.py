@@ -1,6 +1,7 @@
 import copy
 import logging
 import pathlib
+import tempfile
 from collections.abc import Callable
 
 from app.core.models import Download
@@ -24,12 +25,14 @@ class SingleDownloadable(Downloadable):
         self,
         download: DownloadInput,
         directory: pathlib.Path,
+        tmp: tempfile.TemporaryDirectory,
         hook: Callable[[Download], None],
     ) -> None:
         super().__init__(
             download.video.id,
             download.options,
             directory,
+            tmp,
             self.__downloadable_hook,
         )
         self.download = Download(

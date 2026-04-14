@@ -1,6 +1,7 @@
 import logging
 import pathlib
 import queue
+import tempfile
 from multiprocessing.pool import ThreadPool
 
 from app.core.downloadable import SingleDownloadable
@@ -14,9 +15,11 @@ class DownloadsManager:
     def __init__(
         self,
         directory: pathlib.Path,
+        tmp: tempfile.TemporaryDirectory,
         pool: ThreadPool,
     ) -> None:
         self._directory: pathlib.Path = directory
+        self._tmp: tempfile.TemporaryDirectory = tmp
         self._pool: ThreadPool = pool
         self._downloads: dict[str, SingleDownloadable] = {}
         self.queue: queue.Queue[Download] = queue.Queue()
@@ -29,6 +32,7 @@ class DownloadsManager:
             config = SingleDownloadable(
                 download,
                 self._directory,
+                self._tmp,
                 self.queue.put,
             )
             logger.debug(
