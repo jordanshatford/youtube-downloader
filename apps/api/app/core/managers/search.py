@@ -36,7 +36,7 @@ class YouTubeSearchManager:
         self._page = 1
         results = self._fetch_current_page()
         self._results = results
-        self._has_more: bool = len(results) != 0
+        self._has_more = len(results) != 0
         return results
 
     def get_next(self) -> list[Video]:

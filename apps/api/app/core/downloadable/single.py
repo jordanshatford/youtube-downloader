@@ -23,13 +23,13 @@ class SingleDownloadable(Downloadable):
     def __init__(
         self,
         download: DownloadInput,
-        output_directory: pathlib.Path,
-        status_hook: Callable[[Download], None],
+        directory: pathlib.Path,
+        hook: Callable[[Download], None],
     ) -> None:
         super().__init__(
             download.video.id,
             download.options,
-            output_directory,
+            directory,
             self.__downloadable_hook,
         )
         self.download = Download(
@@ -38,7 +38,7 @@ class SingleDownloadable(Downloadable):
                 state=DownloadState.WAITING,
             ),
         )
-        self._status_hook = status_hook
+        self._hook = hook
         self.__downloadable_hook(
             self.download.video,
             DownloadStatus(state=DownloadState.WAITING),
@@ -66,7 +66,7 @@ class SingleDownloadable(Downloadable):
     @property
     def path(self) -> pathlib.Path:
         return (
-            self._output_directory
+            self._directory
             / f"{self.download.video.id}.{self.download.options.format.value}"
         )
 
@@ -80,4 +80,4 @@ class SingleDownloadable(Downloadable):
 
     def __downloadable_hook(self, _: Video | None, status: DownloadStatus) -> None:
         self.download.status = status
-        self._status_hook(copy.deepcopy(self.download))
+        self._hook(copy.deepcopy(self.download))

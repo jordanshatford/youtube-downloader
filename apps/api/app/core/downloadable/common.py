@@ -29,12 +29,12 @@ class Downloadable(abc.ABC):
         self,
         identifier: str,
         options: DownloadOptions,
-        output_directory: pathlib.Path,
+        directory: pathlib.Path,
         hook: Callable[[Video | None, DownloadStatus], None],
     ) -> None:
         self._identifier: str = f"{self._name}+{identifier}"
         self._options: DownloadOptions = options
-        self._output_directory: pathlib.Path = output_directory
+        self._directory: pathlib.Path = directory
         self.__hook: Callable[[Video | None, DownloadStatus], None] = hook
 
     @abc.abstractmethod
@@ -106,8 +106,8 @@ class Downloadable(abc.ABC):
             "progress_hooks": [self.__progress_hook],
             "postprocessor_hooks": [self.__postprocessor_hook],
             "paths": {
-                "home": str(self._output_directory),
-                "temp": str(self._output_directory / "temp"),
+                "home": str(self._directory),
+                "temp": str(self._directory / "temp"),
             },
             "outtmpl": self._outtmpl,
         }
