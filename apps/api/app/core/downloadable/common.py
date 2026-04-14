@@ -25,7 +25,6 @@ class Downloadable(abc.ABC):
     _name: str = "Downloadable"
     _outtmpl: str = "%(id)s.%(ext)s"
 
-
     def __init__(
         self,
         identifier: str,
@@ -167,7 +166,7 @@ class Downloadable(abc.ABC):
                 speed=info.get("speed"),
             )
             logger.debug(
-                "[%s]: %s download progress %s%.",
+                "[%s]: %s download progress %s.",
                 self._name,
                 self._identifier,
                 update.progress,

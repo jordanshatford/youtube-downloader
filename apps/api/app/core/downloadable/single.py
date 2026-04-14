@@ -9,7 +9,6 @@ from app.core.models import DownloadState
 from app.core.models import DownloadStatus
 from app.core.models import Video
 from app.core.ytdlp import YoutubeDL
-from app.core.ytdlp import YoutubeDLParams
 
 from .common import Downloadable
 
@@ -17,8 +16,8 @@ logger = logging.getLogger("core")
 
 
 # Config used when downloading single videos using yt-dlp.
-class VideoDownloadable(Downloadable):
-    _name: str = "VideoDownloadable"
+class SingleDownloadable(Downloadable):
+    _name: str = "SingleDownloadable"
     _outtmpl: str = "%(id)s.%(ext)s"
 
     def __init__(

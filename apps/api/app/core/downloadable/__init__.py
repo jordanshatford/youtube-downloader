@@ -1,3 +1,4 @@
-from .video import VideoDownloadable
+from .batch import BatchDownloadable
+from .single import SingleDownloadable
 
-__all__ = ["VideoDownloadable"]
+__all__ = ["BatchDownloadable", "SingleDownloadable"]
