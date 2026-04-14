@@ -82,5 +82,8 @@ class SingleDownloadable(Downloadable):
             self.path.unlink()
 
     def __downloadable_hook(self, _: Video | None, status: DownloadStatus) -> None:
+        if self.download.status == status:
+            return
+
         self.download.status = status
         self._hook(copy.deepcopy(self.download))
