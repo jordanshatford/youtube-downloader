@@ -59,11 +59,10 @@
 		},
 		{
 			question:
-				'The sutitles embedded in the download are not in the subtitle language I configured, what should I do?',
+				'There was no subtitles embedded in the download even though I enabled it, what should I do?',
 			answer:
-				'It may not be possible to download the subtitle language you have requested for a given video. This is a ' +
-				'preferred value that we will attempt to use when possible. If you believe the correct subtitles do exist for the ' +
-				'video you are requesting, please report an issue via GitHub.'
+				'It may not be possible to download any subtitles for a given video. This could mean that YouTube does not have ' +
+				'any. If you believe subtitles do exist for the video you are requesting, please report an issue via GitHub.'
 		}
 	];
 </script>
