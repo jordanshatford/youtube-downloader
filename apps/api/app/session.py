@@ -1,15 +1,16 @@
 import datetime
 import logging
 import pathlib
-import queue
 import shutil
 import uuid
 from multiprocessing.pool import ThreadPool
+from typing import TYPE_CHECKING
 
-from .core import Download
-from .core import YouTubeSearch
-from .core.managers import DownloadsManager
+from .core import DownloadsManager
 from .timer import RepeatedTimer
+
+if TYPE_CHECKING:
+    from .core import YouTubeSearch
 
 logger = logging.getLogger("api")
 
@@ -30,13 +31,9 @@ class Session:
         # Track current search for each session so that we can more easily get
         # next page when requested.
         self.search: YouTubeSearch | None = None
-        # Queue of status updates coming from the download manager
-        self.downloads_statuses: queue.Queue[Download] = queue.Queue()
         # Each session has there own download manager that handles downloading
         # all requested files to its own location.
-        self.downloads = DownloadsManager(
-            self._directory, self._status_hook, self._pool
-        )
+        self.downloads = DownloadsManager(self._directory, self._pool)
 
         logger.debug(
             "[Session]: initializing with output at %s and %s thread processes.",
@@ -62,9 +59,6 @@ class Session:
                 shutil.rmtree(self._directory)
         except FileNotFoundError:
             pass
-
-    def _status_hook(self, update: Download) -> None:
-        self.downloads_statuses.put(update)
 
 
 class SessionsManager:

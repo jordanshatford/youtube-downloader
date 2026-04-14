@@ -1,4 +1,4 @@
-from .manager import DownloadManager
+from .managers import DownloadsManager
 from .models import AudioFormat
 from .models import AvailableDownloadOptions
 from .models import Channel
@@ -22,11 +22,11 @@ __all__ = [
     "Channel",
     "Download",
     "DownloadInput",
-    "DownloadManager",
     "DownloadOptions",
     "DownloadQuality",
     "DownloadState",
     "DownloadStatus",
+    "DownloadsManager",
     "SearchState",
     "Version",
     "Video",

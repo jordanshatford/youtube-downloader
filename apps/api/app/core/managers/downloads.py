@@ -1,6 +1,6 @@
 import logging
 import pathlib
-from collections.abc import Callable
+import queue
 from multiprocessing.pool import ThreadPool
 
 from app.core.downloadable import SingleDownloadable
@@ -14,13 +14,12 @@ class DownloadsManager:
     def __init__(
         self,
         directory: pathlib.Path,
-        hook: Callable[[Download], None],
         pool: ThreadPool,
     ) -> None:
         self._directory: pathlib.Path = directory
-        self._hook: Callable[[Download], None] = hook
         self._pool: ThreadPool = pool
         self._downloads: dict[str, SingleDownloadable] = {}
+        self.queue: queue.Queue[Download] = queue.Queue()
 
     def __contains__(self, download_id: str) -> bool:
         return download_id in self._downloads
@@ -30,7 +29,7 @@ class DownloadsManager:
             config = SingleDownloadable(
                 download,
                 self._directory,
-                self._hook,
+                self.__hook,
             )
             logger.debug(
                 "Added download %s with options %s ",
@@ -59,3 +58,6 @@ class DownloadsManager:
             logger.debug("Download file does not exist for %s.", download_id)
             return None
         return config.path
+
+    def __hook(self, download: Download) -> None:
+        self.queue.put(download)

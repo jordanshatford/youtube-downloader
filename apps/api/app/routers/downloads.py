@@ -64,7 +64,7 @@ async def get_downloads_status(
     try:
         while True:
             try:
-                yield session.downloads_statuses.get_nowait()
+                yield session.downloads.queue.get_nowait()
             except queue.Empty:
                 await asyncio.sleep(1)
     except (asyncio.CancelledError, asyncio.exceptions.InvalidStateError):
