@@ -9,7 +9,7 @@ import {
 	getDownloads,
 	getDownloadsStatus,
 	postDownloads,
-	putDownloads
+	putDownload
 } from '@yd/client';
 import { toast } from '@yd/ui';
 
@@ -75,7 +75,10 @@ class DownloadsStore {
 		const download = this.downloads[id];
 
 		try {
-			const { data: result } = await putDownloads({
+			const { data: result } = await putDownload({
+				path: {
+					download_id: download.video.id
+				},
 				body: download
 			});
 			if (result) {

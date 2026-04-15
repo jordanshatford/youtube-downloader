@@ -46,9 +46,9 @@ import type {
 	PostDownloadsData,
 	PostDownloadsErrors,
 	PostDownloadsResponses,
-	PutDownloadsData,
-	PutDownloadsErrors,
-	PutDownloadsResponses
+	PutDownloadData,
+	PutDownloadErrors,
+	PutDownloadResponses
 } from './types.gen';
 import { client } from './client.gen';
 
@@ -122,18 +122,6 @@ export const getSearch = <ThrowOnError extends boolean = false>(
 	});
 
 /**
- * Get Search State
- */
-export const getSearchState = <ThrowOnError extends boolean = false>(
-	options?: Options<GetSearchStateData, ThrowOnError>
-) =>
-	(options?.client ?? client).get<GetSearchStateResponses, GetSearchStateErrors, ThrowOnError>({
-		security: [{ scheme: 'bearer', type: 'http' }],
-		url: '/search/state',
-		...options
-	});
-
-/**
  * Get Search Next
  */
 export const getSearchNext = <ThrowOnError extends boolean = false>(
@@ -142,6 +130,18 @@ export const getSearchNext = <ThrowOnError extends boolean = false>(
 	(options?.client ?? client).get<GetSearchNextResponses, GetSearchNextErrors, ThrowOnError>({
 		security: [{ scheme: 'bearer', type: 'http' }],
 		url: '/search/next',
+		...options
+	});
+
+/**
+ * Get Search State
+ */
+export const getSearchState = <ThrowOnError extends boolean = false>(
+	options?: Options<GetSearchStateData, ThrowOnError>
+) =>
+	(options?.client ?? client).get<GetSearchStateResponses, GetSearchStateErrors, ThrowOnError>({
+		security: [{ scheme: 'bearer', type: 'http' }],
+		url: '/search/state',
 		...options
 	});
 
@@ -164,22 +164,6 @@ export const postDownloads = <ThrowOnError extends boolean = false>(
 	options: Options<PostDownloadsData, ThrowOnError>
 ) =>
 	(options.client ?? client).post<PostDownloadsResponses, PostDownloadsErrors, ThrowOnError>({
-		security: [{ scheme: 'bearer', type: 'http' }],
-		url: '/downloads',
-		...options,
-		headers: {
-			'Content-Type': 'application/json',
-			...options.headers
-		}
-	});
-
-/**
- * Put Downloads
- */
-export const putDownloads = <ThrowOnError extends boolean = false>(
-	options: Options<PutDownloadsData, ThrowOnError>
-) =>
-	(options.client ?? client).put<PutDownloadsResponses, PutDownloadsErrors, ThrowOnError>({
 		security: [{ scheme: 'bearer', type: 'http' }],
 		url: '/downloads',
 		...options,
@@ -255,6 +239,22 @@ export const getDownload = <ThrowOnError extends boolean = false>(
 		security: [{ scheme: 'bearer', type: 'http' }],
 		url: '/downloads/{download_id}',
 		...options
+	});
+
+/**
+ * Put Download
+ */
+export const putDownload = <ThrowOnError extends boolean = false>(
+	options: Options<PutDownloadData, ThrowOnError>
+) =>
+	(options.client ?? client).put<PutDownloadResponses, PutDownloadErrors, ThrowOnError>({
+		security: [{ scheme: 'bearer', type: 'http' }],
+		url: '/downloads/{download_id}',
+		...options,
+		headers: {
+			'Content-Type': 'application/json',
+			...options.headers
+		}
 	});
 
 /**

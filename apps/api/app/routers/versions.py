@@ -8,7 +8,6 @@ from app.dependencies import DependsSession
 from app.dependencies import depends_session_responses
 
 router = APIRouter(
-    prefix="/versions",
     tags=["versions"],
     responses=depends_session_responses
     | {
@@ -17,7 +16,7 @@ router = APIRouter(
 )
 
 
-@router.get("")
+@router.get("/versions")
 def get_versions(_: DependsSession, request: Request) -> list[Version]:
     return [
         *CORE_VERSIONS,

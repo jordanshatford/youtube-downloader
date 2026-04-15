@@ -17,7 +17,7 @@ export {
 	getVersions,
 	type Options,
 	postDownloads,
-	putDownloads
+	putDownload
 } from './sdk.gen';
 export {
 	AudioFormat,
@@ -98,11 +98,11 @@ export {
 	type PostDownloadsErrors,
 	type PostDownloadsResponse,
 	type PostDownloadsResponses,
-	type PutDownloadsData,
-	type PutDownloadsError,
-	type PutDownloadsErrors,
-	type PutDownloadsResponse,
-	type PutDownloadsResponses,
+	type PutDownloadData,
+	type PutDownloadError,
+	type PutDownloadErrors,
+	type PutDownloadResponse,
+	type PutDownloadResponses,
 	type SearchState,
 	type Session,
 	type ValidationError,

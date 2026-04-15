@@ -454,33 +454,6 @@ export type GetSearchResponses = {
 
 export type GetSearchResponse = GetSearchResponses[keyof GetSearchResponses];
 
-export type GetSearchStateData = {
-	body?: never;
-	path?: never;
-	query?: never;
-	url: '/search/state';
-};
-
-export type GetSearchStateErrors = {
-	/**
-	 * Forbidden
-	 */
-	403: unknown;
-	/**
-	 * Not Found
-	 */
-	404: unknown;
-};
-
-export type GetSearchStateResponses = {
-	/**
-	 * Successful Response
-	 */
-	200: SearchState;
-};
-
-export type GetSearchStateResponse = GetSearchStateResponses[keyof GetSearchStateResponses];
-
 export type GetSearchNextData = {
 	body?: never;
 	path?: never;
@@ -509,6 +482,33 @@ export type GetSearchNextResponses = {
 };
 
 export type GetSearchNextResponse = GetSearchNextResponses[keyof GetSearchNextResponses];
+
+export type GetSearchStateData = {
+	body?: never;
+	path?: never;
+	query?: never;
+	url: '/search/state';
+};
+
+export type GetSearchStateErrors = {
+	/**
+	 * Forbidden
+	 */
+	403: unknown;
+	/**
+	 * Not Found
+	 */
+	404: unknown;
+};
+
+export type GetSearchStateResponses = {
+	/**
+	 * Successful Response
+	 */
+	200: SearchState;
+};
+
+export type GetSearchStateResponse = GetSearchStateResponses[keyof GetSearchStateResponses];
 
 export type GetDownloadsData = {
 	body?: never;
@@ -563,35 +563,6 @@ export type PostDownloadsResponses = {
 };
 
 export type PostDownloadsResponse = PostDownloadsResponses[keyof PostDownloadsResponses];
-
-export type PutDownloadsData = {
-	body: DownloadInput;
-	path?: never;
-	query?: never;
-	url: '/downloads';
-};
-
-export type PutDownloadsErrors = {
-	/**
-	 * Forbidden
-	 */
-	403: unknown;
-	/**
-	 * Validation Error
-	 */
-	422: HttpValidationError;
-};
-
-export type PutDownloadsError = PutDownloadsErrors[keyof PutDownloadsErrors];
-
-export type PutDownloadsResponses = {
-	/**
-	 * Successful Response
-	 */
-	200: Download;
-};
-
-export type PutDownloadsResponse = PutDownloadsResponses[keyof PutDownloadsResponses];
 
 export type GetDownloadsOptionsAvailableData = {
 	body?: never;
@@ -748,6 +719,44 @@ export type GetDownloadResponses = {
 };
 
 export type GetDownloadResponse = GetDownloadResponses[keyof GetDownloadResponses];
+
+export type PutDownloadData = {
+	body: DownloadInput;
+	path: {
+		/**
+		 * Download Id
+		 */
+		download_id: string;
+	};
+	query?: never;
+	url: '/downloads/{download_id}';
+};
+
+export type PutDownloadErrors = {
+	/**
+	 * Forbidden
+	 */
+	403: unknown;
+	/**
+	 * Not Found
+	 */
+	404: unknown;
+	/**
+	 * Validation Error
+	 */
+	422: HttpValidationError;
+};
+
+export type PutDownloadError = PutDownloadErrors[keyof PutDownloadErrors];
+
+export type PutDownloadResponses = {
+	/**
+	 * Successful Response
+	 */
+	200: Download;
+};
+
+export type PutDownloadResponse = PutDownloadResponses[keyof PutDownloadResponses];
 
 export type GetDownloadFileData = {
 	body?: never;
