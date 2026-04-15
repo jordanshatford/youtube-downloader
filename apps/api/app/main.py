@@ -96,7 +96,7 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-app.include_router(search.router)
 app.include_router(session.router)
+app.include_router(search.router)
 app.include_router(downloads.router)
 app.include_router(versions.router)

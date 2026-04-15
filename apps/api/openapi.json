@@ -14,6 +14,76 @@
     "version": "2.1.0"
   },
   "paths": {
+    "/session": {
+      "get": {
+        "tags": [
+          "session"
+        ],
+        "summary": "Get Session",
+        "operationId": "get_session",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Session"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "session"
+        ],
+        "summary": "Delete Session",
+        "operationId": "delete_session",
+        "responses": {
+          "204": {
+            "description": "Successful Response"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ]
+      }
+    },
+    "/session/validate": {
+      "get": {
+        "tags": [
+          "session"
+        ],
+        "summary": "Get Session Validate",
+        "operationId": "get_session_validate",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Session"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ]
+      }
+    },
     "/search": {
       "get": {
         "tags": [
@@ -130,76 +200,6 @@
           },
           "404": {
             "description": "Not Found"
-          }
-        },
-        "security": [
-          {
-            "HTTPBearer": []
-          }
-        ]
-      }
-    },
-    "/session": {
-      "get": {
-        "tags": [
-          "session"
-        ],
-        "summary": "Get Session",
-        "operationId": "get_session",
-        "responses": {
-          "200": {
-            "description": "Successful Response",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Session"
-                }
-              }
-            }
-          }
-        }
-      },
-      "delete": {
-        "tags": [
-          "session"
-        ],
-        "summary": "Delete Session",
-        "operationId": "delete_session",
-        "responses": {
-          "204": {
-            "description": "Successful Response"
-          },
-          "403": {
-            "description": "Forbidden"
-          }
-        },
-        "security": [
-          {
-            "HTTPBearer": []
-          }
-        ]
-      }
-    },
-    "/session/validate": {
-      "get": {
-        "tags": [
-          "session"
-        ],
-        "summary": "Get Session Validate",
-        "operationId": "get_session_validate",
-        "responses": {
-          "200": {
-            "description": "Successful Response",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Session"
-                }
-              }
-            }
-          },
-          "403": {
-            "description": "Forbidden"
           }
         },
         "security": [

@@ -351,6 +351,69 @@ export type DownloadStatusWritable = {
 	postprocessor?: string | null;
 };
 
+export type DeleteSessionData = {
+	body?: never;
+	path?: never;
+	query?: never;
+	url: '/session';
+};
+
+export type DeleteSessionErrors = {
+	/**
+	 * Forbidden
+	 */
+	403: unknown;
+};
+
+export type DeleteSessionResponses = {
+	/**
+	 * Successful Response
+	 */
+	204: void;
+};
+
+export type DeleteSessionResponse = DeleteSessionResponses[keyof DeleteSessionResponses];
+
+export type GetSessionData = {
+	body?: never;
+	path?: never;
+	query?: never;
+	url: '/session';
+};
+
+export type GetSessionResponses = {
+	/**
+	 * Successful Response
+	 */
+	200: Session;
+};
+
+export type GetSessionResponse = GetSessionResponses[keyof GetSessionResponses];
+
+export type GetSessionValidateData = {
+	body?: never;
+	path?: never;
+	query?: never;
+	url: '/session/validate';
+};
+
+export type GetSessionValidateErrors = {
+	/**
+	 * Forbidden
+	 */
+	403: unknown;
+};
+
+export type GetSessionValidateResponses = {
+	/**
+	 * Successful Response
+	 */
+	200: Session;
+};
+
+export type GetSessionValidateResponse =
+	GetSessionValidateResponses[keyof GetSessionValidateResponses];
+
 export type GetSearchData = {
 	body?: never;
 	path?: never;
@@ -446,69 +509,6 @@ export type GetSearchNextResponses = {
 };
 
 export type GetSearchNextResponse = GetSearchNextResponses[keyof GetSearchNextResponses];
-
-export type DeleteSessionData = {
-	body?: never;
-	path?: never;
-	query?: never;
-	url: '/session';
-};
-
-export type DeleteSessionErrors = {
-	/**
-	 * Forbidden
-	 */
-	403: unknown;
-};
-
-export type DeleteSessionResponses = {
-	/**
-	 * Successful Response
-	 */
-	204: void;
-};
-
-export type DeleteSessionResponse = DeleteSessionResponses[keyof DeleteSessionResponses];
-
-export type GetSessionData = {
-	body?: never;
-	path?: never;
-	query?: never;
-	url: '/session';
-};
-
-export type GetSessionResponses = {
-	/**
-	 * Successful Response
-	 */
-	200: Session;
-};
-
-export type GetSessionResponse = GetSessionResponses[keyof GetSessionResponses];
-
-export type GetSessionValidateData = {
-	body?: never;
-	path?: never;
-	query?: never;
-	url: '/session/validate';
-};
-
-export type GetSessionValidateErrors = {
-	/**
-	 * Forbidden
-	 */
-	403: unknown;
-};
-
-export type GetSessionValidateResponses = {
-	/**
-	 * Successful Response
-	 */
-	200: Session;
-};
-
-export type GetSessionValidateResponse =
-	GetSessionValidateResponses[keyof GetSessionValidateResponses];
 
 export type GetDownloadsData = {
 	body?: never;

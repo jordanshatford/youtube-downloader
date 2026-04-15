@@ -71,42 +71,6 @@ export type Options<
 };
 
 /**
- * Get Search
- */
-export const getSearch = <ThrowOnError extends boolean = false>(
-	options: Options<GetSearchData, ThrowOnError>
-) =>
-	(options.client ?? client).get<GetSearchResponses, GetSearchErrors, ThrowOnError>({
-		security: [{ scheme: 'bearer', type: 'http' }],
-		url: '/search',
-		...options
-	});
-
-/**
- * Get Search State
- */
-export const getSearchState = <ThrowOnError extends boolean = false>(
-	options?: Options<GetSearchStateData, ThrowOnError>
-) =>
-	(options?.client ?? client).get<GetSearchStateResponses, GetSearchStateErrors, ThrowOnError>({
-		security: [{ scheme: 'bearer', type: 'http' }],
-		url: '/search/state',
-		...options
-	});
-
-/**
- * Get Search Next
- */
-export const getSearchNext = <ThrowOnError extends boolean = false>(
-	options?: Options<GetSearchNextData, ThrowOnError>
-) =>
-	(options?.client ?? client).get<GetSearchNextResponses, GetSearchNextErrors, ThrowOnError>({
-		security: [{ scheme: 'bearer', type: 'http' }],
-		url: '/search/next',
-		...options
-	});
-
-/**
  * Delete Session
  */
 export const deleteSession = <ThrowOnError extends boolean = false>(
@@ -142,6 +106,42 @@ export const getSessionValidate = <ThrowOnError extends boolean = false>(
 	>({
 		security: [{ scheme: 'bearer', type: 'http' }],
 		url: '/session/validate',
+		...options
+	});
+
+/**
+ * Get Search
+ */
+export const getSearch = <ThrowOnError extends boolean = false>(
+	options: Options<GetSearchData, ThrowOnError>
+) =>
+	(options.client ?? client).get<GetSearchResponses, GetSearchErrors, ThrowOnError>({
+		security: [{ scheme: 'bearer', type: 'http' }],
+		url: '/search',
+		...options
+	});
+
+/**
+ * Get Search State
+ */
+export const getSearchState = <ThrowOnError extends boolean = false>(
+	options?: Options<GetSearchStateData, ThrowOnError>
+) =>
+	(options?.client ?? client).get<GetSearchStateResponses, GetSearchStateErrors, ThrowOnError>({
+		security: [{ scheme: 'bearer', type: 'http' }],
+		url: '/search/state',
+		...options
+	});
+
+/**
+ * Get Search Next
+ */
+export const getSearchNext = <ThrowOnError extends boolean = false>(
+	options?: Options<GetSearchNextData, ThrowOnError>
+) =>
+	(options?.client ?? client).get<GetSearchNextResponses, GetSearchNextErrors, ThrowOnError>({
+		security: [{ scheme: 'bearer', type: 'http' }],
+		url: '/search/next',
 		...options
 	});
 
