@@ -34,7 +34,7 @@
 		"svelte": "catalog:peers"
 	},
 	"devDependencies": {
-		"@internationalized/date": "^3.12.0",
+		"@internationalized/date": "^3.12.1",
 		"@lucide/svelte": "^1.8.0",
 		"@sveltejs/adapter-auto": "catalog:",
 		"@sveltejs/kit": "catalog:",
