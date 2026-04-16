@@ -2,12 +2,24 @@
 
 import type { Client, Options as Options2, TDataShape } from './client';
 import type {
+	DeleteBatchData,
+	DeleteBatchErrors,
+	DeleteBatchResponses,
 	DeleteDownloadData,
 	DeleteDownloadErrors,
 	DeleteDownloadResponses,
 	DeleteSessionData,
 	DeleteSessionErrors,
 	DeleteSessionResponses,
+	GetBatchData,
+	GetBatchErrors,
+	GetBatchFileData,
+	GetBatchFileErrors,
+	GetBatchFileResponses,
+	GetBatchResponses,
+	GetBatchStatusData,
+	GetBatchStatusErrors,
+	GetBatchStatusResponses,
 	GetDownloadData,
 	GetDownloadErrors,
 	GetDownloadFileData,
@@ -43,9 +55,15 @@ import type {
 	GetVersionsData,
 	GetVersionsErrors,
 	GetVersionsResponses,
+	PostBatchData,
+	PostBatchErrors,
+	PostBatchResponses,
 	PostDownloadsData,
 	PostDownloadsErrors,
 	PostDownloadsResponses,
+	PutBatchData,
+	PutBatchErrors,
+	PutBatchResponses,
 	PutDownloadData,
 	PutDownloadErrors,
 	PutDownloadResponses
@@ -266,6 +284,85 @@ export const getDownloadFile = <ThrowOnError extends boolean = false>(
 	(options.client ?? client).get<GetDownloadFileResponses, GetDownloadFileErrors, ThrowOnError>({
 		security: [{ scheme: 'bearer', type: 'http' }],
 		url: '/downloads/{download_id}/file',
+		...options
+	});
+
+/**
+ * Delete Batch
+ */
+export const deleteBatch = <ThrowOnError extends boolean = false>(
+	options?: Options<DeleteBatchData, ThrowOnError>
+) =>
+	(options?.client ?? client).delete<DeleteBatchResponses, DeleteBatchErrors, ThrowOnError>({
+		security: [{ scheme: 'bearer', type: 'http' }],
+		url: '/batch',
+		...options
+	});
+
+/**
+ * Get Batch
+ */
+export const getBatch = <ThrowOnError extends boolean = false>(
+	options?: Options<GetBatchData, ThrowOnError>
+) =>
+	(options?.client ?? client).get<GetBatchResponses, GetBatchErrors, ThrowOnError>({
+		security: [{ scheme: 'bearer', type: 'http' }],
+		url: '/batch',
+		...options
+	});
+
+/**
+ * Post Batch
+ */
+export const postBatch = <ThrowOnError extends boolean = false>(
+	options: Options<PostBatchData, ThrowOnError>
+) =>
+	(options.client ?? client).post<PostBatchResponses, PostBatchErrors, ThrowOnError>({
+		security: [{ scheme: 'bearer', type: 'http' }],
+		url: '/batch',
+		...options,
+		headers: {
+			'Content-Type': 'application/json',
+			...options.headers
+		}
+	});
+
+/**
+ * Put Batch
+ */
+export const putBatch = <ThrowOnError extends boolean = false>(
+	options: Options<PutBatchData, ThrowOnError>
+) =>
+	(options.client ?? client).put<PutBatchResponses, PutBatchErrors, ThrowOnError>({
+		security: [{ scheme: 'bearer', type: 'http' }],
+		url: '/batch',
+		...options,
+		headers: {
+			'Content-Type': 'application/json',
+			...options.headers
+		}
+	});
+
+/**
+ * Get Batch Status
+ */
+export const getBatchStatus = <ThrowOnError extends boolean = false>(
+	options: Options<GetBatchStatusData, ThrowOnError, unknown>
+) =>
+	(options.client ?? client).sse.get<GetBatchStatusResponses, GetBatchStatusErrors, ThrowOnError>({
+		url: '/batch/status',
+		...options
+	});
+
+/**
+ * Get Batch File
+ */
+export const getBatchFile = <ThrowOnError extends boolean = false>(
+	options?: Options<GetBatchFileData, ThrowOnError>
+) =>
+	(options?.client ?? client).get<GetBatchFileResponses, GetBatchFileErrors, ThrowOnError>({
+		security: [{ scheme: 'bearer', type: 'http' }],
+		url: '/batch/file',
 		...options
 	});
 

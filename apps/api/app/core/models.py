@@ -3,6 +3,7 @@ import logging
 from collections.abc import Sequence
 
 from pydantic import BaseModel
+from pydantic import Field
 from pydantic import HttpUrl
 from pydantic import computed_field
 
@@ -139,6 +140,25 @@ class DownloadInput(BaseModel):
 
 class Download(DownloadInput):
     status: DownloadStatus
+
+
+class BatchDownloadStatus(BaseModel):
+    overall: DownloadStatus
+    items: dict[str, DownloadStatus]
+
+
+class BatchDownloadInput(BaseModel):
+    urls: Sequence[HttpUrl] = Field(min_length=1, max_length=25)
+    options: DownloadOptions
+
+
+class BatchDownloadStatusUpdate(BaseModel):
+    status: BatchDownloadStatus
+    videos: dict[str, Video]
+
+
+class BatchDownload(BatchDownloadInput, BatchDownloadStatusUpdate):
+    pass
 
 
 class Version(BaseModel):

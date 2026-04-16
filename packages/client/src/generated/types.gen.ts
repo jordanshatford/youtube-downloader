@@ -52,6 +52,48 @@ export type AvailableDownloadOptions = {
 };
 
 /**
+ * BatchDownload
+ */
+export type BatchDownload = {
+	status: BatchDownloadStatus;
+	/**
+	 * Videos
+	 */
+	videos: {
+		[key: string]: Video;
+	};
+	/**
+	 * Urls
+	 */
+	urls: Array<string>;
+	options: DownloadOptions;
+};
+
+/**
+ * BatchDownloadInput
+ */
+export type BatchDownloadInput = {
+	/**
+	 * Urls
+	 */
+	urls: Array<string>;
+	options: DownloadOptions;
+};
+
+/**
+ * BatchDownloadStatus
+ */
+export type BatchDownloadStatus = {
+	overall: DownloadStatus;
+	/**
+	 * Items
+	 */
+	items: {
+		[key: string]: DownloadStatus;
+	};
+};
+
+/**
  * Channel
  */
 export type Channel = {
@@ -310,6 +352,37 @@ export const VideoFormat = {
  * VideoFormat
  */
 export type VideoFormat = (typeof VideoFormat)[keyof typeof VideoFormat];
+
+/**
+ * BatchDownload
+ */
+export type BatchDownloadWritable = {
+	status: BatchDownloadStatusWritable;
+	/**
+	 * Videos
+	 */
+	videos: {
+		[key: string]: Video;
+	};
+	/**
+	 * Urls
+	 */
+	urls: Array<string>;
+	options: DownloadOptions;
+};
+
+/**
+ * BatchDownloadStatus
+ */
+export type BatchDownloadStatusWritable = {
+	overall: DownloadStatusWritable;
+	/**
+	 * Items
+	 */
+	items: {
+		[key: string]: DownloadStatusWritable;
+	};
+};
 
 /**
  * Download
@@ -795,6 +868,181 @@ export type GetDownloadFileResponses = {
 };
 
 export type GetDownloadFileResponse = GetDownloadFileResponses[keyof GetDownloadFileResponses];
+
+export type DeleteBatchData = {
+	body?: never;
+	path?: never;
+	query?: never;
+	url: '/batch';
+};
+
+export type DeleteBatchErrors = {
+	/**
+	 * Forbidden
+	 */
+	403: unknown;
+	/**
+	 * Not Found
+	 */
+	404: unknown;
+};
+
+export type DeleteBatchResponses = {
+	/**
+	 * Successful Response
+	 */
+	204: void;
+};
+
+export type DeleteBatchResponse = DeleteBatchResponses[keyof DeleteBatchResponses];
+
+export type GetBatchData = {
+	body?: never;
+	path?: never;
+	query?: never;
+	url: '/batch';
+};
+
+export type GetBatchErrors = {
+	/**
+	 * Forbidden
+	 */
+	403: unknown;
+	/**
+	 * Not Found
+	 */
+	404: unknown;
+};
+
+export type GetBatchResponses = {
+	/**
+	 * Successful Response
+	 */
+	200: BatchDownload;
+};
+
+export type GetBatchResponse = GetBatchResponses[keyof GetBatchResponses];
+
+export type PostBatchData = {
+	body: BatchDownloadInput;
+	path?: never;
+	query?: never;
+	url: '/batch';
+};
+
+export type PostBatchErrors = {
+	/**
+	 * Forbidden
+	 */
+	403: unknown;
+	/**
+	 * Validation Error
+	 */
+	422: HttpValidationError;
+};
+
+export type PostBatchError = PostBatchErrors[keyof PostBatchErrors];
+
+export type PostBatchResponses = {
+	/**
+	 * Successful Response
+	 */
+	201: BatchDownload;
+};
+
+export type PostBatchResponse = PostBatchResponses[keyof PostBatchResponses];
+
+export type PutBatchData = {
+	body: BatchDownloadInput;
+	path?: never;
+	query?: never;
+	url: '/batch';
+};
+
+export type PutBatchErrors = {
+	/**
+	 * Forbidden
+	 */
+	403: unknown;
+	/**
+	 * Not Found
+	 */
+	404: unknown;
+	/**
+	 * Validation Error
+	 */
+	422: HttpValidationError;
+};
+
+export type PutBatchError = PutBatchErrors[keyof PutBatchErrors];
+
+export type PutBatchResponses = {
+	/**
+	 * Successful Response
+	 */
+	200: BatchDownload;
+};
+
+export type PutBatchResponse = PutBatchResponses[keyof PutBatchResponses];
+
+export type GetBatchStatusData = {
+	body?: never;
+	path?: never;
+	query: {
+		/**
+		 * Session Id
+		 */
+		session_id: string;
+	};
+	url: '/batch/status';
+};
+
+export type GetBatchStatusErrors = {
+	/**
+	 * Forbidden
+	 */
+	403: unknown;
+	/**
+	 * Validation Error
+	 */
+	422: HttpValidationError;
+};
+
+export type GetBatchStatusError = GetBatchStatusErrors[keyof GetBatchStatusErrors];
+
+export type GetBatchStatusResponses = {
+	/**
+	 * Successful Response
+	 */
+	200: unknown;
+};
+
+export type GetBatchFileData = {
+	body?: never;
+	path?: never;
+	query?: never;
+	url: '/batch/file';
+};
+
+export type GetBatchFileErrors = {
+	/**
+	 * Forbidden
+	 */
+	403: unknown;
+	/**
+	 * Not Found
+	 */
+	404: unknown;
+};
+
+export type GetBatchFileResponses = {
+	/**
+	 * Successful Response
+	 */
+	200: Blob | File;
+};
+
+export type GetBatchFileResponse = GetBatchFileResponses[keyof GetBatchFileResponses];
 
 export type GetVersionsData = {
 	body?: never;

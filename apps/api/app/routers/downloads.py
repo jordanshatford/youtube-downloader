@@ -27,10 +27,7 @@ def get_downloads(session: DependsSession) -> list[Download]:
 
 
 @router.post("/downloads", status_code=status.HTTP_201_CREATED)
-def post_downloads(
-    download: DownloadInput,
-    session: DependsSession,
-) -> Download:
+def post_downloads(download: DownloadInput, session: DependsSession) -> Download:
     return session.downloads.add(download)
 
 
@@ -78,10 +75,7 @@ def put_download(
     status_code=status.HTTP_204_NO_CONTENT,
     responses=depends_download_responses,
 )
-def delete_download(
-    download: DependsDownload,
-    session: DependsSession,
-) -> None:
+def delete_download(download: DependsDownload, session: DependsSession) -> None:
     session.downloads.remove(download.video.id)
 
 

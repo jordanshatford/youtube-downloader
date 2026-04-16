@@ -1,5 +1,6 @@
 import { browser } from '$app/environment';
 import { env } from '$lib/config';
+import { batch } from '$lib/stores/batch.svelte';
 import { downloads } from '$lib/stores/downloads.svelte';
 import { search } from '$lib/stores/search.svelte';
 import { settings } from '$lib/stores/settings.svelte';
@@ -54,7 +55,13 @@ export async function setupSession(): Promise<void> {
 				}
 			}
 		}
-		await Promise.all([settings.init(), search.init(), downloads.init(), versions.init()]);
+		await Promise.all([
+			settings.init(),
+			search.init(),
+			downloads.init(),
+			batch.init(),
+			versions.init()
+		]);
 	}
 }
 

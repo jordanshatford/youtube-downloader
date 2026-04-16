@@ -625,6 +625,251 @@
         }
       }
     },
+    "/batch": {
+      "get": {
+        "tags": [
+          "batch"
+        ],
+        "summary": "Get Batch",
+        "operationId": "get_batch",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BatchDownload"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ]
+      },
+      "put": {
+        "tags": [
+          "batch"
+        ],
+        "summary": "Put Batch",
+        "operationId": "put_batch",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/BatchDownloadInput"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BatchDownload"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ]
+      },
+      "post": {
+        "tags": [
+          "batch"
+        ],
+        "summary": "Post Batch",
+        "operationId": "post_batch",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/BatchDownloadInput"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BatchDownload"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ]
+      },
+      "delete": {
+        "tags": [
+          "batch"
+        ],
+        "summary": "Delete Batch",
+        "operationId": "delete_batch",
+        "responses": {
+          "204": {
+            "description": "Successful Response"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ]
+      }
+    },
+    "/batch/status": {
+      "get": {
+        "tags": [
+          "batch"
+        ],
+        "summary": "Get Batch Status",
+        "operationId": "get_batch_status",
+        "parameters": [
+          {
+            "name": "session_id",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Session Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "text/event-stream": {
+                "itemSchema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "type": "string"
+                    },
+                    "event": {
+                      "type": "string"
+                    },
+                    "id": {
+                      "type": "string"
+                    },
+                    "retry": {
+                      "type": "integer",
+                      "minimum": 0
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/batch/file": {
+      "get": {
+        "tags": [
+          "batch"
+        ],
+        "summary": "Get Batch File",
+        "operationId": "get_batch_file",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/zip": {
+                "schema": {
+                  "type": "string",
+                  "format": "binary"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ]
+      }
+    },
     "/versions": {
       "get": {
         "tags": [
@@ -775,6 +1020,88 @@
         },
         "type": "object",
         "title": "AvailableDownloadOptions"
+      },
+      "BatchDownload": {
+        "properties": {
+          "status": {
+            "$ref": "#/components/schemas/BatchDownloadStatus"
+          },
+          "videos": {
+            "additionalProperties": {
+              "$ref": "#/components/schemas/Video"
+            },
+            "type": "object",
+            "title": "Videos"
+          },
+          "urls": {
+            "items": {
+              "type": "string",
+              "maxLength": 2083,
+              "minLength": 1,
+              "format": "uri"
+            },
+            "type": "array",
+            "maxItems": 25,
+            "minItems": 1,
+            "title": "Urls"
+          },
+          "options": {
+            "$ref": "#/components/schemas/DownloadOptions"
+          }
+        },
+        "type": "object",
+        "required": [
+          "status",
+          "videos",
+          "urls",
+          "options"
+        ],
+        "title": "BatchDownload"
+      },
+      "BatchDownloadInput": {
+        "properties": {
+          "urls": {
+            "items": {
+              "type": "string",
+              "maxLength": 2083,
+              "minLength": 1,
+              "format": "uri"
+            },
+            "type": "array",
+            "maxItems": 25,
+            "minItems": 1,
+            "title": "Urls"
+          },
+          "options": {
+            "$ref": "#/components/schemas/DownloadOptions"
+          }
+        },
+        "type": "object",
+        "required": [
+          "urls",
+          "options"
+        ],
+        "title": "BatchDownloadInput"
+      },
+      "BatchDownloadStatus": {
+        "properties": {
+          "overall": {
+            "$ref": "#/components/schemas/DownloadStatus"
+          },
+          "items": {
+            "additionalProperties": {
+              "$ref": "#/components/schemas/DownloadStatus"
+            },
+            "type": "object",
+            "title": "Items"
+          }
+        },
+        "type": "object",
+        "required": [
+          "overall",
+          "items"
+        ],
+        "title": "BatchDownloadStatus"
       },
       "Channel": {
         "properties": {
@@ -1185,16 +1512,20 @@
   },
   "tags": [
     {
-      "name": "downloads",
-      "description": "Downloading handling and management."
+      "name": "session",
+      "description": "User session handling."
     },
     {
       "name": "search",
       "description": "YouTube search handling."
     },
     {
-      "name": "session",
-      "description": "User session handling."
+      "name": "downloads",
+      "description": "Single video downloading handling and management."
+    },
+    {
+      "name": "batch",
+      "description": "Batch download handling and management."
     },
     {
       "name": "versions",

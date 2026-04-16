@@ -11,6 +11,7 @@ from fastapi import FastAPI
 from fastapi import routing
 from fastapi.middleware.cors import CORSMiddleware
 
+from .routers import batch
 from .routers import downloads
 from .routers import search
 from .routers import session
@@ -65,9 +66,13 @@ app = FastAPI(
         "url": f"{project_data['repository']['url']}/blob/main/LICENSE",
     },
     openapi_tags=[
-        {"name": "downloads", "description": "Downloading handling and management."},
-        {"name": "search", "description": "YouTube search handling."},
         {"name": "session", "description": "User session handling."},
+        {"name": "search", "description": "YouTube search handling."},
+        {
+            "name": "downloads",
+            "description": "Single video downloading handling and management.",
+        },
+        {"name": "batch", "description": "Batch download handling and management."},
         {"name": "versions", "description": "Version details for the application."},
     ],
     version=project_data["version"],
@@ -99,4 +104,5 @@ app.add_middleware(
 app.include_router(session.router)
 app.include_router(search.router)
 app.include_router(downloads.router)
+app.include_router(batch.router)
 app.include_router(versions.router)

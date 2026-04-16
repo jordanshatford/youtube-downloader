@@ -6,6 +6,7 @@ import tempfile
 import uuid
 from multiprocessing.pool import ThreadPool
 
+from .core import BatchManager
 from .core import DownloadsManager
 from .core import YouTubeSearchManager
 from .timer import RepeatedTimer
@@ -33,6 +34,8 @@ class Session:
         # Each session has there own download manager that handles downloading
         # all requested files to its own location.
         self.downloads = DownloadsManager(self._directory, self._tmp, self._pool)
+        # Each session has there own batch manager that handles batch downloads.
+        self.batch = BatchManager(self._directory, self._tmp, self._pool)
 
         logger.debug(
             "[Session]: initializing with output at %s and %s thread processes.",

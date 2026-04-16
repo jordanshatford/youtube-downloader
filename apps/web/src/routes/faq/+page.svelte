@@ -63,6 +63,31 @@
 			answer:
 				'It may not be possible to download any subtitles for a given video. This could mean that YouTube does not have ' +
 				'any. If you believe subtitles do exist for the video you are requesting, please report an issue via GitHub.'
+		},
+		{
+			question: 'What is batch downloading?',
+			answer:
+				'The batch downloading functionality allows you to input a list of YouTube video or playlist URLs and it will ' +
+				'download all related videos using the settings you have configured. All of these files will be included in a ' +
+				'single ZIP file available to the user on completion.'
+		},
+		{
+			question: 'What is the maximum number of URLs I can input with batch downloading?',
+			answer: 'With batch downloading you can input up to 25 URLs at a time.'
+		},
+		{
+			question: 'Can my batch download mix and match video and playlist URLs?',
+			answer:
+				'Yes! You can mix and match any types of YouTube URLs. If one of the URLs provided is a playlist URL, then only ' +
+				'the first 20 items from that playlist will be attempted to be downloaded. The other URL entries will download ' +
+				'as normal.'
+		},
+		{
+			question: 'Why is my batch download missing some files?',
+			answer:
+				'When batch downloading it may not be possible to download certain videos or playlists you have requested. ' +
+				'Rather than failing the entire batch download, it will skip over those entries. You can see a list on the ' +
+				'batch download page with the statuses of all current items in the batch.'
 		}
 	];
 </script>

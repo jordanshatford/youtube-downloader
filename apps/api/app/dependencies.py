@@ -7,18 +7,19 @@ from fastapi import status
 from fastapi.security import HTTPAuthorizationCredentials
 from fastapi.security import HTTPBearer
 
+from .core import BatchDownload
 from .core import Download
 from .session import Session
 from .session import session_manager
 
 type AdditionalResponses = dict[int | str, dict[str, Any]]
 
-# Responses which should be included in all routes that depend on a session
+# Responses which should be included in all routes that depend on a session.
 depends_session_responses: AdditionalResponses = {
     status.HTTP_403_FORBIDDEN: {},
 }
 
-# Request will include header with session ID as the bearer token
+# Request will include header with session ID as the bearer token.
 security = HTTPBearer()
 
 type HTTPBearerCredentials = Annotated[
@@ -36,7 +37,7 @@ def get_request_session(credentials: HTTPBearerCredentials) -> Session:
     return session
 
 
-# Dependency that the request has a current session available
+# Dependency that the request has a current session available.
 type DependsSession = Annotated[Session, Depends(get_request_session)]
 
 
@@ -47,11 +48,11 @@ def get_request_query_session(session_id: str) -> Session:
     return session
 
 
-# Dependency that the request has a current session available via query parameters
+# Dependency that the request has a current session available via query parameters.
 type DependsSessionInQuery = Annotated[Session, Depends(get_request_query_session)]
 
 
-# Responses which should be included in all routes that depend on a download
+# Responses which should be included in all routes that depend on a download.
 depends_download_responses: AdditionalResponses = depends_session_responses | {
     status.HTTP_404_NOT_FOUND: {},
 }
@@ -67,10 +68,31 @@ def get_request_download(
     return download
 
 
-# Dependency that the request has a current related download available
+# Dependency that the request has a current related download available.
 type DependsDownload = Annotated[
     Download,
     Depends(
         get_request_download,
+    ),
+]
+
+# Responses which should be included in all routes that depend on a batch.
+depends_batch_responses: AdditionalResponses = depends_session_responses | {
+    status.HTTP_404_NOT_FOUND: {},
+}
+
+
+def get_request_batch(session: DependsSession) -> BatchDownload:
+    batch = session.batch.get()
+    if batch is None:
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND)
+    return batch
+
+
+# Dependency that the request has a batch available.
+type DependsBatch = Annotated[
+    BatchDownload,
+    Depends(
+        get_request_batch,
     ),
 ]

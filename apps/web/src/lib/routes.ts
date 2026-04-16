@@ -12,6 +12,7 @@ import {
 	GalleryVerticalEndIcon,
 	GitPullRequestIcon,
 	HandshakeIcon,
+	ScrollIcon,
 	SearchIcon,
 	SettingsIcon
 } from '@yd/ui';
@@ -56,6 +57,11 @@ export const routes: { main: RouteItem[]; footer: RouteItem[] } = {
 			title: 'Downloads',
 			url: '/downloads',
 			icon: DownloadIcon
+		},
+		{
+			title: 'Batch Download',
+			url: '/batch',
+			icon: ScrollIcon
 		},
 		{
 			title: 'Settings',
