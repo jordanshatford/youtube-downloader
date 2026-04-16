@@ -8,15 +8,19 @@ import { versions } from '$lib/stores/versions.svelte';
 import { client, getSession, getSessionValidate } from '@yd/client';
 import { toast } from '@yd/ui';
 
+export function getSessionID(): string {
+	return localStorage.getItem(SESSION_ID_KEY)?.toString() ?? '';
+}
+
 // Set the base server address using the environment variable.
 client.setConfig({
 	baseUrl: env.serverAddress,
 	throwOnError: true,
-	auth: () => localStorage.getItem(SESSION_ID_KEY)?.toString()
+	auth: getSessionID
 });
 
 // Key used to store session ID value in session storage.
-export const SESSION_ID_KEY = 'yd-sessionid';
+const SESSION_ID_KEY = 'yd-sessionid';
 
 // Duration to wait (ms) before re-attempting to setup a session.
 const REATTEMPT_INTERVAL = 10000;

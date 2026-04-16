@@ -1,4 +1,4 @@
-import { SESSION_ID_KEY } from '$lib/api';
+import { getSessionID } from '$lib/api';
 import { settings } from '$lib/stores/settings.svelte';
 import { saveAs } from '$lib/utils/files';
 
@@ -18,7 +18,7 @@ class DownloadsStore {
 
 	private async setupStatusMonitoring() {
 		const { stream } = await getDownloadsStatus({
-			query: { session_id: localStorage.getItem(SESSION_ID_KEY) ?? '' }
+			query: { session_id: getSessionID() }
 		});
 		for await (const event of stream) {
 			// https://github.com/hey-api/openapi-ts/issues/2921
