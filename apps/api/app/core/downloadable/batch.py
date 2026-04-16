@@ -100,6 +100,9 @@ class BatchDownloadable(Downloadable):
             )
             self.path.unlink()
         # Remove all files in the batch directory.
+        if not self._directory.exists():
+            return
+
         for item in self._directory.iterdir():
             if item.is_file():
                 item.unlink()
