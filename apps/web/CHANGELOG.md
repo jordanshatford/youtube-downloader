@@ -1,5 +1,14 @@
 # @yd/web
 
+## 2.6.1
+
+### Patch Changes
+
+- fix: better display to the user when batch downloading failed ([`b3245be`](https://github.com/jordanshatford/youtube-downloader/commit/b3245be412a9cd52fa689113a67e8dc642751c8b))
+
+- Updated dependencies []:
+  - @yd/client@2.2.0
+
 ## 2.6.0
 
 ### Minor Changes
