@@ -130,6 +130,9 @@ class YoutubeDLParams(TypedDict, total=False):
         ]
         | None
     )
+    # Do not stop on download/postprocessing errors. Can be 'only_download' to
+    # ignore only download errors. Default is 'only_download' for CLI, but False for API
+    ignoreerrors: bool | Literal["only_download"] | None
     # Specific indices of playlist to download.
     playlist_items: str | None
     # Process playlist entries as they are received.
@@ -319,6 +322,7 @@ DEFAULT_YOUTUBE_DL_PARAMS: YoutubeDLParams = {
     "extract_flat": True,
     "logger": logging.getLogger("yt-dlp"),
     "noprogress": True,
+    "ignoreerrors": True,
     "noplaylist": True,
     "quiet": True,
     "retries": 5,
