@@ -78,8 +78,10 @@ class BatchStore {
 
 	// If the batch is done and file should be downloadable.
 	public isDownloadDisabled = $derived<boolean>(!(this.batch?.status.overall.state === 'DONE'));
+	// If the batch download has errored.
+	public isOverallError = $derived<boolean>(this.batch?.status.overall.state === 'ERROR');
 	// If the batch has errored out, and can be retried.
-	public isRetryDisabled = $derived<boolean>(!(this.batch?.status.overall.state === 'ERROR'));
+	public isRetryDisabled = $derived<boolean>(!this.isOverallError);
 	// If the batch is in a deletable state, i.e. if it is completed or has failed.
 	public isDeleteDisabled = $derived<boolean>(
 		!this.batch || !['DONE', 'ERROR'].includes(this.batch?.status.overall.state)

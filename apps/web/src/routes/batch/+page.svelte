@@ -107,13 +107,19 @@
 			</InputGroup.Button>
 		</InputGroup.Addon>
 	</InputGroup.Root>
+	{#if batch.isOverallError}
+		<Alert.Root variant="destructive">
+			<AlertCircleIcon />
+			<Alert.Title>Error downloading batch of URLs.</Alert.Title>
+		</Alert.Root>
+	{/if}
 	{#if batch.hasTooManyURLs}
 		<Alert.Root variant="destructive">
 			<AlertCircleIcon />
 			<Alert.Title>A maximum of 25 URLs can be used with batch downloading.</Alert.Title>
 		</Alert.Root>
 	{/if}
-	{#if batch.batch}
+	{#if batch.batch && !batch.isOverallError}
 		<Collapsible.Root class="w-full space-y-2">
 			<div class="flex items-center justify-between space-x-4 px-4">
 				<h4 class="text-sm">
