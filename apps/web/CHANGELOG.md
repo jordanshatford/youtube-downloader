@@ -1,5 +1,19 @@
 # @yd/web
 
+## 2.6.0
+
+### Minor Changes
+
+- feat: reuse function to get session id ([`900d4d1`](https://github.com/jordanshatford/youtube-downloader/commit/900d4d10d4ff37cd031860b2bcc335bb516cbe03))
+
+- feat: add support for batch downloading videos and playlists ([`8d76401`](https://github.com/jordanshatford/youtube-downloader/commit/8d764019e09dc0d9ef965f5fadd792c7ff0c6f2a))
+
+### Patch Changes
+
+- Updated dependencies [[`656a319`](https://github.com/jordanshatford/youtube-downloader/commit/656a319685aae9497a89482a69514ee2a17941aa), [`8d76401`](https://github.com/jordanshatford/youtube-downloader/commit/8d764019e09dc0d9ef965f5fadd792c7ff0c6f2a)]:
+  - @yd/ui@2.1.0
+  - @yd/client@2.2.0
+
 ## 2.5.0
 
 ### Minor Changes
