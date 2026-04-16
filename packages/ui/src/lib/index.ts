@@ -63,6 +63,9 @@ export { default as ChevronLeftIcon } from '@lucide/svelte/icons/chevron-left';
 export { default as ChevronsLeftIcon } from '@lucide/svelte/icons/chevrons-left';
 export { default as ChevronsRightIcon } from '@lucide/svelte/icons/chevrons-right';
 export { default as XIcon } from '@lucide/svelte/icons/x';
+export { default as ScrollIcon } from '@lucide/svelte/icons/scroll-text';
+export { default as MonitorPlayIcon } from '@lucide/svelte/icons/monitor-play';
+export { default as CornerDownLeftIcon } from '@lucide/svelte/icons/corner-down-left';
 export { default as GalleryVerticalEndIcon } from '@lucide/svelte/icons/gallery-vertical-end';
 
 // mode-watcher related exports (see: https://github.com/svecosystem/mode-watcher#readme)
