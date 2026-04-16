@@ -1,5 +1,11 @@
 # @yd/api
 
+## 2.2.1
+
+### Patch Changes
+
+- fix: handle batch remove when directory does not exist ([`e7d7cc6`](https://github.com/jordanshatford/youtube-downloader/commit/e7d7cc6031fde31bb977853374e8e8ed4bbd026a))
+
 ## 2.2.0
 
 ### Minor Changes
