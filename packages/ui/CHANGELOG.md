@@ -1,5 +1,11 @@
 # @yd/ui
 
+## 2.1.0
+
+### Minor Changes
+
+- feat: add icons related to batch downloading ([`656a319`](https://github.com/jordanshatford/youtube-downloader/commit/656a319685aae9497a89482a69514ee2a17941aa))
+
 ## 2.0.0
 
 ### Major Changes

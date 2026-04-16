@@ -1,5 +1,31 @@
 # @yd/api
 
+## 2.2.0
+
+### Minor Changes
+
+- feat: use shared thread pool for each session ([`0f257c9`](https://github.com/jordanshatford/youtube-downloader/commit/0f257c93feaa5f7651b3ad80c17fb8d4fd44c884))
+
+- feat: use property tmp directory for downloads ([`c34ed6f`](https://github.com/jordanshatford/youtube-downloader/commit/c34ed6fcc6a927c822e900867cf244a44942eebf))
+
+- feat: generate session id in init rather than passing to session ([`3c13dca`](https://github.com/jordanshatford/youtube-downloader/commit/3c13dcacaf6874d9ac4fac7c3200f1f6c82b18ec))
+
+- feat: add support for batch downloading videos and playlists ([`8d76401`](https://github.com/jordanshatford/youtube-downloader/commit/8d764019e09dc0d9ef965f5fadd792c7ff0c6f2a))
+
+- feat: refactor search into a search manager ([`0907595`](https://github.com/jordanshatford/youtube-downloader/commit/09075957bb6e9d57bf22e83a0563d6426516110e))
+
+- feat: enable ignoreerrors in yt-dlp commands ([`fd5175d`](https://github.com/jordanshatford/youtube-downloader/commit/fd5175db8895f056094f8d0b673636c328da41b5))
+
+- feat: move downloads status queue to download manager ([`8f3637a`](https://github.com/jordanshatford/youtube-downloader/commit/8f3637a1caff4aac3bb3f9325b5ca23047bccf49))
+
+- feat: move downloadable to own handling and unify functionality ([`e238dbe`](https://github.com/jordanshatford/youtube-downloader/commit/e238dbe411d72f12340e11237b312f3b935693ed))
+
+### Patch Changes
+
+- fix: do not send updates when status has not changed ([`fd813ae`](https://github.com/jordanshatford/youtube-downloader/commit/fd813ae73bc31de8f881411abbebb33e7b81ba20))
+
+- fix: update download put endpoint to use download id path parameter ([`2e250fa`](https://github.com/jordanshatford/youtube-downloader/commit/2e250fa9083660f79d99640e4adc542ad6f8bc1e))
+
 ## 2.1.0
 
 ### Minor Changes

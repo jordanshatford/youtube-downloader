@@ -1,5 +1,11 @@
 # @yd/client
 
+## 2.2.0
+
+### Minor Changes
+
+- feat: add support for batch downloading videos and playlists ([`8d76401`](https://github.com/jordanshatford/youtube-downloader/commit/8d764019e09dc0d9ef965f5fadd792c7ff0c6f2a))
+
 ## 2.1.0
 
 ### Minor Changes
