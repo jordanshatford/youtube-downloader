@@ -8,7 +8,6 @@ from fastapi import status
 from fastapi.responses import FileResponse
 from fastapi.sse import EventSourceResponse
 
-from app.core import AvailableDownloadOptions
 from app.core import Download
 from app.core import DownloadInput
 from app.core import DownloadOptions
@@ -29,11 +28,6 @@ def get_downloads(session: DependsSession) -> list[Download]:
 @router.post("/downloads", status_code=status.HTTP_201_CREATED)
 def post_downloads(download: DownloadInput, session: DependsSession) -> Download:
     return session.downloads.add(download)
-
-
-@router.get("/downloads/options/available")
-def get_downloads_options_available(_: DependsSession) -> AvailableDownloadOptions:
-    return AvailableDownloadOptions()
 
 
 @router.get("/downloads/options/defaults")

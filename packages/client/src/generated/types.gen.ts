@@ -22,36 +22,6 @@ export const AudioFormat = {
 export type AudioFormat = (typeof AudioFormat)[keyof typeof AudioFormat];
 
 /**
- * AvailableDownloadOptions
- */
-export type AvailableDownloadOptions = {
-	/**
-	 * Format
-	 */
-	format?: Array<AudioFormat | VideoFormat>;
-	/**
-	 * Quality
-	 */
-	quality?: Array<DownloadQuality>;
-	/**
-	 * Embed Metadata
-	 */
-	embed_metadata?: Array<boolean>;
-	/**
-	 * Embed Thumbnail
-	 */
-	embed_thumbnail?: Array<boolean>;
-	/**
-	 * Embed Subtitles
-	 */
-	embed_subtitles?: Array<boolean>;
-	/**
-	 * Preferred Subtitles Language
-	 */
-	preferred_subtitles_language?: Array<LanguageCode>;
-};
-
-/**
  * BatchDownload
  */
 export type BatchDownload = {
@@ -636,30 +606,6 @@ export type PostDownloadsResponses = {
 };
 
 export type PostDownloadsResponse = PostDownloadsResponses[keyof PostDownloadsResponses];
-
-export type GetDownloadsOptionsAvailableData = {
-	body?: never;
-	path?: never;
-	query?: never;
-	url: '/downloads/options/available';
-};
-
-export type GetDownloadsOptionsAvailableErrors = {
-	/**
-	 * Forbidden
-	 */
-	403: unknown;
-};
-
-export type GetDownloadsOptionsAvailableResponses = {
-	/**
-	 * Successful Response
-	 */
-	200: AvailableDownloadOptions;
-};
-
-export type GetDownloadsOptionsAvailableResponse =
-	GetDownloadsOptionsAvailableResponses[keyof GetDownloadsOptionsAvailableResponses];
 
 export type GetDownloadsOptionsDefaultsData = {
 	body?: never;

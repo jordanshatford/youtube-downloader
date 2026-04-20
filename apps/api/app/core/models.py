@@ -115,15 +115,6 @@ class LanguageCode(enum.StrEnum):
     ZH = "zh"
 
 
-class AvailableDownloadOptions(BaseModel):
-    format: Sequence[AudioFormat | VideoFormat] = list(AudioFormat) + list(VideoFormat)
-    quality: Sequence[DownloadQuality] = list(DownloadQuality)
-    embed_metadata: Sequence[bool] = [True, False]
-    embed_thumbnail: Sequence[bool] = [True, False]
-    embed_subtitles: Sequence[bool] = [True, False]
-    preferred_subtitles_language: Sequence[LanguageCode] = list(LanguageCode)
-
-
 class DownloadOptions(BaseModel):
     format: AudioFormat | VideoFormat = VideoFormat.MP4
     quality: DownloadQuality = DownloadQuality.BEST

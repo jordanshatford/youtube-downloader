@@ -10,7 +10,6 @@ export {
 	getDownload,
 	getDownloadFile,
 	getDownloads,
-	getDownloadsOptionsAvailable,
 	getDownloadsOptionsDefaults,
 	getDownloadsStatus,
 	getSearch,
@@ -27,7 +26,6 @@ export {
 } from './sdk.gen';
 export {
 	AudioFormat,
-	type AvailableDownloadOptions,
 	type BatchDownload,
 	type BatchDownloadInput,
 	type BatchDownloadStatus,
@@ -80,10 +78,6 @@ export {
 	type GetDownloadResponses,
 	type GetDownloadsData,
 	type GetDownloadsErrors,
-	type GetDownloadsOptionsAvailableData,
-	type GetDownloadsOptionsAvailableErrors,
-	type GetDownloadsOptionsAvailableResponse,
-	type GetDownloadsOptionsAvailableResponses,
 	type GetDownloadsOptionsDefaultsData,
 	type GetDownloadsOptionsDefaultsErrors,
 	type GetDownloadsOptionsDefaultsResponse,

@@ -2,7 +2,6 @@ from .managers import BatchManager
 from .managers import DownloadsManager
 from .managers import YouTubeSearchManager
 from .models import AudioFormat
-from .models import AvailableDownloadOptions
 from .models import BatchDownload
 from .models import BatchDownloadInput
 from .models import Channel
@@ -21,7 +20,6 @@ from .versions import CORE_VERSIONS
 __all__ = [
     "CORE_VERSIONS",
     "AudioFormat",
-    "AvailableDownloadOptions",
     "BatchDownload",
     "BatchDownloadInput",
     "BatchManager",

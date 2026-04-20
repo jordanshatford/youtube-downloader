@@ -28,9 +28,6 @@ import type {
 	GetDownloadResponses,
 	GetDownloadsData,
 	GetDownloadsErrors,
-	GetDownloadsOptionsAvailableData,
-	GetDownloadsOptionsAvailableErrors,
-	GetDownloadsOptionsAvailableResponses,
 	GetDownloadsOptionsDefaultsData,
 	GetDownloadsOptionsDefaultsErrors,
 	GetDownloadsOptionsDefaultsResponses,
@@ -189,22 +186,6 @@ export const postDownloads = <ThrowOnError extends boolean = false>(
 			'Content-Type': 'application/json',
 			...options.headers
 		}
-	});
-
-/**
- * Get Downloads Options Available
- */
-export const getDownloadsOptionsAvailable = <ThrowOnError extends boolean = false>(
-	options?: Options<GetDownloadsOptionsAvailableData, ThrowOnError>
-) =>
-	(options?.client ?? client).get<
-		GetDownloadsOptionsAvailableResponses,
-		GetDownloadsOptionsAvailableErrors,
-		ThrowOnError
-	>({
-		security: [{ scheme: 'bearer', type: 'http' }],
-		url: '/downloads/options/available',
-		...options
 	});
 
 /**
