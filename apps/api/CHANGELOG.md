@@ -1,5 +1,15 @@
 # @yd/api
 
+## 2.3.0
+
+### Minor Changes
+
+- refactor: remove available download options endpoint ([`60e3ef2`](https://github.com/jordanshatford/youtube-downloader/commit/60e3ef2c110d3bcbe07067bc0f77b029e316176a))
+
+### Patch Changes
+
+- fix: only use extract flat when searching for videos ([`cfde8eb`](https://github.com/jordanshatford/youtube-downloader/commit/cfde8eb1bc6cd22ed97398dcf8b69cf8e119f804))
+
 ## 2.2.1
 
 ### Patch Changes
