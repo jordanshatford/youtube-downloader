@@ -49,8 +49,7 @@ class BatchDownloadable(Downloadable):
             ),
             videos={},
         )
-        self._urls = batch.urls
-        self._hook = hook
+        self._hook: Callable[[BatchDownload], None] = hook
         self.__downloadable_hook(
             None,
             DownloadStatus(state=DownloadState.WAITING),
@@ -72,7 +71,7 @@ class BatchDownloadable(Downloadable):
                     DownloadStatus(state=DownloadState.DOWNLOADING),
                 )
                 logger.debug("[%s]: %s is 'starting'.", self._name, self._identifier)
-                ytdlp.download([str(url) for url in self._urls])
+                ytdlp.download([str(url) for url in self.batch.urls])
                 logger.debug("[%s]: %s is 'completed'.", self._name, self._identifier)
                 self._generate_zip_file()
                 self.__downloadable_hook(
@@ -108,7 +107,7 @@ class BatchDownloadable(Downloadable):
 
     @property
     def _contains_some_playlist(self) -> bool:
-        return any("list=" in str(url) for url in self._urls)
+        return any("list=" in str(url) for url in self.batch.urls)
 
     def _generate_zip_file(self) -> None:
         # TODO(jordan): maybe attempt to use a postprocessor for this??
