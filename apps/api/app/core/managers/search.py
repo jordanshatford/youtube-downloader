@@ -65,6 +65,7 @@ class YouTubeSearchManager:
     def _fetch_current_page(self) -> list[Video]:
         params: YoutubeDLParams = {
             **DEFAULT_YOUTUBE_DL_PARAMS,
+            "extract_flat": True,
             "playlist_items": self._playlist_items,
         }
         with YoutubeDL(params) as ydl:

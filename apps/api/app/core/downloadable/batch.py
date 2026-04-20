@@ -63,7 +63,6 @@ class BatchDownloadable(Downloadable):
                 # Modify the parameters to better work with playlists and ensure that we
                 # are not infinitely donwloading playlist items in the case that it is a
                 # radio playlist.
-                params["extract_flat"] = False
                 params["noplaylist"] = False
                 params["playlist_items"] = "1:20"
 

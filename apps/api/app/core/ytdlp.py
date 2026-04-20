@@ -319,7 +319,7 @@ def no_active_livestreams(info: VideoInfo, incomplete: bool) -> str | None:  # n
 
 # Default parameters we use when interacting with the yt-dlp python api.
 DEFAULT_YOUTUBE_DL_PARAMS: YoutubeDLParams = {
-    "extract_flat": True,
+    "extract_flat": False,
     "logger": logging.getLogger("yt-dlp"),
     "noprogress": True,
     "ignoreerrors": True,
