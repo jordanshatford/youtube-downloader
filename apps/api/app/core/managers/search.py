@@ -41,7 +41,9 @@ class YouTubeSearchManager:
 
     def get_next(self) -> list[Video]:
         if not self._has_more:
-            logger.debug("No more search results for '%s'.", self._query)
+            logger.debug(
+                "[YouTubeSearchManager]: No more search results for '%s'.", self._query
+            )
             return []
 
         self._page += 1
@@ -74,7 +76,7 @@ class YouTubeSearchManager:
 
             if entries is None:
                 logger.debug(
-                    "No entries returned from search '%s' page %d.",
+                    "[YouTubeSearchManager]: No entries for '%s' page %d.",
                     self._query,
                     self._page,
                 )

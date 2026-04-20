@@ -46,7 +46,9 @@ class BatchManager:
             return None
 
         if not self._batch.path.exists():
-            logger.debug("Batch download file does not exist for %s.", self._batch.path)
+            logger.debug(
+                "[BatchManager]: file does not exist for %s.", self._batch.path
+            )
             return None
 
         return self._batch.path

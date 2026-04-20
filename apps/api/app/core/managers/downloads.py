@@ -36,7 +36,7 @@ class DownloadsManager:
                 self.queue.put,
             )
             logger.debug(
-                "Added download %s with options %s ",
+                "[DownloadsManager]: Added download %s with options %s ",
                 download.video.url,
                 download.options,
             )
@@ -59,6 +59,6 @@ class DownloadsManager:
     def get_file_path(self, download_id: str) -> pathlib.Path | None:
         config = self._downloads.get(download_id, None)
         if config is None or not config.path.exists():
-            logger.debug("Download file does not exist for %s.", download_id)
+            logger.debug("[DownloadsManager]: file does not exist for %s.", download_id)
             return None
         return config.path
