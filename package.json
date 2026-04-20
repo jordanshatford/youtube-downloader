@@ -22,7 +22,7 @@
 		"commitlint": "commitlint --edit"
 	},
 	"devDependencies": {
-		"@changesets/cli": "^2.30.0",
+		"@changesets/cli": "^2.31.0",
 		"@commitlint/cli": "^20.5.0",
 		"@commitlint/config-conventional": "^20.5.0",
 		"@commitlint/types": "^20.5.0",
@@ -31,7 +31,7 @@
 		"@prettier/plugin-oxc": "^0.1.4",
 		"@svitejs/changesets-changelog-github-compact": "^1.2.0",
 		"@types/node": "^25.6.0",
-		"eslint": "^10.2.0",
+		"eslint": "^10.2.1",
 		"eslint-config-prettier": "^10.1.8",
 		"eslint-plugin-svelte": "^3.17.0",
 		"globals": "^17.5.0",

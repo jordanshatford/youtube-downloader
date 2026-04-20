@@ -11,7 +11,7 @@
 		"check": "tsc --project tsconfig.json --noEmit"
 	},
 	"devDependencies": {
-		"@hey-api/openapi-ts": "^0.96.0",
+		"@hey-api/openapi-ts": "^0.96.1",
 		"@yd/api": "workspace:*",
 		"typescript": "catalog:"
 	}
