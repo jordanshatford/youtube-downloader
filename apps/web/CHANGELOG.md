@@ -1,5 +1,16 @@
 # @yd/web
 
+## 2.7.0
+
+### Minor Changes
+
+- feat: add skeleton loader when batch first is started ([`b886a92`](https://github.com/jordanshatford/youtube-downloader/commit/b886a92dda96f8f482a5a1d1dedb5733a1eb3873))
+
+### Patch Changes
+
+- Updated dependencies [[`60e3ef2`](https://github.com/jordanshatford/youtube-downloader/commit/60e3ef2c110d3bcbe07067bc0f77b029e316176a)]:
+  - @yd/client@2.3.0
+
 ## 2.6.1
 
 ### Patch Changes

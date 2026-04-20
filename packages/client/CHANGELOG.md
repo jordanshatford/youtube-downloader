@@ -1,5 +1,11 @@
 # @yd/client
 
+## 2.3.0
+
+### Minor Changes
+
+- refactor: remove available download options endpoint ([`60e3ef2`](https://github.com/jordanshatford/youtube-downloader/commit/60e3ef2c110d3bcbe07067bc0f77b029e316176a))
+
 ## 2.2.0
 
 ### Minor Changes
