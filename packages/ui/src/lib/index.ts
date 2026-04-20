@@ -20,6 +20,7 @@ export * as Select from '$uilib/components/ui/select/index';
 export * as Separator from '$uilib/components/ui/separator/index';
 export { useSidebar } from '$uilib/components/ui/sidebar/context.svelte';
 export * as Sidebar from '$uilib/components/ui/sidebar/index';
+export { Skeleton } from '$uilib/components/ui/skeleton/index';
 export * as Table from '$uilib/components/ui/table/index';
 export * as Tabs from '$uilib/components/ui/tabs/index';
 export * as Tooltip from '$uilib/components/ui/tooltip/index';

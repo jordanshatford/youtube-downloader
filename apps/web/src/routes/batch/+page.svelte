@@ -17,6 +17,7 @@
 		InputGroup,
 		MonitorPlayIcon,
 		RotateIcon,
+		Skeleton,
 		SpinnerIcon,
 		Tooltip,
 		TrashIcon
@@ -134,16 +135,26 @@
 			</div>
 			{#if batch.current}
 				<div
-					class="flex items-center justify-between rounded-md border px-3 py-2 text-sm font-medium"
+					class="flex items-center justify-between rounded-md border p-1 pr-2 text-sm font-medium"
 				>
 					<AppVideoInfo video={batch.current.video} />
 					<AppDownloadStatusIcon status={batch.current?.status} />
+				</div>
+			{:else}
+				<div
+					class="flex items-center justify-between rounded-md border p-2 pr-2 text-sm font-medium"
+				>
+					<div class="flex items-center space-x-3">
+						<Skeleton class="hidden aspect-video h-10 md:flex" />
+						<Skeleton class="h-10 w-75" />
+					</div>
+					<Skeleton class="size-9" />
 				</div>
 			{/if}
 			<Collapsible.Content class="space-y-2">
 				{#each batch.others as item (item.video.id)}
 					<div
-						class="flex items-center justify-between rounded-md border px-3 py-2 text-sm font-medium"
+						class="flex items-center justify-between rounded-md border p-1 pr-2 text-sm font-medium"
 					>
 						<AppVideoInfo video={item.video} />
 						<AppDownloadStatusIcon status={item.status} />
