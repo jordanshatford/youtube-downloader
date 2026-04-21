@@ -1,7 +1,7 @@
 <script lang="ts" module>
 	import config from '$lib/config';
 
-	export const websiteName = config.about.hostname;
+	export const websiteName = config.head.title;
 
 	type TermOfUse = {
 		title: string;

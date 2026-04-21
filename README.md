@@ -5,17 +5,16 @@
   <p align="center">
     Fast, high quality YouTube downloads.
     <br />
-    <a href="https://youtubedownloader.duckdns.org"><strong>youtubedownloader.duckdns.org »</strong></a>
-    <br />
     <br />
   </p>
 </p>
 
-YouTube Downloader is an application created for downloading [YouTube](https://www.youtube.com/) videos with a variety of formats and configurable options available.
+YouTube Downloader is a self-hosted application for downloading [YouTube](https://www.youtube.com/) videos with a variety of formats and configurable options available.
 
 ## Features
 
 - Search YouTube directly using search terms or input direct video URL.
+- Submit list of URLs for batch downloading.
 - Concurrently download and process many videos at once.
 - Configurable audio download formats (AAC, FLAC, M4A, MP3, OPUS, WAV).
 - Configurable video download formats (AVI, FLV, MKV, MOV, MP4, WEBM).
