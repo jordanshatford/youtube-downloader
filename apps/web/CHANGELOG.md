@@ -1,5 +1,11 @@
 # @yd/web
 
+## 2.7.1
+
+### Patch Changes
+
+- fix: remove all references to hosted version of project ([`b695a70`](https://github.com/jordanshatford/youtube-downloader/commit/b695a7048dcf197c1544f1391b512a3f8355ac88))
+
 ## 2.7.0
 
 ### Minor Changes
