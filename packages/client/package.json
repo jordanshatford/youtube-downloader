@@ -10,9 +10,11 @@
 		"build": "pnpm generate && tsc --project tsconfig.json",
 		"check": "tsc --project tsconfig.json --noEmit"
 	},
+	"dependencies": {
+		"@yd/api": "workspace:*"
+	},
 	"devDependencies": {
 		"@hey-api/openapi-ts": "^0.96.1",
-		"@yd/api": "workspace:*",
 		"typescript": "catalog:"
 	}
 }
