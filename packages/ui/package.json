@@ -28,14 +28,14 @@
 		"@tanstack/table-core": "^8.21.3",
 		"bits-ui": "^2.18.0",
 		"mode-watcher": "^1.1.0",
-		"svelte-sonner": "^1.1.0"
+		"svelte-sonner": "^1.1.1"
 	},
 	"peerDependencies": {
 		"svelte": "catalog:peers"
 	},
 	"devDependencies": {
 		"@internationalized/date": "^3.12.1",
-		"@lucide/svelte": "^1.8.0",
+		"@lucide/svelte": "^1.11.0",
 		"@sveltejs/adapter-auto": "catalog:",
 		"@sveltejs/kit": "catalog:",
 		"@sveltejs/vite-plugin-svelte": "catalog:",
