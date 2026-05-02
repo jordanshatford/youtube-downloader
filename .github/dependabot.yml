@@ -8,67 +8,62 @@ updates:
       - '/.github/actions/setup-environment'
       - '/'
     schedule:
-      interval: 'weekly'
-    assignees:
-      - 'jordanshatford'
-    groups:
-      github-actions:
-        patterns:
-          - '*'
+      interval: 'daily'
 
   - package-ecosystem: 'uv'
     directory: '/apps/api'
     schedule:
-      interval: 'weekly'
-    assignees:
-      - 'jordanshatford'
-    groups:
-      python:
-        patterns:
-          - '*'
+      interval: 'daily'
 
   - package-ecosystem: 'pre-commit'
     directory: '/apps/api'
     schedule:
-      interval: 'weekly'
-    assignees:
-      - 'jordanshatford'
-    groups:
-      pre-commit:
-        patterns:
-          - '*'
+      interval: 'daily'
 
   - package-ecosystem: 'npm'
     directory: '/'
     schedule:
-      interval: 'weekly'
-    assignees:
-      - 'jordanshatford'
+      interval: 'daily'
     groups:
-      npm:
+      commitlint:
         patterns:
-          - '*'
+          - '@commitlint/*'
+      eslint:
+        patterns:
+          - 'eslint'
+          - 'eslint-*'
+          - '*-eslint-*'
+          - '*/eslint-*'
+          - '@eslint/*'
+          - 'typescript-eslint'
+      eslint:
+        patterns:
+          - 'prettier'
+          - 'prettier-*'
+          - '*/eslint-*'
+          - '@prettier/*'
+          - 'typescript-eslint'
+      svelte:
+        patterns:
+          - 'svelte'
+          - 'svelte-*'
+          - '@sveltejs/*'
+      vite:
+        patterns:
+          - 'vite'
+          - 'vite-*'
+          - '@vitejs/*'
+          - 'vitest'
+          - '@vitest/*'
 
   - package-ecosystem: 'docker'
     directories:
       - '/apps/api'
       - '/'
     schedule:
-      interval: 'weekly'
-    assignees:
-      - 'jordanshatford'
-    groups:
-      docker:
-        patterns:
-          - '*'
+      interval: 'daily'
 
   - package-ecosystem: 'docker-compose'
     directory: '/'
     schedule:
-      interval: 'weekly'
-    assignees:
-      - 'jordanshatford'
-    groups:
-      docker:
-        patterns:
-          - '*'
+      interval: 'daily'
