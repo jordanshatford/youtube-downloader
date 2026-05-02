@@ -36,7 +36,7 @@ updates:
           - '*/eslint-*'
           - '@eslint/*'
           - 'typescript-eslint'
-      eslint:
+      prettier:
         patterns:
           - 'prettier'
           - 'prettier-*'
