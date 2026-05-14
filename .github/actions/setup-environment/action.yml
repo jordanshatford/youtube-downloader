@@ -4,7 +4,7 @@ inputs:
   node-version:
     description: Node version to use
     required: false
-    default: '24'
+    default: '26'
   python-version:
     description: Python version to use
     required: false
