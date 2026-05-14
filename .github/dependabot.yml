@@ -43,6 +43,11 @@ updates:
           - '*/eslint-*'
           - '@prettier/*'
           - 'typescript-eslint'
+      tailwind:
+        patterns:
+          - 'tailwindcss'
+          - '@tailwindcss/*'
+          - 'tailwindcss-*'
       svelte:
         patterns:
           - 'svelte'
