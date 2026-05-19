@@ -14,7 +14,7 @@
 		"@yd/api": "workspace:*"
 	},
 	"devDependencies": {
-		"@hey-api/openapi-ts": "^0.97.1",
+		"@hey-api/openapi-ts": "^0.97.2",
 		"typescript": "catalog:"
 	}
 }
