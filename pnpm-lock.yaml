@@ -37,6 +37,9 @@ catalogs:
       specifier: ^8.0.13
       version: 8.0.13
 
+overrides:
+  cookie@<0.7.0: '>=0.7.0'
+
 importers:
 
   .:
@@ -87,11 +90,11 @@ importers:
         specifier: ^3.8.3
         version: 3.8.3
       prettier-plugin-svelte:
-        specifier: ^3.5.2
-        version: 3.5.2(prettier@3.8.3)(svelte@5.55.8(@typescript-eslint/types@8.59.4))
+        specifier: ^4.0.0
+        version: 4.0.0(prettier@3.8.3)(svelte@5.55.8(@typescript-eslint/types@8.59.4))
       prettier-plugin-tailwindcss:
         specifier: ^0.8.0
-        version: 0.8.0(@ianvs/prettier-plugin-sort-imports@4.7.1(@prettier/plugin-oxc@0.1.4)(prettier@3.8.3))(@prettier/plugin-oxc@0.1.4)(prettier-plugin-svelte@3.5.2(prettier@3.8.3)(svelte@5.55.8(@typescript-eslint/types@8.59.4)))(prettier@3.8.3)
+        version: 0.8.0(@ianvs/prettier-plugin-sort-imports@4.7.1(@prettier/plugin-oxc@0.1.4)(prettier@3.8.3))(@prettier/plugin-oxc@0.1.4)(prettier-plugin-svelte@4.0.0(prettier@3.8.3)(svelte@5.55.8(@typescript-eslint/types@8.59.4)))(prettier@3.8.3)
       svelte-eslint-parser:
         specifier: ^1.6.1
         version: 1.6.1(svelte@5.55.8(@typescript-eslint/types@8.59.4))
@@ -1363,9 +1366,9 @@ packages:
     engines: {node: '>=18'}
     hasBin: true
 
-  cookie@0.6.0:
-    resolution: {integrity: sha512-U71cyTamuh1CRNCfpGY6to28lxvNwPG4Guz/EVjgf3Jmzv0vlDp1atT9eS5dDjMYHucpHbWns6Lwf3BKz6svdw==}
-    engines: {node: '>= 0.6'}
+  cookie@1.1.1:
+    resolution: {integrity: sha512-ei8Aos7ja0weRpFzJnEA9UHJ/7XQmqglbRwnf2ATjcB9Wq874VKH9kfjjirM6UhU2/E5fFYadylyhFldcqSidQ==}
+    engines: {node: '>=18'}
 
   cosmiconfig-typescript-loader@6.3.0:
     resolution: {integrity: sha512-Akr82WH1Wfqatyiqpj8HDkO2o2KmJRu1FhKfSNJP3K4IdXwHfEyL7MOb62i1AGQVLtIQM+iCE9CGOtrfhR+mmA==}
@@ -2144,11 +2147,12 @@ packages:
     resolution: {integrity: sha512-vkcDPrRZo1QZLbn5RLGPpg/WmIQ65qoWWhcGKf/b5eplkkarX0m9z8ppCat4mlOqUsWpyNuYgO3VRyrYHSzX5g==}
     engines: {node: '>= 0.8.0'}
 
-  prettier-plugin-svelte@3.5.2:
-    resolution: {integrity: sha512-ItFouLvzSFE3ulNl4DKoWM3BGcbDCNVpIyy/Y3F2gC3aNiGLxtFUdffVqO5Z5hhYG+DFT5KULWaxmeFFpdbvaQ==}
+  prettier-plugin-svelte@4.0.0:
+    resolution: {integrity: sha512-StoBMZGsfE9ztz1i9ejLhYU2nlP1+FdoWqGCb7Bh7EGVVBW2smCcyoCPxWCdszVdx1SsDiK7n4uAv/YUsHqimQ==}
+    engines: {node: '>=20'}
     peerDependencies:
       prettier: ^3.0.0
-      svelte: ^3.2.0 || ^4.0.0-next.0 || ^5.0.0-next.0
+      svelte: ^5.0.0
 
   prettier-plugin-tailwindcss@0.8.0:
     resolution: {integrity: sha512-V8ITGH87yuBDF6JpEZTOVlUz/saAwqb8f3HRgUj8Lh+tGCcrmorhsLpYqzygwFwK0PE2Ib6Mv3M7T/uE2tZV1g==}
@@ -3373,7 +3377,7 @@ snapshots:
       '@sveltejs/vite-plugin-svelte': 7.1.2(svelte@5.55.8(@typescript-eslint/types@8.59.4))(vite@8.0.13(@types/node@25.9.1)(esbuild@0.27.7)(jiti@2.7.0)(yaml@2.8.3))
       '@types/cookie': 0.6.0
       acorn: 8.16.0
-      cookie: 0.6.0
+      cookie: 1.1.1
       devalue: 5.8.1
       esm-env: 1.2.2
       kleur: 4.1.5
@@ -3720,7 +3724,7 @@ snapshots:
       '@simple-libs/stream-utils': 1.2.0
       meow: 13.2.0
 
-  cookie@0.6.0: {}
+  cookie@1.1.1: {}
 
   cosmiconfig-typescript-loader@6.3.0(@types/node@25.9.1)(cosmiconfig@9.0.1(typescript@6.0.3))(typescript@6.0.3):
     dependencies:
@@ -4428,18 +4432,18 @@ snapshots:
 
   prelude-ls@1.2.1: {}
 
-  prettier-plugin-svelte@3.5.2(prettier@3.8.3)(svelte@5.55.8(@typescript-eslint/types@8.59.4)):
+  prettier-plugin-svelte@4.0.0(prettier@3.8.3)(svelte@5.55.8(@typescript-eslint/types@8.59.4)):
     dependencies:
       prettier: 3.8.3
       svelte: 5.55.8(@typescript-eslint/types@8.59.4)
 
-  prettier-plugin-tailwindcss@0.8.0(@ianvs/prettier-plugin-sort-imports@4.7.1(@prettier/plugin-oxc@0.1.4)(prettier@3.8.3))(@prettier/plugin-oxc@0.1.4)(prettier-plugin-svelte@3.5.2(prettier@3.8.3)(svelte@5.55.8(@typescript-eslint/types@8.59.4)))(prettier@3.8.3):
+  prettier-plugin-tailwindcss@0.8.0(@ianvs/prettier-plugin-sort-imports@4.7.1(@prettier/plugin-oxc@0.1.4)(prettier@3.8.3))(@prettier/plugin-oxc@0.1.4)(prettier-plugin-svelte@4.0.0(prettier@3.8.3)(svelte@5.55.8(@typescript-eslint/types@8.59.4)))(prettier@3.8.3):
     dependencies:
       prettier: 3.8.3
     optionalDependencies:
       '@ianvs/prettier-plugin-sort-imports': 4.7.1(@prettier/plugin-oxc@0.1.4)(prettier@3.8.3)
       '@prettier/plugin-oxc': 0.1.4
-      prettier-plugin-svelte: 3.5.2(prettier@3.8.3)(svelte@5.55.8(@typescript-eslint/types@8.59.4))
+      prettier-plugin-svelte: 4.0.0(prettier@3.8.3)(svelte@5.55.8(@typescript-eslint/types@8.59.4))
 
   prettier@2.8.8: {}
 
