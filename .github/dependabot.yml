@@ -10,28 +10,28 @@ updates:
     schedule:
       interval: 'daily'
     cooldown:
-      default-days: 5
+      default-days: 7
 
   - package-ecosystem: 'uv'
     directory: '/apps/api'
     schedule:
       interval: 'daily'
     cooldown:
-      default-days: 5
+      default-days: 7
 
   - package-ecosystem: 'pre-commit'
     directory: '/apps/api'
     schedule:
       interval: 'daily'
     cooldown:
-      default-days: 5
+      default-days: 7
 
   - package-ecosystem: 'npm'
     directory: '/'
     schedule:
       interval: 'daily'
     cooldown:
-      default-days: 5
+      default-days: 7
     groups:
       commitlint:
         patterns:
@@ -76,11 +76,11 @@ updates:
     schedule:
       interval: 'daily'
     cooldown:
-      default-days: 5
+      default-days: 7
 
   - package-ecosystem: 'docker-compose'
     directory: '/'
     schedule:
       interval: 'daily'
     cooldown:
-      default-days: 5
+      default-days: 7
