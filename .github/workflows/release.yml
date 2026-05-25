@@ -16,13 +16,15 @@ jobs:
     name: Release
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+        with:
+          persist-credentials: false
       - uses: ./.github/actions/setup-environment
       - name: Install dependencies
         run: pnpm install
       - name: Build
         run: pnpm build
-      - uses: changesets/action@v1
+      - uses: changesets/action@63a615b9cd06ba9a3e6d13796c7fbcb080a60a0b # v1.8.0
         with:
           title: 'ci: release latest changes'
           commit: 'ci: release latest changes'
