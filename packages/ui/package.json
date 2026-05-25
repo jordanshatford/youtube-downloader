@@ -42,7 +42,7 @@
 		"@tailwindcss/vite": "catalog:",
 		"clsx": "^2.1.1",
 		"shadcn-svelte": "^1.2.7",
-		"svelte": "catalog:",
+		"svelte": "catalog:peers",
 		"svelte-check": "catalog:",
 		"tailwind-merge": "^3.6.0",
 		"tailwind-variants": "^3.2.2",
