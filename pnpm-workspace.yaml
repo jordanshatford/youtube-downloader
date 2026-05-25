@@ -5,6 +5,8 @@ packages:
 allowBuilds:
   esbuild: false
 
+engineStrict: true
+
 catalog:
   '@sveltejs/adapter-auto': ^7.0.1
   '@sveltejs/kit': ^2.61.1
