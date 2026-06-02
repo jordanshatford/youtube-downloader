@@ -23,7 +23,7 @@
 	<meta name="description" content={config.head.description} />
 	<meta property="og:title" content={config.head.title} />
 	<meta property="og:description" content={config.head.description} />
-	<meta property="og:image" content="/icons/icon-192x192.png" />
+	<meta property="og:image" content="/icon.png" />
 	<meta property="og:type" content="website" />
 </svelte:head>
 
