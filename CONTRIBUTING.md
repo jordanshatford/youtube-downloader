@@ -9,7 +9,7 @@ Setting up the project for local development will require all of the following t
 - [uv](https://docs.astral.sh/uv/) (version `0.11` or higher)
   > NOTE: `uv` will ensure that the required [python](https://www.python.org/) version is available.
 - [node](https://nodejs.org/en) (version `22.0` or higher)
-- [pnpm](https://pnpm.io/) (version `10.0` or higher)
+- [pnpm](https://pnpm.io/) (version `11.0` or higher)
   > NOTE: `pnpm` will use the version specified in the root `package.json` file.
 - _optionally_ [docker](https://www.docker.com/) (version `24.0` or higher)
 
