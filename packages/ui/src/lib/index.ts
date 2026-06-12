@@ -68,6 +68,7 @@ export { default as ScrollIcon } from '@lucide/svelte/icons/scroll-text';
 export { default as MonitorPlayIcon } from '@lucide/svelte/icons/monitor-play';
 export { default as CornerDownLeftIcon } from '@lucide/svelte/icons/corner-down-left';
 export { default as GalleryVerticalEndIcon } from '@lucide/svelte/icons/gallery-vertical-end';
+export { default as CookieIcon } from '@lucide/svelte/icons/cookie';
 
 // mode-watcher related exports (see: https://github.com/svecosystem/mode-watcher#readme)
 export { ModeWatcher, toggleMode } from 'mode-watcher';
