@@ -2,6 +2,7 @@
 
 import type {
 	Client,
+	ClientMeta,
 	Options as Options2,
 	RequestResult,
 	ServerSentEventsResult,
@@ -88,7 +89,7 @@ export type Options<
 	 * You can pass arbitrary values through the `meta` object. This can be
 	 * used to access values that aren't defined as part of the SDK function.
 	 */
-	meta?: Record<string, unknown>;
+	meta?: keyof ClientMeta extends never ? Record<string, unknown> : ClientMeta;
 };
 
 /**
@@ -219,9 +220,7 @@ export const getDownloadsOptionsDefaults = <ThrowOnError extends boolean = false
  */
 export const getDownloadsStatus = <ThrowOnError extends boolean = false>(
 	options: Options<GetDownloadsStatusData, ThrowOnError, unknown>
-): Promise<
-	ServerSentEventsResult<GetDownloadsStatusResponses, GetDownloadsStatusErrors | void, unknown>
-> =>
+): Promise<ServerSentEventsResult<GetDownloadsStatusResponses>> =>
 	(options.client ?? client).sse.get<
 		GetDownloadsStatusResponses,
 		GetDownloadsStatusErrors,
@@ -341,7 +340,7 @@ export const putBatch = <ThrowOnError extends boolean = false>(
  */
 export const getBatchStatus = <ThrowOnError extends boolean = false>(
 	options: Options<GetBatchStatusData, ThrowOnError, unknown>
-): Promise<ServerSentEventsResult<GetBatchStatusResponses, GetBatchStatusErrors | void, unknown>> =>
+): Promise<ServerSentEventsResult<GetBatchStatusResponses>> =>
 	(options.client ?? client).sse.get<GetBatchStatusResponses, GetBatchStatusErrors, ThrowOnError>({
 		url: '/batch/status',
 		...options
