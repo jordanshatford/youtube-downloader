@@ -10,10 +10,10 @@ export default defineConfig([
 		ignores: ['**/dist', '**/build', '**/.svelte-kit', 'apps/api', 'packages/client/src/generated']
 	},
 	js.configs.recommended,
-	...ts.configs.recommended,
-	...svelte.configs.recommended,
+	ts.configs.recommended,
+	svelte.configs.recommended,
 	prettier,
-	...svelte.configs.prettier,
+	svelte.configs.prettier,
 	{
 		languageOptions: {
 			globals: {
