@@ -17,7 +17,7 @@
 		"check": "pnpm --recursive check",
 		"lint": "prettier --check . && eslint . && pnpm --filter @yd/api lint",
 		"lint:fix": "eslint --fix .",
-		"deps:update": "pnpm self-update && pnpm up --latest && pnpm --recursive up --latest && pnpm --recursive deps:update",
+		"dependencies:update": "pnpm self-update && pnpm up --latest && pnpm --recursive up --latest && pnpm --recursive dependencies:update",
 		"changeset": "changeset",
 		"commitlint": "commitlint --edit"
 	},
@@ -30,19 +30,19 @@
 		"@eslint/js": "^10.0.1",
 		"@ianvs/prettier-plugin-sort-imports": "^4.7.1",
 		"@prettier/plugin-oxc": "^0.1.4",
-		"@types/node": "^25.9.3",
+		"@types/node": "^26.0.0",
 		"eslint": "^10.5.0",
 		"eslint-config-prettier": "^10.1.8",
 		"eslint-plugin-svelte": "^3.19.0",
 		"globals": "^17.6.0",
 		"husky": "^9.1.7",
 		"prettier": "^3.8.4",
-		"prettier-plugin-svelte": "^4.1.0",
+		"prettier-plugin-svelte": "^4.1.1",
 		"prettier-plugin-tailwindcss": "^0.8.0",
 		"svelte-eslint-parser": "^1.8.0",
-		"typescript-eslint": "^8.61.0"
+		"typescript-eslint": "^8.61.1"
 	},
-	"packageManager": "pnpm@11.6.0",
+	"packageManager": "pnpm@11.8.0",
 	"engines": {
 		"node": ">=22",
 		"pnpm": ">=10"

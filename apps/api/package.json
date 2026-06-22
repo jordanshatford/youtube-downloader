@@ -18,6 +18,6 @@
 		"format": "uv run ruff check --fix . && uv run ruff format .",
 		"check": "uv run mypy --ignore-missing-imports . && uv run ty check .",
 		"lint": "uv run ruff check . && uv run ruff format --check . ",
-		"deps:update": "uv sync --upgrade && uv run pre-commit autoupdate"
+		"dependencies:update": "uv sync --upgrade && uv run pre-commit autoupdate"
 	}
 }
