@@ -29,18 +29,18 @@
 		"@commitlint/types": "^21.1.0",
 		"@eslint/js": "^10.0.1",
 		"@ianvs/prettier-plugin-sort-imports": "^4.7.1",
-		"@prettier/plugin-oxc": "^0.1.4",
+		"@prettier/plugin-oxc": "^0.2.0",
 		"@types/node": "^26.0.1",
 		"eslint": "^10.6.0",
 		"eslint-config-prettier": "^10.1.8",
 		"eslint-plugin-svelte": "^3.20.0",
 		"globals": "^17.7.0",
 		"husky": "^9.1.7",
-		"prettier": "^3.8.4",
+		"prettier": "^3.9.4",
 		"prettier-plugin-svelte": "^4.1.1",
 		"prettier-plugin-tailwindcss": "^0.8.0",
 		"svelte-eslint-parser": "^1.8.0",
-		"typescript-eslint": "^8.62.0"
+		"typescript-eslint": "^8.62.1"
 	},
 	"packageManager": "pnpm@11.8.0",
 	"engines": {
