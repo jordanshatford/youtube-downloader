@@ -198,8 +198,8 @@ importers:
         specifier: ^2.1.1
         version: 2.1.1
       shadcn-svelte:
-        specifier: ^1.4.1
-        version: 1.4.1(svelte@5.56.7(@typescript-eslint/types@8.64.0))
+        specifier: ^1.4.2
+        version: 1.4.2(svelte@5.56.7(@typescript-eslint/types@8.64.0))
       svelte:
         specifier: catalog:peers
         version: 5.56.7(@typescript-eslint/types@8.64.0)
@@ -1979,6 +1979,10 @@ packages:
     resolution: {integrity: sha512-Mz8SaolMd8nB+G13WkORcxQKHZ/NE4xXevtkJHVuG+guo9/wYKlIMTKAqGdEmYOXR2ijPjTYNHssizdaVSUNdQ==}
     engines: {node: ^10 || ^12 || >=14}
 
+  postcss@8.5.21:
+    resolution: {integrity: sha512-v4sDNP3fdNiWMfabO7OwOQdOX8TiQSztKyT1Wj0w+j7LDallJThJRBBBmzVGyYj0crMh7jlV4zepPkiNu9UwDQ==}
+    engines: {node: ^10 || ^12 || >=14}
+
   powershell-utils@0.1.0:
     resolution: {integrity: sha512-dM0jVuXJPsDN6DvRpea484tCUaMiXWjuCn++HGTqUWzGDjv5tZkEZldAJ/UMlqRYGFrD/etByo4/xOuC/snX2A==}
     engines: {node: '>=20'}
@@ -2159,8 +2163,8 @@ packages:
   set-cookie-parser@3.1.1:
     resolution: {integrity: sha512-vM9SUhjsUYs6UeJUmygc5Ofm5eQGe85riob5ju6XCgFGJI5PLV4nrDAQpQjd+LkFBpAkADn5BQQpZ9EUNkyLuA==}
 
-  shadcn-svelte@1.4.1:
-    resolution: {integrity: sha512-lpvnuHJOMf/CRlOMo5h7HpmdpcWmqVoPyvnCcgpJWJWzVkiwmisF80mR54GIAExSTSk1g4+ere3QrSty2PCIIg==}
+  shadcn-svelte@1.4.2:
+    resolution: {integrity: sha512-j7oDhXRmFuZ8bAhvF7Y65moMi9qM0iA68j5wEDNBiH0be9NWOEg1qo7myDeIf+h2oUSLBYHpVmeJIKYBmNT4Kg==}
     hasBin: true
     peerDependencies:
       svelte: ^5.0.0
@@ -4135,6 +4139,12 @@ snapshots:
       picocolors: 1.1.1
       source-map-js: 1.2.1
 
+  postcss@8.5.21:
+    dependencies:
+      nanoid: 3.3.16
+      picocolors: 1.1.1
+      source-map-js: 1.2.1
+
   powershell-utils@0.1.0: {}
 
   prelude-ls@1.2.1: {}
@@ -4251,11 +4261,11 @@ snapshots:
 
   set-cookie-parser@3.1.1: {}
 
-  shadcn-svelte@1.4.1(svelte@5.56.7(@typescript-eslint/types@8.64.0)):
+  shadcn-svelte@1.4.2(svelte@5.56.7(@typescript-eslint/types@8.64.0)):
     dependencies:
       commander: 14.0.3
       node-fetch-native: 1.6.7
-      postcss: 8.5.19
+      postcss: 8.5.21
       svelte: 5.56.7(@typescript-eslint/types@8.64.0)
       tailwind-merge: 3.6.0
 
