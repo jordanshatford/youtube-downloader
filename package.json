@@ -33,14 +33,14 @@
 		"@types/node": "^26.1.1",
 		"eslint": "^10.7.0",
 		"eslint-config-prettier": "^10.1.8",
-		"eslint-plugin-svelte": "^3.20.0",
+		"eslint-plugin-svelte": "^3.22.0",
 		"globals": "^17.7.0",
 		"husky": "^9.1.7",
 		"prettier": "^3.9.5",
 		"prettier-plugin-svelte": "^4.1.1",
 		"prettier-plugin-tailwindcss": "^0.8.1",
 		"svelte-eslint-parser": "^1.8.0",
-		"typescript-eslint": "^8.64.0"
+		"typescript-eslint": "^8.65.0"
 	},
 	"packageManager": "pnpm@11.10.0",
 	"engines": {
