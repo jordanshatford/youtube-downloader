@@ -1,6 +1,5 @@
 <script lang="ts">
-	import type { WithoutChild } from '$uilib/utils.js';
-	import type { WithoutChildrenOrChild } from '$uilib/utils.js';
+	import type { WithoutChild, WithoutChildrenOrChild } from '$uilib/utils.js';
 	import type { ComponentProps } from 'svelte';
 	import { cn } from '$uilib/utils.js';
 	import { Select as SelectPrimitive } from 'bits-ui';
