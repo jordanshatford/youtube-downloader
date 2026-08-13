@@ -15,7 +15,7 @@ dev = [
   "mypy>=2.3.0",
   "pre-commit>=4.6.1",
   "ruff>=0.16.1",
-  "ty>=0.0.66",
+  "ty>=0.0.68",
 ]
 
 [tool.fastapi]
