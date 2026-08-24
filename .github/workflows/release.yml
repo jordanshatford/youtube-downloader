@@ -26,8 +26,8 @@ jobs:
         run: pnpm build
       - uses: changesets/action@198f833dd7d863100ea6e28967bc9a9fdefadb0a # v2.1.0
         with:
-          title: 'ci: release latest changes'
-          commit: 'ci: release latest changes'
-          version: pnpm changeset version
+          pr-title: 'ci: release latest changes'
+          commit-message: 'ci: release latest changes'
+          version-script: pnpm changeset version
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
