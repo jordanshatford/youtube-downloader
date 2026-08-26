@@ -9,7 +9,7 @@ engineStrict: true
 
 catalog:
   '@sveltejs/adapter-auto': ^7.0.1
-  '@sveltejs/kit': ^2.70.2
+  '@sveltejs/kit': ^2.70.3
   '@sveltejs/vite-plugin-svelte': ^7.3.0
   '@tailwindcss/vite': ^4.3.3
   svelte: ^5.56.9
