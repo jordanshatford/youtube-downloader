@@ -25,7 +25,7 @@
 	},
 	"dependencies": {
 		"@fontsource-variable/inter": "latest",
-		"@tanstack/table-core": "^8.21.3",
+		"@tanstack/table-core": "^9.1.2",
 		"bits-ui": "^2.19.0",
 		"mode-watcher": "^1.1.0",
 		"svelte-sonner": "^1.2.1"
