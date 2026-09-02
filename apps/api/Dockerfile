@@ -1,4 +1,4 @@
-FROM python:3.15.0rc1 AS base
+FROM python:3.15.0rc2 AS base
 
 # Ensure FFMPEG is available for yt-dlp
 RUN apt-get update -y
