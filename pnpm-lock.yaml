@@ -180,8 +180,8 @@ importers:
         specifier: ^3.12.4
         version: 3.12.4
       '@lucide/svelte':
-        specifier: ^1.39.0
-        version: 1.39.0(svelte@5.57.0(@typescript-eslint/types@8.69.0))
+        specifier: ^1.40.0
+        version: 1.40.0(svelte@5.57.0(@typescript-eslint/types@8.69.0))
       '@sveltejs/adapter-auto':
         specifier: 'catalog:'
         version: 7.0.1(@sveltejs/kit@2.70.3(@sveltejs/vite-plugin-svelte@7.3.0(svelte@5.57.0(@typescript-eslint/types@8.69.0))(vite@8.2.2(@types/node@26.4.1)(jiti@2.7.0)(yaml@2.9.0)))(svelte@5.57.0(@typescript-eslint/types@8.69.0))(typescript@6.0.3)(vite@8.2.2(@types/node@26.4.1)(jiti@2.7.0)(yaml@2.9.0)))
@@ -574,8 +574,8 @@ packages:
   '@jsdevtools/ono@7.1.3':
     resolution: {integrity: sha512-4JQNk+3mVzK3xh2rqd6RB4J46qUR19azEHBneZyTZM+c456qOrbbM/5xcR8huNCCcbVt7+UmizG6GuUvPvKUYg==}
 
-  '@lucide/svelte@1.39.0':
-    resolution: {integrity: sha512-jCgA/RqDv9uWHs4DiIUef4kpf5TfLl9y8OMGrh+W4aQTCOscT4X2BX14ta65J+5ooslrN1bXXiO9AaeAOHAcPA==}
+  '@lucide/svelte@1.40.0':
+    resolution: {integrity: sha512-Uf0kxl48bLepYJDnXddrYX0/YuK2KnaF/tPm0zSZZEcEvrpJ9U8dPAFOC7LYATzjoNntwEAcugUXKZZ5/Gfo1Q==}
     peerDependencies:
       svelte: ^5
 
@@ -2777,7 +2777,7 @@ snapshots:
 
   '@jsdevtools/ono@7.1.3': {}
 
-  '@lucide/svelte@1.39.0(svelte@5.57.0(@typescript-eslint/types@8.69.0))':
+  '@lucide/svelte@1.40.0(svelte@5.57.0(@typescript-eslint/types@8.69.0))':
     dependencies:
       svelte: 5.57.0(@typescript-eslint/types@8.69.0)
 
