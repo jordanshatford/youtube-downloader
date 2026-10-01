@@ -65,7 +65,7 @@ importers:
         version: 10.0.1(eslint@10.11.0(jiti@2.7.0))
       '@ianvs/prettier-plugin-sort-imports':
         specifier: ^4.7.1
-        version: 4.7.1(@prettier/plugin-oxc@0.2.3)(prettier@3.9.8)
+        version: 4.7.1(@prettier/plugin-oxc@0.2.3)(prettier@3.9.9)
       '@prettier/plugin-oxc':
         specifier: ^0.2.3
         version: 0.2.3
@@ -88,14 +88,14 @@ importers:
         specifier: ^9.1.7
         version: 9.1.7
       prettier:
-        specifier: ^3.9.8
-        version: 3.9.8
+        specifier: ^3.9.9
+        version: 3.9.9
       prettier-plugin-svelte:
         specifier: ^4.1.1
-        version: 4.1.1(prettier@3.9.8)(svelte@5.57.1(@typescript-eslint/types@8.70.1))
+        version: 4.1.1(prettier@3.9.9)(svelte@5.57.1(@typescript-eslint/types@8.70.1))
       prettier-plugin-tailwindcss:
         specifier: ^0.8.1
-        version: 0.8.1(@ianvs/prettier-plugin-sort-imports@4.7.1(@prettier/plugin-oxc@0.2.3)(prettier@3.9.8))(@prettier/plugin-oxc@0.2.3)(prettier-plugin-svelte@4.1.1(prettier@3.9.8)(svelte@5.57.1(@typescript-eslint/types@8.70.1)))(prettier@3.9.8)
+        version: 0.8.1(@ianvs/prettier-plugin-sort-imports@4.7.1(@prettier/plugin-oxc@0.2.3)(prettier@3.9.9))(@prettier/plugin-oxc@0.2.3)(prettier-plugin-svelte@4.1.1(prettier@3.9.9)(svelte@5.57.1(@typescript-eslint/types@8.70.1)))(prettier@3.9.9)
       svelte-eslint-parser:
         specifier: ^1.8.1
         version: 1.8.1(svelte@5.57.1(@typescript-eslint/types@8.70.1))
@@ -2015,8 +2015,8 @@ packages:
       prettier-plugin-svelte:
         optional: true
 
-  prettier@3.9.8:
-    resolution: {integrity: sha512-WRFq3Wn3WId7LLROfMLdH7xaFr2jR62wU8nLO6rQUOLOxNZUviyJQs1M0iIhLexSFy+L+w0ch66wtoO2jRjG0A==}
+  prettier@3.9.9:
+    resolution: {integrity: sha512-Z/CJHIkdujO/OtN7nXUii0Rf3VT5SRuhjBA82Xvu2XhBUgX3nhP67T0LHceBdQLex7OOFGTox+Q5Yg8Jk2Qivg==}
     engines: {node: '>=14'}
     hasBin: true
 
@@ -2794,13 +2794,13 @@ snapshots:
 
   '@humanwhocodes/retry@0.4.3': {}
 
-  '@ianvs/prettier-plugin-sort-imports@4.7.1(@prettier/plugin-oxc@0.2.3)(prettier@3.9.8)':
+  '@ianvs/prettier-plugin-sort-imports@4.7.1(@prettier/plugin-oxc@0.2.3)(prettier@3.9.9)':
     dependencies:
       '@babel/generator': 7.29.7
       '@babel/parser': 7.29.7
       '@babel/traverse': 7.29.7
       '@babel/types': 7.29.7
-      prettier: 3.9.8
+      prettier: 3.9.9
       semver: 7.8.5
     optionalDependencies:
       '@prettier/plugin-oxc': 0.2.3
@@ -3973,20 +3973,20 @@ snapshots:
 
   prelude-ls@1.2.1: {}
 
-  prettier-plugin-svelte@4.1.1(prettier@3.9.8)(svelte@5.57.1(@typescript-eslint/types@8.70.1)):
+  prettier-plugin-svelte@4.1.1(prettier@3.9.9)(svelte@5.57.1(@typescript-eslint/types@8.70.1)):
     dependencies:
-      prettier: 3.9.8
+      prettier: 3.9.9
       svelte: 5.57.1(@typescript-eslint/types@8.70.1)
 
-  prettier-plugin-tailwindcss@0.8.1(@ianvs/prettier-plugin-sort-imports@4.7.1(@prettier/plugin-oxc@0.2.3)(prettier@3.9.8))(@prettier/plugin-oxc@0.2.3)(prettier-plugin-svelte@4.1.1(prettier@3.9.8)(svelte@5.57.1(@typescript-eslint/types@8.70.1)))(prettier@3.9.8):
+  prettier-plugin-tailwindcss@0.8.1(@ianvs/prettier-plugin-sort-imports@4.7.1(@prettier/plugin-oxc@0.2.3)(prettier@3.9.9))(@prettier/plugin-oxc@0.2.3)(prettier-plugin-svelte@4.1.1(prettier@3.9.9)(svelte@5.57.1(@typescript-eslint/types@8.70.1)))(prettier@3.9.9):
     dependencies:
-      prettier: 3.9.8
+      prettier: 3.9.9
     optionalDependencies:
-      '@ianvs/prettier-plugin-sort-imports': 4.7.1(@prettier/plugin-oxc@0.2.3)(prettier@3.9.8)
+      '@ianvs/prettier-plugin-sort-imports': 4.7.1(@prettier/plugin-oxc@0.2.3)(prettier@3.9.9)
       '@prettier/plugin-oxc': 0.2.3
-      prettier-plugin-svelte: 4.1.1(prettier@3.9.8)(svelte@5.57.1(@typescript-eslint/types@8.70.1))
+      prettier-plugin-svelte: 4.1.1(prettier@3.9.9)(svelte@5.57.1(@typescript-eslint/types@8.70.1))
 
-  prettier@3.9.8: {}
+  prettier@3.9.9: {}
 
   punycode@2.3.1: {}
 
